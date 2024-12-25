@@ -87,7 +87,7 @@ Slang
 --libraryPath
 slang
 --file
-../slang/slang.h
+../slang/include/slang.h
 
 # Silence ClangSharp warnings
 --exclude
