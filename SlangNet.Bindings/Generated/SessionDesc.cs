@@ -1,13 +1,11 @@
-using System;
-
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc"]/*' />
 public unsafe partial struct SessionDesc
 {
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.structureSize"]/*' />
     [NativeTypeName("size_t")]
-    public UIntPtr structureSize;
+    public nuint structureSize;
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.targets"]/*' />
     [NativeTypeName("const TargetDesc *")]

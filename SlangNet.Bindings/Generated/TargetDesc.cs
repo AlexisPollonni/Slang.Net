@@ -1,13 +1,11 @@
-using System;
-
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='TargetDesc.xml' path='doc/member[@name="TargetDesc"]/*' />
 public unsafe partial struct TargetDesc
 {
     /// <include file='TargetDesc.xml' path='doc/member[@name="TargetDesc.structureSize"]/*' />
     [NativeTypeName("size_t")]
-    public UIntPtr structureSize;
+    public nuint structureSize;
 
     /// <include file='TargetDesc.xml' path='doc/member[@name="TargetDesc.format"]/*' />
     public SlangCompileTarget format;

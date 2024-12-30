@@ -1,9 +1,7 @@
-using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using static SlangNet.LayoutRules;
 
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ISession.xml' path='doc/member[@name="ISession"]/*' />
 [NativeTypeName("struct ISession : ISlangUnknown")]
@@ -11,95 +9,12 @@ public unsafe partial struct ISession
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(ISession* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _addRef(ISession* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _release(ISession* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::IGlobalSession *")]
-    public delegate IGlobalSession* _getGlobalSession(ISession* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::IModule *")]
-    public delegate IModule* _loadModule(ISession* pThis, [NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::IModule *")]
-    public delegate IModule* _loadModuleFromSource(ISession* pThis, [NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("slang::IBlob *")] ISlangBlob* source, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _createCompositeComponentType(ISession* pThis, [NativeTypeName("IComponentType *const *")] IComponentType** componentTypes, [NativeTypeName("SlangInt")] long componentTypeCount, IComponentType** outCompositeComponentType, ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::TypeReflection *")]
-    public delegate TypeReflection* _specializeType(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("const SpecializationArg *")] SpecializationArg* specializationArgs, [NativeTypeName("SlangInt")] long specializationArgCount, ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::TypeLayoutReflection *")]
-    public delegate TypeLayoutReflection* _getTypeLayout(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("SlangInt")] long targetIndex = 0, [NativeTypeName("slang::LayoutRules")] LayoutRules rules = Default, ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::TypeReflection *")]
-    public delegate TypeReflection* _getContainerType(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* elementType, [NativeTypeName("slang::ContainerType")] ContainerType containerType, ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::TypeReflection *")]
-    public delegate TypeReflection* _getDynamicType(ISession* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getTypeRTTIMangledName(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, ISlangBlob** outNameBlob);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getTypeConformanceWitnessMangledName(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("slang::TypeReflection *")] TypeReflection* interfaceType, ISlangBlob** outNameBlob);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getTypeConformanceWitnessSequentialID(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("slang::TypeReflection *")] TypeReflection* interfaceType, [NativeTypeName("uint32_t *")] uint* outId);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _createTypeConformanceComponentType(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("slang::TypeReflection *")] TypeReflection* interfaceType, ITypeConformance** outConformance, [NativeTypeName("SlangInt")] long conformanceIdOverride, ISlangBlob** outDiagnostics);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::IModule *")]
-    public delegate IModule* _loadModuleFromIRBlob(ISession* pThis, [NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("slang::IBlob *")] ISlangBlob* source, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangInt")]
-    public delegate long _getLoadedModuleCount(ISession* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::IModule *")]
-    public delegate IModule* _getLoadedModule(ISession* pThis, [NativeTypeName("SlangInt")] long index);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("bool")]
-    public delegate byte _isBinaryModuleUpToDate(ISession* pThis, [NativeTypeName("const char *")] sbyte* modulePath, [NativeTypeName("slang::IBlob *")] ISlangBlob* binaryModuleBlob);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::IModule *")]
-    public delegate IModule* _loadModuleFromSourceString(ISession* pThis, [NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("const char *")] sbyte* @string, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null);
-
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(pThis, uuid, outObject);
-        }
+        return lpVtbl->queryInterface((ISession*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -107,10 +22,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(pThis);
-        }
+        return lpVtbl->addRef((ISession*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -118,10 +30,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(pThis);
-        }
+        return lpVtbl->release((ISession*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getGlobalSession"]/*' />
@@ -129,10 +38,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::IGlobalSession *")]
     public IGlobalSession* getGlobalSession()
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getGlobalSession>(lpVtbl->getGlobalSession)(pThis);
-        }
+        return lpVtbl->getGlobalSession((ISession*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.loadModule"]/*' />
@@ -140,10 +46,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::IModule *")]
     public IModule* loadModule([NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_loadModule>(lpVtbl->loadModule)(pThis, moduleName, outDiagnostics);
-        }
+        return lpVtbl->loadModule((ISession*)Unsafe.AsPointer(ref this), moduleName, outDiagnostics);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.loadModuleFromSource"]/*' />
@@ -151,10 +54,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::IModule *")]
     public IModule* loadModuleFromSource([NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("slang::IBlob *")] ISlangBlob* source, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_loadModuleFromSource>(lpVtbl->loadModuleFromSource)(pThis, moduleName, path, source, outDiagnostics);
-        }
+        return lpVtbl->loadModuleFromSource((ISession*)Unsafe.AsPointer(ref this), moduleName, path, source, outDiagnostics);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.createCompositeComponentType"]/*' />
@@ -162,10 +62,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("SlangResult")]
     public int createCompositeComponentType([NativeTypeName("IComponentType *const *")] IComponentType** componentTypes, [NativeTypeName("SlangInt")] long componentTypeCount, IComponentType** outCompositeComponentType, ISlangBlob** outDiagnostics = null)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_createCompositeComponentType>(lpVtbl->createCompositeComponentType)(pThis, componentTypes, componentTypeCount, outCompositeComponentType, outDiagnostics);
-        }
+        return lpVtbl->createCompositeComponentType((ISession*)Unsafe.AsPointer(ref this), componentTypes, componentTypeCount, outCompositeComponentType, outDiagnostics);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.specializeType"]/*' />
@@ -173,10 +70,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::TypeReflection *")]
     public TypeReflection* specializeType([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("const SpecializationArg *")] SpecializationArg* specializationArgs, [NativeTypeName("SlangInt")] long specializationArgCount, ISlangBlob** outDiagnostics = null)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_specializeType>(lpVtbl->specializeType)(pThis, type, specializationArgs, specializationArgCount, outDiagnostics);
-        }
+        return lpVtbl->specializeType((ISession*)Unsafe.AsPointer(ref this), type, specializationArgs, specializationArgCount, outDiagnostics);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getTypeLayout"]/*' />
@@ -184,10 +78,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::TypeLayoutReflection *")]
     public TypeLayoutReflection* getTypeLayout([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("SlangInt")] long targetIndex = 0, [NativeTypeName("slang::LayoutRules")] LayoutRules rules = Default, ISlangBlob** outDiagnostics = null)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getTypeLayout>(lpVtbl->getTypeLayout)(pThis, type, targetIndex, rules, outDiagnostics);
-        }
+        return lpVtbl->getTypeLayout((ISession*)Unsafe.AsPointer(ref this), type, targetIndex, rules, outDiagnostics);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getContainerType"]/*' />
@@ -195,10 +86,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::TypeReflection *")]
     public TypeReflection* getContainerType([NativeTypeName("slang::TypeReflection *")] TypeReflection* elementType, [NativeTypeName("slang::ContainerType")] ContainerType containerType, ISlangBlob** outDiagnostics = null)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getContainerType>(lpVtbl->getContainerType)(pThis, elementType, containerType, outDiagnostics);
-        }
+        return lpVtbl->getContainerType((ISession*)Unsafe.AsPointer(ref this), elementType, containerType, outDiagnostics);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getDynamicType"]/*' />
@@ -206,10 +94,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::TypeReflection *")]
     public TypeReflection* getDynamicType()
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getDynamicType>(lpVtbl->getDynamicType)(pThis);
-        }
+        return lpVtbl->getDynamicType((ISession*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getTypeRTTIMangledName"]/*' />
@@ -217,10 +102,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("SlangResult")]
     public int getTypeRTTIMangledName([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, ISlangBlob** outNameBlob)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getTypeRTTIMangledName>(lpVtbl->getTypeRTTIMangledName)(pThis, type, outNameBlob);
-        }
+        return lpVtbl->getTypeRTTIMangledName((ISession*)Unsafe.AsPointer(ref this), type, outNameBlob);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getTypeConformanceWitnessMangledName"]/*' />
@@ -228,10 +110,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("SlangResult")]
     public int getTypeConformanceWitnessMangledName([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("slang::TypeReflection *")] TypeReflection* interfaceType, ISlangBlob** outNameBlob)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getTypeConformanceWitnessMangledName>(lpVtbl->getTypeConformanceWitnessMangledName)(pThis, type, interfaceType, outNameBlob);
-        }
+        return lpVtbl->getTypeConformanceWitnessMangledName((ISession*)Unsafe.AsPointer(ref this), type, interfaceType, outNameBlob);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getTypeConformanceWitnessSequentialID"]/*' />
@@ -239,10 +118,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("SlangResult")]
     public int getTypeConformanceWitnessSequentialID([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("slang::TypeReflection *")] TypeReflection* interfaceType, [NativeTypeName("uint32_t *")] uint* outId)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getTypeConformanceWitnessSequentialID>(lpVtbl->getTypeConformanceWitnessSequentialID)(pThis, type, interfaceType, outId);
-        }
+        return lpVtbl->getTypeConformanceWitnessSequentialID((ISession*)Unsafe.AsPointer(ref this), type, interfaceType, outId);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.createTypeConformanceComponentType"]/*' />
@@ -250,10 +126,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("SlangResult")]
     public int createTypeConformanceComponentType([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("slang::TypeReflection *")] TypeReflection* interfaceType, ITypeConformance** outConformance, [NativeTypeName("SlangInt")] long conformanceIdOverride, ISlangBlob** outDiagnostics)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_createTypeConformanceComponentType>(lpVtbl->createTypeConformanceComponentType)(pThis, type, interfaceType, outConformance, conformanceIdOverride, outDiagnostics);
-        }
+        return lpVtbl->createTypeConformanceComponentType((ISession*)Unsafe.AsPointer(ref this), type, interfaceType, outConformance, conformanceIdOverride, outDiagnostics);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.loadModuleFromIRBlob"]/*' />
@@ -261,10 +134,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::IModule *")]
     public IModule* loadModuleFromIRBlob([NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("slang::IBlob *")] ISlangBlob* source, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_loadModuleFromIRBlob>(lpVtbl->loadModuleFromIRBlob)(pThis, moduleName, path, source, outDiagnostics);
-        }
+        return lpVtbl->loadModuleFromIRBlob((ISession*)Unsafe.AsPointer(ref this), moduleName, path, source, outDiagnostics);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getLoadedModuleCount"]/*' />
@@ -272,10 +142,7 @@ public unsafe partial struct ISession
     [return: NativeTypeName("SlangInt")]
     public long getLoadedModuleCount()
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getLoadedModuleCount>(lpVtbl->getLoadedModuleCount)(pThis);
-        }
+        return lpVtbl->getLoadedModuleCount((ISession*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getLoadedModule"]/*' />
@@ -283,20 +150,14 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::IModule *")]
     public IModule* getLoadedModule([NativeTypeName("SlangInt")] long index)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getLoadedModule>(lpVtbl->getLoadedModule)(pThis, index);
-        }
+        return lpVtbl->getLoadedModule((ISession*)Unsafe.AsPointer(ref this), index);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.isBinaryModuleUpToDate"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool isBinaryModuleUpToDate([NativeTypeName("const char *")] sbyte* modulePath, [NativeTypeName("slang::IBlob *")] ISlangBlob* binaryModuleBlob)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_isBinaryModuleUpToDate>(lpVtbl->isBinaryModuleUpToDate)(pThis, modulePath, binaryModuleBlob) != 0;
-        }
+        return lpVtbl->isBinaryModuleUpToDate((ISession*)Unsafe.AsPointer(ref this), modulePath, binaryModuleBlob) != 0;
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.loadModuleFromSourceString"]/*' />
@@ -304,72 +165,69 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::IModule *")]
     public IModule* loadModuleFromSourceString([NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("const char *")] sbyte* @string, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (ISession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_loadModuleFromSourceString>(lpVtbl->loadModuleFromSourceString)(pThis, moduleName, path, @string, outDiagnostics);
-        }
+        return lpVtbl->loadModuleFromSourceString((ISession*)Unsafe.AsPointer(ref this), moduleName, path, @string, outDiagnostics);
     }
 
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr queryInterface;
+        public delegate* unmanaged[Stdcall]<ISession*, SlangUUID*, void**, int> queryInterface;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr addRef;
+        public delegate* unmanaged[Stdcall]<ISession*, uint> addRef;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr release;
+        public delegate* unmanaged[Stdcall]<ISession*, uint> release;
 
         [NativeTypeName("IGlobalSession *() __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getGlobalSession;
+        public delegate* unmanaged[Stdcall]<ISession*, IGlobalSession*> getGlobalSession;
 
         [NativeTypeName("IModule *(const char *, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr loadModule;
+        public delegate* unmanaged[Stdcall]<ISession*, sbyte*, ISlangBlob**, IModule*> loadModule;
 
         [NativeTypeName("IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr loadModuleFromSource;
+        public delegate* unmanaged[Stdcall]<ISession*, sbyte*, sbyte*, ISlangBlob*, ISlangBlob**, IModule*> loadModuleFromSource;
 
         [NativeTypeName("SlangResult (IComponentType *const *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr createCompositeComponentType;
+        public delegate* unmanaged[Stdcall]<ISession*, IComponentType**, long, IComponentType**, ISlangBlob**, int> createCompositeComponentType;
 
         [NativeTypeName("TypeReflection *(TypeReflection *, const SpecializationArg *, SlangInt, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr specializeType;
+        public delegate* unmanaged[Stdcall]<ISession*, TypeReflection*, SpecializationArg*, long, ISlangBlob**, TypeReflection*> specializeType;
 
         [NativeTypeName("TypeLayoutReflection *(TypeReflection *, SlangInt, LayoutRules, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getTypeLayout;
+        public delegate* unmanaged[Stdcall]<ISession*, TypeReflection*, long, LayoutRules, ISlangBlob**, TypeLayoutReflection*> getTypeLayout;
 
         [NativeTypeName("TypeReflection *(TypeReflection *, ContainerType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getContainerType;
+        public delegate* unmanaged[Stdcall]<ISession*, TypeReflection*, ContainerType, ISlangBlob**, TypeReflection*> getContainerType;
 
         [NativeTypeName("TypeReflection *() __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getDynamicType;
+        public delegate* unmanaged[Stdcall]<ISession*, TypeReflection*> getDynamicType;
 
         [NativeTypeName("SlangResult (TypeReflection *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getTypeRTTIMangledName;
+        public delegate* unmanaged[Stdcall]<ISession*, TypeReflection*, ISlangBlob**, int> getTypeRTTIMangledName;
 
         [NativeTypeName("SlangResult (TypeReflection *, TypeReflection *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getTypeConformanceWitnessMangledName;
+        public delegate* unmanaged[Stdcall]<ISession*, TypeReflection*, TypeReflection*, ISlangBlob**, int> getTypeConformanceWitnessMangledName;
 
         [NativeTypeName("SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getTypeConformanceWitnessSequentialID;
+        public delegate* unmanaged[Stdcall]<ISession*, TypeReflection*, TypeReflection*, uint*, int> getTypeConformanceWitnessSequentialID;
 
         [NativeTypeName("SlangResult (slang::TypeReflection *, slang::TypeReflection *, ITypeConformance **, SlangInt, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr createTypeConformanceComponentType;
+        public delegate* unmanaged[Stdcall]<ISession*, TypeReflection*, TypeReflection*, ITypeConformance**, long, ISlangBlob**, int> createTypeConformanceComponentType;
 
         [NativeTypeName("IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr loadModuleFromIRBlob;
+        public delegate* unmanaged[Stdcall]<ISession*, sbyte*, sbyte*, ISlangBlob*, ISlangBlob**, IModule*> loadModuleFromIRBlob;
 
         [NativeTypeName("SlangInt () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getLoadedModuleCount;
+        public delegate* unmanaged[Stdcall]<ISession*, long> getLoadedModuleCount;
 
         [NativeTypeName("IModule *(SlangInt) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getLoadedModule;
+        public delegate* unmanaged[Stdcall]<ISession*, long, IModule*> getLoadedModule;
 
         [NativeTypeName("bool (const char *, slang::IBlob *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr isBinaryModuleUpToDate;
+        public delegate* unmanaged[Stdcall]<ISession*, sbyte*, ISlangBlob*, byte> isBinaryModuleUpToDate;
 
         [NativeTypeName("IModule *(const char *, const char *, const char *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr loadModuleFromSourceString;
+        public delegate* unmanaged[Stdcall]<ISession*, sbyte*, sbyte*, sbyte*, ISlangBlob**, IModule*> loadModuleFromSourceString;
     }
 }

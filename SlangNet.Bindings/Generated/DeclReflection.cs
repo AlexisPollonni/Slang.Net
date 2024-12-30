@@ -1,6 +1,6 @@
-using static SlangNet.Unsafe.SlangDeclKind;
+using static SlangNet.Bindings.Generated.SlangDeclKind;
 
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='DeclReflection.xml' path='doc/member[@name="DeclReflection"]/*' />
 public partial struct DeclReflection

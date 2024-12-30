@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangDebugInfoFormat.xml' path='doc/member[@name="SlangDebugInfoFormat"]/*' />
 [NativeTypeName("SlangDebugInfoFormatIntegral")]

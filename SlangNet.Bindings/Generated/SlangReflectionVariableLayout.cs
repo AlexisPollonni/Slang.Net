@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangReflectionVariableLayout.xml' path='doc/member[@name="SlangReflectionVariableLayout"]/*' />
 public partial struct SlangReflectionVariableLayout

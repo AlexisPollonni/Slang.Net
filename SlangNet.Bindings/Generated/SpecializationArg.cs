@@ -1,7 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SpecializationArg.xml' path='doc/member[@name="SpecializationArg"]/*' />
 public unsafe partial struct SpecializationArg
@@ -15,15 +16,13 @@ public unsafe partial struct SpecializationArg
     public _Anonymous_e__Union Anonymous;
 
     /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.type"]/*' />
+    [UnscopedRef]
     public ref TypeReflection* type
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get
         {
-            fixed (_Anonymous_e__Union* pField = &Anonymous)
-            {
-                return ref pField->type;
-            }
+            return ref Anonymous.type;
         }
     }
 

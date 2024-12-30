@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangDeclKind.xml' path='doc/member[@name="SlangDeclKind"]/*' />
 [NativeTypeName("SlangDeclKindIntegral")]

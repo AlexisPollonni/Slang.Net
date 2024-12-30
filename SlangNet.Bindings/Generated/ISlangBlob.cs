@@ -1,8 +1,6 @@
-using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ISlangBlob.xml' path='doc/member[@name="ISlangBlob"]/*' />
 [NativeTypeName("struct ISlangBlob : ISlangUnknown")]
@@ -10,35 +8,12 @@ public unsafe partial struct ISlangBlob
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(ISlangBlob* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _addRef(ISlangBlob* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _release(ISlangBlob* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("const void *")]
-    public delegate void* _getBufferPointer(ISlangBlob* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("size_t")]
-    public delegate UIntPtr _getBufferSize(ISlangBlob* pThis);
-
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        fixed (ISlangBlob* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(pThis, uuid, outObject);
-        }
+        return lpVtbl->queryInterface((ISlangBlob*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -46,10 +21,7 @@ public unsafe partial struct ISlangBlob
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        fixed (ISlangBlob* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(pThis);
-        }
+        return lpVtbl->addRef((ISlangBlob*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -57,10 +29,7 @@ public unsafe partial struct ISlangBlob
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        fixed (ISlangBlob* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(pThis);
-        }
+        return lpVtbl->release((ISlangBlob*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangBlob.xml' path='doc/member[@name="ISlangBlob.getBufferPointer"]/*' />
@@ -68,38 +37,32 @@ public unsafe partial struct ISlangBlob
     [return: NativeTypeName("const void *")]
     public void* getBufferPointer()
     {
-        fixed (ISlangBlob* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getBufferPointer>(lpVtbl->getBufferPointer)(pThis);
-        }
+        return lpVtbl->getBufferPointer((ISlangBlob*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangBlob.xml' path='doc/member[@name="ISlangBlob.getBufferSize"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("size_t")]
-    public UIntPtr getBufferSize()
+    public nuint getBufferSize()
     {
-        fixed (ISlangBlob* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getBufferSize>(lpVtbl->getBufferSize)(pThis);
-        }
+        return lpVtbl->getBufferSize((ISlangBlob*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr queryInterface;
+        public delegate* unmanaged[Stdcall]<ISlangBlob*, SlangUUID*, void**, int> queryInterface;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr addRef;
+        public delegate* unmanaged[Stdcall]<ISlangBlob*, uint> addRef;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr release;
+        public delegate* unmanaged[Stdcall]<ISlangBlob*, uint> release;
 
         [NativeTypeName("const void *() __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getBufferPointer;
+        public delegate* unmanaged[Stdcall]<ISlangBlob*, void*> getBufferPointer;
 
         [NativeTypeName("size_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getBufferSize;
+        public delegate* unmanaged[Stdcall]<ISlangBlob*, nuint> getBufferSize;
     }
 }

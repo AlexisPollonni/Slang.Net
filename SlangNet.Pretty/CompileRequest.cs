@@ -3,7 +3,6 @@ using System.Buffers;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using SlangNet.Internal;
-using SlangNet.Unsafe;
 
 namespace SlangNet;
 

@@ -1,7 +1,7 @@
-using static SlangNet.Unsafe.SlangScalarType;
-using static SlangNet.Unsafe.SlangTypeKind;
+using static SlangNet.Bindings.Generated.SlangScalarType;
+using static SlangNet.Bindings.Generated.SlangTypeKind;
 
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='TypeReflection.xml' path='doc/member[@name="TypeReflection"]/*' />
 public partial struct TypeReflection

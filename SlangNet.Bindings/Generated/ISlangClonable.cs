@@ -1,8 +1,6 @@
-using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ISlangClonable.xml' path='doc/member[@name="ISlangClonable"]/*' />
 [NativeTypeName("struct ISlangClonable : ISlangCastable")]
@@ -10,33 +8,12 @@ public unsafe partial struct ISlangClonable
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(ISlangClonable* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _addRef(ISlangClonable* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _release(ISlangClonable* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void* _castAs(ISlangClonable* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* guid);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void* _clone(ISlangClonable* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* guid);
-
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        fixed (ISlangClonable* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(pThis, uuid, outObject);
-        }
+        return lpVtbl->queryInterface((ISlangClonable*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -44,10 +21,7 @@ public unsafe partial struct ISlangClonable
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        fixed (ISlangClonable* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(pThis);
-        }
+        return lpVtbl->addRef((ISlangClonable*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -55,47 +29,38 @@ public unsafe partial struct ISlangClonable
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        fixed (ISlangClonable* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(pThis);
-        }
+        return lpVtbl->release((ISlangClonable*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangCastable.castAs" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* castAs([NativeTypeName("const SlangUUID &")] SlangUUID* guid)
     {
-        fixed (ISlangClonable* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_castAs>(lpVtbl->castAs)(pThis, guid);
-        }
+        return lpVtbl->castAs((ISlangClonable*)Unsafe.AsPointer(ref this), guid);
     }
 
     /// <include file='ISlangClonable.xml' path='doc/member[@name="ISlangClonable.clone"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* clone([NativeTypeName("const SlangUUID &")] SlangUUID* guid)
     {
-        fixed (ISlangClonable* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_clone>(lpVtbl->clone)(pThis, guid);
-        }
+        return lpVtbl->clone((ISlangClonable*)Unsafe.AsPointer(ref this), guid);
     }
 
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr queryInterface;
+        public delegate* unmanaged[Stdcall]<ISlangClonable*, SlangUUID*, void**, int> queryInterface;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr addRef;
+        public delegate* unmanaged[Stdcall]<ISlangClonable*, uint> addRef;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr release;
+        public delegate* unmanaged[Stdcall]<ISlangClonable*, uint> release;
 
         [NativeTypeName("void *(const SlangUUID &) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr castAs;
+        public delegate* unmanaged[Stdcall]<ISlangClonable*, SlangUUID*, void*> castAs;
 
         [NativeTypeName("void *(const SlangUUID &) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr clone;
+        public delegate* unmanaged[Stdcall]<ISlangClonable*, SlangUUID*, void*> clone;
     }
 }

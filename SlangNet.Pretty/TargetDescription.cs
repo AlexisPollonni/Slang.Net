@@ -1,6 +1,4 @@
-﻿using SlangNet.Unsafe;
-
-namespace SlangNet;
+﻿namespace SlangNet;
 
 public struct TargetDescription
 {

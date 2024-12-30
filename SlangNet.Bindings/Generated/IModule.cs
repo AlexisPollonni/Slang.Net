@@ -1,8 +1,6 @@
-using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='IModule.xml' path='doc/member[@name="IModule"]/*' />
 [NativeTypeName("struct IModule : slang::IComponentType")]
@@ -10,130 +8,12 @@ public unsafe partial struct IModule
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(IModule* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _addRef(IModule* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _release(IModule* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::ISession *")]
-    public delegate ISession* _getSession(IModule* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::ProgramLayout *")]
-    public delegate ShaderReflection* _getLayout(IModule* pThis, [NativeTypeName("SlangInt")] long targetIndex = 0, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangInt")]
-    public delegate long _getSpecializationParamCount(IModule* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getEntryPointCode(IModule* pThis, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getResultAsFileSystem(IModule* pThis, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, ISlangMutableFileSystem** outFileSystem);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _getEntryPointHash(IModule* pThis, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outHash);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _specialize(IModule* pThis, [NativeTypeName("const SpecializationArg *")] SpecializationArg* specializationArgs, [NativeTypeName("SlangInt")] long specializationArgCount, IComponentType** outSpecializedComponentType, ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _link(IModule* pThis, IComponentType** outLinkedComponentType, ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getEntryPointHostCallable(IModule* pThis, int entryPointIndex, int targetIndex, ISlangSharedLibrary** outSharedLibrary, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _renameEntryPoint(IModule* pThis, [NativeTypeName("const char *")] sbyte* newName, IComponentType** outEntryPoint);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _linkWithOptions(IModule* pThis, IComponentType** outLinkedComponentType, [NativeTypeName("uint32_t")] uint compilerOptionEntryCount, [NativeTypeName("slang::CompilerOptionEntry *")] CompilerOptionEntry* compilerOptionEntries, ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getTargetCode(IModule* pThis, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getTargetMetadata(IModule* pThis, [NativeTypeName("SlangInt")] long targetIndex, IMetadata** outMetadata, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getEntryPointMetadata(IModule* pThis, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, IMetadata** outMetadata, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _findEntryPointByName(IModule* pThis, [NativeTypeName("const char *")] sbyte* name, IEntryPoint** outEntryPoint);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangInt32")]
-    public delegate int _getDefinedEntryPointCount(IModule* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _getDefinedEntryPoint(IModule* pThis, [NativeTypeName("SlangInt32")] int index, IEntryPoint** outEntryPoint);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _serialize(IModule* pThis, ISlangBlob** outSerializedBlob);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _writeToFile(IModule* pThis, [NativeTypeName("const char *")] sbyte* fileName);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("const char *")]
-    public delegate sbyte* _getName(IModule* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("const char *")]
-    public delegate sbyte* _getFilePath(IModule* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("const char *")]
-    public delegate sbyte* _getUniqueIdentity(IModule* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _findAndCheckEntryPoint(IModule* pThis, [NativeTypeName("const char *")] sbyte* name, SlangStage stage, IEntryPoint** outEntryPoint, ISlangBlob** outDiagnostics);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangInt32")]
-    public delegate int _getDependencyFileCount(IModule* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("const char *")]
-    public delegate sbyte* _getDependencyFilePath(IModule* pThis, [NativeTypeName("SlangInt32")] int index);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("slang::DeclReflection *")]
-    public delegate DeclReflection* _getModuleReflection(IModule* pThis);
-
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(pThis, uuid, outObject);
-        }
+        return lpVtbl->queryInterface((IModule*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -141,10 +21,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(pThis);
-        }
+        return lpVtbl->addRef((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -152,10 +29,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(pThis);
-        }
+        return lpVtbl->release((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IComponentType.getSession" />
@@ -163,10 +37,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("slang::ISession *")]
     public ISession* getSession()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getSession>(lpVtbl->getSession)(pThis);
-        }
+        return lpVtbl->getSession((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IComponentType.getLayout" />
@@ -174,10 +45,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("slang::ProgramLayout *")]
     public ShaderReflection* getLayout([NativeTypeName("SlangInt")] long targetIndex = 0, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getLayout>(lpVtbl->getLayout)(pThis, targetIndex, outDiagnostics);
-        }
+        return lpVtbl->getLayout((IModule*)Unsafe.AsPointer(ref this), targetIndex, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getSpecializationParamCount" />
@@ -185,10 +53,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangInt")]
     public long getSpecializationParamCount()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getSpecializationParamCount>(lpVtbl->getSpecializationParamCount)(pThis);
-        }
+        return lpVtbl->getSpecializationParamCount((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointCode" />
@@ -196,10 +61,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getEntryPointCode([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getEntryPointCode>(lpVtbl->getEntryPointCode)(pThis, entryPointIndex, targetIndex, outCode, outDiagnostics);
-        }
+        return lpVtbl->getEntryPointCode((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outCode, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getResultAsFileSystem" />
@@ -207,20 +69,14 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getResultAsFileSystem([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, ISlangMutableFileSystem** outFileSystem)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getResultAsFileSystem>(lpVtbl->getResultAsFileSystem)(pThis, entryPointIndex, targetIndex, outFileSystem);
-        }
+        return lpVtbl->getResultAsFileSystem((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outFileSystem);
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointHash" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void getEntryPointHash([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outHash)
     {
-        fixed (IModule* pThis = &this)
-        {
-            Marshal.GetDelegateForFunctionPointer<_getEntryPointHash>(lpVtbl->getEntryPointHash)(pThis, entryPointIndex, targetIndex, outHash);
-        }
+        lpVtbl->getEntryPointHash((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outHash);
     }
 
     /// <inheritdoc cref="IComponentType.specialize" />
@@ -228,10 +84,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int specialize([NativeTypeName("const SpecializationArg *")] SpecializationArg* specializationArgs, [NativeTypeName("SlangInt")] long specializationArgCount, IComponentType** outSpecializedComponentType, ISlangBlob** outDiagnostics = null)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_specialize>(lpVtbl->specialize)(pThis, specializationArgs, specializationArgCount, outSpecializedComponentType, outDiagnostics);
-        }
+        return lpVtbl->specialize((IModule*)Unsafe.AsPointer(ref this), specializationArgs, specializationArgCount, outSpecializedComponentType, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.link" />
@@ -239,10 +92,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int link(IComponentType** outLinkedComponentType, ISlangBlob** outDiagnostics = null)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_link>(lpVtbl->link)(pThis, outLinkedComponentType, outDiagnostics);
-        }
+        return lpVtbl->link((IModule*)Unsafe.AsPointer(ref this), outLinkedComponentType, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointHostCallable" />
@@ -250,10 +100,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getEntryPointHostCallable(int entryPointIndex, int targetIndex, ISlangSharedLibrary** outSharedLibrary, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getEntryPointHostCallable>(lpVtbl->getEntryPointHostCallable)(pThis, entryPointIndex, targetIndex, outSharedLibrary, outDiagnostics);
-        }
+        return lpVtbl->getEntryPointHostCallable((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outSharedLibrary, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.renameEntryPoint" />
@@ -261,10 +108,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int renameEntryPoint([NativeTypeName("const char *")] sbyte* newName, IComponentType** outEntryPoint)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_renameEntryPoint>(lpVtbl->renameEntryPoint)(pThis, newName, outEntryPoint);
-        }
+        return lpVtbl->renameEntryPoint((IModule*)Unsafe.AsPointer(ref this), newName, outEntryPoint);
     }
 
     /// <inheritdoc cref="IComponentType.linkWithOptions" />
@@ -272,10 +116,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int linkWithOptions(IComponentType** outLinkedComponentType, [NativeTypeName("uint32_t")] uint compilerOptionEntryCount, [NativeTypeName("slang::CompilerOptionEntry *")] CompilerOptionEntry* compilerOptionEntries, ISlangBlob** outDiagnostics = null)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_linkWithOptions>(lpVtbl->linkWithOptions)(pThis, outLinkedComponentType, compilerOptionEntryCount, compilerOptionEntries, outDiagnostics);
-        }
+        return lpVtbl->linkWithOptions((IModule*)Unsafe.AsPointer(ref this), outLinkedComponentType, compilerOptionEntryCount, compilerOptionEntries, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getTargetCode" />
@@ -283,10 +124,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getTargetCode([NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getTargetCode>(lpVtbl->getTargetCode)(pThis, targetIndex, outCode, outDiagnostics);
-        }
+        return lpVtbl->getTargetCode((IModule*)Unsafe.AsPointer(ref this), targetIndex, outCode, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getTargetMetadata" />
@@ -294,10 +132,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getTargetMetadata([NativeTypeName("SlangInt")] long targetIndex, IMetadata** outMetadata, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getTargetMetadata>(lpVtbl->getTargetMetadata)(pThis, targetIndex, outMetadata, outDiagnostics);
-        }
+        return lpVtbl->getTargetMetadata((IModule*)Unsafe.AsPointer(ref this), targetIndex, outMetadata, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointMetadata" />
@@ -305,10 +140,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getEntryPointMetadata([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, IMetadata** outMetadata, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getEntryPointMetadata>(lpVtbl->getEntryPointMetadata)(pThis, entryPointIndex, targetIndex, outMetadata, outDiagnostics);
-        }
+        return lpVtbl->getEntryPointMetadata((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outMetadata, outDiagnostics);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.findEntryPointByName"]/*' />
@@ -316,10 +148,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int findEntryPointByName([NativeTypeName("const char *")] sbyte* name, IEntryPoint** outEntryPoint)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_findEntryPointByName>(lpVtbl->findEntryPointByName)(pThis, name, outEntryPoint);
-        }
+        return lpVtbl->findEntryPointByName((IModule*)Unsafe.AsPointer(ref this), name, outEntryPoint);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getDefinedEntryPointCount"]/*' />
@@ -327,10 +156,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangInt32")]
     public int getDefinedEntryPointCount()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getDefinedEntryPointCount>(lpVtbl->getDefinedEntryPointCount)(pThis);
-        }
+        return lpVtbl->getDefinedEntryPointCount((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getDefinedEntryPoint"]/*' />
@@ -338,10 +164,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getDefinedEntryPoint([NativeTypeName("SlangInt32")] int index, IEntryPoint** outEntryPoint)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getDefinedEntryPoint>(lpVtbl->getDefinedEntryPoint)(pThis, index, outEntryPoint);
-        }
+        return lpVtbl->getDefinedEntryPoint((IModule*)Unsafe.AsPointer(ref this), index, outEntryPoint);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.serialize"]/*' />
@@ -349,10 +172,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int serialize(ISlangBlob** outSerializedBlob)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_serialize>(lpVtbl->serialize)(pThis, outSerializedBlob);
-        }
+        return lpVtbl->serialize((IModule*)Unsafe.AsPointer(ref this), outSerializedBlob);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.writeToFile"]/*' />
@@ -360,10 +180,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int writeToFile([NativeTypeName("const char *")] sbyte* fileName)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_writeToFile>(lpVtbl->writeToFile)(pThis, fileName);
-        }
+        return lpVtbl->writeToFile((IModule*)Unsafe.AsPointer(ref this), fileName);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getName"]/*' />
@@ -371,10 +188,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("const char *")]
     public sbyte* getName()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getName>(lpVtbl->getName)(pThis);
-        }
+        return lpVtbl->getName((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getFilePath"]/*' />
@@ -382,10 +196,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("const char *")]
     public sbyte* getFilePath()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getFilePath>(lpVtbl->getFilePath)(pThis);
-        }
+        return lpVtbl->getFilePath((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getUniqueIdentity"]/*' />
@@ -393,10 +204,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("const char *")]
     public sbyte* getUniqueIdentity()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getUniqueIdentity>(lpVtbl->getUniqueIdentity)(pThis);
-        }
+        return lpVtbl->getUniqueIdentity((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.findAndCheckEntryPoint"]/*' />
@@ -404,10 +212,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int findAndCheckEntryPoint([NativeTypeName("const char *")] sbyte* name, SlangStage stage, IEntryPoint** outEntryPoint, ISlangBlob** outDiagnostics)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_findAndCheckEntryPoint>(lpVtbl->findAndCheckEntryPoint)(pThis, name, stage, outEntryPoint, outDiagnostics);
-        }
+        return lpVtbl->findAndCheckEntryPoint((IModule*)Unsafe.AsPointer(ref this), name, stage, outEntryPoint, outDiagnostics);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getDependencyFileCount"]/*' />
@@ -415,10 +220,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangInt32")]
     public int getDependencyFileCount()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getDependencyFileCount>(lpVtbl->getDependencyFileCount)(pThis);
-        }
+        return lpVtbl->getDependencyFileCount((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getDependencyFilePath"]/*' />
@@ -426,10 +228,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("const char *")]
     public sbyte* getDependencyFilePath([NativeTypeName("SlangInt32")] int index)
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getDependencyFilePath>(lpVtbl->getDependencyFilePath)(pThis, index);
-        }
+        return lpVtbl->getDependencyFilePath((IModule*)Unsafe.AsPointer(ref this), index);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getModuleReflection"]/*' />
@@ -437,99 +236,96 @@ public unsafe partial struct IModule
     [return: NativeTypeName("slang::DeclReflection *")]
     public DeclReflection* getModuleReflection()
     {
-        fixed (IModule* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_getModuleReflection>(lpVtbl->getModuleReflection)(pThis);
-        }
+        return lpVtbl->getModuleReflection((IModule*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr queryInterface;
+        public delegate* unmanaged[Stdcall]<IModule*, SlangUUID*, void**, int> queryInterface;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr addRef;
+        public delegate* unmanaged[Stdcall]<IModule*, uint> addRef;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr release;
+        public delegate* unmanaged[Stdcall]<IModule*, uint> release;
 
         [NativeTypeName("ISession *() __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getSession;
+        public delegate* unmanaged[Stdcall]<IModule*, ISession*> getSession;
 
         [NativeTypeName("ProgramLayout *(SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getLayout;
+        public delegate* unmanaged[Stdcall]<IModule*, long, ISlangBlob**, ShaderReflection*> getLayout;
 
         [NativeTypeName("SlangInt () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getSpecializationParamCount;
+        public delegate* unmanaged[Stdcall]<IModule*, long> getSpecializationParamCount;
 
         [NativeTypeName("SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getEntryPointCode;
+        public delegate* unmanaged[Stdcall]<IModule*, long, long, ISlangBlob**, ISlangBlob**, int> getEntryPointCode;
 
         [NativeTypeName("SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getResultAsFileSystem;
+        public delegate* unmanaged[Stdcall]<IModule*, long, long, ISlangMutableFileSystem**, int> getResultAsFileSystem;
 
         [NativeTypeName("void (SlangInt, SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getEntryPointHash;
+        public delegate* unmanaged[Stdcall]<IModule*, long, long, ISlangBlob**, void> getEntryPointHash;
 
         [NativeTypeName("SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr specialize;
+        public delegate* unmanaged[Stdcall]<IModule*, SpecializationArg*, long, IComponentType**, ISlangBlob**, int> specialize;
 
         [NativeTypeName("SlangResult (IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr link;
+        public delegate* unmanaged[Stdcall]<IModule*, IComponentType**, ISlangBlob**, int> link;
 
         [NativeTypeName("SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getEntryPointHostCallable;
+        public delegate* unmanaged[Stdcall]<IModule*, int, int, ISlangSharedLibrary**, ISlangBlob**, int> getEntryPointHostCallable;
 
         [NativeTypeName("SlangResult (const char *, IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr renameEntryPoint;
+        public delegate* unmanaged[Stdcall]<IModule*, sbyte*, IComponentType**, int> renameEntryPoint;
 
         [NativeTypeName("SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr linkWithOptions;
+        public delegate* unmanaged[Stdcall]<IModule*, IComponentType**, uint, CompilerOptionEntry*, ISlangBlob**, int> linkWithOptions;
 
         [NativeTypeName("SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getTargetCode;
+        public delegate* unmanaged[Stdcall]<IModule*, long, ISlangBlob**, ISlangBlob**, int> getTargetCode;
 
         [NativeTypeName("SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getTargetMetadata;
+        public delegate* unmanaged[Stdcall]<IModule*, long, IMetadata**, ISlangBlob**, int> getTargetMetadata;
 
         [NativeTypeName("SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getEntryPointMetadata;
+        public delegate* unmanaged[Stdcall]<IModule*, long, long, IMetadata**, ISlangBlob**, int> getEntryPointMetadata;
 
         [NativeTypeName("SlangResult (const char *, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr findEntryPointByName;
+        public delegate* unmanaged[Stdcall]<IModule*, sbyte*, IEntryPoint**, int> findEntryPointByName;
 
         [NativeTypeName("SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getDefinedEntryPointCount;
+        public delegate* unmanaged[Stdcall]<IModule*, int> getDefinedEntryPointCount;
 
         [NativeTypeName("SlangResult (SlangInt32, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getDefinedEntryPoint;
+        public delegate* unmanaged[Stdcall]<IModule*, int, IEntryPoint**, int> getDefinedEntryPoint;
 
         [NativeTypeName("SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr serialize;
+        public delegate* unmanaged[Stdcall]<IModule*, ISlangBlob**, int> serialize;
 
         [NativeTypeName("SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr writeToFile;
+        public delegate* unmanaged[Stdcall]<IModule*, sbyte*, int> writeToFile;
 
         [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getName;
+        public delegate* unmanaged[Stdcall]<IModule*, sbyte*> getName;
 
         [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getFilePath;
+        public delegate* unmanaged[Stdcall]<IModule*, sbyte*> getFilePath;
 
         [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getUniqueIdentity;
+        public delegate* unmanaged[Stdcall]<IModule*, sbyte*> getUniqueIdentity;
 
         [NativeTypeName("SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr findAndCheckEntryPoint;
+        public delegate* unmanaged[Stdcall]<IModule*, sbyte*, SlangStage, IEntryPoint**, ISlangBlob**, int> findAndCheckEntryPoint;
 
         [NativeTypeName("SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getDependencyFileCount;
+        public delegate* unmanaged[Stdcall]<IModule*, int> getDependencyFileCount;
 
         [NativeTypeName("const char *(SlangInt32) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getDependencyFilePath;
+        public delegate* unmanaged[Stdcall]<IModule*, int, sbyte*> getDependencyFilePath;
 
         [NativeTypeName("DeclReflection *() __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr getModuleReflection;
+        public delegate* unmanaged[Stdcall]<IModule*, DeclReflection*> getModuleReflection;
     }
 }

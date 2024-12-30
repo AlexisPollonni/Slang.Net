@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangMatrixLayoutMode.xml' path='doc/member[@name="SlangMatrixLayoutMode"]/*' />
 [NativeTypeName("SlangMatrixLayoutModeIntegral")]

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using SlangNet.Internal;
-using SlangNet.Unsafe;
 
 namespace SlangNet;
 

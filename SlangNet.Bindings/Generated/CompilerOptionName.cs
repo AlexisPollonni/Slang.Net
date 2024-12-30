@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName"]/*' />
 public enum CompilerOptionName

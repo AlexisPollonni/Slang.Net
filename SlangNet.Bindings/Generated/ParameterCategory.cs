@@ -1,5 +1,5 @@
-using SlangNet.Unsafe;
-using static SlangNet.Unsafe.SlangParameterCategory;
+using SlangNet.Bindings.Generated;
+using static SlangNet.Bindings.Generated.SlangParameterCategory;
 
 namespace SlangNet;
 

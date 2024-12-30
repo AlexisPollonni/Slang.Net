@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangBindableResourceType.xml' path='doc/member[@name="SlangBindableResourceType"]/*' />
 [NativeTypeName("SlangBindableResourceIntegral")]

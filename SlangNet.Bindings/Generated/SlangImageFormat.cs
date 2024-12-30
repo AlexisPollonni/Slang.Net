@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangImageFormat.xml' path='doc/member[@name="SlangImageFormat"]/*' />
 [NativeTypeName("SlangImageFormatIntegral")]

@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
 
     <Title>SlangNet</Title>
     <Description>
@@ -10,6 +9,7 @@
     </Description>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageId>SlangNet</PackageId>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   
   <ItemGroup>

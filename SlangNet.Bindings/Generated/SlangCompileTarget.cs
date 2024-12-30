@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangCompileTarget.xml' path='doc/member[@name="SlangCompileTarget"]/*' />
 [NativeTypeName("SlangCompileTargetIntegral")]

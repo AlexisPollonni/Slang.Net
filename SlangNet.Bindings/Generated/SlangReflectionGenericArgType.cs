@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangReflectionGenericArgType.xml' path='doc/member[@name="SlangReflectionGenericArgType"]/*' />
 public enum SlangReflectionGenericArgType

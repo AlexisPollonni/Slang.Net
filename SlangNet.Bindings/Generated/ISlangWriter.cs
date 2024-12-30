@@ -1,8 +1,6 @@
-using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter"]/*' />
 [NativeTypeName("struct ISlangWriter : ISlangUnknown")]
@@ -10,50 +8,12 @@ public unsafe partial struct ISlangWriter
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(ISlangWriter* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _addRef(ISlangWriter* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("uint32_t")]
-    public delegate uint _release(ISlangWriter* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("char *")]
-    public delegate sbyte* _beginAppendBuffer(ISlangWriter* pThis, [NativeTypeName("size_t")] UIntPtr maxNumChars);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _endAppendBuffer(ISlangWriter* pThis, [NativeTypeName("char *")] sbyte* buffer, [NativeTypeName("size_t")] UIntPtr numChars);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _write(ISlangWriter* pThis, [NativeTypeName("const char *")] sbyte* chars, [NativeTypeName("size_t")] UIntPtr numChars);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _flush(ISlangWriter* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangBool")]
-    public delegate byte _isConsole(ISlangWriter* pThis);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _setMode(ISlangWriter* pThis, SlangWriterMode mode);
-
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        fixed (ISlangWriter* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(pThis, uuid, outObject);
-        }
+        return lpVtbl->queryInterface((ISlangWriter*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -61,10 +21,7 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        fixed (ISlangWriter* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(pThis);
-        }
+        return lpVtbl->addRef((ISlangWriter*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -72,53 +29,38 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        fixed (ISlangWriter* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(pThis);
-        }
+        return lpVtbl->release((ISlangWriter*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.beginAppendBuffer"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("char *")]
-    public sbyte* beginAppendBuffer([NativeTypeName("size_t")] UIntPtr maxNumChars)
+    public sbyte* beginAppendBuffer([NativeTypeName("size_t")] nuint maxNumChars)
     {
-        fixed (ISlangWriter* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_beginAppendBuffer>(lpVtbl->beginAppendBuffer)(pThis, maxNumChars);
-        }
+        return lpVtbl->beginAppendBuffer((ISlangWriter*)Unsafe.AsPointer(ref this), maxNumChars);
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.endAppendBuffer"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int endAppendBuffer([NativeTypeName("char *")] sbyte* buffer, [NativeTypeName("size_t")] UIntPtr numChars)
+    public int endAppendBuffer([NativeTypeName("char *")] sbyte* buffer, [NativeTypeName("size_t")] nuint numChars)
     {
-        fixed (ISlangWriter* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_endAppendBuffer>(lpVtbl->endAppendBuffer)(pThis, buffer, numChars);
-        }
+        return lpVtbl->endAppendBuffer((ISlangWriter*)Unsafe.AsPointer(ref this), buffer, numChars);
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.write"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int write([NativeTypeName("const char *")] sbyte* chars, [NativeTypeName("size_t")] UIntPtr numChars)
+    public int write([NativeTypeName("const char *")] sbyte* chars, [NativeTypeName("size_t")] nuint numChars)
     {
-        fixed (ISlangWriter* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_write>(lpVtbl->write)(pThis, chars, numChars);
-        }
+        return lpVtbl->write((ISlangWriter*)Unsafe.AsPointer(ref this), chars, numChars);
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.flush"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void flush()
     {
-        fixed (ISlangWriter* pThis = &this)
-        {
-            Marshal.GetDelegateForFunctionPointer<_flush>(lpVtbl->flush)(pThis);
-        }
+        lpVtbl->flush((ISlangWriter*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.isConsole"]/*' />
@@ -126,10 +68,7 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("SlangBool")]
     public bool isConsole()
     {
-        fixed (ISlangWriter* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_isConsole>(lpVtbl->isConsole)(pThis) != 0;
-        }
+        return lpVtbl->isConsole((ISlangWriter*)Unsafe.AsPointer(ref this)) != 0;
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.setMode"]/*' />
@@ -137,39 +76,36 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("SlangResult")]
     public int setMode(SlangWriterMode mode)
     {
-        fixed (ISlangWriter* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_setMode>(lpVtbl->setMode)(pThis, mode);
-        }
+        return lpVtbl->setMode((ISlangWriter*)Unsafe.AsPointer(ref this), mode);
     }
 
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr queryInterface;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, SlangUUID*, void**, int> queryInterface;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr addRef;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, uint> addRef;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr release;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, uint> release;
 
         [NativeTypeName("char *(size_t) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr beginAppendBuffer;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, nuint, sbyte*> beginAppendBuffer;
 
         [NativeTypeName("SlangResult (char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr endAppendBuffer;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, sbyte*, nuint, int> endAppendBuffer;
 
         [NativeTypeName("SlangResult (const char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr write;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, sbyte*, nuint, int> write;
 
         [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr flush;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, void> flush;
 
         [NativeTypeName("SlangBool () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr isConsole;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, byte> isConsole;
 
         [NativeTypeName("SlangResult (SlangWriterMode) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr setMode;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, SlangWriterMode, int> setMode;
     }
 }

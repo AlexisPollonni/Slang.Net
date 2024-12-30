@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Unsafe.UnitTests;
+namespace SlangNet.Bindings.Generated.UnitTests;
 
 /// <summary>Provides validation of the <see cref="IModule" /> struct.</summary>
 public static unsafe partial class IModuleTests

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using SlangNet.Unsafe;
 using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;

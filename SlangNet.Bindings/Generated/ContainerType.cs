@@ -1,4 +1,4 @@
-using SlangNet.Unsafe;
+using SlangNet.Bindings.Generated;
 
 namespace SlangNet;
 

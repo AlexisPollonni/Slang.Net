@@ -1,5 +1,5 @@
-using SlangNet.Unsafe;
-using static SlangNet.Unsafe.SlangBindingType;
+using SlangNet.Bindings.Generated;
+using static SlangNet.Bindings.Generated.SlangBindingType;
 
 namespace SlangNet;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace SlangNet.Unsafe;
+// ReSharper disable once CheckNamespace
+namespace SlangNet.Bindings.Generated;
 
 partial struct SlangUUID
 {

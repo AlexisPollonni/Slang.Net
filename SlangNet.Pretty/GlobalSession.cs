@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-using SlangNet.Unsafe;
 using static SlangNet.Unsafe.Slang;
 using static SlangNet.InteropUtils;
 using System.Buffers;

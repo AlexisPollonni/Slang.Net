@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangResourceAccess.xml' path='doc/member[@name="SlangResourceAccess"]/*' />
 [NativeTypeName("SlangResourceAccessIntegral")]

@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangProfileID.xml' path='doc/member[@name="SlangProfileID"]/*' />
 [NativeTypeName("SlangProfileIDIntegral")]

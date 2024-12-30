@@ -1,4 +1,4 @@
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='SlangEmitSpirvMethod.xml' path='doc/member[@name="SlangEmitSpirvMethod"]/*' />
 public enum SlangEmitSpirvMethod

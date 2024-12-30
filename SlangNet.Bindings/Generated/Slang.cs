@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Unsafe;
+namespace SlangNet.Bindings.Generated;
 
 public static unsafe partial class Slang
 {

@@ -1,5 +1,5 @@
 --config
-compatible-codegen
+latest-codegen
 generate-file-scoped-namespaces
 generate-doc-includes
 generate-helper-types
@@ -76,7 +76,7 @@ Kind=uint
 
 # For the pretty bindings we rewrite everything but some of the enums and PODs
 --namespace
-SlangNet.Unsafe
+SlangNet.Bindings.Generated
 --with-namespace
 BindingType=SlangNet
 ContainerType=SlangNet

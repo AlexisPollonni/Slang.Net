@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Unsafe.UnitTests;
+namespace SlangNet.Bindings.Generated.UnitTests;
 
 /// <summary>Provides validation of the <see cref="TypeParameterReflection" /> struct.</summary>
 public static unsafe partial class TypeParameterReflectionTests

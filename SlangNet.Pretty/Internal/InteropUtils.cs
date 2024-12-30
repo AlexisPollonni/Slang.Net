@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Runtime.InteropServices;
-using SlangNet.Unsafe;
 using System.Collections.Generic;
 
 namespace SlangNet;
