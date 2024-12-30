@@ -56,10 +56,6 @@ public unsafe partial struct IGlobalSession
     public delegate void _getLanguagePrelude(IGlobalSession* pThis, SlangSourceLanguage sourceLanguage, ISlangBlob** outPrelude);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    [return: NativeTypeName("SlangResult")]
-    public delegate int _createCompileRequest(IGlobalSession* pThis, [NativeTypeName("slang::ICompileRequest **")] ICompileRequest** outCompileRequest);
-
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _addBuiltins(IGlobalSession* pThis, [NativeTypeName("const char *")] sbyte* sourcePath, [NativeTypeName("const char *")] sbyte* sourceString);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -78,15 +74,15 @@ public unsafe partial struct IGlobalSession
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _compileStdLib(IGlobalSession* pThis, [NativeTypeName("slang::CompileStdLibFlags")] uint flags);
+    public delegate int _compileCoreModule(IGlobalSession* pThis, [NativeTypeName("slang::CompileCoreModuleFlags")] uint flags);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _loadStdLib(IGlobalSession* pThis, [NativeTypeName("const void *")] void* stdLib, [NativeTypeName("size_t")] UIntPtr stdLibSizeInBytes);
+    public delegate int _loadCoreModule(IGlobalSession* pThis, [NativeTypeName("const void *")] void* coreModule, [NativeTypeName("size_t")] UIntPtr coreModuleSizeInBytes);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _saveStdLib(IGlobalSession* pThis, SlangArchiveType archiveType, ISlangBlob** outBlob);
+    public delegate int _saveCoreModule(IGlobalSession* pThis, SlangArchiveType archiveType, ISlangBlob** outBlob);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate SlangCapabilityID _findCapability(IGlobalSession* pThis, [NativeTypeName("const char *")] sbyte* name);
@@ -103,6 +99,14 @@ public unsafe partial struct IGlobalSession
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _setSPIRVCoreGrammar(IGlobalSession* pThis, [NativeTypeName("const char *")] sbyte* jsonPath);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _parseCommandLineArguments(IGlobalSession* pThis, int argc, [NativeTypeName("const char *const *")] sbyte** argv, [NativeTypeName("slang::SessionDesc *")] SessionDesc* outSessionDesc, ISlangUnknown** outAuxAllocation);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _getSessionDescDigest(IGlobalSession* pThis, [NativeTypeName("slang::SessionDesc *")] SessionDesc* sessionDesc, ISlangBlob** outBlob);
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -240,17 +244,6 @@ public unsafe partial struct IGlobalSession
         }
     }
 
-    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.createCompileRequest"]/*' />
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [return: NativeTypeName("SlangResult")]
-    public int createCompileRequest([NativeTypeName("slang::ICompileRequest **")] ICompileRequest** outCompileRequest)
-    {
-        fixed (IGlobalSession* pThis = &this)
-        {
-            return Marshal.GetDelegateForFunctionPointer<_createCompileRequest>(lpVtbl->createCompileRequest)(pThis, outCompileRequest);
-        }
-    }
-
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.addBuiltins"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void addBuiltins([NativeTypeName("const char *")] sbyte* sourcePath, [NativeTypeName("const char *")] sbyte* sourceString)
@@ -303,36 +296,36 @@ public unsafe partial struct IGlobalSession
         }
     }
 
-    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.compileStdLib"]/*' />
+    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.compileCoreModule"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int compileStdLib([NativeTypeName("slang::CompileStdLibFlags")] uint flags)
+    public int compileCoreModule([NativeTypeName("slang::CompileCoreModuleFlags")] uint flags)
     {
         fixed (IGlobalSession* pThis = &this)
         {
-            return Marshal.GetDelegateForFunctionPointer<_compileStdLib>(lpVtbl->compileStdLib)(pThis, flags);
+            return Marshal.GetDelegateForFunctionPointer<_compileCoreModule>(lpVtbl->compileCoreModule)(pThis, flags);
         }
     }
 
-    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.loadStdLib"]/*' />
+    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.loadCoreModule"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int loadStdLib([NativeTypeName("const void *")] void* stdLib, [NativeTypeName("size_t")] UIntPtr stdLibSizeInBytes)
+    public int loadCoreModule([NativeTypeName("const void *")] void* coreModule, [NativeTypeName("size_t")] UIntPtr coreModuleSizeInBytes)
     {
         fixed (IGlobalSession* pThis = &this)
         {
-            return Marshal.GetDelegateForFunctionPointer<_loadStdLib>(lpVtbl->loadStdLib)(pThis, stdLib, stdLibSizeInBytes);
+            return Marshal.GetDelegateForFunctionPointer<_loadCoreModule>(lpVtbl->loadCoreModule)(pThis, coreModule, coreModuleSizeInBytes);
         }
     }
 
-    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.saveStdLib"]/*' />
+    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.saveCoreModule"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int saveStdLib(SlangArchiveType archiveType, ISlangBlob** outBlob)
+    public int saveCoreModule(SlangArchiveType archiveType, ISlangBlob** outBlob)
     {
         fixed (IGlobalSession* pThis = &this)
         {
-            return Marshal.GetDelegateForFunctionPointer<_saveStdLib>(lpVtbl->saveStdLib)(pThis, archiveType, outBlob);
+            return Marshal.GetDelegateForFunctionPointer<_saveCoreModule>(lpVtbl->saveCoreModule)(pThis, archiveType, outBlob);
         }
     }
 
@@ -387,6 +380,28 @@ public unsafe partial struct IGlobalSession
         }
     }
 
+    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.parseCommandLineArguments"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NativeTypeName("SlangResult")]
+    public int parseCommandLineArguments(int argc, [NativeTypeName("const char *const *")] sbyte** argv, [NativeTypeName("slang::SessionDesc *")] SessionDesc* outSessionDesc, ISlangUnknown** outAuxAllocation)
+    {
+        fixed (IGlobalSession* pThis = &this)
+        {
+            return Marshal.GetDelegateForFunctionPointer<_parseCommandLineArguments>(lpVtbl->parseCommandLineArguments)(pThis, argc, argv, outSessionDesc, outAuxAllocation);
+        }
+    }
+
+    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.getSessionDescDigest"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NativeTypeName("SlangResult")]
+    public int getSessionDescDigest([NativeTypeName("slang::SessionDesc *")] SessionDesc* sessionDesc, ISlangBlob** outBlob)
+    {
+        fixed (IGlobalSession* pThis = &this)
+        {
+            return Marshal.GetDelegateForFunctionPointer<_getSessionDescDigest>(lpVtbl->getSessionDescDigest)(pThis, sessionDesc, outBlob);
+        }
+    }
+
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
@@ -428,9 +443,6 @@ public unsafe partial struct IGlobalSession
         [NativeTypeName("void (SlangSourceLanguage, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getLanguagePrelude;
 
-        [NativeTypeName("SlangResult (slang::ICompileRequest **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr createCompileRequest;
-
         [NativeTypeName("void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addBuiltins;
 
@@ -446,14 +458,14 @@ public unsafe partial struct IGlobalSession
         [NativeTypeName("SlangResult (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr checkPassThroughSupport;
 
-        [NativeTypeName("SlangResult (CompileStdLibFlags) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr compileStdLib;
+        [NativeTypeName("SlangResult (CompileCoreModuleFlags) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr compileCoreModule;
 
         [NativeTypeName("SlangResult (const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr loadStdLib;
+        public IntPtr loadCoreModule;
 
         [NativeTypeName("SlangResult (SlangArchiveType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public IntPtr saveStdLib;
+        public IntPtr saveCoreModule;
 
         [NativeTypeName("SlangCapabilityID (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr findCapability;
@@ -469,5 +481,11 @@ public unsafe partial struct IGlobalSession
 
         [NativeTypeName("SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setSPIRVCoreGrammar;
+
+        [NativeTypeName("SlangResult (int, const char *const *, SessionDesc *, ISlangUnknown **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr parseCommandLineArguments;
+
+        [NativeTypeName("SlangResult (SessionDesc *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr getSessionDescDigest;
     }
 }
