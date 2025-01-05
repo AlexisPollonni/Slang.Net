@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangPassThrough" access="public">
+      <type>int</type>
+      <enumerator name="SLANG_PASS_THROUGH_NONE" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_FXC" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_DXC" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_GLSLANG" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_SPIRV_DIS" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_CLANG" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_VISUAL_STUDIO" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_GCC" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_GENERIC_C_CPP" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_NVRTC" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_LLVM" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_SPIRV_OPT" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_METAL" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_TINT" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SLANG_PASS_THROUGH_COUNT_OF" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet">
+    <enumeration name="BindingType" access="public">
+      <type>uint</type>
+      <enumerator name="Unknown" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_UNKNOWN</code>
+        </value>
+      </enumerator>
+      <enumerator name="Sampler" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_SAMPLER</code>
+        </value>
+      </enumerator>
+      <enumerator name="Texture" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_TEXTURE</code>
+        </value>
+      </enumerator>
+      <enumerator name="ConstantBuffer" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_CONSTANT_BUFFER</code>
+        </value>
+      </enumerator>
+      <enumerator name="ParameterBlock" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_PARAMETER_BLOCK</code>
+        </value>
+      </enumerator>
+      <enumerator name="TypedBuffer" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_TYPED_BUFFER</code>
+        </value>
+      </enumerator>
+      <enumerator name="RawBuffer" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_RAW_BUFFER</code>
+        </value>
+      </enumerator>
+      <enumerator name="CombinedTextureSampler" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_COMBINED_TEXTURE_SAMPLER</code>
+        </value>
+      </enumerator>
+      <enumerator name="InputRenderTarget" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_INPUT_RENDER_TARGET</code>
+        </value>
+      </enumerator>
+      <enumerator name="InlineUniformData" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_INLINE_UNIFORM_DATA</code>
+        </value>
+      </enumerator>
+      <enumerator name="RayTracingAccelerationStructure" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_RAY_TRACING_ACCELERATION_STRUCTURE</code>
+        </value>
+      </enumerator>
+      <enumerator name="VaryingInput" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_VARYING_INPUT</code>
+        </value>
+      </enumerator>
+      <enumerator name="VaryingOutput" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_VARYING_OUTPUT</code>
+        </value>
+      </enumerator>
+      <enumerator name="ExistentialValue" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_EXISTENTIAL_VALUE</code>
+        </value>
+      </enumerator>
+      <enumerator name="PushConstant" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_PUSH_CONSTANT</code>
+        </value>
+      </enumerator>
+      <enumerator name="MutableFlag" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_MUTABLE_FLAG</code>
+        </value>
+      </enumerator>
+      <enumerator name="MutableTexture" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_MUTABLE_TETURE</code>
+        </value>
+      </enumerator>
+      <enumerator name="MutableTypedBuffer" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_MUTABLE_TYPED_BUFFER</code>
+        </value>
+      </enumerator>
+      <enumerator name="MutableRawBuffer" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_MUTABLE_RAW_BUFFER</code>
+        </value>
+      </enumerator>
+      <enumerator name="BaseMask" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_BASE_MASK</code>
+        </value>
+      </enumerator>
+      <enumerator name="ExtMask" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_BINDING_TYPE_EXT_MASK</code>
+        </value>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangResourceAccess" access="public">
+      <type>uint</type>
+      <enumerator name="SLANG_RESOURCE_ACCESS_NONE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_ACCESS_READ" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_ACCESS_READ_WRITE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_ACCESS_RASTER_ORDERED" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_ACCESS_APPEND" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_ACCESS_CONSUME" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_ACCESS_WRITE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_ACCESS_FEEDBACK" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_ACCESS_UNKNOWN" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x7FFFFFFF</code>
+        </value>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

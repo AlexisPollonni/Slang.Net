@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangFloatingPointMode" access="public">
+      <type>uint</type>
+      <enumerator name="SLANG_FLOATING_POINT_MODE_DEFAULT" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_FLOATING_POINT_MODE_FAST" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_FLOATING_POINT_MODE_PRECISE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

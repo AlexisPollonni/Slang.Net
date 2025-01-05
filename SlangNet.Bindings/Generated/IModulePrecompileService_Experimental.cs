@@ -6,14 +6,14 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct IModulePrecompileService_Experimental : ISlangUnknown")]
 public unsafe partial struct IModulePrecompileService_Experimental
 {
-    public Vtbl* lpVtbl;
+    public void** lpVtbl;
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return lpVtbl->queryInterface((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return ((delegate* unmanaged[Stdcall]<IModulePrecompileService_Experimental*, SlangUUID*, void**, int>)(lpVtbl[0]))((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -21,7 +21,7 @@ public unsafe partial struct IModulePrecompileService_Experimental
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return lpVtbl->addRef((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<IModulePrecompileService_Experimental*, uint>)(lpVtbl[1]))((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -29,7 +29,7 @@ public unsafe partial struct IModulePrecompileService_Experimental
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return lpVtbl->release((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<IModulePrecompileService_Experimental*, uint>)(lpVtbl[2]))((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModulePrecompileService_Experimental.xml' path='doc/member[@name="IModulePrecompileService_Experimental.precompileForTarget"]/*' />
@@ -37,7 +37,7 @@ public unsafe partial struct IModulePrecompileService_Experimental
     [return: NativeTypeName("SlangResult")]
     public int precompileForTarget(SlangCompileTarget target, ISlangBlob** outDiagnostics)
     {
-        return lpVtbl->precompileForTarget((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this), target, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IModulePrecompileService_Experimental*, SlangCompileTarget, ISlangBlob**, int>)(lpVtbl[3]))((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this), target, outDiagnostics);
     }
 
     /// <include file='IModulePrecompileService_Experimental.xml' path='doc/member[@name="IModulePrecompileService_Experimental.getPrecompiledTargetCode"]/*' />
@@ -45,7 +45,7 @@ public unsafe partial struct IModulePrecompileService_Experimental
     [return: NativeTypeName("SlangResult")]
     public int getPrecompiledTargetCode(SlangCompileTarget target, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->getPrecompiledTargetCode((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this), target, outCode, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IModulePrecompileService_Experimental*, SlangCompileTarget, ISlangBlob**, ISlangBlob**, int>)(lpVtbl[4]))((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this), target, outCode, outDiagnostics);
     }
 
     /// <include file='IModulePrecompileService_Experimental.xml' path='doc/member[@name="IModulePrecompileService_Experimental.getModuleDependencyCount"]/*' />
@@ -53,7 +53,7 @@ public unsafe partial struct IModulePrecompileService_Experimental
     [return: NativeTypeName("SlangInt")]
     public long getModuleDependencyCount()
     {
-        return lpVtbl->getModuleDependencyCount((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<IModulePrecompileService_Experimental*, long>)(lpVtbl[5]))((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModulePrecompileService_Experimental.xml' path='doc/member[@name="IModulePrecompileService_Experimental.getModuleDependency"]/*' />
@@ -61,7 +61,7 @@ public unsafe partial struct IModulePrecompileService_Experimental
     [return: NativeTypeName("SlangResult")]
     public int getModuleDependency([NativeTypeName("SlangInt")] long dependencyIndex, IModule** outModule, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->getModuleDependency((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this), dependencyIndex, outModule, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IModulePrecompileService_Experimental*, long, IModule**, ISlangBlob**, int>)(lpVtbl[6]))((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this), dependencyIndex, outModule, outDiagnostics);
     }
 
     public partial struct Vtbl

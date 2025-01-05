@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="CompileCoreModuleFlag" access="public">
+      <enumeration name="Enum" access="public">
+        <type>uint</type>
+        <enumerator name="WriteDocumentation" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>0x1</code>
+          </value>
+        </enumerator>
+      </enumeration>
+    </struct>
+  </namespace>
+</bindings>

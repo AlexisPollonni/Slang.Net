@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="IMetadata" access="public" native="struct IMetadata : ISlangCastable" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>void**</type>
+      </field>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IMetadata*, SlangUUID*, void**, int&gt;)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IMetadata*, uint&gt;)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IMetadata*, uint&gt;)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="castAs" access="public" unsafe="true">
+        <type>void*</type>
+        <param name="guid">
+          <type>SlangUUID*</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IMetadata*, SlangUUID*, void*&gt;)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param name="guid">guid</param>);</code>
+        </body>
+      </function>
+      <function name="isParameterLocationUsed" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="category">
+          <type>SlangParameterCategory</type>
+        </param>
+        <param name="spaceIndex">
+          <type>ulong</type>
+        </param>
+        <param name="registerIndex">
+          <type>ulong</type>
+        </param>
+        <param name="outUsed">
+          <type>bool*</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Thiscall]&lt;IMetadata*, SlangParameterCategory, ulong, ulong, bool*, int&gt;)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param name="category">category</param>, <param name="spaceIndex">spaceIndex</param>, <param name="registerIndex">registerIndex</param>, <param name="outUsed">outUsed</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IMetadata*, SlangUUID*, void**, int&gt;</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IMetadata*, uint&gt;</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IMetadata*, uint&gt;</type>
+        </field>
+        <field name="castAs" access="public">
+          <type native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IMetadata*, SlangUUID*, void*&gt;</type>
+        </field>
+        <field name="isParameterLocationUsed" access="public">
+          <type native="SlangResult (SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;)">delegate* unmanaged[Thiscall]&lt;IMetadata*, SlangParameterCategory, ulong, ulong, bool*, int&gt;</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="SessionDesc" access="public" unsafe="true">
+      <field name="structureSize" access="public">
+        <type native="size_t">nuint</type>
+      </field>
+      <field name="targets" access="public">
+        <type native="const TargetDesc *">TargetDesc*</type>
+      </field>
+      <field name="targetCount" access="public">
+        <type native="SlangInt">long</type>
+      </field>
+      <field name="flags" access="public">
+        <type native="slang::SessionFlags">uint</type>
+      </field>
+      <field name="defaultMatrixLayoutMode" access="public">
+        <type>SlangMatrixLayoutMode</type>
+      </field>
+      <field name="searchPaths" access="public">
+        <type native="const char *const *">sbyte**</type>
+      </field>
+      <field name="searchPathCount" access="public">
+        <type native="SlangInt">long</type>
+      </field>
+      <field name="preprocessorMacros" access="public">
+        <type native="const PreprocessorMacroDesc *">PreprocessorMacroDesc*</type>
+      </field>
+      <field name="preprocessorMacroCount" access="public">
+        <type native="SlangInt">long</type>
+      </field>
+      <field name="fileSystem" access="public">
+        <type>ISlangFileSystem*</type>
+      </field>
+      <field name="enableEffectAnnotations" access="public">
+        <type native="bool">byte</type>
+      </field>
+      <field name="allowGLSLSyntax" access="public">
+        <type native="bool">byte</type>
+      </field>
+      <field name="compilerOptionEntries" access="public">
+        <type native="slang::CompilerOptionEntry *">CompilerOptionEntry*</type>
+      </field>
+      <field name="compilerOptionEntryCount" access="public">
+        <type native="uint32_t">uint</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangResourceShape" access="public">
+      <type>uint</type>
+      <enumerator name="SLANG_RESOURCE_BASE_SHAPE_MASK" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x0F</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_NONE" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x00</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_1D" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x01</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_2D" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x02</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_3D" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x03</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_CUBE" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x04</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_BUFFER" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x05</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_STRUCTURED_BUFFER" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x06</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_BYTE_ADDRESS_BUFFER" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x07</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_UNKNOWN" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x08</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_ACCELERATION_STRUCTURE" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x09</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_SUBPASS" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x0A</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_RESOURCE_EXT_SHAPE_MASK" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0xF0</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_FEEDBACK_FLAG" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x10</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_SHADOW_FLAG" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x20</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_ARRAY_FLAG" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x40</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_MULTISAMPLE_FLAG" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x80</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_1D_ARRAY" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_TEXTURE_1D | SLANG_TEXTURE_ARRAY_FLAG</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_2D_ARRAY" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_TEXTURE_2D | SLANG_TEXTURE_ARRAY_FLAG</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_CUBE_ARRAY" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_TEXTURE_CUBE | SLANG_TEXTURE_ARRAY_FLAG</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_2D_MULTISAMPLE" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_TEXTURE_2D | SLANG_TEXTURE_MULTISAMPLE_FLAG</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_2D_MULTISAMPLE_ARRAY" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_TEXTURE_2D | SLANG_TEXTURE_MULTISAMPLE_FLAG | SLANG_TEXTURE_ARRAY_FLAG</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_TEXTURE_SUBPASS_MULTISAMPLE" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_TEXTURE_SUBPASS | SLANG_TEXTURE_MULTISAMPLE_FLAG</code>
+        </value>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

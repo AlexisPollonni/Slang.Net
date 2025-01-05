@@ -6,14 +6,14 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct ISlangCastable : ISlangUnknown")]
 public unsafe partial struct ISlangCastable
 {
-    public Vtbl* lpVtbl;
+    public void** lpVtbl;
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return lpVtbl->queryInterface((ISlangCastable*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return ((delegate* unmanaged[Stdcall]<ISlangCastable*, SlangUUID*, void**, int>)(lpVtbl[0]))((ISlangCastable*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -21,7 +21,7 @@ public unsafe partial struct ISlangCastable
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return lpVtbl->addRef((ISlangCastable*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<ISlangCastable*, uint>)(lpVtbl[1]))((ISlangCastable*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -29,14 +29,14 @@ public unsafe partial struct ISlangCastable
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return lpVtbl->release((ISlangCastable*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<ISlangCastable*, uint>)(lpVtbl[2]))((ISlangCastable*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangCastable.xml' path='doc/member[@name="ISlangCastable.castAs"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* castAs([NativeTypeName("const SlangUUID &")] SlangUUID* guid)
     {
-        return lpVtbl->castAs((ISlangCastable*)Unsafe.AsPointer(ref this), guid);
+        return ((delegate* unmanaged[Stdcall]<ISlangCastable*, SlangUUID*, void*>)(lpVtbl[3]))((ISlangCastable*)Unsafe.AsPointer(ref this), guid);
     }
 
     public partial struct Vtbl

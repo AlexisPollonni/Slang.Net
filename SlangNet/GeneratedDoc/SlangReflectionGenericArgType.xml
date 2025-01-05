@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangReflectionGenericArgType" access="public">
+      <type>int</type>
+      <enumerator name="SLANG_GENERIC_ARG_TYPE" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_GENERIC_ARG_INT" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>1</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_GENERIC_ARG_BOOL" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>2</code>
+        </value>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

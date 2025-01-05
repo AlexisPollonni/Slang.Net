@@ -6,14 +6,14 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct ISlangProfiler : ISlangUnknown")]
 public unsafe partial struct ISlangProfiler
 {
-    public Vtbl* lpVtbl;
+    public void** lpVtbl;
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return lpVtbl->queryInterface((ISlangProfiler*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return ((delegate* unmanaged[Stdcall]<ISlangProfiler*, SlangUUID*, void**, int>)(lpVtbl[0]))((ISlangProfiler*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -21,7 +21,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return lpVtbl->addRef((ISlangProfiler*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<ISlangProfiler*, uint>)(lpVtbl[1]))((ISlangProfiler*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -29,7 +29,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return lpVtbl->release((ISlangProfiler*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<ISlangProfiler*, uint>)(lpVtbl[2]))((ISlangProfiler*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryCount"]/*' />
@@ -37,7 +37,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("size_t")]
     public nuint getEntryCount()
     {
-        return lpVtbl->getEntryCount((ISlangProfiler*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<ISlangProfiler*, nuint>)(lpVtbl[3]))((ISlangProfiler*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryName"]/*' />
@@ -45,7 +45,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("const char *")]
     public sbyte* getEntryName([NativeTypeName("uint32_t")] uint index)
     {
-        return lpVtbl->getEntryName((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
+        return ((delegate* unmanaged[Stdcall]<ISlangProfiler*, uint, sbyte*>)(lpVtbl[4]))((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
     }
 
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryTimeMS"]/*' />
@@ -53,7 +53,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("long")]
     public int getEntryTimeMS([NativeTypeName("uint32_t")] uint index)
     {
-        return lpVtbl->getEntryTimeMS((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
+        return ((delegate* unmanaged[Stdcall]<ISlangProfiler*, uint, int>)(lpVtbl[5]))((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
     }
 
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryInvocationTimes"]/*' />
@@ -61,7 +61,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("uint32_t")]
     public uint getEntryInvocationTimes([NativeTypeName("uint32_t")] uint index)
     {
-        return lpVtbl->getEntryInvocationTimes((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
+        return ((delegate* unmanaged[Stdcall]<ISlangProfiler*, uint, uint>)(lpVtbl[6]))((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
     }
 
     public partial struct Vtbl

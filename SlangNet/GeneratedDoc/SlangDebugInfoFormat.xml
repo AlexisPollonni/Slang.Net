@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangDebugInfoFormat" access="public">
+      <type>uint</type>
+      <enumerator name="SLANG_DEBUG_INFO_FORMAT_DEFAULT" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DEBUG_INFO_FORMAT_C7" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DEBUG_INFO_FORMAT_PDB" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DEBUG_INFO_FORMAT_STABS" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DEBUG_INFO_FORMAT_COFF" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DEBUG_INFO_FORMAT_DWARF" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DEBUG_INFO_FORMAT_COUNT_OF" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangStage" access="public">
+      <type>uint</type>
+      <enumerator name="SLANG_STAGE_NONE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_VERTEX" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_HULL" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_DOMAIN" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_GEOMETRY" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_FRAGMENT" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_COMPUTE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_RAY_GENERATION" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_INTERSECTION" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_ANY_HIT" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_CLOSEST_HIT" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_MISS" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_CALLABLE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_MESH" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_AMPLIFICATION" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_STAGE_PIXEL" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>SLANG_STAGE_FRAGMENT</code>
+        </value>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

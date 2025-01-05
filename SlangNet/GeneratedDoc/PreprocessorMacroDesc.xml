@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="PreprocessorMacroDesc" access="public" unsafe="true">
+      <field name="name" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+      <field name="value" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

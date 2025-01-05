@@ -6,14 +6,14 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct ISlangFileSystem : ISlangCastable")]
 public unsafe partial struct ISlangFileSystem
 {
-    public Vtbl* lpVtbl;
+    public void** lpVtbl;
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return lpVtbl->queryInterface((ISlangFileSystem*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return ((delegate* unmanaged[Stdcall]<ISlangFileSystem*, SlangUUID*, void**, int>)(lpVtbl[0]))((ISlangFileSystem*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -21,7 +21,7 @@ public unsafe partial struct ISlangFileSystem
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return lpVtbl->addRef((ISlangFileSystem*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<ISlangFileSystem*, uint>)(lpVtbl[1]))((ISlangFileSystem*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -29,14 +29,14 @@ public unsafe partial struct ISlangFileSystem
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return lpVtbl->release((ISlangFileSystem*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<ISlangFileSystem*, uint>)(lpVtbl[2]))((ISlangFileSystem*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangCastable.castAs" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* castAs([NativeTypeName("const SlangUUID &")] SlangUUID* guid)
     {
-        return lpVtbl->castAs((ISlangFileSystem*)Unsafe.AsPointer(ref this), guid);
+        return ((delegate* unmanaged[Stdcall]<ISlangFileSystem*, SlangUUID*, void*>)(lpVtbl[3]))((ISlangFileSystem*)Unsafe.AsPointer(ref this), guid);
     }
 
     /// <include file='ISlangFileSystem.xml' path='doc/member[@name="ISlangFileSystem.loadFile"]/*' />
@@ -44,7 +44,7 @@ public unsafe partial struct ISlangFileSystem
     [return: NativeTypeName("SlangResult")]
     public int loadFile([NativeTypeName("const char *")] sbyte* path, ISlangBlob** outBlob)
     {
-        return lpVtbl->loadFile((ISlangFileSystem*)Unsafe.AsPointer(ref this), path, outBlob);
+        return ((delegate* unmanaged[Stdcall]<ISlangFileSystem*, sbyte*, ISlangBlob**, int>)(lpVtbl[4]))((ISlangFileSystem*)Unsafe.AsPointer(ref this), path, outBlob);
     }
 
     public partial struct Vtbl

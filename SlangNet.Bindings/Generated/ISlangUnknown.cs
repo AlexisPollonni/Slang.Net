@@ -5,14 +5,14 @@ namespace SlangNet.Bindings.Generated;
 /// <include file='ISlangUnknown.xml' path='doc/member[@name="ISlangUnknown"]/*' />
 public unsafe partial struct ISlangUnknown
 {
-    public Vtbl* lpVtbl;
+    public void** lpVtbl;
 
     /// <include file='ISlangUnknown.xml' path='doc/member[@name="ISlangUnknown.queryInterface"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return lpVtbl->queryInterface((ISlangUnknown*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return ((delegate* unmanaged[Stdcall]<ISlangUnknown*, SlangUUID*, void**, int>)(lpVtbl[0]))((ISlangUnknown*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <include file='ISlangUnknown.xml' path='doc/member[@name="ISlangUnknown.addRef"]/*' />
@@ -20,7 +20,7 @@ public unsafe partial struct ISlangUnknown
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return lpVtbl->addRef((ISlangUnknown*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<ISlangUnknown*, uint>)(lpVtbl[1]))((ISlangUnknown*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangUnknown.xml' path='doc/member[@name="ISlangUnknown.release"]/*' />
@@ -28,7 +28,7 @@ public unsafe partial struct ISlangUnknown
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return lpVtbl->release((ISlangUnknown*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<ISlangUnknown*, uint>)(lpVtbl[2]))((ISlangUnknown*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl

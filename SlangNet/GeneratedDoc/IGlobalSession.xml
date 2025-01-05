@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="IGlobalSession" access="public" native="struct IGlobalSession : ISlangUnknown" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>void**</type>
+      </field>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangUUID*, void**, int&gt;)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, uint&gt;)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, uint&gt;)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="createSession" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="desc">
+          <type>SessionDesc*</type>
+        </param>
+        <param name="outSession">
+          <type>ISession**</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SessionDesc*, ISession**, int&gt;)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="desc">desc</param>, <param name="outSession">outSession</param>);</code>
+        </body>
+      </function>
+      <function name="findProfile" access="public" unsafe="true">
+        <type>SlangProfileID</type>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*, SlangProfileID&gt;)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>);</code>
+        </body>
+      </function>
+      <function name="setDownstreamCompilerPath" access="public" unsafe="true">
+        <type>void</type>
+        <param name="passThrough">
+          <type>SlangPassThrough</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangPassThrough, sbyte*, void&gt;)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>, <param name="path">path</param>);</code>
+        </body>
+      </function>
+      <function name="setDownstreamCompilerPrelude" access="public" unsafe="true">
+        <type>void</type>
+        <param name="passThrough">
+          <type>SlangPassThrough</type>
+        </param>
+        <param name="preludeText">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangPassThrough, sbyte*, void&gt;)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>, <param name="preludeText">preludeText</param>);</code>
+        </body>
+      </function>
+      <function name="getDownstreamCompilerPrelude" access="public" unsafe="true">
+        <type>void</type>
+        <param name="passThrough">
+          <type>SlangPassThrough</type>
+        </param>
+        <param name="outPrelude">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangPassThrough, ISlangBlob**, void&gt;)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>, <param name="outPrelude">outPrelude</param>);</code>
+        </body>
+      </function>
+      <function name="getBuildTagString" access="public" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*&gt;)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="setDefaultDownstreamCompiler" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="sourceLanguage">
+          <type>SlangSourceLanguage</type>
+        </param>
+        <param name="defaultCompiler">
+          <type>SlangPassThrough</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangSourceLanguage, SlangPassThrough, int&gt;)(lpVtbl[<vtbl explicit="False">9</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>, <param name="defaultCompiler">defaultCompiler</param>);</code>
+        </body>
+      </function>
+      <function name="getDefaultDownstreamCompiler" access="public" unsafe="true">
+        <type>SlangPassThrough</type>
+        <param name="sourceLanguage">
+          <type>SlangSourceLanguage</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangSourceLanguage, SlangPassThrough&gt;)(lpVtbl[<vtbl explicit="False">10</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>);</code>
+        </body>
+      </function>
+      <function name="setLanguagePrelude" access="public" unsafe="true">
+        <type>void</type>
+        <param name="sourceLanguage">
+          <type>SlangSourceLanguage</type>
+        </param>
+        <param name="preludeText">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangSourceLanguage, sbyte*, void&gt;)(lpVtbl[<vtbl explicit="False">11</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>, <param name="preludeText">preludeText</param>);</code>
+        </body>
+      </function>
+      <function name="getLanguagePrelude" access="public" unsafe="true">
+        <type>void</type>
+        <param name="sourceLanguage">
+          <type>SlangSourceLanguage</type>
+        </param>
+        <param name="outPrelude">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangSourceLanguage, ISlangBlob**, void&gt;)(lpVtbl[<vtbl explicit="False">12</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>, <param name="outPrelude">outPrelude</param>);</code>
+        </body>
+      </function>
+      <function name="addBuiltins" access="public" unsafe="true">
+        <type>void</type>
+        <param name="sourcePath">
+          <type>sbyte*</type>
+        </param>
+        <param name="sourceString">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*, sbyte*, void&gt;)(lpVtbl[<vtbl explicit="False">14</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourcePath">sourcePath</param>, <param name="sourceString">sourceString</param>);</code>
+        </body>
+      </function>
+      <function name="setSharedLibraryLoader" access="public" unsafe="true">
+        <type>void</type>
+        <param name="loader">
+          <type>ISlangSharedLibraryLoader*</type>
+        </param>
+        <body>
+          <code>((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, ISlangSharedLibraryLoader*, void&gt;)(lpVtbl[<vtbl explicit="False">15</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="loader">loader</param>);</code>
+        </body>
+      </function>
+      <function name="getSharedLibraryLoader" access="public" unsafe="true">
+        <type>ISlangSharedLibraryLoader*</type>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, ISlangSharedLibraryLoader*&gt;)(lpVtbl[<vtbl explicit="False">16</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="checkCompileTargetSupport" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="target">
+          <type>SlangCompileTarget</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangCompileTarget, int&gt;)(lpVtbl[<vtbl explicit="False">17</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>);</code>
+        </body>
+      </function>
+      <function name="checkPassThroughSupport" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="passThrough">
+          <type>SlangPassThrough</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangPassThrough, int&gt;)(lpVtbl[<vtbl explicit="False">18</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>);</code>
+        </body>
+      </function>
+      <function name="compileCoreModule" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="flags">
+          <type>uint</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, uint, int&gt;)(lpVtbl[<vtbl explicit="False">19</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="flags">flags</param>);</code>
+        </body>
+      </function>
+      <function name="loadCoreModule" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="coreModule">
+          <type>void*</type>
+        </param>
+        <param name="coreModuleSizeInBytes">
+          <type>nuint</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, void*, nuint, int&gt;)(lpVtbl[<vtbl explicit="False">20</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="coreModule">coreModule</param>, <param name="coreModuleSizeInBytes">coreModuleSizeInBytes</param>);</code>
+        </body>
+      </function>
+      <function name="saveCoreModule" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="archiveType">
+          <type>SlangArchiveType</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangArchiveType, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">21</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="archiveType">archiveType</param>, <param name="outBlob">outBlob</param>);</code>
+        </body>
+      </function>
+      <function name="findCapability" access="public" unsafe="true">
+        <type>SlangCapabilityID</type>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*, SlangCapabilityID&gt;)(lpVtbl[<vtbl explicit="False">22</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>);</code>
+        </body>
+      </function>
+      <function name="setDownstreamCompilerForTransition" access="public" unsafe="true">
+        <type>void</type>
+        <param name="source">
+          <type>SlangCompileTarget</type>
+        </param>
+        <param name="target">
+          <type>SlangCompileTarget</type>
+        </param>
+        <param name="compiler">
+          <type>SlangPassThrough</type>
+        </param>
+        <body>
+          <code>((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangCompileTarget, SlangCompileTarget, SlangPassThrough, void&gt;)(lpVtbl[<vtbl explicit="False">23</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="source">source</param>, <param name="target">target</param>, <param name="compiler">compiler</param>);</code>
+        </body>
+      </function>
+      <function name="getDownstreamCompilerForTransition" access="public" unsafe="true">
+        <type>SlangPassThrough</type>
+        <param name="source">
+          <type>SlangCompileTarget</type>
+        </param>
+        <param name="target">
+          <type>SlangCompileTarget</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangCompileTarget, SlangCompileTarget, SlangPassThrough&gt;)(lpVtbl[<vtbl explicit="False">24</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="source">source</param>, <param name="target">target</param>);</code>
+        </body>
+      </function>
+      <function name="getCompilerElapsedTime" access="public" unsafe="true">
+        <type>void</type>
+        <param name="outTotalTime">
+          <type>double*</type>
+        </param>
+        <param name="outDownstreamTime">
+          <type>double*</type>
+        </param>
+        <body>
+          <code>((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, double*, double*, void&gt;)(lpVtbl[<vtbl explicit="False">25</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="outTotalTime">outTotalTime</param>, <param name="outDownstreamTime">outDownstreamTime</param>);</code>
+        </body>
+      </function>
+      <function name="setSPIRVCoreGrammar" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="jsonPath">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*, int&gt;)(lpVtbl[<vtbl explicit="False">26</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="jsonPath">jsonPath</param>);</code>
+        </body>
+      </function>
+      <function name="parseCommandLineArguments" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="argc">
+          <type>int</type>
+        </param>
+        <param name="argv">
+          <type>sbyte**</type>
+        </param>
+        <param name="outSessionDesc">
+          <type>SessionDesc*</type>
+        </param>
+        <param name="outAuxAllocation">
+          <type>ISlangUnknown**</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, int, sbyte**, SessionDesc*, ISlangUnknown**, int&gt;)(lpVtbl[<vtbl explicit="False">27</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="argc">argc</param>, <param name="argv">argv</param>, <param name="outSessionDesc">outSessionDesc</param>, <param name="outAuxAllocation">outAuxAllocation</param>);</code>
+        </body>
+      </function>
+      <function name="getSessionDescDigest" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="sessionDesc">
+          <type>SessionDesc*</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SessionDesc*, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">28</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sessionDesc">sessionDesc</param>, <param name="outBlob">outBlob</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangUUID*, void**, int&gt;</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, uint&gt;</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, uint&gt;</type>
+        </field>
+        <field name="createSession" access="public">
+          <type native="SlangResult (const SessionDesc &amp;, ISession **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SessionDesc*, ISession**, int&gt;</type>
+        </field>
+        <field name="findProfile" access="public">
+          <type native="SlangProfileID (const char *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*, SlangProfileID&gt;</type>
+        </field>
+        <field name="setDownstreamCompilerPath" access="public">
+          <type native="void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangPassThrough, sbyte*, void&gt;</type>
+        </field>
+        <field name="setDownstreamCompilerPrelude" access="public">
+          <type native="void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangPassThrough, sbyte*, void&gt;</type>
+        </field>
+        <field name="getDownstreamCompilerPrelude" access="public">
+          <type native="void (SlangPassThrough, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangPassThrough, ISlangBlob**, void&gt;</type>
+        </field>
+        <field name="getBuildTagString" access="public">
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*&gt;</type>
+        </field>
+        <field name="setDefaultDownstreamCompiler" access="public">
+          <type native="SlangResult (SlangSourceLanguage, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangSourceLanguage, SlangPassThrough, int&gt;</type>
+        </field>
+        <field name="getDefaultDownstreamCompiler" access="public">
+          <type native="SlangPassThrough (SlangSourceLanguage) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangSourceLanguage, SlangPassThrough&gt;</type>
+        </field>
+        <field name="setLanguagePrelude" access="public">
+          <type native="void (SlangSourceLanguage, const char *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangSourceLanguage, sbyte*, void&gt;</type>
+        </field>
+        <field name="getLanguagePrelude" access="public">
+          <type native="void (SlangSourceLanguage, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangSourceLanguage, ISlangBlob**, void&gt;</type>
+        </field>
+        <field name="addBuiltins" access="public">
+          <type native="void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*, sbyte*, void&gt;</type>
+        </field>
+        <field name="setSharedLibraryLoader" access="public">
+          <type native="void (ISlangSharedLibraryLoader *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, ISlangSharedLibraryLoader*, void&gt;</type>
+        </field>
+        <field name="getSharedLibraryLoader" access="public">
+          <type native="ISlangSharedLibraryLoader *() __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, ISlangSharedLibraryLoader*&gt;</type>
+        </field>
+        <field name="checkCompileTargetSupport" access="public">
+          <type native="SlangResult (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangCompileTarget, int&gt;</type>
+        </field>
+        <field name="checkPassThroughSupport" access="public">
+          <type native="SlangResult (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangPassThrough, int&gt;</type>
+        </field>
+        <field name="compileCoreModule" access="public">
+          <type native="SlangResult (CompileCoreModuleFlags) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, uint, int&gt;</type>
+        </field>
+        <field name="loadCoreModule" access="public">
+          <type native="SlangResult (const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, void*, nuint, int&gt;</type>
+        </field>
+        <field name="saveCoreModule" access="public">
+          <type native="SlangResult (SlangArchiveType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangArchiveType, ISlangBlob**, int&gt;</type>
+        </field>
+        <field name="findCapability" access="public">
+          <type native="SlangCapabilityID (const char *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*, SlangCapabilityID&gt;</type>
+        </field>
+        <field name="setDownstreamCompilerForTransition" access="public">
+          <type native="void (SlangCompileTarget, SlangCompileTarget, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangCompileTarget, SlangCompileTarget, SlangPassThrough, void&gt;</type>
+        </field>
+        <field name="getDownstreamCompilerForTransition" access="public">
+          <type native="SlangPassThrough (SlangCompileTarget, SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SlangCompileTarget, SlangCompileTarget, SlangPassThrough&gt;</type>
+        </field>
+        <field name="getCompilerElapsedTime" access="public">
+          <type native="void (double *, double *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, double*, double*, void&gt;</type>
+        </field>
+        <field name="setSPIRVCoreGrammar" access="public">
+          <type native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, sbyte*, int&gt;</type>
+        </field>
+        <field name="parseCommandLineArguments" access="public">
+          <type native="SlangResult (int, const char *const *, SessionDesc *, ISlangUnknown **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, int, sbyte**, SessionDesc*, ISlangUnknown**, int&gt;</type>
+        </field>
+        <field name="getSessionDescDigest" access="public">
+          <type native="SlangResult (SessionDesc *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IGlobalSession*, SessionDesc*, ISlangBlob**, int&gt;</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

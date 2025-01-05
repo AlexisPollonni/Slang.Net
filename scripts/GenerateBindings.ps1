@@ -7,4 +7,5 @@ mkdir ../SlangNet.Tests/Generated -ea 0
 Remove-Item ../SlangNet.Bindings/Generated/*.cs
 Remove-Item ../SlangNet.Tests/Generated/*.cs
 ClangSharpPInvokeGenerator.exe "@GenerateSlangSource.rsp"
+ClangSharpPInvokeGenerator.exe "@GenerateSlangXml.rsp"
 Pop-Location

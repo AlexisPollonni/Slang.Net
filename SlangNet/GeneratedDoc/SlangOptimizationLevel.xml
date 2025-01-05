@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangOptimizationLevel" access="public">
+      <type>uint</type>
+      <enumerator name="SLANG_OPTIMIZATION_LEVEL_NONE" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_OPTIMIZATION_LEVEL_DEFAULT" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_OPTIMIZATION_LEVEL_HIGH" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_OPTIMIZATION_LEVEL_MAXIMAL" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

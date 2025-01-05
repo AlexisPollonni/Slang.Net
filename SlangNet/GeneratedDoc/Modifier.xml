@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="Modifier" access="public">
+      <enumeration name="ID" access="public">
+        <type>uint</type>
+        <enumerator name="Shared" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_SHARED</code>
+          </value>
+        </enumerator>
+        <enumerator name="NoDiff" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_NO_DIFF</code>
+          </value>
+        </enumerator>
+        <enumerator name="Static" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_STATIC</code>
+          </value>
+        </enumerator>
+        <enumerator name="Const" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_CONST</code>
+          </value>
+        </enumerator>
+        <enumerator name="Export" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_EXPORT</code>
+          </value>
+        </enumerator>
+        <enumerator name="Extern" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_EXTERN</code>
+          </value>
+        </enumerator>
+        <enumerator name="Differentiable" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_DIFFERENTIABLE</code>
+          </value>
+        </enumerator>
+        <enumerator name="Mutating" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_MUTATING</code>
+          </value>
+        </enumerator>
+        <enumerator name="In" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_IN</code>
+          </value>
+        </enumerator>
+        <enumerator name="Out" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_OUT</code>
+          </value>
+        </enumerator>
+        <enumerator name="InOut" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_MODIFIER_INOUT</code>
+          </value>
+        </enumerator>
+      </enumeration>
+    </struct>
+  </namespace>
+</bindings>

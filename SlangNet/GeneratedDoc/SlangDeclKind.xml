@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangDeclKind" access="public">
+      <type>uint</type>
+      <enumerator name="SLANG_DECL_KIND_UNSUPPORTED_FOR_REFLECTION" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DECL_KIND_STRUCT" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DECL_KIND_FUNC" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DECL_KIND_MODULE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DECL_KIND_GENERIC" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DECL_KIND_VARIABLE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_DECL_KIND_NAMESPACE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

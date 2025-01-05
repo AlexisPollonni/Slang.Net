@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet">
+    <enumeration name="PathKind" access="public">
+      <type>int</type>
+      <enumerator name="Simplified" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Canonical" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Display" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="OperatingSystem" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CountOf" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

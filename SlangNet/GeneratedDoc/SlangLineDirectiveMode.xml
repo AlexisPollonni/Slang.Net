@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangLineDirectiveMode" access="public">
+      <type>uint</type>
+      <enumerator name="SLANG_LINE_DIRECTIVE_MODE_DEFAULT" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_LINE_DIRECTIVE_MODE_NONE" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_LINE_DIRECTIVE_MODE_STANDARD" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_LINE_DIRECTIVE_MODE_GLSL" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SLANG_LINE_DIRECTIVE_MODE_SOURCE_MAP" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

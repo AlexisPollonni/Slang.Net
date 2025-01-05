@@ -1,3 +1,5 @@
+--additional
+-Wno-deprecated-declarations
 --config
 latest-codegen
 generate-file-scoped-namespaces
@@ -6,9 +8,12 @@ generate-helper-types
 generate-macro-bindings
 generate-aggressive-inlining
 exclude-funcs-with-body
-explicit-vtbls
+exclude-com-proxies
+exclude-enum-operators
+trimmable-vtbls
 multi-file
 log-potential-typedef-remappings
+strip-enum-member-type-name
 
 # Prevent platform-specific macros
 --define-macro

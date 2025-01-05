@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet">
+    <enumeration name="OSPathKind" access="public">
+      <type>byte</type>
+      <enumerator name="None" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="Direct" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="OperatingSystem" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

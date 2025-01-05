@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="SlangCapabilityID" access="public">
+      <type>int</type>
+      <enumerator name="SLANG_CAPABILITY_UNKNOWN" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

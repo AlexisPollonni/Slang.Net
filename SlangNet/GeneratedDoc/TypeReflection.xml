@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="TypeReflection" access="public">
+      <enumeration name="Kind" access="public">
+        <type>uint</type>
+        <enumerator name="None" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_NONE</code>
+          </value>
+        </enumerator>
+        <enumerator name="Struct" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_STRUCT</code>
+          </value>
+        </enumerator>
+        <enumerator name="Array" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_ARRAY</code>
+          </value>
+        </enumerator>
+        <enumerator name="Matrix" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_MATRIX</code>
+          </value>
+        </enumerator>
+        <enumerator name="Vector" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_VECTOR</code>
+          </value>
+        </enumerator>
+        <enumerator name="Scalar" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_SCALAR</code>
+          </value>
+        </enumerator>
+        <enumerator name="ConstantBuffer" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_CONSTANT_BUFFER</code>
+          </value>
+        </enumerator>
+        <enumerator name="Resource" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_RESOURCE</code>
+          </value>
+        </enumerator>
+        <enumerator name="SamplerState" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_SAMPLER_STATE</code>
+          </value>
+        </enumerator>
+        <enumerator name="TextureBuffer" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_TEXTURE_BUFFER</code>
+          </value>
+        </enumerator>
+        <enumerator name="ShaderStorageBuffer" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_SHADER_STORAGE_BUFFER</code>
+          </value>
+        </enumerator>
+        <enumerator name="ParameterBlock" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_PARAMETER_BLOCK</code>
+          </value>
+        </enumerator>
+        <enumerator name="GenericTypeParameter" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_GENERIC_TYPE_PARAMETER</code>
+          </value>
+        </enumerator>
+        <enumerator name="Interface" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_INTERFACE</code>
+          </value>
+        </enumerator>
+        <enumerator name="OutputStream" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_OUTPUT_STREAM</code>
+          </value>
+        </enumerator>
+        <enumerator name="Specialized" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_SPECIALIZED</code>
+          </value>
+        </enumerator>
+        <enumerator name="Feedback" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_FEEDBACK</code>
+          </value>
+        </enumerator>
+        <enumerator name="Pointer" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_POINTER</code>
+          </value>
+        </enumerator>
+        <enumerator name="DynamicResource" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_TYPE_KIND_DYNAMIC_RESOURCE</code>
+          </value>
+        </enumerator>
+      </enumeration>
+      <enumeration name="ScalarType" access="public">
+        <type>uint</type>
+        <enumerator name="None" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_NONE</code>
+          </value>
+        </enumerator>
+        <enumerator name="Void" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_VOID</code>
+          </value>
+        </enumerator>
+        <enumerator name="Bool" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_BOOL</code>
+          </value>
+        </enumerator>
+        <enumerator name="Int32" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_INT32</code>
+          </value>
+        </enumerator>
+        <enumerator name="UInt32" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_UINT32</code>
+          </value>
+        </enumerator>
+        <enumerator name="Int64" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_INT64</code>
+          </value>
+        </enumerator>
+        <enumerator name="UInt64" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_UINT64</code>
+          </value>
+        </enumerator>
+        <enumerator name="Float16" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_FLOAT16</code>
+          </value>
+        </enumerator>
+        <enumerator name="Float32" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_FLOAT32</code>
+          </value>
+        </enumerator>
+        <enumerator name="Float64" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_FLOAT64</code>
+          </value>
+        </enumerator>
+        <enumerator name="Int8" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_INT8</code>
+          </value>
+        </enumerator>
+        <enumerator name="UInt8" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_UINT8</code>
+          </value>
+        </enumerator>
+        <enumerator name="Int16" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_INT16</code>
+          </value>
+        </enumerator>
+        <enumerator name="UInt16" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>SLANG_SCALAR_TYPE_UINT16</code>
+          </value>
+        </enumerator>
+      </enumeration>
+    </struct>
+  </namespace>
+</bindings>

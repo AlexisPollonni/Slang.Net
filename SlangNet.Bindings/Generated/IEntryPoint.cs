@@ -6,14 +6,14 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct IEntryPoint : slang::IComponentType")]
 public unsafe partial struct IEntryPoint
 {
-    public Vtbl* lpVtbl;
+    public void** lpVtbl;
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return lpVtbl->queryInterface((IEntryPoint*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, SlangUUID*, void**, int>)(lpVtbl[0]))((IEntryPoint*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -21,7 +21,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return lpVtbl->addRef((IEntryPoint*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, uint>)(lpVtbl[1]))((IEntryPoint*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -29,7 +29,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return lpVtbl->release((IEntryPoint*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, uint>)(lpVtbl[2]))((IEntryPoint*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IComponentType.getSession" />
@@ -37,7 +37,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("slang::ISession *")]
     public ISession* getSession()
     {
-        return lpVtbl->getSession((IEntryPoint*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, ISession*>)(lpVtbl[3]))((IEntryPoint*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IComponentType.getLayout" />
@@ -45,7 +45,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("slang::ProgramLayout *")]
     public ShaderReflection* getLayout([NativeTypeName("SlangInt")] long targetIndex = 0, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->getLayout((IEntryPoint*)Unsafe.AsPointer(ref this), targetIndex, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, long, ISlangBlob**, ShaderReflection*>)(lpVtbl[4]))((IEntryPoint*)Unsafe.AsPointer(ref this), targetIndex, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getSpecializationParamCount" />
@@ -53,7 +53,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangInt")]
     public long getSpecializationParamCount()
     {
-        return lpVtbl->getSpecializationParamCount((IEntryPoint*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, long>)(lpVtbl[5]))((IEntryPoint*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointCode" />
@@ -61,7 +61,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int getEntryPointCode([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->getEntryPointCode((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outCode, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, long, long, ISlangBlob**, ISlangBlob**, int>)(lpVtbl[6]))((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outCode, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getResultAsFileSystem" />
@@ -69,14 +69,14 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int getResultAsFileSystem([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, ISlangMutableFileSystem** outFileSystem)
     {
-        return lpVtbl->getResultAsFileSystem((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outFileSystem);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, long, long, ISlangMutableFileSystem**, int>)(lpVtbl[7]))((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outFileSystem);
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointHash" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void getEntryPointHash([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outHash)
     {
-        lpVtbl->getEntryPointHash((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outHash);
+        ((delegate* unmanaged[Stdcall]<IEntryPoint*, long, long, ISlangBlob**, void>)(lpVtbl[8]))((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outHash);
     }
 
     /// <inheritdoc cref="IComponentType.specialize" />
@@ -84,7 +84,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int specialize([NativeTypeName("const SpecializationArg *")] SpecializationArg* specializationArgs, [NativeTypeName("SlangInt")] long specializationArgCount, IComponentType** outSpecializedComponentType, ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->specialize((IEntryPoint*)Unsafe.AsPointer(ref this), specializationArgs, specializationArgCount, outSpecializedComponentType, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, SpecializationArg*, long, IComponentType**, ISlangBlob**, int>)(lpVtbl[9]))((IEntryPoint*)Unsafe.AsPointer(ref this), specializationArgs, specializationArgCount, outSpecializedComponentType, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.link" />
@@ -92,7 +92,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int link(IComponentType** outLinkedComponentType, ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->link((IEntryPoint*)Unsafe.AsPointer(ref this), outLinkedComponentType, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, IComponentType**, ISlangBlob**, int>)(lpVtbl[10]))((IEntryPoint*)Unsafe.AsPointer(ref this), outLinkedComponentType, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointHostCallable" />
@@ -100,7 +100,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int getEntryPointHostCallable(int entryPointIndex, int targetIndex, ISlangSharedLibrary** outSharedLibrary, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->getEntryPointHostCallable((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outSharedLibrary, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, int, int, ISlangSharedLibrary**, ISlangBlob**, int>)(lpVtbl[11]))((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outSharedLibrary, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.renameEntryPoint" />
@@ -108,7 +108,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int renameEntryPoint([NativeTypeName("const char *")] sbyte* newName, IComponentType** outEntryPoint)
     {
-        return lpVtbl->renameEntryPoint((IEntryPoint*)Unsafe.AsPointer(ref this), newName, outEntryPoint);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, sbyte*, IComponentType**, int>)(lpVtbl[12]))((IEntryPoint*)Unsafe.AsPointer(ref this), newName, outEntryPoint);
     }
 
     /// <inheritdoc cref="IComponentType.linkWithOptions" />
@@ -116,7 +116,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int linkWithOptions(IComponentType** outLinkedComponentType, [NativeTypeName("uint32_t")] uint compilerOptionEntryCount, [NativeTypeName("slang::CompilerOptionEntry *")] CompilerOptionEntry* compilerOptionEntries, ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->linkWithOptions((IEntryPoint*)Unsafe.AsPointer(ref this), outLinkedComponentType, compilerOptionEntryCount, compilerOptionEntries, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, IComponentType**, uint, CompilerOptionEntry*, ISlangBlob**, int>)(lpVtbl[13]))((IEntryPoint*)Unsafe.AsPointer(ref this), outLinkedComponentType, compilerOptionEntryCount, compilerOptionEntries, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getTargetCode" />
@@ -124,7 +124,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int getTargetCode([NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->getTargetCode((IEntryPoint*)Unsafe.AsPointer(ref this), targetIndex, outCode, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, long, ISlangBlob**, ISlangBlob**, int>)(lpVtbl[14]))((IEntryPoint*)Unsafe.AsPointer(ref this), targetIndex, outCode, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getTargetMetadata" />
@@ -132,7 +132,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int getTargetMetadata([NativeTypeName("SlangInt")] long targetIndex, IMetadata** outMetadata, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->getTargetMetadata((IEntryPoint*)Unsafe.AsPointer(ref this), targetIndex, outMetadata, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, long, IMetadata**, ISlangBlob**, int>)(lpVtbl[15]))((IEntryPoint*)Unsafe.AsPointer(ref this), targetIndex, outMetadata, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointMetadata" />
@@ -140,7 +140,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("SlangResult")]
     public int getEntryPointMetadata([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, IMetadata** outMetadata, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return lpVtbl->getEntryPointMetadata((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outMetadata, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, long, long, IMetadata**, ISlangBlob**, int>)(lpVtbl[16]))((IEntryPoint*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outMetadata, outDiagnostics);
     }
 
     /// <include file='IEntryPoint.xml' path='doc/member[@name="IEntryPoint.getFunctionReflection"]/*' />
@@ -148,7 +148,7 @@ public unsafe partial struct IEntryPoint
     [return: NativeTypeName("slang::FunctionReflection *")]
     public FunctionReflection* getFunctionReflection()
     {
-        return lpVtbl->getFunctionReflection((IEntryPoint*)Unsafe.AsPointer(ref this));
+        return ((delegate* unmanaged[Stdcall]<IEntryPoint*, FunctionReflection*>)(lpVtbl[17]))((IEntryPoint*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl
