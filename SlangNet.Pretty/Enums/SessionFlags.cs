@@ -1,10 +1,10 @@
 ﻿using System;
-using static SlangNet.Unsafe.Slang;
+using static SlangNet.Bindings.Generated.Slang;
 
 namespace SlangNet;
 
 [Flags]
 public enum SessionFlags : uint
 {
-    FalcorCustomSharedKeywordSemantics = kSessionFlag_FalcorCustomSharedKeywordSemantics
+    None = kSessionFlags_None,
 }

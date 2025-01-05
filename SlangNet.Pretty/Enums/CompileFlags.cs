@@ -1,7 +1,8 @@
 ﻿using System;
-using static SlangNet.Unsafe.Slang;
 
-namespace SlangNet;
+using static SlangNet.Bindings.Generated.Slang;
+
+namespace SlangNet.Enums;
 
 [Flags]
 public enum CompileFlags
