@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Unsafe.UnitTests;
+namespace SlangNet.Bindings.Generated.UnitTests;
 
 /// <summary>Provides validation of the <see cref="TargetDesc" /> struct.</summary>
 public static unsafe partial class TargetDescTests
@@ -27,11 +27,11 @@ public static unsafe partial class TargetDescTests
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(TargetDesc), Is.EqualTo(32));
+            Assert.That(sizeof(TargetDesc), Is.EqualTo(48));
         }
         else
         {
-            Assert.That(sizeof(TargetDesc), Is.EqualTo(28));
+            Assert.That(sizeof(TargetDesc), Is.EqualTo(36));
         }
     }
 }
