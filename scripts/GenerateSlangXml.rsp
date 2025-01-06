@@ -1,5 +1,0 @@
-@GenerateSlangBase.rsp
---output-mode
-Xml
---output
-../SlangNet/GeneratedDoc
