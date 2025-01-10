@@ -41,7 +41,7 @@
       <function name="isParameterLocationUsed" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="category">
-          <type>SlangParameterCategory</type>
+          <type>ParameterCategory</type>
         </param>
         <param name="spaceIndex">
           <type>ulong</type>
@@ -53,7 +53,7 @@
           <type>bool*</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Thiscall]&lt;IMetadata*, SlangParameterCategory, ulong, ulong, bool*, int&gt;)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param name="category">category</param>, <param name="spaceIndex">spaceIndex</param>, <param name="registerIndex">registerIndex</param>, <param name="outUsed">outUsed</param>);</code>
+          <code>return ((delegate* unmanaged[Thiscall]&lt;IMetadata*, ParameterCategory, ulong, ulong, bool*, int&gt;)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param name="category">category</param>, <param name="spaceIndex">spaceIndex</param>, <param name="registerIndex">registerIndex</param>, <param name="outUsed">outUsed</param>);</code>
         </body>
       </function>
       <vtbl>
@@ -70,7 +70,7 @@
           <type native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IMetadata*, SlangUUID*, void*&gt;</type>
         </field>
         <field name="isParameterLocationUsed" access="public">
-          <type native="SlangResult (SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;)">delegate* unmanaged[Thiscall]&lt;IMetadata*, SlangParameterCategory, ulong, ulong, bool*, int&gt;</type>
+          <type native="SlangResult (SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;)">delegate* unmanaged[Thiscall]&lt;IMetadata*, ParameterCategory, ulong, ulong, bool*, int&gt;</type>
         </field>
       </vtbl>
     </struct>

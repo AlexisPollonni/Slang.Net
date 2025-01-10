@@ -5,15 +5,9 @@
       <type>uint</type>
       <enumerator name="Default" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_LAYOUT_RULES_DEFAULT</code>
-        </value>
       </enumerator>
       <enumerator name="MetalArgumentBufferTier2" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_LAYOUT_RULES_METAL_ARGUMENT_BUFFER_TIER_2</code>
-        </value>
       </enumerator>
     </enumeration>
   </namespace>

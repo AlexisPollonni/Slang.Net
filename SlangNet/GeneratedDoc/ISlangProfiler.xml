@@ -45,12 +45,12 @@
         </body>
       </function>
       <function name="getEntryTimeMS" access="public" unsafe="true">
-        <type native="long">nint</type>
+        <type native="long">int</type>
         <param name="index">
           <type>uint</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangProfiler*, uint, nint&gt;)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangProfiler*, uint, int&gt;)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>
         </body>
       </function>
       <function name="getEntryInvocationTimes" access="public" unsafe="true">
@@ -79,7 +79,7 @@
           <type native="const char *(uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangProfiler*, uint, sbyte*&gt;</type>
         </field>
         <field name="getEntryTimeMS" access="public">
-          <type native="long (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangProfiler*, uint, nint&gt;</type>
+          <type native="long (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangProfiler*, uint, int&gt;</type>
         </field>
         <field name="getEntryInvocationTimes" access="public">
           <type native="uint32_t (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangProfiler*, uint, uint&gt;</type>

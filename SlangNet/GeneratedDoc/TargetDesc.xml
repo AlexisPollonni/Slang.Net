@@ -6,19 +6,19 @@
         <type native="size_t">nuint</type>
       </field>
       <field name="format" access="public">
-        <type>SlangCompileTarget</type>
+        <type native="SlangCompileTarget">CompileTarget</type>
       </field>
       <field name="profile" access="public">
-        <type>SlangProfileID</type>
+        <type native="SlangProfileID">ProfileID</type>
       </field>
       <field name="flags" access="public">
         <type native="SlangTargetFlags">uint</type>
       </field>
       <field name="floatingPointMode" access="public">
-        <type>SlangFloatingPointMode</type>
+        <type native="SlangFloatingPointMode">FloatingPointMode</type>
       </field>
       <field name="lineDirectiveMode" access="public">
-        <type>SlangLineDirectiveMode</type>
+        <type native="SlangLineDirectiveMode">LineDirectiveMode</type>
       </field>
       <field name="forceGLSLScalarBufferLayout" access="public">
         <type native="bool">byte</type>

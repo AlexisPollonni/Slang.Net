@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="DeclKind" access="public">
+      <type>uint</type>
+      <enumerator name="UnsupportedForReflection" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Struct" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Func" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Module" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Generic" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Variable" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Namespace" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

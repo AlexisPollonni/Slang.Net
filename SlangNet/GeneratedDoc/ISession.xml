@@ -127,7 +127,7 @@
         <param name="rules">
           <type>LayoutRules</type>
           <init>
-            <code>Default</code>
+            <code>LayoutRules.Default</code>
           </init>
         </param>
         <param name="outDiagnostics">

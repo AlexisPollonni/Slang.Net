@@ -329,7 +329,7 @@
           <type>sbyte*</type>
         </param>
         <param name="stage">
-          <type>SlangStage</type>
+          <type>Stage</type>
         </param>
         <param name="outEntryPoint">
           <type>IEntryPoint**</type>
@@ -338,7 +338,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IModule*, sbyte*, SlangStage, IEntryPoint**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">25</vtbl>]))(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>, <param name="stage">stage</param>, <param name="outEntryPoint">outEntryPoint</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IModule*, sbyte*, Stage, IEntryPoint**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">25</vtbl>]))(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>, <param name="stage">stage</param>, <param name="outEntryPoint">outEntryPoint</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getDependencyFileCount" access="public" unsafe="true">
@@ -439,7 +439,7 @@
           <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModule*, sbyte*&gt;</type>
         </field>
         <field name="findAndCheckEntryPoint" access="public">
-          <type native="SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModule*, sbyte*, SlangStage, IEntryPoint**, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModule*, sbyte*, Stage, IEntryPoint**, ISlangBlob**, int&gt;</type>
         </field>
         <field name="getDependencyFileCount" access="public">
           <type native="SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModule*, int&gt;</type>

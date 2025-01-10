@@ -1,5 +1,4 @@
 using SlangNet.Bindings.Generated;
-using static SlangNet.Bindings.Generated.SlangBindingType;
 
 namespace SlangNet;
 
@@ -8,65 +7,65 @@ namespace SlangNet;
 public enum BindingType : uint
 {
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.Unknown"]/*' />
-    Unknown = SLANG_BINDING_TYPE_UNKNOWN,
+    Unknown = 0,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.Sampler"]/*' />
-    Sampler = SLANG_BINDING_TYPE_SAMPLER,
+    Sampler,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.Texture"]/*' />
-    Texture = SLANG_BINDING_TYPE_TEXTURE,
+    Texture,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.ConstantBuffer"]/*' />
-    ConstantBuffer = SLANG_BINDING_TYPE_CONSTANT_BUFFER,
+    ConstantBuffer,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.ParameterBlock"]/*' />
-    ParameterBlock = SLANG_BINDING_TYPE_PARAMETER_BLOCK,
+    ParameterBlock,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.TypedBuffer"]/*' />
-    TypedBuffer = SLANG_BINDING_TYPE_TYPED_BUFFER,
+    TypedBuffer,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.RawBuffer"]/*' />
-    RawBuffer = SLANG_BINDING_TYPE_RAW_BUFFER,
+    RawBuffer,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.CombinedTextureSampler"]/*' />
-    CombinedTextureSampler = SLANG_BINDING_TYPE_COMBINED_TEXTURE_SAMPLER,
+    CombinedTextureSampler,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.InputRenderTarget"]/*' />
-    InputRenderTarget = SLANG_BINDING_TYPE_INPUT_RENDER_TARGET,
+    InputRenderTarget,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.InlineUniformData"]/*' />
-    InlineUniformData = SLANG_BINDING_TYPE_INLINE_UNIFORM_DATA,
+    InlineUniformData,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.RayTracingAccelerationStructure"]/*' />
-    RayTracingAccelerationStructure = SLANG_BINDING_TYPE_RAY_TRACING_ACCELERATION_STRUCTURE,
+    RayTracingAccelerationStructure,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.VaryingInput"]/*' />
-    VaryingInput = SLANG_BINDING_TYPE_VARYING_INPUT,
+    VaryingInput,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.VaryingOutput"]/*' />
-    VaryingOutput = SLANG_BINDING_TYPE_VARYING_OUTPUT,
+    VaryingOutput,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.ExistentialValue"]/*' />
-    ExistentialValue = SLANG_BINDING_TYPE_EXISTENTIAL_VALUE,
+    ExistentialValue,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.PushConstant"]/*' />
-    PushConstant = SLANG_BINDING_TYPE_PUSH_CONSTANT,
+    PushConstant,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.MutableFlag"]/*' />
-    MutableFlag = SLANG_BINDING_TYPE_MUTABLE_FLAG,
+    MutableFlag = 0x100,
 
-    /// <include file='BindingType.xml' path='doc/member[@name="BindingType.MutableTexture"]/*' />
-    MutableTexture = SLANG_BINDING_TYPE_MUTABLE_TETURE,
+    /// <include file='BindingType.xml' path='doc/member[@name="BindingType.MutableTeture"]/*' />
+    MutableTeture = Texture | MutableFlag,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.MutableTypedBuffer"]/*' />
-    MutableTypedBuffer = SLANG_BINDING_TYPE_MUTABLE_TYPED_BUFFER,
+    MutableTypedBuffer = TypedBuffer | MutableFlag,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.MutableRawBuffer"]/*' />
-    MutableRawBuffer = SLANG_BINDING_TYPE_MUTABLE_RAW_BUFFER,
+    MutableRawBuffer = RawBuffer | MutableFlag,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.BaseMask"]/*' />
-    BaseMask = SLANG_BINDING_TYPE_BASE_MASK,
+    BaseMask = 0x00FF,
 
     /// <include file='BindingType.xml' path='doc/member[@name="BindingType.ExtMask"]/*' />
-    ExtMask = SLANG_BINDING_TYPE_EXT_MASK,
+    ExtMask = 0xFF00,
 }

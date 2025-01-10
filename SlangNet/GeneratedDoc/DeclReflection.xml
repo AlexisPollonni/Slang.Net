@@ -2,51 +2,6 @@
 <bindings>
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="DeclReflection" access="public">
-      <enumeration name="Kind" access="public">
-        <type>uint</type>
-        <enumerator name="Unsupported" access="public">
-          <type primitive="False">uint</type>
-          <value>
-            <code>SLANG_DECL_KIND_UNSUPPORTED_FOR_REFLECTION</code>
-          </value>
-        </enumerator>
-        <enumerator name="Struct" access="public">
-          <type primitive="False">uint</type>
-          <value>
-            <code>SLANG_DECL_KIND_STRUCT</code>
-          </value>
-        </enumerator>
-        <enumerator name="Func" access="public">
-          <type primitive="False">uint</type>
-          <value>
-            <code>SLANG_DECL_KIND_FUNC</code>
-          </value>
-        </enumerator>
-        <enumerator name="Module" access="public">
-          <type primitive="False">uint</type>
-          <value>
-            <code>SLANG_DECL_KIND_MODULE</code>
-          </value>
-        </enumerator>
-        <enumerator name="Generic" access="public">
-          <type primitive="False">uint</type>
-          <value>
-            <code>SLANG_DECL_KIND_GENERIC</code>
-          </value>
-        </enumerator>
-        <enumerator name="Variable" access="public">
-          <type primitive="False">uint</type>
-          <value>
-            <code>SLANG_DECL_KIND_VARIABLE</code>
-          </value>
-        </enumerator>
-        <enumerator name="Namespace" access="public">
-          <type primitive="False">uint</type>
-          <value>
-            <code>SLANG_DECL_KIND_NAMESPACE</code>
-          </value>
-        </enumerator>
-      </enumeration>
       <struct name="IteratedList" access="public" unsafe="true">
         <field name="count" access="public">
           <type native="unsigned int">uint</type>

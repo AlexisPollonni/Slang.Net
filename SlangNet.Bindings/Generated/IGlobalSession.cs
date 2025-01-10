@@ -42,30 +42,31 @@ public unsafe partial struct IGlobalSession
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.findProfile"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public SlangProfileID findProfile([NativeTypeName("const char *")] sbyte* name)
+    [return: NativeTypeName("SlangProfileID")]
+    public ProfileID findProfile([NativeTypeName("const char *")] sbyte* name)
     {
-        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*, SlangProfileID>)(lpVtbl[4]))((IGlobalSession*)Unsafe.AsPointer(ref this), name);
+        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*, ProfileID>)(lpVtbl[4]))((IGlobalSession*)Unsafe.AsPointer(ref this), name);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.setDownstreamCompilerPath"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setDownstreamCompilerPath(SlangPassThrough passThrough, [NativeTypeName("const char *")] sbyte* path)
+    public void setDownstreamCompilerPath([NativeTypeName("SlangPassThrough")] PassThrough passThrough, [NativeTypeName("const char *")] sbyte* path)
     {
-        ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangPassThrough, sbyte*, void>)(lpVtbl[5]))((IGlobalSession*)Unsafe.AsPointer(ref this), passThrough, path);
+        ((delegate* unmanaged[Stdcall]<IGlobalSession*, PassThrough, sbyte*, void>)(lpVtbl[5]))((IGlobalSession*)Unsafe.AsPointer(ref this), passThrough, path);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.setDownstreamCompilerPrelude"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setDownstreamCompilerPrelude(SlangPassThrough passThrough, [NativeTypeName("const char *")] sbyte* preludeText)
+    public void setDownstreamCompilerPrelude([NativeTypeName("SlangPassThrough")] PassThrough passThrough, [NativeTypeName("const char *")] sbyte* preludeText)
     {
-        ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangPassThrough, sbyte*, void>)(lpVtbl[6]))((IGlobalSession*)Unsafe.AsPointer(ref this), passThrough, preludeText);
+        ((delegate* unmanaged[Stdcall]<IGlobalSession*, PassThrough, sbyte*, void>)(lpVtbl[6]))((IGlobalSession*)Unsafe.AsPointer(ref this), passThrough, preludeText);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.getDownstreamCompilerPrelude"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void getDownstreamCompilerPrelude(SlangPassThrough passThrough, ISlangBlob** outPrelude)
+    public void getDownstreamCompilerPrelude([NativeTypeName("SlangPassThrough")] PassThrough passThrough, ISlangBlob** outPrelude)
     {
-        ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangPassThrough, ISlangBlob**, void>)(lpVtbl[7]))((IGlobalSession*)Unsafe.AsPointer(ref this), passThrough, outPrelude);
+        ((delegate* unmanaged[Stdcall]<IGlobalSession*, PassThrough, ISlangBlob**, void>)(lpVtbl[7]))((IGlobalSession*)Unsafe.AsPointer(ref this), passThrough, outPrelude);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.getBuildTagString"]/*' />
@@ -79,30 +80,31 @@ public unsafe partial struct IGlobalSession
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.setDefaultDownstreamCompiler"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int setDefaultDownstreamCompiler(SlangSourceLanguage sourceLanguage, SlangPassThrough defaultCompiler)
+    public int setDefaultDownstreamCompiler([NativeTypeName("SlangSourceLanguage")] SourceLanguage sourceLanguage, [NativeTypeName("SlangPassThrough")] PassThrough defaultCompiler)
     {
-        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangSourceLanguage, SlangPassThrough, int>)(lpVtbl[9]))((IGlobalSession*)Unsafe.AsPointer(ref this), sourceLanguage, defaultCompiler);
+        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, SourceLanguage, PassThrough, int>)(lpVtbl[9]))((IGlobalSession*)Unsafe.AsPointer(ref this), sourceLanguage, defaultCompiler);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.getDefaultDownstreamCompiler"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public SlangPassThrough getDefaultDownstreamCompiler(SlangSourceLanguage sourceLanguage)
+    [return: NativeTypeName("SlangPassThrough")]
+    public PassThrough getDefaultDownstreamCompiler([NativeTypeName("SlangSourceLanguage")] SourceLanguage sourceLanguage)
     {
-        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangSourceLanguage, SlangPassThrough>)(lpVtbl[10]))((IGlobalSession*)Unsafe.AsPointer(ref this), sourceLanguage);
+        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, SourceLanguage, PassThrough>)(lpVtbl[10]))((IGlobalSession*)Unsafe.AsPointer(ref this), sourceLanguage);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.setLanguagePrelude"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setLanguagePrelude(SlangSourceLanguage sourceLanguage, [NativeTypeName("const char *")] sbyte* preludeText)
+    public void setLanguagePrelude([NativeTypeName("SlangSourceLanguage")] SourceLanguage sourceLanguage, [NativeTypeName("const char *")] sbyte* preludeText)
     {
-        ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangSourceLanguage, sbyte*, void>)(lpVtbl[11]))((IGlobalSession*)Unsafe.AsPointer(ref this), sourceLanguage, preludeText);
+        ((delegate* unmanaged[Stdcall]<IGlobalSession*, SourceLanguage, sbyte*, void>)(lpVtbl[11]))((IGlobalSession*)Unsafe.AsPointer(ref this), sourceLanguage, preludeText);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.getLanguagePrelude"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void getLanguagePrelude(SlangSourceLanguage sourceLanguage, ISlangBlob** outPrelude)
+    public void getLanguagePrelude([NativeTypeName("SlangSourceLanguage")] SourceLanguage sourceLanguage, ISlangBlob** outPrelude)
     {
-        ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangSourceLanguage, ISlangBlob**, void>)(lpVtbl[12]))((IGlobalSession*)Unsafe.AsPointer(ref this), sourceLanguage, outPrelude);
+        ((delegate* unmanaged[Stdcall]<IGlobalSession*, SourceLanguage, ISlangBlob**, void>)(lpVtbl[12]))((IGlobalSession*)Unsafe.AsPointer(ref this), sourceLanguage, outPrelude);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.addBuiltins"]/*' />
@@ -129,17 +131,17 @@ public unsafe partial struct IGlobalSession
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.checkCompileTargetSupport"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int checkCompileTargetSupport(SlangCompileTarget target)
+    public int checkCompileTargetSupport([NativeTypeName("SlangCompileTarget")] CompileTarget target)
     {
-        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangCompileTarget, int>)(lpVtbl[17]))((IGlobalSession*)Unsafe.AsPointer(ref this), target);
+        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, CompileTarget, int>)(lpVtbl[17]))((IGlobalSession*)Unsafe.AsPointer(ref this), target);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.checkPassThroughSupport"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int checkPassThroughSupport(SlangPassThrough passThrough)
+    public int checkPassThroughSupport([NativeTypeName("SlangPassThrough")] PassThrough passThrough)
     {
-        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangPassThrough, int>)(lpVtbl[18]))((IGlobalSession*)Unsafe.AsPointer(ref this), passThrough);
+        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, PassThrough, int>)(lpVtbl[18]))((IGlobalSession*)Unsafe.AsPointer(ref this), passThrough);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.compileCoreModule"]/*' />
@@ -161,30 +163,32 @@ public unsafe partial struct IGlobalSession
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.saveCoreModule"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int saveCoreModule(SlangArchiveType archiveType, ISlangBlob** outBlob)
+    public int saveCoreModule([NativeTypeName("SlangArchiveType")] ArchiveType archiveType, ISlangBlob** outBlob)
     {
-        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangArchiveType, ISlangBlob**, int>)(lpVtbl[21]))((IGlobalSession*)Unsafe.AsPointer(ref this), archiveType, outBlob);
+        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, ArchiveType, ISlangBlob**, int>)(lpVtbl[21]))((IGlobalSession*)Unsafe.AsPointer(ref this), archiveType, outBlob);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.findCapability"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public SlangCapabilityID findCapability([NativeTypeName("const char *")] sbyte* name)
+    [return: NativeTypeName("SlangCapabilityID")]
+    public CapabilityID findCapability([NativeTypeName("const char *")] sbyte* name)
     {
-        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*, SlangCapabilityID>)(lpVtbl[22]))((IGlobalSession*)Unsafe.AsPointer(ref this), name);
+        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*, CapabilityID>)(lpVtbl[22]))((IGlobalSession*)Unsafe.AsPointer(ref this), name);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.setDownstreamCompilerForTransition"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setDownstreamCompilerForTransition(SlangCompileTarget source, SlangCompileTarget target, SlangPassThrough compiler)
+    public void setDownstreamCompilerForTransition([NativeTypeName("SlangCompileTarget")] CompileTarget source, [NativeTypeName("SlangCompileTarget")] CompileTarget target, [NativeTypeName("SlangPassThrough")] PassThrough compiler)
     {
-        ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangCompileTarget, SlangCompileTarget, SlangPassThrough, void>)(lpVtbl[23]))((IGlobalSession*)Unsafe.AsPointer(ref this), source, target, compiler);
+        ((delegate* unmanaged[Stdcall]<IGlobalSession*, CompileTarget, CompileTarget, PassThrough, void>)(lpVtbl[23]))((IGlobalSession*)Unsafe.AsPointer(ref this), source, target, compiler);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.getDownstreamCompilerForTransition"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public SlangPassThrough getDownstreamCompilerForTransition(SlangCompileTarget source, SlangCompileTarget target)
+    [return: NativeTypeName("SlangPassThrough")]
+    public PassThrough getDownstreamCompilerForTransition([NativeTypeName("SlangCompileTarget")] CompileTarget source, [NativeTypeName("SlangCompileTarget")] CompileTarget target)
     {
-        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, SlangCompileTarget, SlangCompileTarget, SlangPassThrough>)(lpVtbl[24]))((IGlobalSession*)Unsafe.AsPointer(ref this), source, target);
+        return ((delegate* unmanaged[Stdcall]<IGlobalSession*, CompileTarget, CompileTarget, PassThrough>)(lpVtbl[24]))((IGlobalSession*)Unsafe.AsPointer(ref this), source, target);
     }
 
     /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.getCompilerElapsedTime"]/*' />
@@ -233,31 +237,31 @@ public unsafe partial struct IGlobalSession
         public delegate* unmanaged[Stdcall]<IGlobalSession*, SessionDesc*, ISession**, int> createSession;
 
         [NativeTypeName("SlangProfileID (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*, SlangProfileID> findProfile;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*, ProfileID> findProfile;
 
         [NativeTypeName("void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangPassThrough, sbyte*, void> setDownstreamCompilerPath;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, PassThrough, sbyte*, void> setDownstreamCompilerPath;
 
         [NativeTypeName("void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangPassThrough, sbyte*, void> setDownstreamCompilerPrelude;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, PassThrough, sbyte*, void> setDownstreamCompilerPrelude;
 
         [NativeTypeName("void (SlangPassThrough, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangPassThrough, ISlangBlob**, void> getDownstreamCompilerPrelude;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, PassThrough, ISlangBlob**, void> getDownstreamCompilerPrelude;
 
         [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*> getBuildTagString;
 
         [NativeTypeName("SlangResult (SlangSourceLanguage, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangSourceLanguage, SlangPassThrough, int> setDefaultDownstreamCompiler;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, SourceLanguage, PassThrough, int> setDefaultDownstreamCompiler;
 
         [NativeTypeName("SlangPassThrough (SlangSourceLanguage) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangSourceLanguage, SlangPassThrough> getDefaultDownstreamCompiler;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, SourceLanguage, PassThrough> getDefaultDownstreamCompiler;
 
         [NativeTypeName("void (SlangSourceLanguage, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangSourceLanguage, sbyte*, void> setLanguagePrelude;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, SourceLanguage, sbyte*, void> setLanguagePrelude;
 
         [NativeTypeName("void (SlangSourceLanguage, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangSourceLanguage, ISlangBlob**, void> getLanguagePrelude;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, SourceLanguage, ISlangBlob**, void> getLanguagePrelude;
 
         [NativeTypeName("void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*, sbyte*, void> addBuiltins;
@@ -269,10 +273,10 @@ public unsafe partial struct IGlobalSession
         public delegate* unmanaged[Stdcall]<IGlobalSession*, ISlangSharedLibraryLoader*> getSharedLibraryLoader;
 
         [NativeTypeName("SlangResult (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangCompileTarget, int> checkCompileTargetSupport;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, CompileTarget, int> checkCompileTargetSupport;
 
         [NativeTypeName("SlangResult (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangPassThrough, int> checkPassThroughSupport;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, PassThrough, int> checkPassThroughSupport;
 
         [NativeTypeName("SlangResult (CompileCoreModuleFlags) __attribute__((nothrow)) __attribute__((stdcall))")]
         public delegate* unmanaged[Stdcall]<IGlobalSession*, uint, int> compileCoreModule;
@@ -281,16 +285,16 @@ public unsafe partial struct IGlobalSession
         public delegate* unmanaged[Stdcall]<IGlobalSession*, void*, nuint, int> loadCoreModule;
 
         [NativeTypeName("SlangResult (SlangArchiveType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangArchiveType, ISlangBlob**, int> saveCoreModule;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, ArchiveType, ISlangBlob**, int> saveCoreModule;
 
         [NativeTypeName("SlangCapabilityID (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*, SlangCapabilityID> findCapability;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, sbyte*, CapabilityID> findCapability;
 
         [NativeTypeName("void (SlangCompileTarget, SlangCompileTarget, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangCompileTarget, SlangCompileTarget, SlangPassThrough, void> setDownstreamCompilerForTransition;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, CompileTarget, CompileTarget, PassThrough, void> setDownstreamCompilerForTransition;
 
         [NativeTypeName("SlangPassThrough (SlangCompileTarget, SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IGlobalSession*, SlangCompileTarget, SlangCompileTarget, SlangPassThrough> getDownstreamCompilerForTransition;
+        public delegate* unmanaged[Stdcall]<IGlobalSession*, CompileTarget, CompileTarget, PassThrough> getDownstreamCompilerForTransition;
 
         [NativeTypeName("void (double *, double *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public delegate* unmanaged[Stdcall]<IGlobalSession*, double*, double*, void> getCompilerElapsedTime;

@@ -7,67 +7,67 @@
         <enumerator name="Shared" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_SHARED</code>
+            <code>ModifierID.SlangModifierShared</code>
           </value>
         </enumerator>
         <enumerator name="NoDiff" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_NO_DIFF</code>
+            <code>ModifierID.SlangModifierNoDiff</code>
           </value>
         </enumerator>
         <enumerator name="Static" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_STATIC</code>
+            <code>ModifierID.SlangModifierStatic</code>
           </value>
         </enumerator>
         <enumerator name="Const" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_CONST</code>
+            <code>ModifierID.SlangModifierConst</code>
           </value>
         </enumerator>
         <enumerator name="Export" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_EXPORT</code>
+            <code>ModifierID.SlangModifierExport</code>
           </value>
         </enumerator>
         <enumerator name="Extern" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_EXTERN</code>
+            <code>ModifierID.SlangModifierExtern</code>
           </value>
         </enumerator>
         <enumerator name="Differentiable" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_DIFFERENTIABLE</code>
+            <code>ModifierID.SlangModifierDifferentiable</code>
           </value>
         </enumerator>
         <enumerator name="Mutating" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_MUTATING</code>
+            <code>ModifierID.SlangModifierMutating</code>
           </value>
         </enumerator>
         <enumerator name="In" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_IN</code>
+            <code>ModifierID.SlangModifierIn</code>
           </value>
         </enumerator>
         <enumerator name="Out" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_OUT</code>
+            <code>ModifierID.SlangModifierOut</code>
           </value>
         </enumerator>
         <enumerator name="InOut" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>SLANG_MODIFIER_INOUT</code>
+            <code>ModifierID.SlangModifierInout</code>
           </value>
         </enumerator>
       </enumeration>

@@ -68,12 +68,6 @@
           <code>1 &lt;&lt; 10</code>
         </value>
       </constant>
-      <constant name="kDefaultTargetFlags" access="public">
-        <type primitive="True">uint</type>
-        <value>
-          <code>(uint)(<value>SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY</value>)</code>
-        </value>
-      </constant>
       <function name="GetBuildTagString" access="public" lib="slang" convention="Cdecl" entrypoint="spGetBuildTagString" static="true" unsafe="true">
         <type native="const char *">sbyte*</type>
       </function>

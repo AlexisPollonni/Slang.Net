@@ -1,5 +1,4 @@
 using SlangNet.Bindings.Generated;
-using static SlangNet.Bindings.Generated.SlangLayoutRules;
 
 namespace SlangNet;
 
@@ -8,8 +7,8 @@ namespace SlangNet;
 public enum LayoutRules : uint
 {
     /// <include file='LayoutRules.xml' path='doc/member[@name="LayoutRules.Default"]/*' />
-    Default = SLANG_LAYOUT_RULES_DEFAULT,
+    Default,
 
     /// <include file='LayoutRules.xml' path='doc/member[@name="LayoutRules.MetalArgumentBufferTier2"]/*' />
-    MetalArgumentBufferTier2 = SLANG_LAYOUT_RULES_METAL_ARGUMENT_BUFFER_TIER_2,
+    MetalArgumentBufferTier2,
 }

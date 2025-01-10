@@ -3,7 +3,7 @@
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="SpecializationArg" access="public" unsafe="true">
       <field name="kind" access="public">
-        <type native="slang::SpecializationArg::Kind">Kind</type>
+        <type native="slang::SpecializationArg::Kind">TypeKind</type>
       </field>
       <field name="Anonymous" access="public">
         <type native="__AnonymousRecord_slang_L4375_C5">_Anonymous_e__Union</type>
@@ -14,15 +14,6 @@
           <code>return ref Anonymous.type;</code>
         </get>
       </field>
-      <enumeration name="Kind" access="public">
-        <type>uint</type>
-        <enumerator name="Unknown" access="public">
-          <type primitive="False">uint</type>
-        </enumerator>
-        <enumerator name="Type" access="public">
-          <type primitive="False">uint</type>
-        </enumerator>
-      </enumeration>
       <struct name="_Anonymous_e__Union" access="public" unsafe="true" layout="Explicit">
         <field name="type" access="public" offset="0">
           <type native="slang::TypeReflection *">TypeReflection*</type>

@@ -1,5 +1,4 @@
 using SlangNet.Bindings.Generated;
-using static SlangNet.Bindings.Generated.SlangParameterCategory;
 
 namespace SlangNet;
 
@@ -8,89 +7,98 @@ namespace SlangNet;
 public enum ParameterCategory : uint
 {
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.None"]/*' />
-    None = SLANG_PARAMETER_CATEGORY_NONE,
+    None,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.Mixed"]/*' />
-    Mixed = SLANG_PARAMETER_CATEGORY_MIXED,
+    Mixed,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.ConstantBuffer"]/*' />
-    ConstantBuffer = SLANG_PARAMETER_CATEGORY_CONSTANT_BUFFER,
+    ConstantBuffer,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.ShaderResource"]/*' />
-    ShaderResource = SLANG_PARAMETER_CATEGORY_SHADER_RESOURCE,
+    ShaderResource,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.UnorderedAccess"]/*' />
-    UnorderedAccess = SLANG_PARAMETER_CATEGORY_UNORDERED_ACCESS,
+    UnorderedAccess,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.VaryingInput"]/*' />
-    VaryingInput = SLANG_PARAMETER_CATEGORY_VARYING_INPUT,
+    VaryingInput,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.VaryingOutput"]/*' />
-    VaryingOutput = SLANG_PARAMETER_CATEGORY_VARYING_OUTPUT,
+    VaryingOutput,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.SamplerState"]/*' />
-    SamplerState = SLANG_PARAMETER_CATEGORY_SAMPLER_STATE,
+    SamplerState,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.Uniform"]/*' />
-    Uniform = SLANG_PARAMETER_CATEGORY_UNIFORM,
+    Uniform,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.DescriptorTableSlot"]/*' />
-    DescriptorTableSlot = SLANG_PARAMETER_CATEGORY_DESCRIPTOR_TABLE_SLOT,
+    DescriptorTableSlot,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.SpecializationConstant"]/*' />
-    SpecializationConstant = SLANG_PARAMETER_CATEGORY_SPECIALIZATION_CONSTANT,
+    SpecializationConstant,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.PushConstantBuffer"]/*' />
-    PushConstantBuffer = SLANG_PARAMETER_CATEGORY_PUSH_CONSTANT_BUFFER,
+    PushConstantBuffer,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.RegisterSpace"]/*' />
-    RegisterSpace = SLANG_PARAMETER_CATEGORY_REGISTER_SPACE,
+    RegisterSpace,
 
-    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.GenericResource"]/*' />
-    GenericResource = SLANG_PARAMETER_CATEGORY_GENERIC,
+    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.Generic"]/*' />
+    Generic,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.RayPayload"]/*' />
-    RayPayload = SLANG_PARAMETER_CATEGORY_RAY_PAYLOAD,
+    RayPayload,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.HitAttributes"]/*' />
-    HitAttributes = SLANG_PARAMETER_CATEGORY_HIT_ATTRIBUTES,
+    HitAttributes,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.CallablePayload"]/*' />
-    CallablePayload = SLANG_PARAMETER_CATEGORY_CALLABLE_PAYLOAD,
+    CallablePayload,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.ShaderRecord"]/*' />
-    ShaderRecord = SLANG_PARAMETER_CATEGORY_SHADER_RECORD,
+    ShaderRecord,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.ExistentialTypeParam"]/*' />
-    ExistentialTypeParam = SLANG_PARAMETER_CATEGORY_EXISTENTIAL_TYPE_PARAM,
+    ExistentialTypeParam,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.ExistentialObjectParam"]/*' />
-    ExistentialObjectParam = SLANG_PARAMETER_CATEGORY_EXISTENTIAL_OBJECT_PARAM,
+    ExistentialObjectParam,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.SubElementRegisterSpace"]/*' />
-    SubElementRegisterSpace = SLANG_PARAMETER_CATEGORY_SUB_ELEMENT_REGISTER_SPACE,
+    SubElementRegisterSpace,
 
-    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.InputAttachmentIndex"]/*' />
-    InputAttachmentIndex = SLANG_PARAMETER_CATEGORY_SUBPASS,
-
-    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.MetalBuffer"]/*' />
-    MetalBuffer = SLANG_PARAMETER_CATEGORY_CONSTANT_BUFFER,
-
-    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.MetalTexture"]/*' />
-    MetalTexture = SLANG_PARAMETER_CATEGORY_METAL_TEXTURE,
+    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.Subpass"]/*' />
+    Subpass,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.MetalArgumentBufferElement"]/*' />
-    MetalArgumentBufferElement = SLANG_PARAMETER_CATEGORY_METAL_ARGUMENT_BUFFER_ELEMENT,
+    MetalArgumentBufferElement,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.MetalAttribute"]/*' />
-    MetalAttribute = SLANG_PARAMETER_CATEGORY_METAL_ATTRIBUTE,
+    MetalAttribute,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.MetalPayload"]/*' />
-    MetalPayload = SLANG_PARAMETER_CATEGORY_METAL_PAYLOAD,
+    MetalPayload,
+
+    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.Count"]/*' />
+    Count,
+
+    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.MetalBuffer"]/*' />
+    MetalBuffer = ConstantBuffer,
+
+    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.MetalTexture"]/*' />
+    MetalTexture = ShaderResource,
+
+    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.MetalSampler"]/*' />
+    MetalSampler = SamplerState,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.VertexInput"]/*' />
-    VertexInput = SLANG_PARAMETER_CATEGORY_VERTEX_INPUT,
+    VertexInput = VaryingInput,
 
     /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.FragmentOutput"]/*' />
-    FragmentOutput = SLANG_PARAMETER_CATEGORY_FRAGMENT_OUTPUT,
+    FragmentOutput = VaryingOutput,
+
+    /// <include file='ParameterCategory.xml' path='doc/member[@name="ParameterCategory.CountV1"]/*' />
+    CountV1 = Subpass,
 }

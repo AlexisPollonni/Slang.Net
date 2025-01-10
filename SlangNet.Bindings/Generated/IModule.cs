@@ -210,9 +210,9 @@ public unsafe partial struct IModule
     /// <include file='IModule.xml' path='doc/member[@name="IModule.findAndCheckEntryPoint"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int findAndCheckEntryPoint([NativeTypeName("const char *")] sbyte* name, SlangStage stage, IEntryPoint** outEntryPoint, ISlangBlob** outDiagnostics)
+    public int findAndCheckEntryPoint([NativeTypeName("const char *")] sbyte* name, [NativeTypeName("SlangStage")] Stage stage, IEntryPoint** outEntryPoint, ISlangBlob** outDiagnostics)
     {
-        return ((delegate* unmanaged[Stdcall]<IModule*, sbyte*, SlangStage, IEntryPoint**, ISlangBlob**, int>)(lpVtbl[25]))((IModule*)Unsafe.AsPointer(ref this), name, stage, outEntryPoint, outDiagnostics);
+        return ((delegate* unmanaged[Stdcall]<IModule*, sbyte*, Stage, IEntryPoint**, ISlangBlob**, int>)(lpVtbl[25]))((IModule*)Unsafe.AsPointer(ref this), name, stage, outEntryPoint, outDiagnostics);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getDependencyFileCount"]/*' />
@@ -317,7 +317,7 @@ public unsafe partial struct IModule
         public delegate* unmanaged[Stdcall]<IModule*, sbyte*> getUniqueIdentity;
 
         [NativeTypeName("SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<IModule*, sbyte*, SlangStage, IEntryPoint**, ISlangBlob**, int> findAndCheckEntryPoint;
+        public delegate* unmanaged[Stdcall]<IModule*, sbyte*, Stage, IEntryPoint**, ISlangBlob**, int> findAndCheckEntryPoint;
 
         [NativeTypeName("SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))")]
         public delegate* unmanaged[Stdcall]<IModule*, int> getDependencyFileCount;

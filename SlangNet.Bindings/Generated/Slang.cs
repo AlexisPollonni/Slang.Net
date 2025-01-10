@@ -18,9 +18,6 @@ public static unsafe partial class Slang
     public const int SLANG_TARGET_FLAG_DUMP_IR = 1 << 9;
     public const int SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY = 1 << 10;
 
-    [NativeTypeName("const SlangTargetFlags")]
-    public const uint kDefaultTargetFlags = (uint)(SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY);
-
     /// <include file='Slang.xml' path='doc/member[@name="Slang.GetBuildTagString"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spGetBuildTagString", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]

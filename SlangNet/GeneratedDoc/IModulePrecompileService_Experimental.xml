@@ -32,19 +32,19 @@
       <function name="precompileForTarget" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="target">
-          <type>SlangCompileTarget</type>
+          <type>CompileTarget</type>
         </param>
         <param name="outDiagnostics">
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, SlangCompileTarget, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, CompileTarget, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getPrecompiledTargetCode" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="target">
-          <type>SlangCompileTarget</type>
+          <type>CompileTarget</type>
         </param>
         <param name="outCode">
           <type>ISlangBlob**</type>
@@ -56,7 +56,7 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, SlangCompileTarget, ISlangBlob**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, CompileTarget, ISlangBlob**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getModuleDependencyCount" access="public" unsafe="true">
@@ -94,10 +94,10 @@
           <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, uint&gt;</type>
         </field>
         <field name="precompileForTarget" access="public">
-          <type native="SlangResult (SlangCompileTarget, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, SlangCompileTarget, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (SlangCompileTarget, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, CompileTarget, ISlangBlob**, int&gt;</type>
         </field>
         <field name="getPrecompiledTargetCode" access="public">
-          <type native="SlangResult (SlangCompileTarget, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, SlangCompileTarget, ISlangBlob**, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (SlangCompileTarget, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, CompileTarget, ISlangBlob**, ISlangBlob**, int&gt;</type>
         </field>
         <field name="getModuleDependencyCount" access="public">
           <type native="SlangInt () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IModulePrecompileService_Experimental*, long&gt;</type>

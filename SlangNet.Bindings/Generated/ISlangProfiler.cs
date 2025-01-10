@@ -51,9 +51,9 @@ public unsafe partial struct ISlangProfiler
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryTimeMS"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("long")]
-    public nint getEntryTimeMS([NativeTypeName("uint32_t")] uint index)
+    public int getEntryTimeMS([NativeTypeName("uint32_t")] uint index)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangProfiler*, uint, nint>)(lpVtbl[5]))((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
+        return ((delegate* unmanaged[Stdcall]<ISlangProfiler*, uint, int>)(lpVtbl[5]))((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
     }
 
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryInvocationTimes"]/*' />
@@ -82,7 +82,7 @@ public unsafe partial struct ISlangProfiler
         public delegate* unmanaged[Stdcall]<ISlangProfiler*, uint, sbyte*> getEntryName;
 
         [NativeTypeName("long (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangProfiler*, uint, nint> getEntryTimeMS;
+        public delegate* unmanaged[Stdcall]<ISlangProfiler*, uint, int> getEntryTimeMS;
 
         [NativeTypeName("uint32_t (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public delegate* unmanaged[Stdcall]<ISlangProfiler*, uint, uint> getEntryInvocationTimes;

@@ -1,5 +1,3 @@
-using static SlangNet.Bindings.Generated.SlangModifierID;
-
 namespace SlangNet.Bindings.Generated;
 
 /// <include file='Modifier.xml' path='doc/member[@name="Modifier"]/*' />
@@ -11,36 +9,36 @@ public partial struct Modifier
     public enum ID : uint
     {
         /// <include file='ID.xml' path='doc/member[@name="ID.Shared"]/*' />
-        Shared = SLANG_MODIFIER_SHARED,
+        Shared = ModifierID.SlangModifierShared,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.NoDiff"]/*' />
-        NoDiff = SLANG_MODIFIER_NO_DIFF,
+        NoDiff = ModifierID.SlangModifierNoDiff,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Static"]/*' />
-        Static = SLANG_MODIFIER_STATIC,
+        Static = ModifierID.SlangModifierStatic,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Const"]/*' />
-        Const = SLANG_MODIFIER_CONST,
+        Const = ModifierID.SlangModifierConst,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Export"]/*' />
-        Export = SLANG_MODIFIER_EXPORT,
+        Export = ModifierID.SlangModifierExport,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Extern"]/*' />
-        Extern = SLANG_MODIFIER_EXTERN,
+        Extern = ModifierID.SlangModifierExtern,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Differentiable"]/*' />
-        Differentiable = SLANG_MODIFIER_DIFFERENTIABLE,
+        Differentiable = ModifierID.SlangModifierDifferentiable,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Mutating"]/*' />
-        Mutating = SLANG_MODIFIER_MUTATING,
+        Mutating = ModifierID.SlangModifierMutating,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.In"]/*' />
-        In = SLANG_MODIFIER_IN,
+        In = ModifierID.SlangModifierIn,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Out"]/*' />
-        Out = SLANG_MODIFIER_OUT,
+        Out = ModifierID.SlangModifierOut,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.InOut"]/*' />
-        InOut = SLANG_MODIFIER_INOUT,
+        InOut = ModifierID.SlangModifierInout,
     }
 }

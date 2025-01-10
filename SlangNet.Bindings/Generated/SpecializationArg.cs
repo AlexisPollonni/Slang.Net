@@ -9,7 +9,7 @@ public unsafe partial struct SpecializationArg
 {
     /// <include file='SpecializationArg.xml' path='doc/member[@name="SpecializationArg.kind"]/*' />
     [NativeTypeName("slang::SpecializationArg::Kind")]
-    public Kind kind;
+    public TypeKind kind;
 
     /// <include file='SpecializationArg.xml' path='doc/member[@name="SpecializationArg.Anonymous"]/*' />
     [NativeTypeName("__AnonymousRecord_slang_L4375_C5")]
@@ -24,17 +24,6 @@ public unsafe partial struct SpecializationArg
         {
             return ref Anonymous.type;
         }
-    }
-
-    /// <include file='Kind.xml' path='doc/member[@name="Kind"]/*' />
-    [NativeTypeName("int32_t")]
-    public enum Kind : uint
-    {
-        /// <include file='Kind.xml' path='doc/member[@name="Kind.Unknown"]/*' />
-        Unknown,
-
-        /// <include file='Kind.xml' path='doc/member[@name="Kind.Type"]/*' />
-        Type,
     }
 
     /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union"]/*' />

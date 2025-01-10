@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="PassThrough" access="public">
+      <type>int</type>
+      <enumerator name="None" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Fxc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Dxc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Glslang" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SpirvDis" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Clang" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="VisualStudio" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Gcc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="GenericCCpp" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Nvrtc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Llvm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SpirvOpt" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Metal" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Tint" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CountOf" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

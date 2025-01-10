@@ -5,176 +5,116 @@
       <type>uint</type>
       <enumerator name="None" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_NONE</code>
-        </value>
       </enumerator>
       <enumerator name="Mixed" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_MIXED</code>
-        </value>
       </enumerator>
       <enumerator name="ConstantBuffer" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_CONSTANT_BUFFER</code>
-        </value>
       </enumerator>
       <enumerator name="ShaderResource" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_SHADER_RESOURCE</code>
-        </value>
       </enumerator>
       <enumerator name="UnorderedAccess" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_UNORDERED_ACCESS</code>
-        </value>
       </enumerator>
       <enumerator name="VaryingInput" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_VARYING_INPUT</code>
-        </value>
       </enumerator>
       <enumerator name="VaryingOutput" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_VARYING_OUTPUT</code>
-        </value>
       </enumerator>
       <enumerator name="SamplerState" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_SAMPLER_STATE</code>
-        </value>
       </enumerator>
       <enumerator name="Uniform" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_UNIFORM</code>
-        </value>
       </enumerator>
       <enumerator name="DescriptorTableSlot" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_DESCRIPTOR_TABLE_SLOT</code>
-        </value>
       </enumerator>
       <enumerator name="SpecializationConstant" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_SPECIALIZATION_CONSTANT</code>
-        </value>
       </enumerator>
       <enumerator name="PushConstantBuffer" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_PUSH_CONSTANT_BUFFER</code>
-        </value>
       </enumerator>
       <enumerator name="RegisterSpace" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_REGISTER_SPACE</code>
-        </value>
       </enumerator>
-      <enumerator name="GenericResource" access="public">
+      <enumerator name="Generic" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_GENERIC</code>
-        </value>
       </enumerator>
       <enumerator name="RayPayload" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_RAY_PAYLOAD</code>
-        </value>
       </enumerator>
       <enumerator name="HitAttributes" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_HIT_ATTRIBUTES</code>
-        </value>
       </enumerator>
       <enumerator name="CallablePayload" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_CALLABLE_PAYLOAD</code>
-        </value>
       </enumerator>
       <enumerator name="ShaderRecord" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_SHADER_RECORD</code>
-        </value>
       </enumerator>
       <enumerator name="ExistentialTypeParam" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_EXISTENTIAL_TYPE_PARAM</code>
-        </value>
       </enumerator>
       <enumerator name="ExistentialObjectParam" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_EXISTENTIAL_OBJECT_PARAM</code>
-        </value>
       </enumerator>
       <enumerator name="SubElementRegisterSpace" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_SUB_ELEMENT_REGISTER_SPACE</code>
-        </value>
       </enumerator>
-      <enumerator name="InputAttachmentIndex" access="public">
+      <enumerator name="Subpass" access="public">
         <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_SUBPASS</code>
-        </value>
+      </enumerator>
+      <enumerator name="MetalArgumentBufferElement" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="MetalAttribute" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="MetalPayload" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Count" access="public">
+        <type primitive="False">uint</type>
       </enumerator>
       <enumerator name="MetalBuffer" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SLANG_PARAMETER_CATEGORY_CONSTANT_BUFFER</code>
+          <code>ConstantBuffer</code>
         </value>
       </enumerator>
       <enumerator name="MetalTexture" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SLANG_PARAMETER_CATEGORY_METAL_TEXTURE</code>
+          <code>ShaderResource</code>
         </value>
       </enumerator>
-      <enumerator name="MetalArgumentBufferElement" access="public">
+      <enumerator name="MetalSampler" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SLANG_PARAMETER_CATEGORY_METAL_ARGUMENT_BUFFER_ELEMENT</code>
-        </value>
-      </enumerator>
-      <enumerator name="MetalAttribute" access="public">
-        <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_METAL_ATTRIBUTE</code>
-        </value>
-      </enumerator>
-      <enumerator name="MetalPayload" access="public">
-        <type primitive="False">uint</type>
-        <value>
-          <code>SLANG_PARAMETER_CATEGORY_METAL_PAYLOAD</code>
+          <code>SamplerState</code>
         </value>
       </enumerator>
       <enumerator name="VertexInput" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SLANG_PARAMETER_CATEGORY_VERTEX_INPUT</code>
+          <code>VaryingInput</code>
         </value>
       </enumerator>
       <enumerator name="FragmentOutput" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SLANG_PARAMETER_CATEGORY_FRAGMENT_OUTPUT</code>
+          <code>VaryingOutput</code>
+        </value>
+      </enumerator>
+      <enumerator name="CountV1" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>Subpass</code>
         </value>
       </enumerator>
     </enumeration>

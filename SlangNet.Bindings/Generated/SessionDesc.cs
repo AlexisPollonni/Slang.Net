@@ -20,7 +20,8 @@ public unsafe partial struct SessionDesc
     public uint flags;
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.defaultMatrixLayoutMode"]/*' />
-    public SlangMatrixLayoutMode defaultMatrixLayoutMode;
+    [NativeTypeName("SlangMatrixLayoutMode")]
+    public MatrixLayoutMode defaultMatrixLayoutMode;
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.searchPaths"]/*' />
     [NativeTypeName("const char *const *")]

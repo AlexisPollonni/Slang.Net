@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="TypeKind" access="public">
+      <type>uint</type>
+      <enumerator name="None" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Struct" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Array" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Matrix" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Vector" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Scalar" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="ConstantBuffer" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Resource" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="SamplerState" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="TextureBuffer" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="ShaderStorageBuffer" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="ParameterBlock" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="GenericTypeParameter" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Interface" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="OutputStream" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="MeshOutput" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Specialized" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Feedback" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Pointer" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="DynamicResource" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Count" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

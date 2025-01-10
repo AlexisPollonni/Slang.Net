@@ -42,9 +42,9 @@ public unsafe partial struct IMetadata
     /// <include file='IMetadata.xml' path='doc/member[@name="IMetadata.isParameterLocationUsed"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int isParameterLocationUsed(SlangParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] bool* outUsed)
+    public int isParameterLocationUsed([NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] bool* outUsed)
     {
-        return ((delegate* unmanaged[Thiscall]<IMetadata*, SlangParameterCategory, ulong, ulong, bool*, int>)(lpVtbl[4]))((IMetadata*)Unsafe.AsPointer(ref this), category, spaceIndex, registerIndex, outUsed);
+        return ((delegate* unmanaged[Thiscall]<IMetadata*, ParameterCategory, ulong, ulong, bool*, int>)(lpVtbl[4]))((IMetadata*)Unsafe.AsPointer(ref this), category, spaceIndex, registerIndex, outUsed);
     }
 
     public partial struct Vtbl
@@ -62,6 +62,6 @@ public unsafe partial struct IMetadata
         public delegate* unmanaged[Stdcall]<IMetadata*, SlangUUID*, void*> castAs;
 
         [NativeTypeName("SlangResult (SlangParameterCategory, SlangUInt, SlangUInt, bool &)")]
-        public delegate* unmanaged[Thiscall]<IMetadata*, SlangParameterCategory, ulong, ulong, bool*, int> isParameterLocationUsed;
+        public delegate* unmanaged[Thiscall]<IMetadata*, ParameterCategory, ulong, ulong, bool*, int> isParameterLocationUsed;
     }
 }

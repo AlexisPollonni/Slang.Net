@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="ContainerFormat" access="public">
+      <type>int</type>
+      <enumerator name="None" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangModule" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

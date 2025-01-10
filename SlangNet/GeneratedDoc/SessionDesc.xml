@@ -15,7 +15,7 @@
         <type native="slang::SessionFlags">uint</type>
       </field>
       <field name="defaultMatrixLayoutMode" access="public">
-        <type>SlangMatrixLayoutMode</type>
+        <type native="SlangMatrixLayoutMode">MatrixLayoutMode</type>
       </field>
       <field name="searchPaths" access="public">
         <type native="const char *const *">sbyte**</type>

@@ -65,7 +65,7 @@
       <function name="calcCombinedPath" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="fromPathType">
-          <type>SlangPathType</type>
+          <type>PathType</type>
         </param>
         <param name="fromPath">
           <type>sbyte*</type>
@@ -77,7 +77,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, SlangPathType, sbyte*, sbyte*, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="fromPathType">fromPathType</param>, <param name="fromPath">fromPath</param>, <param name="path">path</param>, <param name="pathOut">pathOut</param>);</code>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, PathType, sbyte*, sbyte*, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="fromPathType">fromPathType</param>, <param name="fromPath">fromPath</param>, <param name="path">path</param>, <param name="pathOut">pathOut</param>);</code>
         </body>
       </function>
       <function name="getPathType" access="public" unsafe="true">
@@ -86,10 +86,10 @@
           <type>sbyte*</type>
         </param>
         <param name="pathTypeOut">
-          <type>SlangPathType*</type>
+          <type>PathType*</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, sbyte*, SlangPathType*, int&gt;)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="pathTypeOut">pathTypeOut</param>);</code>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, sbyte*, PathType*, int&gt;)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="pathTypeOut">pathTypeOut</param>);</code>
         </body>
       </function>
       <function name="getPath" access="public" unsafe="true">
@@ -119,13 +119,13 @@
           <type>sbyte*</type>
         </param>
         <param name="callback">
-          <type>delegate* unmanaged[Cdecl]&lt;SlangPathType, sbyte*, void*, void&gt;</type>
+          <type>delegate* unmanaged[Cdecl]&lt;PathType, sbyte*, void*, void&gt;</type>
         </param>
         <param name="userData">
           <type>void*</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, sbyte*, delegate* unmanaged[Thiscall]&lt;SlangPathType, sbyte*, void*, void&gt;, void*, int&gt;)(lpVtbl[<vtbl explicit="False">10</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="callback">callback</param>, <param name="userData">userData</param>);</code>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, sbyte*, delegate* unmanaged[Thiscall]&lt;PathType, sbyte*, void*, void&gt;, void*, int&gt;)(lpVtbl[<vtbl explicit="False">10</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="callback">callback</param>, <param name="userData">userData</param>);</code>
         </body>
       </function>
       <function name="getOSPathKind" access="public" unsafe="true">
@@ -199,10 +199,10 @@
           <type native="SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, sbyte*, ISlangBlob**, int&gt;</type>
         </field>
         <field name="calcCombinedPath" access="public">
-          <type native="SlangResult (SlangPathType, const char *, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, SlangPathType, sbyte*, sbyte*, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (SlangPathType, const char *, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, PathType, sbyte*, sbyte*, ISlangBlob**, int&gt;</type>
         </field>
         <field name="getPathType" access="public">
-          <type native="SlangResult (const char *, SlangPathType *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, sbyte*, SlangPathType*, int&gt;</type>
+          <type native="SlangResult (const char *, SlangPathType *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, sbyte*, PathType*, int&gt;</type>
         </field>
         <field name="getPath" access="public">
           <type native="SlangResult (PathKind, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, PathKind, sbyte*, ISlangBlob**, int&gt;</type>
@@ -211,7 +211,7 @@
           <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, void&gt;</type>
         </field>
         <field name="enumeratePathContents" access="public">
-          <type native="SlangResult (const char *, FileSystemContentsCallBack, void *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, sbyte*, delegate* unmanaged[Thiscall]&lt;SlangPathType, sbyte*, void*, void&gt;, void*, int&gt;</type>
+          <type native="SlangResult (const char *, FileSystemContentsCallBack, void *) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, sbyte*, delegate* unmanaged[Thiscall]&lt;PathType, sbyte*, void*, void&gt;, void*, int&gt;</type>
         </field>
         <field name="getOSPathKind" access="public">
           <type native="OSPathKind () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangMutableFileSystem*, OSPathKind&gt;</type>

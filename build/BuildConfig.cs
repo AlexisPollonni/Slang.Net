@@ -12,7 +12,7 @@ internal record struct BuildConfig()
 
     // Remove the function prefixes, also fix over-removing of prefixes
     public string PrefixStrip { get; } = "sp";
-    
+
     public AbsolutePath? GeneratedTestsDir { get; set; } = null;
 
     public PInvokeGeneratorConfigurationOptions Options { get; set; } = GenerateLatestCode
@@ -76,9 +76,10 @@ internal record struct BuildConfig()
         "SLANG_UUID_ISlangWriter",
         "SLANG_UUID_ISlangProfiler",
 
-        // This one  is just broken
+        // These ones are just broken
         "SLANG_UNBOUNDED_SIZE",
         "createCompileRequest",
+        "kDefaultTargetFlags",
 
         // Silence ClangSharp warnings
         "SLANG_OFFSET_OF",
@@ -104,6 +105,13 @@ internal record struct BuildConfig()
         "SLANG_COM_INTERFACE",
         "SLANG_CLASS_GUID",
         "SLANG_IID_PPV_ARGS",
+
+        // Exclude redefined enums in TypeReflection struct
+        "Kind",
+        "ScalarType",
+        "ParameterCategory",
+        "BindingType",
+        "LayoutRules",
     ];
 
     public StrDictionary WithTypes = new()
@@ -127,7 +135,8 @@ internal record struct BuildConfig()
     {
         { "specialize", "spspecialize" },
         { "specializeType", "spspecializeType" },
-        { "Attribute", "SlangAttribute" } // Resolves name conflict with dotnet Attribute type
+        { "Attribute", "SlangAttribute" }, // Resolves name conflict with dotnet Attribute type
+        { "Kind", "TypeKind" }, // Use generated trimmed name
     };
 
     public string[] ClangCmdArgs =>
@@ -139,14 +148,15 @@ internal record struct BuildConfig()
         ..DefineMacros.Select(s => $"--define-macro={s}")
     ];
 
-    public readonly PInvokeGeneratorConfiguration ToGeneratorConfiguration(AbsolutePath outputDir, PInvokeGeneratorOutputMode mode)
+    public readonly PInvokeGeneratorConfiguration ToGeneratorConfiguration(AbsolutePath outputDir,
+                                                                           PInvokeGeneratorOutputMode mode)
     {
         var opts = Options;
         if (GeneratedTestsDir?.Exists() ?? false)
         {
             opts |= GenerateTestsNUnit;
         }
-        
+
         return new(Language, "", DefaultNamespace, outputDir, "", mode, opts)
         {
             DefaultClass = "Slang",

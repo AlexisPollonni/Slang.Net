@@ -74,9 +74,9 @@ public unsafe partial struct ISlangWriter
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.setMode"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int setMode(SlangWriterMode mode)
+    public int setMode([NativeTypeName("SlangWriterMode")] WriterMode mode)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangWriter*, SlangWriterMode, int>)(lpVtbl[8]))((ISlangWriter*)Unsafe.AsPointer(ref this), mode);
+        return ((delegate* unmanaged[Stdcall]<ISlangWriter*, WriterMode, int>)(lpVtbl[8]))((ISlangWriter*)Unsafe.AsPointer(ref this), mode);
     }
 
     public partial struct Vtbl
@@ -106,6 +106,6 @@ public unsafe partial struct ISlangWriter
         public delegate* unmanaged[Stdcall]<ISlangWriter*, byte> isConsole;
 
         [NativeTypeName("SlangResult (SlangWriterMode) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangWriter*, SlangWriterMode, int> setMode;
+        public delegate* unmanaged[Stdcall]<ISlangWriter*, WriterMode, int> setMode;
     }
 }

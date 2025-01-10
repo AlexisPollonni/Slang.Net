@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="CompileTarget" access="public">
+      <type>int</type>
+      <enumerator name="SlangTargetUnknown" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangTargetNone" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangGlsl" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangGlslVulkanDeprecated" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangGlslVulkanOneDescDeprecated" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangHlsl" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangSpirv" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangSpirvAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangDxbc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangDxbcAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangDxil" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangDxilAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangCSource" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangCppSource" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangHostExecutable" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangShaderSharedLibrary" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangShaderHostCallable" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangCudaSource" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangPtx" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangCudaObjectCode" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangObjectCode" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangHostCppSource" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangHostHostCallable" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangCppPytorchBinding" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangMetal" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangMetalLib" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangMetalLibAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangHostSharedLibrary" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangWgsl" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangWgslSpirvAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangWgslSpirv" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangTargetCountOf" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

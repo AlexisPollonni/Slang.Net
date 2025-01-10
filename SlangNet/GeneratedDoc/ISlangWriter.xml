@@ -77,10 +77,10 @@
       <function name="setMode" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="mode">
-          <type>SlangWriterMode</type>
+          <type>WriterMode</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, SlangWriterMode, int&gt;)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
+          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, WriterMode, int&gt;)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
         </body>
       </function>
       <vtbl>
@@ -109,7 +109,7 @@
           <type native="SlangBool () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, byte&gt;</type>
         </field>
         <field name="setMode" access="public">
-          <type native="SlangResult (SlangWriterMode) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, SlangWriterMode, int&gt;</type>
+          <type native="SlangResult (SlangWriterMode) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, WriterMode, int&gt;</type>
         </field>
       </vtbl>
     </struct>
