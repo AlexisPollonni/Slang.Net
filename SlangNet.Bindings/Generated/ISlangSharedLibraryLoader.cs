@@ -8,7 +8,7 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct ISlangSharedLibraryLoader : ISlangUnknown")]
 public unsafe partial struct ISlangSharedLibraryLoader
 {
-    public void** lpVtbl;
+    public Vtbl* lpVtbl;
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -31,7 +31,7 @@ public unsafe partial struct ISlangSharedLibraryLoader
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>((IntPtr)(lpVtbl[0]))((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -39,7 +39,7 @@ public unsafe partial struct ISlangSharedLibraryLoader
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>((IntPtr)(lpVtbl[1]))((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -47,7 +47,7 @@ public unsafe partial struct ISlangSharedLibraryLoader
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>((IntPtr)(lpVtbl[2]))((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangSharedLibraryLoader.xml' path='doc/member[@name="ISlangSharedLibraryLoader.loadSharedLibrary"]/*' />
@@ -55,7 +55,7 @@ public unsafe partial struct ISlangSharedLibraryLoader
     [return: NativeTypeName("SlangResult")]
     public int loadSharedLibrary([NativeTypeName("const char *")] sbyte* path, ISlangSharedLibrary** sharedLibraryOut)
     {
-        return Marshal.GetDelegateForFunctionPointer<_loadSharedLibrary>((IntPtr)(lpVtbl[3]))((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this), path, sharedLibraryOut);
+        return Marshal.GetDelegateForFunctionPointer<_loadSharedLibrary>(lpVtbl->loadSharedLibrary)((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this), path, sharedLibraryOut);
     }
 
     public partial struct Vtbl

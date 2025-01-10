@@ -22,7 +22,7 @@ internal record struct BuildConfig()
                                                                         | GenerateHelperTypes
                                                                         | GenerateMacroBindings
                                                                         | GenerateAggressiveInlining
-                                                                        | GenerateTrimmableVtbls
+                                                                        | GenerateExplicitVtbls
 
                                                                         | ExcludeFnptrCodegen // No Fnptr code gen with latest or preview
                                                                         | ExcludeFunctionsWithBody

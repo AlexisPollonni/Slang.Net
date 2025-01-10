@@ -3,7 +3,7 @@
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="ISlangMutableFileSystem" access="public" native="struct ISlangMutableFileSystem : ISlangFileSystemExt" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
-        <type>void**</type>
+        <type>Vtbl*</type>
       </field>
       <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
@@ -188,19 +188,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="castAs" access="public" unsafe="true">
@@ -209,7 +209,7 @@
           <type>SlangUUID*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="guid">guid</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">castAs</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="guid">guid</param>);</code>
         </body>
       </function>
       <function name="loadFile" access="public" unsafe="true">
@@ -221,7 +221,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadFile</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="outBlob">outBlob</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadFile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadFile</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="outBlob">outBlob</param>);</code>
         </body>
       </function>
       <function name="getFileUniqueIdentity" access="public" unsafe="true">
@@ -233,7 +233,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getFileUniqueIdentity</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="outUniqueIdentity">outUniqueIdentity</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getFileUniqueIdentity</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getFileUniqueIdentity</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="outUniqueIdentity">outUniqueIdentity</param>);</code>
         </body>
       </function>
       <function name="calcCombinedPath" access="public" unsafe="true">
@@ -251,7 +251,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_calcCombinedPath</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="fromPathType">fromPathType</param>, <param name="fromPath">fromPath</param>, <param name="path">path</param>, <param name="pathOut">pathOut</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_calcCombinedPath</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">calcCombinedPath</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="fromPathType">fromPathType</param>, <param name="fromPath">fromPath</param>, <param name="path">path</param>, <param name="pathOut">pathOut</param>);</code>
         </body>
       </function>
       <function name="getPathType" access="public" unsafe="true">
@@ -263,7 +263,7 @@
           <type>PathType*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getPathType</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="pathTypeOut">pathTypeOut</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getPathType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getPathType</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="pathTypeOut">pathTypeOut</param>);</code>
         </body>
       </function>
       <function name="getPath" access="public" unsafe="true">
@@ -278,13 +278,13 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getPath</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="kind">kind</param>, <param name="path">path</param>, <param name="outPath">outPath</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getPath</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getPath</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="kind">kind</param>, <param name="path">path</param>, <param name="outPath">outPath</param>);</code>
         </body>
       </function>
       <function name="clearCache" access="public" unsafe="true">
         <type>void</type>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_clearCache</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">9</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_clearCache</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">clearCache</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="enumeratePathContents" access="public" unsafe="true">
@@ -299,13 +299,13 @@
           <type>void*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_enumeratePathContents</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">10</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="callback">callback</param>, <param name="userData">userData</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_enumeratePathContents</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">enumeratePathContents</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="callback">callback</param>, <param name="userData">userData</param>);</code>
         </body>
       </function>
       <function name="getOSPathKind" access="public" unsafe="true">
         <type>OSPathKind</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getOSPathKind</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">11</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getOSPathKind</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getOSPathKind</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="saveFile" access="public" unsafe="true">
@@ -320,7 +320,7 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveFile</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">12</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="data">data</param>, <param name="size">size</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveFile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">saveFile</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="data">data</param>, <param name="size">size</param>);</code>
         </body>
       </function>
       <function name="saveFileBlob" access="public" unsafe="true">
@@ -332,7 +332,7 @@
           <type>ISlangBlob*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveFileBlob</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">13</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="dataBlob">dataBlob</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveFileBlob</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">saveFileBlob</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="dataBlob">dataBlob</param>);</code>
         </body>
       </function>
       <function name="remove" access="public" unsafe="true">
@@ -341,7 +341,7 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_remove</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">14</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_remove</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">remove</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>);</code>
         </body>
       </function>
       <function name="createDirectory" access="public" unsafe="true">
@@ -350,7 +350,7 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createDirectory</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">15</vtbl>]))(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createDirectory</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">createDirectory</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>);</code>
         </body>
       </function>
       <vtbl>

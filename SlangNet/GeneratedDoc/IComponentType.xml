@@ -3,7 +3,7 @@
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="IComponentType" access="public" native="struct IComponentType : ISlangUnknown" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
-        <type>void**</type>
+        <type>Vtbl*</type>
       </field>
       <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
@@ -266,25 +266,25 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getSession" access="public" unsafe="true">
         <type native="slang::ISession *">ISession*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSession</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSession</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSession</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getLayout" access="public" unsafe="true">
@@ -302,13 +302,13 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLayout</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLayout</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getLayout</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getSpecializationParamCount" access="public" unsafe="true">
         <type native="SlangInt">long</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSpecializationParamCount</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSpecializationParamCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSpecializationParamCount</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getEntryPointCode" access="public" unsafe="true">
@@ -329,7 +329,7 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCode</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointCode</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getResultAsFileSystem" access="public" unsafe="true">
@@ -344,7 +344,7 @@
           <type>ISlangMutableFileSystem**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getResultAsFileSystem</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outFileSystem">outFileSystem</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getResultAsFileSystem</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getResultAsFileSystem</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outFileSystem">outFileSystem</param>);</code>
         </body>
       </function>
       <function name="getEntryPointHash" access="public" unsafe="true">
@@ -359,7 +359,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHash</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outHash">outHash</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHash</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointHash</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outHash">outHash</param>);</code>
         </body>
       </function>
       <function name="specialize" access="public" unsafe="true">
@@ -380,7 +380,7 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_specialize</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">9</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="specializationArgs">specializationArgs</param>, <param name="specializationArgCount">specializationArgCount</param>, <param name="outSpecializedComponentType">outSpecializedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_specialize</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">specialize</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="specializationArgs">specializationArgs</param>, <param name="specializationArgCount">specializationArgCount</param>, <param name="outSpecializedComponentType">outSpecializedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="link" access="public" unsafe="true">
@@ -395,7 +395,7 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_link</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">10</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_link</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">link</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getEntryPointHostCallable" access="public" unsafe="true">
@@ -416,7 +416,7 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHostCallable</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">11</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outSharedLibrary">outSharedLibrary</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHostCallable</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointHostCallable</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outSharedLibrary">outSharedLibrary</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="renameEntryPoint" access="public" unsafe="true">
@@ -428,7 +428,7 @@
           <type>IComponentType**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_renameEntryPoint</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">12</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="newName">newName</param>, <param name="outEntryPoint">outEntryPoint</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_renameEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">renameEntryPoint</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="newName">newName</param>, <param name="outEntryPoint">outEntryPoint</param>);</code>
         </body>
       </function>
       <function name="linkWithOptions" access="public" unsafe="true">
@@ -449,7 +449,7 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_linkWithOptions</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">13</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="compilerOptionEntryCount">compilerOptionEntryCount</param>, <param name="compilerOptionEntries">compilerOptionEntries</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_linkWithOptions</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">linkWithOptions</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="compilerOptionEntryCount">compilerOptionEntryCount</param>, <param name="compilerOptionEntries">compilerOptionEntries</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getTargetCode" access="public" unsafe="true">
@@ -467,7 +467,7 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetCode</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">14</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetCode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTargetCode</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getTargetMetadata" access="public" unsafe="true">
@@ -485,7 +485,7 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetMetadata</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">15</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetMetadata</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTargetMetadata</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getEntryPointMetadata" access="public" unsafe="true">
@@ -506,7 +506,7 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointMetadata</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">16</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointMetadata</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointMetadata</vtbl>)(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <vtbl>

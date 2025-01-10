@@ -8,7 +8,7 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct ISlangProfiler : ISlangUnknown")]
 public unsafe partial struct ISlangProfiler
 {
-    public void** lpVtbl;
+    public Vtbl* lpVtbl;
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -43,7 +43,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>((IntPtr)(lpVtbl[0]))((ISlangProfiler*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ISlangProfiler*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -51,7 +51,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>((IntPtr)(lpVtbl[1]))((ISlangProfiler*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ISlangProfiler*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -59,7 +59,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>((IntPtr)(lpVtbl[2]))((ISlangProfiler*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ISlangProfiler*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryCount"]/*' />
@@ -67,7 +67,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("size_t")]
     public nuint getEntryCount()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getEntryCount>((IntPtr)(lpVtbl[3]))((ISlangProfiler*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getEntryCount>(lpVtbl->getEntryCount)((ISlangProfiler*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryName"]/*' />
@@ -75,7 +75,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("const char *")]
     public sbyte* getEntryName([NativeTypeName("uint32_t")] uint index)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getEntryName>((IntPtr)(lpVtbl[4]))((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
+        return Marshal.GetDelegateForFunctionPointer<_getEntryName>(lpVtbl->getEntryName)((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
     }
 
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryTimeMS"]/*' />
@@ -83,7 +83,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("long")]
     public int getEntryTimeMS([NativeTypeName("uint32_t")] uint index)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getEntryTimeMS>((IntPtr)(lpVtbl[5]))((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
+        return Marshal.GetDelegateForFunctionPointer<_getEntryTimeMS>(lpVtbl->getEntryTimeMS)((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
     }
 
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryInvocationTimes"]/*' />
@@ -91,7 +91,7 @@ public unsafe partial struct ISlangProfiler
     [return: NativeTypeName("uint32_t")]
     public uint getEntryInvocationTimes([NativeTypeName("uint32_t")] uint index)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getEntryInvocationTimes>((IntPtr)(lpVtbl[6]))((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
+        return Marshal.GetDelegateForFunctionPointer<_getEntryInvocationTimes>(lpVtbl->getEntryInvocationTimes)((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
     }
 
     public partial struct Vtbl

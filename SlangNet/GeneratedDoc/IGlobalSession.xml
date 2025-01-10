@@ -3,7 +3,7 @@
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="IGlobalSession" access="public" native="struct IGlobalSession : ISlangUnknown" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
-        <type>void**</type>
+        <type>Vtbl*</type>
       </field>
       <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
@@ -311,19 +311,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="createSession" access="public" unsafe="true">
@@ -335,7 +335,7 @@
           <type>ISession**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createSession</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="desc">desc</param>, <param name="outSession">outSession</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createSession</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">createSession</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="desc">desc</param>, <param name="outSession">outSession</param>);</code>
         </body>
       </function>
       <function name="findProfile" access="public" unsafe="true">
@@ -344,7 +344,7 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findProfile</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findProfile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">findProfile</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>);</code>
         </body>
       </function>
       <function name="setDownstreamCompilerPath" access="public" unsafe="true">
@@ -356,7 +356,7 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDownstreamCompilerPath</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>, <param name="path">path</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDownstreamCompilerPath</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDownstreamCompilerPath</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>, <param name="path">path</param>);</code>
         </body>
       </function>
       <function name="setDownstreamCompilerPrelude" access="public" unsafe="true">
@@ -368,7 +368,7 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDownstreamCompilerPrelude</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>, <param name="preludeText">preludeText</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDownstreamCompilerPrelude</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDownstreamCompilerPrelude</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>, <param name="preludeText">preludeText</param>);</code>
         </body>
       </function>
       <function name="getDownstreamCompilerPrelude" access="public" unsafe="true">
@@ -380,13 +380,13 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDownstreamCompilerPrelude</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>, <param name="outPrelude">outPrelude</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDownstreamCompilerPrelude</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDownstreamCompilerPrelude</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>, <param name="outPrelude">outPrelude</param>);</code>
         </body>
       </function>
       <function name="getBuildTagString" access="public" unsafe="true">
         <type native="const char *">sbyte*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getBuildTagString</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getBuildTagString</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getBuildTagString</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="setDefaultDownstreamCompiler" access="public" unsafe="true">
@@ -398,7 +398,7 @@
           <type>PassThrough</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDefaultDownstreamCompiler</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">9</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>, <param name="defaultCompiler">defaultCompiler</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDefaultDownstreamCompiler</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDefaultDownstreamCompiler</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>, <param name="defaultCompiler">defaultCompiler</param>);</code>
         </body>
       </function>
       <function name="getDefaultDownstreamCompiler" access="public" unsafe="true">
@@ -407,7 +407,7 @@
           <type>SourceLanguage</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDefaultDownstreamCompiler</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">10</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDefaultDownstreamCompiler</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDefaultDownstreamCompiler</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>);</code>
         </body>
       </function>
       <function name="setLanguagePrelude" access="public" unsafe="true">
@@ -419,7 +419,7 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setLanguagePrelude</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">11</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>, <param name="preludeText">preludeText</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setLanguagePrelude</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setLanguagePrelude</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>, <param name="preludeText">preludeText</param>);</code>
         </body>
       </function>
       <function name="getLanguagePrelude" access="public" unsafe="true">
@@ -431,7 +431,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLanguagePrelude</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">12</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>, <param name="outPrelude">outPrelude</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLanguagePrelude</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getLanguagePrelude</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourceLanguage">sourceLanguage</param>, <param name="outPrelude">outPrelude</param>);</code>
         </body>
       </function>
       <function name="addBuiltins" access="public" unsafe="true">
@@ -443,7 +443,7 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addBuiltins</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">14</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourcePath">sourcePath</param>, <param name="sourceString">sourceString</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addBuiltins</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addBuiltins</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sourcePath">sourcePath</param>, <param name="sourceString">sourceString</param>);</code>
         </body>
       </function>
       <function name="setSharedLibraryLoader" access="public" unsafe="true">
@@ -452,13 +452,13 @@
           <type>ISlangSharedLibraryLoader*</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSharedLibraryLoader</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">15</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="loader">loader</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSharedLibraryLoader</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setSharedLibraryLoader</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="loader">loader</param>);</code>
         </body>
       </function>
       <function name="getSharedLibraryLoader" access="public" unsafe="true">
         <type>ISlangSharedLibraryLoader*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSharedLibraryLoader</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">16</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSharedLibraryLoader</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSharedLibraryLoader</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="checkCompileTargetSupport" access="public" unsafe="true">
@@ -467,7 +467,7 @@
           <type>CompileTarget</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_checkCompileTargetSupport</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">17</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_checkCompileTargetSupport</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">checkCompileTargetSupport</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>);</code>
         </body>
       </function>
       <function name="checkPassThroughSupport" access="public" unsafe="true">
@@ -476,7 +476,7 @@
           <type>PassThrough</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_checkPassThroughSupport</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">18</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_checkPassThroughSupport</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">checkPassThroughSupport</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>);</code>
         </body>
       </function>
       <function name="compileCoreModule" access="public" unsafe="true">
@@ -485,7 +485,7 @@
           <type>uint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_compileCoreModule</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">19</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="flags">flags</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_compileCoreModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">compileCoreModule</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="flags">flags</param>);</code>
         </body>
       </function>
       <function name="loadCoreModule" access="public" unsafe="true">
@@ -497,7 +497,7 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadCoreModule</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">20</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="coreModule">coreModule</param>, <param name="coreModuleSizeInBytes">coreModuleSizeInBytes</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadCoreModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadCoreModule</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="coreModule">coreModule</param>, <param name="coreModuleSizeInBytes">coreModuleSizeInBytes</param>);</code>
         </body>
       </function>
       <function name="saveCoreModule" access="public" unsafe="true">
@@ -509,7 +509,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveCoreModule</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">21</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="archiveType">archiveType</param>, <param name="outBlob">outBlob</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveCoreModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">saveCoreModule</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="archiveType">archiveType</param>, <param name="outBlob">outBlob</param>);</code>
         </body>
       </function>
       <function name="findCapability" access="public" unsafe="true">
@@ -518,7 +518,7 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findCapability</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">22</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findCapability</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">findCapability</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>);</code>
         </body>
       </function>
       <function name="setDownstreamCompilerForTransition" access="public" unsafe="true">
@@ -533,7 +533,7 @@
           <type>PassThrough</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDownstreamCompilerForTransition</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">23</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="source">source</param>, <param name="target">target</param>, <param name="compiler">compiler</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDownstreamCompilerForTransition</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDownstreamCompilerForTransition</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="source">source</param>, <param name="target">target</param>, <param name="compiler">compiler</param>);</code>
         </body>
       </function>
       <function name="getDownstreamCompilerForTransition" access="public" unsafe="true">
@@ -545,7 +545,7 @@
           <type>CompileTarget</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDownstreamCompilerForTransition</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">24</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="source">source</param>, <param name="target">target</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDownstreamCompilerForTransition</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDownstreamCompilerForTransition</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="source">source</param>, <param name="target">target</param>);</code>
         </body>
       </function>
       <function name="getCompilerElapsedTime" access="public" unsafe="true">
@@ -557,7 +557,7 @@
           <type>double*</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCompilerElapsedTime</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">25</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="outTotalTime">outTotalTime</param>, <param name="outDownstreamTime">outDownstreamTime</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCompilerElapsedTime</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCompilerElapsedTime</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="outTotalTime">outTotalTime</param>, <param name="outDownstreamTime">outDownstreamTime</param>);</code>
         </body>
       </function>
       <function name="setSPIRVCoreGrammar" access="public" unsafe="true">
@@ -566,7 +566,7 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSPIRVCoreGrammar</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">26</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="jsonPath">jsonPath</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSPIRVCoreGrammar</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setSPIRVCoreGrammar</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="jsonPath">jsonPath</param>);</code>
         </body>
       </function>
       <function name="parseCommandLineArguments" access="public" unsafe="true">
@@ -584,7 +584,7 @@
           <type>ISlangUnknown**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_parseCommandLineArguments</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">27</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="argc">argc</param>, <param name="argv">argv</param>, <param name="outSessionDesc">outSessionDesc</param>, <param name="outAuxAllocation">outAuxAllocation</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_parseCommandLineArguments</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">parseCommandLineArguments</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="argc">argc</param>, <param name="argv">argv</param>, <param name="outSessionDesc">outSessionDesc</param>, <param name="outAuxAllocation">outAuxAllocation</param>);</code>
         </body>
       </function>
       <function name="getSessionDescDigest" access="public" unsafe="true">
@@ -596,7 +596,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSessionDescDigest</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">28</vtbl>]))(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sessionDesc">sessionDesc</param>, <param name="outBlob">outBlob</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSessionDescDigest</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSessionDescDigest</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sessionDesc">sessionDesc</param>, <param name="outBlob">outBlob</param>);</code>
         </body>
       </function>
       <vtbl>

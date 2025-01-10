@@ -3,7 +3,7 @@
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="IModulePrecompileService_Experimental" access="public" native="struct IModulePrecompileService_Experimental : ISlangUnknown" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
-        <type>void**</type>
+        <type>Vtbl*</type>
       </field>
       <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
@@ -92,19 +92,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="precompileForTarget" access="public" unsafe="true">
@@ -116,7 +116,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_precompileForTarget</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_precompileForTarget</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">precompileForTarget</vtbl>)(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getPrecompiledTargetCode" access="public" unsafe="true">
@@ -134,13 +134,13 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getPrecompiledTargetCode</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getPrecompiledTargetCode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getPrecompiledTargetCode</vtbl>)(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getModuleDependencyCount" access="public" unsafe="true">
         <type native="SlangInt">long</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModuleDependencyCount</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModuleDependencyCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getModuleDependencyCount</vtbl>)(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getModuleDependency" access="public" unsafe="true">
@@ -158,7 +158,7 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModuleDependency</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="dependencyIndex">dependencyIndex</param>, <param name="outModule">outModule</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModuleDependency</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getModuleDependency</vtbl>)(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>, <param name="dependencyIndex">dependencyIndex</param>, <param name="outModule">outModule</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <vtbl>

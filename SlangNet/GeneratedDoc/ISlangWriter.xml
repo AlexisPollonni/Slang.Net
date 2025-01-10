@@ -3,7 +3,7 @@
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="ISlangWriter" access="public" native="struct ISlangWriter : ISlangUnknown" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
-        <type>void**</type>
+        <type>Vtbl*</type>
       </field>
       <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
@@ -92,19 +92,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="beginAppendBuffer" access="public" unsafe="true">
@@ -113,7 +113,7 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_beginAppendBuffer</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="maxNumChars">maxNumChars</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_beginAppendBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">beginAppendBuffer</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="maxNumChars">maxNumChars</param>);</code>
         </body>
       </function>
       <function name="endAppendBuffer" access="public" unsafe="true">
@@ -125,7 +125,7 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endAppendBuffer</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="buffer">buffer</param>, <param name="numChars">numChars</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endAppendBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">endAppendBuffer</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="buffer">buffer</param>, <param name="numChars">numChars</param>);</code>
         </body>
       </function>
       <function name="write" access="public" unsafe="true">
@@ -137,19 +137,19 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_write</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="chars">chars</param>, <param name="numChars">numChars</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_write</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">write</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="chars">chars</param>, <param name="numChars">numChars</param>);</code>
         </body>
       </function>
       <function name="flush" access="public" unsafe="true">
         <type>void</type>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_flush</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_flush</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">flush</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="isConsole" access="public" unsafe="true">
         <type native="SlangBool">bool</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isConsole</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>) != 0;</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isConsole</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isConsole</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>) != 0;</code>
         </body>
       </function>
       <function name="setMode" access="public" unsafe="true">
@@ -158,7 +158,7 @@
           <type>WriterMode</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setMode</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setMode</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
         </body>
       </function>
       <vtbl>

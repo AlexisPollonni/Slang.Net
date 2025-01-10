@@ -8,7 +8,7 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct IModule : slang::IComponentType")]
 public unsafe partial struct IModule
 {
-    public void** lpVtbl;
+    public Vtbl* lpVtbl;
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -130,7 +130,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>((IntPtr)(lpVtbl[0]))((IModule*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IModule*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -138,7 +138,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>((IntPtr)(lpVtbl[1]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -146,7 +146,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>((IntPtr)(lpVtbl[2]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IComponentType.getSession" />
@@ -154,7 +154,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("slang::ISession *")]
     public ISession* getSession()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getSession>((IntPtr)(lpVtbl[3]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getSession>(lpVtbl->getSession)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IComponentType.getLayout" />
@@ -162,7 +162,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("slang::ProgramLayout *")]
     public ShaderReflection* getLayout([NativeTypeName("SlangInt")] long targetIndex = 0, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getLayout>((IntPtr)(lpVtbl[4]))((IModule*)Unsafe.AsPointer(ref this), targetIndex, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_getLayout>(lpVtbl->getLayout)((IModule*)Unsafe.AsPointer(ref this), targetIndex, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getSpecializationParamCount" />
@@ -170,7 +170,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangInt")]
     public long getSpecializationParamCount()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getSpecializationParamCount>((IntPtr)(lpVtbl[5]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getSpecializationParamCount>(lpVtbl->getSpecializationParamCount)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointCode" />
@@ -178,7 +178,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getEntryPointCode([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getEntryPointCode>((IntPtr)(lpVtbl[6]))((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outCode, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_getEntryPointCode>(lpVtbl->getEntryPointCode)((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outCode, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getResultAsFileSystem" />
@@ -186,14 +186,14 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getResultAsFileSystem([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, ISlangMutableFileSystem** outFileSystem)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getResultAsFileSystem>((IntPtr)(lpVtbl[7]))((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outFileSystem);
+        return Marshal.GetDelegateForFunctionPointer<_getResultAsFileSystem>(lpVtbl->getResultAsFileSystem)((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outFileSystem);
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointHash" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void getEntryPointHash([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outHash)
     {
-        Marshal.GetDelegateForFunctionPointer<_getEntryPointHash>((IntPtr)(lpVtbl[8]))((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outHash);
+        Marshal.GetDelegateForFunctionPointer<_getEntryPointHash>(lpVtbl->getEntryPointHash)((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outHash);
     }
 
     /// <inheritdoc cref="IComponentType.specialize" />
@@ -201,7 +201,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int specialize([NativeTypeName("const SpecializationArg *")] SpecializationArg* specializationArgs, [NativeTypeName("SlangInt")] long specializationArgCount, IComponentType** outSpecializedComponentType, ISlangBlob** outDiagnostics = null)
     {
-        return Marshal.GetDelegateForFunctionPointer<_specialize>((IntPtr)(lpVtbl[9]))((IModule*)Unsafe.AsPointer(ref this), specializationArgs, specializationArgCount, outSpecializedComponentType, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_specialize>(lpVtbl->specialize)((IModule*)Unsafe.AsPointer(ref this), specializationArgs, specializationArgCount, outSpecializedComponentType, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.link" />
@@ -209,7 +209,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int link(IComponentType** outLinkedComponentType, ISlangBlob** outDiagnostics = null)
     {
-        return Marshal.GetDelegateForFunctionPointer<_link>((IntPtr)(lpVtbl[10]))((IModule*)Unsafe.AsPointer(ref this), outLinkedComponentType, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_link>(lpVtbl->link)((IModule*)Unsafe.AsPointer(ref this), outLinkedComponentType, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointHostCallable" />
@@ -217,7 +217,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getEntryPointHostCallable(int entryPointIndex, int targetIndex, ISlangSharedLibrary** outSharedLibrary, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getEntryPointHostCallable>((IntPtr)(lpVtbl[11]))((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outSharedLibrary, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_getEntryPointHostCallable>(lpVtbl->getEntryPointHostCallable)((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outSharedLibrary, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.renameEntryPoint" />
@@ -225,7 +225,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int renameEntryPoint([NativeTypeName("const char *")] sbyte* newName, IComponentType** outEntryPoint)
     {
-        return Marshal.GetDelegateForFunctionPointer<_renameEntryPoint>((IntPtr)(lpVtbl[12]))((IModule*)Unsafe.AsPointer(ref this), newName, outEntryPoint);
+        return Marshal.GetDelegateForFunctionPointer<_renameEntryPoint>(lpVtbl->renameEntryPoint)((IModule*)Unsafe.AsPointer(ref this), newName, outEntryPoint);
     }
 
     /// <inheritdoc cref="IComponentType.linkWithOptions" />
@@ -233,7 +233,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int linkWithOptions(IComponentType** outLinkedComponentType, [NativeTypeName("uint32_t")] uint compilerOptionEntryCount, [NativeTypeName("slang::CompilerOptionEntry *")] CompilerOptionEntry* compilerOptionEntries, ISlangBlob** outDiagnostics = null)
     {
-        return Marshal.GetDelegateForFunctionPointer<_linkWithOptions>((IntPtr)(lpVtbl[13]))((IModule*)Unsafe.AsPointer(ref this), outLinkedComponentType, compilerOptionEntryCount, compilerOptionEntries, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_linkWithOptions>(lpVtbl->linkWithOptions)((IModule*)Unsafe.AsPointer(ref this), outLinkedComponentType, compilerOptionEntryCount, compilerOptionEntries, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getTargetCode" />
@@ -241,7 +241,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getTargetCode([NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getTargetCode>((IntPtr)(lpVtbl[14]))((IModule*)Unsafe.AsPointer(ref this), targetIndex, outCode, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_getTargetCode>(lpVtbl->getTargetCode)((IModule*)Unsafe.AsPointer(ref this), targetIndex, outCode, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getTargetMetadata" />
@@ -249,7 +249,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getTargetMetadata([NativeTypeName("SlangInt")] long targetIndex, IMetadata** outMetadata, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getTargetMetadata>((IntPtr)(lpVtbl[15]))((IModule*)Unsafe.AsPointer(ref this), targetIndex, outMetadata, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_getTargetMetadata>(lpVtbl->getTargetMetadata)((IModule*)Unsafe.AsPointer(ref this), targetIndex, outMetadata, outDiagnostics);
     }
 
     /// <inheritdoc cref="IComponentType.getEntryPointMetadata" />
@@ -257,7 +257,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getEntryPointMetadata([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, IMetadata** outMetadata, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getEntryPointMetadata>((IntPtr)(lpVtbl[16]))((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outMetadata, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_getEntryPointMetadata>(lpVtbl->getEntryPointMetadata)((IModule*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outMetadata, outDiagnostics);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.findEntryPointByName"]/*' />
@@ -265,7 +265,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int findEntryPointByName([NativeTypeName("const char *")] sbyte* name, IEntryPoint** outEntryPoint)
     {
-        return Marshal.GetDelegateForFunctionPointer<_findEntryPointByName>((IntPtr)(lpVtbl[17]))((IModule*)Unsafe.AsPointer(ref this), name, outEntryPoint);
+        return Marshal.GetDelegateForFunctionPointer<_findEntryPointByName>(lpVtbl->findEntryPointByName)((IModule*)Unsafe.AsPointer(ref this), name, outEntryPoint);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getDefinedEntryPointCount"]/*' />
@@ -273,7 +273,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangInt32")]
     public int getDefinedEntryPointCount()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDefinedEntryPointCount>((IntPtr)(lpVtbl[18]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getDefinedEntryPointCount>(lpVtbl->getDefinedEntryPointCount)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getDefinedEntryPoint"]/*' />
@@ -281,7 +281,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int getDefinedEntryPoint([NativeTypeName("SlangInt32")] int index, IEntryPoint** outEntryPoint)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDefinedEntryPoint>((IntPtr)(lpVtbl[19]))((IModule*)Unsafe.AsPointer(ref this), index, outEntryPoint);
+        return Marshal.GetDelegateForFunctionPointer<_getDefinedEntryPoint>(lpVtbl->getDefinedEntryPoint)((IModule*)Unsafe.AsPointer(ref this), index, outEntryPoint);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.serialize"]/*' />
@@ -289,7 +289,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int serialize(ISlangBlob** outSerializedBlob)
     {
-        return Marshal.GetDelegateForFunctionPointer<_serialize>((IntPtr)(lpVtbl[20]))((IModule*)Unsafe.AsPointer(ref this), outSerializedBlob);
+        return Marshal.GetDelegateForFunctionPointer<_serialize>(lpVtbl->serialize)((IModule*)Unsafe.AsPointer(ref this), outSerializedBlob);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.writeToFile"]/*' />
@@ -297,7 +297,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int writeToFile([NativeTypeName("const char *")] sbyte* fileName)
     {
-        return Marshal.GetDelegateForFunctionPointer<_writeToFile>((IntPtr)(lpVtbl[21]))((IModule*)Unsafe.AsPointer(ref this), fileName);
+        return Marshal.GetDelegateForFunctionPointer<_writeToFile>(lpVtbl->writeToFile)((IModule*)Unsafe.AsPointer(ref this), fileName);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getName"]/*' />
@@ -305,7 +305,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("const char *")]
     public sbyte* getName()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getName>((IntPtr)(lpVtbl[22]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getName>(lpVtbl->getName)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getFilePath"]/*' />
@@ -313,7 +313,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("const char *")]
     public sbyte* getFilePath()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getFilePath>((IntPtr)(lpVtbl[23]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getFilePath>(lpVtbl->getFilePath)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getUniqueIdentity"]/*' />
@@ -321,7 +321,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("const char *")]
     public sbyte* getUniqueIdentity()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getUniqueIdentity>((IntPtr)(lpVtbl[24]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getUniqueIdentity>(lpVtbl->getUniqueIdentity)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.findAndCheckEntryPoint"]/*' />
@@ -329,7 +329,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangResult")]
     public int findAndCheckEntryPoint([NativeTypeName("const char *")] sbyte* name, [NativeTypeName("SlangStage")] Stage stage, IEntryPoint** outEntryPoint, ISlangBlob** outDiagnostics)
     {
-        return Marshal.GetDelegateForFunctionPointer<_findAndCheckEntryPoint>((IntPtr)(lpVtbl[25]))((IModule*)Unsafe.AsPointer(ref this), name, stage, outEntryPoint, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_findAndCheckEntryPoint>(lpVtbl->findAndCheckEntryPoint)((IModule*)Unsafe.AsPointer(ref this), name, stage, outEntryPoint, outDiagnostics);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getDependencyFileCount"]/*' />
@@ -337,7 +337,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("SlangInt32")]
     public int getDependencyFileCount()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDependencyFileCount>((IntPtr)(lpVtbl[26]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getDependencyFileCount>(lpVtbl->getDependencyFileCount)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getDependencyFilePath"]/*' />
@@ -345,7 +345,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("const char *")]
     public sbyte* getDependencyFilePath([NativeTypeName("SlangInt32")] int index)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDependencyFilePath>((IntPtr)(lpVtbl[27]))((IModule*)Unsafe.AsPointer(ref this), index);
+        return Marshal.GetDelegateForFunctionPointer<_getDependencyFilePath>(lpVtbl->getDependencyFilePath)((IModule*)Unsafe.AsPointer(ref this), index);
     }
 
     /// <include file='IModule.xml' path='doc/member[@name="IModule.getModuleReflection"]/*' />
@@ -353,7 +353,7 @@ public unsafe partial struct IModule
     [return: NativeTypeName("slang::DeclReflection *")]
     public DeclReflection* getModuleReflection()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getModuleReflection>((IntPtr)(lpVtbl[28]))((IModule*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getModuleReflection>(lpVtbl->getModuleReflection)((IModule*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl

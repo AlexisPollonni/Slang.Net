@@ -8,7 +8,7 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct ISlangWriter : ISlangUnknown")]
 public unsafe partial struct ISlangWriter
 {
-    public void** lpVtbl;
+    public Vtbl* lpVtbl;
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -50,7 +50,7 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>((IntPtr)(lpVtbl[0]))((ISlangWriter*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ISlangWriter*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -58,7 +58,7 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>((IntPtr)(lpVtbl[1]))((ISlangWriter*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ISlangWriter*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -66,7 +66,7 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>((IntPtr)(lpVtbl[2]))((ISlangWriter*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ISlangWriter*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.beginAppendBuffer"]/*' />
@@ -74,7 +74,7 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("char *")]
     public sbyte* beginAppendBuffer([NativeTypeName("size_t")] nuint maxNumChars)
     {
-        return Marshal.GetDelegateForFunctionPointer<_beginAppendBuffer>((IntPtr)(lpVtbl[3]))((ISlangWriter*)Unsafe.AsPointer(ref this), maxNumChars);
+        return Marshal.GetDelegateForFunctionPointer<_beginAppendBuffer>(lpVtbl->beginAppendBuffer)((ISlangWriter*)Unsafe.AsPointer(ref this), maxNumChars);
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.endAppendBuffer"]/*' />
@@ -82,7 +82,7 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("SlangResult")]
     public int endAppendBuffer([NativeTypeName("char *")] sbyte* buffer, [NativeTypeName("size_t")] nuint numChars)
     {
-        return Marshal.GetDelegateForFunctionPointer<_endAppendBuffer>((IntPtr)(lpVtbl[4]))((ISlangWriter*)Unsafe.AsPointer(ref this), buffer, numChars);
+        return Marshal.GetDelegateForFunctionPointer<_endAppendBuffer>(lpVtbl->endAppendBuffer)((ISlangWriter*)Unsafe.AsPointer(ref this), buffer, numChars);
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.write"]/*' />
@@ -90,14 +90,14 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("SlangResult")]
     public int write([NativeTypeName("const char *")] sbyte* chars, [NativeTypeName("size_t")] nuint numChars)
     {
-        return Marshal.GetDelegateForFunctionPointer<_write>((IntPtr)(lpVtbl[5]))((ISlangWriter*)Unsafe.AsPointer(ref this), chars, numChars);
+        return Marshal.GetDelegateForFunctionPointer<_write>(lpVtbl->write)((ISlangWriter*)Unsafe.AsPointer(ref this), chars, numChars);
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.flush"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void flush()
     {
-        Marshal.GetDelegateForFunctionPointer<_flush>((IntPtr)(lpVtbl[6]))((ISlangWriter*)Unsafe.AsPointer(ref this));
+        Marshal.GetDelegateForFunctionPointer<_flush>(lpVtbl->flush)((ISlangWriter*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.isConsole"]/*' />
@@ -105,7 +105,7 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("SlangBool")]
     public bool isConsole()
     {
-        return Marshal.GetDelegateForFunctionPointer<_isConsole>((IntPtr)(lpVtbl[7]))((ISlangWriter*)Unsafe.AsPointer(ref this)) != 0;
+        return Marshal.GetDelegateForFunctionPointer<_isConsole>(lpVtbl->isConsole)((ISlangWriter*)Unsafe.AsPointer(ref this)) != 0;
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.setMode"]/*' />
@@ -113,7 +113,7 @@ public unsafe partial struct ISlangWriter
     [return: NativeTypeName("SlangResult")]
     public int setMode([NativeTypeName("SlangWriterMode")] WriterMode mode)
     {
-        return Marshal.GetDelegateForFunctionPointer<_setMode>((IntPtr)(lpVtbl[8]))((ISlangWriter*)Unsafe.AsPointer(ref this), mode);
+        return Marshal.GetDelegateForFunctionPointer<_setMode>(lpVtbl->setMode)((ISlangWriter*)Unsafe.AsPointer(ref this), mode);
     }
 
     public partial struct Vtbl

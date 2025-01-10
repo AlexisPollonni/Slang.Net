@@ -8,7 +8,7 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct ISlangBlob : ISlangUnknown")]
 public unsafe partial struct ISlangBlob
 {
-    public void** lpVtbl;
+    public Vtbl* lpVtbl;
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -35,7 +35,7 @@ public unsafe partial struct ISlangBlob
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>((IntPtr)(lpVtbl[0]))((ISlangBlob*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ISlangBlob*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -43,7 +43,7 @@ public unsafe partial struct ISlangBlob
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>((IntPtr)(lpVtbl[1]))((ISlangBlob*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ISlangBlob*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -51,7 +51,7 @@ public unsafe partial struct ISlangBlob
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>((IntPtr)(lpVtbl[2]))((ISlangBlob*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ISlangBlob*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangBlob.xml' path='doc/member[@name="ISlangBlob.getBufferPointer"]/*' />
@@ -59,7 +59,7 @@ public unsafe partial struct ISlangBlob
     [return: NativeTypeName("const void *")]
     public void* getBufferPointer()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getBufferPointer>((IntPtr)(lpVtbl[3]))((ISlangBlob*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getBufferPointer>(lpVtbl->getBufferPointer)((ISlangBlob*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangBlob.xml' path='doc/member[@name="ISlangBlob.getBufferSize"]/*' />
@@ -67,7 +67,7 @@ public unsafe partial struct ISlangBlob
     [return: NativeTypeName("size_t")]
     public nuint getBufferSize()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getBufferSize>((IntPtr)(lpVtbl[4]))((ISlangBlob*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getBufferSize>(lpVtbl->getBufferSize)((ISlangBlob*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl

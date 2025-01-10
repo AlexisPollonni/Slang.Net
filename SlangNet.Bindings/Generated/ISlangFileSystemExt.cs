@@ -8,7 +8,7 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("struct ISlangFileSystemExt : ISlangFileSystem")]
 public unsafe partial struct ISlangFileSystemExt
 {
-    public void** lpVtbl;
+    public Vtbl* lpVtbl;
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -60,7 +60,7 @@ public unsafe partial struct ISlangFileSystemExt
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>((IntPtr)(lpVtbl[0]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -68,7 +68,7 @@ public unsafe partial struct ISlangFileSystemExt
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>((IntPtr)(lpVtbl[1]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -76,14 +76,14 @@ public unsafe partial struct ISlangFileSystemExt
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>((IntPtr)(lpVtbl[2]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangCastable.castAs" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* castAs([NativeTypeName("const SlangUUID &")] SlangUUID* guid)
     {
-        return Marshal.GetDelegateForFunctionPointer<_castAs>((IntPtr)(lpVtbl[3]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), guid);
+        return Marshal.GetDelegateForFunctionPointer<_castAs>(lpVtbl->castAs)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), guid);
     }
 
     /// <inheritdoc cref="ISlangFileSystem.loadFile" />
@@ -91,7 +91,7 @@ public unsafe partial struct ISlangFileSystemExt
     [return: NativeTypeName("SlangResult")]
     public int loadFile([NativeTypeName("const char *")] sbyte* path, ISlangBlob** outBlob)
     {
-        return Marshal.GetDelegateForFunctionPointer<_loadFile>((IntPtr)(lpVtbl[4]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), path, outBlob);
+        return Marshal.GetDelegateForFunctionPointer<_loadFile>(lpVtbl->loadFile)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), path, outBlob);
     }
 
     /// <include file='ISlangFileSystemExt.xml' path='doc/member[@name="ISlangFileSystemExt.getFileUniqueIdentity"]/*' />
@@ -99,7 +99,7 @@ public unsafe partial struct ISlangFileSystemExt
     [return: NativeTypeName("SlangResult")]
     public int getFileUniqueIdentity([NativeTypeName("const char *")] sbyte* path, ISlangBlob** outUniqueIdentity)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getFileUniqueIdentity>((IntPtr)(lpVtbl[5]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), path, outUniqueIdentity);
+        return Marshal.GetDelegateForFunctionPointer<_getFileUniqueIdentity>(lpVtbl->getFileUniqueIdentity)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), path, outUniqueIdentity);
     }
 
     /// <include file='ISlangFileSystemExt.xml' path='doc/member[@name="ISlangFileSystemExt.calcCombinedPath"]/*' />
@@ -107,7 +107,7 @@ public unsafe partial struct ISlangFileSystemExt
     [return: NativeTypeName("SlangResult")]
     public int calcCombinedPath([NativeTypeName("SlangPathType")] PathType fromPathType, [NativeTypeName("const char *")] sbyte* fromPath, [NativeTypeName("const char *")] sbyte* path, ISlangBlob** pathOut)
     {
-        return Marshal.GetDelegateForFunctionPointer<_calcCombinedPath>((IntPtr)(lpVtbl[6]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), fromPathType, fromPath, path, pathOut);
+        return Marshal.GetDelegateForFunctionPointer<_calcCombinedPath>(lpVtbl->calcCombinedPath)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), fromPathType, fromPath, path, pathOut);
     }
 
     /// <include file='ISlangFileSystemExt.xml' path='doc/member[@name="ISlangFileSystemExt.getPathType"]/*' />
@@ -115,7 +115,7 @@ public unsafe partial struct ISlangFileSystemExt
     [return: NativeTypeName("SlangResult")]
     public int getPathType([NativeTypeName("const char *")] sbyte* path, [NativeTypeName("SlangPathType *")] PathType* pathTypeOut)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getPathType>((IntPtr)(lpVtbl[7]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), path, pathTypeOut);
+        return Marshal.GetDelegateForFunctionPointer<_getPathType>(lpVtbl->getPathType)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), path, pathTypeOut);
     }
 
     /// <include file='ISlangFileSystemExt.xml' path='doc/member[@name="ISlangFileSystemExt.getPath"]/*' />
@@ -123,14 +123,14 @@ public unsafe partial struct ISlangFileSystemExt
     [return: NativeTypeName("SlangResult")]
     public int getPath(PathKind kind, [NativeTypeName("const char *")] sbyte* path, ISlangBlob** outPath)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getPath>((IntPtr)(lpVtbl[8]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), kind, path, outPath);
+        return Marshal.GetDelegateForFunctionPointer<_getPath>(lpVtbl->getPath)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), kind, path, outPath);
     }
 
     /// <include file='ISlangFileSystemExt.xml' path='doc/member[@name="ISlangFileSystemExt.clearCache"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void clearCache()
     {
-        Marshal.GetDelegateForFunctionPointer<_clearCache>((IntPtr)(lpVtbl[9]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this));
+        Marshal.GetDelegateForFunctionPointer<_clearCache>(lpVtbl->clearCache)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangFileSystemExt.xml' path='doc/member[@name="ISlangFileSystemExt.enumeratePathContents"]/*' />
@@ -138,14 +138,14 @@ public unsafe partial struct ISlangFileSystemExt
     [return: NativeTypeName("SlangResult")]
     public int enumeratePathContents([NativeTypeName("const char *")] sbyte* path, [NativeTypeName("FileSystemContentsCallBack")] IntPtr callback, void* userData)
     {
-        return Marshal.GetDelegateForFunctionPointer<_enumeratePathContents>((IntPtr)(lpVtbl[10]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), path, callback, userData);
+        return Marshal.GetDelegateForFunctionPointer<_enumeratePathContents>(lpVtbl->enumeratePathContents)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this), path, callback, userData);
     }
 
     /// <include file='ISlangFileSystemExt.xml' path='doc/member[@name="ISlangFileSystemExt.getOSPathKind"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public OSPathKind getOSPathKind()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getOSPathKind>((IntPtr)(lpVtbl[11]))((ISlangFileSystemExt*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getOSPathKind>(lpVtbl->getOSPathKind)((ISlangFileSystemExt*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl
