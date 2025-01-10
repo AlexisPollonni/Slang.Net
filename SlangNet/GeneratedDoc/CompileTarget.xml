@@ -3,100 +3,100 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="CompileTarget" access="public">
       <type>int</type>
-      <enumerator name="SlangTargetUnknown" access="public">
+      <enumerator name="TargetUnknown" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangTargetNone" access="public">
+      <enumerator name="TargetNone" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangGlsl" access="public">
+      <enumerator name="Glsl" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangGlslVulkanDeprecated" access="public">
+      <enumerator name="GlslVulkanDeprecated" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangGlslVulkanOneDescDeprecated" access="public">
+      <enumerator name="GlslVulkanOneDescDeprecated" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangHlsl" access="public">
+      <enumerator name="Hlsl" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangSpirv" access="public">
+      <enumerator name="Spirv" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangSpirvAsm" access="public">
+      <enumerator name="SpirvAsm" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangDxbc" access="public">
+      <enumerator name="Dxbc" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangDxbcAsm" access="public">
+      <enumerator name="DxbcAsm" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangDxil" access="public">
+      <enumerator name="Dxil" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangDxilAsm" access="public">
+      <enumerator name="DxilAsm" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangCSource" access="public">
+      <enumerator name="CSource" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangCppSource" access="public">
+      <enumerator name="CppSource" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangHostExecutable" access="public">
+      <enumerator name="HostExecutable" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangShaderSharedLibrary" access="public">
+      <enumerator name="ShaderSharedLibrary" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangShaderHostCallable" access="public">
+      <enumerator name="ShaderHostCallable" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangCudaSource" access="public">
+      <enumerator name="CudaSource" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangPtx" access="public">
+      <enumerator name="Ptx" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangCudaObjectCode" access="public">
+      <enumerator name="CudaObjectCode" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangObjectCode" access="public">
+      <enumerator name="ObjectCode" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangHostCppSource" access="public">
+      <enumerator name="HostCppSource" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangHostHostCallable" access="public">
+      <enumerator name="HostHostCallable" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangCppPytorchBinding" access="public">
+      <enumerator name="CppPytorchBinding" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangMetal" access="public">
+      <enumerator name="Metal" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangMetalLib" access="public">
+      <enumerator name="MetalLib" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangMetalLibAsm" access="public">
+      <enumerator name="MetalLibAsm" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangHostSharedLibrary" access="public">
+      <enumerator name="HostSharedLibrary" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangWgsl" access="public">
+      <enumerator name="Wgsl" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangWgslSpirvAsm" access="public">
+      <enumerator name="WgslSpirvAsm" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangWgslSpirv" access="public">
+      <enumerator name="WgslSpirv" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangTargetCountOf" access="public">
+      <enumerator name="TargetCountOf" access="public">
         <type primitive="False">int</type>
       </enumerator>
     </enumeration>

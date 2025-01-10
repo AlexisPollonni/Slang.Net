@@ -3,37 +3,37 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="ModifierID" access="public">
       <type>uint</type>
-      <enumerator name="SlangModifierShared" access="public">
+      <enumerator name="ModifierShared" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierNoDiff" access="public">
+      <enumerator name="ModifierNoDiff" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierStatic" access="public">
+      <enumerator name="ModifierStatic" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierConst" access="public">
+      <enumerator name="ModifierConst" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierExport" access="public">
+      <enumerator name="ModifierExport" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierExtern" access="public">
+      <enumerator name="ModifierExtern" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierDifferentiable" access="public">
+      <enumerator name="ModifierDifferentiable" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierMutating" access="public">
+      <enumerator name="ModifierMutating" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierIn" access="public">
+      <enumerator name="ModifierIn" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierOut" access="public">
+      <enumerator name="ModifierOut" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="SlangModifierInout" access="public">
+      <enumerator name="ModifierInout" access="public">
         <type primitive="False">uint</type>
       </enumerator>
     </enumeration>

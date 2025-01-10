@@ -218,7 +218,7 @@ class Build : NukeBuild
                                                                        .Select(s => s.ToUpperInvariant())
                                                                        .JoinUnderscore() + '_';
 
-                                      var trimmed = decl.Spelling.TrimStart(prefixToTrim);
+                                      var trimmed = decl.Spelling.TrimStart(prefixToTrim).TrimStart("SLANG_");
 
                                       var pascalCaseTrimmed = string.Concat(trimmed
                                                                             .Split(

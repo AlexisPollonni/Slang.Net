@@ -3,142 +3,142 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="ResourceShape" access="public">
       <type>uint</type>
-      <enumerator name="SlangResourceBaseShapeMask" access="public">
+      <enumerator name="ResourceBaseShapeMask" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x0F</code>
         </value>
       </enumerator>
-      <enumerator name="SlangResourceNone" access="public">
+      <enumerator name="ResourceNone" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x00</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTexture1D" access="public">
+      <enumerator name="Texture1D" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x01</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTexture2D" access="public">
+      <enumerator name="Texture2D" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x02</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTexture3D" access="public">
+      <enumerator name="Texture3D" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x03</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTextureCube" access="public">
+      <enumerator name="TextureCube" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x04</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTextureBuffer" access="public">
+      <enumerator name="TextureBuffer" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x05</code>
         </value>
       </enumerator>
-      <enumerator name="SlangStructuredBuffer" access="public">
+      <enumerator name="StructuredBuffer" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x06</code>
         </value>
       </enumerator>
-      <enumerator name="SlangByteAddressBuffer" access="public">
+      <enumerator name="ByteAddressBuffer" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x07</code>
         </value>
       </enumerator>
-      <enumerator name="SlangResourceUnknown" access="public">
+      <enumerator name="ResourceUnknown" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x08</code>
         </value>
       </enumerator>
-      <enumerator name="SlangAccelerationStructure" access="public">
+      <enumerator name="AccelerationStructure" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x09</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTextureSubpass" access="public">
+      <enumerator name="TextureSubpass" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x0A</code>
         </value>
       </enumerator>
-      <enumerator name="SlangResourceExtShapeMask" access="public">
+      <enumerator name="ResourceExtShapeMask" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0xF0</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTextureFeedbackFlag" access="public">
+      <enumerator name="TextureFeedbackFlag" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x10</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTextureShadowFlag" access="public">
+      <enumerator name="TextureShadowFlag" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x20</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTextureArrayFlag" access="public">
+      <enumerator name="TextureArrayFlag" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x40</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTextureMultisampleFlag" access="public">
+      <enumerator name="TextureMultisampleFlag" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x80</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTexture1DArray" access="public">
+      <enumerator name="Texture1DArray" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SlangTexture1D | SlangTextureArrayFlag</code>
+          <code>Texture1D | TextureArrayFlag</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTexture2DArray" access="public">
+      <enumerator name="Texture2DArray" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SlangTexture2D | SlangTextureArrayFlag</code>
+          <code>Texture2D | TextureArrayFlag</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTextureCubeArray" access="public">
+      <enumerator name="TextureCubeArray" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SlangTextureCube | SlangTextureArrayFlag</code>
+          <code>TextureCube | TextureArrayFlag</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTexture2DMultisample" access="public">
+      <enumerator name="Texture2DMultisample" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SlangTexture2D | SlangTextureMultisampleFlag</code>
+          <code>Texture2D | TextureMultisampleFlag</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTexture2DMultisampleArray" access="public">
+      <enumerator name="Texture2DMultisampleArray" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SlangTexture2D | SlangTextureMultisampleFlag | SlangTextureArrayFlag</code>
+          <code>Texture2D | TextureMultisampleFlag | TextureArrayFlag</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTextureSubpassMultisample" access="public">
+      <enumerator name="TextureSubpassMultisample" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>SlangTextureSubpass | SlangTextureMultisampleFlag</code>
+          <code>TextureSubpass | TextureMultisampleFlag</code>
         </value>
       </enumerator>
     </enumeration>

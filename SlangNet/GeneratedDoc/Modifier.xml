@@ -7,67 +7,67 @@
         <enumerator name="Shared" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierShared</code>
+            <code>ModifierShared</code>
           </value>
         </enumerator>
         <enumerator name="NoDiff" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierNoDiff</code>
+            <code>ModifierNoDiff</code>
           </value>
         </enumerator>
         <enumerator name="Static" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierStatic</code>
+            <code>ModifierStatic</code>
           </value>
         </enumerator>
         <enumerator name="Const" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierConst</code>
+            <code>ModifierConst</code>
           </value>
         </enumerator>
         <enumerator name="Export" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierExport</code>
+            <code>ModifierExport</code>
           </value>
         </enumerator>
         <enumerator name="Extern" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierExtern</code>
+            <code>ModifierExtern</code>
           </value>
         </enumerator>
         <enumerator name="Differentiable" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierDifferentiable</code>
+            <code>ModifierDifferentiable</code>
           </value>
         </enumerator>
         <enumerator name="Mutating" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierMutating</code>
+            <code>ModifierMutating</code>
           </value>
         </enumerator>
         <enumerator name="In" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierIn</code>
+            <code>ModifierIn</code>
           </value>
         </enumerator>
         <enumerator name="Out" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierOut</code>
+            <code>ModifierOut</code>
           </value>
         </enumerator>
         <enumerator name="InOut" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierID.SlangModifierInout</code>
+            <code>ModifierInout</code>
           </value>
         </enumerator>
       </enumeration>

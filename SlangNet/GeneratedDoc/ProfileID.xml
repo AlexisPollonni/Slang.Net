@@ -3,7 +3,7 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="ProfileID" access="public">
       <type>uint</type>
-      <enumerator name="SlangProfileUnknown" access="public">
+      <enumerator name="ProfileUnknown" access="public">
         <type primitive="False">uint</type>
       </enumerator>
     </enumeration>

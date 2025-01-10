@@ -3,22 +3,22 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="BindableResourceType" access="public">
       <type>int</type>
-      <enumerator name="SlangNonBindable" access="public">
+      <enumerator name="NonBindable" access="public">
         <type primitive="False">int</type>
         <value>
           <code>0</code>
         </value>
       </enumerator>
-      <enumerator name="SlangTexture" access="public">
+      <enumerator name="Texture" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangSampler" access="public">
+      <enumerator name="Sampler" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangUniformBuffer" access="public">
+      <enumerator name="UniformBuffer" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangStorageBuffer" access="public">
+      <enumerator name="StorageBuffer" access="public">
         <type primitive="False">int</type>
       </enumerator>
     </enumeration>

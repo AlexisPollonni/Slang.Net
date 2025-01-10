@@ -4,6 +4,6 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("SlangCapabilityIDIntegral")]
 public enum CapabilityID
 {
-    /// <include file='CapabilityID.xml' path='doc/member[@name="CapabilityID.SlangCapabilityUnknown"]/*' />
-    SlangCapabilityUnknown = 0,
+    /// <include file='CapabilityID.xml' path='doc/member[@name="CapabilityID.CapabilityUnknown"]/*' />
+    CapabilityUnknown = 0,
 }

@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using static SlangNet.LayoutRules;
 
 namespace SlangNet.Bindings.Generated;
 
@@ -75,7 +76,7 @@ public unsafe partial struct ISession
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getTypeLayout"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("slang::TypeLayoutReflection *")]
-    public TypeLayoutReflection* getTypeLayout([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("SlangInt")] long targetIndex = 0, [NativeTypeName("slang::LayoutRules")] LayoutRules rules = LayoutRules.Default, ISlangBlob** outDiagnostics = null)
+    public TypeLayoutReflection* getTypeLayout([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("SlangInt")] long targetIndex = 0, [NativeTypeName("slang::LayoutRules")] LayoutRules rules = Default, ISlangBlob** outDiagnostics = null)
     {
         return ((delegate* unmanaged[Stdcall]<ISession*, TypeReflection*, long, LayoutRules, ISlangBlob**, TypeLayoutReflection*>)(lpVtbl[8]))((ISession*)Unsafe.AsPointer(ref this), type, targetIndex, rules, outDiagnostics);
     }

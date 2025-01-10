@@ -1,3 +1,5 @@
+using static SlangNet.Bindings.Generated.ModifierID;
+
 namespace SlangNet.Bindings.Generated;
 
 /// <include file='Modifier.xml' path='doc/member[@name="Modifier"]/*' />
@@ -9,36 +11,36 @@ public partial struct Modifier
     public enum ID : uint
     {
         /// <include file='ID.xml' path='doc/member[@name="ID.Shared"]/*' />
-        Shared = ModifierID.SlangModifierShared,
+        Shared = ModifierShared,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.NoDiff"]/*' />
-        NoDiff = ModifierID.SlangModifierNoDiff,
+        NoDiff = ModifierNoDiff,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Static"]/*' />
-        Static = ModifierID.SlangModifierStatic,
+        Static = ModifierStatic,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Const"]/*' />
-        Const = ModifierID.SlangModifierConst,
+        Const = ModifierConst,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Export"]/*' />
-        Export = ModifierID.SlangModifierExport,
+        Export = ModifierExport,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Extern"]/*' />
-        Extern = ModifierID.SlangModifierExtern,
+        Extern = ModifierExtern,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Differentiable"]/*' />
-        Differentiable = ModifierID.SlangModifierDifferentiable,
+        Differentiable = ModifierDifferentiable,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Mutating"]/*' />
-        Mutating = ModifierID.SlangModifierMutating,
+        Mutating = ModifierMutating,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.In"]/*' />
-        In = ModifierID.SlangModifierIn,
+        In = ModifierIn,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Out"]/*' />
-        Out = ModifierID.SlangModifierOut,
+        Out = ModifierOut,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.InOut"]/*' />
-        InOut = ModifierID.SlangModifierInout,
+        InOut = ModifierInout,
     }
 }

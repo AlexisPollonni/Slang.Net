@@ -3,19 +3,19 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="ReflectionGenericArgType" access="public">
       <type>int</type>
-      <enumerator name="SlangGenericArgType" access="public">
+      <enumerator name="GenericArgType" access="public">
         <type primitive="False">int</type>
         <value>
           <code>0</code>
         </value>
       </enumerator>
-      <enumerator name="SlangGenericArgInt" access="public">
+      <enumerator name="GenericArgInt" access="public">
         <type primitive="False">int</type>
         <value>
           <code>1</code>
         </value>
       </enumerator>
-      <enumerator name="SlangGenericArgBool" access="public">
+      <enumerator name="GenericArgBool" access="public">
         <type primitive="False">int</type>
         <value>
           <code>2</code>

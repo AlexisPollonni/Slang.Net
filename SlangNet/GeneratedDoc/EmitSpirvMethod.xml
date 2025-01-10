@@ -3,16 +3,16 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="EmitSpirvMethod" access="public">
       <type>int</type>
-      <enumerator name="SlangEmitSpirvDefault" access="public">
+      <enumerator name="EmitSpirvDefault" access="public">
         <type primitive="False">int</type>
         <value>
           <code>0</code>
         </value>
       </enumerator>
-      <enumerator name="SlangEmitSpirvViaGlsl" access="public">
+      <enumerator name="EmitSpirvViaGlsl" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangEmitSpirvDirectly" access="public">
+      <enumerator name="EmitSpirvDirectly" access="public">
         <type primitive="False">int</type>
       </enumerator>
     </enumeration>

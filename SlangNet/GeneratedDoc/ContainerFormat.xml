@@ -6,7 +6,7 @@
       <enumerator name="None" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SlangModule" access="public">
+      <enumerator name="Module" access="public">
         <type primitive="False">int</type>
       </enumerator>
     </enumeration>

@@ -4,18 +4,18 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("SlangBindableResourceIntegral")]
 public enum BindableResourceType
 {
-    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.SlangNonBindable"]/*' />
-    SlangNonBindable = 0,
+    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.NonBindable"]/*' />
+    NonBindable = 0,
 
-    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.SlangTexture"]/*' />
-    SlangTexture,
+    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.Texture"]/*' />
+    Texture,
 
-    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.SlangSampler"]/*' />
-    SlangSampler,
+    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.Sampler"]/*' />
+    Sampler,
 
-    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.SlangUniformBuffer"]/*' />
-    SlangUniformBuffer,
+    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.UniformBuffer"]/*' />
+    UniformBuffer,
 
-    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.SlangStorageBuffer"]/*' />
-    SlangStorageBuffer,
+    /// <include file='BindableResourceType.xml' path='doc/member[@name="BindableResourceType.StorageBuffer"]/*' />
+    StorageBuffer,
 }
