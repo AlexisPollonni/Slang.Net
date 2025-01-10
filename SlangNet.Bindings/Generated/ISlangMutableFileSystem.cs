@@ -1,4 +1,6 @@
+using System;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace SlangNet.Bindings.Generated;
 
@@ -8,12 +10,73 @@ public unsafe partial struct ISlangMutableFileSystem
 {
     public void** lpVtbl;
 
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _queryInterface(ISlangMutableFileSystem* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("uint32_t")]
+    public delegate uint _addRef(ISlangMutableFileSystem* pThis);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("uint32_t")]
+    public delegate uint _release(ISlangMutableFileSystem* pThis);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    public delegate void* _castAs(ISlangMutableFileSystem* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* guid);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _loadFile(ISlangMutableFileSystem* pThis, [NativeTypeName("const char *")] sbyte* path, ISlangBlob** outBlob);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _getFileUniqueIdentity(ISlangMutableFileSystem* pThis, [NativeTypeName("const char *")] sbyte* path, ISlangBlob** outUniqueIdentity);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _calcCombinedPath(ISlangMutableFileSystem* pThis, [NativeTypeName("SlangPathType")] PathType fromPathType, [NativeTypeName("const char *")] sbyte* fromPath, [NativeTypeName("const char *")] sbyte* path, ISlangBlob** pathOut);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _getPathType(ISlangMutableFileSystem* pThis, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("SlangPathType *")] PathType* pathTypeOut);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _getPath(ISlangMutableFileSystem* pThis, PathKind kind, [NativeTypeName("const char *")] sbyte* path, ISlangBlob** outPath);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    public delegate void _clearCache(ISlangMutableFileSystem* pThis);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _enumeratePathContents(ISlangMutableFileSystem* pThis, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("FileSystemContentsCallBack")] IntPtr callback, void* userData);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    public delegate OSPathKind _getOSPathKind(ISlangMutableFileSystem* pThis);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _saveFile(ISlangMutableFileSystem* pThis, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("const void *")] void* data, [NativeTypeName("size_t")] nuint size);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _saveFileBlob(ISlangMutableFileSystem* pThis, [NativeTypeName("const char *")] sbyte* path, ISlangBlob* dataBlob);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _remove(ISlangMutableFileSystem* pThis, [NativeTypeName("const char *")] sbyte* path);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _createDirectory(ISlangMutableFileSystem* pThis, [NativeTypeName("const char *")] sbyte* path);
+
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
     public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, SlangUUID*, void**, int>)(lpVtbl[0]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>((IntPtr)(lpVtbl[0]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -21,7 +84,7 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, uint>)(lpVtbl[1]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>((IntPtr)(lpVtbl[1]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -29,14 +92,14 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, uint>)(lpVtbl[2]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>((IntPtr)(lpVtbl[2]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangCastable.castAs" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* castAs([NativeTypeName("const SlangUUID &")] SlangUUID* guid)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, SlangUUID*, void*>)(lpVtbl[3]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), guid);
+        return Marshal.GetDelegateForFunctionPointer<_castAs>((IntPtr)(lpVtbl[3]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), guid);
     }
 
     /// <inheritdoc cref="ISlangFileSystem.loadFile" />
@@ -44,7 +107,7 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("SlangResult")]
     public int loadFile([NativeTypeName("const char *")] sbyte* path, ISlangBlob** outBlob)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, ISlangBlob**, int>)(lpVtbl[4]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, outBlob);
+        return Marshal.GetDelegateForFunctionPointer<_loadFile>((IntPtr)(lpVtbl[4]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, outBlob);
     }
 
     /// <inheritdoc cref="ISlangFileSystemExt.getFileUniqueIdentity" />
@@ -52,7 +115,7 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("SlangResult")]
     public int getFileUniqueIdentity([NativeTypeName("const char *")] sbyte* path, ISlangBlob** outUniqueIdentity)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, ISlangBlob**, int>)(lpVtbl[5]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, outUniqueIdentity);
+        return Marshal.GetDelegateForFunctionPointer<_getFileUniqueIdentity>((IntPtr)(lpVtbl[5]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, outUniqueIdentity);
     }
 
     /// <inheritdoc cref="ISlangFileSystemExt.calcCombinedPath" />
@@ -60,7 +123,7 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("SlangResult")]
     public int calcCombinedPath([NativeTypeName("SlangPathType")] PathType fromPathType, [NativeTypeName("const char *")] sbyte* fromPath, [NativeTypeName("const char *")] sbyte* path, ISlangBlob** pathOut)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, PathType, sbyte*, sbyte*, ISlangBlob**, int>)(lpVtbl[6]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), fromPathType, fromPath, path, pathOut);
+        return Marshal.GetDelegateForFunctionPointer<_calcCombinedPath>((IntPtr)(lpVtbl[6]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), fromPathType, fromPath, path, pathOut);
     }
 
     /// <inheritdoc cref="ISlangFileSystemExt.getPathType" />
@@ -68,7 +131,7 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("SlangResult")]
     public int getPathType([NativeTypeName("const char *")] sbyte* path, [NativeTypeName("SlangPathType *")] PathType* pathTypeOut)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, PathType*, int>)(lpVtbl[7]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, pathTypeOut);
+        return Marshal.GetDelegateForFunctionPointer<_getPathType>((IntPtr)(lpVtbl[7]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, pathTypeOut);
     }
 
     /// <inheritdoc cref="ISlangFileSystemExt.getPath" />
@@ -76,29 +139,29 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("SlangResult")]
     public int getPath(PathKind kind, [NativeTypeName("const char *")] sbyte* path, ISlangBlob** outPath)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, PathKind, sbyte*, ISlangBlob**, int>)(lpVtbl[8]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), kind, path, outPath);
+        return Marshal.GetDelegateForFunctionPointer<_getPath>((IntPtr)(lpVtbl[8]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), kind, path, outPath);
     }
 
     /// <inheritdoc cref="ISlangFileSystemExt.clearCache" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void clearCache()
     {
-        ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, void>)(lpVtbl[9]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this));
+        Marshal.GetDelegateForFunctionPointer<_clearCache>((IntPtr)(lpVtbl[9]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangFileSystemExt.enumeratePathContents" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int enumeratePathContents([NativeTypeName("const char *")] sbyte* path, [NativeTypeName("FileSystemContentsCallBack")] delegate* unmanaged[Cdecl]<PathType, sbyte*, void*, void> callback, void* userData)
+    public int enumeratePathContents([NativeTypeName("const char *")] sbyte* path, [NativeTypeName("FileSystemContentsCallBack")] IntPtr callback, void* userData)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, delegate* unmanaged[Thiscall]<PathType, sbyte*, void*, void>, void*, int>)(lpVtbl[10]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, callback, userData);
+        return Marshal.GetDelegateForFunctionPointer<_enumeratePathContents>((IntPtr)(lpVtbl[10]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, callback, userData);
     }
 
     /// <inheritdoc cref="ISlangFileSystemExt.getOSPathKind" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public OSPathKind getOSPathKind()
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, OSPathKind>)(lpVtbl[11]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getOSPathKind>((IntPtr)(lpVtbl[11]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangMutableFileSystem.xml' path='doc/member[@name="ISlangMutableFileSystem.saveFile"]/*' />
@@ -106,7 +169,7 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("SlangResult")]
     public int saveFile([NativeTypeName("const char *")] sbyte* path, [NativeTypeName("const void *")] void* data, [NativeTypeName("size_t")] nuint size)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, void*, nuint, int>)(lpVtbl[12]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, data, size);
+        return Marshal.GetDelegateForFunctionPointer<_saveFile>((IntPtr)(lpVtbl[12]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, data, size);
     }
 
     /// <include file='ISlangMutableFileSystem.xml' path='doc/member[@name="ISlangMutableFileSystem.saveFileBlob"]/*' />
@@ -114,7 +177,7 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("SlangResult")]
     public int saveFileBlob([NativeTypeName("const char *")] sbyte* path, ISlangBlob* dataBlob)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, ISlangBlob*, int>)(lpVtbl[13]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, dataBlob);
+        return Marshal.GetDelegateForFunctionPointer<_saveFileBlob>((IntPtr)(lpVtbl[13]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path, dataBlob);
     }
 
     /// <include file='ISlangMutableFileSystem.xml' path='doc/member[@name="ISlangMutableFileSystem.remove"]/*' />
@@ -122,7 +185,7 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("SlangResult")]
     public int remove([NativeTypeName("const char *")] sbyte* path)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, int>)(lpVtbl[14]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path);
+        return Marshal.GetDelegateForFunctionPointer<_remove>((IntPtr)(lpVtbl[14]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path);
     }
 
     /// <include file='ISlangMutableFileSystem.xml' path='doc/member[@name="ISlangMutableFileSystem.createDirectory"]/*' />
@@ -130,57 +193,57 @@ public unsafe partial struct ISlangMutableFileSystem
     [return: NativeTypeName("SlangResult")]
     public int createDirectory([NativeTypeName("const char *")] sbyte* path)
     {
-        return ((delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, int>)(lpVtbl[15]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path);
+        return Marshal.GetDelegateForFunctionPointer<_createDirectory>((IntPtr)(lpVtbl[15]))((ISlangMutableFileSystem*)Unsafe.AsPointer(ref this), path);
     }
 
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, SlangUUID*, void**, int> queryInterface;
+        public IntPtr queryInterface;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, uint> addRef;
+        public IntPtr addRef;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, uint> release;
+        public IntPtr release;
 
         [NativeTypeName("void *(const SlangUUID &) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, SlangUUID*, void*> castAs;
+        public IntPtr castAs;
 
         [NativeTypeName("SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, ISlangBlob**, int> loadFile;
+        public IntPtr loadFile;
 
         [NativeTypeName("SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, ISlangBlob**, int> getFileUniqueIdentity;
+        public IntPtr getFileUniqueIdentity;
 
         [NativeTypeName("SlangResult (SlangPathType, const char *, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, PathType, sbyte*, sbyte*, ISlangBlob**, int> calcCombinedPath;
+        public IntPtr calcCombinedPath;
 
         [NativeTypeName("SlangResult (const char *, SlangPathType *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, PathType*, int> getPathType;
+        public IntPtr getPathType;
 
         [NativeTypeName("SlangResult (PathKind, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, PathKind, sbyte*, ISlangBlob**, int> getPath;
+        public IntPtr getPath;
 
         [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, void> clearCache;
+        public IntPtr clearCache;
 
         [NativeTypeName("SlangResult (const char *, FileSystemContentsCallBack, void *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, delegate* unmanaged[Thiscall]<PathType, sbyte*, void*, void>, void*, int> enumeratePathContents;
+        public IntPtr enumeratePathContents;
 
         [NativeTypeName("OSPathKind () __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, OSPathKind> getOSPathKind;
+        public IntPtr getOSPathKind;
 
         [NativeTypeName("SlangResult (const char *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, void*, nuint, int> saveFile;
+        public IntPtr saveFile;
 
         [NativeTypeName("SlangResult (const char *, ISlangBlob *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, ISlangBlob*, int> saveFileBlob;
+        public IntPtr saveFileBlob;
 
         [NativeTypeName("SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, int> remove;
+        public IntPtr remove;
 
         [NativeTypeName("SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
-        public delegate* unmanaged[Stdcall]<ISlangMutableFileSystem*, sbyte*, int> createDirectory;
+        public IntPtr createDirectory;
     }
 }

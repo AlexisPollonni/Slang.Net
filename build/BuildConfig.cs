@@ -15,19 +15,22 @@ internal record struct BuildConfig()
 
     public AbsolutePath? GeneratedTestsDir { get; set; } = null;
 
-    public PInvokeGeneratorConfigurationOptions Options { get; set; } = GenerateLatestCode
+    public PInvokeGeneratorConfigurationOptions Options { get; set; } = GeneratePreviewCode
+                                                                        | GenerateMultipleFiles
                                                                         | GenerateFileScopedNamespaces
                                                                         | GenerateDocIncludes
                                                                         | GenerateHelperTypes
                                                                         | GenerateMacroBindings
                                                                         | GenerateAggressiveInlining
+                                                                        | GenerateTrimmableVtbls
+
+                                                                        | ExcludeFnptrCodegen // No Fnptr code gen with latest or preview
                                                                         | ExcludeFunctionsWithBody
                                                                         | ExcludeComProxies
                                                                         | ExcludeEnumOperators
-                                                                        | GenerateTrimmableVtbls
-                                                                        | GenerateMultipleFiles
-                                                                        | LogPotentialTypedefRemappings
-                                                                        | StripEnumMemberTypeName;
+
+                                                                        | StripEnumMemberTypeName
+                                                                        | LogPotentialTypedefRemappings;
 
     public string[] DefineMacros { get; } =
     [

@@ -5,6 +5,42 @@
       <field name="lpVtbl" access="public">
         <type>void**</type>
       </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangSharedLibraryLoader*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISlangSharedLibraryLoader*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISlangSharedLibraryLoader*</type>
+        </param>
+      </delegate>
+      <delegate name="_loadSharedLibrary" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangSharedLibraryLoader*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="sharedLibraryOut">
+          <type>ISlangSharedLibrary**</type>
+        </param>
+      </delegate>
       <function name="queryInterface" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="uuid">
@@ -14,19 +50,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangSharedLibraryLoader*, SlangUUID*, void**, int&gt;)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangSharedLibraryLoader*, uint&gt;)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangSharedLibraryLoader*, uint&gt;)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="loadSharedLibrary" access="public" unsafe="true">
@@ -38,21 +74,21 @@
           <type>ISlangSharedLibrary**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangSharedLibraryLoader*, sbyte*, ISlangSharedLibrary**, int&gt;)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="sharedLibraryOut">sharedLibraryOut</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadSharedLibrary</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="sharedLibraryOut">sharedLibraryOut</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangSharedLibraryLoader*, SlangUUID*, void**, int&gt;</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangSharedLibraryLoader*, uint&gt;</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangSharedLibraryLoader*, uint&gt;</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="loadSharedLibrary" access="public">
-          <type native="SlangResult (const char *, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangSharedLibraryLoader*, sbyte*, ISlangSharedLibrary**, int&gt;</type>
+          <type native="SlangResult (const char *, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

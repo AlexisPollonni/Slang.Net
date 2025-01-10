@@ -5,6 +5,39 @@
       <field name="lpVtbl" access="public">
         <type>void**</type>
       </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangCastable*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISlangCastable*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISlangCastable*</type>
+        </param>
+      </delegate>
+      <delegate name="_castAs" access="public" convention="StdCall" unsafe="true">
+        <type>void*</type>
+        <param name="pThis">
+          <type>ISlangCastable*</type>
+        </param>
+        <param name="guid">
+          <type>SlangUUID*</type>
+        </param>
+      </delegate>
       <function name="queryInterface" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="uuid">
@@ -14,19 +47,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangCastable*, SlangUUID*, void**, int&gt;)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(ISlangCastable*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(ISlangCastable*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangCastable*, uint&gt;)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(ISlangCastable*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(ISlangCastable*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangCastable*, uint&gt;)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(ISlangCastable*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(ISlangCastable*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="castAs" access="public" unsafe="true">
@@ -35,21 +68,21 @@
           <type>SlangUUID*</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangCastable*, SlangUUID*, void*&gt;)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(ISlangCastable*)Unsafe.AsPointer(ref this)</param>, <param name="guid">guid</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(ISlangCastable*)Unsafe.AsPointer(ref this)</param>, <param name="guid">guid</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangCastable*, SlangUUID*, void**, int&gt;</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangCastable*, uint&gt;</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangCastable*, uint&gt;</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="castAs" access="public">
-          <type native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangCastable*, SlangUUID*, void*&gt;</type>
+          <type native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

@@ -5,6 +5,258 @@
       <field name="lpVtbl" access="public">
         <type>void**</type>
       </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+      </delegate>
+      <delegate name="_getSession" access="public" convention="StdCall" unsafe="true">
+        <type native="slang::ISession *">ISession*</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+      </delegate>
+      <delegate name="_getLayout" access="public" convention="StdCall" unsafe="true">
+        <type native="slang::ProgramLayout *">ShaderReflection*</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_getSpecializationParamCount" access="public" convention="StdCall">
+        <type native="SlangInt">long</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPointCode" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>long</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="outCode">
+          <type>ISlangBlob**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_getResultAsFileSystem" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>long</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="outFileSystem">
+          <type>ISlangMutableFileSystem**</type>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPointHash" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>long</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="outHash">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_specialize" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="specializationArgs">
+          <type>SpecializationArg*</type>
+        </param>
+        <param name="specializationArgCount">
+          <type>long</type>
+        </param>
+        <param name="outSpecializedComponentType">
+          <type>IComponentType**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_link" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="outLinkedComponentType">
+          <type>IComponentType**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPointHostCallable" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="outSharedLibrary">
+          <type>ISlangSharedLibrary**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_renameEntryPoint" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="newName">
+          <type>sbyte*</type>
+        </param>
+        <param name="outEntryPoint">
+          <type>IComponentType**</type>
+        </param>
+      </delegate>
+      <delegate name="_linkWithOptions" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="outLinkedComponentType">
+          <type>IComponentType**</type>
+        </param>
+        <param name="compilerOptionEntryCount">
+          <type>uint</type>
+        </param>
+        <param name="compilerOptionEntries">
+          <type>CompilerOptionEntry*</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_getTargetCode" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="outCode">
+          <type>ISlangBlob**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_getTargetMetadata" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="outMetadata">
+          <type>IMetadata**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPointMetadata" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>long</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="outMetadata">
+          <type>IMetadata**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
       <function name="queryInterface" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="uuid">
@@ -14,25 +266,25 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, SlangUUID*, void**, int&gt;)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, uint&gt;)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, uint&gt;)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getSession" access="public" unsafe="true">
         <type native="slang::ISession *">ISession*</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, ISession*&gt;)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSession</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getLayout" access="public" unsafe="true">
@@ -50,13 +302,13 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, long, ISlangBlob**, ShaderReflection*&gt;)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLayout</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getSpecializationParamCount" access="public" unsafe="true">
         <type native="SlangInt">long</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, long&gt;)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSpecializationParamCount</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getEntryPointCode" access="public" unsafe="true">
@@ -77,7 +329,7 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, long, long, ISlangBlob**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCode</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getResultAsFileSystem" access="public" unsafe="true">
@@ -92,7 +344,7 @@
           <type>ISlangMutableFileSystem**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, long, long, ISlangMutableFileSystem**, int&gt;)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outFileSystem">outFileSystem</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getResultAsFileSystem</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outFileSystem">outFileSystem</param>);</code>
         </body>
       </function>
       <function name="getEntryPointHash" access="public" unsafe="true">
@@ -107,7 +359,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>((delegate* unmanaged[Stdcall]&lt;IComponentType*, long, long, ISlangBlob**, void&gt;)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outHash">outHash</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHash</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outHash">outHash</param>);</code>
         </body>
       </function>
       <function name="specialize" access="public" unsafe="true">
@@ -128,7 +380,7 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, SpecializationArg*, long, IComponentType**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">9</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="specializationArgs">specializationArgs</param>, <param name="specializationArgCount">specializationArgCount</param>, <param name="outSpecializedComponentType">outSpecializedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_specialize</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">9</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="specializationArgs">specializationArgs</param>, <param name="specializationArgCount">specializationArgCount</param>, <param name="outSpecializedComponentType">outSpecializedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="link" access="public" unsafe="true">
@@ -143,7 +395,7 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, IComponentType**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">10</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_link</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">10</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getEntryPointHostCallable" access="public" unsafe="true">
@@ -164,7 +416,7 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, int, int, ISlangSharedLibrary**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">11</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outSharedLibrary">outSharedLibrary</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHostCallable</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">11</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outSharedLibrary">outSharedLibrary</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="renameEntryPoint" access="public" unsafe="true">
@@ -176,7 +428,7 @@
           <type>IComponentType**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, sbyte*, IComponentType**, int&gt;)(lpVtbl[<vtbl explicit="False">12</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="newName">newName</param>, <param name="outEntryPoint">outEntryPoint</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_renameEntryPoint</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">12</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="newName">newName</param>, <param name="outEntryPoint">outEntryPoint</param>);</code>
         </body>
       </function>
       <function name="linkWithOptions" access="public" unsafe="true">
@@ -197,7 +449,7 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, IComponentType**, uint, CompilerOptionEntry*, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">13</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="compilerOptionEntryCount">compilerOptionEntryCount</param>, <param name="compilerOptionEntries">compilerOptionEntries</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_linkWithOptions</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">13</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="compilerOptionEntryCount">compilerOptionEntryCount</param>, <param name="compilerOptionEntries">compilerOptionEntries</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getTargetCode" access="public" unsafe="true">
@@ -215,7 +467,7 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, long, ISlangBlob**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">14</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetCode</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">14</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getTargetMetadata" access="public" unsafe="true">
@@ -233,7 +485,7 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, long, IMetadata**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">15</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetMetadata</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">15</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <function name="getEntryPointMetadata" access="public" unsafe="true">
@@ -254,60 +506,60 @@
           </init>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;IComponentType*, long, long, IMetadata**, ISlangBlob**, int&gt;)(lpVtbl[<vtbl explicit="False">16</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointMetadata</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">16</vtbl>]))(<param special="thisPtr">(IComponentType*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, SlangUUID*, void**, int&gt;</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, uint&gt;</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, uint&gt;</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getSession" access="public">
-          <type native="ISession *() __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, ISession*&gt;</type>
+          <type native="ISession *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getLayout" access="public">
-          <type native="ProgramLayout *(SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, long, ISlangBlob**, ShaderReflection*&gt;</type>
+          <type native="ProgramLayout *(SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getSpecializationParamCount" access="public">
-          <type native="SlangInt () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, long&gt;</type>
+          <type native="SlangInt () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointCode" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, long, long, ISlangBlob**, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getResultAsFileSystem" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, long, long, ISlangMutableFileSystem**, int&gt;</type>
+          <type native="SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointHash" access="public">
-          <type native="void (SlangInt, SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, long, long, ISlangBlob**, void&gt;</type>
+          <type native="void (SlangInt, SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="specialize" access="public">
-          <type native="SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, SpecializationArg*, long, IComponentType**, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="link" access="public">
-          <type native="SlangResult (IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, IComponentType**, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointHostCallable" access="public">
-          <type native="SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, int, int, ISlangSharedLibrary**, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="renameEntryPoint" access="public">
-          <type native="SlangResult (const char *, IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, sbyte*, IComponentType**, int&gt;</type>
+          <type native="SlangResult (const char *, IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="linkWithOptions" access="public">
-          <type native="SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, IComponentType**, uint, CompilerOptionEntry*, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getTargetCode" access="public">
-          <type native="SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, long, ISlangBlob**, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getTargetMetadata" access="public">
-          <type native="SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, long, IMetadata**, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointMetadata" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;IComponentType*, long, long, IMetadata**, ISlangBlob**, int&gt;</type>
+          <type native="SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

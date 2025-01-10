@@ -5,6 +5,84 @@
       <field name="lpVtbl" access="public">
         <type>void**</type>
       </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangWriter*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISlangWriter*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISlangWriter*</type>
+        </param>
+      </delegate>
+      <delegate name="_beginAppendBuffer" access="public" convention="StdCall" unsafe="true">
+        <type native="char *">sbyte*</type>
+        <param name="pThis">
+          <type>ISlangWriter*</type>
+        </param>
+        <param name="maxNumChars">
+          <type>nuint</type>
+        </param>
+      </delegate>
+      <delegate name="_endAppendBuffer" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangWriter*</type>
+        </param>
+        <param name="buffer">
+          <type>sbyte*</type>
+        </param>
+        <param name="numChars">
+          <type>nuint</type>
+        </param>
+      </delegate>
+      <delegate name="_write" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangWriter*</type>
+        </param>
+        <param name="chars">
+          <type>sbyte*</type>
+        </param>
+        <param name="numChars">
+          <type>nuint</type>
+        </param>
+      </delegate>
+      <delegate name="_flush" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ISlangWriter*</type>
+        </param>
+      </delegate>
+      <delegate name="_isConsole" access="public" convention="StdCall">
+        <type native="SlangBool">byte</type>
+        <param name="pThis">
+          <type>ISlangWriter*</type>
+        </param>
+      </delegate>
+      <delegate name="_setMode" access="public" convention="StdCall">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangWriter*</type>
+        </param>
+        <param name="mode">
+          <type>WriterMode</type>
+        </param>
+      </delegate>
       <function name="queryInterface" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="uuid">
@@ -14,19 +92,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, SlangUUID*, void**, int&gt;)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">0</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, uint&gt;)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">1</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, uint&gt;)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">2</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="beginAppendBuffer" access="public" unsafe="true">
@@ -35,7 +113,7 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, nuint, sbyte*&gt;)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="maxNumChars">maxNumChars</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_beginAppendBuffer</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">3</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="maxNumChars">maxNumChars</param>);</code>
         </body>
       </function>
       <function name="endAppendBuffer" access="public" unsafe="true">
@@ -47,7 +125,7 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, sbyte*, nuint, int&gt;)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="buffer">buffer</param>, <param name="numChars">numChars</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endAppendBuffer</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">4</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="buffer">buffer</param>, <param name="numChars">numChars</param>);</code>
         </body>
       </function>
       <function name="write" access="public" unsafe="true">
@@ -59,19 +137,19 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, sbyte*, nuint, int&gt;)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="chars">chars</param>, <param name="numChars">numChars</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_write</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">5</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="chars">chars</param>, <param name="numChars">numChars</param>);</code>
         </body>
       </function>
       <function name="flush" access="public" unsafe="true">
         <type>void</type>
         <body>
-          <code>((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, void&gt;)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_flush</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">6</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="isConsole" access="public" unsafe="true">
         <type native="SlangBool">bool</type>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, byte&gt;)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>) != 0;</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isConsole</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">7</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>) != 0;</code>
         </body>
       </function>
       <function name="setMode" access="public" unsafe="true">
@@ -80,36 +158,36 @@
           <type>WriterMode</type>
         </param>
         <body>
-          <code>return ((delegate* unmanaged[Stdcall]&lt;ISlangWriter*, WriterMode, int&gt;)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setMode</delegate>&gt;((IntPtr)(lpVtbl[<vtbl explicit="False">8</vtbl>]))(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, SlangUUID*, void**, int&gt;</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, uint&gt;</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, uint&gt;</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="beginAppendBuffer" access="public">
-          <type native="char *(size_t) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, nuint, sbyte*&gt;</type>
+          <type native="char *(size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="endAppendBuffer" access="public">
-          <type native="SlangResult (char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, sbyte*, nuint, int&gt;</type>
+          <type native="SlangResult (char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="write" access="public">
-          <type native="SlangResult (const char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, sbyte*, nuint, int&gt;</type>
+          <type native="SlangResult (const char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="flush" access="public">
-          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, void&gt;</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="isConsole" access="public">
-          <type native="SlangBool () __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, byte&gt;</type>
+          <type native="SlangBool () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setMode" access="public">
-          <type native="SlangResult (SlangWriterMode) __attribute__((nothrow)) __attribute__((stdcall))">delegate* unmanaged[Stdcall]&lt;ISlangWriter*, WriterMode, int&gt;</type>
+          <type native="SlangResult (SlangWriterMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>
