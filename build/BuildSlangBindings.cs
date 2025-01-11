@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using ClangSharp;
 using ClangSharp.Interop;
+using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Serilog;
@@ -141,8 +141,7 @@ public class BuildSlangBindings
         
         if (isSkipping) return null;
 
-        var translationUnit = TranslationUnit.GetOrCreate(handle);
-        Debug.Assert(translationUnit is not null);
+        var translationUnit = TranslationUnit.GetOrCreate(handle).NotNull();
 
         return translationUnit;
     }
@@ -162,7 +161,7 @@ public class BuildSlangBindings
         var rootCursor = translationUnit.TranslationUnitDecl;
         var externCur = FindFirstChildOfKind(rootCursor, CXCursorKind.CXCursor_LinkageSpec);
 
-        Debug.Assert(externCur is not null);
+        externCur.NotNull();
 
         var foundEnums = FindAllChildrenOfKind(externCur, CXCursorKind.CXCursor_EnumDecl)
                          .Cast<EnumDecl>()
