@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using ClangSharp;
 using JetBrains.Annotations;
 using Nuke.Common.IO;
@@ -39,6 +40,8 @@ internal record struct BuildConfig()
         "SLANG_PLATFORM",
         "SLANG_WIN64"
     ];
+
+    public IReadOnlyCollection<string> TraversalNames { get; init; }
 
     public string[] Excludes { get; } =
     [
@@ -170,6 +173,7 @@ internal record struct BuildConfig()
             WithTypes = WithTypes,
             WithNamespaces = WithNamespace,
             RemappedNames = Remap,
+            TraversalNames = TraversalNames
         };
     }
 };

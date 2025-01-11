@@ -33,10 +33,12 @@ class Build : NukeBuild
     readonly AbsolutePath TestsOutputDir = RootDirectory / "SlangNet.Tests" / "SlangNet.Tests.Shared" / "Generated";
     readonly AbsolutePath SlangRepoPath = RootDirectory / "slang";
     readonly AbsolutePath SlangHeaderPath;
+    readonly AbsolutePath SlangDeprHeaderPath;
 
     public Build()
     {
         SlangHeaderPath = SlangRepoPath / "include" / "slang.h";
+        SlangDeprHeaderPath = SlangRepoPath / "include" / "slang-deprecated.h";
     }
 
     Target Clean =>
@@ -66,7 +68,8 @@ class Build : NukeBuild
 
                  var config = new BuildConfig
                  {
-                     GeneratedTestsDir = TestsOutputDir
+                     GeneratedTestsDir = TestsOutputDir,
+                     TraversalNames = [SlangHeaderPath, SlangDeprHeaderPath]
                  };
 
                  if (!IsWin) config.Options |= GenerateUnixTypes;
@@ -133,11 +136,11 @@ class Build : NukeBuild
 
         if (translationUnitError != CXErrorCode.CXError_Success)
         {
-            Log.Error("Parsing failed for '{FilePath}' due to '{TranslationUnitError}'", filePath,
-                      translationUnitError);
+            Log.Error("Parsing failed for '{FilePath}' due to '{TranslationUnitError}'", filePath, translationUnitError);
             return null;
         }
 
+        var isSkipping = false;
         if (handle.NumDiagnostics != 0)
         {
             Log.Information("Diagnostics for '{FilePath}':", filePath);
@@ -161,9 +164,11 @@ class Build : NukeBuild
                 Log.Write(level, "#{Index} : {Diagnostic}", i, diagStr);
 
                 if (diagnostic.Severity is CXDiagnosticSeverity.CXDiagnostic_Error
-                    or CXDiagnosticSeverity.CXDiagnostic_Warning) return null;
+                    or CXDiagnosticSeverity.CXDiagnostic_Warning) isSkipping = true;
             }
         }
+        
+        if (isSkipping) return null;
 
         var translationUnit = TranslationUnit.GetOrCreate(handle);
         Debug.Assert(translationUnit is not null);
