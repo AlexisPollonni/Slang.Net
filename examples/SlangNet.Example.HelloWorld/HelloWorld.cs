@@ -1,5 +1,6 @@
 ﻿using Veldrid;
 using SlangNet;
+using SlangNet.Bindings.Generated;
 
 namespace SlangNet.Example.HelloWorld.Unsafe;
 
@@ -56,7 +57,7 @@ internal unsafe class HelloWorldUnsafe
             {
                 new()
                 {
-                    Format = CompileTarget.SPIRV,
+                    Format = CompileTarget.Spirv,
                     Flags = TargetFlags.GenerateSPIRVDirectly,
                     Profile = globalSession.FindProfile("glsl440"u8)
                 }

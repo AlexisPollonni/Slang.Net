@@ -1,7 +1,8 @@
 ﻿using Veldrid;
-using SlangNet.Unsafe;
-using static SlangNet.Unsafe.Slang;
+
 using System.Runtime.InteropServices;
+using SlangNet.Bindings.Generated;
+using static SlangNet.Bindings.Generated.Slang;
 
 namespace SlangNet.Example.HelloWorld.Unsafe;
 
@@ -75,20 +76,20 @@ internal unsafe class HelloWorldUnsafe
             ThrowOnFail(slang_createGlobalSession(SLANG_API_VERSION, &globalSession));
 
             // Next a session to generate SPIRV code is created
-            SlangProfileID profile;
+            ProfileID profile;
             fixed (byte* profileName = "glsl440"u8)
                 profile = globalSession->findProfile((sbyte*)profileName);
             TargetDesc targetDesc = new()
             {
                 structureSize = (nuint)sizeof(TargetDesc),
-                format = SlangCompileTarget.SLANG_SPIRV,
+                format = CompileTarget.Spirv,
                 profile = profile,
                 flags = SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY
             };
             SessionDesc sessionDesc = new()
             {
                 structureSize = (nuint)sizeof(SessionDesc),
-                defaultMatrixLayoutMode = SlangMatrixLayoutMode.SLANG_MATRIX_LAYOUT_ROW_MAJOR,
+                defaultMatrixLayoutMode = MatrixLayoutMode.RowMajor,
                 targetCount = 1,
                 targets = &targetDesc
             };
