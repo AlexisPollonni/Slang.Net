@@ -2,12 +2,13 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using SlangNet.Enums;
 using SlangNet.Internal;
 
 namespace SlangNet;
 
 [GenerateThrowingMethods]
-public unsafe sealed partial class CompileRequest : COMObject<ICompileRequest>
+public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
 {
     internal CompileRequest(ICompileRequest* pointer) : base(pointer)
     {
@@ -44,50 +45,50 @@ public unsafe sealed partial class CompileRequest : COMObject<ICompileRequest>
 
     public LineDirectiveMode LineDirectiveMode
     {
-        set => Pointer->setLineDirectiveMode((SlangLineDirectiveMode)value);
+        set => Pointer->setLineDirectiveMode(value);
     }
 
     public void SetCodeGenTarget(CompileTarget target) =>
-        Pointer->setCodeGenTarget((SlangCompileTarget)target);
+        Pointer->setCodeGenTarget(target);
 
     public void AddCodeGenTarget(CompileTarget target) =>
-        Pointer->addCodeGenTarget((SlangCompileTarget)target);
+        Pointer->addCodeGenTarget(target);
 
     public void SetTargetProfile(int targetIndex, ProfileID profile) =>
-        Pointer->setTargetProfile(targetIndex, (SlangProfileID)profile);
+        Pointer->setTargetProfile(targetIndex, profile);
 
     public void SetTargetFlags(int targetIndex, TargetFlags flags) =>
         Pointer->setTargetFlags(targetIndex, (uint)flags);
 
     public void SetTargetFloatingPointMode(int targetIndex, FloatingPointMode mode) =>
-        Pointer->setTargetFloatingPointMode(targetIndex, (SlangFloatingPointMode)mode);
+        Pointer->setTargetFloatingPointMode(targetIndex, mode);
 
     public void SetTargetMatrixLayoutMode(int targetIndex, MatrixLayoutMode mode) =>
-        Pointer->setTargetMatrixLayoutMode(targetIndex, (SlangMatrixLayoutMode)mode);
+        Pointer->setTargetMatrixLayoutMode(targetIndex, mode);
 
     public MatrixLayoutMode MatrixLayoutMode
     {
-        set => Pointer->setMatrixLayoutMode((SlangMatrixLayoutMode)value);
+        set => Pointer->setMatrixLayoutMode(value);
     }
 
     public DebugInfoLevel DebugInfoLevel
     {
-        set => Pointer->setDebugInfoLevel((SlangDebugInfoLevel)value);
+        set => Pointer->setDebugInfoLevel(value);
     }
 
     public OptimizationLevel OptimizationLevel
     {
-        set => Pointer->setOptimizationLevel((SlangOptimizationLevel)value);
+        set => Pointer->setOptimizationLevel(value);
     }
 
     public ContainerFormat OutputContainerFormat
     {
-        set => Pointer->setOutputContainerFormat((SlangContainerFormat)value);
+        set => Pointer->setOutputContainerFormat(value);
     }
 
     public PassThrough PassThrough
     {
-        set => Pointer->setPassThrough((SlangPassThrough)value);
+        set => Pointer->setPassThrough(value);
     }
 
     //DiagnosticCallback
@@ -134,10 +135,11 @@ public unsafe sealed partial class CompileRequest : COMObject<ICompileRequest>
         }
     }
 
-    public SlangResult TryAddLibraryReference(ReadOnlySpan<byte> libData)
+    public SlangResult TryAddLibraryReference(string basePath, ReadOnlySpan<byte> libData)
     {
+        using var basePathStr = new Utf8String(basePath);
         fixed (byte* libDataPtr = libData)
-            return new(Pointer->addLibraryReference(libDataPtr, new((uint)libData.Length)));
+            return new(Pointer->addLibraryReference(basePathStr.Memory, libDataPtr, new((uint)libData.Length)));
     }
 
     public SlangResult TrySetGlobalGenericArgs(IEnumerable<string> genericArgs)
@@ -199,7 +201,7 @@ public unsafe sealed partial class CompileRequest : COMObject<ICompileRequest>
         UIntPtr size = default;
         var ptr = Pointer->getEntryPointCode(index, &size);
         if (ptr == null)
-            throw new NullReferenceException($"CompileRequest::getEntryPointCode returned a null pointer");
+            throw new NullReferenceException("CompileRequest::getEntryPointCode returned a null pointer");
         return new ReadOnlySpan<byte>(ptr, checked((int)size.ToUInt64()));
     }
 
@@ -229,7 +231,7 @@ public unsafe sealed partial class CompileRequest : COMObject<ICompileRequest>
             UIntPtr size = default;
             var ptr = Pointer->getCompileRequestCode(&size);
             if (ptr == null)
-                throw new NullReferenceException($"CompileRequest::getCompileRequestCode returned a null pointer");
+                throw new NullReferenceException("CompileRequest::getCompileRequestCode returned a null pointer");
             return new ReadOnlySpan<byte>(ptr, checked((int)size.ToUInt64()));
         }
     }
@@ -283,7 +285,7 @@ public unsafe sealed partial class CompileRequest : COMObject<ICompileRequest>
     public void SetCommandLineCompilerMode() =>
         Pointer->setCommandLineCompilerMode();
 
-    public SlangResult TryAddTargetCapability(long targetIndex, SlangCapabilityID capability) =>
+    public SlangResult TryAddTargetCapability(long targetIndex, CapabilityID capability) =>
         new(Pointer->addTargetCapability(targetIndex, capability));
 
     public SlangResult TryGetProgramWithEntryPoints([NotNullWhen(true)] out ComponentType? program)
@@ -297,7 +299,7 @@ public unsafe sealed partial class CompileRequest : COMObject<ICompileRequest>
     public SlangResult TryIsParameterLocationUsed(
         long entryPointIndex,
         long targetIndex,
-        SlangParameterCategory category,
+        ParameterCategory category,
         ulong spaceIndex,
         ulong registerIndex,
         out bool used)
@@ -307,13 +309,13 @@ public unsafe sealed partial class CompileRequest : COMObject<ICompileRequest>
     }
 
     public void SetTargetLineDirectiveMode(long targetIndex, LineDirectiveMode mode) =>
-        Pointer->setTargetLineDirectiveMode(targetIndex, (SlangLineDirectiveMode)mode);
+        Pointer->setTargetLineDirectiveMode(targetIndex, mode);
 
     public void SetTargetForceGLSLScalarBufferLayout(int targetIndex, bool forceScalarLayout) =>
         Pointer->setTargetForceGLSLScalarBufferLayout(targetIndex, forceScalarLayout ? (byte)1 : (byte)0);
 
     public void OverrideDiagnosticSeverity(long messageID, Severity overrideSeverity) =>
-        Pointer->overrideDiagnosticSeverity(messageID, (SlangSeverity)overrideSeverity);
+        Pointer->overrideDiagnosticSeverity(messageID, overrideSeverity);
 
     public DiagnosticFlags DiagnosticFlags
     {
@@ -323,7 +325,7 @@ public unsafe sealed partial class CompileRequest : COMObject<ICompileRequest>
 
     public DebugInfoFormat DebugInfoFormat
     {
-        set => Pointer->setDebugInfoFormat((SlangDebugInfoFormat)value);
+        set => Pointer->setDebugInfoFormat(value);
     }
 
     public bool EnableEffectAnnotations

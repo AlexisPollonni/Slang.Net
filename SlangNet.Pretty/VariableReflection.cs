@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
-public unsafe readonly struct VariableReflection : IEquatable<VariableReflection>
+public readonly unsafe struct VariableReflection : IEquatable<VariableReflection>
 {
     private readonly Unsafe.VariableReflection* pointer;
     public Unsafe.VariableReflection* Pointer
@@ -37,7 +36,7 @@ public unsafe readonly struct VariableReflection : IEquatable<VariableReflection
     }
 
     public bool Equals(VariableReflection other) => pointer == other.pointer;
-    public override bool Equals(object obj) => obj is VariableReflection other && Equals(other);
+    public override bool Equals(object? obj) => obj is VariableReflection other && Equals(other);
     public static bool operator ==(VariableReflection a, VariableReflection b) => a.pointer == b.pointer;
     public static bool operator !=(VariableReflection a, VariableReflection b) => a.pointer != b.pointer;
     public override int GetHashCode() => new IntPtr(pointer).GetHashCode();
@@ -58,7 +57,7 @@ public unsafe readonly struct VariableReflection : IEquatable<VariableReflection
     // in the future we can still add it properly, for now a HasModifier is sufficient
 
     public bool HasModifier(ModifierID modifierID) =>
-        ReflectionVariable_FindModifier(InternalPointer, (SlangModifierID)modifierID) != null;
+        ReflectionVariable_FindModifier(InternalPointer, modifierID) != null;
 
     public IReadOnlyList<UserAttribute> UserAttributes { get; }
 

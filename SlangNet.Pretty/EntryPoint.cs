@@ -1,8 +1,6 @@
-﻿using System;
+﻿namespace SlangNet;
 
-namespace SlangNet;
-
-public unsafe sealed class EntryPoint : ComponentType
+public sealed unsafe class EntryPoint : ComponentType
 {
     public new IEntryPoint* Pointer => (IEntryPoint*)base.Pointer;
 

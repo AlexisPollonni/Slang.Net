@@ -1,5 +1,4 @@
 ﻿using System;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
@@ -31,13 +30,13 @@ unsafe partial struct TypeLayoutReflection
         }
 
         public bool Equals(BindingRange other) => pointer == other.pointer && Index == other.Index;
-        public override bool Equals(object obj) => obj is BindingRange other && Equals(other);
+        public override bool Equals(object? obj) => obj is BindingRange other && Equals(other);
         public static bool operator ==(BindingRange a, BindingRange b) => a.Equals(b);
         public static bool operator !=(BindingRange a, BindingRange b) => !a.Equals(b);
         public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), Index);
 
         public BindingType BindingRangeType =>
-            (BindingType)ReflectionTypeLayout_getBindingRangeType(Pointer, Index);
+            ReflectionTypeLayout_getBindingRangeType(Pointer, Index);
 
         public long BindingCount =>
             ReflectionTypeLayout_getBindingRangeBindingCount(Pointer, Index);

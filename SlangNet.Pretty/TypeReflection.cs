@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
-public unsafe readonly partial struct TypeReflection : IEquatable<TypeReflection>
+public readonly unsafe struct TypeReflection : IEquatable<TypeReflection>
 {
     private readonly Unsafe.TypeReflection* pointer;
     public Unsafe.TypeReflection* Pointer
@@ -50,12 +48,12 @@ public unsafe readonly partial struct TypeReflection : IEquatable<TypeReflection
     }
 
     public bool Equals(TypeReflection other) => pointer == other.pointer;
-    public override bool Equals(object obj) => obj is TypeReflection other && Equals(other);
+    public override bool Equals(object? obj) => obj is TypeReflection other && Equals(other);
     public static bool operator == (TypeReflection a, TypeReflection b) => a.pointer == b.pointer;
     public static bool operator != (TypeReflection a, TypeReflection b) => a.pointer != b.pointer;
     public override int GetHashCode() => new IntPtr(pointer).GetHashCode();
 
-    public TypeKind Kind => (TypeKind)ReflectionType_GetKind(InternalPointer);
+    public TypeKind Kind => ReflectionType_GetKind(InternalPointer);
     public IReadOnlyList<UserAttribute> UserAttributes { get; }
     public IReadOnlyList<VariableReflection> Fields { get; }
 
@@ -115,9 +113,9 @@ public unsafe readonly partial struct TypeReflection : IEquatable<TypeReflection
 
     public uint RowCount => ReflectionType_GetRowCount(InternalPointer);
     public uint ColumnCount => ReflectionType_GetColumnCount(InternalPointer);
-    public ScalarType ScalarType => (ScalarType)ReflectionType_GetScalarType(InternalPointer);
-    public ResourceAccess ResourceAccess => (ResourceAccess)ReflectionType_GetResourceAccess(InternalPointer);
-    public ResourceShape ResourceShape => (ResourceShape)ReflectionType_GetResourceShape(InternalPointer);
+    public ScalarType ScalarType => ReflectionType_GetScalarType(InternalPointer);
+    public ResourceAccess ResourceAccess => ReflectionType_GetResourceAccess(InternalPointer);
+    public ResourceShape ResourceShape => ReflectionType_GetResourceShape(InternalPointer);
     
     public TypeReflection? ResourceResultType
     {

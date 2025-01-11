@@ -17,30 +17,33 @@ public class COMObject<T> : IDisposable, IEquatable<COMObject<T>> where T : unma
             return pointer;
         }
     }
+
     public bool IsDisposed => disposedValue;
 
     protected internal unsafe COMObject(T* pointer)
     {
         this.pointer = pointer;
-        if (pointer == null)
-            throw new NullReferenceException("Slang operation returned a null object");
+        if (pointer == null) throw new NullReferenceException("Slang operation returned a null object");
     }
 
-    public unsafe bool Equals(COMObject<T> other) => other == null!
-        ? pointer == null
-        : other.pointer == pointer;
+    public unsafe bool Equals(COMObject<T>? other) =>
+        other is null ? pointer == null : other.pointer == pointer;
 
-    public override bool Equals(object obj) => obj is COMObject<T> other && Equals(other);
-    public static bool operator ==(COMObject<T> a, COMObject<T> b) => a == null! || b == null!
-        ? ReferenceEquals(a, b)
-        : a.Equals(b);
-    public static bool operator !=(COMObject<T> a, COMObject<T> b) => !(a == b);
-    public unsafe override int GetHashCode() => new IntPtr(pointer).GetHashCode();
+    public override bool Equals(object? obj) =>
+        obj is COMObject<T> other && Equals(other);
+
+    public static bool operator ==(COMObject<T> a, COMObject<T> b) =>
+        a == null! || b == null! ? ReferenceEquals(a, b) : a.Equals(b);
+
+    public static bool operator !=(COMObject<T> a, COMObject<T> b) =>
+        !(a == b);
+
+    public override unsafe int GetHashCode() =>
+        new IntPtr(pointer).GetHashCode();
 
     protected internal void ThrowIfDisposed()
     {
-        if (IsDisposed)
-            throw new ObjectDisposedException(GetType().Name);
+        if (IsDisposed) throw new ObjectDisposedException(GetType().Name);
     }
 
     private unsafe void Dispose(bool disposing)
@@ -52,6 +55,7 @@ public class COMObject<T> : IDisposable, IEquatable<COMObject<T>> where T : unma
                 ((ISlangUnknown*)pointer)->release();
                 pointer = null;
             }
+
             disposedValue = true;
         }
     }

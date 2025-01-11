@@ -19,7 +19,7 @@ internal unsafe struct NativeSessionDescription : IDisposable
     }
 }
 
-public unsafe sealed class SessionDescription
+public sealed unsafe class SessionDescription
 {
     public IList<TargetDescription> Targets { get; } = new List<TargetDescription>();
     public SessionFlags Flags { get; set; }
@@ -29,16 +29,16 @@ public unsafe sealed class SessionDescription
     //public ISlangFileSystem? FileSystem { get; set; }
     public bool EnableEffectAnnotations { get; set; }
 
-    internal unsafe NativeSessionDescription AsNative()
+    internal NativeSessionDescription AsNative()
     {
-        var desc = new NativeSessionDescription()
+        var desc = new NativeSessionDescription
         {
             Native = new()
             {
                 structureSize = new((uint)sizeof(SessionDesc)),
                 targetCount = Targets.Count,
                 flags = (uint)Flags,
-                defaultMatrixLayoutMode = (SlangMatrixLayoutMode)DefaultMatrixLayoutMode,
+                defaultMatrixLayoutMode = DefaultMatrixLayoutMode,
                 searchPathCount = SearchPaths.Count,
                 preprocessorMacroCount = PreprocessorMacros.Count,
                 fileSystem = null,

@@ -1,8 +1,6 @@
-using System;
-
 namespace SlangNet;
 
-public unsafe sealed class TypeConformance : ComponentType
+public sealed unsafe class TypeConformance : ComponentType
 {
     public new ITypeConformance* Pointer => (ITypeConformance*)base.Pointer;
 

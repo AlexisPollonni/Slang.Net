@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
-public unsafe readonly struct UserAttribute : IEquatable<UserAttribute>
+public readonly unsafe struct UserAttribute : IEquatable<UserAttribute>
 {
-    private readonly Unsafe.UserAttribute* pointer;
-    public Unsafe.UserAttribute* Pointer
+    private readonly SlangReflectionUserAttribute* pointer;
+    public SlangReflectionUserAttribute* Pointer
     {
         get
         {
@@ -16,10 +15,9 @@ public unsafe readonly struct UserAttribute : IEquatable<UserAttribute>
             return pointer;
         }
     }
-    internal SlangReflectionUserAttribute* InternalPointer => (SlangReflectionUserAttribute*)Pointer;
-
-    internal UserAttribute(SlangReflectionUserAttribute* pointer) : this((Unsafe.UserAttribute*)pointer) { }
-    internal UserAttribute(Unsafe.UserAttribute* pointer)
+    internal SlangReflectionUserAttribute* InternalPointer => Pointer;
+    
+    internal UserAttribute(SlangReflectionUserAttribute* pointer)
     {
         this.pointer = pointer;
         Arguments = new NativeBoundedReadOnlyList<SlangReflectionUserAttribute, UserAttributeArgument>
@@ -37,7 +35,7 @@ public unsafe readonly struct UserAttribute : IEquatable<UserAttribute>
     }
 
     public bool Equals(UserAttribute other) => pointer == other.pointer;
-    public override bool Equals(object obj) => obj is UserAttribute other && Equals(other);
+    public override bool Equals(object? obj) => obj is UserAttribute other && Equals(other);
     public static bool operator ==(UserAttribute a, UserAttribute b) => a.pointer == b.pointer;
     public static bool operator !=(UserAttribute a, UserAttribute b) => a.pointer != b.pointer;
     public override int GetHashCode() => new IntPtr(pointer).GetHashCode();
@@ -60,7 +58,7 @@ public unsafe readonly struct UserAttribute : IEquatable<UserAttribute>
 }
 
 [GenerateThrowingMethods]
-public unsafe readonly partial struct UserAttributeArgument : IEquatable<UserAttributeArgument>
+public readonly unsafe partial struct UserAttributeArgument : IEquatable<UserAttributeArgument>
 {
     internal SlangReflectionUserAttribute* InternalPointer { get; init; }
     public uint Index { get; internal init; }

@@ -113,11 +113,12 @@ internal record struct BuildConfig()
         "SLANG_IID_PPV_ARGS",
 
         // Exclude redefined enums in TypeReflection struct
-        "Kind",
-        "ScalarType",
-        "ParameterCategory",
-        "BindingType",
-        "LayoutRules",
+        "slang::TypeReflection::Kind",
+        "slang::TypeReflection::ScalarType",
+        "slang::DeclReflection::Kind",
+        "slang::ParameterCategory",
+        "slang::BindingType",
+        "slang::LayoutRules",
     ];
 
     public StrDictionary WithTypes = new()
@@ -143,6 +144,9 @@ internal record struct BuildConfig()
         { "specializeType", "spspecializeType" },
         { "Attribute", "SlangAttribute" }, // Resolves name conflict with dotnet Attribute type
         { "Kind", "TypeKind" }, // Use generated trimmed name
+        
+        {"SlangMatrixLayoutMode::SLANG_MATRIX_LAYOUT_ROW_MAJOR", "RowMajor"},
+        {"SlangMatrixLayoutMode::SLANG_MATRIX_LAYOUT_COLUMN_MAJOR", "ColumnMajor"},
     };
 
     public string[] ClangCmdArgs =>

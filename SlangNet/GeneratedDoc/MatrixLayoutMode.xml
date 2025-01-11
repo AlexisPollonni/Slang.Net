@@ -9,10 +9,10 @@
           <code>0</code>
         </value>
       </enumerator>
-      <enumerator name="MatrixLayoutRowMajor" access="public">
+      <enumerator name="RowMajor" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="MatrixLayoutColumnMajor" access="public">
+      <enumerator name="ColumnMajor" access="public">
         <type primitive="False">uint</type>
       </enumerator>
     </enumeration>

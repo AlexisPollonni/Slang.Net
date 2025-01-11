@@ -7,7 +7,7 @@ namespace SlangNet;
 // for lists of opaque objects returned as pair of
 //   X_getCount
 //   Element* getAt
-internal unsafe readonly struct NativeBoundedReadOnlyList<TContainer, TElement> : IReadOnlyList<TElement>
+internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TElement> : IReadOnlyList<TElement>
     where TContainer : unmanaged
 {
     public TContainer* Container { get; init; }
@@ -36,7 +36,7 @@ internal unsafe readonly struct NativeBoundedReadOnlyList<TContainer, TElement> 
 }
 
 // and there is one two-dimensional list (TypeLayoutReflection.DescriptorSetDescriptorRange)
-internal unsafe readonly struct NativeBoundedReadOnlyList<TContainer, TArgument, TElement> : IReadOnlyList<TElement>
+internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TArgument, TElement> : IReadOnlyList<TElement>
     where TContainer : unmanaged
 {
     public TContainer* Container { get; init; }

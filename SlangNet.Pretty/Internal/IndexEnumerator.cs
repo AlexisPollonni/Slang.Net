@@ -8,7 +8,7 @@ internal class IndexEnumerator<T> : IEnumerator<T>
 {
     private readonly IReadOnlyList<T> list;
     private readonly int count; // we cache to save native calls
-    private T? current = default(T?);
+    private T? current;
     private int index = -1;
 
     public IndexEnumerator(IReadOnlyList<T> list)

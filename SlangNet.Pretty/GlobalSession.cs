@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
-using static SlangNet.Unsafe.Slang;
-using static SlangNet.InteropUtils;
 using System.Buffers;
+using System.Diagnostics.CodeAnalysis;
+using SlangNet.Internal;
+using static SlangNet.InteropUtils;
 
 namespace SlangNet;
 
 [GenerateThrowingMethods]
-public unsafe sealed partial class GlobalSession : Internal.COMObject<IGlobalSession>
+public sealed unsafe partial class GlobalSession : COMObject<IGlobalSession>
 {
     internal GlobalSession(IGlobalSession* pointer) : base(pointer) { }
 
@@ -24,10 +23,10 @@ public unsafe sealed partial class GlobalSession : Internal.COMObject<IGlobalSes
     }
 
     public SlangResult CheckCompileTargetSupport(CompileTarget target) =>
-        new(Pointer->checkCompileTargetSupport((SlangCompileTarget)target));
+        new(Pointer->checkCompileTargetSupport(target));
 
     public SlangResult CheckPassThroughSupport(PassThrough passThrough) =>
-        new(Pointer->checkPassThroughSupport((SlangPassThrough)passThrough));
+        new(Pointer->checkPassThroughSupport(passThrough));
 
     public void AddBuiltins(ReadOnlySpan<byte> sourcePath, ReadOnlySpan<byte> sourceString)
     {
@@ -46,25 +45,25 @@ public unsafe sealed partial class GlobalSession : Internal.COMObject<IGlobalSes
     public ProfileID FindProfile(ReadOnlySpan<byte> name)
     {
         fixed (byte* namePtr = name)
-            return (ProfileID)Pointer->findProfile((sbyte*)namePtr);
+            return Pointer->findProfile((sbyte*)namePtr);
     }
 
     public ProfileID FindProfile(string name)
     {
         using var nameStr = new Utf8String(name);
-        return (ProfileID)Pointer->findProfile(nameStr);
+        return Pointer->findProfile(nameStr);
     }
 
     public CapabilityID FindCapability(ReadOnlySpan<byte> name)
     {
         fixed (byte* namePtr = name)
-            return (CapabilityID)Pointer->findCapability((sbyte*)namePtr);
+            return Pointer->findCapability((sbyte*)namePtr);
     }
 
     public CapabilityID FindCapability(string name)
     {
         using var nameStr = new Utf8String(name);
-        return (CapabilityID)Pointer->findCapability(nameStr);
+        return Pointer->findCapability(nameStr);
     }
 
     public void GetCompilerElapsedTime(out double totalTime, out double downstreamTime)
@@ -77,64 +76,64 @@ public unsafe sealed partial class GlobalSession : Internal.COMObject<IGlobalSes
     public void SetDownstreamCompilerPath(PassThrough passThrough, string path)
     {
         using var pathStr = new Utf8String(path);
-        Pointer->setDownstreamCompilerPath((SlangPassThrough)passThrough, pathStr);
+        Pointer->setDownstreamCompilerPath(passThrough, pathStr);
     }
 
     public void SetDownstreamCompilerPath(PassThrough passThrough, ReadOnlySpan<byte> path)
     {
         fixed (byte* pathPtr = path)
-            Pointer->setDownstreamCompilerPath((SlangPassThrough)passThrough, (sbyte*)pathPtr);
+            Pointer->setDownstreamCompilerPath(passThrough, (sbyte*)pathPtr);
     }
 
     public PassThrough GetDefaultDownstreamCompiler(SourceLanguage sourceLanguage) =>
-        (PassThrough)Pointer->getDefaultDownstreamCompiler((SlangSourceLanguage)sourceLanguage);
+        Pointer->getDefaultDownstreamCompiler(sourceLanguage);
 
     public SlangResult TrySetDefaultDownstreamCompiler(SourceLanguage sourceLanguage, PassThrough defaultCompiler) =>
-        new(Pointer->setDefaultDownstreamCompiler((SlangSourceLanguage)sourceLanguage, (SlangPassThrough)defaultCompiler));
+        new(Pointer->setDefaultDownstreamCompiler(sourceLanguage, defaultCompiler));
 
     public PassThrough GetDownstreamCompilerForTransition(CompileTarget source, CompileTarget target) =>
-        (PassThrough)Pointer->getDownstreamCompilerForTransition((SlangCompileTarget)source, (SlangCompileTarget)target);
+        Pointer->getDownstreamCompilerForTransition(source, target);
 
     public void SetDownstreamCompilerForTransition(CompileTarget source, CompileTarget target, PassThrough compiler) =>
-        Pointer->setDownstreamCompilerForTransition((SlangCompileTarget)source, (SlangCompileTarget)target, (SlangPassThrough)compiler);
+        Pointer->setDownstreamCompilerForTransition(source, target, compiler);
 
     public string? GetLanguagePrelude(SourceLanguage sourceLanguage)
     {
         using var preludeBlob = new COMPointer<ISlangBlob>();
-        Pointer->getLanguagePrelude((SlangSourceLanguage)sourceLanguage, &preludeBlob.Pointer);
+        Pointer->getLanguagePrelude(sourceLanguage, &preludeBlob.Pointer);
         return preludeBlob.AsString();
     }
 
     public void SetLanguagePrelude(SourceLanguage sourceLanguage, string? prelude)
     {
         using var preludeStr = new Utf8String(prelude);
-        Pointer->setLanguagePrelude((SlangSourceLanguage)sourceLanguage, preludeStr.Memory);
+        Pointer->setLanguagePrelude(sourceLanguage, preludeStr.Memory);
     }
 
     public void SetLanguagePrelude(SourceLanguage sourceLanguage, ReadOnlySpan<byte> prelude)
     {
         fixed (byte* preludePtr = prelude)
-            Pointer->setLanguagePrelude((SlangSourceLanguage)sourceLanguage, (sbyte*)preludePtr);
+            Pointer->setLanguagePrelude(sourceLanguage, (sbyte*)preludePtr);
     }
 
     public string? BuildTagString => PtrToStringUTF8(Pointer->getBuildTagString());
 
-    public SlangResult TryCompileStdLib(CompileStdLibFlags flags) =>
-        new(Pointer->compileStdLib((uint)flags));
+    public SlangResult TryCompileCoreModule(CompileCoreModuleFlag.Enum flags) =>
+        new(Pointer->compileCoreModule((uint)flags));
 
-    public SlangResult TryLoadStdLib(ReadOnlySpan<byte> stdLib)
+    public SlangResult TryLoadCoreModule(ReadOnlySpan<byte> coreModule)
     {
-        fixed (byte* stdLibPtr = stdLib)
-            return new(Pointer->loadStdLib(stdLibPtr, new((uint)stdLib.Length)));
+        fixed (byte* coreModulePtr = coreModule)
+            return new(Pointer->loadCoreModule(coreModulePtr, new((uint)coreModule.Length)));
     }
 
-    public SlangResult TrySaveStdLib(ArchiveType archiveType, [NotNullWhen(true)] out IMemoryOwner<byte>? stdlib)
+    public SlangResult TrySaveCoreModule(ArchiveType archiveType, [NotNullWhen(true)] out IMemoryOwner<byte>? coreModule)
     {
-        stdlib = null;
+        coreModule = null;
         ISlangBlob* blob;
-        var result = Pointer->saveStdLib((SlangArchiveType)archiveType, &blob);
+        var result = Pointer->saveCoreModule(archiveType, &blob);
         if (blob != null)
-            stdlib = new BlobMemoryManager(blob);
+            coreModule = new BlobMemoryManager(blob);
         return new(result);
     }
 
@@ -170,9 +169,8 @@ public unsafe sealed partial class GlobalSession : Internal.COMObject<IGlobalSes
     
     public SlangResult TryCreateCompileRequest([NotNullWhen(true)] out CompileRequest? request)
     {
-        ICompileRequest* requestPtr = null;
-        var result = Pointer->createCompileRequest(&requestPtr);
+        var requestPtr = Slang.CreateCompileRequest(Pointer);
         request = requestPtr == null ? null : new(requestPtr);
-        return new(result);
+        return request is null ? SlangResult.Fail : SlangResult.Ok;
     }
 }

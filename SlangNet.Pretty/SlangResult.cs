@@ -3,19 +3,19 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Text;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
 [StructLayout(LayoutKind.Sequential, Pack = 4, Size = sizeof(int))]
 public readonly record struct SlangResult(int RawValue)
 {
-    public const ushort FacilityWinGeneral = 0;
-    public const ushort FacilityWinInterface = 4;
-    public const ushort FacilityWinAPI = 7;
-    public const ushort FacilityCore = 0x200;
-    public const ushort FacilityInternal = 0x201;
-    public const ushort FacilityExternalBase = 0x210;
+    public const ushort FacilityWinGeneral = SLANG_FACILITY_WIN_GENERAL;
+    public const ushort FacilityWinInterface = SLANG_FACILITY_WIN_INTERFACE;
+    public const ushort FacilityWinAPI = SLANG_FACILITY_WIN_API;
+    public const ushort FacilityBase = SLANG_FACILITY_BASE;
+    public const ushort FacilityCore = SLANG_FACILITY_CORE;
+    public const ushort FacilityInternal = SLANG_FACILITY_INTERNAL;
+    public const ushort FacilityExternalBase = SLANG_FACILITY_EXTERNAL_BASE;
 
     /// <summary>indicates success, and is equivalent to default</summary>
     public static readonly SlangResult Ok = new(SLANG_OK);
@@ -70,7 +70,7 @@ public readonly record struct SlangResult(int RawValue)
     public override string ToString()
     {
         if (this == Ok) return nameof(Ok);
-        else if (Facility < FacilityCore)
+        if (Facility < FacilityCore)
         {
             var winException = Marshal.GetExceptionForHR(RawValue);
             if (winException != null)

@@ -84,7 +84,7 @@ public unsafe partial class ComponentType : COMObject<IComponentType>
         foreach (var specArg in specializationArgs)
         {
             specArg.ThrowIfNull();
-            argsArray[i].kind = SpecializationArg.Kind.Type;
+            argsArray[i].kind = SpecializationArg.TypeKind.Type;
             argsArray[i].type = specArg.Pointer;
         }
 

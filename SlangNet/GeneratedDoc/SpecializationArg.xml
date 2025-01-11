@@ -14,6 +14,15 @@
           <code>return ref Anonymous.type;</code>
         </get>
       </field>
+      <enumeration name="TypeKind" access="public">
+        <type>int</type>
+        <enumerator name="Unknown" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="Type" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+      </enumeration>
       <struct name="_Anonymous_e__Union" access="public" unsafe="true" layout="Explicit">
         <field name="type" access="public" offset="0">
           <type native="slang::TypeReflection *">TypeReflection*</type>

@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
-public unsafe readonly struct EntryPointReflection : IEquatable<EntryPointReflection>
+public readonly unsafe struct EntryPointReflection : IEquatable<EntryPointReflection>
 {
     private readonly Unsafe.EntryPointReflection* pointer;
     public Unsafe.EntryPointReflection* Pointer
@@ -36,18 +35,18 @@ public unsafe readonly struct EntryPointReflection : IEquatable<EntryPointReflec
     }
 
     public bool Equals(EntryPointReflection other) => pointer == other.pointer;
-    public override bool Equals(object obj) => obj is EntryPointReflection other && Equals(other);
+    public override bool Equals(object? obj) => obj is EntryPointReflection other && Equals(other);
     public static bool operator ==(EntryPointReflection a, EntryPointReflection b) => a.pointer == b.pointer;
     public static bool operator !=(EntryPointReflection a, EntryPointReflection b) => a.pointer != b.pointer;
     public override int GetHashCode() => new IntPtr(pointer).GetHashCode();
 
     public string Name =>
         InteropUtils.PtrToStringUTF8(ReflectionEntryPoint_getName(InternalPointer)) ??
-        throw new NullReferenceException($"ReflectionEntryPoint_getName returned a null pointer");
+        throw new NullReferenceException("ReflectionEntryPoint_getName returned a null pointer");
 
     public string OverrideName =>
         InteropUtils.PtrToStringUTF8(ReflectionEntryPoint_getNameOverride(InternalPointer)) ??
-        throw new NullReferenceException($"ReflectionEntryPoint_getOverrideName returned a null pointer");
+        throw new NullReferenceException("ReflectionEntryPoint_getOverrideName returned a null pointer");
 
     private static long GetParameterCount(SlangEntryPointLayout* entryPoint) =>
         ReflectionEntryPoint_getParameterCount(entryPoint);
@@ -62,7 +61,7 @@ public unsafe readonly struct EntryPointReflection : IEquatable<EntryPointReflec
     public IReadOnlyList<VariableLayoutReflection> Parameters { get; }
 
     public Stage Stage =>
-        (Stage)ReflectionEntryPoint_getStage(InternalPointer);
+        ReflectionEntryPoint_getStage(InternalPointer);
 
     private const int MaxComputeAxes = 3;
     public IReadOnlyList<ulong> ComputeThreadGroupSize

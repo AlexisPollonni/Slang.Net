@@ -12,7 +12,7 @@ internal struct COMProxyStruct
     public IntPtr ProxyPointer;
 
     public GCHandle ProxyHandle => GCHandle.FromIntPtr(ProxyPointer);
-    public object Proxy => ProxyHandle.Target;
+    public object? Proxy => ProxyHandle.Target;
 }
 
 internal abstract unsafe class COMProxy<T, TVTable> where T : unmanaged where TVTable : unmanaged
@@ -33,13 +33,13 @@ internal abstract unsafe class COMProxy<T, TVTable> where T : unmanaged where TV
         if (ptr == null)
             throw new ArgumentNullException(nameof(ptr));
         var proxyStruct = (COMProxyStruct*)ptr;
-        return (TManaged)proxyStruct->Proxy;
+        return (TManaged)proxyStruct->Proxy!;
     }
 
     public static implicit operator T*(COMProxy<T, TVTable> proxy) => proxy.Pointer;
 }
 
-internal unsafe static class COMProxy
+internal static unsafe class COMProxy
 {
     private static readonly ISlangUnknown._queryInterface QueryInterfaceDelegate = QueryInterface;
     private static readonly ISlangUnknown._addRef AddRefDelegate = AddRef;
@@ -49,18 +49,18 @@ internal unsafe static class COMProxy
     public static readonly IntPtr AddRefFnPtr = Marshal.GetFunctionPointerForDelegate(AddRefDelegate);
     public static readonly IntPtr ReleaseFnPtr = Marshal.GetFunctionPointerForDelegate(ReleaseDelegate);
 
-    private static unsafe int QueryInterface(ISlangUnknown* pThis, SlangUUID* uuid, void** outObject)
+    private static int QueryInterface(ISlangUnknown* pThis, SlangUUID* uuid, void** outObject)
     {
         return SlangResult.NoInterface.RawValue;
     }
 
-    private static unsafe uint AddRef(ISlangUnknown* pThis_)
+    private static uint AddRef(ISlangUnknown* pThis_)
     {
         var pThis = (COMProxyStruct*)pThis_;
         return (uint)Interlocked.Increment(ref pThis->RefCount);
     }
 
-    private static unsafe uint Release(ISlangUnknown* pThis_)
+    private static uint Release(ISlangUnknown* pThis_)
     {
         var pThis = (COMProxyStruct*)pThis_;
         var newRefCount = Interlocked.Decrement(ref pThis->RefCount);

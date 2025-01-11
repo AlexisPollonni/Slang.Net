@@ -1,5 +1,4 @@
 ﻿using System;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
@@ -33,7 +32,7 @@ unsafe partial struct TypeLayoutReflection
         }
 
         public bool Equals(DescriptorRange other) => pointer == other.pointer && SetIndex == other.SetIndex;
-        public override bool Equals(object obj) => obj is DescriptorRange other && Equals(other);
+        public override bool Equals(object? obj) => obj is DescriptorRange other && Equals(other);
         public static bool operator ==(DescriptorRange a, DescriptorRange b) => a.Equals(b);
         public static bool operator !=(DescriptorRange a, DescriptorRange b) => !a.Equals(b);
         public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), SetIndex);
@@ -45,9 +44,9 @@ unsafe partial struct TypeLayoutReflection
             ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount(Pointer, SetIndex, RangeIndex);
 
         public BindingType Type =>
-            (BindingType)ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(Pointer, SetIndex, RangeIndex);
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(Pointer, SetIndex, RangeIndex);
 
         public ParameterCategory Category =>
-            (ParameterCategory)ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(Pointer, SetIndex, RangeIndex);
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(Pointer, SetIndex, RangeIndex);
     }
 }

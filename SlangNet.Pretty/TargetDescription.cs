@@ -6,14 +6,14 @@ public struct TargetDescription
 
     public CompileTarget Format
     {
-        get => (CompileTarget)native.format;
-        set => native.format = (SlangCompileTarget)value;
+        get => native.format;
+        set => native.format = value;
     }
 
     public ProfileID Profile
     {
-        get => (ProfileID)native.profile;
-        set => native.profile = (SlangProfileID)value;
+        get => native.profile;
+        set => native.profile = value;
     }
 
     public TargetFlags Flags
@@ -24,14 +24,14 @@ public struct TargetDescription
 
     public FloatingPointMode FloatingPointMode
     {
-        get => (FloatingPointMode)native.floatingPointMode;
-        set => native.floatingPointMode = (SlangFloatingPointMode)value;
+        get => native.floatingPointMode;
+        set => native.floatingPointMode = value;
     }
 
     public LineDirectiveMode LineDirectiveMode
     {
-        get => (LineDirectiveMode)native.lineDirectiveMode;
-        set => native.lineDirectiveMode = (SlangLineDirectiveMode)value;
+        get => native.lineDirectiveMode;
+        set => native.lineDirectiveMode = value;
     }
 
     public bool ForceGLSLScalarBufferLayout

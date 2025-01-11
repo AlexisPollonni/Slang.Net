@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
-public unsafe readonly partial struct TypeLayoutReflection : IEquatable<TypeLayoutReflection>
+public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayoutReflection>
 {
     private readonly Unsafe.TypeLayoutReflection* pointer;
     public Unsafe.TypeLayoutReflection* Pointer
@@ -54,7 +53,7 @@ public unsafe readonly partial struct TypeLayoutReflection : IEquatable<TypeLayo
     }
 
     public bool Equals(TypeLayoutReflection other) => pointer == other.pointer;
-    public override bool Equals(object obj) => obj is TypeLayoutReflection other && Equals(other);
+    public override bool Equals(object? obj) => obj is TypeLayoutReflection other && Equals(other);
     public static bool operator == (TypeLayoutReflection a, TypeLayoutReflection b) => a.pointer == b.pointer;
     public static bool operator != (TypeLayoutReflection a, TypeLayoutReflection b) => a.pointer != b.pointer;
     public override int GetHashCode() => new IntPtr(pointer).GetHashCode();
@@ -70,19 +69,19 @@ public unsafe readonly partial struct TypeLayoutReflection : IEquatable<TypeLayo
         }
     }
 
-    public TypeKind Kind => (TypeKind)ReflectionTypeLayout_getKind(InternalPointer);
+    public TypeKind Kind => ReflectionTypeLayout_getKind(InternalPointer);
 
     public ulong GetSize(ParameterCategory category) =>
-        ReflectionTypeLayout_GetSize(InternalPointer, (SlangParameterCategory)category).ToUInt64();
+        ReflectionTypeLayout_GetSize(InternalPointer, category).ToUInt64();
 
     public ulong GetStride(ParameterCategory category) =>
-        ReflectionTypeLayout_GetStride(InternalPointer, (SlangParameterCategory)category).ToUInt64();
+        ReflectionTypeLayout_GetStride(InternalPointer, category).ToUInt64();
 
     public int GetAlignment(ParameterCategory category) =>
-        ReflectionTypeLayout_getAlignment(InternalPointer, (SlangParameterCategory)category);
+        ReflectionTypeLayout_getAlignment(InternalPointer, category);
 
     public ulong GetElementStride(ParameterCategory category) =>
-        ReflectionTypeLayout_GetElementStride(InternalPointer, (SlangParameterCategory)category).ToUInt64();
+        ReflectionTypeLayout_GetElementStride(InternalPointer, category).ToUInt64();
 
     private static long GetFieldCount(SlangReflectionTypeLayout* internalPointer)
     {
@@ -155,21 +154,21 @@ public unsafe readonly partial struct TypeLayoutReflection : IEquatable<TypeLayo
     }
 
     public ParameterCategory ParameterCategory =>
-        (ParameterCategory)ReflectionTypeLayout_GetParameterCategory(InternalPointer);
+        ReflectionTypeLayout_GetParameterCategory(InternalPointer);
 
     private static long GetCategoryCount(SlangReflectionTypeLayout* type) =>
         ReflectionTypeLayout_GetCategoryCount(type);
 
     private static bool TryGetCategoryAt(SlangReflectionTypeLayout* type, long index, ref ParameterCategory category)
     {
-        category = (ParameterCategory)ReflectionTypeLayout_GetCategoryByIndex(type, checked((uint)index));
+        category = ReflectionTypeLayout_GetCategoryByIndex(type, checked((uint)index));
         return true;
     }
 
     public IReadOnlyList<ParameterCategory> Categories { get; }
 
     public MatrixLayoutMode MatrixLayoutMode =>
-        (MatrixLayoutMode)ReflectionTypeLayout_GetMatrixLayoutMode(InternalPointer);
+        ReflectionTypeLayout_GetMatrixLayoutMode(InternalPointer);
 
     public int GenericParamIndex =>
         ReflectionTypeLayout_getGenericParamIndex(InternalPointer);

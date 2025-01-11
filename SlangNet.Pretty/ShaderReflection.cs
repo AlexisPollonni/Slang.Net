@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
-public unsafe readonly struct ShaderReflection : IEquatable<ShaderReflection>
+public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
 {
     private readonly Unsafe.ShaderReflection* pointer;
     public Unsafe.ShaderReflection* Pointer
@@ -56,7 +55,7 @@ public unsafe readonly struct ShaderReflection : IEquatable<ShaderReflection>
     }
 
     public bool Equals(ShaderReflection other) => pointer == other.pointer;
-    public override bool Equals(object obj) => obj is ShaderReflection other && Equals(other);
+    public override bool Equals(object? obj) => obj is ShaderReflection other && Equals(other);
     public static bool operator ==(ShaderReflection a, ShaderReflection b) => a.pointer == b.pointer;
     public static bool operator !=(ShaderReflection a, ShaderReflection b) => a.pointer != b.pointer;
     public override int GetHashCode() => new IntPtr(pointer).GetHashCode();
@@ -117,7 +116,7 @@ public unsafe readonly struct ShaderReflection : IEquatable<ShaderReflection>
 
     public TypeLayoutReflection? GetTypeLayout(TypeReflection type, LayoutRules rules)
     {
-        var layoutPtr = Reflection_GetTypeLayout(InternalPointer, type.InternalPointer, (SlangLayoutRules)rules);
+        var layoutPtr = Reflection_GetTypeLayout(InternalPointer, type.InternalPointer, rules);
         return layoutPtr == null ? null : new(layoutPtr);
     }
 

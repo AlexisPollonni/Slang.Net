@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace SlangNet;
 
-public unsafe sealed class Module : ComponentType
+public sealed unsafe class Module : ComponentType
 {
     private readonly EntryPointList entryPoints;
 

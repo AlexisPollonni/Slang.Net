@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using SlangNet.Internal;
 
 namespace SlangNet;
 
 [GenerateThrowingMethods]
-public unsafe sealed partial class Session : Internal.COMObject<ISession>
+public sealed unsafe partial class Session : COMObject<ISession>
 {
     internal Session(ISession* pointer) : base(pointer)
     {
@@ -115,7 +115,7 @@ public unsafe sealed partial class Session : Internal.COMObject<ISession>
         foreach (var specArg in specializationArgs)
         {
             specArg.ThrowIfNull();
-            argsArray[i].kind = SpecializationArg.Kind.Type;
+            argsArray[i].kind = SpecializationArg.TypeKind.Type;
             argsArray[i].type = specArg.Pointer;
         }
 
@@ -199,10 +199,9 @@ public unsafe sealed partial class Session : Internal.COMObject<ISession>
 
     public SlangResult TryCreateCompileRequest(out CompileRequest? request)
     {
-        ICompileRequest* requestPtr = null;
-        var result = Pointer->createCompileRequest(&requestPtr);
+        var requestPtr = Slang.CreateCompileRequest(GlobalSession.Pointer);
         request = requestPtr == null ? null : new(requestPtr);
-        return new(result);
+        return request is null ? SlangResult.Fail : SlangResult.Ok;
     }
 
     public SlangResult TryCreateTypeConformanceComponentType(

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace SlangNet;
 
@@ -41,7 +41,7 @@ internal unsafe struct Utf8String : IDisposable
         handle = default;
         if (text == null)
             return;
-        var bytes = System.Text.Encoding.UTF8.GetBytes(text);
+        var bytes = Encoding.UTF8.GetBytes(text);
         handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
         MemoryEnd = Memory + bytes.Length;
     }

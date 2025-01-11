@@ -1,11 +1,9 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Runtime.InteropServices;
-using System.Collections.Generic;
 
 namespace SlangNet;
 
-internal unsafe static class InteropUtils
+internal static unsafe class InteropUtils
 {
     public static string? BlobToString(ISlangBlob* blob)
     {

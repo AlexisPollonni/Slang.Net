@@ -26,6 +26,17 @@ public unsafe partial struct SpecializationArg
         }
     }
 
+    /// <include file='TypeKind.xml' path='doc/member[@name="TypeKind"]/*' />
+    [NativeTypeName("int32_t")]
+    public enum TypeKind
+    {
+        /// <include file='TypeKind.xml' path='doc/member[@name="TypeKind.Unknown"]/*' />
+        Unknown,
+
+        /// <include file='TypeKind.xml' path='doc/member[@name="TypeKind.Type"]/*' />
+        Type,
+    }
+
     /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union"]/*' />
     [StructLayout(LayoutKind.Explicit)]
     public unsafe partial struct _Anonymous_e__Union

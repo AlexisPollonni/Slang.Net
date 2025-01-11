@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using static SlangNet.Unsafe.Slang;
 
 namespace SlangNet;
 
-public unsafe readonly struct TypeParameterReflection : IEquatable<TypeParameterReflection>
+public readonly unsafe struct TypeParameterReflection : IEquatable<TypeParameterReflection>
 {
     private readonly Unsafe.TypeParameterReflection* pointer;
     public Unsafe.TypeParameterReflection* Pointer
@@ -36,7 +35,7 @@ public unsafe readonly struct TypeParameterReflection : IEquatable<TypeParameter
     }
 
     public bool Equals(TypeParameterReflection other) => pointer == other.pointer;
-    public override bool Equals(object obj) => obj is TypeParameterReflection other && Equals(other);
+    public override bool Equals(object? obj) => obj is TypeParameterReflection other && Equals(other);
     public static bool operator ==(TypeParameterReflection a, TypeParameterReflection b) => a.pointer == b.pointer;
     public static bool operator !=(TypeParameterReflection a, TypeParameterReflection b) => a.pointer != b.pointer;
     public override int GetHashCode() => new IntPtr(pointer).GetHashCode();

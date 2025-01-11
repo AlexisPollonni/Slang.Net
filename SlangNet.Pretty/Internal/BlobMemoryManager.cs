@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Buffers;
+using SlangNet.Internal;
 
 namespace SlangNet;
 
-internal unsafe sealed class BlobMemoryManager : MemoryManager<byte>
+internal sealed unsafe class BlobMemoryManager : MemoryManager<byte>
 {
-    private readonly Internal.COMObject<ISlangBlob> blob;
+    private readonly COMObject<ISlangBlob> blob;
     private readonly void* pointer;
     private readonly int size;
 
@@ -19,14 +20,14 @@ internal unsafe sealed class BlobMemoryManager : MemoryManager<byte>
     }
 
     public override Span<byte> GetSpan() =>
-        new Span<byte>(pointer, size);
+        new(pointer, size);
 
     public override MemoryHandle Pin(int elementIndex = 0)
     {
         blob.ThrowIfDisposed();
         if (elementIndex < 0 || elementIndex >= size)
             throw new ArgumentOutOfRangeException(nameof(elementIndex));
-        return new MemoryHandle(((byte*)pointer) + elementIndex, pinnable: this);
+        return new(((byte*)pointer) + elementIndex, pinnable: this);
     }
 
     public override void Unpin() { }

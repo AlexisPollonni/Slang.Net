@@ -20,7 +20,7 @@ unsafe partial class CompileRequest
         }
 
         public bool Equals(TranslationUnit other) => pointer == other.pointer && Index == other.Index;
-        public override bool Equals(object obj) => obj is TranslationUnit other && Equals(other);
+        public override bool Equals(object? obj) => obj is TranslationUnit other && Equals(other);
         public static bool operator ==(TranslationUnit a, TranslationUnit b) => a.Equals(b);
         public static bool operator !=(TranslationUnit a, TranslationUnit b) => !a.Equals(b);
         public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), Index);
@@ -70,20 +70,20 @@ unsafe partial class CompileRequest
         public int AddEntryPoint(ReadOnlySpan<byte> name, Stage stage)
         {
             fixed (byte* namePtr = name)
-                return pointer->addEntryPoint(Index, (sbyte*)namePtr, (SlangStage)stage);
+                return pointer->addEntryPoint(Index, (sbyte*)namePtr, stage);
         }
 
         public int AddEntryPoint(string name, Stage stage)
         {
             using var nameStr = new Utf8String(name);
-            return pointer->addEntryPoint(Index, nameStr, (SlangStage)stage);
+            return pointer->addEntryPoint(Index, nameStr, stage);
         }
 
         public int AddEntryPointEx(string name, Stage stage, IEnumerable<string> genericArgs)
         {
             using var nameStr = new Utf8String(name);
             using var genericArgsArray = new Utf8StringArray(genericArgs);
-            return pointer->addEntryPointEx(Index, nameStr, (SlangStage)stage, genericArgsArray.Count, genericArgsArray.Memory);
+            return pointer->addEntryPointEx(Index, nameStr, stage, genericArgsArray.Count, genericArgsArray.Memory);
         }
 
         public SlangResult TryGetModule([NotNullWhen(true)] out Module? module)
@@ -112,7 +112,7 @@ unsafe partial class CompileRequest
         public TranslationUnit Add(SourceLanguage language, string? name = null)
         {
             using var nameStr = new Utf8String(name);
-            return new(list.Container, list.Container->addTranslationUnit((SlangSourceLanguage)language, nameStr));
+            return new(list.Container, list.Container->addTranslationUnit(language, nameStr));
         }
 
         public TranslationUnit this[int index] => list[index];

@@ -1,0 +1,2025 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="ICompileRequest" access="public" native="struct ICompileRequest : ISlangUnknown" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_setFileSystem" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="fileSystem">
+          <type>ISlangFileSystem*</type>
+        </param>
+      </delegate>
+      <delegate name="_setCompileFlags" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="flags">
+          <type>uint</type>
+        </param>
+      </delegate>
+      <delegate name="_getCompileFlags" access="public" convention="StdCall">
+        <type native="SlangCompileFlags">uint</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_setDumpIntermediates" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="enable">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_setDumpIntermediatePrefix" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="prefix">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_setLineDirectiveMode" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="mode">
+          <type>LineDirectiveMode</type>
+        </param>
+      </delegate>
+      <delegate name="_setCodeGenTarget" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="target">
+          <type>CompileTarget</type>
+        </param>
+      </delegate>
+      <delegate name="_addCodeGenTarget" access="public" convention="StdCall">
+        <type>int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="target">
+          <type>CompileTarget</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetProfile" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="profile">
+          <type>ProfileID</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetFlags" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="flags">
+          <type>uint</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetFloatingPointMode" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="mode">
+          <type>FloatingPointMode</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetMatrixLayoutMode" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="mode">
+          <type>MatrixLayoutMode</type>
+        </param>
+      </delegate>
+      <delegate name="_setMatrixLayoutMode" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="mode">
+          <type>MatrixLayoutMode</type>
+        </param>
+      </delegate>
+      <delegate name="_setDebugInfoLevel" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="level">
+          <type>DebugInfoLevel</type>
+        </param>
+      </delegate>
+      <delegate name="_setOptimizationLevel" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="level">
+          <type>OptimizationLevel</type>
+        </param>
+      </delegate>
+      <delegate name="_setOutputContainerFormat" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="format">
+          <type>ContainerFormat</type>
+        </param>
+      </delegate>
+      <delegate name="_setPassThrough" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="passThrough">
+          <type>PassThrough</type>
+        </param>
+      </delegate>
+      <delegate name="_setDiagnosticCallback" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="callback">
+          <type>IntPtr</type>
+        </param>
+        <param name="userData">
+          <type>void*</type>
+        </param>
+      </delegate>
+      <delegate name="_setWriter" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="channel">
+          <type>WriterChannel</type>
+        </param>
+        <param name="writer">
+          <type>ISlangWriter*</type>
+        </param>
+      </delegate>
+      <delegate name="_getWriter" access="public" convention="StdCall" unsafe="true">
+        <type>ISlangWriter*</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="channel">
+          <type>WriterChannel</type>
+        </param>
+      </delegate>
+      <delegate name="_addSearchPath" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="searchDir">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_addPreprocessorDefine" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="key">
+          <type>sbyte*</type>
+        </param>
+        <param name="value">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_processCommandLineArguments" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="args">
+          <type>sbyte**</type>
+        </param>
+        <param name="argCount">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_addTranslationUnit" access="public" convention="StdCall" unsafe="true">
+        <type>int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="language">
+          <type>SourceLanguage</type>
+        </param>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_setDefaultModuleName" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="defaultModuleName">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_addTranslationUnitPreprocessorDefine" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="key">
+          <type>sbyte*</type>
+        </param>
+        <param name="value">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_addTranslationUnitSourceFile" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_addTranslationUnitSourceString" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="source">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_addLibraryReference" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="basePath">
+          <type>sbyte*</type>
+        </param>
+        <param name="libData">
+          <type>void*</type>
+        </param>
+        <param name="libDataSize">
+          <type>nuint</type>
+        </param>
+      </delegate>
+      <delegate name="_addTranslationUnitSourceStringSpan" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="sourceBegin">
+          <type>sbyte*</type>
+        </param>
+        <param name="sourceEnd">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_addTranslationUnitSourceBlob" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="sourceBlob">
+          <type>ISlangBlob*</type>
+        </param>
+      </delegate>
+      <delegate name="_addEntryPoint" access="public" convention="StdCall" unsafe="true">
+        <type>int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <param name="stage">
+          <type>Stage</type>
+        </param>
+      </delegate>
+      <delegate name="_addEntryPointEx" access="public" convention="StdCall" unsafe="true">
+        <type>int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <param name="stage">
+          <type>Stage</type>
+        </param>
+        <param name="genericArgCount">
+          <type>int</type>
+        </param>
+        <param name="genericArgs">
+          <type>sbyte**</type>
+        </param>
+      </delegate>
+      <delegate name="_setGlobalGenericArgs" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="genericArgCount">
+          <type>int</type>
+        </param>
+        <param name="genericArgs">
+          <type>sbyte**</type>
+        </param>
+      </delegate>
+      <delegate name="_setTypeNameForGlobalExistentialTypeParam" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="slotIndex">
+          <type>int</type>
+        </param>
+        <param name="typeName">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_setTypeNameForEntryPointExistentialTypeParam" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <param name="slotIndex">
+          <type>int</type>
+        </param>
+        <param name="typeName">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_setAllowGLSLInput" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_compile" access="public" convention="StdCall">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_getDiagnosticOutput" access="public" convention="StdCall" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_getDiagnosticOutputBlob" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_getDependencyFileCount" access="public" convention="StdCall">
+        <type>int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_getDependencyFilePath" access="public" convention="StdCall" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="index">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_getTranslationUnitCount" access="public" convention="StdCall">
+        <type>int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPointSource" access="public" convention="StdCall" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPointCode" access="public" convention="StdCall" unsafe="true">
+        <type native="const void *">void*</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <param name="outSize">
+          <type>nuint*</type>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPointCodeBlob" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPointHostCallable" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="outSharedLibrary">
+          <type>ISlangSharedLibrary**</type>
+        </param>
+      </delegate>
+      <delegate name="_getTargetCodeBlob" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_getTargetHostCallable" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="outSharedLibrary">
+          <type>ISlangSharedLibrary**</type>
+        </param>
+      </delegate>
+      <delegate name="_getCompileRequestCode" access="public" convention="StdCall" unsafe="true">
+        <type native="const void *">void*</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="outSize">
+          <type>nuint*</type>
+        </param>
+      </delegate>
+      <delegate name="_getCompileRequestResultAsFileSystem" access="public" convention="StdCall" unsafe="true">
+        <type>ISlangMutableFileSystem*</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_getContainerCode" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_loadRepro" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="fileSystem">
+          <type>ISlangFileSystem*</type>
+        </param>
+        <param name="data">
+          <type>void*</type>
+        </param>
+        <param name="size">
+          <type>nuint</type>
+        </param>
+      </delegate>
+      <delegate name="_saveRepro" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_enableReproCapture" access="public" convention="StdCall">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_getProgram" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="outProgram">
+          <type>IComponentType**</type>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPoint" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>long</type>
+        </param>
+        <param name="outEntryPoint">
+          <type>IComponentType**</type>
+        </param>
+      </delegate>
+      <delegate name="_getModule" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="translationUnitIndex">
+          <type>long</type>
+        </param>
+        <param name="outModule">
+          <type>IModule**</type>
+        </param>
+      </delegate>
+      <delegate name="_getSession" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="outSession">
+          <type>ISession**</type>
+        </param>
+      </delegate>
+      <delegate name="_getReflection" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangReflection *">SlangProgramLayout*</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_setCommandLineCompilerMode" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_addTargetCapability" access="public" convention="StdCall">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="capability">
+          <type>CapabilityID</type>
+        </param>
+      </delegate>
+      <delegate name="_getProgramWithEntryPoints" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="outProgram">
+          <type>IComponentType**</type>
+        </param>
+      </delegate>
+      <delegate name="_isParameterLocationUsed" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>long</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="category">
+          <type>ParameterCategory</type>
+        </param>
+        <param name="spaceIndex">
+          <type>ulong</type>
+        </param>
+        <param name="registerIndex">
+          <type>ulong</type>
+        </param>
+        <param name="outUsed">
+          <type>bool*</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetLineDirectiveMode" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="mode">
+          <type>LineDirectiveMode</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetForceGLSLScalarBufferLayout" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="forceScalarLayout">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_overrideDiagnosticSeverity" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="messageID">
+          <type>long</type>
+        </param>
+        <param name="overrideSeverity">
+          <type>Severity</type>
+        </param>
+      </delegate>
+      <delegate name="_getDiagnosticFlags" access="public" convention="StdCall">
+        <type native="SlangDiagnosticFlags">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+      </delegate>
+      <delegate name="_setDiagnosticFlags" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="flags">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_setDebugInfoFormat" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="debugFormat">
+          <type>DebugInfoFormat</type>
+        </param>
+      </delegate>
+      <delegate name="_setEnableEffectAnnotations" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_setReportDownstreamTime" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_setReportPerfBenchmark" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_setSkipSPIRVValidation" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetUseMinimumSlangOptimization" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_setIgnoreCapabilityCheck" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_getCompileTimeProfile" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="compileTimeProfile">
+          <type>ISlangProfiler**</type>
+        </param>
+        <param name="shouldClear">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetGenerateWholeProgram" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetForceDXLayout" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <delegate name="_setTargetEmbedDownstreamIR" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="setFileSystem" access="public" unsafe="true">
+        <type>void</type>
+        <param name="fileSystem">
+          <type>ISlangFileSystem*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setFileSystem</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setFileSystem</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="fileSystem">fileSystem</param>);</code>
+        </body>
+      </function>
+      <function name="setCompileFlags" access="public" unsafe="true">
+        <type>void</type>
+        <param name="flags">
+          <type>uint</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setCompileFlags</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setCompileFlags</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="flags">flags</param>);</code>
+        </body>
+      </function>
+      <function name="getCompileFlags" access="public" unsafe="true">
+        <type native="SlangCompileFlags">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCompileFlags</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCompileFlags</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="setDumpIntermediates" access="public" unsafe="true">
+        <type>void</type>
+        <param name="enable">
+          <type>int</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDumpIntermediates</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDumpIntermediates</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="enable">enable</param>);</code>
+        </body>
+      </function>
+      <function name="setDumpIntermediatePrefix" access="public" unsafe="true">
+        <type>void</type>
+        <param name="prefix">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDumpIntermediatePrefix</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDumpIntermediatePrefix</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="prefix">prefix</param>);</code>
+        </body>
+      </function>
+      <function name="setLineDirectiveMode" access="public" unsafe="true">
+        <type>void</type>
+        <param name="mode">
+          <type>LineDirectiveMode</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setLineDirectiveMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setLineDirectiveMode</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
+        </body>
+      </function>
+      <function name="setCodeGenTarget" access="public" unsafe="true">
+        <type>void</type>
+        <param name="target">
+          <type>CompileTarget</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setCodeGenTarget</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setCodeGenTarget</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>);</code>
+        </body>
+      </function>
+      <function name="addCodeGenTarget" access="public" unsafe="true">
+        <type>int</type>
+        <param name="target">
+          <type>CompileTarget</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addCodeGenTarget</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addCodeGenTarget</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="target">target</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetProfile" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="profile">
+          <type>ProfileID</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetProfile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetProfile</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="profile">profile</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetFlags" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="flags">
+          <type>uint</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetFlags</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetFlags</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="flags">flags</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetFloatingPointMode" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="mode">
+          <type>FloatingPointMode</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetFloatingPointMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetFloatingPointMode</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="mode">mode</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetMatrixLayoutMode" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="mode">
+          <type>MatrixLayoutMode</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetMatrixLayoutMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetMatrixLayoutMode</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="mode">mode</param>);</code>
+        </body>
+      </function>
+      <function name="setMatrixLayoutMode" access="public" unsafe="true">
+        <type>void</type>
+        <param name="mode">
+          <type>MatrixLayoutMode</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setMatrixLayoutMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setMatrixLayoutMode</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
+        </body>
+      </function>
+      <function name="setDebugInfoLevel" access="public" unsafe="true">
+        <type>void</type>
+        <param name="level">
+          <type>DebugInfoLevel</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDebugInfoLevel</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDebugInfoLevel</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="level">level</param>);</code>
+        </body>
+      </function>
+      <function name="setOptimizationLevel" access="public" unsafe="true">
+        <type>void</type>
+        <param name="level">
+          <type>OptimizationLevel</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setOptimizationLevel</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setOptimizationLevel</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="level">level</param>);</code>
+        </body>
+      </function>
+      <function name="setOutputContainerFormat" access="public" unsafe="true">
+        <type>void</type>
+        <param name="format">
+          <type>ContainerFormat</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setOutputContainerFormat</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setOutputContainerFormat</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="format">format</param>);</code>
+        </body>
+      </function>
+      <function name="setPassThrough" access="public" unsafe="true">
+        <type>void</type>
+        <param name="passThrough">
+          <type>PassThrough</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setPassThrough</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setPassThrough</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="passThrough">passThrough</param>);</code>
+        </body>
+      </function>
+      <function name="setDiagnosticCallback" access="public" unsafe="true">
+        <type>void</type>
+        <param name="callback">
+          <type>IntPtr</type>
+        </param>
+        <param name="userData">
+          <type>void*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDiagnosticCallback</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDiagnosticCallback</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="callback">callback</param>, <param name="userData">userData</param>);</code>
+        </body>
+      </function>
+      <function name="setWriter" access="public" unsafe="true">
+        <type>void</type>
+        <param name="channel">
+          <type>WriterChannel</type>
+        </param>
+        <param name="writer">
+          <type>ISlangWriter*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setWriter</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setWriter</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="channel">channel</param>, <param name="writer">writer</param>);</code>
+        </body>
+      </function>
+      <function name="getWriter" access="public" unsafe="true">
+        <type>ISlangWriter*</type>
+        <param name="channel">
+          <type>WriterChannel</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getWriter</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getWriter</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="channel">channel</param>);</code>
+        </body>
+      </function>
+      <function name="addSearchPath" access="public" unsafe="true">
+        <type>void</type>
+        <param name="searchDir">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addSearchPath</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addSearchPath</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="searchDir">searchDir</param>);</code>
+        </body>
+      </function>
+      <function name="addPreprocessorDefine" access="public" unsafe="true">
+        <type>void</type>
+        <param name="key">
+          <type>sbyte*</type>
+        </param>
+        <param name="value">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addPreprocessorDefine</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addPreprocessorDefine</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="key">key</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="processCommandLineArguments" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="args">
+          <type>sbyte**</type>
+        </param>
+        <param name="argCount">
+          <type>int</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_processCommandLineArguments</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">processCommandLineArguments</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="args">args</param>, <param name="argCount">argCount</param>);</code>
+        </body>
+      </function>
+      <function name="addTranslationUnit" access="public" unsafe="true">
+        <type>int</type>
+        <param name="language">
+          <type>SourceLanguage</type>
+        </param>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addTranslationUnit</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addTranslationUnit</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="language">language</param>, <param name="name">name</param>);</code>
+        </body>
+      </function>
+      <function name="setDefaultModuleName" access="public" unsafe="true">
+        <type>void</type>
+        <param name="defaultModuleName">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDefaultModuleName</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDefaultModuleName</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="defaultModuleName">defaultModuleName</param>);</code>
+        </body>
+      </function>
+      <function name="addTranslationUnitPreprocessorDefine" access="public" unsafe="true">
+        <type>void</type>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="key">
+          <type>sbyte*</type>
+        </param>
+        <param name="value">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addTranslationUnitPreprocessorDefine</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addTranslationUnitPreprocessorDefine</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="translationUnitIndex">translationUnitIndex</param>, <param name="key">key</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="addTranslationUnitSourceFile" access="public" unsafe="true">
+        <type>void</type>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addTranslationUnitSourceFile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addTranslationUnitSourceFile</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="translationUnitIndex">translationUnitIndex</param>, <param name="path">path</param>);</code>
+        </body>
+      </function>
+      <function name="addTranslationUnitSourceString" access="public" unsafe="true">
+        <type>void</type>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="source">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addTranslationUnitSourceString</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addTranslationUnitSourceString</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="translationUnitIndex">translationUnitIndex</param>, <param name="path">path</param>, <param name="source">source</param>);</code>
+        </body>
+      </function>
+      <function name="addLibraryReference" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="basePath">
+          <type>sbyte*</type>
+        </param>
+        <param name="libData">
+          <type>void*</type>
+        </param>
+        <param name="libDataSize">
+          <type>nuint</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addLibraryReference</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addLibraryReference</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="basePath">basePath</param>, <param name="libData">libData</param>, <param name="libDataSize">libDataSize</param>);</code>
+        </body>
+      </function>
+      <function name="addTranslationUnitSourceStringSpan" access="public" unsafe="true">
+        <type>void</type>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="sourceBegin">
+          <type>sbyte*</type>
+        </param>
+        <param name="sourceEnd">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addTranslationUnitSourceStringSpan</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addTranslationUnitSourceStringSpan</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="translationUnitIndex">translationUnitIndex</param>, <param name="path">path</param>, <param name="sourceBegin">sourceBegin</param>, <param name="sourceEnd">sourceEnd</param>);</code>
+        </body>
+      </function>
+      <function name="addTranslationUnitSourceBlob" access="public" unsafe="true">
+        <type>void</type>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="sourceBlob">
+          <type>ISlangBlob*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addTranslationUnitSourceBlob</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addTranslationUnitSourceBlob</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="translationUnitIndex">translationUnitIndex</param>, <param name="path">path</param>, <param name="sourceBlob">sourceBlob</param>);</code>
+        </body>
+      </function>
+      <function name="addEntryPoint" access="public" unsafe="true">
+        <type>int</type>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <param name="stage">
+          <type>Stage</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addEntryPoint</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="translationUnitIndex">translationUnitIndex</param>, <param name="name">name</param>, <param name="stage">stage</param>);</code>
+        </body>
+      </function>
+      <function name="addEntryPointEx" access="public" unsafe="true">
+        <type>int</type>
+        <param name="translationUnitIndex">
+          <type>int</type>
+        </param>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <param name="stage">
+          <type>Stage</type>
+        </param>
+        <param name="genericArgCount">
+          <type>int</type>
+        </param>
+        <param name="genericArgs">
+          <type>sbyte**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addEntryPointEx</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addEntryPointEx</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="translationUnitIndex">translationUnitIndex</param>, <param name="name">name</param>, <param name="stage">stage</param>, <param name="genericArgCount">genericArgCount</param>, <param name="genericArgs">genericArgs</param>);</code>
+        </body>
+      </function>
+      <function name="setGlobalGenericArgs" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="genericArgCount">
+          <type>int</type>
+        </param>
+        <param name="genericArgs">
+          <type>sbyte**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setGlobalGenericArgs</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setGlobalGenericArgs</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="genericArgCount">genericArgCount</param>, <param name="genericArgs">genericArgs</param>);</code>
+        </body>
+      </function>
+      <function name="setTypeNameForGlobalExistentialTypeParam" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="slotIndex">
+          <type>int</type>
+        </param>
+        <param name="typeName">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTypeNameForGlobalExistentialTypeParam</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTypeNameForGlobalExistentialTypeParam</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="slotIndex">slotIndex</param>, <param name="typeName">typeName</param>);</code>
+        </body>
+      </function>
+      <function name="setTypeNameForEntryPointExistentialTypeParam" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <param name="slotIndex">
+          <type>int</type>
+        </param>
+        <param name="typeName">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTypeNameForEntryPointExistentialTypeParam</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTypeNameForEntryPointExistentialTypeParam</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="slotIndex">slotIndex</param>, <param name="typeName">typeName</param>);</code>
+        </body>
+      </function>
+      <function name="setAllowGLSLInput" access="public" unsafe="true">
+        <type>void</type>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setAllowGLSLInput</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setAllowGLSLInput</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="compile" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_compile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">compile</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getDiagnosticOutput" access="public" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDiagnosticOutput</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDiagnosticOutput</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getDiagnosticOutputBlob" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDiagnosticOutputBlob</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDiagnosticOutputBlob</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="outBlob">outBlob</param>);</code>
+        </body>
+      </function>
+      <function name="getDependencyFileCount" access="public" unsafe="true">
+        <type>int</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDependencyFileCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDependencyFileCount</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getDependencyFilePath" access="public" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <param name="index">
+          <type>int</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDependencyFilePath</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDependencyFilePath</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>
+        </body>
+      </function>
+      <function name="getTranslationUnitCount" access="public" unsafe="true">
+        <type>int</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTranslationUnitCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTranslationUnitCount</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getEntryPointSource" access="public" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointSource</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointSource</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>);</code>
+        </body>
+      </function>
+      <function name="getEntryPointCode" access="public" unsafe="true">
+        <type native="const void *">void*</type>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <param name="outSize">
+          <type>nuint*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointCode</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="outSize">outSize</param>);</code>
+        </body>
+      </function>
+      <function name="getEntryPointCodeBlob" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCodeBlob</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointCodeBlob</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outBlob">outBlob</param>);</code>
+        </body>
+      </function>
+      <function name="getEntryPointHostCallable" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="entryPointIndex">
+          <type>int</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="outSharedLibrary">
+          <type>ISlangSharedLibrary**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHostCallable</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointHostCallable</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outSharedLibrary">outSharedLibrary</param>);</code>
+        </body>
+      </function>
+      <function name="getTargetCodeBlob" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetCodeBlob</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTargetCodeBlob</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outBlob">outBlob</param>);</code>
+        </body>
+      </function>
+      <function name="getTargetHostCallable" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="outSharedLibrary">
+          <type>ISlangSharedLibrary**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetHostCallable</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTargetHostCallable</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outSharedLibrary">outSharedLibrary</param>);</code>
+        </body>
+      </function>
+      <function name="getCompileRequestCode" access="public" unsafe="true">
+        <type native="const void *">void*</type>
+        <param name="outSize">
+          <type>nuint*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCompileRequestCode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCompileRequestCode</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="outSize">outSize</param>);</code>
+        </body>
+      </function>
+      <function name="getCompileRequestResultAsFileSystem" access="public" unsafe="true">
+        <type>ISlangMutableFileSystem*</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCompileRequestResultAsFileSystem</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCompileRequestResultAsFileSystem</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getContainerCode" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getContainerCode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getContainerCode</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="outBlob">outBlob</param>);</code>
+        </body>
+      </function>
+      <function name="loadRepro" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="fileSystem">
+          <type>ISlangFileSystem*</type>
+        </param>
+        <param name="data">
+          <type>void*</type>
+        </param>
+        <param name="size">
+          <type>nuint</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadRepro</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadRepro</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="fileSystem">fileSystem</param>, <param name="data">data</param>, <param name="size">size</param>);</code>
+        </body>
+      </function>
+      <function name="saveRepro" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveRepro</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">saveRepro</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="outBlob">outBlob</param>);</code>
+        </body>
+      </function>
+      <function name="enableReproCapture" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_enableReproCapture</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">enableReproCapture</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getProgram" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="outProgram">
+          <type>IComponentType**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getProgram</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getProgram</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="outProgram">outProgram</param>);</code>
+        </body>
+      </function>
+      <function name="getEntryPoint" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="entryPointIndex">
+          <type>long</type>
+        </param>
+        <param name="outEntryPoint">
+          <type>IComponentType**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPoint</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="outEntryPoint">outEntryPoint</param>);</code>
+        </body>
+      </function>
+      <function name="getModule" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="translationUnitIndex">
+          <type>long</type>
+        </param>
+        <param name="outModule">
+          <type>IModule**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getModule</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="translationUnitIndex">translationUnitIndex</param>, <param name="outModule">outModule</param>);</code>
+        </body>
+      </function>
+      <function name="getSession" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="outSession">
+          <type>ISession**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSession</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSession</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="outSession">outSession</param>);</code>
+        </body>
+      </function>
+      <function name="getReflection" access="public" unsafe="true">
+        <type native="SlangReflection *">SlangProgramLayout*</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getReflection</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getReflection</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="setCommandLineCompilerMode" access="public" unsafe="true">
+        <type>void</type>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setCommandLineCompilerMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setCommandLineCompilerMode</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="addTargetCapability" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="capability">
+          <type>CapabilityID</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addTargetCapability</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addTargetCapability</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="capability">capability</param>);</code>
+        </body>
+      </function>
+      <function name="getProgramWithEntryPoints" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="outProgram">
+          <type>IComponentType**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getProgramWithEntryPoints</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getProgramWithEntryPoints</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="outProgram">outProgram</param>);</code>
+        </body>
+      </function>
+      <function name="isParameterLocationUsed" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="entryPointIndex">
+          <type>long</type>
+        </param>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="category">
+          <type>ParameterCategory</type>
+        </param>
+        <param name="spaceIndex">
+          <type>ulong</type>
+        </param>
+        <param name="registerIndex">
+          <type>ulong</type>
+        </param>
+        <param name="outUsed">
+          <type>bool*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isParameterLocationUsed</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isParameterLocationUsed</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="category">category</param>, <param name="spaceIndex">spaceIndex</param>, <param name="registerIndex">registerIndex</param>, <param name="outUsed">outUsed</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetLineDirectiveMode" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>long</type>
+        </param>
+        <param name="mode">
+          <type>LineDirectiveMode</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetLineDirectiveMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetLineDirectiveMode</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="mode">mode</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetForceGLSLScalarBufferLayout" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="forceScalarLayout">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetForceGLSLScalarBufferLayout</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetForceGLSLScalarBufferLayout</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="forceScalarLayout">forceScalarLayout</param>);</code>
+        </body>
+      </function>
+      <function name="overrideDiagnosticSeverity" access="public" unsafe="true">
+        <type>void</type>
+        <param name="messageID">
+          <type>long</type>
+        </param>
+        <param name="overrideSeverity">
+          <type>Severity</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_overrideDiagnosticSeverity</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">overrideDiagnosticSeverity</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="messageID">messageID</param>, <param name="overrideSeverity">overrideSeverity</param>);</code>
+        </body>
+      </function>
+      <function name="getDiagnosticFlags" access="public" unsafe="true">
+        <type native="SlangDiagnosticFlags">int</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDiagnosticFlags</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDiagnosticFlags</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="setDiagnosticFlags" access="public" unsafe="true">
+        <type>void</type>
+        <param name="flags">
+          <type>int</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDiagnosticFlags</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDiagnosticFlags</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="flags">flags</param>);</code>
+        </body>
+      </function>
+      <function name="setDebugInfoFormat" access="public" unsafe="true">
+        <type>void</type>
+        <param name="debugFormat">
+          <type>DebugInfoFormat</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDebugInfoFormat</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setDebugInfoFormat</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="debugFormat">debugFormat</param>);</code>
+        </body>
+      </function>
+      <function name="setEnableEffectAnnotations" access="public" unsafe="true">
+        <type>void</type>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setEnableEffectAnnotations</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setEnableEffectAnnotations</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="setReportDownstreamTime" access="public" unsafe="true">
+        <type>void</type>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setReportDownstreamTime</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setReportDownstreamTime</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="setReportPerfBenchmark" access="public" unsafe="true">
+        <type>void</type>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setReportPerfBenchmark</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setReportPerfBenchmark</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="setSkipSPIRVValidation" access="public" unsafe="true">
+        <type>void</type>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSkipSPIRVValidation</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setSkipSPIRVValidation</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetUseMinimumSlangOptimization" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetUseMinimumSlangOptimization</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetUseMinimumSlangOptimization</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="setIgnoreCapabilityCheck" access="public" unsafe="true">
+        <type>void</type>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setIgnoreCapabilityCheck</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setIgnoreCapabilityCheck</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="getCompileTimeProfile" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="compileTimeProfile">
+          <type>ISlangProfiler**</type>
+        </param>
+        <param name="shouldClear">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCompileTimeProfile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCompileTimeProfile</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="compileTimeProfile">compileTimeProfile</param>, <param name="shouldClear">shouldClear</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetGenerateWholeProgram" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetGenerateWholeProgram</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetGenerateWholeProgram</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetForceDXLayout" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetForceDXLayout</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetForceDXLayout</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <function name="setTargetEmbedDownstreamIR" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetEmbedDownstreamIR</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetEmbedDownstreamIR</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setFileSystem" access="public">
+          <type native="void (ISlangFileSystem *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setCompileFlags" access="public">
+          <type native="void (SlangCompileFlags) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getCompileFlags" access="public">
+          <type native="SlangCompileFlags () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setDumpIntermediates" access="public">
+          <type native="void (int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setDumpIntermediatePrefix" access="public">
+          <type native="void (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setLineDirectiveMode" access="public">
+          <type native="void (SlangLineDirectiveMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setCodeGenTarget" access="public">
+          <type native="void (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addCodeGenTarget" access="public">
+          <type native="int (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetProfile" access="public">
+          <type native="void (int, SlangProfileID) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetFlags" access="public">
+          <type native="void (int, SlangTargetFlags) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetFloatingPointMode" access="public">
+          <type native="void (int, SlangFloatingPointMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetMatrixLayoutMode" access="public">
+          <type native="void (int, SlangMatrixLayoutMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setMatrixLayoutMode" access="public">
+          <type native="void (SlangMatrixLayoutMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setDebugInfoLevel" access="public">
+          <type native="void (SlangDebugInfoLevel) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setOptimizationLevel" access="public">
+          <type native="void (SlangOptimizationLevel) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setOutputContainerFormat" access="public">
+          <type native="void (SlangContainerFormat) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setPassThrough" access="public">
+          <type native="void (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setDiagnosticCallback" access="public">
+          <type native="void (SlangDiagnosticCallback, const void *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setWriter" access="public">
+          <type native="void (SlangWriterChannel, ISlangWriter *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getWriter" access="public">
+          <type native="ISlangWriter *(SlangWriterChannel) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addSearchPath" access="public">
+          <type native="void (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addPreprocessorDefine" access="public">
+          <type native="void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="processCommandLineArguments" access="public">
+          <type native="SlangResult (const char *const *, int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addTranslationUnit" access="public">
+          <type native="int (SlangSourceLanguage, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setDefaultModuleName" access="public">
+          <type native="void (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addTranslationUnitPreprocessorDefine" access="public">
+          <type native="void (int, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addTranslationUnitSourceFile" access="public">
+          <type native="void (int, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addTranslationUnitSourceString" access="public">
+          <type native="void (int, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addLibraryReference" access="public">
+          <type native="SlangResult (const char *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addTranslationUnitSourceStringSpan" access="public">
+          <type native="void (int, const char *, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addTranslationUnitSourceBlob" access="public">
+          <type native="void (int, const char *, ISlangBlob *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addEntryPoint" access="public">
+          <type native="int (int, const char *, SlangStage) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addEntryPointEx" access="public">
+          <type native="int (int, const char *, SlangStage, int, const char **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setGlobalGenericArgs" access="public">
+          <type native="SlangResult (int, const char **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTypeNameForGlobalExistentialTypeParam" access="public">
+          <type native="SlangResult (int, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTypeNameForEntryPointExistentialTypeParam" access="public">
+          <type native="SlangResult (int, int, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setAllowGLSLInput" access="public">
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="compile" access="public">
+          <type native="SlangResult () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getDiagnosticOutput" access="public">
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getDiagnosticOutputBlob" access="public">
+          <type native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getDependencyFileCount" access="public">
+          <type native="int () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getDependencyFilePath" access="public">
+          <type native="const char *(int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getTranslationUnitCount" access="public">
+          <type native="int () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getEntryPointSource" access="public">
+          <type native="const char *(int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getEntryPointCode" access="public">
+          <type native="const void *(int, size_t *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getEntryPointCodeBlob" access="public">
+          <type native="SlangResult (int, int, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getEntryPointHostCallable" access="public">
+          <type native="SlangResult (int, int, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getTargetCodeBlob" access="public">
+          <type native="SlangResult (int, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getTargetHostCallable" access="public">
+          <type native="SlangResult (int, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getCompileRequestCode" access="public">
+          <type native="const void *(size_t *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getCompileRequestResultAsFileSystem" access="public">
+          <type native="ISlangMutableFileSystem *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getContainerCode" access="public">
+          <type native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="loadRepro" access="public">
+          <type native="SlangResult (ISlangFileSystem *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="saveRepro" access="public">
+          <type native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="enableReproCapture" access="public">
+          <type native="SlangResult () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getProgram" access="public">
+          <type native="SlangResult (slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getEntryPoint" access="public">
+          <type native="SlangResult (SlangInt, slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getModule" access="public">
+          <type native="SlangResult (SlangInt, slang::IModule **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getSession" access="public">
+          <type native="SlangResult (slang::ISession **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getReflection" access="public">
+          <type native="SlangReflection *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setCommandLineCompilerMode" access="public">
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addTargetCapability" access="public">
+          <type native="SlangResult (SlangInt, SlangCapabilityID) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getProgramWithEntryPoints" access="public">
+          <type native="SlangResult (slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="isParameterLocationUsed" access="public">
+          <type native="SlangResult (SlangInt, SlangInt, SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetLineDirectiveMode" access="public">
+          <type native="void (SlangInt, SlangLineDirectiveMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetForceGLSLScalarBufferLayout" access="public">
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="overrideDiagnosticSeverity" access="public">
+          <type native="void (SlangInt, SlangSeverity) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getDiagnosticFlags" access="public">
+          <type native="SlangDiagnosticFlags () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setDiagnosticFlags" access="public">
+          <type native="void (SlangDiagnosticFlags) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setDebugInfoFormat" access="public">
+          <type native="void (SlangDebugInfoFormat) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setEnableEffectAnnotations" access="public">
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setReportDownstreamTime" access="public">
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setReportPerfBenchmark" access="public">
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setSkipSPIRVValidation" access="public">
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetUseMinimumSlangOptimization" access="public">
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setIgnoreCapabilityCheck" access="public">
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getCompileTimeProfile" access="public">
+          <type native="SlangResult (ISlangProfiler **, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetGenerateWholeProgram" access="public">
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetForceDXLayout" access="public">
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetEmbedDownstreamIR" access="public">
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>
