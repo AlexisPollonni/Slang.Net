@@ -25,19 +25,8 @@
     <Content Include="$(MSBuildThisFileDirectory)_._" Pack="true" PackagePath="lib/netstandard2.1/_._"/>
     <Content Include="$(MSBuildThisFileDirectory)NativePackageReadme.md" Pack="true" PackagePath="readme.md"/>
   </ItemGroup>
-
-  <Target Name="DownloadNative" BeforeTargets="Build">
-    <DownloadFile
-      SourceUrl="$(SlangNativeRepo)/releases/download/v$(SlangVersion)/slang-$(SlangVersion)-$(SlangDownloadRuntime).zip"
-      DestinationFolder="$(SlangTempArchiveDir)"
-      DestinationFileName="$(SlangTempArchiveName)">
-      <Output TaskParameter="DownloadedFile" ItemName="SlangArchive"/>
-    </DownloadFile>
-  </Target>
-  <Target Name="UnzipNative" BeforeTargets="Build" AfterTargets="DownloadNative">
-    <Unzip
-      SourceFiles="@(SlangArchive)"
-      DestinationFolder="$(SlangTempOutputPath)"/>
+  
+  <Target Name="Native" BeforeTargets="Build">
     <ItemGroup Condition="'@(SlangNativeNames)' == ''">
       <SlangNativeNames Include="$(SlangNativeName)"/>
     </ItemGroup>

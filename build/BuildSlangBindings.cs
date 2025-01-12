@@ -20,14 +20,8 @@ public class BuildSlangBindings
     public required AbsolutePath TestsOutputDir { get; init; }
     public required AbsolutePath SlangRepoPath { get; init; }
 
-    readonly AbsolutePath SlangHeaderPath;
-    readonly AbsolutePath SlangDeprHeaderPath;
-
-    public BuildSlangBindings()
-    {
-        SlangHeaderPath = SlangRepoPath / "include" / "slang.h";
-        SlangDeprHeaderPath = SlangRepoPath / "include" / "slang-deprecated.h";
-    }
+    AbsolutePath SlangHeaderPath => SlangRepoPath / "include" / "slang.h";
+    AbsolutePath SlangDeprHeaderPath => SlangRepoPath / "include" / "slang-deprecated.h";
 
     public void Build()
     {
