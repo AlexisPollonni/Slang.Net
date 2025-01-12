@@ -2,15 +2,15 @@
   <!-- Thanks to PackageSourceMapping we *have* to use a custom nuget.config to set the local feed -->
 
   <ItemGroup Condition="'$(UseLocalVersion)' == ''">
-    <ProjectReference Include="..\..\SlangNet\SlangNet.csproj"/>
+    <ProjectReference Include="$(SolutionDir)\SlangNet\SlangNet.csproj"/>
   </ItemGroup>
   <ItemGroup Condition="'$(UseLocalVersion)' != ''">
     <PackageReference Include="SlangNet" Version="$(VersionPrefix)-$(UseLocalVersion)"/>
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseLocalVersion)' == '' And '$(ForceTargetFramework)' != ''">
-    <ProjectReference Include="..\..\SlangNet.Bindings\SlangNet.Bindings.csproj" SetTargetFramework="TargetFramework=$(ForceTargetFramework)" />
-    <ProjectReference Include="..\..\SlangNet.Pretty\SlangNet.Pretty.csproj" SetTargetFramework="TargetFramework=$(ForceTargetFramework)" />
+    <ProjectReference Include="$(SolutionDir)\SlangNet.Bindings\SlangNet.Bindings.csproj" SetTargetFramework="TargetFramework=$(ForceTargetFramework)" />
+    <ProjectReference Include="$(SolutionDir)\SlangNet.Pretty\SlangNet.Pretty.csproj" SetTargetFramework="TargetFramework=$(ForceTargetFramework)" />
   </ItemGroup>
   <ItemGroup Condition="'$(UseLocalVersion)' != '' And '$(ForceTargetFramework)' != ''">
     <PackageReference Include="SlangNet.Bindings" Version="$(VersionPrefix)-$(UseLocalVersion)" ExcludeAssets="Compile" GeneratePathProperty="true"/>

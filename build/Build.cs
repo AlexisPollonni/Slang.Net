@@ -28,7 +28,7 @@ class Build : NukeBuild
     {
         SrcOutputDir = RootDirectory / "SlangNet.Bindings" / "Generated",
         XmlOutputDir = RootDirectory / "SlangNet" / "GeneratedDoc",
-        TestsOutputDir = RootDirectory / "SlangNet.Tests" / "SlangNet.Tests.Shared" / "Generated",
+        TestsOutputDir = RootDirectory / "SlangNet.Tests" / "Generated",
         SlangRepoPath = RootDirectory / "slang"
     };
 
