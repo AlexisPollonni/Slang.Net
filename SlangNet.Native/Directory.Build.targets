@@ -17,7 +17,7 @@
     <SlangTempArchiveName>slang-$(SlangRuntime).zip</SlangTempArchiveName>
     <SlangTempArchiveDir>$(IntermediateOutputPath)</SlangTempArchiveDir>
     <SlangTempArchivePath>$(SlangTempArchiveDir)$(SlangTempArchiveName)</SlangTempArchivePath>
-    <SlangTempOutputPath>$(IntermediateOutputPath)slang-$(SlangRuntime)</SlangTempOutputPath>
+    <SlangTempOutputPath>$(IntermediateOutputPath)slang-$(SlangVersion)-$(SlangRuntime)</SlangTempOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

@@ -3,7 +3,7 @@
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <SlangRuntime>osx-arm64</SlangRuntime>
     <SlangDownloadRuntime>macos-aarch64</SlangDownloadRuntime>
-    <SlangNativeDir>bin/macosx-aarch64/release</SlangNativeDir>
+    <SlangNativeDir>lib/</SlangNativeDir>
     <SlangNativeName>libslang.dylib</SlangNativeName>
   </PropertyGroup>
 </Project>

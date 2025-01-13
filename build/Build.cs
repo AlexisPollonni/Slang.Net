@@ -7,6 +7,7 @@ using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Utilities.Collections;
 using Serilog;
 
 class Build : NukeBuild
@@ -88,9 +89,21 @@ class Build : NukeBuild
                     var intermediateOutputDir
                         = project.Directory / msProject.GetProperty("IntermediateOutputPath").EvaluatedValue;
 
+
                     var nativeNames = msProject.GetItems("SlangNativeNames")
                                                .Select(item => item.EvaluatedInclude)
-                                               .ToList();
+                                               .ToArray();
+
+                    if (nativeNames.IsEmpty())
+                    {
+                        nativeNames =
+                        [
+                            msProject.GetProperty("SlangNativeName")
+                                     .NotNull($"No SlangNativeName property or items found in project {project}")
+                                     .EvaluatedValue
+                        ];
+                    }
+
                     var slangRuntime = project.GetProperty("SlangRuntime").NotNull();
                     var slangDownloadRuntime = project.GetProperty("SlangDownloadRuntime").NotNull();
                     var slangNativeDir = project.GetProperty("SlangNativeDir").NotNull();
@@ -107,7 +120,14 @@ class Build : NukeBuild
                     var sourceUrl
                         = $"{slangNativeRepo}/releases/download/v{slangVersion}/slang-{slangVersion}-{slangDownloadRuntime}.zip";
 
-                    if (!slangTempArchivePath.Exists("*file"))
+                    var slangPathToBinaries = slangTempOutputPath / slangNativeDir;
+                    if (SlangBinariesExists())
+                    {
+                        Log.Information("Slang binaries are already saved to {Path}, skipping...", slangTempOutputPath);
+                        return;
+                    }
+
+                    if (!slangTempArchivePath.FileExists())
                     {
                         using var httpClient = new HttpClient();
                         Log.Information("Downloading archive from {Url}", sourceUrl);
@@ -120,6 +140,20 @@ class Build : NukeBuild
 
                     Log.Information("Unzipping archive to directory {Path}", slangTempArchivePath);
                     slangTempArchivePath.UnZipTo(slangTempOutputPath);
+
+                    if (!SlangBinariesExists())
+                    {
+                        var filesNotFound = nativeNames.Select(s => slangPathToBinaries / s)
+                                                       .Where(f => !f.FileExists())
+                                                       .ToArray();
+                        Log.Error("Theses slang binaries could not be found : {Binaries}", filesNotFound);
+                    }
+
+                    return;
+
+                    bool SlangBinariesExists() =>
+                        slangPathToBinaries.DirectoryExists() &&
+                        nativeNames.All(n => slangPathToBinaries.ContainsFile(n));
                 }
             });
 
