@@ -10,19 +10,19 @@ public unsafe partial struct ISlangSharedLibraryLoader
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(ISlangSharedLibraryLoader* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(ISlangSharedLibraryLoader* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(ISlangSharedLibraryLoader* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _loadSharedLibrary(ISlangSharedLibraryLoader* pThis, [NativeTypeName("const char *")] sbyte* path, ISlangSharedLibrary** sharedLibraryOut);
 
@@ -60,16 +60,16 @@ public unsafe partial struct ISlangSharedLibraryLoader
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr release;
 
-        [NativeTypeName("SlangResult (const char *, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (const char *, ISlangSharedLibrary **)")]
         public IntPtr loadSharedLibrary;
     }
 }

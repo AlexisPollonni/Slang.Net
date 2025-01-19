@@ -33,12 +33,12 @@ internal record struct BuildConfig()
                                                                         | StripEnumMemberTypeName
                                                                         | LogPotentialTypedefRemappings;
 
-    public string[] DefineMacros { get; } =
+    public List<string> DefineMacros { get; } =
     [
         // Prevent platform-specific macros
         "SLANG_COMPILER",
-        "SLANG_PLATFORM",
-        "SLANG_WIN64"
+        "__clang__",
+        "SLANG_CLANG"
     ];
 
     public IReadOnlyCollection<string> TraversalNames { get; init; }
@@ -71,6 +71,7 @@ internal record struct BuildConfig()
         "SLANG_UNALIGNED_ACCESS",
 
         //Remove the UUIDs, they are generated incorrectly
+        "_GUID",
         "SLANG_UUID_ISlangUnknown",
         "SLANG_UUID_ISlangBlob",
         "SLANG_UUID_ISlangFileSystem",

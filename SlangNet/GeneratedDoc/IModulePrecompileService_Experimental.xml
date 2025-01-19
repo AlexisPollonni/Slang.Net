@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModulePrecompileService_Experimental*</type>
@@ -17,19 +17,19 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="StdCall">
+      <delegate name="_addRef" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IModulePrecompileService_Experimental*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="StdCall">
+      <delegate name="_release" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IModulePrecompileService_Experimental*</type>
         </param>
       </delegate>
-      <delegate name="_precompileForTarget" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_precompileForTarget" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModulePrecompileService_Experimental*</type>
@@ -41,7 +41,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getPrecompiledTargetCode" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getPrecompiledTargetCode" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModulePrecompileService_Experimental*</type>
@@ -59,19 +59,19 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getModuleDependencyCount" access="public" convention="StdCall">
-        <type native="SlangInt">long</type>
+      <delegate name="_getModuleDependencyCount" access="public" convention="ThisCall">
+        <type native="SlangInt">nint</type>
         <param name="pThis">
           <type>IModulePrecompileService_Experimental*</type>
         </param>
       </delegate>
-      <delegate name="_getModuleDependency" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getModuleDependency" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModulePrecompileService_Experimental*</type>
         </param>
         <param name="dependencyIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outModule">
           <type>IModule**</type>
@@ -138,7 +138,7 @@
         </body>
       </function>
       <function name="getModuleDependencyCount" access="public" unsafe="true">
-        <type native="SlangInt">long</type>
+        <type native="SlangInt">nint</type>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModuleDependencyCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getModuleDependencyCount</vtbl>)(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
@@ -146,7 +146,7 @@
       <function name="getModuleDependency" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="dependencyIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outModule">
           <type>IModule**</type>
@@ -163,25 +163,25 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="precompileForTarget" access="public">
-          <type native="SlangResult (SlangCompileTarget, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangCompileTarget, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getPrecompiledTargetCode" access="public">
-          <type native="SlangResult (SlangCompileTarget, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangCompileTarget, IBlob **, IBlob **)">IntPtr</type>
         </field>
         <field name="getModuleDependencyCount" access="public">
-          <type native="SlangInt () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt ()">IntPtr</type>
         </field>
         <field name="getModuleDependency" access="public">
-          <type native="SlangResult (SlangInt, IModule **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangInt, IModule **, IBlob **)">IntPtr</type>
         </field>
       </vtbl>
     </struct>

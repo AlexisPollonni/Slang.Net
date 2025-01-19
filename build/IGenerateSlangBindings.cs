@@ -34,7 +34,7 @@ public interface IGenerateSlangBindings : INukeBuild
             XmlOutputDir.CreateOrCleanDirectory();
             TestsOutputDir.CreateOrCleanDirectory();
         });
-    
+
     Target GenerateSlangBindings => _ => _
         .DependsOn(CleanSlangBindings)
         .Executes(Build);
@@ -77,27 +77,42 @@ public interface IGenerateSlangBindings : INukeBuild
                                                          | CXTranslationUnit_VisitImplicitAttributes
                                                          | CXTranslationUnit_DetailedPreprocessingRecord;
         // ReSharper restore BitwiseOperatorOnEnumWithoutFlags
-        
-        var platformSlangBindings = config.ClangCmdArgs.ToList();
+
+        var slangPlatformDefine = GetSlangPlatformDefine();
+        var clangCmdArgs = config.ClangCmdArgs.ToList();
 
         if (IsLinux)
         {
-            platformSlangBindings.AddRange(
+            clangCmdArgs.AddRange(
                 new[]
                 {
-                    "/usr/include/linux",
+                    "/usr/lib/gcc/x86_64-linux-gnu/12/include/",
+                    "/usr/lib/gcc/x86_64-linux-gnu/11/include/",
+                    "/usr/lib/gcc/x86_64-linux-gnu/10/include/",
+                    "/usr/lib/gcc/x86_64-linux-gnu/9/include/",
+                    "/usr/include/x86_64-linux-gnu",
+                    "/usr/include"
                 }.Select(s => $"--include-directory={s}"));
+            //Add additional include directories for linux systems to resolve stddef.h 
         }
 
+        clangCmdArgs.AddRange(new[]
+        {
+            "SLANG_PLATFORM", 
+            slangPlatformDefine
+        }.Select(s => $"--define-macro={s}"));
+
+        var error = false;
         foreach (var filePath in files)
         {
             var translationUnit
-                = CreateTranslationUnitForFile(filePath, generator.IndexHandle, platformSlangBindings.ToArray(),
+                = CreateTranslationUnitForFile(filePath, generator.IndexHandle, clangCmdArgs.ToArray(),
                     translationFlags);
 
             if (translationUnit is null)
             {
                 Log.Warning("Skipping \'{FilePath}\' due to one or more errors listed above", filePath);
+                error = true;
                 continue;
             }
 
@@ -111,14 +126,43 @@ public interface IGenerateSlangBindings : INukeBuild
             try
             {
                 Log.Information("Processing \'{FilePath}\'", filePath);
-                generator.GenerateBindings(translationUnit, filePath, platformSlangBindings.ToArray(),
+                generator.GenerateBindings(translationUnit, filePath, clangCmdArgs.ToArray(),
                     translationFlags);
             }
             catch (Exception e)
             {
                 Log.Error(e, "Failed to generate bindings for \'{FilePath}\'", filePath);
+                error = true;
             }
         }
+
+        if (error) Assert.Fail("Bindings Generation failed, see logs for details");
+    }
+
+    string GetSlangPlatformDefine()
+    {
+        var errMsg = $"Platform {Platform} not supported for binding generation";
+        if (Is64Bit)
+        {
+            if (IsWin)
+                return "SLANG_WIN64";
+            if (IsLinux)
+                return "SLANG_LINUX";
+            if (IsOsx)
+                return "SLANG_OSX";
+
+            Assert.Fail(errMsg);
+        }
+        else if (Is32Bit)
+        {
+            if (IsWin)
+                return "SLANG_WIN32";
+
+            Assert.Fail(errMsg);
+        }
+
+        Assert.Fail(errMsg);
+        return null!;
     }
 
     private TranslationUnit? CreateTranslationUnitForFile(AbsolutePath filePath,

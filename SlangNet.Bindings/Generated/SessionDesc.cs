@@ -13,7 +13,7 @@ public unsafe partial struct SessionDesc
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.targetCount"]/*' />
     [NativeTypeName("SlangInt")]
-    public long targetCount;
+    public nint targetCount;
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.flags"]/*' />
     [NativeTypeName("slang::SessionFlags")]
@@ -29,7 +29,7 @@ public unsafe partial struct SessionDesc
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.searchPathCount"]/*' />
     [NativeTypeName("SlangInt")]
-    public long searchPathCount;
+    public nint searchPathCount;
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.preprocessorMacros"]/*' />
     [NativeTypeName("const PreprocessorMacroDesc *")]
@@ -37,7 +37,7 @@ public unsafe partial struct SessionDesc
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.preprocessorMacroCount"]/*' />
     [NativeTypeName("SlangInt")]
-    public long preprocessorMacroCount;
+    public nint preprocessorMacroCount;
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.fileSystem"]/*' />
     public ISlangFileSystem* fileSystem;

@@ -10,23 +10,23 @@ public unsafe partial struct ISlangBlob
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(ISlangBlob* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(ISlangBlob* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(ISlangBlob* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("const void *")]
     public delegate void* _getBufferPointer(ISlangBlob* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("size_t")]
     public delegate nuint _getBufferSize(ISlangBlob* pThis);
 
@@ -72,19 +72,19 @@ public unsafe partial struct ISlangBlob
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr release;
 
-        [NativeTypeName("const void *() __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("const void *()")]
         public IntPtr getBufferPointer;
 
-        [NativeTypeName("size_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("size_t ()")]
         public IntPtr getBufferSize;
     }
 }

@@ -2,18 +2,18 @@
 <bindings>
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="EmitSpirvMethod" access="public">
-      <type>int</type>
+      <type>uint</type>
       <enumerator name="EmitSpirvDefault" access="public">
-        <type primitive="False">int</type>
+        <type primitive="False">uint</type>
         <value>
           <code>0</code>
         </value>
       </enumerator>
       <enumerator name="EmitSpirvViaGlsl" access="public">
-        <type primitive="False">int</type>
+        <type primitive="False">uint</type>
       </enumerator>
       <enumerator name="EmitSpirvDirectly" access="public">
-        <type primitive="False">int</type>
+        <type primitive="False">uint</type>
       </enumerator>
     </enumeration>
   </namespace>

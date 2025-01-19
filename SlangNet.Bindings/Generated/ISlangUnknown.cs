@@ -9,15 +9,15 @@ public unsafe partial struct ISlangUnknown
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(ISlangUnknown* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(ISlangUnknown* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(ISlangUnknown* pThis);
 
@@ -47,13 +47,13 @@ public unsafe partial struct ISlangUnknown
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr release;
     }
 }

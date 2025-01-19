@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -17,19 +17,19 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="StdCall">
+      <delegate name="_addRef" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="StdCall">
+      <delegate name="_release" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
         </param>
       </delegate>
-      <delegate name="_createSession" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_createSession" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -41,7 +41,7 @@
           <type>ISession**</type>
         </param>
       </delegate>
-      <delegate name="_findProfile" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_findProfile" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangProfileID">ProfileID</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -50,7 +50,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_setDownstreamCompilerPath" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_setDownstreamCompilerPath" access="public" convention="ThisCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -62,7 +62,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_setDownstreamCompilerPrelude" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_setDownstreamCompilerPrelude" access="public" convention="ThisCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -74,7 +74,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_getDownstreamCompilerPrelude" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getDownstreamCompilerPrelude" access="public" convention="ThisCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -86,13 +86,13 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getBuildTagString" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getBuildTagString" access="public" convention="ThisCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
         </param>
       </delegate>
-      <delegate name="_setDefaultDownstreamCompiler" access="public" convention="StdCall">
+      <delegate name="_setDefaultDownstreamCompiler" access="public" convention="ThisCall">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -104,7 +104,7 @@
           <type>PassThrough</type>
         </param>
       </delegate>
-      <delegate name="_getDefaultDownstreamCompiler" access="public" convention="StdCall">
+      <delegate name="_getDefaultDownstreamCompiler" access="public" convention="ThisCall">
         <type native="SlangPassThrough">PassThrough</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -113,7 +113,7 @@
           <type>SourceLanguage</type>
         </param>
       </delegate>
-      <delegate name="_setLanguagePrelude" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_setLanguagePrelude" access="public" convention="ThisCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -125,7 +125,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_getLanguagePrelude" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getLanguagePrelude" access="public" convention="ThisCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -137,7 +137,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_addBuiltins" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_addBuiltins" access="public" convention="ThisCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -149,7 +149,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_setSharedLibraryLoader" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_setSharedLibraryLoader" access="public" convention="ThisCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -158,13 +158,13 @@
           <type>ISlangSharedLibraryLoader*</type>
         </param>
       </delegate>
-      <delegate name="_getSharedLibraryLoader" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getSharedLibraryLoader" access="public" convention="ThisCall" unsafe="true">
         <type>ISlangSharedLibraryLoader*</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
         </param>
       </delegate>
-      <delegate name="_checkCompileTargetSupport" access="public" convention="StdCall">
+      <delegate name="_checkCompileTargetSupport" access="public" convention="ThisCall">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -173,7 +173,7 @@
           <type>CompileTarget</type>
         </param>
       </delegate>
-      <delegate name="_checkPassThroughSupport" access="public" convention="StdCall">
+      <delegate name="_checkPassThroughSupport" access="public" convention="ThisCall">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -182,7 +182,7 @@
           <type>PassThrough</type>
         </param>
       </delegate>
-      <delegate name="_compileCoreModule" access="public" convention="StdCall">
+      <delegate name="_compileCoreModule" access="public" convention="ThisCall">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -191,7 +191,7 @@
           <type>uint</type>
         </param>
       </delegate>
-      <delegate name="_loadCoreModule" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_loadCoreModule" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -203,7 +203,7 @@
           <type>nuint</type>
         </param>
       </delegate>
-      <delegate name="_saveCoreModule" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_saveCoreModule" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -215,7 +215,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_findCapability" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_findCapability" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangCapabilityID">CapabilityID</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -224,7 +224,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_setDownstreamCompilerForTransition" access="public" convention="StdCall">
+      <delegate name="_setDownstreamCompilerForTransition" access="public" convention="ThisCall">
         <type>void</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -239,7 +239,7 @@
           <type>PassThrough</type>
         </param>
       </delegate>
-      <delegate name="_getDownstreamCompilerForTransition" access="public" convention="StdCall">
+      <delegate name="_getDownstreamCompilerForTransition" access="public" convention="ThisCall">
         <type native="SlangPassThrough">PassThrough</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -251,7 +251,7 @@
           <type>CompileTarget</type>
         </param>
       </delegate>
-      <delegate name="_getCompilerElapsedTime" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getCompilerElapsedTime" access="public" convention="ThisCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -263,7 +263,7 @@
           <type>double*</type>
         </param>
       </delegate>
-      <delegate name="_setSPIRVCoreGrammar" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_setSPIRVCoreGrammar" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -272,7 +272,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_parseCommandLineArguments" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_parseCommandLineArguments" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -290,7 +290,7 @@
           <type>ISlangUnknown**</type>
         </param>
       </delegate>
-      <delegate name="_getSessionDescDigest" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getSessionDescDigest" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IGlobalSession*</type>
@@ -601,88 +601,88 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="createSession" access="public">
-          <type native="SlangResult (const SessionDesc &amp;, ISession **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const SessionDesc &amp;, ISession **)">IntPtr</type>
         </field>
         <field name="findProfile" access="public">
-          <type native="SlangProfileID (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangProfileID (const char *)">IntPtr</type>
         </field>
         <field name="setDownstreamCompilerPath" access="public">
-          <type native="void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangPassThrough, const char *)">IntPtr</type>
         </field>
         <field name="setDownstreamCompilerPrelude" access="public">
-          <type native="void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangPassThrough, const char *)">IntPtr</type>
         </field>
         <field name="getDownstreamCompilerPrelude" access="public">
-          <type native="void (SlangPassThrough, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangPassThrough, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getBuildTagString" access="public">
-          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *()">IntPtr</type>
         </field>
         <field name="setDefaultDownstreamCompiler" access="public">
-          <type native="SlangResult (SlangSourceLanguage, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangSourceLanguage, SlangPassThrough)">IntPtr</type>
         </field>
         <field name="getDefaultDownstreamCompiler" access="public">
-          <type native="SlangPassThrough (SlangSourceLanguage) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangPassThrough (SlangSourceLanguage)">IntPtr</type>
         </field>
         <field name="setLanguagePrelude" access="public">
-          <type native="void (SlangSourceLanguage, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangSourceLanguage, const char *)">IntPtr</type>
         </field>
         <field name="getLanguagePrelude" access="public">
-          <type native="void (SlangSourceLanguage, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangSourceLanguage, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="addBuiltins" access="public">
-          <type native="void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (const char *, const char *)">IntPtr</type>
         </field>
         <field name="setSharedLibraryLoader" access="public">
-          <type native="void (ISlangSharedLibraryLoader *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (ISlangSharedLibraryLoader *)">IntPtr</type>
         </field>
         <field name="getSharedLibraryLoader" access="public">
-          <type native="ISlangSharedLibraryLoader *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="ISlangSharedLibraryLoader *()">IntPtr</type>
         </field>
         <field name="checkCompileTargetSupport" access="public">
-          <type native="SlangResult (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangCompileTarget)">IntPtr</type>
         </field>
         <field name="checkPassThroughSupport" access="public">
-          <type native="SlangResult (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangPassThrough)">IntPtr</type>
         </field>
         <field name="compileCoreModule" access="public">
-          <type native="SlangResult (CompileCoreModuleFlags) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (CompileCoreModuleFlags)">IntPtr</type>
         </field>
         <field name="loadCoreModule" access="public">
-          <type native="SlangResult (const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const void *, size_t)">IntPtr</type>
         </field>
         <field name="saveCoreModule" access="public">
-          <type native="SlangResult (SlangArchiveType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangArchiveType, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="findCapability" access="public">
-          <type native="SlangCapabilityID (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangCapabilityID (const char *)">IntPtr</type>
         </field>
         <field name="setDownstreamCompilerForTransition" access="public">
-          <type native="void (SlangCompileTarget, SlangCompileTarget, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangCompileTarget, SlangCompileTarget, SlangPassThrough)">IntPtr</type>
         </field>
         <field name="getDownstreamCompilerForTransition" access="public">
-          <type native="SlangPassThrough (SlangCompileTarget, SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangPassThrough (SlangCompileTarget, SlangCompileTarget)">IntPtr</type>
         </field>
         <field name="getCompilerElapsedTime" access="public">
-          <type native="void (double *, double *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (double *, double *)">IntPtr</type>
         </field>
         <field name="setSPIRVCoreGrammar" access="public">
-          <type native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const char *)">IntPtr</type>
         </field>
         <field name="parseCommandLineArguments" access="public">
-          <type native="SlangResult (int, const char *const *, SessionDesc *, ISlangUnknown **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (int, const char *const *, SessionDesc *, ISlangUnknown **)">IntPtr</type>
         </field>
         <field name="getSessionDescDigest" access="public">
-          <type native="SlangResult (SessionDesc *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SessionDesc *, ISlangBlob **)">IntPtr</type>
         </field>
       </vtbl>
     </struct>

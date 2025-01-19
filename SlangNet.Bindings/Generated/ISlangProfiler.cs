@@ -10,31 +10,31 @@ public unsafe partial struct ISlangProfiler
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(ISlangProfiler* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(ISlangProfiler* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(ISlangProfiler* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("size_t")]
     public delegate nuint _getEntryCount(ISlangProfiler* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("const char *")]
     public delegate sbyte* _getEntryName(ISlangProfiler* pThis, [NativeTypeName("uint32_t")] uint index);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("long")]
-    public delegate int _getEntryTimeMS(ISlangProfiler* pThis, [NativeTypeName("uint32_t")] uint index);
+    public delegate nint _getEntryTimeMS(ISlangProfiler* pThis, [NativeTypeName("uint32_t")] uint index);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _getEntryInvocationTimes(ISlangProfiler* pThis, [NativeTypeName("uint32_t")] uint index);
 
@@ -81,7 +81,7 @@ public unsafe partial struct ISlangProfiler
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryTimeMS"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("long")]
-    public int getEntryTimeMS([NativeTypeName("uint32_t")] uint index)
+    public nint getEntryTimeMS([NativeTypeName("uint32_t")] uint index)
     {
         return Marshal.GetDelegateForFunctionPointer<_getEntryTimeMS>(lpVtbl->getEntryTimeMS)((ISlangProfiler*)Unsafe.AsPointer(ref this), index);
     }
@@ -96,25 +96,25 @@ public unsafe partial struct ISlangProfiler
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr release;
 
-        [NativeTypeName("size_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("size_t ()")]
         public IntPtr getEntryCount;
 
-        [NativeTypeName("const char *(uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("const char *(uint32_t)")]
         public IntPtr getEntryName;
 
-        [NativeTypeName("long (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("long (uint32_t)")]
         public IntPtr getEntryTimeMS;
 
-        [NativeTypeName("uint32_t (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t (uint32_t)")]
         public IntPtr getEntryInvocationTimes;
     }
 }

@@ -14,7 +14,7 @@ public unsafe partial struct GenericArgReflection
     /// <include file='GenericArgReflection.xml' path='doc/member[@name="GenericArgReflection.intVal"]/*' />
     [FieldOffset(0)]
     [NativeTypeName("int64_t")]
-    public long intVal;
+    public nint intVal;
 
     /// <include file='GenericArgReflection.xml' path='doc/member[@name="GenericArgReflection.boolVal"]/*' />
     [FieldOffset(0)]

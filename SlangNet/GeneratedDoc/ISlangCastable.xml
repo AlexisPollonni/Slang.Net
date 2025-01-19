@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangCastable*</type>
@@ -17,19 +17,19 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="StdCall">
+      <delegate name="_addRef" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISlangCastable*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="StdCall">
+      <delegate name="_release" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISlangCastable*</type>
         </param>
       </delegate>
-      <delegate name="_castAs" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_castAs" access="public" convention="ThisCall" unsafe="true">
         <type>void*</type>
         <param name="pThis">
           <type>ISlangCastable*</type>
@@ -73,16 +73,16 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="castAs" access="public">
-          <type native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void *(const SlangUUID &amp;)">IntPtr</type>
         </field>
       </vtbl>
     </struct>

@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -17,25 +17,25 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="StdCall">
+      <delegate name="_addRef" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISession*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="StdCall">
+      <delegate name="_release" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISession*</type>
         </param>
       </delegate>
-      <delegate name="_getGlobalSession" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getGlobalSession" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::IGlobalSession *">IGlobalSession*</type>
         <param name="pThis">
           <type>ISession*</type>
         </param>
       </delegate>
-      <delegate name="_loadModule" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_loadModule" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::IModule *">IModule*</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -50,7 +50,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_loadModuleFromSource" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_loadModuleFromSource" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::IModule *">IModule*</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -71,7 +71,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_createCompositeComponentType" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_createCompositeComponentType" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -80,7 +80,7 @@
           <type>IComponentType**</type>
         </param>
         <param name="componentTypeCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCompositeComponentType">
           <type>IComponentType**</type>
@@ -92,7 +92,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_specializeType" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_specializeType" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::TypeReflection *">TypeReflection*</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -104,7 +104,7 @@
           <type>SpecializationArg*</type>
         </param>
         <param name="specializationArgCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outDiagnostics">
           <type>ISlangBlob**</type>
@@ -113,7 +113,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getTypeLayout" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getTypeLayout" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::TypeLayoutReflection *">TypeLayoutReflection*</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -122,7 +122,7 @@
           <type>TypeReflection*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
           <init>
             <code>0</code>
           </init>
@@ -140,7 +140,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getContainerType" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getContainerType" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::TypeReflection *">TypeReflection*</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -158,13 +158,13 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getDynamicType" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getDynamicType" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::TypeReflection *">TypeReflection*</type>
         <param name="pThis">
           <type>ISession*</type>
         </param>
       </delegate>
-      <delegate name="_getTypeRTTIMangledName" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getTypeRTTIMangledName" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -176,7 +176,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getTypeConformanceWitnessMangledName" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getTypeConformanceWitnessMangledName" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -191,7 +191,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getTypeConformanceWitnessSequentialID" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getTypeConformanceWitnessSequentialID" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -206,7 +206,7 @@
           <type>uint*</type>
         </param>
       </delegate>
-      <delegate name="_createTypeConformanceComponentType" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_createTypeConformanceComponentType" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -221,13 +221,13 @@
           <type>ITypeConformance**</type>
         </param>
         <param name="conformanceIdOverride">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outDiagnostics">
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_loadModuleFromIRBlob" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_loadModuleFromIRBlob" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::IModule *">IModule*</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -248,22 +248,22 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getLoadedModuleCount" access="public" convention="StdCall">
-        <type native="SlangInt">long</type>
+      <delegate name="_getLoadedModuleCount" access="public" convention="ThisCall">
+        <type native="SlangInt">nint</type>
         <param name="pThis">
           <type>ISession*</type>
         </param>
       </delegate>
-      <delegate name="_getLoadedModule" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getLoadedModule" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::IModule *">IModule*</type>
         <param name="pThis">
           <type>ISession*</type>
         </param>
         <param name="index">
-          <type>long</type>
+          <type>nint</type>
         </param>
       </delegate>
-      <delegate name="_isBinaryModuleUpToDate" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_isBinaryModuleUpToDate" access="public" convention="ThisCall" unsafe="true">
         <type native="bool">byte</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -275,7 +275,7 @@
           <type>ISlangBlob*</type>
         </param>
       </delegate>
-      <delegate name="_loadModuleFromSourceString" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_loadModuleFromSourceString" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::IModule *">IModule*</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -368,7 +368,7 @@
           <type>IComponentType**</type>
         </param>
         <param name="componentTypeCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCompositeComponentType">
           <type>IComponentType**</type>
@@ -392,7 +392,7 @@
           <type>SpecializationArg*</type>
         </param>
         <param name="specializationArgCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outDiagnostics">
           <type>ISlangBlob**</type>
@@ -410,7 +410,7 @@
           <type>TypeReflection*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
           <init>
             <code>0</code>
           </init>
@@ -509,7 +509,7 @@
           <type>ITypeConformance**</type>
         </param>
         <param name="conformanceIdOverride">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outDiagnostics">
           <type>ISlangBlob**</type>
@@ -540,7 +540,7 @@
         </body>
       </function>
       <function name="getLoadedModuleCount" access="public" unsafe="true">
-        <type native="SlangInt">long</type>
+        <type native="SlangInt">nint</type>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLoadedModuleCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getLoadedModuleCount</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
@@ -548,7 +548,7 @@
       <function name="getLoadedModule" access="public" unsafe="true">
         <type native="slang::IModule *">IModule*</type>
         <param name="index">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLoadedModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getLoadedModule</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>
@@ -589,64 +589,64 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="getGlobalSession" access="public">
-          <type native="IGlobalSession *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="IGlobalSession *()">IntPtr</type>
         </field>
         <field name="loadModule" access="public">
-          <type native="IModule *(const char *, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="IModule *(const char *, IBlob **)">IntPtr</type>
         </field>
         <field name="loadModuleFromSource" access="public">
-          <type native="IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **)">IntPtr</type>
         </field>
         <field name="createCompositeComponentType" access="public">
-          <type native="SlangResult (IComponentType *const *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (IComponentType *const *, SlangInt, IComponentType **, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="specializeType" access="public">
-          <type native="TypeReflection *(TypeReflection *, const SpecializationArg *, SlangInt, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="TypeReflection *(TypeReflection *, const SpecializationArg *, SlangInt, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getTypeLayout" access="public">
-          <type native="TypeLayoutReflection *(TypeReflection *, SlangInt, LayoutRules, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="TypeLayoutReflection *(TypeReflection *, SlangInt, LayoutRules, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getContainerType" access="public">
-          <type native="TypeReflection *(TypeReflection *, ContainerType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="TypeReflection *(TypeReflection *, ContainerType, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getDynamicType" access="public">
-          <type native="TypeReflection *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="TypeReflection *()">IntPtr</type>
         </field>
         <field name="getTypeRTTIMangledName" access="public">
-          <type native="SlangResult (TypeReflection *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (TypeReflection *, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getTypeConformanceWitnessMangledName" access="public">
-          <type native="SlangResult (TypeReflection *, TypeReflection *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (TypeReflection *, TypeReflection *, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getTypeConformanceWitnessSequentialID" access="public">
-          <type native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *)">IntPtr</type>
         </field>
         <field name="createTypeConformanceComponentType" access="public">
-          <type native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, ITypeConformance **, SlangInt, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, ITypeConformance **, SlangInt, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="loadModuleFromIRBlob" access="public">
-          <type native="IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **)">IntPtr</type>
         </field>
         <field name="getLoadedModuleCount" access="public">
-          <type native="SlangInt () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt ()">IntPtr</type>
         </field>
         <field name="getLoadedModule" access="public">
-          <type native="IModule *(SlangInt) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="IModule *(SlangInt)">IntPtr</type>
         </field>
         <field name="isBinaryModuleUpToDate" access="public">
-          <type native="bool (const char *, slang::IBlob *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="bool (const char *, slang::IBlob *)">IntPtr</type>
         </field>
         <field name="loadModuleFromSourceString" access="public">
-          <type native="IModule *(const char *, const char *, const char *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="IModule *(const char *, const char *, const char *, slang::IBlob **)">IntPtr</type>
         </field>
       </vtbl>
     </struct>

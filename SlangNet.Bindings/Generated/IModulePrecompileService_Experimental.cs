@@ -10,33 +10,33 @@ public unsafe partial struct IModulePrecompileService_Experimental
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IModulePrecompileService_Experimental* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IModulePrecompileService_Experimental* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IModulePrecompileService_Experimental* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _precompileForTarget(IModulePrecompileService_Experimental* pThis, [NativeTypeName("SlangCompileTarget")] CompileTarget target, ISlangBlob** outDiagnostics);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _getPrecompiledTargetCode(IModulePrecompileService_Experimental* pThis, [NativeTypeName("SlangCompileTarget")] CompileTarget target, [NativeTypeName("IBlob **")] ISlangBlob** outCode, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangInt")]
-    public delegate long _getModuleDependencyCount(IModulePrecompileService_Experimental* pThis);
+    public delegate nint _getModuleDependencyCount(IModulePrecompileService_Experimental* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _getModuleDependency(IModulePrecompileService_Experimental* pThis, [NativeTypeName("SlangInt")] long dependencyIndex, IModule** outModule, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
+    public delegate int _getModuleDependency(IModulePrecompileService_Experimental* pThis, [NativeTypeName("SlangInt")] nint dependencyIndex, IModule** outModule, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -81,7 +81,7 @@ public unsafe partial struct IModulePrecompileService_Experimental
     /// <include file='IModulePrecompileService_Experimental.xml' path='doc/member[@name="IModulePrecompileService_Experimental.getModuleDependencyCount"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangInt")]
-    public long getModuleDependencyCount()
+    public nint getModuleDependencyCount()
     {
         return Marshal.GetDelegateForFunctionPointer<_getModuleDependencyCount>(lpVtbl->getModuleDependencyCount)((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this));
     }
@@ -89,32 +89,32 @@ public unsafe partial struct IModulePrecompileService_Experimental
     /// <include file='IModulePrecompileService_Experimental.xml' path='doc/member[@name="IModulePrecompileService_Experimental.getModuleDependency"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int getModuleDependency([NativeTypeName("SlangInt")] long dependencyIndex, IModule** outModule, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
+    public int getModuleDependency([NativeTypeName("SlangInt")] nint dependencyIndex, IModule** outModule, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
     {
         return Marshal.GetDelegateForFunctionPointer<_getModuleDependency>(lpVtbl->getModuleDependency)((IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this), dependencyIndex, outModule, outDiagnostics);
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t ()")]
         public IntPtr release;
 
-        [NativeTypeName("SlangResult (SlangCompileTarget, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (SlangCompileTarget, ISlangBlob **)")]
         public IntPtr precompileForTarget;
 
-        [NativeTypeName("SlangResult (SlangCompileTarget, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (SlangCompileTarget, IBlob **, IBlob **)")]
         public IntPtr getPrecompiledTargetCode;
 
-        [NativeTypeName("SlangInt () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangInt ()")]
         public IntPtr getModuleDependencyCount;
 
-        [NativeTypeName("SlangResult (SlangInt, IModule **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (SlangInt, IModule **, IBlob **)")]
         public IntPtr getModuleDependency;
     }
 }

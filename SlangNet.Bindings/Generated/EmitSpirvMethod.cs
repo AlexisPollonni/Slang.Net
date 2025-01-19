@@ -1,7 +1,8 @@
 namespace SlangNet.Bindings.Generated;
 
 /// <include file='EmitSpirvMethod.xml' path='doc/member[@name="EmitSpirvMethod"]/*' />
-public enum EmitSpirvMethod
+[NativeTypeName("unsigned int")]
+public enum EmitSpirvMethod : uint
 {
     /// <include file='EmitSpirvMethod.xml' path='doc/member[@name="EmitSpirvMethod.EmitSpirvDefault"]/*' />
     EmitSpirvDefault = 0,

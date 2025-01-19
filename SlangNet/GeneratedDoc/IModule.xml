@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -17,31 +17,31 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="StdCall">
+      <delegate name="_addRef" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="StdCall">
+      <delegate name="_release" access="public" convention="ThisCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
       </delegate>
-      <delegate name="_getSession" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getSession" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::ISession *">ISession*</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
       </delegate>
-      <delegate name="_getLayout" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getLayout" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::ProgramLayout *">ShaderReflection*</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
           <init>
             <code>0</code>
           </init>
@@ -53,22 +53,22 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getSpecializationParamCount" access="public" convention="StdCall">
-        <type native="SlangInt">long</type>
+      <delegate name="_getSpecializationParamCount" access="public" convention="ThisCall">
+        <type native="SlangInt">nint</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
       </delegate>
-      <delegate name="_getEntryPointCode" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getEntryPointCode" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCode">
           <type>ISlangBlob**</type>
@@ -80,37 +80,37 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getResultAsFileSystem" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getResultAsFileSystem" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outFileSystem">
           <type>ISlangMutableFileSystem**</type>
         </param>
       </delegate>
-      <delegate name="_getEntryPointHash" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getEntryPointHash" access="public" convention="ThisCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outHash">
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_specialize" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_specialize" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -119,7 +119,7 @@
           <type>SpecializationArg*</type>
         </param>
         <param name="specializationArgCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outSpecializedComponentType">
           <type>IComponentType**</type>
@@ -131,7 +131,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_link" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_link" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -146,7 +146,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getEntryPointHostCallable" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getEntryPointHostCallable" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -167,7 +167,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_renameEntryPoint" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_renameEntryPoint" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -179,7 +179,7 @@
           <type>IComponentType**</type>
         </param>
       </delegate>
-      <delegate name="_linkWithOptions" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_linkWithOptions" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -200,13 +200,13 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getTargetCode" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getTargetCode" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCode">
           <type>ISlangBlob**</type>
@@ -218,13 +218,13 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getTargetMetadata" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getTargetMetadata" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outMetadata">
           <type>IMetadata**</type>
@@ -236,16 +236,16 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getEntryPointMetadata" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getEntryPointMetadata" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outMetadata">
           <type>IMetadata**</type>
@@ -257,7 +257,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_findEntryPointByName" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_findEntryPointByName" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -269,13 +269,13 @@
           <type>IEntryPoint**</type>
         </param>
       </delegate>
-      <delegate name="_getDefinedEntryPointCount" access="public" convention="StdCall">
+      <delegate name="_getDefinedEntryPointCount" access="public" convention="ThisCall">
         <type native="SlangInt32">int</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
       </delegate>
-      <delegate name="_getDefinedEntryPoint" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getDefinedEntryPoint" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -287,7 +287,7 @@
           <type>IEntryPoint**</type>
         </param>
       </delegate>
-      <delegate name="_serialize" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_serialize" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -296,7 +296,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_writeToFile" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_writeToFile" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -305,25 +305,25 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_getName" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getName" access="public" convention="ThisCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
       </delegate>
-      <delegate name="_getFilePath" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getFilePath" access="public" convention="ThisCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
       </delegate>
-      <delegate name="_getUniqueIdentity" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getUniqueIdentity" access="public" convention="ThisCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
       </delegate>
-      <delegate name="_findAndCheckEntryPoint" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_findAndCheckEntryPoint" access="public" convention="ThisCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -341,13 +341,13 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getDependencyFileCount" access="public" convention="StdCall">
+      <delegate name="_getDependencyFileCount" access="public" convention="ThisCall">
         <type native="SlangInt32">int</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
       </delegate>
-      <delegate name="_getDependencyFilePath" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getDependencyFilePath" access="public" convention="ThisCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -356,7 +356,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_getModuleReflection" access="public" convention="StdCall" unsafe="true">
+      <delegate name="_getModuleReflection" access="public" convention="ThisCall" unsafe="true">
         <type native="slang::DeclReflection *">DeclReflection*</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -395,7 +395,7 @@
       <function name="getLayout" access="public" unsafe="true">
         <type native="slang::ProgramLayout *">ShaderReflection*</type>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
           <init>
             <code>0</code>
           </init>
@@ -411,7 +411,7 @@
         </body>
       </function>
       <function name="getSpecializationParamCount" access="public" unsafe="true">
-        <type native="SlangInt">long</type>
+        <type native="SlangInt">nint</type>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSpecializationParamCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSpecializationParamCount</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
@@ -419,10 +419,10 @@
       <function name="getEntryPointCode" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCode">
           <type>ISlangBlob**</type>
@@ -440,10 +440,10 @@
       <function name="getResultAsFileSystem" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outFileSystem">
           <type>ISlangMutableFileSystem**</type>
@@ -455,10 +455,10 @@
       <function name="getEntryPointHash" access="public" unsafe="true">
         <type>void</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outHash">
           <type>ISlangBlob**</type>
@@ -473,7 +473,7 @@
           <type>SpecializationArg*</type>
         </param>
         <param name="specializationArgCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outSpecializedComponentType">
           <type>IComponentType**</type>
@@ -560,7 +560,7 @@
       <function name="getTargetCode" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCode">
           <type>ISlangBlob**</type>
@@ -578,7 +578,7 @@
       <function name="getTargetMetadata" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outMetadata">
           <type>IMetadata**</type>
@@ -596,10 +596,10 @@
       <function name="getEntryPointMetadata" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outMetadata">
           <type>IMetadata**</type>
@@ -721,91 +721,91 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t ()">IntPtr</type>
         </field>
         <field name="getSession" access="public">
-          <type native="ISession *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="ISession *()">IntPtr</type>
         </field>
         <field name="getLayout" access="public">
-          <type native="ProgramLayout *(SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="ProgramLayout *(SlangInt, IBlob **)">IntPtr</type>
         </field>
         <field name="getSpecializationParamCount" access="public">
-          <type native="SlangInt () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt ()">IntPtr</type>
         </field>
         <field name="getEntryPointCode" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangInt, SlangInt, IBlob **, IBlob **)">IntPtr</type>
         </field>
         <field name="getResultAsFileSystem" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **)">IntPtr</type>
         </field>
         <field name="getEntryPointHash" access="public">
-          <type native="void (SlangInt, SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangInt, SlangInt, IBlob **)">IntPtr</type>
         </field>
         <field name="specialize" access="public">
-          <type native="SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="link" access="public">
-          <type native="SlangResult (IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (IComponentType **, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getEntryPointHostCallable" access="public">
-          <type native="SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **)">IntPtr</type>
         </field>
         <field name="renameEntryPoint" access="public">
-          <type native="SlangResult (const char *, IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const char *, IComponentType **)">IntPtr</type>
         </field>
         <field name="linkWithOptions" access="public">
-          <type native="SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getTargetCode" access="public">
-          <type native="SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangInt, IBlob **, IBlob **)">IntPtr</type>
         </field>
         <field name="getTargetMetadata" access="public">
-          <type native="SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangInt, IMetadata **, IBlob **)">IntPtr</type>
         </field>
         <field name="getEntryPointMetadata" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **)">IntPtr</type>
         </field>
         <field name="findEntryPointByName" access="public">
-          <type native="SlangResult (const char *, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const char *, IEntryPoint **)">IntPtr</type>
         </field>
         <field name="getDefinedEntryPointCount" access="public">
-          <type native="SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt32 ()">IntPtr</type>
         </field>
         <field name="getDefinedEntryPoint" access="public">
-          <type native="SlangResult (SlangInt32, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (SlangInt32, IEntryPoint **)">IntPtr</type>
         </field>
         <field name="serialize" access="public">
-          <type native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (ISlangBlob **)">IntPtr</type>
         </field>
         <field name="writeToFile" access="public">
-          <type native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const char *)">IntPtr</type>
         </field>
         <field name="getName" access="public">
-          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *()">IntPtr</type>
         </field>
         <field name="getFilePath" access="public">
-          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *()">IntPtr</type>
         </field>
         <field name="getUniqueIdentity" access="public">
-          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *()">IntPtr</type>
         </field>
         <field name="findAndCheckEntryPoint" access="public">
-          <type native="SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **)">IntPtr</type>
         </field>
         <field name="getDependencyFileCount" access="public">
-          <type native="SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt32 ()">IntPtr</type>
         </field>
         <field name="getDependencyFilePath" access="public">
-          <type native="const char *(SlangInt32) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *(SlangInt32)">IntPtr</type>
         </field>
         <field name="getModuleReflection" access="public">
-          <type native="DeclReflection *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="DeclReflection *()">IntPtr</type>
         </field>
       </vtbl>
     </struct>
