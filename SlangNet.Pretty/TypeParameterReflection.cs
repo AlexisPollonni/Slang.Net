@@ -44,10 +44,10 @@ public readonly unsafe struct TypeParameterReflection : IEquatable<TypeParameter
 
     public uint Index => ReflectionTypeParameter_GetIndex(InternalPointer);
 
-    private static long GetConstraintCount(SlangReflectionTypeParameter* param) =>
-        ReflectionTypeParameter_GetConstraintCount(param);
+    private static nint GetConstraintCount(SlangReflectionTypeParameter* param) =>
+        checked((nint)ReflectionTypeParameter_GetConstraintCount(param));
 
-    private static bool TryGetConstraintAt(SlangReflectionTypeParameter* param, long index, ref TypeReflection constraint)
+    private static bool TryGetConstraintAt(SlangReflectionTypeParameter* param, nint index, ref TypeReflection constraint)
     {
         var ptr = ReflectionTypeParameter_GetConstraintByIndex(param, checked((uint)index));
         constraint = ptr == null ? default : new(ptr);

@@ -37,7 +37,7 @@ public unsafe partial class ComponentType : COMObject<IComponentType>
     public ShaderReflection? TryGetLayout(long targetIndex, out string? diagnostics)
     {
         using var diagnosticsBlob = new COMPointer<ISlangBlob>();
-        var reflectionPtr = Pointer->getLayout(targetIndex, &diagnosticsBlob.Pointer);
+        var reflectionPtr = Pointer->getLayout((nint)targetIndex, &diagnosticsBlob.Pointer);
         diagnostics = diagnosticsBlob.AsString();
         return reflectionPtr == null ? null : new ShaderReflection(reflectionPtr);
     }
@@ -55,7 +55,7 @@ public unsafe partial class ComponentType : COMObject<IComponentType>
     {
         using var diagnosticsBlob = new COMPointer<ISlangBlob>();
         ISlangBlob* codePtr = null;
-        var result = Pointer->getEntryPointCode(entryPointIndex, targetIndex, &codePtr, &diagnosticsBlob.Pointer);
+        var result = Pointer->getEntryPointCode((nint)entryPointIndex, (nint)targetIndex, &codePtr, &diagnosticsBlob.Pointer);
         diagnostics = diagnosticsBlob.AsString();
         code = codePtr == null ? null : new BlobMemoryManager(codePtr);
         return new(result);
@@ -67,7 +67,7 @@ public unsafe partial class ComponentType : COMObject<IComponentType>
     public IMemoryOwner<byte>? TryGetEntryPointHash(long entryPointIndex, long targetIndex)
     {
         ISlangBlob* codePtr = null;
-        Pointer->getEntryPointHash(entryPointIndex, targetIndex, &codePtr);
+        Pointer->getEntryPointHash((nint)entryPointIndex, (nint)targetIndex, &codePtr);
         return codePtr == null ? null : new BlobMemoryManager(codePtr);
     }
 
@@ -92,7 +92,7 @@ public unsafe partial class ComponentType : COMObject<IComponentType>
         SlangResult result;
         IComponentType* specializedTypePtr = null;
         fixed (SpecializationArg* argsPtr = argsArray)
-            result = new(Pointer->specialize(argsPtr, argsArray.LongLength, &specializedTypePtr, & diagnosticsBlob.Pointer));
+            result = new(Pointer->specialize(argsPtr, (nint)argsArray.LongLength, &specializedTypePtr, & diagnosticsBlob.Pointer));
         diagnostics = diagnosticsBlob.AsString();
         specializedType = specializedTypePtr == null ? null : CreateFromPointer(specializedTypePtr);
         return result;

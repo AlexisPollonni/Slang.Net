@@ -17,7 +17,7 @@ public sealed unsafe partial class GlobalSession : COMObject<IGlobalSession>
     public static SlangResult TryCreate(long apiVersion, [NotNullWhen(true)] out GlobalSession? session)
     {
         IGlobalSession* pointer;
-        var result = new SlangResult(slang_createGlobalSession(apiVersion, &pointer));
+        var result = new SlangResult(slang_createGlobalSession((nint)apiVersion, &pointer));
         session = result.Succeeded ? new(pointer) : null;
         return result;
     }

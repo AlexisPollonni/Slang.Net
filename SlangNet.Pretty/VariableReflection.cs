@@ -61,10 +61,10 @@ public readonly unsafe struct VariableReflection : IEquatable<VariableReflection
 
     public IReadOnlyList<UserAttribute> UserAttributes { get; }
 
-    private static long GetUserAttributeCount(SlangReflectionVariable* type) =>
-        ReflectionVariable_GetUserAttributeCount(type);
+    private static nint GetUserAttributeCount(SlangReflectionVariable* type) =>
+        (nint)ReflectionVariable_GetUserAttributeCount(type);
 
-    private static bool TryGetUserAttributeAt(SlangReflectionVariable* type, long index, ref UserAttribute attribute)
+    private static bool TryGetUserAttributeAt(SlangReflectionVariable* type, nint index, ref UserAttribute attribute)
     {
         var ptr = ReflectionVariable_GetUserAttribute(type, checked((uint)index));
         attribute = new UserAttribute(ptr);

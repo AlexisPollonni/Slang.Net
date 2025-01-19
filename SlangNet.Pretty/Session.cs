@@ -99,7 +99,7 @@ public sealed unsafe partial class Session : COMObject<ISession>
         IComponentType* compositeComponentTypePtr = null;
         int result;
         fixed(IComponentType** componentTypePtrs = componentTypeArray)
-            result = Pointer->createCompositeComponentType(componentTypePtrs, componentTypeArray.LongLength, &compositeComponentTypePtr, &diagnosticsBlob.Pointer);
+            result = Pointer->createCompositeComponentType(componentTypePtrs, (nint)componentTypeArray.LongLength, &compositeComponentTypePtr, &diagnosticsBlob.Pointer);
         diagnostics = diagnosticsBlob.AsString();
         compositeComponentType = ComponentType.CreateFromPointer(compositeComponentTypePtr);
         return new(result);
@@ -122,7 +122,7 @@ public sealed unsafe partial class Session : COMObject<ISession>
         using var diagnosticsBlob = new COMPointer<ISlangBlob>();
         Unsafe.TypeReflection* specializedTypePtr;
         fixed (SpecializationArg* argsPtr = argsArray)
-            specializedTypePtr = Pointer->specializeType(type.Pointer, argsPtr, argsArray.LongLength, &diagnosticsBlob.Pointer);
+            specializedTypePtr = Pointer->specializeType(type.Pointer, argsPtr, (nint)argsArray.LongLength, &diagnosticsBlob.Pointer);
         diagnostics = diagnosticsBlob.AsString();
         return specializedTypePtr == null ? null : new(specializedTypePtr);
     }
@@ -135,7 +135,7 @@ public sealed unsafe partial class Session : COMObject<ISession>
     {
         type.ThrowIfNull();
         using var diagnosticsBlob = new COMPointer<ISlangBlob>();
-        var layoutPtr = Pointer->getTypeLayout(type.Pointer, targetIndex, rules, &diagnosticsBlob.Pointer);
+        var layoutPtr = Pointer->getTypeLayout(type.Pointer, (nint)targetIndex, rules, &diagnosticsBlob.Pointer);
         diagnostics = diagnosticsBlob.AsString();
         return layoutPtr == null ? null : new(layoutPtr);
     }
@@ -221,7 +221,7 @@ public sealed unsafe partial class Session : COMObject<ISession>
             type.Pointer,
             interfaceType.Pointer,
             &conformancePtr,
-            conformanceIdOverride,
+            (nint)conformanceIdOverride,
             &diagnosticsBlob.Pointer);
         diagnostics = diagnosticsBlob.AsString();
         conformance = conformancePtr == null ? null : new(conformancePtr);

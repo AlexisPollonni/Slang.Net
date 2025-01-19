@@ -36,16 +36,16 @@ unsafe partial struct TypeLayoutReflection
         public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), Index);
 
         public BindingType BindingRangeType =>
-            ReflectionTypeLayout_getBindingRangeType(Pointer, Index);
+            ReflectionTypeLayout_getBindingRangeType(Pointer, (nint)Index);
 
         public long BindingCount =>
-            ReflectionTypeLayout_getBindingRangeBindingCount(Pointer, Index);
+            ReflectionTypeLayout_getBindingRangeBindingCount(Pointer, (nint)Index);
 
         public TypeLayoutReflection? LeafTypeLayout
         {
             get
             {
-                var ptr = ReflectionTypeLayout_getBindingRangeLeafTypeLayout(Pointer, Index);
+                var ptr = ReflectionTypeLayout_getBindingRangeLeafTypeLayout(Pointer, (nint)Index);
                 return ptr == null ? null : new(ptr);
             }
         }
@@ -54,18 +54,18 @@ unsafe partial struct TypeLayoutReflection
         {
             get
             {
-                var ptr = ReflectionTypeLayout_getBindingRangeLeafVariable(Pointer, Index);
+                var ptr = ReflectionTypeLayout_getBindingRangeLeafVariable(Pointer, (nint)Index);
                 return ptr == null ? null : new(ptr);
             }
         }
 
         public long DescriptorSetIndex =>
-            ReflectionTypeLayout_getBindingRangeDescriptorSetIndex(Pointer, Index);
+            ReflectionTypeLayout_getBindingRangeDescriptorSetIndex(Pointer, (nint)Index);
 
         public long FirstDescriptorRangeIndex =>
-            ReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex(Pointer, Index);
+            ReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex(Pointer, (nint)Index);
 
         public long DescriptorRangeCount =>
-            ReflectionTypeLayout_getBindingRangeDescriptorRangeCount(Pointer, Index);
+            ReflectionTypeLayout_getBindingRangeDescriptorRangeCount(Pointer, (nint)Index);
     }
 }

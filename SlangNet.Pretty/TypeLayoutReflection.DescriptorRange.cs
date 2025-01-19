@@ -38,15 +38,15 @@ unsafe partial struct TypeLayoutReflection
         public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), SetIndex);
 
         public long IndexOffset =>
-            ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset(Pointer, SetIndex, RangeIndex);
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset(Pointer, (nint)SetIndex, (nint)RangeIndex);
 
         public long DescriptorCount =>
-            ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount(Pointer, SetIndex, RangeIndex);
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount(Pointer, (nint)SetIndex, (nint)RangeIndex);
 
         public BindingType Type =>
-            ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(Pointer, SetIndex, RangeIndex);
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(Pointer, (nint)SetIndex, (nint)RangeIndex);
 
         public ParameterCategory Category =>
-            ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(Pointer, SetIndex, RangeIndex);
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(Pointer, (nint)SetIndex, (nint)RangeIndex);
     }
 }

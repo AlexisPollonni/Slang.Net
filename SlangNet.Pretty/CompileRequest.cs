@@ -180,10 +180,10 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
 
     // skipping getDiagnosticOutputBlob
 
-    private static long GetDependencyFileCount(ICompileRequest* compileRequest) =>
+    private static nint GetDependencyFileCount(ICompileRequest* compileRequest) =>
         compileRequest->getDependencyFileCount();
 
-    private static bool TryGetDependencyFileAt(ICompileRequest* compileRequest, long index, ref string result)
+    private static bool TryGetDependencyFileAt(ICompileRequest* compileRequest, nint index, ref string result)
     {
         var ptr = compileRequest->getDependencyFilePath(checked((int)index));
         result = InteropUtils.PtrToStringUTF8(ptr) ?? "";
@@ -260,7 +260,7 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
     public SlangResult TryGetEntryPoint(long entryPointIndex, [NotNullWhen(true)] out ComponentType? entryPoint)
     {
         IComponentType* entryPointPtr = null;
-        var result = Pointer->getEntryPoint(entryPointIndex, &entryPointPtr);
+        var result = Pointer->getEntryPoint((nint)entryPointIndex, &entryPointPtr);
         entryPoint = ComponentType.CreateFromPointer(entryPointPtr);
         return new(result);
     }
@@ -286,7 +286,7 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
         Pointer->setCommandLineCompilerMode();
 
     public SlangResult TryAddTargetCapability(long targetIndex, CapabilityID capability) =>
-        new(Pointer->addTargetCapability(targetIndex, capability));
+        new(Pointer->addTargetCapability((nint)targetIndex, capability));
 
     public SlangResult TryGetProgramWithEntryPoints([NotNullWhen(true)] out ComponentType? program)
     {
@@ -305,17 +305,17 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
         out bool used)
     {
         fixed (bool* usedPtr = &used)
-            return new(Pointer->isParameterLocationUsed(entryPointIndex, targetIndex, category, spaceIndex, registerIndex, usedPtr));
+            return new(Pointer->isParameterLocationUsed((nint)entryPointIndex, (nint)targetIndex, category, (nuint)spaceIndex, (nuint)registerIndex, usedPtr));
     }
 
     public void SetTargetLineDirectiveMode(long targetIndex, LineDirectiveMode mode) =>
-        Pointer->setTargetLineDirectiveMode(targetIndex, mode);
+        Pointer->setTargetLineDirectiveMode((nint)targetIndex, mode);
 
     public void SetTargetForceGLSLScalarBufferLayout(int targetIndex, bool forceScalarLayout) =>
         Pointer->setTargetForceGLSLScalarBufferLayout(targetIndex, forceScalarLayout ? (byte)1 : (byte)0);
 
     public void OverrideDiagnosticSeverity(long messageID, Severity overrideSeverity) =>
-        Pointer->overrideDiagnosticSeverity(messageID, overrideSeverity);
+        Pointer->overrideDiagnosticSeverity((nint)messageID, overrideSeverity);
 
     public DiagnosticFlags DiagnosticFlags
     {

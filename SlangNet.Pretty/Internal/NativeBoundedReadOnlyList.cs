@@ -11,14 +11,14 @@ internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TElement> 
     where TContainer : unmanaged
 {
     public TContainer* Container { get; init; }
-    public delegate* managed<TContainer*, long> GetCount { get; init; }
-    public delegate* managed<TContainer*, long, ref TElement, bool> TryGetAt { get; init; }
+    public delegate* managed<TContainer*, nint> GetCount { get; init; }
+    public delegate* managed<TContainer*, nint, ref TElement, bool> TryGetAt { get; init; }
 
     public long Count => GetCount(Container);
     int IReadOnlyCollection<TElement>.Count => checked((int)Count);
 
-    public TElement this[int index] => this[(long)index];
-    public TElement this[long index]
+    public TElement this[int index] => this[(nint)index];
+    public TElement this[nint index]
     {
         get
         {
@@ -41,14 +41,14 @@ internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TArgument,
 {
     public TContainer* Container { get; init; }
     public TArgument Argument { get; init; }
-    public delegate* managed<TContainer*, TArgument, long> GetCount { get; init; }
-    public delegate* managed<TContainer*, TArgument, long, ref TElement, bool> TryGetAt { get; init; }
+    public delegate* managed<TContainer*, TArgument, nint> GetCount { get; init; }
+    public delegate* managed<TContainer*, TArgument, nint, ref TElement, bool> TryGetAt { get; init; }
 
     public long Count => GetCount(Container, Argument);
     int IReadOnlyCollection<TElement>.Count => checked((int)Count);
 
     public TElement this[int index] => this[index];
-    public TElement this[long index]
+    public TElement this[nint index]
     {
         get
         {

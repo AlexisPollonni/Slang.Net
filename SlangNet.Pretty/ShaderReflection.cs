@@ -60,10 +60,10 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
     public static bool operator !=(ShaderReflection a, ShaderReflection b) => a.pointer != b.pointer;
     public override int GetHashCode() => new IntPtr(pointer).GetHashCode();
 
-    private static long GetParameterCount(SlangProgramLayout* program) =>
-        Reflection_GetParameterCount(program);
+    private static nint GetParameterCount(SlangProgramLayout* program) =>
+        (nint)Reflection_GetParameterCount(program);
 
-    private static bool TryGetParameterAt(SlangProgramLayout* program, long index, ref VariableLayoutReflection variable)
+    private static bool TryGetParameterAt(SlangProgramLayout* program, nint index, ref VariableLayoutReflection variable)
     {
         var ptr = Reflection_GetParameterByIndex(program, checked((uint)index));
         variable = ptr == null ? default : new(ptr);
@@ -72,10 +72,10 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
 
     public IReadOnlyList<VariableLayoutReflection> Parameters { get; }
 
-    private static long GetTypeParameterCount(SlangProgramLayout* program) =>
-        Reflection_GetTypeParameterCount(program);
+    private static nint GetTypeParameterCount(SlangProgramLayout* program) =>
+        (nint)Reflection_GetTypeParameterCount(program);
     
-    private static bool TryGetTypeParameterAt(SlangProgramLayout* program, long index, ref TypeParameterReflection typeParam)
+    private static bool TryGetTypeParameterAt(SlangProgramLayout* program, nint index, ref TypeParameterReflection typeParam)
     {
         var ptr = Reflection_GetTypeParameterByIndex(program, checked((uint)index));
         typeParam = ptr == null ? default : new(ptr);
@@ -120,12 +120,12 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
         return layoutPtr == null ? null : new(layoutPtr);
     }
 
-    private static long GetEntryPointCount(SlangProgramLayout* program) =>
-        checked((long)Reflection_getEntryPointCount(program));
+    private static nint GetEntryPointCount(SlangProgramLayout* program) =>
+        (nint)Reflection_getEntryPointCount(program);
 
-    private static bool TryGetEntryPointAt(SlangProgramLayout* program, long index, ref EntryPointReflection entryPoint)
+    private static bool TryGetEntryPointAt(SlangProgramLayout* program, nint index, ref EntryPointReflection entryPoint)
     {
-        var ptr = Reflection_getEntryPointByIndex(program, checked((ulong)index));
+        var ptr = Reflection_getEntryPointByIndex(program, checked((nuint)index));
         entryPoint = ptr == null ? default : new(ptr);
         return ptr != null;
     }
@@ -168,13 +168,13 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
         return specializedTypePtr == null ? null : new(specializedTypePtr);
     }
 
-    private static long GetHashedStringCount(SlangProgramLayout* program) =>
-        checked((long)Reflection_getHashedStringCount(program));
+    private static nint GetHashedStringCount(SlangProgramLayout* program) =>
+        checked((nint)Reflection_getHashedStringCount(program));
 
-    private static bool TryGetHashedStringAt(SlangProgramLayout* program, long index, ref string hashedString)
+    private static bool TryGetHashedStringAt(SlangProgramLayout* program, nint index, ref string hashedString)
     {
-        UIntPtr countPtr;
-        var ptr = Reflection_getHashedString(program, checked((ulong)index), &countPtr);
+        nuint countPtr;
+        var ptr = Reflection_getHashedString(program, checked((nuint)index), &countPtr);
         if (ptr != null)
             hashedString = Encoding.UTF8.GetString((byte*)ptr, checked((int)countPtr.ToUInt64()));
         return ptr != null;
@@ -185,7 +185,7 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
     public static uint ComputeStringHash(ReadOnlySpan<byte> chars)
     {
         fixed(byte* charsPtr = chars)
-        return Slang.ComputeStringHash((sbyte*)charsPtr, new((uint)chars.Length));
+            return Slang.ComputeStringHash((sbyte*)charsPtr, new((uint)chars.Length));
     }
 
     public static uint ComputeStringHash(string chars)

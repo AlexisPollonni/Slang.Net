@@ -43,10 +43,10 @@ public readonly unsafe struct UserAttribute : IEquatable<UserAttribute>
     public string? Name => InteropUtils.PtrToStringUTF8(ReflectionUserAttribute_GetName(InternalPointer));
     public IReadOnlyList<UserAttributeArgument> Arguments { get; }
 
-    private static long GetArgumentCount(SlangReflectionUserAttribute* container) =>
-        ReflectionUserAttribute_GetArgumentCount(container);
+    private static nint GetArgumentCount(SlangReflectionUserAttribute* container) =>
+        (nint)ReflectionUserAttribute_GetArgumentCount(container);
 
-    private static bool TryGetArgumentAt(SlangReflectionUserAttribute* container, long index, ref UserAttributeArgument element)
+    private static bool TryGetArgumentAt(SlangReflectionUserAttribute* container, nint index, ref UserAttributeArgument element)
     {
         element = new UserAttributeArgument
         {

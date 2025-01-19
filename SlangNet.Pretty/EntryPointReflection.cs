@@ -48,10 +48,10 @@ public readonly unsafe struct EntryPointReflection : IEquatable<EntryPointReflec
         InteropUtils.PtrToStringUTF8(ReflectionEntryPoint_getNameOverride(InternalPointer)) ??
         throw new NullReferenceException("ReflectionEntryPoint_getOverrideName returned a null pointer");
 
-    private static long GetParameterCount(SlangEntryPointLayout* entryPoint) =>
-        ReflectionEntryPoint_getParameterCount(entryPoint);
+    private static nint GetParameterCount(SlangEntryPointLayout* entryPoint) =>
+        (nint)ReflectionEntryPoint_getParameterCount(entryPoint);
 
-    private static bool TryGetParameterAt(SlangEntryPointLayout* entryPoint, long index, ref VariableLayoutReflection variable)
+    private static bool TryGetParameterAt(SlangEntryPointLayout* entryPoint, nint index, ref VariableLayoutReflection variable)
     {
         var ptr = ReflectionEntryPoint_getParameterByIndex(entryPoint, checked((uint)index));
         variable = ptr == null ? default : new(ptr);
@@ -64,12 +64,12 @@ public readonly unsafe struct EntryPointReflection : IEquatable<EntryPointReflec
         ReflectionEntryPoint_getStage(InternalPointer);
 
     private const int MaxComputeAxes = 3;
-    public IReadOnlyList<ulong> ComputeThreadGroupSize
+    public nuint[] ComputeThreadGroupSize
     {
         get
         {
-            var axes = new ulong[MaxComputeAxes];
-            fixed (ulong* axesPtr = axes)
+            var axes = new nuint[MaxComputeAxes];
+            fixed (nuint* axesPtr = axes)
                 ReflectionEntryPoint_getComputeThreadGroupSize(InternalPointer, MaxComputeAxes, axesPtr);
             return axes;
         }

@@ -3,7 +3,7 @@
 namespace SlangNet.Enums;
 
 [Flags]
-public enum CompileFlags
+public enum CompileFlags : uint
 {
     NoMangling = SLANG_COMPILE_FLAG_NO_MANGLING,
     NoCodegen = SLANG_COMPILE_FLAG_NO_CODEGEN,

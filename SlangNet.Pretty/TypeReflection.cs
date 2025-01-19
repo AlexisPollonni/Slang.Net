@@ -57,10 +57,10 @@ public readonly unsafe struct TypeReflection : IEquatable<TypeReflection>
     public IReadOnlyList<UserAttribute> UserAttributes { get; }
     public IReadOnlyList<VariableReflection> Fields { get; }
 
-    private static long GetUserAttributeCount(SlangReflectionType* type) =>
-        ReflectionType_GetUserAttributeCount(type);
+    private static nint GetUserAttributeCount(SlangReflectionType* type) =>
+        (nint)ReflectionType_GetUserAttributeCount(type);
 
-    private static bool TryGetUserAttributeAt(SlangReflectionType* type, long index, ref UserAttribute attribute)
+    private static bool TryGetUserAttributeAt(SlangReflectionType* type, nint index, ref UserAttribute attribute)
     {
         var ptr = ReflectionType_GetUserAttribute(type, checked((uint)index));
         attribute = new UserAttribute(ptr);
@@ -90,10 +90,10 @@ public readonly unsafe struct TypeReflection : IEquatable<TypeReflection>
         FindUserAttributeByName(name) ??
         throw new KeyNotFoundException($"No user attribute found with name: {name}");
 
-    private static long GetFieldCount(SlangReflectionType* type) =>
-        ReflectionType_GetFieldCount(type);
+    private static nint GetFieldCount(SlangReflectionType* type) =>
+        (nint)ReflectionType_GetFieldCount(type);
 
-    private static bool TryGetFieldAt(SlangReflectionType* type, long index, ref VariableReflection variable)
+    private static bool TryGetFieldAt(SlangReflectionType* type, nint index, ref VariableReflection variable)
     {
         var ptr = ReflectionType_GetFieldByIndex(type, checked((uint)index));
         variable = new VariableReflection(ptr);
@@ -134,7 +134,7 @@ public readonly unsafe struct TypeReflection : IEquatable<TypeReflection>
     // this is weird in the Slang API, for now we have a list for the types with null elements for future non-types
     // but for anything further we have to wait for the changes in the Slang API
 
-    private static bool TryGetSpecializedTypeArgTypeAt(SlangReflectionType* type, long index, ref TypeReflection? arg)
+    private static bool TryGetSpecializedTypeArgTypeAt(SlangReflectionType* type, nint index, ref TypeReflection? arg)
     {
         var ptr = ReflectionType_getSpecializedTypeArgType(type, index);
         arg = ptr == null ? null : new(ptr);

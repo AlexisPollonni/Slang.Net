@@ -120,10 +120,10 @@ unsafe partial class CompileRequest
         public IEnumerator<TranslationUnit> GetEnumerator() => list.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        private static long GetCount(ICompileRequest* request) =>
+        private static nint GetCount(ICompileRequest* request) =>
             request->getTranslationUnitCount();
 
-        private static bool TryGetAt(ICompileRequest* request, long index, ref TranslationUnit unit)
+        private static bool TryGetAt(ICompileRequest* request, nint index, ref TranslationUnit unit)
         {
             unit = new(request, checked((int)index));
             return true;

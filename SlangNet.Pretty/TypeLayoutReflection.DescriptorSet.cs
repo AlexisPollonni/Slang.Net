@@ -22,10 +22,10 @@ unsafe partial struct TypeLayoutReflection
         {
             this.pointer = pointer;
             Index = index;
-            Ranges = new NativeBoundedReadOnlyList<SlangReflectionTypeLayout, long, DescriptorRange>
+            Ranges = new NativeBoundedReadOnlyList<SlangReflectionTypeLayout, nint, DescriptorRange>
             {
                 Container = pointer,
-                Argument = Index,
+                Argument = (nint)Index,
                 GetCount = &ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount,
                 TryGetAt = &TryGetRangeAt
             };
@@ -44,9 +44,9 @@ unsafe partial struct TypeLayoutReflection
         public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), Index);
 
         public long SpaceOffset =>
-            ReflectionTypeLayout_getDescriptorSetSpaceOffset(Pointer, Index);
+            ReflectionTypeLayout_getDescriptorSetSpaceOffset(Pointer, (nint)Index);
 
-        private static bool TryGetRangeAt(SlangReflectionTypeLayout* type, long setIndex, long rangeIndex, ref DescriptorRange range)
+        private static bool TryGetRangeAt(SlangReflectionTypeLayout* type, nint setIndex, nint rangeIndex, ref DescriptorRange range)
         {
             range = new(type, setIndex, rangeIndex);
             return true;
