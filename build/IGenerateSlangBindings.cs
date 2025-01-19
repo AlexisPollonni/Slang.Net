@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -13,22 +13,39 @@ using Serilog.Events;
 using static Nuke.Common.EnvironmentInfo;
 using static ClangSharp.Interop.CXTranslationUnit_Flags;
 
-public class BuildSlangBindings
+public interface IGenerateSlangBindings : INukeBuild
 {
-    public required AbsolutePath SrcOutputDir { get; init; }
-    public required AbsolutePath XmlOutputDir { get; init; }
-    public required AbsolutePath TestsOutputDir { get; init; }
-    public required AbsolutePath SlangRepoPath { get; init; }
+    [Parameter] AbsolutePath SrcOutputDir => RootDirectory / "SlangNet.Bindings" / "Generated";
 
-    AbsolutePath SlangHeaderPath => SlangRepoPath / "include" / "slang.h";
-    AbsolutePath SlangDeprHeaderPath => SlangRepoPath / "include" / "slang-deprecated.h";
+    [Parameter] AbsolutePath XmlOutputDir => RootDirectory / "SlangNet" / "GeneratedDoc";
 
-    public void Build()
+    [Parameter] AbsolutePath TestsOutputDir => RootDirectory / "SlangNet.Tests" / "Generated";
+
+    [Parameter] AbsolutePath SlangRepoPath => RootDirectory / "slang";
+
+    [Parameter] AbsolutePath SlangHeaderPath => SlangRepoPath / "include" / "slang.h";
+
+    [Parameter] AbsolutePath SlangDeprHeaderPath => SlangRepoPath / "include" / "slang-deprecated.h";
+
+    Target CleanSlangBindings => _ => _
+        .Executes(() =>
+        {
+            SrcOutputDir.CreateOrCleanDirectory();
+            XmlOutputDir.CreateOrCleanDirectory();
+            TestsOutputDir.CreateOrCleanDirectory();
+        });
+    
+    Target GenerateSlangBindings => _ => _
+        .DependsOn(CleanSlangBindings)
+        .Executes(Build);
+
+    private void Build()
     {
         AbsolutePath[] files =
         [
             SlangHeaderPath
         ];
+
 
         var config = new BuildConfig
         {
@@ -39,31 +56,44 @@ public class BuildSlangBindings
         if (!IsWin) config.Options |= PInvokeGeneratorConfigurationOptions.GenerateUnixTypes;
 
         Log.Information("Generating CSharp bindings...");
-        GenerateSlangBindings(files, SrcOutputDir, config);
+        Generate(files, SrcOutputDir, config);
 
         config.GeneratedTestsDir = null;
         Log.Information("Generating XML documentation files...");
-        GenerateSlangBindings(files, XmlOutputDir, config, PInvokeGeneratorOutputMode.Xml);
+        Generate(files, XmlOutputDir, config, PInvokeGeneratorOutputMode.Xml);
     }
-    
-    
-    private void GenerateSlangBindings(AbsolutePath[] files,
-                                       AbsolutePath outputDir,
-                                       in BuildConfig config,
-                                       PInvokeGeneratorOutputMode mode = PInvokeGeneratorOutputMode.CSharp)
+
+
+    private void Generate(AbsolutePath[] files,
+        AbsolutePath outputDir,
+        in BuildConfig config,
+        PInvokeGeneratorOutputMode mode = PInvokeGeneratorOutputMode.CSharp)
     {
-        using var generator = new PInvokeGenerator(config.ToGeneratorConfiguration(outputDir, mode), OutputStreamFactory);
+        using var generator =
+            new PInvokeGenerator(config.ToGeneratorConfiguration(outputDir, mode), OutputStreamFactory);
 
         // ReSharper disable BitwiseOperatorOnEnumWithoutFlags
         const CXTranslationUnit_Flags translationFlags = CXTranslationUnit_IncludeAttributedTypes
                                                          | CXTranslationUnit_VisitImplicitAttributes
                                                          | CXTranslationUnit_DetailedPreprocessingRecord;
         // ReSharper restore BitwiseOperatorOnEnumWithoutFlags
+        
+        var platformSlangBindings = config.ClangCmdArgs.ToList();
+
+        if (IsLinux)
+        {
+            platformSlangBindings.AddRange(
+                new[]
+                {
+                    "/usr/include/linux",
+                }.Select(s => $"--include-directory={s}"));
+        }
 
         foreach (var filePath in files)
         {
             var translationUnit
-                = CreateTranslationUnitForFile(filePath, generator.IndexHandle, config.ClangCmdArgs, translationFlags);
+                = CreateTranslationUnitForFile(filePath, generator.IndexHandle, platformSlangBindings.ToArray(),
+                    translationFlags);
 
             if (translationUnit is null)
             {
@@ -75,13 +105,14 @@ public class BuildSlangBindings
 
             var remapDict = (SortedDictionary<string, string>)generator.Config.RemappedNames;
 
-            foreach (var (before, after) in additionalRemapped) 
+            foreach (var (before, after) in additionalRemapped)
                 remapDict.TryAdd(before, after);
 
             try
             {
                 Log.Information("Processing \'{FilePath}\'", filePath);
-                generator.GenerateBindings(translationUnit, filePath, config.ClangCmdArgs, translationFlags);
+                generator.GenerateBindings(translationUnit, filePath, platformSlangBindings.ToArray(),
+                    translationFlags);
             }
             catch (Exception e)
             {
@@ -91,17 +122,18 @@ public class BuildSlangBindings
     }
 
     private TranslationUnit? CreateTranslationUnitForFile(AbsolutePath filePath,
-                                                          CXIndex index,
-                                                          ReadOnlySpan<string> clangCmdArgs,
-                                                          CXTranslationUnit_Flags flags)
+        CXIndex index,
+        ReadOnlySpan<string> clangCmdArgs,
+        CXTranslationUnit_Flags flags)
     {
         var translationUnitError = CXTranslationUnit.TryParse(index, filePath,
-                                                              clangCmdArgs, [], flags,
-                                                              out var handle);
+            clangCmdArgs, [], flags,
+            out var handle);
 
         if (translationUnitError != CXErrorCode.CXError_Success)
         {
-            Log.Error("Parsing failed for '{FilePath}' due to '{TranslationUnitError}'", filePath, translationUnitError);
+            Log.Error("Parsing failed for '{FilePath}' due to '{TranslationUnitError}'", filePath,
+                translationUnitError);
             return null;
         }
 
@@ -132,7 +164,7 @@ public class BuildSlangBindings
                     or CXDiagnosticSeverity.CXDiagnostic_Warning) isSkipping = true;
             }
         }
-        
+
         if (isSkipping) return null;
 
         var translationUnit = TranslationUnit.GetOrCreate(handle).NotNull();
@@ -158,9 +190,9 @@ public class BuildSlangBindings
         externCur.NotNull();
 
         var foundEnums = FindAllChildrenOfKind(externCur, CXCursorKind.CXCursor_EnumDecl)
-                         .Cast<EnumDecl>()
-                         .Where(decl => decl.Spelling.StartsWith("Slang"))
-                         .ToArray();
+            .Cast<EnumDecl>()
+            .Where(decl => decl.Spelling.StartsWith("Slang"))
+            .ToArray();
 
         var remappedEnumNames = foundEnums
             .Select(decl =>
@@ -174,31 +206,31 @@ public class BuildSlangBindings
         var textInfo = new CultureInfo("en-US", false).TextInfo;
 
         var remappedEnumMembers = foundEnums
-                                  .SelectMany(decl => decl.CursorChildren)
-                                  .Where(decl => decl.CursorKind is CXCursorKind.CXCursor_EnumConstantDecl)
-                                  .Cast<EnumConstantDecl>()
-                                  .Select(decl =>
-                                  {
-                                      var qualifiedName = GetFullQualifiedNameFromCursor(decl);
+            .SelectMany(decl => decl.CursorChildren)
+            .Where(decl => decl.CursorKind is CXCursorKind.CXCursor_EnumConstantDecl)
+            .Cast<EnumConstantDecl>()
+            .Select(decl =>
+            {
+                var qualifiedName = GetFullQualifiedNameFromCursor(decl);
 
-                                      var parentEnumName = decl.SemanticParentCursor?.Spelling;
+                var parentEnumName = decl.SemanticParentCursor?.Spelling;
 
-                                      var prefixToTrim = parentEnumName.SplitCamelHumps()
-                                                                       .Select(s => s.ToUpperInvariant())
-                                                                       .JoinUnderscore() + '_';
+                var prefixToTrim = parentEnumName.SplitCamelHumps()
+                    .Select(s => s.ToUpperInvariant())
+                    .JoinUnderscore() + '_';
 
-                                      var trimmed = decl.Spelling.TrimStart(prefixToTrim).TrimStart("SLANG_");
+                var trimmed = decl.Spelling.TrimStart(prefixToTrim).TrimStart("SLANG_");
 
-                                      var pascalCaseTrimmed = string.Concat(trimmed
-                                                                            .Split(
-                                                                                '_',
-                                                                                StringSplitOptions.TrimEntries |
-                                                                                StringSplitOptions.RemoveEmptyEntries)
-                                                                            .Select(s => textInfo.ToTitleCase(
-                                                                                        s.ToLowerInvariant())));
+                var pascalCaseTrimmed = string.Concat(trimmed
+                    .Split(
+                        '_',
+                        StringSplitOptions.TrimEntries |
+                        StringSplitOptions.RemoveEmptyEntries)
+                    .Select(s => textInfo.ToTitleCase(
+                        s.ToLowerInvariant())));
 
-                                      return (qualifiedName, pascalCaseTrimmed);
-                                  });
+                return (qualifiedName, pascalCaseTrimmed);
+            });
 
         return remappedEnumNames.Concat(remappedEnumMembers).ToDictionary();
     }
