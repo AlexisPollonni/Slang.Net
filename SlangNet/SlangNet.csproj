@@ -37,9 +37,6 @@
     <ProjectReference Include="../SlangNet.Native/SlangNet.Native.win-x64/SlangNet.Native.win-x64.csproj">
       <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="../SlangNet.Native/SlangNet.Native.win-x86/SlangNet.Native.win-x86.csproj">
-      <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
 
   <Import Project="../SetMyRepository.targets" />

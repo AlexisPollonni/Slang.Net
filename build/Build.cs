@@ -58,7 +58,6 @@ class Build : NukeBuild
                 Project[] nativeProjects =
                 [
                     Solution.Native.SlangNet_Native_win_x64,
-                    Solution.Native.SlangNet_Native_win_x86,
                     Solution.Native.SlangNet_Native_win_arm64,
 
                     Solution.Native.SlangNet_Native_linux_x64,
