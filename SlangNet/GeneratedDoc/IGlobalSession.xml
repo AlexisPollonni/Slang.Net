@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="SlangNet.Bindings.Generated.Slang">
-    <struct name="IGlobalSession" access="public" native="struct IGlobalSession : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+    <struct name="IGlobalSession" access="public" native="struct IGlobalSession : ISlangUnknown" parent="ISlangUnknown" uuid="c140b5fd-0c78-452e-ba7c-1a1e70c7f71c" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>

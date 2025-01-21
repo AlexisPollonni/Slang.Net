@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ISlangUnknown.xml' path='doc/member[@name="ISlangUnknown"]/*' />
+[Guid("00000000-0000-0000-C000-000000000046")]
 public unsafe partial struct ISlangUnknown
 {
     public Vtbl* lpVtbl;

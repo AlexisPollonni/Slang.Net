@@ -12,9 +12,9 @@ public unsafe partial class ComponentType : COMObject<IComponentType>
 {
     internal static ComponentType? CreateFromPointer(IComponentType* pointer) =>
         pointer == null ? null
-        : IsSubClass(pointer, IEntryPoint.TypeGuid) ? new EntryPoint((IEntryPoint*)pointer)
-        : IsSubClass(pointer, IModule.TypeGuid) ? new Module((IModule*)pointer)
-        : IsSubClass(pointer, ITypeConformance.TypeGuid) ? new TypeConformance((ITypeConformance*)pointer)
+        : IsSubClass(pointer, typeof(IEntryPoint).GUID) ? new EntryPoint((IEntryPoint*)pointer)
+        : IsSubClass(pointer, typeof(IModule).GUID) ? new Module((IModule*)pointer)
+        : IsSubClass(pointer, typeof(ITypeConformance).GUID) ? new TypeConformance((ITypeConformance*)pointer)
         : new ComponentType(pointer);
 
     private static bool IsSubClass(IComponentType* pointer, in SlangUUID uuid)

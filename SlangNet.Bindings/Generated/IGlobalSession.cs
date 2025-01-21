@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession"]/*' />
+[Guid("C140B5FD-0C78-452E-BA7C-1A1E70C7F71C")]
 [NativeTypeName("struct IGlobalSession : ISlangUnknown")]
 [NativeInheritance("ISlangUnknown")]
 public unsafe partial struct IGlobalSession

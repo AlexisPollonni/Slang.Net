@@ -5,6 +5,7 @@ using static SlangNet.LayoutRules;
 namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ISession.xml' path='doc/member[@name="ISession"]/*' />
+[Guid("67618701-D116-468F-AB3B-474BEDCE0E3D")]
 [NativeTypeName("struct ISession : ISlangUnknown")]
 [NativeInheritance("ISlangUnknown")]
 public unsafe partial struct ISession

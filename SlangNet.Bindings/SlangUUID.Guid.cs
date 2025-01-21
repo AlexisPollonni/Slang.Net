@@ -5,11 +5,14 @@ namespace SlangNet.Bindings.Generated.Slang;
 
 partial struct SlangUUID
 {
-    public static unsafe SlangUUID FromComponents(
+    public static implicit operator Guid(SlangUUID uuid) => uuid.ToGuid();
+    public static implicit operator SlangUUID(Guid g) => FromGuid(g);
+    
+    public static SlangUUID FromComponents(
         uint a, ushort b, ushort c,
         byte d0, byte d1, byte d2, byte d3, byte d4, byte d5, byte d6, byte d7)
     {
-        var uuid = new SlangUUID()
+        var uuid = new SlangUUID
         {
             data1 = a,
             data2 = b,
@@ -43,7 +46,7 @@ partial struct SlangUUID
         return FromComponents(a, b, c, d[8], d[9], d[10], d[11], d[12], d[13], d[14], d[15]);
     }
 
-    public unsafe Guid ToGuid() => new Guid(
+    public Guid ToGuid() => new(
         unchecked((int)data1),
         unchecked((short)data2),
         unchecked((short)data3),

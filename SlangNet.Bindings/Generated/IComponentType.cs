@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='IComponentType.xml' path='doc/member[@name="IComponentType"]/*' />
+[Guid("5BC42BE8-5C50-4929-9E5E-D15E7C24015F")]
 [NativeTypeName("struct IComponentType : ISlangUnknown")]
 [NativeInheritance("ISlangUnknown")]
 public unsafe partial struct IComponentType
