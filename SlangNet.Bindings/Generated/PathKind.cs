@@ -1,3 +1,5 @@
+using SlangNet.Bindings.Generated.Slang;
+
 namespace SlangNet;
 
 /// <include file='PathKind.xml' path='doc/member[@name="PathKind"]/*' />

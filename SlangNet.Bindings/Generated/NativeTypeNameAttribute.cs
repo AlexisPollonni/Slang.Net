@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 
 namespace SlangNet.Bindings.Generated.Slang;
