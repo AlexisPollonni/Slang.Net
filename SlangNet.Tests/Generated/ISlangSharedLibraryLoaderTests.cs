@@ -1,5 +1,6 @@
-using System.Runtime.InteropServices;
 using NUnit.Framework;
+using System;
+using System.Runtime.InteropServices;
 using static SlangNet.Bindings.Generated.Slang.SlangApi;
 
 namespace SlangNet.Bindings.Generated.Slang.UnitTests;
