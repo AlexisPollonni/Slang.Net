@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='IMetadata.xml' path='doc/member[@name="IMetadata"]/*' />
+[Guid("8044A8A3-DDC0-4B7F-AF8E-026E905D7332")]
 [NativeTypeName("struct IMetadata : ISlangCastable")]
 [NativeInheritance("ISlangCastable")]
 public unsafe partial struct IMetadata
