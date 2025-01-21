@@ -1,8 +1,7 @@
-using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ISlangSharedLibrary_Dep1.xml' path='doc/member[@name="ISlangSharedLibrary_Dep1"]/*' />
 [NativeTypeName("struct ISlangSharedLibrary_Dep1 : ISlangUnknown")]

@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='DebugInfoLevel.xml' path='doc/member[@name="DebugInfoLevel"]/*' />
 [NativeTypeName("SlangDebugInfoLevelIntegral")]

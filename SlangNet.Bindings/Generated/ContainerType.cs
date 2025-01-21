@@ -1,5 +1,3 @@
-using SlangNet.Bindings.Generated;
-
 namespace SlangNet;
 
 /// <include file='ContainerType.xml' path='doc/member[@name="ContainerType"]/*' />

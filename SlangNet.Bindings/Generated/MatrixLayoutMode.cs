@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='MatrixLayoutMode.xml' path='doc/member[@name="MatrixLayoutMode"]/*' />
 [NativeTypeName("SlangMatrixLayoutModeIntegral")]

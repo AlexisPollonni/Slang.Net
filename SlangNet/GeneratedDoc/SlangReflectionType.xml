@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
-  <namespace name="SlangNet.Bindings.Generated">
+  <namespace name="SlangNet.Bindings.Generated.Slang">
     <struct name="SlangReflectionType" access="public"></struct>
   </namespace>
 </bindings>

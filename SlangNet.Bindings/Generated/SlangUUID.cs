@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='SlangUUID.xml' path='doc/member[@name="SlangUUID"]/*' />
 public partial struct SlangUUID

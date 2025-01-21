@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ContainerFormat.xml' path='doc/member[@name="ContainerFormat"]/*' />
 [NativeTypeName("SlangContainerFormatIntegral")]

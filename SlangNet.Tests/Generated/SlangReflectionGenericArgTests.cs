@@ -1,8 +1,7 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using NUnit.Framework;
 
-namespace SlangNet.Bindings.Generated.UnitTests;
+namespace SlangNet.Bindings.Generated.Slang.UnitTests;
 
 /// <summary>Provides validation of the <see cref="SlangReflectionGenericArg" /> struct.</summary>
 public static unsafe partial class SlangReflectionGenericArgTests
