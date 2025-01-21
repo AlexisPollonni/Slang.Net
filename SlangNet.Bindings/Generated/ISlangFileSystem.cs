@@ -5,6 +5,7 @@ namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ISlangFileSystem.xml' path='doc/member[@name="ISlangFileSystem"]/*' />
 [NativeTypeName("struct ISlangFileSystem : ISlangCastable")]
+[NativeInheritance("ISlangCastable")]
 public unsafe partial struct ISlangFileSystem
 {
     public Vtbl* lpVtbl;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="SlangNet.Bindings.Generated.Slang">
-    <struct name="ISlangFileSystemExt" access="public" native="struct ISlangFileSystemExt : ISlangFileSystem" vtbl="true" unsafe="true">
+    <struct name="ISlangFileSystemExt" access="public" native="struct ISlangFileSystemExt : ISlangFileSystem" parent="ISlangFileSystem" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>

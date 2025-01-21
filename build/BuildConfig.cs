@@ -113,10 +113,13 @@ internal record BuildConfig(
         | GenerateMacroBindings
         | GenerateAggressiveInlining
         | GenerateExplicitVtbls
+        | GenerateNativeInheritanceAttribute
+        
         | ExcludeFnptrCodegen // No Fnptr code gen with latest or preview
         | ExcludeFunctionsWithBody
         | ExcludeComProxies
         | ExcludeEnumOperators
+        
         | StripEnumMemberTypeName
         | LogPotentialTypedefRemappings,
         

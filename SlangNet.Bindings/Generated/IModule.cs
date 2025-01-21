@@ -5,6 +5,7 @@ namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='IModule.xml' path='doc/member[@name="IModule"]/*' />
 [NativeTypeName("struct IModule : slang::IComponentType")]
+[NativeInheritance("IComponentType")]
 public unsafe partial struct IModule
 {
     public Vtbl* lpVtbl;

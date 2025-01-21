@@ -5,6 +5,7 @@ namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='IModulePrecompileService_Experimental.xml' path='doc/member[@name="IModulePrecompileService_Experimental"]/*' />
 [NativeTypeName("struct IModulePrecompileService_Experimental : ISlangUnknown")]
+[NativeInheritance("ISlangUnknown")]
 public unsafe partial struct IModulePrecompileService_Experimental
 {
     public Vtbl* lpVtbl;
