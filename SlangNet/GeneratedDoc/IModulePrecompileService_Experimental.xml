@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="SlangNet.Bindings.Generated.Slang">
-    <struct name="IModulePrecompileService_Experimental" access="public" native="struct IModulePrecompileService_Experimental : ISlangUnknown" vtbl="true" unsafe="true">
+    <struct name="IModulePrecompileService_Experimental" access="public" native="struct IModulePrecompileService_Experimental : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>

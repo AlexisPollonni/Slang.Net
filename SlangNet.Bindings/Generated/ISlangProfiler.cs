@@ -5,6 +5,7 @@ namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler"]/*' />
 [NativeTypeName("struct ISlangProfiler : ISlangUnknown")]
+[NativeInheritance("ISlangUnknown")]
 public unsafe partial struct ISlangProfiler
 {
     public Vtbl* lpVtbl;

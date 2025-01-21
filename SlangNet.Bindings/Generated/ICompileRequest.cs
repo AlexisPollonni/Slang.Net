@@ -5,6 +5,7 @@ namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest"]/*' />
 [NativeTypeName("struct ICompileRequest : ISlangUnknown")]
+[NativeInheritance("ISlangUnknown")]
 public unsafe partial struct ICompileRequest
 {
     public Vtbl* lpVtbl;

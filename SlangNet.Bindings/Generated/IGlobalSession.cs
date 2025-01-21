@@ -5,6 +5,7 @@ namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession"]/*' />
 [NativeTypeName("struct IGlobalSession : ISlangUnknown")]
+[NativeInheritance("ISlangUnknown")]
 public unsafe partial struct IGlobalSession
 {
     public Vtbl* lpVtbl;
