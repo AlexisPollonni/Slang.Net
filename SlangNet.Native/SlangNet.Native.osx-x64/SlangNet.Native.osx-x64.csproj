@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.Build.NoTargets/3.7.0">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFramework>net9.0</TargetFramework>
     <SlangRuntime>osx-x64</SlangRuntime>
     <SlangDownloadRuntime>macos-x86_64</SlangDownloadRuntime>
     <SlangNativeDir>lib/</SlangNativeDir>
