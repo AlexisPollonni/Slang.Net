@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using SlangNet.Bindings.Generated;
+using SlangNet.Bindings.Generated.Slang;
 
 namespace SlangNet.Tests;
 
