@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='IModulePrecompileService_Experimental.xml' path='doc/member[@name="IModulePrecompileService_Experimental"]/*' />
+[Guid("8E12E8E3-5FCD-433E-AFCB-13A088BC5EE5")]
 [NativeTypeName("struct IModulePrecompileService_Experimental : ISlangUnknown")]
 [NativeInheritance("ISlangUnknown")]
 public unsafe partial struct IModulePrecompileService_Experimental

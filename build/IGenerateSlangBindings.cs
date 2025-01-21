@@ -56,7 +56,8 @@ public interface IGenerateSlangBindings : INukeBuild
         PInvokeGeneratorOutputMode mode = PInvokeGeneratorOutputMode.CSharp)
     {
         using var generator = new PInvokeGenerator(
-            config.ToGeneratorConfiguration(outputDir, mode is PInvokeGeneratorOutputMode.CSharp ? TestsOutputDir : null,
+            config.ToGeneratorConfiguration(outputDir,
+                mode is PInvokeGeneratorOutputMode.CSharp ? TestsOutputDir : null,
                 mode), OutputStreamFactory);
 
         // ReSharper disable BitwiseOperatorOnEnumWithoutFlags
@@ -83,10 +84,15 @@ public interface IGenerateSlangBindings : INukeBuild
             var additionalRemapped = GetAdditionalRemappedNames(translationUnit);
 
             var remapDict = (SortedDictionary<string, string>)generator.Config.RemappedNames;
-
             foreach (var (before, after) in additionalRemapped)
                 remapDict.TryAdd(before, after);
 
+            var additionalGuids = GetComStyleClassUuids(translationUnit);
+
+            var withGuidsDict = (SortedDictionary<string, Guid>)generator.Config.WithGuids;
+            foreach (var (typeName, guid) in additionalGuids)
+                withGuidsDict.TryAdd(typeName, guid);
+            
             try
             {
                 Log.Information("Processing \'{FilePath}\'", filePath);
@@ -212,6 +218,42 @@ public interface IGenerateSlangBindings : INukeBuild
             });
 
         return remappedEnumNames.Concat(remappedEnumMembers).ToDictionary();
+    }
+
+
+    private Dictionary<string, Guid> GetComStyleClassUuids(TranslationUnit translationUnit)
+    {
+        var comStructs = FindAllChildrenOfKind<RecordDecl>(translationUnit.TranslationUnitDecl);
+
+        var guidMethods = comStructs.SelectMany(r => FindAllChildrenOfKind<CXXMethodDecl>(r, false))
+            .Where(m => m.Name == "getTypeGuid")
+            .ToArray();
+
+        var guids = guidMethods.Select(m => (m.Parent.NotNull()!.Name, GetGuidFromTypeGuidMethod(m))).ToDictionary();
+
+        return guids;
+
+        Guid GetGuidFromTypeGuidMethod(CXXMethodDecl method)
+        {
+            var l = FindAllChildrenOfKind<IntegerLiteral>(method, false)
+                .Select(l => l.Value).Reverse().ToArray();
+
+            Assert.Count(l, 11, "Parsed interface type UUID invalid!");
+
+            var guid = new Guid((uint)l[0],
+                (ushort)l[1],
+                (ushort)l[2],
+                (byte)l[3],
+                (byte)l[4],
+                (byte)l[5],
+                (byte)l[6],
+                (byte)l[7],
+                (byte)l[8],
+                (byte)l[9],
+                (byte)l[10]);
+
+            return guid;
+        }
     }
 
     private T? FindFirstChildOfKind<T>(Cursor cursor, bool isFromMainFile = true) where T : Cursor
