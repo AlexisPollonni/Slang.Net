@@ -1,6 +1,5 @@
-﻿using Veldrid;
-using SlangNet;
-using SlangNet.Bindings.Generated;
+﻿using SlangNet.Bindings.Generated.Slang;
+using Veldrid;
 
 namespace SlangNet.Example.HelloWorld.Unsafe;
 

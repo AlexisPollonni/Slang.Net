@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='Severity.xml' path='doc/member[@name="Severity"]/*' />
 [NativeTypeName("SlangSeverityIntegral")]

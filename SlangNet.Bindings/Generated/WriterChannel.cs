@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='WriterChannel.xml' path='doc/member[@name="WriterChannel"]/*' />
 [NativeTypeName("SlangWriterChannelIntegral")]

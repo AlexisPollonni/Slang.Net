@@ -1,5 +1,5 @@
 ﻿// ReSharper disable once CheckNamespace
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 // the generation of the type GUID related macros and functions are
 // not working correctly in ClangSharp, so we add them manually here

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
-  <namespace name="SlangNet.Bindings.Generated">
+  <namespace name="SlangNet.Bindings.Generated.Slang">
     <delegate name="SlangDiagnosticCallback" access="public" convention="Cdecl" static="true" unsafe="true">
       <type>void</type>
       <param name="message">

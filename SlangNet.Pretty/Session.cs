@@ -199,7 +199,7 @@ public sealed unsafe partial class Session : COMObject<ISession>
 
     public SlangResult TryCreateCompileRequest(out CompileRequest? request)
     {
-        var requestPtr = Slang.CreateCompileRequest(GlobalSession.Pointer);
+        var requestPtr = SlangApi.CreateCompileRequest(GlobalSession.Pointer);
         request = requestPtr == null ? null : new(requestPtr);
         return request is null ? SlangResult.Fail : SlangResult.Ok;
     }

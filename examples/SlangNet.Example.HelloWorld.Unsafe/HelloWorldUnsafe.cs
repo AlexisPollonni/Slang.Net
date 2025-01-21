@@ -1,8 +1,7 @@
-﻿using Veldrid;
-
-using System.Runtime.InteropServices;
-using SlangNet.Bindings.Generated;
-using static SlangNet.Bindings.Generated.Slang;
+﻿using System.Runtime.InteropServices;
+using SlangNet.Bindings.Generated.Slang;
+using Veldrid;
+using static SlangNet.Bindings.Generated.Slang.SlangApi;
 
 namespace SlangNet.Example.HelloWorld.Unsafe;
 

@@ -1,8 +1,7 @@
-using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ISlangCastable.xml' path='doc/member[@name="ISlangCastable"]/*' />
 [NativeTypeName("struct ISlangCastable : ISlangUnknown")]

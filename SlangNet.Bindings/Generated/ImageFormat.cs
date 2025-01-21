@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ImageFormat.xml' path='doc/member[@name="ImageFormat"]/*' />
 [NativeTypeName("SlangImageFormatIntegral")]

@@ -1,8 +1,7 @@
-using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='IComponentType.xml' path='doc/member[@name="IComponentType"]/*' />
 [NativeTypeName("struct IComponentType : ISlangUnknown")]

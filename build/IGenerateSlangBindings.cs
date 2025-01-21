@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using ClangSharp;
 using ClangSharp.Interop;
 using Nuke.Common;
@@ -10,7 +6,6 @@ using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Serilog;
 using Serilog.Events;
-using static Nuke.Common.EnvironmentInfo;
 using static ClangSharp.Interop.CXTranslationUnit_Flags;
 
 public interface IGenerateSlangBindings : INukeBuild
@@ -23,9 +18,8 @@ public interface IGenerateSlangBindings : INukeBuild
 
     [Parameter] AbsolutePath SlangRepoPath => RootDirectory / "slang";
 
-    [Parameter] AbsolutePath SlangHeaderPath => SlangRepoPath / "include" / "slang.h";
-
-    [Parameter] AbsolutePath SlangDeprHeaderPath => SlangRepoPath / "include" / "slang-deprecated.h";
+    AbsolutePath SlangHeaderPath => SlangRepoPath / "include" / "slang.h";
+    AbsolutePath SlangDeprHeaderPath => SlangRepoPath / "include" / "slang-deprecated.h";
 
     Target CleanSlangBindings => _ => _
         .Executes(() =>
@@ -46,61 +40,31 @@ public interface IGenerateSlangBindings : INukeBuild
             SlangHeaderPath
         ];
 
-
-        var config = new BuildConfig
-        {
-            GeneratedTestsDir = TestsOutputDir,
-            TraversalNames = [SlangHeaderPath, SlangDeprHeaderPath]
-        };
-
-        if (!IsWin) config.Options |= PInvokeGeneratorConfigurationOptions.GenerateUnixTypes;
+        var config = BuildConfig.SlangConfig;
+        config.TraversalNames = [SlangHeaderPath, SlangDeprHeaderPath];
 
         Log.Information("Generating CSharp bindings...");
         Generate(files, SrcOutputDir, config);
 
-        config.GeneratedTestsDir = null;
         Log.Information("Generating XML documentation files...");
         Generate(files, XmlOutputDir, config, PInvokeGeneratorOutputMode.Xml);
     }
 
-
     private void Generate(AbsolutePath[] files,
         AbsolutePath outputDir,
-        in BuildConfig config,
+        BuildConfig config,
         PInvokeGeneratorOutputMode mode = PInvokeGeneratorOutputMode.CSharp)
     {
-        using var generator =
-            new PInvokeGenerator(config.ToGeneratorConfiguration(outputDir, mode), OutputStreamFactory);
+        using var generator = new PInvokeGenerator(
+            config.ToGeneratorConfiguration(outputDir, mode is PInvokeGeneratorOutputMode.CSharp ? TestsOutputDir : null,
+                mode), OutputStreamFactory);
 
         // ReSharper disable BitwiseOperatorOnEnumWithoutFlags
         const CXTranslationUnit_Flags translationFlags = CXTranslationUnit_IncludeAttributedTypes
                                                          | CXTranslationUnit_VisitImplicitAttributes
                                                          | CXTranslationUnit_DetailedPreprocessingRecord;
         // ReSharper restore BitwiseOperatorOnEnumWithoutFlags
-
-        var slangPlatformDefine = GetSlangPlatformDefine();
-        var clangCmdArgs = config.ClangCmdArgs.ToList();
-
-        if (IsLinux)
-        {
-            clangCmdArgs.AddRange(
-                new[]
-                {
-                    "/usr/lib/gcc/x86_64-linux-gnu/12/include/",
-                    "/usr/lib/gcc/x86_64-linux-gnu/11/include/",
-                    "/usr/lib/gcc/x86_64-linux-gnu/10/include/",
-                    "/usr/lib/gcc/x86_64-linux-gnu/9/include/",
-                    "/usr/include/x86_64-linux-gnu",
-                    "/usr/include"
-                }.Select(s => $"--include-directory={s}"));
-            //Add additional include directories for linux systems to resolve stddef.h 
-        }
-
-        clangCmdArgs.AddRange(new[]
-        {
-            "SLANG_PLATFORM", 
-            slangPlatformDefine
-        }.Select(s => $"--define-macro={s}"));
+        var clangCmdArgs = config.GetClangCmdLineArgsForConfig();
 
         var error = false;
         foreach (var filePath in files)
@@ -137,32 +101,6 @@ public interface IGenerateSlangBindings : INukeBuild
         }
 
         if (error) Assert.Fail("Bindings Generation failed, see logs for details");
-    }
-
-    string GetSlangPlatformDefine()
-    {
-        var errMsg = $"Platform {Platform} not supported for binding generation";
-        if (Is64Bit)
-        {
-            if (IsWin)
-                return "SLANG_WIN64";
-            if (IsLinux)
-                return "SLANG_LINUX";
-            if (IsOsx)
-                return "SLANG_OSX";
-
-            Assert.Fail(errMsg);
-        }
-        else if (Is32Bit)
-        {
-            if (IsWin)
-                return "SLANG_WIN32";
-
-            Assert.Fail(errMsg);
-        }
-
-        Assert.Fail(errMsg);
-        return null!;
     }
 
     private TranslationUnit? CreateTranslationUnitForFile(AbsolutePath filePath,

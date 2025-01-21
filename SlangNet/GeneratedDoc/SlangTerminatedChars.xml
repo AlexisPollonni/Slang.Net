@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
-  <namespace name="SlangNet.Bindings.Generated">
+  <namespace name="SlangNet.Bindings.Generated.Slang">
     <struct name="SlangTerminatedChars" access="public">
       <field name="chars" access="public">
         <type native="char[1]" count="1" fixed="_chars_e__FixedBuffer">sbyte</type>

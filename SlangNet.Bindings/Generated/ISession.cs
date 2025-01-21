@@ -1,9 +1,8 @@
-using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using static SlangNet.LayoutRules;
 
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ISession.xml' path='doc/member[@name="ISession"]/*' />
 [NativeTypeName("struct ISession : ISlangUnknown")]

@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='SlangReflectionGenericArg.xml' path='doc/member[@name="SlangReflectionGenericArg"]/*' />
 [StructLayout(LayoutKind.Explicit)]

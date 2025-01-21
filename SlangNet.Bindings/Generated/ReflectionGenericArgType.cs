@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ReflectionGenericArgType.xml' path='doc/member[@name="ReflectionGenericArgType"]/*' />
 [NativeTypeName("unsigned int")]

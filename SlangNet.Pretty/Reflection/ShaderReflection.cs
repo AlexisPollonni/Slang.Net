@@ -185,13 +185,13 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
     public static uint ComputeStringHash(ReadOnlySpan<byte> chars)
     {
         fixed(byte* charsPtr = chars)
-            return Slang.ComputeStringHash((sbyte*)charsPtr, new((uint)chars.Length));
+            return SlangApi.ComputeStringHash((sbyte*)charsPtr, new((uint)chars.Length));
     }
 
     public static uint ComputeStringHash(string chars)
     {
         using var charsStr = new Utf8String(chars);
-        return Slang.ComputeStringHash(charsStr, new((ulong)(charsStr.MemoryEnd - charsStr.Memory)));
+        return SlangApi.ComputeStringHash(charsStr, new((ulong)(charsStr.MemoryEnd - charsStr.Memory)));
     }
 
     public TypeLayoutReflection? GlobalParamsTypeLayout

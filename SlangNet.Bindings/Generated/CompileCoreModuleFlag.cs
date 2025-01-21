@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated;
+namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='CompileCoreModuleFlag.xml' path='doc/member[@name="CompileCoreModuleFlag"]/*' />
 public partial struct CompileCoreModuleFlag

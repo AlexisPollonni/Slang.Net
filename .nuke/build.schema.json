@@ -110,12 +110,6 @@
             "Release"
           ]
         },
-        "SlangDeprHeaderPath": {
-          "type": "string"
-        },
-        "SlangHeaderPath": {
-          "type": "string"
-        },
         "SlangRepoPath": {
           "type": "string"
         },
