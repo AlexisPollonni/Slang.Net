@@ -167,12 +167,9 @@ public interface IGenerateSlangBindings : INukeBuild
     private Dictionary<string, string> GetAdditionalRemappedNames(TranslationUnit translationUnit)
     {
         var rootCursor = translationUnit.TranslationUnitDecl;
-        var externCur = FindFirstChildOfKind(rootCursor, CXCursorKind.CXCursor_LinkageSpec);
+        var externCur = FindFirstChildOfKind<LinkageSpecDecl>(rootCursor).NotNull();
 
-        externCur.NotNull();
-
-        var foundEnums = FindAllChildrenOfKind(externCur, CXCursorKind.CXCursor_EnumDecl)
-            .Cast<EnumDecl>()
+        var foundEnums = FindAllChildrenOfKind<EnumDecl>(externCur)
             .Where(decl => decl.Spelling.StartsWith("Slang"))
             .ToArray();
 
@@ -189,7 +186,7 @@ public interface IGenerateSlangBindings : INukeBuild
 
         var remappedEnumMembers = foundEnums
             .SelectMany(decl => decl.CursorChildren)
-            .Where(decl => decl.CursorKind is CXCursorKind.CXCursor_EnumConstantDecl)
+            .Where(decl => decl is EnumConstantDecl)
             .Cast<EnumConstantDecl>()
             .Select(decl =>
             {
@@ -217,15 +214,15 @@ public interface IGenerateSlangBindings : INukeBuild
         return remappedEnumNames.Concat(remappedEnumMembers).ToDictionary();
     }
 
-    private Cursor? FindFirstChildOfKind(Cursor cursor, CXCursorKind kind, bool isFromMainFile = true)
+    private T? FindFirstChildOfKind<T>(Cursor cursor, bool isFromMainFile = true) where T : Cursor
     {
         var stack = new Stack<Cursor>([cursor]);
 
         while (stack.TryPop(out var currentCursor))
         {
-            if (currentCursor.CursorKind == kind && currentCursor.Location.IsFromMainFile == isFromMainFile)
+            if (currentCursor is T foundCursor && currentCursor.Location.IsFromMainFile == isFromMainFile)
             {
-                return currentCursor;
+                return foundCursor;
             }
 
             foreach (var c in currentCursor.CursorChildren) stack.Push(c);
@@ -234,16 +231,16 @@ public interface IGenerateSlangBindings : INukeBuild
         return null;
     }
 
-    private IReadOnlyList<Cursor> FindAllChildrenOfKind(Cursor cursor, CXCursorKind kind, bool isFromMainFile = true)
+    private IReadOnlyList<T> FindAllChildrenOfKind<T>(Cursor cursor, bool isFromMainFile = true) where T : Cursor
     {
         var stack = new Stack<Cursor>([cursor]);
-        var foundCursors = new List<Cursor>();
+        var foundCursors = new List<T>();
 
         while (stack.TryPop(out var currentCursor))
         {
-            if (currentCursor.CursorKind == kind && currentCursor.Location.IsFromMainFile == isFromMainFile)
+            if (currentCursor is T foundCursor && currentCursor.Location.IsFromMainFile == isFromMainFile)
             {
-                foundCursors.Add(currentCursor);
+                foundCursors.Add(foundCursor);
                 continue;
             }
 
