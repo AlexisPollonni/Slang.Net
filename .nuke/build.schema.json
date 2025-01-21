@@ -25,6 +25,7 @@
       "type": "string",
       "enum": [
         "Clean",
+        "CleanSlangBindings",
         "Compile",
         "DownloadSlangBinaries",
         "GenerateSlangBindings",
@@ -104,15 +105,32 @@
       "properties": {
         "Configuration": {
           "type": "string",
-          "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)",
           "enum": [
             "Debug",
             "Release"
           ]
         },
+        "SlangDeprHeaderPath": {
+          "type": "string"
+        },
+        "SlangHeaderPath": {
+          "type": "string"
+        },
+        "SlangRepoPath": {
+          "type": "string"
+        },
         "Solution": {
           "type": "string",
           "description": "Path to a solution file that is automatically loaded"
+        },
+        "SrcOutputDir": {
+          "type": "string"
+        },
+        "TestsOutputDir": {
+          "type": "string"
+        },
+        "XmlOutputDir": {
+          "type": "string"
         }
       }
     },

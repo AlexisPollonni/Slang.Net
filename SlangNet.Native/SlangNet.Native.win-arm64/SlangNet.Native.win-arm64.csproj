@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.Build.NoTargets/3.7.0">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFramework>net9.0</TargetFramework>
     <SlangRuntime>win-arm64</SlangRuntime>
     <SlangDownloadRuntime>windows-aarch64</SlangDownloadRuntime>
     <SlangNativeDir>lib/</SlangNativeDir>
