@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="SlangNet.Bindings.Generated.Slang">
-    <struct name="ISlangBlob" access="public" native="struct ISlangBlob : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+    <struct name="ISlangBlob" access="public" native="struct ISlangBlob : ISlangUnknown" parent="ISlangUnknown" uuid="8ba5fb08-5195-40e2-ac58-0d989c3a0102" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>

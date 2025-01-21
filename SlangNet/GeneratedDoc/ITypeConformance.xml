@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="SlangNet.Bindings.Generated.Slang">
-    <struct name="ITypeConformance" access="public" native="struct ITypeConformance : slang::IComponentType" parent="IComponentType" vtbl="true" unsafe="true">
+    <struct name="ITypeConformance" access="public" native="struct ITypeConformance : slang::IComponentType" parent="IComponentType" uuid="73eb3147-e544-41b5-b8f0-a244df21940b" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>

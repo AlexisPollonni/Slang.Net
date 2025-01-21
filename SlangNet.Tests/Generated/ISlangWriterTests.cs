@@ -1,11 +1,19 @@
 using System.Runtime.InteropServices;
 using NUnit.Framework;
+using static SlangNet.Bindings.Generated.Slang.SlangApi;
 
 namespace SlangNet.Bindings.Generated.Slang.UnitTests;
 
 /// <summary>Provides validation of the <see cref="ISlangWriter" /> struct.</summary>
 public static unsafe partial class ISlangWriterTests
 {
+    /// <summary>Validates that the <see cref="Guid" /> of the <see cref="ISlangWriter" /> struct is correct.</summary>
+    [Test]
+    public static void GuidOfTest()
+    {
+        Assert.That(typeof(ISlangWriter).GUID, Is.EqualTo(IID_ISlangWriter));
+    }
+
     /// <summary>Validates that the <see cref="ISlangWriter" /> struct is blittable.</summary>
     [Test]
     public static void IsBlittableTest()

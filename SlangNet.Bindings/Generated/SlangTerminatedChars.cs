@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='SlangTerminatedChars.xml' path='doc/member[@name="SlangTerminatedChars"]/*' />
+[Guid("BE0DB1A8-3594-4603-A78B-C4868430DFBB")]
 public partial struct SlangTerminatedChars
 {
     /// <include file='SlangTerminatedChars.xml' path='doc/member[@name="SlangTerminatedChars.chars"]/*' />

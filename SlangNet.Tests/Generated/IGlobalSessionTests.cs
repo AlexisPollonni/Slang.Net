@@ -1,11 +1,19 @@
 using System.Runtime.InteropServices;
 using NUnit.Framework;
+using static SlangNet.Bindings.Generated.Slang.SlangApi;
 
 namespace SlangNet.Bindings.Generated.Slang.UnitTests;
 
 /// <summary>Provides validation of the <see cref="IGlobalSession" /> struct.</summary>
 public static unsafe partial class IGlobalSessionTests
 {
+    /// <summary>Validates that the <see cref="Guid" /> of the <see cref="IGlobalSession" /> struct is correct.</summary>
+    [Test]
+    public static void GuidOfTest()
+    {
+        Assert.That(typeof(IGlobalSession).GUID, Is.EqualTo(IID_IGlobalSession));
+    }
+
     /// <summary>Validates that the <see cref="IGlobalSession" /> struct is blittable.</summary>
     [Test]
     public static void IsBlittableTest()

@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 namespace SlangNet.Bindings.Generated.Slang;
 
 /// <include file='ISlangSharedLibrary_Dep1.xml' path='doc/member[@name="ISlangSharedLibrary_Dep1"]/*' />
+[Guid("9C9D5BC5-EB61-496F-80D7-D147C4A23730")]
 [NativeTypeName("struct ISlangSharedLibrary_Dep1 : ISlangUnknown")]
 [NativeInheritance("ISlangUnknown")]
 public unsafe partial struct ISlangSharedLibrary_Dep1

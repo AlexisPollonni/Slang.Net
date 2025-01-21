@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="SlangNet.Bindings.Generated.Slang">
-    <struct name="ISlangClonable" access="public" native="struct ISlangClonable : ISlangCastable" parent="ISlangCastable" vtbl="true" unsafe="true">
+    <struct name="ISlangClonable" access="public" native="struct ISlangClonable : ISlangCastable" parent="ISlangCastable" uuid="1ec36168-e9f4-430d-bb17-048a8046b31f" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
