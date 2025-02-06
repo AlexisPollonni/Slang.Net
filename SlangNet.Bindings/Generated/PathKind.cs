@@ -1,4 +1,4 @@
-using SlangNet.Bindings.Generated.Slang;
+using SlangNet.Bindings.Generated;
 
 namespace SlangNet;
 

@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='TargetDesc.xml' path='doc/member[@name="TargetDesc"]/*' />
 public unsafe partial struct TargetDesc

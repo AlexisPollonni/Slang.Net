@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='IComponentType.xml' path='doc/member[@name="IComponentType"]/*' />
 [Guid("5BC42BE8-5C50-4929-9E5E-D15E7C24015F")]

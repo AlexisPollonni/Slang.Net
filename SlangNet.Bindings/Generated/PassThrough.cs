@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='PassThrough.xml' path='doc/member[@name="PassThrough"]/*' />
 [NativeTypeName("SlangPassThroughIntegral")]

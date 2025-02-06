@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID"]/*' />
 [NativeTypeName("SlangModifierIDIntegral")]

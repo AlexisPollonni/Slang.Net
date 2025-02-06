@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ISlangMutableFileSystem.xml' path='doc/member[@name="ISlangMutableFileSystem"]/*' />
 [Guid("A058675C-1D65-452A-8458-CCDED1427105")]

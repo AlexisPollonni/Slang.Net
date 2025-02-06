@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
-  <namespace name="SlangNet.Bindings.Generated.Slang">
+  <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="CompilerOptionValueKind" access="public">
       <type>int</type>
       <enumerator name="Int" access="public">

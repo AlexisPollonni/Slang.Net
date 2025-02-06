@@ -105,7 +105,7 @@ internal record BuildConfig(
 
     public static readonly BuildConfig SlangConfig = new(
         "c++", "SlangApi", "slang",
-        "SlangNet.Bindings.Generated.Slang",
+        "SlangNet.Bindings.Generated",
         "sp", // Remove the function prefixes, also fix over-removing of prefixes
         GeneratePreviewCode
         | GenerateMultipleFiles

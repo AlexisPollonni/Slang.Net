@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='DebugInfoFormat.xml' path='doc/member[@name="DebugInfoFormat"]/*' />
 [NativeTypeName("SlangDebugInfoFormatIntegral")]

@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ISlangBlob.xml' path='doc/member[@name="ISlangBlob"]/*' />
 [Guid("8BA5FB08-5195-40E2-AC58-0D989C3A0102")]

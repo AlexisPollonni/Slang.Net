@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using System;
 using System.Runtime.InteropServices;
-using static SlangNet.Bindings.Generated.Slang.SlangApi;
+using static SlangNet.Bindings.Generated.SlangApi;
 
-namespace SlangNet.Bindings.Generated.Slang.UnitTests;
+namespace SlangNet.Bindings.Generated.UnitTests;
 
 /// <summary>Provides validation of the <see cref="ISession" /> struct.</summary>
 public static unsafe partial class ISessionTests

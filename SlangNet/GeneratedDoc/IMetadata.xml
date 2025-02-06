@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
-  <namespace name="SlangNet.Bindings.Generated.Slang">
+  <namespace name="SlangNet.Bindings.Generated">
     <struct name="IMetadata" access="public" native="struct IMetadata : ISlangCastable" parent="ISlangCastable" uuid="8044a8a3-ddc0-4b7f-af8e-026e905d7332" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>

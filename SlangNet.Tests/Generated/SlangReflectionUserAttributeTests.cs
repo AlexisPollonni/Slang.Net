@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang.UnitTests;
+namespace SlangNet.Bindings.Generated.UnitTests;
 
 /// <summary>Provides validation of the <see cref="SlangReflectionUserAttribute" /> struct.</summary>
 public static unsafe partial class SlangReflectionUserAttributeTests

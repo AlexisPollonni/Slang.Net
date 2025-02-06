@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using static SlangNet.LayoutRules;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ISession.xml' path='doc/member[@name="ISession"]/*' />
 [Guid("67618701-D116-468F-AB3B-474BEDCE0E3D")]

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
-  <namespace name="SlangNet.Bindings.Generated.Slang">
+  <namespace name="SlangNet.Bindings.Generated">
     <struct name="IModule" access="public" native="struct IModule : slang::IComponentType" parent="IComponentType" uuid="0c720e64-8722-4d31-8990-638a98b1c279" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>

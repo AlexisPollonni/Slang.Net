@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <summary>Defines the base type of a struct as it was in the native signature.</summary>
 [AttributeUsage(AttributeTargets.Struct, AllowMultiple = false, Inherited = true)]

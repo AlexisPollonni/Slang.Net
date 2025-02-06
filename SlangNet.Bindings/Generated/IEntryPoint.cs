@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='IEntryPoint.xml' path='doc/member[@name="IEntryPoint"]/*' />
 [Guid("8F241361-F5BD-4CA0-A3AC-02F7FA2402B8")]

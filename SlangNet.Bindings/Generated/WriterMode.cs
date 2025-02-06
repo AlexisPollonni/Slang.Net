@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='WriterMode.xml' path='doc/member[@name="WriterMode"]/*' />
 [NativeTypeName("SlangWriterModeIntegral")]

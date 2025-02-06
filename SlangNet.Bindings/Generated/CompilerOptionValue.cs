@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='CompilerOptionValue.xml' path='doc/member[@name="CompilerOptionValue"]/*' />
 public unsafe partial struct CompilerOptionValue

@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='OptimizationLevel.xml' path='doc/member[@name="OptimizationLevel"]/*' />
 [NativeTypeName("SlangOptimizationLevelIntegral")]

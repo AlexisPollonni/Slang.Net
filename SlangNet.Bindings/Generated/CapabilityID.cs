@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='CapabilityID.xml' path='doc/member[@name="CapabilityID"]/*' />
 [NativeTypeName("SlangCapabilityIDIntegral")]

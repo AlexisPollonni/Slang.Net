@@ -1,6 +1,6 @@
-using static SlangNet.Bindings.Generated.Slang.ModifierID;
+using static SlangNet.Bindings.Generated.ModifierID;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='Modifier.xml' path='doc/member[@name="Modifier"]/*' />
 public partial struct Modifier

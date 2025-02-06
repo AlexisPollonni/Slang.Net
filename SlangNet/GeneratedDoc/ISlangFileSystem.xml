@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
-  <namespace name="SlangNet.Bindings.Generated.Slang">
+  <namespace name="SlangNet.Bindings.Generated">
     <struct name="ISlangFileSystem" access="public" native="struct ISlangFileSystem : ISlangCastable" parent="ISlangCastable" uuid="003a09fc-3a4d-4ba0-ad60-1fd863a915ab" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>

@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ISlangClonable.xml' path='doc/member[@name="ISlangClonable"]/*' />
 [Guid("1EC36168-E9F4-430D-BB17-048A8046B31F")]

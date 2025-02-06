@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='CompilerOptionEntry.xml' path='doc/member[@name="CompilerOptionEntry"]/*' />
 public partial struct CompilerOptionEntry

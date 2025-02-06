@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest"]/*' />
 [NativeTypeName("struct ICompileRequest : ISlangUnknown")]

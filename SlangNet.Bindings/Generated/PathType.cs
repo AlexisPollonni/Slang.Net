@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='PathType.xml' path='doc/member[@name="PathType"]/*' />
 [NativeTypeName("SlangPathTypeIntegral")]

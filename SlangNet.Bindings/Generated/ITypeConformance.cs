@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ITypeConformance.xml' path='doc/member[@name="ITypeConformance"]/*' />
 [Guid("73EB3147-E544-41B5-B8F0-A244DF21940B")]

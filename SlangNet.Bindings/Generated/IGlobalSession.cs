@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession"]/*' />
 [Guid("C140B5FD-0C78-452E-BA7C-1A1E70C7F71C")]

@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='DeclReflection.xml' path='doc/member[@name="DeclReflection"]/*' />
 public partial struct DeclReflection

@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='IMetadata.xml' path='doc/member[@name="IMetadata"]/*' />
 [Guid("8044A8A3-DDC0-4B7F-AF8E-026E905D7332")]

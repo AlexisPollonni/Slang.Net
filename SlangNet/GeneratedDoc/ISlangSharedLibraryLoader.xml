@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
-  <namespace name="SlangNet.Bindings.Generated.Slang">
+  <namespace name="SlangNet.Bindings.Generated">
     <struct name="ISlangSharedLibraryLoader" access="public" native="struct ISlangSharedLibraryLoader : ISlangUnknown" parent="ISlangUnknown" uuid="6264ab2b-a3e8-4a06-97f1-49bc2d2ab14d" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>

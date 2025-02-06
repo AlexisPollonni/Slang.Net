@@ -1,4 +1,4 @@
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='PreprocessorMacroDesc.xml' path='doc/member[@name="PreprocessorMacroDesc"]/*' />
 public unsafe partial struct PreprocessorMacroDesc

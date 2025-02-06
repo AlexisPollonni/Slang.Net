@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace SlangNet.Bindings.Generated.Slang;
+namespace SlangNet.Bindings.Generated;
 
 /// <include file='ISlangCastable.xml' path='doc/member[@name="ISlangCastable"]/*' />
 [Guid("87EDE0E1-4852-44B0-8BF2-CB31874DE239")]
