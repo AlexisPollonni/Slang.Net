@@ -24,8 +24,13 @@ public readonly unsafe struct VariableReflection : IEquatable<VariableReflection
         UserAttributes = new NativeBoundedReadOnlyList<SlangReflectionVariable, UserAttribute>
         {
             Container = InternalPointer,
-            GetCount = &GetUserAttributeCount,
-            TryGetAt = &TryGetUserAttributeAt
+            GetCount = type => (nint)ReflectionVariable_GetUserAttributeCount(type),
+            TryGetAt = (SlangReflectionVariable* type, nint index, out UserAttribute attribute) =>
+            {
+                var ptr = ReflectionVariable_GetUserAttribute(type, checked((uint)index));
+                attribute = new(ptr);
+                return ptr != null;
+            }
         };
     }
 
@@ -60,16 +65,6 @@ public readonly unsafe struct VariableReflection : IEquatable<VariableReflection
         ReflectionVariable_FindModifier(InternalPointer, modifierID) != null;
 
     public IReadOnlyList<UserAttribute> UserAttributes { get; }
-
-    private static nint GetUserAttributeCount(SlangReflectionVariable* type) =>
-        (nint)ReflectionVariable_GetUserAttributeCount(type);
-
-    private static bool TryGetUserAttributeAt(SlangReflectionVariable* type, nint index, ref UserAttribute attribute)
-    {
-        var ptr = ReflectionVariable_GetUserAttribute(type, checked((uint)index));
-        attribute = new UserAttribute(ptr);
-        return ptr != null;
-    }
 
     public UserAttribute? FindUserAttributeByName(GlobalSession globalSession, ReadOnlySpan<byte> name)
     {

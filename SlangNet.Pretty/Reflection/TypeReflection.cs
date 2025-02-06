@@ -24,20 +24,37 @@ public readonly unsafe struct TypeReflection : IEquatable<TypeReflection>
         UserAttributes = new NativeBoundedReadOnlyList<SlangReflectionType, UserAttribute>
         {
             Container = InternalPointer,
-            GetCount = &GetUserAttributeCount,
-            TryGetAt = &TryGetUserAttributeAt
+            GetCount = type => (nint)ReflectionType_GetUserAttributeCount(type),
+            TryGetAt = (SlangReflectionType* type, nint index, out UserAttribute attribute) =>
+            {
+                var ptr = ReflectionType_GetUserAttribute(type, checked((uint)index));
+                attribute = new(ptr);
+                return ptr != null;
+            }
         };
         Fields = new NativeBoundedReadOnlyList<SlangReflectionType, VariableReflection>
         {
             Container = InternalPointer,
-            GetCount = &GetFieldCount,
-            TryGetAt = &TryGetFieldAt
+            GetCount = type => (nint)ReflectionType_GetFieldCount(type),
+            TryGetAt = (SlangReflectionType* type, nint index, out VariableReflection variable) =>
+            {
+                var ptr = ReflectionType_GetFieldByIndex(type, checked((uint)index));
+                variable = new(ptr);
+                return ptr != null;
+            }
         };
+        // this is weird in the Slang API, for now we have a list for the types with null elements for future non-types
+        // but for anything further we have to wait for the changes in the Slang API
         SpecializedTypeArgTypes = new NativeBoundedReadOnlyList<SlangReflectionType, TypeReflection?>
         {
             Container = InternalPointer,
-            GetCount = &ReflectionType_getSpecializedTypeArgCount,
-            TryGetAt = &TryGetSpecializedTypeArgTypeAt
+            GetCount = ReflectionType_getSpecializedTypeArgCount,
+            TryGetAt = (SlangReflectionType* type, nint index, out TypeReflection? arg) =>
+            {
+                var ptr = ReflectionType_getSpecializedTypeArgType(type, index);
+                arg = ptr == null ? null : new(ptr);
+                return true;
+            }
         };
     }
 
@@ -56,16 +73,6 @@ public readonly unsafe struct TypeReflection : IEquatable<TypeReflection>
     public TypeKind Kind => ReflectionType_GetKind(InternalPointer);
     public IReadOnlyList<UserAttribute> UserAttributes { get; }
     public IReadOnlyList<VariableReflection> Fields { get; }
-
-    private static nint GetUserAttributeCount(SlangReflectionType* type) =>
-        (nint)ReflectionType_GetUserAttributeCount(type);
-
-    private static bool TryGetUserAttributeAt(SlangReflectionType* type, nint index, ref UserAttribute attribute)
-    {
-        var ptr = ReflectionType_GetUserAttribute(type, checked((uint)index));
-        attribute = new UserAttribute(ptr);
-        return ptr != null;
-    }
 
     public UserAttribute? FindUserAttributeByName(ReadOnlySpan<byte> name)
     {
@@ -89,16 +96,6 @@ public readonly unsafe struct TypeReflection : IEquatable<TypeReflection>
     public UserAttribute GetUserAttributeByName(string name) =>
         FindUserAttributeByName(name) ??
         throw new KeyNotFoundException($"No user attribute found with name: {name}");
-
-    private static nint GetFieldCount(SlangReflectionType* type) =>
-        (nint)ReflectionType_GetFieldCount(type);
-
-    private static bool TryGetFieldAt(SlangReflectionType* type, nint index, ref VariableReflection variable)
-    {
-        var ptr = ReflectionType_GetFieldByIndex(type, checked((uint)index));
-        variable = new VariableReflection(ptr);
-        return ptr != null;
-    }
 
     public ulong ElementCount => ReflectionType_GetElementCount(InternalPointer).ToUInt64();
 
@@ -128,18 +125,6 @@ public readonly unsafe struct TypeReflection : IEquatable<TypeReflection>
 
     public string? Name => InteropUtils.PtrToStringUTF8(ReflectionType_GetName(InternalPointer));
 
-    private static uint GetSpecializedTypeArgCount(SlangReflectionType* type) =>
-        checked((uint)ReflectionType_getSpecializedTypeArgCount(type));
-
-    // this is weird in the Slang API, for now we have a list for the types with null elements for future non-types
-    // but for anything further we have to wait for the changes in the Slang API
-
-    private static bool TryGetSpecializedTypeArgTypeAt(SlangReflectionType* type, nint index, ref TypeReflection? arg)
-    {
-        var ptr = ReflectionType_getSpecializedTypeArgType(type, index);
-        arg = ptr == null ? null : new(ptr);
-        return true;
-    }
 
     public IReadOnlyList<TypeReflection?> SpecializedTypeArgTypes { get; }
 }

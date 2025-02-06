@@ -23,8 +23,13 @@ public readonly unsafe struct EntryPointReflection : IEquatable<EntryPointReflec
         Parameters = new NativeBoundedReadOnlyList<SlangEntryPointLayout, VariableLayoutReflection>
         {
             Container = InternalPointer,
-            GetCount = &GetParameterCount,
-            TryGetAt = &TryGetParameterAt
+            GetCount = container => (nint)ReflectionEntryPoint_getParameterCount(container),
+            TryGetAt = (SlangEntryPointLayout* entryPoint, nint index, out VariableLayoutReflection variable) =>
+            {
+                var ptr = ReflectionEntryPoint_getParameterByIndex(entryPoint, checked((uint)index));
+                variable = ptr == null ? default : new(ptr);
+                return ptr != null;
+            }
         };
     }
 
@@ -48,18 +53,8 @@ public readonly unsafe struct EntryPointReflection : IEquatable<EntryPointReflec
         InteropUtils.PtrToStringUTF8(ReflectionEntryPoint_getNameOverride(InternalPointer)) ??
         throw new NullReferenceException("ReflectionEntryPoint_getOverrideName returned a null pointer");
 
-    private static nint GetParameterCount(SlangEntryPointLayout* entryPoint) =>
-        (nint)ReflectionEntryPoint_getParameterCount(entryPoint);
-
-    private static bool TryGetParameterAt(SlangEntryPointLayout* entryPoint, nint index, ref VariableLayoutReflection variable)
-    {
-        var ptr = ReflectionEntryPoint_getParameterByIndex(entryPoint, checked((uint)index));
-        variable = ptr == null ? default : new(ptr);
-        return ptr != null;
-    }
-
     public IReadOnlyList<VariableLayoutReflection> Parameters { get; }
-
+    
     public Stage Stage =>
         ReflectionEntryPoint_getStage(InternalPointer);
 

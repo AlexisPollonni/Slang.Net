@@ -23,8 +23,13 @@ public readonly unsafe struct TypeParameterReflection : IEquatable<TypeParameter
         Constraints = new NativeBoundedReadOnlyList<SlangReflectionTypeParameter, TypeReflection>
         {
             Container = InternalPointer,
-            GetCount = &GetConstraintCount,
-            TryGetAt = &TryGetConstraintAt
+            GetCount = param => checked((nint)ReflectionTypeParameter_GetConstraintCount(param)),
+            TryGetAt = (SlangReflectionTypeParameter* param, nint index, out TypeReflection constraint) =>
+            {
+                var ptr = ReflectionTypeParameter_GetConstraintByIndex(param, checked((uint)index));
+                constraint = ptr == null ? default : new(ptr);
+                return ptr != null;
+            }
         };
     }
 
@@ -43,16 +48,6 @@ public readonly unsafe struct TypeParameterReflection : IEquatable<TypeParameter
     public string? Name => InteropUtils.PtrToStringUTF8(ReflectionTypeParameter_GetName(InternalPointer));
 
     public uint Index => ReflectionTypeParameter_GetIndex(InternalPointer);
-
-    private static nint GetConstraintCount(SlangReflectionTypeParameter* param) =>
-        checked((nint)ReflectionTypeParameter_GetConstraintCount(param));
-
-    private static bool TryGetConstraintAt(SlangReflectionTypeParameter* param, nint index, ref TypeReflection constraint)
-    {
-        var ptr = ReflectionTypeParameter_GetConstraintByIndex(param, checked((uint)index));
-        constraint = ptr == null ? default : new(ptr);
-        return ptr != null;
-    }
 
     public IReadOnlyList<TypeReflection> Constraints { get; }
 }

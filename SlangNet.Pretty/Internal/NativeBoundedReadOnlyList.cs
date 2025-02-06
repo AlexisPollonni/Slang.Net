@@ -10,9 +10,12 @@ namespace SlangNet;
 internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TElement> : IReadOnlyList<TElement>
     where TContainer : unmanaged
 {
+    public delegate nint GetCountDelegate(TContainer* container);
+    public delegate bool TryGetAtDelegate(TContainer* container, nint index, out TElement result);
+    
     public TContainer* Container { get; init; }
-    public delegate* managed<TContainer*, nint> GetCount { get; init; }
-    public delegate* managed<TContainer*, nint, ref TElement, bool> TryGetAt { get; init; }
+    public GetCountDelegate GetCount { get; init; }
+    public TryGetAtDelegate TryGetAt { get; init; }
 
     public long Count => GetCount(Container);
     int IReadOnlyCollection<TElement>.Count => checked((int)Count);
@@ -23,9 +26,8 @@ internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TElement> 
         get
         {
             if (index < 0 || index >= Count)
-                throw new ArgumentOutOfRangeException("index");
-            TElement element = default!;
-            return TryGetAt(Container, index, ref element)
+                throw new ArgumentOutOfRangeException(nameof(index));
+            return TryGetAt(Container, index, out var element)
                 ? element
                 : throw new SlangException("Slang list returned a null pointer");
         }
@@ -53,7 +55,7 @@ internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TArgument,
         get
         {
             if (index < 0 || index >= Count)
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
             TElement element = default!;
             return TryGetAt(Container, Argument, index, ref element)
                 ? element

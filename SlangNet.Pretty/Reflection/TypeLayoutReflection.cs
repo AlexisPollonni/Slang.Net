@@ -23,26 +23,47 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
         Fields = new NativeBoundedReadOnlyList<SlangReflectionTypeLayout, VariableLayoutReflection>
         {
             Container = InternalPointer,
-            GetCount = &GetFieldCount,
-            TryGetAt = &TryGetFieldAt
+            GetCount = internalPointer =>
+            {
+                var typePtr = ReflectionTypeLayout_GetType(internalPointer);
+                return (nint)ReflectionType_GetFieldCount(typePtr);
+            },
+            TryGetAt = (SlangReflectionTypeLayout* internalPointer, nint index, out VariableLayoutReflection variable) =>
+            {
+                var ptr = ReflectionTypeLayout_GetFieldByIndex(internalPointer, (uint)index);
+                variable = ptr == null ? default : new(ptr);
+                return ptr != null;
+            }
         };
         Categories = new NativeBoundedReadOnlyList<SlangReflectionTypeLayout, ParameterCategory>
         {
             Container = InternalPointer,
-            GetCount = &GetCategoryCount,
-            TryGetAt = &TryGetCategoryAt
+            GetCount = type => (nint)ReflectionTypeLayout_GetCategoryCount(type),
+            TryGetAt = (SlangReflectionTypeLayout* type, nint index, out ParameterCategory category) =>
+            {
+                category = ReflectionTypeLayout_GetCategoryByIndex(type, checked((uint)index));
+                return true;
+            }
         };
         BindingRanges = new NativeBoundedReadOnlyList<SlangReflectionTypeLayout, BindingRange>
         {
             Container = InternalPointer,
-            GetCount = &ReflectionTypeLayout_getBindingRangeCount,
-            TryGetAt = &TryGetBindingRangeAt
+            GetCount = ReflectionTypeLayout_getBindingRangeCount,
+            TryGetAt = (SlangReflectionTypeLayout* type, nint index, out BindingRange bindingRange) =>
+            {
+                bindingRange = new(type, index);
+                return true;
+            }
         };
         DescriptorSets = new NativeBoundedReadOnlyList<SlangReflectionTypeLayout, DescriptorSet>
         {
             Container = InternalPointer,
-            GetCount = &ReflectionTypeLayout_getDescriptorSetCount,
-            TryGetAt = &TryGetDescriptorSetAt
+            GetCount = ReflectionTypeLayout_getDescriptorSetCount,
+            TryGetAt = (SlangReflectionTypeLayout* type, nint index, out DescriptorSet descriptorSet) =>
+            {
+                descriptorSet = new(type, index);
+                return true;
+            }
         };
     }
 
@@ -82,19 +103,6 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
 
     public ulong GetElementStride(ParameterCategory category) =>
         ReflectionTypeLayout_GetElementStride(InternalPointer, category).ToUInt64();
-
-    private static nint GetFieldCount(SlangReflectionTypeLayout* internalPointer)
-    {
-        var typePtr = ReflectionTypeLayout_GetType(internalPointer);
-        return (nint)ReflectionType_GetFieldCount(typePtr);
-    }
-
-    private static bool TryGetFieldAt(SlangReflectionTypeLayout* internalPointer, nint index, ref VariableLayoutReflection variable)
-    {
-        var ptr = ReflectionTypeLayout_GetFieldByIndex(internalPointer, (uint)index);
-        variable = ptr == null ? default : new(ptr);
-        return ptr != null;
-    }
 
     public IReadOnlyList<VariableLayoutReflection> Fields { get; }
 
@@ -156,15 +164,6 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
     public ParameterCategory ParameterCategory =>
         ReflectionTypeLayout_GetParameterCategory(InternalPointer);
 
-    private static nint GetCategoryCount(SlangReflectionTypeLayout* type) =>
-        (nint)ReflectionTypeLayout_GetCategoryCount(type);
-
-    private static bool TryGetCategoryAt(SlangReflectionTypeLayout* type, nint index, ref ParameterCategory category)
-    {
-        category = ReflectionTypeLayout_GetCategoryByIndex(type, checked((uint)index));
-        return true;
-    }
-
     public IReadOnlyList<ParameterCategory> Categories { get; }
 
     public MatrixLayoutMode MatrixLayoutMode =>
@@ -191,19 +190,7 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
         }
     }
 
-    private static bool TryGetBindingRangeAt(SlangReflectionTypeLayout* type, nint index, ref BindingRange bindingRange)
-    {
-        bindingRange = new(type, index);
-        return true;
-    }
-
     public IReadOnlyList<BindingRange> BindingRanges { get; }
-
-    private static bool TryGetDescriptorSetAt(SlangReflectionTypeLayout* type, nint index, ref DescriptorSet descriptorSet)
-    {
-        descriptorSet = new(type, index);
-        return true;
-    }
 
     public IReadOnlyList<DescriptorSet> DescriptorSets { get; }
 }

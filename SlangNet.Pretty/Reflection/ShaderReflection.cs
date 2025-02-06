@@ -25,26 +25,47 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
         Parameters = new NativeBoundedReadOnlyList<SlangProgramLayout, VariableLayoutReflection>
         {
             Container = InternalPointer,
-            GetCount = &GetParameterCount,
-            TryGetAt = &TryGetParameterAt
+            GetCount = program => (nint)Reflection_GetParameterCount(program),
+            TryGetAt = (SlangProgramLayout* program, nint index, out VariableLayoutReflection variable) =>
+            {
+                var ptr = Reflection_GetParameterByIndex(program, checked((uint)index));
+                variable = ptr == null ? default : new(ptr);
+                return ptr != null;
+            }
         };
         TypeParameters = new NativeBoundedReadOnlyList<SlangProgramLayout, TypeParameterReflection>
         {
             Container = InternalPointer,
-            GetCount = &GetTypeParameterCount,
-            TryGetAt = &TryGetTypeParameterAt
+            GetCount = program => (nint)Reflection_GetTypeParameterCount(program),
+            TryGetAt = (SlangProgramLayout* program, nint index, out TypeParameterReflection typeParam) =>
+            {
+                var ptr = Reflection_GetTypeParameterByIndex(program, checked((uint)index));
+                typeParam = ptr == null ? default : new(ptr);
+                return ptr != null;
+            }
         };
         EntryPoints = new NativeBoundedReadOnlyList<SlangProgramLayout, EntryPointReflection>
         {
             Container = InternalPointer,
-            GetCount = &GetEntryPointCount,
-            TryGetAt = &TryGetEntryPointAt
+            GetCount = program => (nint)Reflection_getEntryPointCount(program),
+            TryGetAt = (SlangProgramLayout* program, nint index, out EntryPointReflection entryPoint) =>
+            {
+                var ptr = Reflection_getEntryPointByIndex(program, checked((nuint)index));
+                entryPoint = ptr == null ? default : new(ptr);
+                return ptr != null;
+            }
         };
         HashedStrings = new NativeBoundedReadOnlyList<SlangProgramLayout, string>
         {
             Container = InternalPointer,
-            GetCount = &GetHashedStringCount,
-            TryGetAt = &TryGetHashedStringAt
+            GetCount = program => checked((nint)Reflection_getHashedStringCount(program)),
+            TryGetAt = (SlangProgramLayout* program, nint index, out string hashedString) =>
+            {
+                nuint countPtr;
+                var ptr = Reflection_getHashedString(program, checked((nuint)index), &countPtr);
+                hashedString = ptr != null ? Encoding.UTF8.GetString((byte*)ptr, checked((int)countPtr.ToUInt64())) : string.Empty;
+                return ptr != null;
+            }
         };
     }
 
@@ -60,27 +81,7 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
     public static bool operator !=(ShaderReflection a, ShaderReflection b) => a.pointer != b.pointer;
     public override int GetHashCode() => new IntPtr(pointer).GetHashCode();
 
-    private static nint GetParameterCount(SlangProgramLayout* program) =>
-        (nint)Reflection_GetParameterCount(program);
-
-    private static bool TryGetParameterAt(SlangProgramLayout* program, nint index, ref VariableLayoutReflection variable)
-    {
-        var ptr = Reflection_GetParameterByIndex(program, checked((uint)index));
-        variable = ptr == null ? default : new(ptr);
-        return ptr != null;
-    }
-
     public IReadOnlyList<VariableLayoutReflection> Parameters { get; }
-
-    private static nint GetTypeParameterCount(SlangProgramLayout* program) =>
-        (nint)Reflection_GetTypeParameterCount(program);
-    
-    private static bool TryGetTypeParameterAt(SlangProgramLayout* program, nint index, ref TypeParameterReflection typeParam)
-    {
-        var ptr = Reflection_GetTypeParameterByIndex(program, checked((uint)index));
-        typeParam = ptr == null ? default : new(ptr);
-        return ptr != null;
-    }
 
     public IReadOnlyList<TypeParameterReflection> TypeParameters { get; }
 
@@ -120,16 +121,6 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
         return layoutPtr == null ? null : new(layoutPtr);
     }
 
-    private static nint GetEntryPointCount(SlangProgramLayout* program) =>
-        (nint)Reflection_getEntryPointCount(program);
-
-    private static bool TryGetEntryPointAt(SlangProgramLayout* program, nint index, ref EntryPointReflection entryPoint)
-    {
-        var ptr = Reflection_getEntryPointByIndex(program, checked((nuint)index));
-        entryPoint = ptr == null ? default : new(ptr);
-        return ptr != null;
-    }
-
     public IReadOnlyList<EntryPointReflection> EntryPoints { get; }
 
     public EntryPointReflection? FindEntryPointByName(ReadOnlySpan<byte> name)
@@ -166,18 +157,6 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
             specializedTypePtr = Reflection_specializeType(InternalPointer, type.InternalPointer, specializationArray.Length, specializationPtrs, &diagnosticsBlob.Pointer);
         diagnostics = diagnosticsBlob.AsString();
         return specializedTypePtr == null ? null : new(specializedTypePtr);
-    }
-
-    private static nint GetHashedStringCount(SlangProgramLayout* program) =>
-        checked((nint)Reflection_getHashedStringCount(program));
-
-    private static bool TryGetHashedStringAt(SlangProgramLayout* program, nint index, ref string hashedString)
-    {
-        nuint countPtr;
-        var ptr = Reflection_getHashedString(program, checked((nuint)index), &countPtr);
-        if (ptr != null)
-            hashedString = Encoding.UTF8.GetString((byte*)ptr, checked((int)countPtr.ToUInt64()));
-        return ptr != null;
     }
 
     public IReadOnlyList<string> HashedStrings { get; }

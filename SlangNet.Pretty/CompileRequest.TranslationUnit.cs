@@ -104,8 +104,12 @@ unsafe partial class CompileRequest
             list = new()
             {
                 Container = request,
-                GetCount = &GetCount,
-                TryGetAt = &TryGetAt
+                GetCount = request1 => request1->getTranslationUnitCount(),
+                TryGetAt = (ICompileRequest* request1, nint index, out TranslationUnit unit) =>
+                {
+                    unit = new(request1, checked((int)index));
+                    return true;
+                }
             };
         }
 
@@ -119,14 +123,5 @@ unsafe partial class CompileRequest
         public int Count => (int)list.Count;
         public IEnumerator<TranslationUnit> GetEnumerator() => list.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
-        private static nint GetCount(ICompileRequest* request) =>
-            request->getTranslationUnitCount();
-
-        private static bool TryGetAt(ICompileRequest* request, nint index, ref TranslationUnit unit)
-        {
-            unit = new(request, checked((int)index));
-            return true;
-        }
     }
 }

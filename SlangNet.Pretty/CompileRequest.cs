@@ -15,8 +15,13 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
         DependencyFilePaths = new NativeBoundedReadOnlyList<ICompileRequest, string>
         {
             Container = Pointer,
-            GetCount = &GetDependencyFileCount,
-            TryGetAt = &TryGetDependencyFileAt
+            GetCount = compileRequest => compileRequest->getDependencyFileCount(),
+            TryGetAt = (ICompileRequest* compileRequest, nint index, out string result) =>
+            {
+                var ptr = compileRequest->getDependencyFilePath(checked((int)index));
+                result = InteropUtils.PtrToStringUTF8(ptr) ?? "";
+                return ptr != null;
+            }
         };
         TranslationUnits = new(pointer);
     }
@@ -182,13 +187,6 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
 
     private static nint GetDependencyFileCount(ICompileRequest* compileRequest) =>
         compileRequest->getDependencyFileCount();
-
-    private static bool TryGetDependencyFileAt(ICompileRequest* compileRequest, nint index, ref string result)
-    {
-        var ptr = compileRequest->getDependencyFilePath(checked((int)index));
-        result = InteropUtils.PtrToStringUTF8(ptr) ?? "";
-        return ptr != null;
-    }
 
     public IReadOnlyList<string> DependencyFilePaths { get; }
     public TranslationUnitList TranslationUnits { get; }
