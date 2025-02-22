@@ -71,196 +71,6 @@
       <function name="GetBuildTagString" access="public" lib="slang" convention="Cdecl" entrypoint="spGetBuildTagString" static="true" unsafe="true">
         <type native="const char *">sbyte*</type>
       </function>
-      <constant name="SLANG_FACILITY_WIN_GENERAL" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <code>0</code>
-        </value>
-      </constant>
-      <constant name="SLANG_FACILITY_WIN_INTERFACE" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <code>4</code>
-        </value>
-      </constant>
-      <constant name="SLANG_FACILITY_WIN_API" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <code>7</code>
-        </value>
-      </constant>
-      <constant name="SLANG_FACILITY_BASE" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <code>0x200</code>
-        </value>
-      </constant>
-      <constant name="SLANG_FACILITY_CORE" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <code>0x200</code>
-        </value>
-      </constant>
-      <constant name="SLANG_FACILITY_INTERNAL" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <code>0x200 + 1</code>
-        </value>
-      </constant>
-      <constant name="SLANG_FACILITY_EXTERNAL_BASE" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <code>0x210</code>
-        </value>
-      </constant>
-      <constant name="SLANG_OK" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <code>0</code>
-        </value>
-      </constant>
-      <constant name="SLANG_FAIL" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0)) &lt;&lt; 16) | ((int)(0x4005)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_NOT_IMPLEMENTED" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0)) &lt;&lt; 16) | ((int)(0x4001)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_NO_INTERFACE" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0)) &lt;&lt; 16) | ((int)(0x4002)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_ABORT" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0)) &lt;&lt; 16) | ((int)(0x4004)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_INVALID_HANDLE" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(7)) &lt;&lt; 16) | ((int)(6)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_INVALID_ARG" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(7)) &lt;&lt; 16) | ((int)(0x57)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_OUT_OF_MEMORY" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(7)) &lt;&lt; 16) | ((int)(0xe)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_BUFFER_TOO_SMALL" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(1)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_UNINITIALIZED" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(2)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_PENDING" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(3)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_CANNOT_OPEN" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(4)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_NOT_FOUND" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(5)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_INTERNAL_FAIL" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(6)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_NOT_AVAILABLE" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(7)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_E_TIME_OUT" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(8)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_API_VERSION" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <code>0</code>
-        </value>
-      </constant>
-      <constant name="SLANG_ERROR_INSUFFICIENT_BUFFER" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(1)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
-      <constant name="SLANG_ERROR_INVALID_PARAMETER" access="public">
-        <type primitive="True">int</type>
-        <value>
-          <unchecked>
-            <code>((((int)(7)) &lt;&lt; 16) | ((int)(0x57)) | (int)(<value>0x80000000</value>))</code>
-          </unchecked>
-        </value>
-      </constant>
       <function name="CreateSession" access="public" lib="slang" convention="Cdecl" entrypoint="spCreateSession" static="true" unsafe="true">
         <type native="SlangSession *">IGlobalSession*</type>
         <param name="deprecated">
@@ -2502,6 +2312,295 @@
       <function name="slang_getLastInternalErrorMessage" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
         <type native="const char *">sbyte*</type>
       </function>
+      <constant name="kMaxRenderTargetCount" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>8</code>
+        </value>
+      </constant>
+      <constant name="EnableNone" access="public">
+        <type primitive="True">uint</type>
+        <value>
+          <code>0</code>
+        </value>
+      </constant>
+      <constant name="EnableRed" access="public">
+        <type primitive="True">uint</type>
+        <value>
+          <code>0x01</code>
+        </value>
+      </constant>
+      <constant name="EnableGreen" access="public">
+        <type primitive="True">uint</type>
+        <value>
+          <code>0x02</code>
+        </value>
+      </constant>
+      <constant name="EnableBlue" access="public">
+        <type primitive="True">uint</type>
+        <value>
+          <code>0x04</code>
+        </value>
+      </constant>
+      <constant name="EnableAlpha" access="public">
+        <type primitive="True">uint</type>
+        <value>
+          <code>0x08</code>
+        </value>
+      </constant>
+      <constant name="EnableAll" access="public">
+        <type primitive="True">uint</type>
+        <value>
+          <code>0x0F</code>
+        </value>
+      </constant>
+      <function name="gfxIsCompressedFormat" access="public" lib="slang" convention="Cdecl" static="true">
+        <type native="bool">byte</type>
+        <param name="format">
+          <type>Format</type>
+        </param>
+      </function>
+      <function name="gfxIsTypelessFormat" access="public" lib="slang" convention="Cdecl" static="true">
+        <type native="bool">byte</type>
+        <param name="format">
+          <type>Format</type>
+        </param>
+      </function>
+      <function name="gfxGetFormatInfo" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="format">
+          <type>Format</type>
+        </param>
+        <param name="outInfo">
+          <type>FormatInfo*</type>
+        </param>
+      </function>
+      <function name="gfxGetAdapters" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="type">
+          <type>DeviceType</type>
+        </param>
+        <param name="outAdaptersBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </function>
+      <function name="gfxCreateDevice" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="desc">
+          <type>DeviceDesc*</type>
+        </param>
+        <param name="outDevice">
+          <type>IDevice**</type>
+        </param>
+      </function>
+      <function name="gfxReportLiveObjects" access="public" lib="slang" convention="Cdecl" static="true">
+        <type native="SlangResult">int</type>
+      </function>
+      <function name="gfxSetDebugCallback" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="callback">
+          <type>IDebugCallback*</type>
+        </param>
+      </function>
+      <function name="gfxEnableDebugLayer" access="public" lib="slang" convention="Cdecl" static="true">
+        <type>void</type>
+      </function>
+      <function name="gfxGetDeviceTypeName" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <param name="type">
+          <type>DeviceType</type>
+        </param>
+      </function>
+      <constant name="SLANG_FACILITY_WIN_GENERAL" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </constant>
+      <constant name="SLANG_FACILITY_WIN_INTERFACE" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>4</code>
+        </value>
+      </constant>
+      <constant name="SLANG_FACILITY_WIN_API" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>7</code>
+        </value>
+      </constant>
+      <constant name="SLANG_FACILITY_BASE" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0x200</code>
+        </value>
+      </constant>
+      <constant name="SLANG_FACILITY_CORE" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0x200</code>
+        </value>
+      </constant>
+      <constant name="SLANG_FACILITY_INTERNAL" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0x200 + 1</code>
+        </value>
+      </constant>
+      <constant name="SLANG_FACILITY_EXTERNAL_BASE" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0x210</code>
+        </value>
+      </constant>
+      <constant name="SLANG_OK" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </constant>
+      <constant name="SLANG_FAIL" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0)) &lt;&lt; 16) | ((int)(0x4005)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_NOT_IMPLEMENTED" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0)) &lt;&lt; 16) | ((int)(0x4001)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_NO_INTERFACE" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0)) &lt;&lt; 16) | ((int)(0x4002)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_ABORT" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0)) &lt;&lt; 16) | ((int)(0x4004)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_INVALID_HANDLE" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(7)) &lt;&lt; 16) | ((int)(6)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_INVALID_ARG" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(7)) &lt;&lt; 16) | ((int)(0x57)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_OUT_OF_MEMORY" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(7)) &lt;&lt; 16) | ((int)(0xe)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_BUFFER_TOO_SMALL" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(1)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_UNINITIALIZED" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(2)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_PENDING" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(3)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_CANNOT_OPEN" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(4)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_NOT_FOUND" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(5)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_INTERNAL_FAIL" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(6)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_NOT_AVAILABLE" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(7)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_E_TIME_OUT" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(8)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_API_VERSION" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </constant>
+      <constant name="SLANG_ERROR_INSUFFICIENT_BUFFER" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(0x200)) &lt;&lt; 16) | ((int)(1)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_ERROR_INVALID_PARAMETER" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <unchecked>
+            <code>((((int)(7)) &lt;&lt; 16) | ((int)(0x57)) | (int)(<value>0x80000000</value>))</code>
+          </unchecked>
+        </value>
+      </constant>
       <iid name="IID_ISlangUnknown" value="0x00000000, 0x0000, 0x0000, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46" />
       <iid name="IID_ISlangCastable" value="0x87EDE0E1, 0x4852, 0x44B0, 0x8B, 0xF2, 0xCB, 0x31, 0x87, 0x4D, 0xE2, 0x39" />
       <iid name="IID_ISlangClonable" value="0x1EC36168, 0xE9F4, 0x430D, 0xBB, 0x17, 0x04, 0x8A, 0x80, 0x46, 0xB3, 0x1F" />
@@ -2515,6 +2614,7 @@
       <iid name="IID_ISlangMutableFileSystem" value="0xA058675C, 0x1D65, 0x452A, 0x84, 0x58, 0xCC, 0xDE, 0xD1, 0x42, 0x71, 0x05" />
       <iid name="IID_ISlangWriter" value="0xEC457F0E, 0x9ADD, 0x4E6B, 0x85, 0x1C, 0xD7, 0xFA, 0x71, 0x6D, 0x15, 0xFD" />
       <iid name="IID_ISlangProfiler" value="0x197772C7, 0x0155, 0x4B91, 0x84, 0xE8, 0x66, 0x68, 0xBA, 0xFF, 0x06, 0x19" />
+      <iid name="IID_ICompileRequest" value="0x96D33993, 0x317C, 0x4DB5, 0xAF, 0xD8, 0x66, 0x6E, 0xE7, 0x72, 0x48, 0xE2" />
       <iid name="IID_IGlobalSession" value="0xC140B5FD, 0x0C78, 0x452E, 0xBA, 0x7C, 0x1A, 0x1E, 0x70, 0xC7, 0xF7, 0x1C" />
       <iid name="IID_ISession" value="0x67618701, 0xD116, 0x468F, 0xAB, 0x3B, 0x47, 0x4B, 0xED, 0xCE, 0x0E, 0x3D" />
       <iid name="IID_IMetadata" value="0x8044A8A3, 0xDDC0, 0x4B7F, 0xAF, 0x8E, 0x02, 0x6E, 0x90, 0x5D, 0x73, 0x32" />
@@ -2523,6 +2623,11 @@
       <iid name="IID_ITypeConformance" value="0x73EB3147, 0xE544, 0x41B5, 0xB8, 0xF0, 0xA2, 0x44, 0xDF, 0x21, 0x94, 0x0B" />
       <iid name="IID_IModule" value="0x0C720E64, 0x8722, 0x4D31, 0x89, 0x90, 0x63, 0x8A, 0x98, 0xB1, 0xC2, 0x79" />
       <iid name="IID_IModulePrecompileService_Experimental" value="0x8E12E8E3, 0x5FCD, 0x433E, 0xAF, 0xCB, 0x13, 0xA0, 0x88, 0xBC, 0x5E, 0xE5" />
+      <iid name="IID_ICommandEncoder" value="0x77EA6383, 0xBE3D, 0x40AA, 0x8B, 0x45, 0xFD, 0xF0, 0xD7, 0x5B, 0xFA, 0x34" />
+      <iid name="IID_IResourceCommandEncoder" value="0xF99A00E9, 0xED50, 0x4088, 0x8A, 0x0E, 0x3B, 0x26, 0x75, 0x50, 0x31, 0xEA" />
+      <iid name="IID_IRenderCommandEncoder" value="0x7A8D56D0, 0x53E6, 0x4AD6, 0x85, 0xF7, 0xD1, 0x4D, 0xC1, 0x10, 0xFD, 0xCE" />
+      <iid name="IID_IComputeCommandEncoder" value="0x88AA9322, 0x82F7, 0x4FE6, 0xA6, 0x8A, 0x29, 0xC7, 0xFE, 0x79, 0x87, 0x37" />
+      <iid name="IID_IRayTracingCommandEncoder" value="0x9A672B87, 0x5035, 0x45E3, 0x96, 0x7C, 0x1F, 0x85, 0xCD, 0xB3, 0x63, 0x4F" />
     </class>
   </namespace>
 </bindings>

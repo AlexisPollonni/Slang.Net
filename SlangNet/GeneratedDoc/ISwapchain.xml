@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="ISwapchain" access="public" native="struct ISwapchain : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="ThisCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="ThisCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+      </delegate>
+      <delegate name="_getDesc" access="public" convention="ThisCall" unsafe="true">
+        <type native="const Desc &amp;">SwapchainDesc*</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+      </delegate>
+      <delegate name="_getImage" access="public" convention="ThisCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+        <param name="index">
+          <type>int</type>
+        </param>
+        <param name="outResource">
+          <type>ITextureResource**</type>
+        </param>
+      </delegate>
+      <delegate name="_present" access="public" convention="ThisCall">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+      </delegate>
+      <delegate name="_acquireNextImage" access="public" convention="ThisCall">
+        <type>int</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+      </delegate>
+      <delegate name="_resize" access="public" convention="ThisCall">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+        <param name="width">
+          <type>int</type>
+        </param>
+        <param name="height">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_isOccluded" access="public" convention="ThisCall">
+        <type native="bool">byte</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+      </delegate>
+      <delegate name="_setFullScreenMode" access="public" convention="ThisCall">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>ISwapchain*</type>
+        </param>
+        <param name="mode">
+          <type>byte</type>
+        </param>
+      </delegate>
+      <struct name="SwapchainDesc" access="public" unsafe="true">
+        <field name="format" access="public">
+          <type native="gfx::Format">Format</type>
+        </field>
+        <field name="width" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="height" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="imageCount" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="queue" access="public">
+          <type native="gfx::ICommandQueue *">ICommandQueue*</type>
+        </field>
+        <field name="enableVSync" access="public">
+          <type native="bool">byte</type>
+        </field>
+      </struct>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getDesc" access="public" unsafe="true">
+        <type native="const Desc &amp;">SwapchainDesc*</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDesc</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDesc</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getImage" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="index">
+          <type>int</type>
+        </param>
+        <param name="outResource">
+          <type>ITextureResource**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getImage</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getImage</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>, <param name="outResource">outResource</param>);</code>
+        </body>
+      </function>
+      <function name="present" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_present</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">present</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="acquireNextImage" access="public" unsafe="true">
+        <type>int</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_acquireNextImage</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">acquireNextImage</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="resize" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="width">
+          <type>int</type>
+        </param>
+        <param name="height">
+          <type>int</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resize</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">resize</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param name="width">width</param>, <param name="height">height</param>);</code>
+        </body>
+      </function>
+      <function name="isOccluded" access="public" unsafe="true">
+        <type>bool</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isOccluded</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isOccluded</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>) != 0;</code>
+        </body>
+      </function>
+      <function name="setFullScreenMode" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="mode">
+          <type>byte</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setFullScreenMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setFullScreenMode</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t ()">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t ()">IntPtr</type>
+        </field>
+        <field name="getDesc" access="public">
+          <type native="const Desc &amp;()">IntPtr</type>
+        </field>
+        <field name="getImage" access="public">
+          <type native="Result (GfxIndex, ITextureResource **)">IntPtr</type>
+        </field>
+        <field name="present" access="public">
+          <type native="Result ()">IntPtr</type>
+        </field>
+        <field name="acquireNextImage" access="public">
+          <type native="int ()">IntPtr</type>
+        </field>
+        <field name="resize" access="public">
+          <type native="Result (GfxCount, GfxCount)">IntPtr</type>
+        </field>
+        <field name="isOccluded" access="public">
+          <type native="bool ()">IntPtr</type>
+        </field>
+        <field name="setFullScreenMode" access="public">
+          <type native="Result (bool)">IntPtr</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

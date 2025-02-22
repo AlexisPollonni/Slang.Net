@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="TextureAddressingMode" access="public">
+      <type>int</type>
+      <enumerator name="Wrap" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ClampToEdge" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ClampToBorder" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="MirrorRepeat" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="MirrorOnce" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

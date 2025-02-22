@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="FaceMask" access="public">
+      <enumeration name="Enum" access="public">
+        <type>uint</type>
+        <enumerator name="Front" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>1</code>
+          </value>
+        </enumerator>
+        <enumerator name="Back" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>2</code>
+          </value>
+        </enumerator>
+      </enumeration>
+    </struct>
+  </namespace>
+</bindings>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="IShaderTable" access="public" native="struct IShaderTable : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IShaderTable*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="ThisCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IShaderTable*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="ThisCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IShaderTable*</type>
+        </param>
+      </delegate>
+      <struct name="ShaderRecordOverwrite" access="public">
+        <field name="offset" access="public">
+          <type native="gfx::Offset">nuint</type>
+        </field>
+        <field name="size" access="public">
+          <type native="gfx::Size">nuint</type>
+        </field>
+        <field name="data" access="public">
+          <type native="uint8_t[8]" count="8" fixed="_data_e__FixedBuffer">byte</type>
+        </field>
+        <struct name="_data_e__FixedBuffer" access="public">
+          <attribute>InlineArray(8)</attribute>
+          <field name="e0" access="public">
+            <type>byte</type>
+          </field>
+        </struct>
+      </struct>
+      <struct name="ShaderTableDesc" access="public" unsafe="true">
+        <field name="rayGenShaderCount" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="rayGenShaderEntryPointNames" access="public">
+          <type native="const char **">sbyte**</type>
+        </field>
+        <field name="rayGenShaderRecordOverwrites" access="public">
+          <type native="const ShaderRecordOverwrite *">ShaderRecordOverwrite*</type>
+        </field>
+        <field name="missShaderCount" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="missShaderEntryPointNames" access="public">
+          <type native="const char **">sbyte**</type>
+        </field>
+        <field name="missShaderRecordOverwrites" access="public">
+          <type native="const ShaderRecordOverwrite *">ShaderRecordOverwrite*</type>
+        </field>
+        <field name="hitGroupCount" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="hitGroupNames" access="public">
+          <type native="const char **">sbyte**</type>
+        </field>
+        <field name="hitGroupRecordOverwrites" access="public">
+          <type native="const ShaderRecordOverwrite *">ShaderRecordOverwrite*</type>
+        </field>
+        <field name="callableShaderCount" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="callableShaderEntryPointNames" access="public">
+          <type native="const char **">sbyte**</type>
+        </field>
+        <field name="callableShaderRecordOverwrites" access="public">
+          <type native="const ShaderRecordOverwrite *">ShaderRecordOverwrite*</type>
+        </field>
+        <field name="program" access="public">
+          <type native="gfx::IShaderProgram *">IShaderProgram*</type>
+        </field>
+      </struct>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IShaderTable*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IShaderTable*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IShaderTable*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t ()">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t ()">IntPtr</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="StencilOp" access="public">
+      <type>byte</type>
+      <enumerator name="Keep" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="Zero" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="Replace" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="IncrementSaturate" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="DecrementSaturate" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="Invert" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="IncrementWrap" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="DecrementWrap" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

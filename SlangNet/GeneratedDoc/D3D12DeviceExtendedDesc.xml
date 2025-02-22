@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="D3D12DeviceExtendedDesc" access="public" unsafe="true">
+      <field name="structType" access="public">
+        <type native="gfx::StructType">StructType</type>
+      </field>
+      <field name="rootParameterShaderAttributeName" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+      <field name="debugBreakOnD3D12Error" access="public">
+        <type native="bool">byte</type>
+      </field>
+      <field name="highestShaderModel" access="public">
+        <type native="uint32_t">uint</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

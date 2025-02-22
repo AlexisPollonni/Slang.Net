@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="IndirectDispatchArguments" access="public">
+      <field name="ThreadGroupCountX" access="public">
+        <type native="gfx::GfxCount">int</type>
+      </field>
+      <field name="ThreadGroupCountY" access="public">
+        <type native="gfx::GfxCount">int</type>
+      </field>
+      <field name="ThreadGroupCountZ" access="public">
+        <type native="gfx::GfxCount">int</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

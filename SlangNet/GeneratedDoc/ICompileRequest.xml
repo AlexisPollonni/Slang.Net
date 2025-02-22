@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="SlangNet.Bindings.Generated">
-    <struct name="ICompileRequest" access="public" native="struct ICompileRequest : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+    <struct name="ICompileRequest" access="public" native="struct ICompileRequest : ISlangUnknown" parent="ISlangUnknown" uuid="96d33993-317c-4db5-afd8-666ee77248e2" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>

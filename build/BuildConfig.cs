@@ -22,24 +22,29 @@ internal record BuildConfig(
     StrList? TraversalNames = null
 )
 {
+    public StrList TraversalNames { get; set; } = TraversalNames ?? [];
+
     public IReadOnlyList<string> GetClangCmdLineArgsForConfig()
     {
-        //Add additional include directories for linux systems to resolve stddef.h
         string[] linuxIncludeDirectories =
         [
             "/usr/lib/gcc/x86_64-linux-gnu/12/include/",
             "/usr/lib/gcc/x86_64-linux-gnu/11/include/",
             "/usr/lib/gcc/x86_64-linux-gnu/10/include/",
             "/usr/lib/gcc/x86_64-linux-gnu/9/include/",
+            "/usr/include/x86_64-linux-gnu/c++/11",
             "/usr/include/x86_64-linux-gnu",
+            "/usr/include/c++/11",
             "/usr/include"
         ];
+        //Add additional include directories for linux systems to resolve stddef.h
 
         var includeDirectories = IsLinux ? linuxIncludeDirectories : [];
 
         return
         [
             $"--language={Language}", // Treat subsequent input files as having type <language>
+            "-stdlib=libc++",
             "-Wno-pragma-once-outside-header", // We are processing files which may be header files
 
             "-Wno-deprecated-declarations",
@@ -60,8 +65,8 @@ internal record BuildConfig(
         }
 
         if (IsUnix) opts |= GenerateUnixTypes;
-
-        return new(Language, "", DefaultNamespace, outputDir, null, mode, opts)
+        
+        return new(Language, "c++17", DefaultNamespace, outputDir, null, mode, opts)
         {
             DefaultClass = DefaultClass,
             LibraryPath = LibraryPath,
@@ -116,6 +121,7 @@ internal record BuildConfig(
         | GenerateAggressiveInlining
         | GenerateExplicitVtbls
         | GenerateNativeInheritanceAttribute
+        | GenerateGenericPointerWrapper
         
         | ExcludeFnptrCodegen // No Fnptr code gen with latest or preview
         | ExcludeFunctionsWithBody
@@ -174,6 +180,10 @@ internal record BuildConfig(
             "SLANG_UNBOUNDED_SIZE",
             "createCompileRequest",
             "kDefaultTargetFlags",
+            "kRemainingTextureSize",
+            "kRemainingTextureSize",
+            "kTimeoutInfinite",
+            "gfx::AdapterList::m_blob",
 
             // Silence ClangSharp warnings
             "SLANG_OFFSET_OF",
@@ -235,6 +245,4 @@ internal record BuildConfig(
         },
         new()
     );
-
-    public StrList TraversalNames { get; set; } = TraversalNames ?? [];
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="InteropHandle" access="public">
+      <field name="api" access="public">
+        <type native="gfx::InteropHandleAPI">InteropHandleAPI</type>
+      </field>
+      <field name="handleValue" access="public">
+        <type native="uint64_t">nuint</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

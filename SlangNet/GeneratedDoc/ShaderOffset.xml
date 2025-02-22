@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="ShaderOffset" access="public">
+      <field name="uniformOffset" access="public">
+        <type native="SlangInt">nint</type>
+      </field>
+      <field name="bindingRangeIndex" access="public">
+        <type native="gfx::GfxIndex">int</type>
+      </field>
+      <field name="bindingArrayIndex" access="public">
+        <type native="gfx::GfxIndex">int</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

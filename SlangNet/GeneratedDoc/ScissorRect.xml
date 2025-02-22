@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="ScissorRect" access="public">
+      <field name="minX" access="public">
+        <type native="int32_t">int</type>
+      </field>
+      <field name="minY" access="public">
+        <type native="int32_t">int</type>
+      </field>
+      <field name="maxX" access="public">
+        <type native="int32_t">int</type>
+      </field>
+      <field name="maxY" access="public">
+        <type native="int32_t">int</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 namespace SlangNet.Bindings.Generated;
 
 /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest"]/*' />
+[Guid("96D33993-317C-4DB5-AFD8-666EE77248E2")]
 [NativeTypeName("struct ICompileRequest : ISlangUnknown")]
 [NativeInheritance("ISlangUnknown")]
 public unsafe partial struct ICompileRequest

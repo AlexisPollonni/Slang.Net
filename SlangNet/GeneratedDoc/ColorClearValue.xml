@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="ColorClearValue" access="public" layout="Explicit">
+      <field name="floatValues" access="public" offset="0">
+        <type native="float[4]" count="4" fixed="_floatValues_e__FixedBuffer">float</type>
+      </field>
+      <field name="uintValues" access="public" offset="0">
+        <type native="uint32_t[4]" count="4" fixed="_uintValues_e__FixedBuffer">uint</type>
+      </field>
+      <struct name="_floatValues_e__FixedBuffer" access="public">
+        <attribute>InlineArray(4)</attribute>
+        <field name="e0" access="public">
+          <type>float</type>
+        </field>
+      </struct>
+      <struct name="_uintValues_e__FixedBuffer" access="public">
+        <attribute>InlineArray(4)</attribute>
+        <field name="e0" access="public">
+          <type>uint</type>
+        </field>
+      </struct>
+    </struct>
+  </namespace>
+</bindings>

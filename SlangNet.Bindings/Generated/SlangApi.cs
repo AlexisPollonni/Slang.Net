@@ -24,84 +24,6 @@ public static unsafe partial class SlangApi
     [return: NativeTypeName("const char *")]
     public static extern sbyte* GetBuildTagString();
 
-    [NativeTypeName("#define SLANG_FACILITY_WIN_GENERAL 0")]
-    public const int SLANG_FACILITY_WIN_GENERAL = 0;
-
-    [NativeTypeName("#define SLANG_FACILITY_WIN_INTERFACE 4")]
-    public const int SLANG_FACILITY_WIN_INTERFACE = 4;
-
-    [NativeTypeName("#define SLANG_FACILITY_WIN_API 7")]
-    public const int SLANG_FACILITY_WIN_API = 7;
-
-    [NativeTypeName("#define SLANG_FACILITY_BASE 0x200")]
-    public const int SLANG_FACILITY_BASE = 0x200;
-
-    [NativeTypeName("#define SLANG_FACILITY_CORE SLANG_FACILITY_BASE")]
-    public const int SLANG_FACILITY_CORE = 0x200;
-
-    [NativeTypeName("#define SLANG_FACILITY_INTERNAL SLANG_FACILITY_BASE + 1")]
-    public const int SLANG_FACILITY_INTERNAL = 0x200 + 1;
-
-    [NativeTypeName("#define SLANG_FACILITY_EXTERNAL_BASE 0x210")]
-    public const int SLANG_FACILITY_EXTERNAL_BASE = 0x210;
-
-    [NativeTypeName("#define SLANG_OK 0")]
-    public const int SLANG_OK = 0;
-
-    [NativeTypeName("#define SLANG_FAIL SLANG_MAKE_ERROR(SLANG_FACILITY_WIN_GENERAL, 0x4005)")]
-    public const int SLANG_FAIL = unchecked((((int)(0)) << 16) | ((int)(0x4005)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_NOT_IMPLEMENTED SLANG_MAKE_WIN_GENERAL_ERROR(0x4001)")]
-    public const int SLANG_E_NOT_IMPLEMENTED = unchecked((((int)(0)) << 16) | ((int)(0x4001)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_NO_INTERFACE SLANG_MAKE_WIN_GENERAL_ERROR(0x4002)")]
-    public const int SLANG_E_NO_INTERFACE = unchecked((((int)(0)) << 16) | ((int)(0x4002)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_ABORT SLANG_MAKE_WIN_GENERAL_ERROR(0x4004)")]
-    public const int SLANG_E_ABORT = unchecked((((int)(0)) << 16) | ((int)(0x4004)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_INVALID_HANDLE SLANG_MAKE_ERROR(SLANG_FACILITY_WIN_API, 6)")]
-    public const int SLANG_E_INVALID_HANDLE = unchecked((((int)(7)) << 16) | ((int)(6)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_INVALID_ARG SLANG_MAKE_ERROR(SLANG_FACILITY_WIN_API, 0x57)")]
-    public const int SLANG_E_INVALID_ARG = unchecked((((int)(7)) << 16) | ((int)(0x57)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_OUT_OF_MEMORY SLANG_MAKE_ERROR(SLANG_FACILITY_WIN_API, 0xe)")]
-    public const int SLANG_E_OUT_OF_MEMORY = unchecked((((int)(7)) << 16) | ((int)(0xe)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_BUFFER_TOO_SMALL SLANG_MAKE_CORE_ERROR(1)")]
-    public const int SLANG_E_BUFFER_TOO_SMALL = unchecked((((int)(0x200)) << 16) | ((int)(1)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_UNINITIALIZED SLANG_MAKE_CORE_ERROR(2)")]
-    public const int SLANG_E_UNINITIALIZED = unchecked((((int)(0x200)) << 16) | ((int)(2)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_PENDING SLANG_MAKE_CORE_ERROR(3)")]
-    public const int SLANG_E_PENDING = unchecked((((int)(0x200)) << 16) | ((int)(3)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_CANNOT_OPEN SLANG_MAKE_CORE_ERROR(4)")]
-    public const int SLANG_E_CANNOT_OPEN = unchecked((((int)(0x200)) << 16) | ((int)(4)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_NOT_FOUND SLANG_MAKE_CORE_ERROR(5)")]
-    public const int SLANG_E_NOT_FOUND = unchecked((((int)(0x200)) << 16) | ((int)(5)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_INTERNAL_FAIL SLANG_MAKE_CORE_ERROR(6)")]
-    public const int SLANG_E_INTERNAL_FAIL = unchecked((((int)(0x200)) << 16) | ((int)(6)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_NOT_AVAILABLE SLANG_MAKE_CORE_ERROR(7)")]
-    public const int SLANG_E_NOT_AVAILABLE = unchecked((((int)(0x200)) << 16) | ((int)(7)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_E_TIME_OUT SLANG_MAKE_CORE_ERROR(8)")]
-    public const int SLANG_E_TIME_OUT = unchecked((((int)(0x200)) << 16) | ((int)(8)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_API_VERSION 0")]
-    public const int SLANG_API_VERSION = 0;
-
-    [NativeTypeName("#define SLANG_ERROR_INSUFFICIENT_BUFFER SLANG_E_BUFFER_TOO_SMALL")]
-    public const int SLANG_ERROR_INSUFFICIENT_BUFFER = unchecked((((int)(0x200)) << 16) | ((int)(1)) | (int)(0x80000000));
-
-    [NativeTypeName("#define SLANG_ERROR_INVALID_PARAMETER SLANG_E_INVALID_ARG")]
-    public const int SLANG_ERROR_INVALID_PARAMETER = unchecked((((int)(7)) << 16) | ((int)(0x57)) | (int)(0x80000000));
-
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.CreateSession"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spCreateSession", ExactSpelling = true)]
     [return: NativeTypeName("SlangSession *")]
@@ -1263,6 +1185,138 @@ public static unsafe partial class SlangApi
     [return: NativeTypeName("const char *")]
     public static extern sbyte* slang_getLastInternalErrorMessage();
 
+    [NativeTypeName("const GfxCount")]
+    public const int kMaxRenderTargetCount = 8;
+
+    public const uint EnableNone = 0;
+    public const uint EnableRed = 0x01;
+    public const uint EnableGreen = 0x02;
+    public const uint EnableBlue = 0x04;
+    public const uint EnableAlpha = 0x08;
+    public const uint EnableAll = 0x0F;
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.gfxIsCompressedFormat"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("bool")]
+    public static extern byte gfxIsCompressedFormat([NativeTypeName("gfx::Format")] Format format);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.gfxIsTypelessFormat"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("bool")]
+    public static extern byte gfxIsTypelessFormat([NativeTypeName("gfx::Format")] Format format);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.gfxGetFormatInfo"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int gfxGetFormatInfo([NativeTypeName("gfx::Format")] Format format, [NativeTypeName("gfx::FormatInfo *")] FormatInfo* outInfo);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.gfxGetAdapters"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int gfxGetAdapters([NativeTypeName("gfx::DeviceType")] DeviceType type, ISlangBlob** outAdaptersBlob);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.gfxCreateDevice"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int gfxCreateDevice([NativeTypeName("const IDevice::Desc *")] DeviceDesc* desc, IDevice** outDevice);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.gfxReportLiveObjects"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int gfxReportLiveObjects();
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.gfxSetDebugCallback"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int gfxSetDebugCallback([NativeTypeName("gfx::IDebugCallback *")] IDebugCallback* callback);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.gfxEnableDebugLayer"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern void gfxEnableDebugLayer();
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.gfxGetDeviceTypeName"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("const char *")]
+    public static extern sbyte* gfxGetDeviceTypeName([NativeTypeName("gfx::DeviceType")] DeviceType type);
+
+    [NativeTypeName("#define SLANG_FACILITY_WIN_GENERAL 0")]
+    public const int SLANG_FACILITY_WIN_GENERAL = 0;
+
+    [NativeTypeName("#define SLANG_FACILITY_WIN_INTERFACE 4")]
+    public const int SLANG_FACILITY_WIN_INTERFACE = 4;
+
+    [NativeTypeName("#define SLANG_FACILITY_WIN_API 7")]
+    public const int SLANG_FACILITY_WIN_API = 7;
+
+    [NativeTypeName("#define SLANG_FACILITY_BASE 0x200")]
+    public const int SLANG_FACILITY_BASE = 0x200;
+
+    [NativeTypeName("#define SLANG_FACILITY_CORE SLANG_FACILITY_BASE")]
+    public const int SLANG_FACILITY_CORE = 0x200;
+
+    [NativeTypeName("#define SLANG_FACILITY_INTERNAL SLANG_FACILITY_BASE + 1")]
+    public const int SLANG_FACILITY_INTERNAL = 0x200 + 1;
+
+    [NativeTypeName("#define SLANG_FACILITY_EXTERNAL_BASE 0x210")]
+    public const int SLANG_FACILITY_EXTERNAL_BASE = 0x210;
+
+    [NativeTypeName("#define SLANG_OK 0")]
+    public const int SLANG_OK = 0;
+
+    [NativeTypeName("#define SLANG_FAIL SLANG_MAKE_ERROR(SLANG_FACILITY_WIN_GENERAL, 0x4005)")]
+    public const int SLANG_FAIL = unchecked((((int)(0)) << 16) | ((int)(0x4005)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_NOT_IMPLEMENTED SLANG_MAKE_WIN_GENERAL_ERROR(0x4001)")]
+    public const int SLANG_E_NOT_IMPLEMENTED = unchecked((((int)(0)) << 16) | ((int)(0x4001)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_NO_INTERFACE SLANG_MAKE_WIN_GENERAL_ERROR(0x4002)")]
+    public const int SLANG_E_NO_INTERFACE = unchecked((((int)(0)) << 16) | ((int)(0x4002)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_ABORT SLANG_MAKE_WIN_GENERAL_ERROR(0x4004)")]
+    public const int SLANG_E_ABORT = unchecked((((int)(0)) << 16) | ((int)(0x4004)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_INVALID_HANDLE SLANG_MAKE_ERROR(SLANG_FACILITY_WIN_API, 6)")]
+    public const int SLANG_E_INVALID_HANDLE = unchecked((((int)(7)) << 16) | ((int)(6)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_INVALID_ARG SLANG_MAKE_ERROR(SLANG_FACILITY_WIN_API, 0x57)")]
+    public const int SLANG_E_INVALID_ARG = unchecked((((int)(7)) << 16) | ((int)(0x57)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_OUT_OF_MEMORY SLANG_MAKE_ERROR(SLANG_FACILITY_WIN_API, 0xe)")]
+    public const int SLANG_E_OUT_OF_MEMORY = unchecked((((int)(7)) << 16) | ((int)(0xe)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_BUFFER_TOO_SMALL SLANG_MAKE_CORE_ERROR(1)")]
+    public const int SLANG_E_BUFFER_TOO_SMALL = unchecked((((int)(0x200)) << 16) | ((int)(1)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_UNINITIALIZED SLANG_MAKE_CORE_ERROR(2)")]
+    public const int SLANG_E_UNINITIALIZED = unchecked((((int)(0x200)) << 16) | ((int)(2)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_PENDING SLANG_MAKE_CORE_ERROR(3)")]
+    public const int SLANG_E_PENDING = unchecked((((int)(0x200)) << 16) | ((int)(3)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_CANNOT_OPEN SLANG_MAKE_CORE_ERROR(4)")]
+    public const int SLANG_E_CANNOT_OPEN = unchecked((((int)(0x200)) << 16) | ((int)(4)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_NOT_FOUND SLANG_MAKE_CORE_ERROR(5)")]
+    public const int SLANG_E_NOT_FOUND = unchecked((((int)(0x200)) << 16) | ((int)(5)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_INTERNAL_FAIL SLANG_MAKE_CORE_ERROR(6)")]
+    public const int SLANG_E_INTERNAL_FAIL = unchecked((((int)(0x200)) << 16) | ((int)(6)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_NOT_AVAILABLE SLANG_MAKE_CORE_ERROR(7)")]
+    public const int SLANG_E_NOT_AVAILABLE = unchecked((((int)(0x200)) << 16) | ((int)(7)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_E_TIME_OUT SLANG_MAKE_CORE_ERROR(8)")]
+    public const int SLANG_E_TIME_OUT = unchecked((((int)(0x200)) << 16) | ((int)(8)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_API_VERSION 0")]
+    public const int SLANG_API_VERSION = 0;
+
+    [NativeTypeName("#define SLANG_ERROR_INSUFFICIENT_BUFFER SLANG_E_BUFFER_TOO_SMALL")]
+    public const int SLANG_ERROR_INSUFFICIENT_BUFFER = unchecked((((int)(0x200)) << 16) | ((int)(1)) | (int)(0x80000000));
+
+    [NativeTypeName("#define SLANG_ERROR_INVALID_PARAMETER SLANG_E_INVALID_ARG")]
+    public const int SLANG_ERROR_INVALID_PARAMETER = unchecked((((int)(7)) << 16) | ((int)(0x57)) | (int)(0x80000000));
+
     public static readonly Guid IID_ISlangUnknown = new Guid(0x00000000, 0x0000, 0x0000, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46);
 
     public static readonly Guid IID_ISlangCastable = new Guid(0x87EDE0E1, 0x4852, 0x44B0, 0x8B, 0xF2, 0xCB, 0x31, 0x87, 0x4D, 0xE2, 0x39);
@@ -1289,6 +1343,8 @@ public static unsafe partial class SlangApi
 
     public static readonly Guid IID_ISlangProfiler = new Guid(0x197772C7, 0x0155, 0x4B91, 0x84, 0xE8, 0x66, 0x68, 0xBA, 0xFF, 0x06, 0x19);
 
+    public static readonly Guid IID_ICompileRequest = new Guid(0x96D33993, 0x317C, 0x4DB5, 0xAF, 0xD8, 0x66, 0x6E, 0xE7, 0x72, 0x48, 0xE2);
+
     public static readonly Guid IID_IGlobalSession = new Guid(0xC140B5FD, 0x0C78, 0x452E, 0xBA, 0x7C, 0x1A, 0x1E, 0x70, 0xC7, 0xF7, 0x1C);
 
     public static readonly Guid IID_ISession = new Guid(0x67618701, 0xD116, 0x468F, 0xAB, 0x3B, 0x47, 0x4B, 0xED, 0xCE, 0x0E, 0x3D);
@@ -1304,4 +1360,14 @@ public static unsafe partial class SlangApi
     public static readonly Guid IID_IModule = new Guid(0x0C720E64, 0x8722, 0x4D31, 0x89, 0x90, 0x63, 0x8A, 0x98, 0xB1, 0xC2, 0x79);
 
     public static readonly Guid IID_IModulePrecompileService_Experimental = new Guid(0x8E12E8E3, 0x5FCD, 0x433E, 0xAF, 0xCB, 0x13, 0xA0, 0x88, 0xBC, 0x5E, 0xE5);
+
+    public static readonly Guid IID_ICommandEncoder = new Guid(0x77EA6383, 0xBE3D, 0x40AA, 0x8B, 0x45, 0xFD, 0xF0, 0xD7, 0x5B, 0xFA, 0x34);
+
+    public static readonly Guid IID_IResourceCommandEncoder = new Guid(0xF99A00E9, 0xED50, 0x4088, 0x8A, 0x0E, 0x3B, 0x26, 0x75, 0x50, 0x31, 0xEA);
+
+    public static readonly Guid IID_IRenderCommandEncoder = new Guid(0x7A8D56D0, 0x53E6, 0x4AD6, 0x85, 0xF7, 0xD1, 0x4D, 0xC1, 0x10, 0xFD, 0xCE);
+
+    public static readonly Guid IID_IComputeCommandEncoder = new Guid(0x88AA9322, 0x82F7, 0x4FE6, 0xA6, 0x8A, 0x29, 0xC7, 0xFE, 0x79, 0x87, 0x37);
+
+    public static readonly Guid IID_IRayTracingCommandEncoder = new Guid(0x9A672B87, 0x5035, 0x45E3, 0x96, 0x7C, 0x1F, 0x85, 0xCD, 0xB3, 0x63, 0x4F);
 }

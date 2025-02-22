@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="RayTracingPipelineStateDesc" access="public" unsafe="true">
+      <field name="program" access="public">
+        <type native="gfx::IShaderProgram *">IShaderProgram*</type>
+      </field>
+      <field name="hitGroupCount" access="public">
+        <type native="gfx::GfxCount">int</type>
+      </field>
+      <field name="hitGroups" access="public">
+        <type native="const HitGroupDesc *">HitGroupDesc*</type>
+      </field>
+      <field name="maxRecursion" access="public">
+        <type>int</type>
+      </field>
+      <field name="maxRayPayloadSize" access="public">
+        <type native="gfx::Size">nuint</type>
+      </field>
+      <field name="maxAttributeSizeInBytes" access="public">
+        <type native="gfx::Size">nuint</type>
+      </field>
+      <field name="flags" access="public">
+        <type native="gfx::RayTracingPipelineFlags::Enum">Enum</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

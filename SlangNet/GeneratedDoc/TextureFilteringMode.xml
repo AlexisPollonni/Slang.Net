@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="TextureFilteringMode" access="public">
+      <type>int</type>
+      <enumerator name="Point" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Linear" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

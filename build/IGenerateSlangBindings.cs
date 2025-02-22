@@ -3,6 +3,7 @@ using ClangSharp;
 using ClangSharp.Interop;
 using Nuke.Common;
 using Nuke.Common.IO;
+using Nuke.Common.Tooling;
 using Nuke.Common.Utilities;
 using Serilog;
 using Serilog.Events;
@@ -19,6 +20,7 @@ public interface IGenerateSlangBindings : INukeBuild
     [Parameter] AbsolutePath SlangRepoPath => RootDirectory / "slang";
 
     AbsolutePath SlangHeaderPath => SlangRepoPath / "include" / "slang.h";
+    AbsolutePath SlangGfxHeaderPath => SlangRepoPath / "include" / "slang-gfx.h";
     AbsolutePath SlangDeprHeaderPath => SlangRepoPath / "include" / "slang-deprecated.h";
 
     Target CleanSlangBindings => _ => _
@@ -37,13 +39,30 @@ public interface IGenerateSlangBindings : INukeBuild
     {
         AbsolutePath[] files =
         [
-            SlangHeaderPath
+            SlangGfxHeaderPath
         ];
 
         var config = BuildConfig.SlangConfig;
-        config.TraversalNames = [SlangHeaderPath, SlangDeprHeaderPath];
+        config.TraversalNames = [SlangHeaderPath, SlangDeprHeaderPath, SlangGfxHeaderPath];
+
+        if (EnvironmentInfo.IsLinux)
+        {
+            var apt = ToolResolver.GetEnvironmentOrPathTool("apt");
+
+            apt.Invoke("install libc++-dev libc++abi-dev", exitHandler: p =>
+            {
+                if (p.ExitCode != 0)
+                    Log.Warning(
+                        "Failed to install packages libc++-dev and libc++abi-dev, binding generation might not succeed. File not found errors might occur");
+            });
+        }
+
+        using var ver = clang.getClangVersion();
+        using var ver2 = clangsharp.getVersion();
 
         Log.Information("Generating CSharp bindings...");
+        Log.Information("CLANG VERSION: {Version}", ver);
+        Log.Information("CLANGSHARP VERSION: {Version}", ver2);
         Generate(files, SrcOutputDir, config);
 
         Log.Information("Generating XML documentation files...");
@@ -92,7 +111,7 @@ public interface IGenerateSlangBindings : INukeBuild
             var withGuidsDict = (SortedDictionary<string, Guid>)generator.Config.WithGuids;
             foreach (var (typeName, guid) in additionalGuids)
                 withGuidsDict.TryAdd(typeName, guid);
-            
+
             try
             {
                 Log.Information("Processing \'{FilePath}\'", filePath);
@@ -173,9 +192,16 @@ public interface IGenerateSlangBindings : INukeBuild
     private Dictionary<string, string> GetAdditionalRemappedNames(TranslationUnit translationUnit)
     {
         var rootCursor = translationUnit.TranslationUnitDecl;
-        var externCur = FindFirstChildOfKind<LinkageSpecDecl>(rootCursor).NotNull();
+        var externCursors = FindAllChildrenOfKind<LinkageSpecDecl>(rootCursor).NotNull().ToArray();
 
-        var foundEnums = FindAllChildrenOfKind<EnumDecl>(externCur)
+        return GetEnumAdditionalRemappedNames(externCursors)
+            .Concat(GetDisambiguatedRemappedNames(rootCursor))
+            .ToDictionary();
+    }
+
+    private IEnumerable<(string, string)> GetEnumAdditionalRemappedNames(IEnumerable<LinkageSpecDecl> linkageSpecDecls)
+    {
+        var foundEnums = linkageSpecDecls.SelectMany(FindAllChildrenOfKind<EnumDecl>)
             .Where(decl => decl.Spelling.StartsWith("Slang"))
             .ToArray();
 
@@ -217,15 +243,41 @@ public interface IGenerateSlangBindings : INukeBuild
                 return (qualifiedName, pascalCaseTrimmed);
             });
 
-        return remappedEnumNames.Concat(remappedEnumMembers).ToDictionary();
+        return remappedEnumNames.Concat(remappedEnumMembers);
     }
 
+    private IEnumerable<(string, string)> GetDisambiguatedRemappedNames(TranslationUnitDecl translationUnit)
+    {
+        var gfxNamespace = FindAllChildrenOfKind<NamespaceDecl>(translationUnit)
+            .Where(decl => decl.Spelling == "gfx").ToArray();
+
+        var comInterfaces = gfxNamespace.SelectMany(FindAllChildrenOfKind<RecordDecl>)
+            .Where(decl => decl.IsClass && decl.Spelling.StartsWith('I')).ToArray(); //Find all the COM interfaces
+
+        var childStructs = comInterfaces
+            .SelectMany(FindAllChildrenOfKind<RecordDecl>).ToArray();
+
+        var descStructs = childStructs
+            .Where(decl => decl.IsStruct && decl.Spelling == "Desc").ToArray();
+
+        return descStructs
+            .Select(decl =>
+            {
+                var qualifiedName = GetFullQualifiedNameFromCursor(decl);
+
+                var parentInterfaceName = decl.SemanticParentCursor?.Spelling;
+
+                var trimmedParentName = parentInterfaceName.TrimStart('I');
+
+                return (qualifiedName, $"{trimmedParentName}Desc");
+            });
+    }
 
     private Dictionary<string, Guid> GetComStyleClassUuids(TranslationUnit translationUnit)
     {
         var comStructs = FindAllChildrenOfKind<RecordDecl>(translationUnit.TranslationUnitDecl);
 
-        var guidMethods = comStructs.SelectMany(r => FindAllChildrenOfKind<CXXMethodDecl>(r, false))
+        var guidMethods = comStructs.SelectMany(FindAllChildrenOfKind<CXXMethodDecl>)
             .Where(m => m.Name == "getTypeGuid")
             .ToArray();
 
@@ -235,7 +287,7 @@ public interface IGenerateSlangBindings : INukeBuild
 
         Guid GetGuidFromTypeGuidMethod(CXXMethodDecl method)
         {
-            var l = FindAllChildrenOfKind<IntegerLiteral>(method, false)
+            var l = FindAllChildrenOfKind<IntegerLiteral>(method)
                 .Select(l => l.Value).Reverse().ToArray();
 
             Assert.Count(l, 11, "Parsed interface type UUID invalid!");
@@ -256,40 +308,26 @@ public interface IGenerateSlangBindings : INukeBuild
         }
     }
 
-    private T? FindFirstChildOfKind<T>(Cursor cursor, bool isFromMainFile = true) where T : Cursor
+    private T? FindFirstChildOfKind<T>(Cursor cursor) where T : Cursor
     {
-        var stack = new Stack<Cursor>([cursor]);
-
-        while (stack.TryPop(out var currentCursor))
-        {
-            if (currentCursor is T foundCursor && currentCursor.Location.IsFromMainFile == isFromMainFile)
-            {
-                return foundCursor;
-            }
-
-            foreach (var c in currentCursor.CursorChildren) stack.Push(c);
-        }
-
-        return null;
+        return FindAllChildrenOfKind<T>(cursor).FirstOrDefault();
     }
 
-    private IReadOnlyList<T> FindAllChildrenOfKind<T>(Cursor cursor, bool isFromMainFile = true) where T : Cursor
+
+    private IEnumerable<T> FindAllChildrenOfKind<T>(Cursor cursor) where T : Cursor
     {
-        var stack = new Stack<Cursor>([cursor]);
-        var foundCursors = new List<T>();
+        var stack = new Stack<Cursor>(cursor.CursorChildren);
 
         while (stack.TryPop(out var currentCursor))
         {
-            if (currentCursor is T foundCursor && currentCursor.Location.IsFromMainFile == isFromMainFile)
+            if (currentCursor is T foundCursor && !currentCursor.Location.IsInSystemHeader)
             {
-                foundCursors.Add(foundCursor);
+                yield return foundCursor;
                 continue;
             }
 
             foreach (var c in currentCursor.CursorChildren) stack.Push(c);
         }
-
-        return foundCursors;
     }
 
     private string GetFullQualifiedNameFromCursor(Cursor cursor)

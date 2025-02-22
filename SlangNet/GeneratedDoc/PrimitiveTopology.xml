@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <enumeration name="PrimitiveTopology" access="public">
+      <type>int</type>
+      <enumerator name="TriangleList" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="TriangleStrip" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="PointList" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="LineList" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="LineStrip" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

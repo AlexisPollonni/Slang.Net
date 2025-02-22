@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="DepthStencilOpDesc" access="public">
+      <field name="stencilFailOp" access="public">
+        <type native="gfx::StencilOp">StencilOp</type>
+      </field>
+      <field name="stencilDepthFailOp" access="public">
+        <type native="gfx::StencilOp">StencilOp</type>
+      </field>
+      <field name="stencilPassOp" access="public">
+        <type native="gfx::StencilOp">StencilOp</type>
+      </field>
+      <field name="stencilFunc" access="public">
+        <type native="gfx::ComparisonFunc">ComparisonFunc</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="SamplePosition" access="public">
+      <field name="x" access="public">
+        <type native="int8_t">sbyte</type>
+      </field>
+      <field name="y" access="public">
+        <type native="int8_t">sbyte</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>
