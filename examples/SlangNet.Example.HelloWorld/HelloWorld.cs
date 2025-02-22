@@ -1,4 +1,4 @@
-﻿using SlangNet.Bindings.Generated.Slang;
+﻿using SlangNet.Bindings.Generated;
 using Veldrid;
 
 namespace SlangNet.Example.HelloWorld.Unsafe;
