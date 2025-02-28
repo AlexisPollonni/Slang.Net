@@ -1,4 +1,7 @@
-﻿using ClangSharp;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using ClangSharp;
 using Nuke.Common;
 using Nuke.Common.IO;
 using StrDic = System.Collections.Generic.Dictionary<string, string>;
