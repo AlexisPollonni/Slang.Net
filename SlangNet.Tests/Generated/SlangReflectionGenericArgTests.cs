@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -25,13 +24,6 @@ public static unsafe partial class SlangReflectionGenericArgTests
     [Test]
     public static void SizeOfTest()
     {
-        if (Environment.Is64BitProcess)
-        {
-            Assert.That(sizeof(SlangReflectionGenericArg), Is.EqualTo(8));
-        }
-        else
-        {
-            Assert.That(sizeof(SlangReflectionGenericArg), Is.EqualTo(4));
-        }
+        Assert.That(sizeof(SlangReflectionGenericArg), Is.EqualTo(8));
     }
 }

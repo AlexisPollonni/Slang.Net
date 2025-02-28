@@ -11,29 +11,29 @@ public unsafe partial struct IAccelerationStructure
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IAccelerationStructure* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IAccelerationStructure* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IAccelerationStructure* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::IResourceView::Desc *")]
     public delegate ResourceViewDesc* _getViewDesc(IAccelerationStructure* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getNativeHandle(IAccelerationStructure* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::DeviceAddress")]
-    public delegate nuint _getDeviceAddress(IAccelerationStructure* pThis);
+    public delegate ulong _getDeviceAddress(IAccelerationStructure* pThis);
 
     /// <include file='TypeKind.xml' path='doc/member[@name="TypeKind"]/*' />
     public enum TypeKind
@@ -50,8 +50,7 @@ public unsafe partial struct IAccelerationStructure
     {
 
         /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
-        [NativeTypeName("unsigned int")]
-        public enum Enum : uint
+        public enum Enum
         {
             /// <include file='Enum.xml' path='doc/member[@name="Enum.None"]/*' />
             None,
@@ -91,8 +90,7 @@ public unsafe partial struct IAccelerationStructure
     {
 
         /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
-        [NativeTypeName("unsigned int")]
-        public enum Enum : uint
+        public enum Enum
         {
             /// <include file='Enum.xml' path='doc/member[@name="Enum.None"]/*' />
             None,
@@ -110,7 +108,7 @@ public unsafe partial struct IAccelerationStructure
     {
         /// <include file='TriangleDesc.xml' path='doc/member[@name="TriangleDesc.transform3x4"]/*' />
         [NativeTypeName("gfx::DeviceAddress")]
-        public nuint transform3x4;
+        public ulong transform3x4;
 
         /// <include file='TriangleDesc.xml' path='doc/member[@name="TriangleDesc.indexFormat"]/*' />
         [NativeTypeName("gfx::Format")]
@@ -130,11 +128,11 @@ public unsafe partial struct IAccelerationStructure
 
         /// <include file='TriangleDesc.xml' path='doc/member[@name="TriangleDesc.indexData"]/*' />
         [NativeTypeName("gfx::DeviceAddress")]
-        public nuint indexData;
+        public ulong indexData;
 
         /// <include file='TriangleDesc.xml' path='doc/member[@name="TriangleDesc.vertexData"]/*' />
         [NativeTypeName("gfx::DeviceAddress")]
-        public nuint vertexData;
+        public ulong vertexData;
 
         /// <include file='TriangleDesc.xml' path='doc/member[@name="TriangleDesc.vertexStride"]/*' />
         [NativeTypeName("gfx::Size")]
@@ -172,7 +170,7 @@ public unsafe partial struct IAccelerationStructure
 
         /// <include file='ProceduralAABBDesc.xml' path='doc/member[@name="ProceduralAABBDesc.data"]/*' />
         [NativeTypeName("gfx::DeviceAddress")]
-        public nuint data;
+        public ulong data;
 
         /// <include file='ProceduralAABBDesc.xml' path='doc/member[@name="ProceduralAABBDesc.stride"]/*' />
         [NativeTypeName("gfx::Size")]
@@ -316,7 +314,7 @@ public unsafe partial struct IAccelerationStructure
 
         /// <include file='InstanceDesc.xml' path='doc/member[@name="InstanceDesc.accelerationStructure"]/*' />
         [NativeTypeName("gfx::DeviceAddress")]
-        public nuint accelerationStructure;
+        public ulong accelerationStructure;
 
         /// <include file='_transform_e__FixedBuffer.xml' path='doc/member[@name="_transform_e__FixedBuffer"]/*' />
         [InlineArray(3 * 4)]
@@ -359,7 +357,7 @@ public unsafe partial struct IAccelerationStructure
 
         /// <include file='BuildInputs.xml' path='doc/member[@name="BuildInputs.instanceDescs"]/*' />
         [NativeTypeName("gfx::DeviceAddress")]
-        public nuint instanceDescs;
+        public ulong instanceDescs;
 
         /// <include file='BuildInputs.xml' path='doc/member[@name="BuildInputs.geometryDescs"]/*' />
         [NativeTypeName("const GeometryDesc *")]
@@ -403,7 +401,7 @@ public unsafe partial struct IAccelerationStructure
 
         /// <include file='BuildDesc.xml' path='doc/member[@name="BuildDesc.scratchData"]/*' />
         [NativeTypeName("gfx::DeviceAddress")]
-        public nuint scratchData;
+        public ulong scratchData;
     }
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
@@ -449,29 +447,29 @@ public unsafe partial struct IAccelerationStructure
     /// <include file='IAccelerationStructure.xml' path='doc/member[@name="IAccelerationStructure.getDeviceAddress"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::DeviceAddress")]
-    public nuint getDeviceAddress()
+    public ulong getDeviceAddress()
     {
         return Marshal.GetDelegateForFunctionPointer<_getDeviceAddress>(lpVtbl->getDeviceAddress)((IAccelerationStructure*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Desc *()")]
+        [NativeTypeName("Desc *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getViewDesc;
 
-        [NativeTypeName("Result (InteropHandle *)")]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getNativeHandle;
 
-        [NativeTypeName("DeviceAddress ()")]
+        [NativeTypeName("DeviceAddress () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDeviceAddress;
     }
 }

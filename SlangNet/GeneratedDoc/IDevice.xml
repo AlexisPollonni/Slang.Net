@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -17,19 +17,19 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IDevice*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IDevice*</type>
         </param>
       </delegate>
-      <delegate name="_getNativeDeviceHandles" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getNativeDeviceHandles" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -38,7 +38,7 @@
           <type>InteropHandles*</type>
         </param>
       </delegate>
-      <delegate name="_hasFeature" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_hasFeature" access="public" convention="StdCall" unsafe="true">
         <type native="bool">byte</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -47,7 +47,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_getFeatures" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getFeatures" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -62,7 +62,7 @@
           <type>int*</type>
         </param>
       </delegate>
-      <delegate name="_getFormatSupportedResourceStates" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getFormatSupportedResourceStates" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -74,7 +74,7 @@
           <type>ResourceStateSet*</type>
         </param>
       </delegate>
-      <delegate name="_getSlangSession" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getSlangSession" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -83,7 +83,7 @@
           <type>ISession**</type>
         </param>
       </delegate>
-      <delegate name="_createTransientResourceHeap" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createTransientResourceHeap" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -95,7 +95,7 @@
           <type>ITransientResourceHeap**</type>
         </param>
       </delegate>
-      <delegate name="_createTextureResource" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createTextureResource" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -110,7 +110,7 @@
           <type>ITextureResource**</type>
         </param>
       </delegate>
-      <delegate name="_createTextureFromNativeHandle" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createTextureFromNativeHandle" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -125,7 +125,7 @@
           <type>ITextureResource**</type>
         </param>
       </delegate>
-      <delegate name="_createTextureFromSharedHandle" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createTextureFromSharedHandle" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -143,7 +143,7 @@
           <type>ITextureResource**</type>
         </param>
       </delegate>
-      <delegate name="_createBufferResource" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createBufferResource" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -158,7 +158,7 @@
           <type>IBufferResource**</type>
         </param>
       </delegate>
-      <delegate name="_createBufferFromNativeHandle" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createBufferFromNativeHandle" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -173,7 +173,7 @@
           <type>IBufferResource**</type>
         </param>
       </delegate>
-      <delegate name="_createBufferFromSharedHandle" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createBufferFromSharedHandle" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -188,7 +188,7 @@
           <type>IBufferResource**</type>
         </param>
       </delegate>
-      <delegate name="_createSamplerState" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createSamplerState" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -200,7 +200,7 @@
           <type>ISamplerState**</type>
         </param>
       </delegate>
-      <delegate name="_createTextureView" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createTextureView" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -215,7 +215,7 @@
           <type>IResourceView**</type>
         </param>
       </delegate>
-      <delegate name="_createBufferView" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createBufferView" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -233,7 +233,7 @@
           <type>IResourceView**</type>
         </param>
       </delegate>
-      <delegate name="_createFramebufferLayout" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createFramebufferLayout" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -245,7 +245,7 @@
           <type>IFramebufferLayout**</type>
         </param>
       </delegate>
-      <delegate name="_createFramebuffer" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createFramebuffer" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -257,7 +257,7 @@
           <type>IFramebuffer**</type>
         </param>
       </delegate>
-      <delegate name="_createRenderPassLayout" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createRenderPassLayout" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -269,7 +269,7 @@
           <type>IRenderPassLayout**</type>
         </param>
       </delegate>
-      <delegate name="_createSwapchain" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createSwapchain" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -284,7 +284,7 @@
           <type>ISwapchain**</type>
         </param>
       </delegate>
-      <delegate name="_createInputLayout" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createInputLayout" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -296,7 +296,7 @@
           <type>IInputLayout**</type>
         </param>
       </delegate>
-      <delegate name="_createCommandQueue" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createCommandQueue" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -308,7 +308,7 @@
           <type>ICommandQueue**</type>
         </param>
       </delegate>
-      <delegate name="_createShaderObject" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createShaderObject" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -323,7 +323,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_createMutableShaderObject" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createMutableShaderObject" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -338,7 +338,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_createShaderObjectFromTypeLayout" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createShaderObjectFromTypeLayout" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -350,7 +350,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_createMutableShaderObjectFromTypeLayout" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createMutableShaderObjectFromTypeLayout" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -362,7 +362,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_createMutableRootShaderObject" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createMutableRootShaderObject" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -374,7 +374,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_createShaderTable" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createShaderTable" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -386,7 +386,7 @@
           <type>IShaderTable**</type>
         </param>
       </delegate>
-      <delegate name="_createProgram" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createProgram" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -404,7 +404,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_createProgram2" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createProgram2" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -422,7 +422,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_createGraphicsPipelineState" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createGraphicsPipelineState" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -434,7 +434,7 @@
           <type>IPipelineState**</type>
         </param>
       </delegate>
-      <delegate name="_createComputePipelineState" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createComputePipelineState" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -446,7 +446,7 @@
           <type>IPipelineState**</type>
         </param>
       </delegate>
-      <delegate name="_createRayTracingPipelineState" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createRayTracingPipelineState" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -458,7 +458,7 @@
           <type>IPipelineState**</type>
         </param>
       </delegate>
-      <delegate name="_readTextureResource" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_readTextureResource" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -479,7 +479,7 @@
           <type>nuint*</type>
         </param>
       </delegate>
-      <delegate name="_readBufferResource" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_readBufferResource" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -497,13 +497,13 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getDeviceInfo" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getDeviceInfo" access="public" convention="StdCall" unsafe="true">
         <type native="const DeviceInfo &amp;">DeviceInfo*</type>
         <param name="pThis">
           <type>IDevice*</type>
         </param>
       </delegate>
-      <delegate name="_createQueryPool" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createQueryPool" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -515,7 +515,7 @@
           <type>IQueryPool**</type>
         </param>
       </delegate>
-      <delegate name="_getAccelerationStructurePrebuildInfo" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getAccelerationStructurePrebuildInfo" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -527,7 +527,7 @@
           <type>PrebuildInfo*</type>
         </param>
       </delegate>
-      <delegate name="_createAccelerationStructure" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createAccelerationStructure" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -539,7 +539,7 @@
           <type>IAccelerationStructure**</type>
         </param>
       </delegate>
-      <delegate name="_createFence" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createFence" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -551,7 +551,7 @@
           <type>IFence**</type>
         </param>
       </delegate>
-      <delegate name="_waitForFences" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_waitForFences" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -563,16 +563,16 @@
           <type>IFence**</type>
         </param>
         <param name="values">
-          <type>nuint*</type>
+          <type>ulong*</type>
         </param>
         <param name="waitForAll">
           <type>byte</type>
         </param>
         <param name="timeout">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
       </delegate>
-      <delegate name="_getTextureAllocationInfo" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getTextureAllocationInfo" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -587,7 +587,7 @@
           <type>nuint*</type>
         </param>
       </delegate>
-      <delegate name="_getTextureRowAlignment" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getTextureRowAlignment" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -596,7 +596,7 @@
           <type>nuint*</type>
         </param>
       </delegate>
-      <delegate name="_createShaderObject2" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createShaderObject2" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -614,7 +614,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_createMutableShaderObject2" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createMutableShaderObject2" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -1276,13 +1276,13 @@
           <type>IFence**</type>
         </param>
         <param name="values">
-          <type>nuint*</type>
+          <type>ulong*</type>
         </param>
         <param name="waitForAll">
           <type>byte</type>
         </param>
         <param name="timeout">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_waitForFences</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">waitForFences</vtbl>)(<param special="thisPtr">(IDevice*)Unsafe.AsPointer(ref this)</param>, <param name="fenceCount">fenceCount</param>, <param name="fences">fences</param>, <param name="values">values</param>, <param name="waitForAll">waitForAll</param>, <param name="timeout">timeout</param>);</code>
@@ -1350,145 +1350,145 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeDeviceHandles" access="public">
-          <type native="Result (InteropHandles *)">IntPtr</type>
+          <type native="Result (InteropHandles *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="hasFeature" access="public">
-          <type native="bool (const char *)">IntPtr</type>
+          <type native="bool (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getFeatures" access="public">
-          <type native="Result (const char **, Size, GfxCount *)">IntPtr</type>
+          <type native="Result (const char **, Size, GfxCount *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getFormatSupportedResourceStates" access="public">
-          <type native="Result (Format, ResourceStateSet *)">IntPtr</type>
+          <type native="Result (Format, ResourceStateSet *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getSlangSession" access="public">
-          <type native="Result (slang::ISession **)">IntPtr</type>
+          <type native="Result (slang::ISession **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createTransientResourceHeap" access="public">
-          <type native="Result (const ITransientResourceHeap::Desc &amp;, ITransientResourceHeap **)">IntPtr</type>
+          <type native="Result (const ITransientResourceHeap::Desc &amp;, ITransientResourceHeap **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createTextureResource" access="public">
-          <type native="Result (const ITextureResource::Desc &amp;, const ITextureResource::SubresourceData *, ITextureResource **)">IntPtr</type>
+          <type native="Result (const ITextureResource::Desc &amp;, const ITextureResource::SubresourceData *, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createTextureFromNativeHandle" access="public">
-          <type native="Result (InteropHandle, const ITextureResource::Desc &amp;, ITextureResource **)">IntPtr</type>
+          <type native="Result (InteropHandle, const ITextureResource::Desc &amp;, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createTextureFromSharedHandle" access="public">
-          <type native="Result (InteropHandle, const ITextureResource::Desc &amp;, const Size, ITextureResource **)">IntPtr</type>
+          <type native="Result (InteropHandle, const ITextureResource::Desc &amp;, const Size, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createBufferResource" access="public">
-          <type native="Result (const IBufferResource::Desc &amp;, const void *, IBufferResource **)">IntPtr</type>
+          <type native="Result (const IBufferResource::Desc &amp;, const void *, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createBufferFromNativeHandle" access="public">
-          <type native="Result (InteropHandle, const IBufferResource::Desc &amp;, IBufferResource **)">IntPtr</type>
+          <type native="Result (InteropHandle, const IBufferResource::Desc &amp;, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createBufferFromSharedHandle" access="public">
-          <type native="Result (InteropHandle, const IBufferResource::Desc &amp;, IBufferResource **)">IntPtr</type>
+          <type native="Result (InteropHandle, const IBufferResource::Desc &amp;, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createSamplerState" access="public">
-          <type native="Result (const ISamplerState::Desc &amp;, ISamplerState **)">IntPtr</type>
+          <type native="Result (const ISamplerState::Desc &amp;, ISamplerState **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createTextureView" access="public">
-          <type native="Result (ITextureResource *, const IResourceView::Desc &amp;, IResourceView **)">IntPtr</type>
+          <type native="Result (ITextureResource *, const IResourceView::Desc &amp;, IResourceView **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createBufferView" access="public">
-          <type native="Result (IBufferResource *, IBufferResource *, const IResourceView::Desc &amp;, IResourceView **)">IntPtr</type>
+          <type native="Result (IBufferResource *, IBufferResource *, const IResourceView::Desc &amp;, IResourceView **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createFramebufferLayout" access="public">
-          <type native="Result (const IFramebufferLayout::Desc &amp;, IFramebufferLayout **)">IntPtr</type>
+          <type native="Result (const IFramebufferLayout::Desc &amp;, IFramebufferLayout **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createFramebuffer" access="public">
-          <type native="Result (const IFramebuffer::Desc &amp;, IFramebuffer **)">IntPtr</type>
+          <type native="Result (const IFramebuffer::Desc &amp;, IFramebuffer **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createRenderPassLayout" access="public">
-          <type native="Result (const IRenderPassLayout::Desc &amp;, IRenderPassLayout **)">IntPtr</type>
+          <type native="Result (const IRenderPassLayout::Desc &amp;, IRenderPassLayout **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createSwapchain" access="public">
-          <type native="Result (const ISwapchain::Desc &amp;, WindowHandle, ISwapchain **)">IntPtr</type>
+          <type native="Result (const ISwapchain::Desc &amp;, WindowHandle, ISwapchain **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createInputLayout" access="public">
-          <type native="Result (const IInputLayout::Desc &amp;, IInputLayout **)">IntPtr</type>
+          <type native="Result (const IInputLayout::Desc &amp;, IInputLayout **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createCommandQueue" access="public">
-          <type native="Result (const ICommandQueue::Desc &amp;, ICommandQueue **)">IntPtr</type>
+          <type native="Result (const ICommandQueue::Desc &amp;, ICommandQueue **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createShaderObject" access="public">
-          <type native="Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **)">IntPtr</type>
+          <type native="Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createMutableShaderObject" access="public">
-          <type native="Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **)">IntPtr</type>
+          <type native="Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createShaderObjectFromTypeLayout" access="public">
-          <type native="Result (slang::TypeLayoutReflection *, IShaderObject **)">IntPtr</type>
+          <type native="Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createMutableShaderObjectFromTypeLayout" access="public">
-          <type native="Result (slang::TypeLayoutReflection *, IShaderObject **)">IntPtr</type>
+          <type native="Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createMutableRootShaderObject" access="public">
-          <type native="Result (IShaderProgram *, IShaderObject **)">IntPtr</type>
+          <type native="Result (IShaderProgram *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createShaderTable" access="public">
-          <type native="Result (const IShaderTable::Desc &amp;, IShaderTable **)">IntPtr</type>
+          <type native="Result (const IShaderTable::Desc &amp;, IShaderTable **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createProgram" access="public">
-          <type native="Result (const IShaderProgram::Desc &amp;, IShaderProgram **, ISlangBlob **)">IntPtr</type>
+          <type native="Result (const IShaderProgram::Desc &amp;, IShaderProgram **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createProgram2" access="public">
-          <type native="Result (const IShaderProgram::CreateDesc2 &amp;, IShaderProgram **, ISlangBlob **)">IntPtr</type>
+          <type native="Result (const IShaderProgram::CreateDesc2 &amp;, IShaderProgram **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createGraphicsPipelineState" access="public">
-          <type native="Result (const GraphicsPipelineStateDesc &amp;, IPipelineState **)">IntPtr</type>
+          <type native="Result (const GraphicsPipelineStateDesc &amp;, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createComputePipelineState" access="public">
-          <type native="Result (const ComputePipelineStateDesc &amp;, IPipelineState **)">IntPtr</type>
+          <type native="Result (const ComputePipelineStateDesc &amp;, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createRayTracingPipelineState" access="public">
-          <type native="Result (const RayTracingPipelineStateDesc &amp;, IPipelineState **)">IntPtr</type>
+          <type native="Result (const RayTracingPipelineStateDesc &amp;, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="readTextureResource" access="public">
-          <type native="SlangResult (ITextureResource *, ResourceState, ISlangBlob **, Size *, Size *)">IntPtr</type>
+          <type native="SlangResult (ITextureResource *, ResourceState, ISlangBlob **, Size *, Size *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="readBufferResource" access="public">
-          <type native="SlangResult (IBufferResource *, Offset, Size, ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (IBufferResource *, Offset, Size, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDeviceInfo" access="public">
-          <type native="const DeviceInfo &amp;() const">IntPtr</type>
+          <type native="const DeviceInfo &amp;() const __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createQueryPool" access="public">
-          <type native="Result (const IQueryPool::Desc &amp;, IQueryPool **)">IntPtr</type>
+          <type native="Result (const IQueryPool::Desc &amp;, IQueryPool **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getAccelerationStructurePrebuildInfo" access="public">
-          <type native="Result (const IAccelerationStructure::BuildInputs &amp;, IAccelerationStructure::PrebuildInfo *)">IntPtr</type>
+          <type native="Result (const IAccelerationStructure::BuildInputs &amp;, IAccelerationStructure::PrebuildInfo *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createAccelerationStructure" access="public">
-          <type native="Result (const IAccelerationStructure::CreateDesc &amp;, IAccelerationStructure **)">IntPtr</type>
+          <type native="Result (const IAccelerationStructure::CreateDesc &amp;, IAccelerationStructure **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createFence" access="public">
-          <type native="Result (const IFence::Desc &amp;, IFence **)">IntPtr</type>
+          <type native="Result (const IFence::Desc &amp;, IFence **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="waitForFences" access="public">
-          <type native="Result (GfxCount, IFence **, uint64_t *, bool, uint64_t)">IntPtr</type>
+          <type native="Result (GfxCount, IFence **, uint64_t *, bool, uint64_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getTextureAllocationInfo" access="public">
-          <type native="Result (const ITextureResource::Desc &amp;, Size *, Size *)">IntPtr</type>
+          <type native="Result (const ITextureResource::Desc &amp;, Size *, Size *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getTextureRowAlignment" access="public">
-          <type native="Result (Size *)">IntPtr</type>
+          <type native="Result (Size *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createShaderObject2" access="public">
-          <type native="Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **)">IntPtr</type>
+          <type native="Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createMutableShaderObject2" access="public">
-          <type native="Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **)">IntPtr</type>
+          <type native="Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

@@ -11,41 +11,41 @@ public unsafe partial struct ICommandBufferD3D12
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(ICommandBufferD3D12* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(ICommandBufferD3D12* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(ICommandBufferD3D12* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _encodeRenderCommands(ICommandBufferD3D12* pThis, [NativeTypeName("gfx::IRenderPassLayout *")] IRenderPassLayout* renderPass, [NativeTypeName("gfx::IFramebuffer *")] IFramebuffer* framebuffer, IRenderCommandEncoder** outEncoder);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _encodeComputeCommands(ICommandBufferD3D12* pThis, IComputeCommandEncoder** outEncoder);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _encodeResourceCommands(ICommandBufferD3D12* pThis, IResourceCommandEncoder** outEncoder);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _encodeRayTracingCommands(ICommandBufferD3D12* pThis, IRayTracingCommandEncoder** outEncoder);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _close(ICommandBufferD3D12* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getNativeHandle(ICommandBufferD3D12* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _invalidateDescriptorHeapBinding(ICommandBufferD3D12* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _ensureInternalDescriptorHeapsBound(ICommandBufferD3D12* pThis);
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
@@ -131,37 +131,37 @@ public unsafe partial struct ICommandBufferD3D12
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **)")]
+        [NativeTypeName("void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr encodeRenderCommands;
 
-        [NativeTypeName("void (IComputeCommandEncoder **)")]
+        [NativeTypeName("void (IComputeCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr encodeComputeCommands;
 
-        [NativeTypeName("void (IResourceCommandEncoder **)")]
+        [NativeTypeName("void (IResourceCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr encodeResourceCommands;
 
-        [NativeTypeName("void (IRayTracingCommandEncoder **)")]
+        [NativeTypeName("void (IRayTracingCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr encodeRayTracingCommands;
 
-        [NativeTypeName("void ()")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr close;
 
-        [NativeTypeName("Result (InteropHandle *)")]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getNativeHandle;
 
-        [NativeTypeName("void ()")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr invalidateDescriptorHeapBinding;
 
-        [NativeTypeName("void ()")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr ensureInternalDescriptorHeapsBound;
     }
 }

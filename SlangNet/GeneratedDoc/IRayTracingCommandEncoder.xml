@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -17,25 +17,25 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
         </param>
       </delegate>
-      <delegate name="_endEncoding" access="public" convention="ThisCall">
+      <delegate name="_endEncoding" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
         </param>
       </delegate>
-      <delegate name="_writeTimestamp" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_writeTimestamp" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -47,7 +47,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_copyBuffer" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_copyBuffer" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -68,7 +68,7 @@
           <type>nuint</type>
         </param>
       </delegate>
-      <delegate name="_copyTexture" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_copyTexture" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -101,7 +101,7 @@
           <type>Extents</type>
         </param>
       </delegate>
-      <delegate name="_copyTextureToBuffer" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_copyTextureToBuffer" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -134,7 +134,7 @@
           <type>Extents</type>
         </param>
       </delegate>
-      <delegate name="_uploadTextureData" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_uploadTextureData" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -158,7 +158,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_uploadBufferData" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_uploadBufferData" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -176,7 +176,7 @@
           <type>void*</type>
         </param>
       </delegate>
-      <delegate name="_textureBarrier" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_textureBarrier" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -194,7 +194,7 @@
           <type>ResourceState</type>
         </param>
       </delegate>
-      <delegate name="_textureSubresourceBarrier" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_textureSubresourceBarrier" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -212,7 +212,7 @@
           <type>ResourceState</type>
         </param>
       </delegate>
-      <delegate name="_bufferBarrier" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_bufferBarrier" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -230,7 +230,7 @@
           <type>ResourceState</type>
         </param>
       </delegate>
-      <delegate name="_clearResourceView" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_clearResourceView" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -245,7 +245,7 @@
           <type>Enum</type>
         </param>
       </delegate>
-      <delegate name="_resolveResource" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_resolveResource" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -269,7 +269,7 @@
           <type>SubresourceRange</type>
         </param>
       </delegate>
-      <delegate name="_resolveQuery" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_resolveQuery" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -290,7 +290,7 @@
           <type>nuint</type>
         </param>
       </delegate>
-      <delegate name="_beginDebugEvent" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_beginDebugEvent" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -302,13 +302,13 @@
           <type>float*</type>
         </param>
       </delegate>
-      <delegate name="_endDebugEvent" access="public" convention="ThisCall">
+      <delegate name="_endDebugEvent" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
         </param>
       </delegate>
-      <delegate name="_buildAccelerationStructure" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_buildAccelerationStructure" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -323,7 +323,7 @@
           <type>AccelerationStructureQueryDesc*</type>
         </param>
       </delegate>
-      <delegate name="_copyAccelerationStructure" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_copyAccelerationStructure" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -338,7 +338,7 @@
           <type>AccelerationStructureCopyMode</type>
         </param>
       </delegate>
-      <delegate name="_queryAccelerationStructureProperties" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryAccelerationStructureProperties" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -356,19 +356,19 @@
           <type>AccelerationStructureQueryDesc*</type>
         </param>
       </delegate>
-      <delegate name="_serializeAccelerationStructure" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_serializeAccelerationStructure" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
         </param>
         <param name="dest">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="source">
           <type>IAccelerationStructure*</type>
         </param>
       </delegate>
-      <delegate name="_deserializeAccelerationStructure" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_deserializeAccelerationStructure" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -377,10 +377,10 @@
           <type>IAccelerationStructure*</type>
         </param>
         <param name="source">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
       </delegate>
-      <delegate name="_bindPipeline" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_bindPipeline" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -392,7 +392,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_bindPipelineWithRootObject" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_bindPipelineWithRootObject" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -404,7 +404,7 @@
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_dispatchRays" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_dispatchRays" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRayTracingCommandEncoder*</type>
@@ -779,7 +779,7 @@
       <function name="serializeAccelerationStructure" access="public" unsafe="true">
         <type>void</type>
         <param name="dest">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="source">
           <type>IAccelerationStructure*</type>
@@ -794,7 +794,7 @@
           <type>IAccelerationStructure*</type>
         </param>
         <param name="source">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_deserializeAccelerationStructure</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">deserializeAccelerationStructure</vtbl>)(<param special="thisPtr">(IRayTracingCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dest">dest</param>, <param name="source">source</param>);</code>
@@ -847,82 +847,82 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="endEncoding" access="public">
-          <type native="void ()">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="writeTimestamp" access="public">
-          <type native="void (IQueryPool *, GfxIndex)">IntPtr</type>
+          <type native="void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyBuffer" access="public">
-          <type native="void (IBufferResource *, Offset, IBufferResource *, Offset, Size)">IntPtr</type>
+          <type native="void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyTexture" access="public">
-          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents)">IntPtr</type>
+          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyTextureToBuffer" access="public">
-          <type native="void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents)">IntPtr</type>
+          <type native="void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="uploadTextureData" access="public">
-          <type native="void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount)">IntPtr</type>
+          <type native="void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="uploadBufferData" access="public">
-          <type native="void (IBufferResource *, Offset, Size, void *)">IntPtr</type>
+          <type native="void (IBufferResource *, Offset, Size, void *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="textureBarrier" access="public">
-          <type native="void (GfxCount, ITextureResource *const *, ResourceState, ResourceState)">IntPtr</type>
+          <type native="void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="textureSubresourceBarrier" access="public">
-          <type native="void (ITextureResource *, SubresourceRange, ResourceState, ResourceState)">IntPtr</type>
+          <type native="void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="bufferBarrier" access="public">
-          <type native="void (GfxCount, IBufferResource *const *, ResourceState, ResourceState)">IntPtr</type>
+          <type native="void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="clearResourceView" access="public">
-          <type native="void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum)">IntPtr</type>
+          <type native="void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="resolveResource" access="public">
-          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange)">IntPtr</type>
+          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="resolveQuery" access="public">
-          <type native="void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset)">IntPtr</type>
+          <type native="void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="beginDebugEvent" access="public">
-          <type native="void (const char *, float *)">IntPtr</type>
+          <type native="void (const char *, float *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="endDebugEvent" access="public">
-          <type native="void ()">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="buildAccelerationStructure" access="public">
-          <type native="void (const IAccelerationStructure::BuildDesc &amp;, GfxCount, AccelerationStructureQueryDesc *)">IntPtr</type>
+          <type native="void (const IAccelerationStructure::BuildDesc &amp;, GfxCount, AccelerationStructureQueryDesc *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyAccelerationStructure" access="public">
-          <type native="void (IAccelerationStructure *, IAccelerationStructure *, AccelerationStructureCopyMode)">IntPtr</type>
+          <type native="void (IAccelerationStructure *, IAccelerationStructure *, AccelerationStructureCopyMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="queryAccelerationStructureProperties" access="public">
-          <type native="void (GfxCount, IAccelerationStructure *const *, GfxCount, AccelerationStructureQueryDesc *)">IntPtr</type>
+          <type native="void (GfxCount, IAccelerationStructure *const *, GfxCount, AccelerationStructureQueryDesc *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="serializeAccelerationStructure" access="public">
-          <type native="void (DeviceAddress, IAccelerationStructure *)">IntPtr</type>
+          <type native="void (DeviceAddress, IAccelerationStructure *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="deserializeAccelerationStructure" access="public">
-          <type native="void (IAccelerationStructure *, DeviceAddress)">IntPtr</type>
+          <type native="void (IAccelerationStructure *, DeviceAddress) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="bindPipeline" access="public">
-          <type native="Result (IPipelineState *, IShaderObject **)">IntPtr</type>
+          <type native="Result (IPipelineState *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="bindPipelineWithRootObject" access="public">
-          <type native="Result (IPipelineState *, IShaderObject *)">IntPtr</type>
+          <type native="Result (IPipelineState *, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="dispatchRays" access="public">
-          <type native="Result (GfxIndex, IShaderTable *, GfxCount, GfxCount, GfxCount)">IntPtr</type>
+          <type native="Result (GfxIndex, IShaderTable *, GfxCount, GfxCount, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

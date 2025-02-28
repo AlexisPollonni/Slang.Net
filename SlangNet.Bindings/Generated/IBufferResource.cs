@@ -11,51 +11,51 @@ public unsafe partial struct IBufferResource
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IBufferResource* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IBufferResource* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IBufferResource* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::IResource::Type")]
     public delegate Type _getType(IBufferResource* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getNativeResourceHandle(IBufferResource* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getSharedHandle(IBufferResource* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setDebugName(IBufferResource* pThis, [NativeTypeName("const char *")] sbyte* name);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("const char *")]
     public delegate sbyte* _getDebugName(IBufferResource* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::IBufferResource::Desc *")]
     public delegate BufferResourceDesc* _getDesc(IBufferResource* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::DeviceAddress")]
-    public delegate nuint _getDeviceAddress(IBufferResource* pThis);
+    public delegate ulong _getDeviceAddress(IBufferResource* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _map(IBufferResource* pThis, [NativeTypeName("gfx::MemoryRange *")] MemoryRange* rangeToRead, void** outPointer);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _unmap(IBufferResource* pThis, [NativeTypeName("gfx::MemoryRange *")] MemoryRange* writtenRange);
 
@@ -154,7 +154,7 @@ public unsafe partial struct IBufferResource
     /// <include file='IBufferResource.xml' path='doc/member[@name="IBufferResource.getDeviceAddress"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::DeviceAddress")]
-    public nuint getDeviceAddress()
+    public ulong getDeviceAddress()
     {
         return Marshal.GetDelegateForFunctionPointer<_getDeviceAddress>(lpVtbl->getDeviceAddress)((IBufferResource*)Unsafe.AsPointer(ref this));
     }
@@ -177,40 +177,40 @@ public unsafe partial struct IBufferResource
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Type ()")]
+        [NativeTypeName("Type () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getType;
 
-        [NativeTypeName("Result (InteropHandle *)")]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getNativeResourceHandle;
 
-        [NativeTypeName("Result (InteropHandle *)")]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSharedHandle;
 
-        [NativeTypeName("Result (const char *)")]
+        [NativeTypeName("Result (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDebugName;
 
-        [NativeTypeName("const char *()")]
+        [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDebugName;
 
-        [NativeTypeName("Desc *()")]
+        [NativeTypeName("Desc *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDesc;
 
-        [NativeTypeName("DeviceAddress ()")]
+        [NativeTypeName("DeviceAddress () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDeviceAddress;
 
-        [NativeTypeName("Result (MemoryRange *, void **)")]
+        [NativeTypeName("Result (MemoryRange *, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr map;
 
-        [NativeTypeName("Result (MemoryRange *)")]
+        [NativeTypeName("Result (MemoryRange *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr unmap;
     }
 }

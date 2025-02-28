@@ -9,7 +9,7 @@ public unsafe partial struct IDebugCallback
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _handleMessage(IDebugCallback* pThis, [NativeTypeName("gfx::DebugMessageType")] DebugMessageType type, [NativeTypeName("gfx::DebugMessageSource")] DebugMessageSource source, [NativeTypeName("const char *")] sbyte* message);
 
     /// <include file='IDebugCallback.xml' path='doc/member[@name="IDebugCallback.handleMessage"]/*' />
@@ -21,7 +21,7 @@ public unsafe partial struct IDebugCallback
 
     public partial struct Vtbl
     {
-        [NativeTypeName("void (DebugMessageType, DebugMessageSource, const char *)")]
+        [NativeTypeName("void (DebugMessageType, DebugMessageSource, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr handleMessage;
     }
 }

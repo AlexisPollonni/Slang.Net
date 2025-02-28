@@ -24,7 +24,7 @@
         <type native="const char *">sbyte*</type>
       </field>
       <field name="timestampFrequency" access="public">
-        <type native="uint64_t">nuint</type>
+        <type native="uint64_t">ulong</type>
       </field>
       <struct name="_identityProjectionMatrix_e__FixedBuffer" access="public">
         <attribute>InlineArray(16)</attribute>

@@ -6,7 +6,7 @@
         <type native="gfx::InteropHandleAPI">InteropHandleAPI</type>
       </field>
       <field name="handleValue" access="public">
-        <type native="uint64_t">nuint</type>
+        <type native="uint64_t">ulong</type>
       </field>
     </struct>
   </namespace>

@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_handleMessage" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_handleMessage" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IDebugCallback*</type>
@@ -37,7 +37,7 @@
       </function>
       <vtbl>
         <field name="handleMessage" access="public">
-          <type native="void (DebugMessageType, DebugMessageSource, const char *)">IntPtr</type>
+          <type native="void (DebugMessageType, DebugMessageSource, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

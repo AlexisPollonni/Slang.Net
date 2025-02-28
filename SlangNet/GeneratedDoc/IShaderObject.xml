@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -17,37 +17,37 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_getElementTypeLayout" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getElementTypeLayout" access="public" convention="StdCall" unsafe="true">
         <type native="slang::TypeLayoutReflection *">TypeLayoutReflection*</type>
         <param name="pThis">
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_getContainerType" access="public" convention="ThisCall">
+      <delegate name="_getContainerType" access="public" convention="StdCall">
         <type native="gfx::ShaderObjectContainerType">ShaderObjectContainerType</type>
         <param name="pThis">
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_getEntryPointCount" access="public" convention="ThisCall">
+      <delegate name="_getEntryPointCount" access="public" convention="StdCall">
         <type native="gfx::GfxCount">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_getEntryPoint" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getEntryPoint" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -59,7 +59,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_setData" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setData" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -74,7 +74,7 @@
           <type>nuint</type>
         </param>
       </delegate>
-      <delegate name="_getObject" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getObject" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -86,7 +86,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_setObject" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setObject" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -98,7 +98,7 @@
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_setResource" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setResource" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -110,7 +110,7 @@
           <type>IResourceView*</type>
         </param>
       </delegate>
-      <delegate name="_setSampler" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setSampler" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -122,7 +122,7 @@
           <type>ISamplerState*</type>
         </param>
       </delegate>
-      <delegate name="_setCombinedTextureSampler" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setCombinedTextureSampler" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -137,7 +137,7 @@
           <type>ISamplerState*</type>
         </param>
       </delegate>
-      <delegate name="_setSpecializationArgs" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setSpecializationArgs" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -152,7 +152,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_getCurrentVersion" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getCurrentVersion" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -164,19 +164,19 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_getRawData" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getRawData" access="public" convention="StdCall" unsafe="true">
         <type native="const void *">void*</type>
         <param name="pThis">
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_getSize" access="public" convention="ThisCall">
+      <delegate name="_getSize" access="public" convention="StdCall">
         <type native="gfx::Size">nuint</type>
         <param name="pThis">
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_setConstantBufferOverride" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setConstantBufferOverride" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -367,58 +367,58 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getElementTypeLayout" access="public">
-          <type native="slang::TypeLayoutReflection *()">IntPtr</type>
+          <type native="slang::TypeLayoutReflection *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getContainerType" access="public">
-          <type native="ShaderObjectContainerType ()">IntPtr</type>
+          <type native="ShaderObjectContainerType () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointCount" access="public">
-          <type native="GfxCount ()">IntPtr</type>
+          <type native="GfxCount () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPoint" access="public">
-          <type native="Result (GfxIndex, IShaderObject **)">IntPtr</type>
+          <type native="Result (GfxIndex, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setData" access="public">
-          <type native="Result (const ShaderOffset &amp;, const void *, Size)">IntPtr</type>
+          <type native="Result (const ShaderOffset &amp;, const void *, Size) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getObject" access="public">
-          <type native="Result (const ShaderOffset &amp;, IShaderObject **)">IntPtr</type>
+          <type native="Result (const ShaderOffset &amp;, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setObject" access="public">
-          <type native="Result (const ShaderOffset &amp;, IShaderObject *)">IntPtr</type>
+          <type native="Result (const ShaderOffset &amp;, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setResource" access="public">
-          <type native="Result (const ShaderOffset &amp;, IResourceView *)">IntPtr</type>
+          <type native="Result (const ShaderOffset &amp;, IResourceView *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setSampler" access="public">
-          <type native="Result (const ShaderOffset &amp;, ISamplerState *)">IntPtr</type>
+          <type native="Result (const ShaderOffset &amp;, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setCombinedTextureSampler" access="public">
-          <type native="Result (const ShaderOffset &amp;, IResourceView *, ISamplerState *)">IntPtr</type>
+          <type native="Result (const ShaderOffset &amp;, IResourceView *, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setSpecializationArgs" access="public">
-          <type native="Result (const ShaderOffset &amp;, const slang::SpecializationArg *, GfxCount)">IntPtr</type>
+          <type native="Result (const ShaderOffset &amp;, const slang::SpecializationArg *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getCurrentVersion" access="public">
-          <type native="Result (ITransientResourceHeap *, IShaderObject **)">IntPtr</type>
+          <type native="Result (ITransientResourceHeap *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getRawData" access="public">
-          <type native="const void *()">IntPtr</type>
+          <type native="const void *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getSize" access="public">
-          <type native="Size ()">IntPtr</type>
+          <type native="Size () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setConstantBufferOverride" access="public">
-          <type native="Result (IBufferResource *)">IntPtr</type>
+          <type native="Result (IBufferResource *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

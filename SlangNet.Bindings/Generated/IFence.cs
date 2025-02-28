@@ -11,31 +11,31 @@ public unsafe partial struct IFence
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IFence* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IFence* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IFence* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getCurrentValue(IFence* pThis, [NativeTypeName("uint64_t *")] nuint* outValue);
+    public delegate int _getCurrentValue(IFence* pThis, [NativeTypeName("uint64_t *")] ulong* outValue);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _setCurrentValue(IFence* pThis, [NativeTypeName("uint64_t")] nuint value);
+    public delegate int _setCurrentValue(IFence* pThis, [NativeTypeName("uint64_t")] ulong value);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getSharedHandle(IFence* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getNativeHandle(IFence* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle);
 
@@ -44,7 +44,7 @@ public unsafe partial struct IFence
     {
         /// <include file='FenceDesc.xml' path='doc/member[@name="FenceDesc.initialValue"]/*' />
         [NativeTypeName("uint64_t")]
-        public nuint initialValue;
+        public ulong initialValue;
 
         /// <include file='FenceDesc.xml' path='doc/member[@name="FenceDesc.isShared"]/*' />
         [NativeTypeName("bool")]
@@ -78,7 +78,7 @@ public unsafe partial struct IFence
     /// <include file='IFence.xml' path='doc/member[@name="IFence.getCurrentValue"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getCurrentValue([NativeTypeName("uint64_t *")] nuint* outValue)
+    public int getCurrentValue([NativeTypeName("uint64_t *")] ulong* outValue)
     {
         return Marshal.GetDelegateForFunctionPointer<_getCurrentValue>(lpVtbl->getCurrentValue)((IFence*)Unsafe.AsPointer(ref this), outValue);
     }
@@ -86,7 +86,7 @@ public unsafe partial struct IFence
     /// <include file='IFence.xml' path='doc/member[@name="IFence.setCurrentValue"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int setCurrentValue([NativeTypeName("uint64_t")] nuint value)
+    public int setCurrentValue([NativeTypeName("uint64_t")] ulong value)
     {
         return Marshal.GetDelegateForFunctionPointer<_setCurrentValue>(lpVtbl->setCurrentValue)((IFence*)Unsafe.AsPointer(ref this), value);
     }
@@ -109,25 +109,25 @@ public unsafe partial struct IFence
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Result (uint64_t *)")]
+        [NativeTypeName("Result (uint64_t *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getCurrentValue;
 
-        [NativeTypeName("Result (uint64_t)")]
+        [NativeTypeName("Result (uint64_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setCurrentValue;
 
-        [NativeTypeName("Result (InteropHandle *)")]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSharedHandle;
 
-        [NativeTypeName("Result (InteropHandle *)")]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getNativeHandle;
     }
 }

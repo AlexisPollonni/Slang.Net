@@ -11,42 +11,42 @@ public unsafe partial struct ISwapchain
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(ISwapchain* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(ISwapchain* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(ISwapchain* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("const Desc &")]
     public delegate SwapchainDesc* _getDesc(ISwapchain* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getImage(ISwapchain* pThis, [NativeTypeName("gfx::GfxIndex")] int index, ITextureResource** outResource);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _present(ISwapchain* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate int _acquireNextImage(ISwapchain* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _resize(ISwapchain* pThis, [NativeTypeName("gfx::GfxCount")] int width, [NativeTypeName("gfx::GfxCount")] int height);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("bool")]
     public delegate byte _isOccluded(ISwapchain* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setFullScreenMode(ISwapchain* pThis, [NativeTypeName("bool")] byte mode);
 
@@ -158,34 +158,34 @@ public unsafe partial struct ISwapchain
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("const Desc &()")]
+        [NativeTypeName("const Desc &() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDesc;
 
-        [NativeTypeName("Result (GfxIndex, ITextureResource **)")]
+        [NativeTypeName("Result (GfxIndex, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getImage;
 
-        [NativeTypeName("Result ()")]
+        [NativeTypeName("Result () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr present;
 
-        [NativeTypeName("int ()")]
+        [NativeTypeName("int () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr acquireNextImage;
 
-        [NativeTypeName("Result (GfxCount, GfxCount)")]
+        [NativeTypeName("Result (GfxCount, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr resize;
 
-        [NativeTypeName("bool ()")]
+        [NativeTypeName("bool () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr isOccluded;
 
-        [NativeTypeName("Result (bool)")]
+        [NativeTypeName("Result (bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setFullScreenMode;
     }
 }

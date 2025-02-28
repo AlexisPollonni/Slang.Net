@@ -12,87 +12,87 @@ public unsafe partial struct IRayTracingCommandEncoder
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IRayTracingCommandEncoder* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IRayTracingCommandEncoder* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IRayTracingCommandEncoder* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _endEncoding(IRayTracingCommandEncoder* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _writeTimestamp(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IQueryPool *")] IQueryPool* queryPool, [NativeTypeName("gfx::GfxIndex")] int queryIndex);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _copyBuffer(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* dst, [NativeTypeName("gfx::Offset")] nuint dstOffset, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* src, [NativeTypeName("gfx::Offset")] nuint srcOffset, [NativeTypeName("gfx::Size")] nuint size);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _copyTexture(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* dst, [NativeTypeName("gfx::ResourceState")] ResourceState dstState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange dstSubresource, [NativeTypeName("gfx::ITextureResource::Offset3D")] Offset3D dstOffset, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* src, [NativeTypeName("gfx::ResourceState")] ResourceState srcState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange srcSubresource, [NativeTypeName("gfx::ITextureResource::Offset3D")] Offset3D srcOffset, [NativeTypeName("gfx::ITextureResource::Extents")] Extents extent);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _copyTextureToBuffer(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* dst, [NativeTypeName("gfx::Offset")] nuint dstOffset, [NativeTypeName("gfx::Size")] nuint dstSize, [NativeTypeName("gfx::Size")] nuint dstRowStride, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* src, [NativeTypeName("gfx::ResourceState")] ResourceState srcState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange srcSubresource, [NativeTypeName("gfx::ITextureResource::Offset3D")] Offset3D srcOffset, [NativeTypeName("gfx::ITextureResource::Extents")] Extents extent);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _uploadTextureData(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* dst, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange subResourceRange, [NativeTypeName("gfx::ITextureResource::Offset3D")] Offset3D offset, [NativeTypeName("gfx::ITextureResource::Extents")] Extents extent, [NativeTypeName("gfx::ITextureResource::SubresourceData *")] SubresourceData* subResourceData, [NativeTypeName("gfx::GfxCount")] int subResourceDataCount);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _uploadBufferData(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* dst, [NativeTypeName("gfx::Offset")] nuint offset, [NativeTypeName("gfx::Size")] nuint size, void* data);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _textureBarrier(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("ITextureResource *const *")] ITextureResource** textures, [NativeTypeName("gfx::ResourceState")] ResourceState src, [NativeTypeName("gfx::ResourceState")] ResourceState dst);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _textureSubresourceBarrier(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* texture, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange subresourceRange, [NativeTypeName("gfx::ResourceState")] ResourceState src, [NativeTypeName("gfx::ResourceState")] ResourceState dst);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _bufferBarrier(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("IBufferResource *const *")] IBufferResource** buffers, [NativeTypeName("gfx::ResourceState")] ResourceState src, [NativeTypeName("gfx::ResourceState")] ResourceState dst);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _clearResourceView(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IResourceView *")] IResourceView* view, [NativeTypeName("gfx::ClearValue *")] ClearValue* clearValue, [NativeTypeName("gfx::ClearResourceViewFlags::Enum")] Enum flags);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _resolveResource(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* source, [NativeTypeName("gfx::ResourceState")] ResourceState sourceState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange sourceRange, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* dest, [NativeTypeName("gfx::ResourceState")] ResourceState destState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange destRange);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _resolveQuery(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IQueryPool *")] IQueryPool* queryPool, [NativeTypeName("gfx::GfxIndex")] int index, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* buffer, [NativeTypeName("gfx::Offset")] nuint offset);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _beginDebugEvent(IRayTracingCommandEncoder* pThis, [NativeTypeName("const char *")] sbyte* name, [NativeTypeName("float[3]")] float* rgbColor);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _endDebugEvent(IRayTracingCommandEncoder* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _buildAccelerationStructure(IRayTracingCommandEncoder* pThis, [NativeTypeName("const IAccelerationStructure::BuildDesc &")] BuildDesc* desc, [NativeTypeName("gfx::GfxCount")] int propertyQueryCount, [NativeTypeName("gfx::AccelerationStructureQueryDesc *")] AccelerationStructureQueryDesc* queryDescs);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _copyAccelerationStructure(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* dest, [NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* src, [NativeTypeName("gfx::AccelerationStructureCopyMode")] AccelerationStructureCopyMode mode);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _queryAccelerationStructureProperties(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int accelerationStructureCount, [NativeTypeName("IAccelerationStructure *const *")] IAccelerationStructure** accelerationStructures, [NativeTypeName("gfx::GfxCount")] int queryCount, [NativeTypeName("gfx::AccelerationStructureQueryDesc *")] AccelerationStructureQueryDesc* queryDescs);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    public delegate void _serializeAccelerationStructure(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::DeviceAddress")] nuint dest, [NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* source);
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    public delegate void _serializeAccelerationStructure(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::DeviceAddress")] ulong dest, [NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* source);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    public delegate void _deserializeAccelerationStructure(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* dest, [NativeTypeName("gfx::DeviceAddress")] nuint source);
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    public delegate void _deserializeAccelerationStructure(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* dest, [NativeTypeName("gfx::DeviceAddress")] ulong source);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _bindPipeline(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IPipelineState *")] IPipelineState* state, IShaderObject** outRootObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _bindPipelineWithRootObject(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::IPipelineState *")] IPipelineState* state, [NativeTypeName("gfx::IShaderObject *")] IShaderObject* rootObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _dispatchRays(IRayTracingCommandEncoder* pThis, [NativeTypeName("gfx::GfxIndex")] int rayGenShaderIndex, [NativeTypeName("gfx::IShaderTable *")] IShaderTable* shaderTable, [NativeTypeName("gfx::GfxCount")] int width, [NativeTypeName("gfx::GfxCount")] int height, [NativeTypeName("gfx::GfxCount")] int depth);
 
@@ -248,14 +248,14 @@ public unsafe partial struct IRayTracingCommandEncoder
 
     /// <include file='IRayTracingCommandEncoder.xml' path='doc/member[@name="IRayTracingCommandEncoder.serializeAccelerationStructure"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void serializeAccelerationStructure([NativeTypeName("gfx::DeviceAddress")] nuint dest, [NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* source)
+    public void serializeAccelerationStructure([NativeTypeName("gfx::DeviceAddress")] ulong dest, [NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* source)
     {
         Marshal.GetDelegateForFunctionPointer<_serializeAccelerationStructure>(lpVtbl->serializeAccelerationStructure)((IRayTracingCommandEncoder*)Unsafe.AsPointer(ref this), dest, source);
     }
 
     /// <include file='IRayTracingCommandEncoder.xml' path='doc/member[@name="IRayTracingCommandEncoder.deserializeAccelerationStructure"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void deserializeAccelerationStructure([NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* dest, [NativeTypeName("gfx::DeviceAddress")] nuint source)
+    public void deserializeAccelerationStructure([NativeTypeName("gfx::IAccelerationStructure *")] IAccelerationStructure* dest, [NativeTypeName("gfx::DeviceAddress")] ulong source)
     {
         Marshal.GetDelegateForFunctionPointer<_deserializeAccelerationStructure>(lpVtbl->deserializeAccelerationStructure)((IRayTracingCommandEncoder*)Unsafe.AsPointer(ref this), dest, source);
     }
@@ -286,82 +286,82 @@ public unsafe partial struct IRayTracingCommandEncoder
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void ()")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr endEncoding;
 
-        [NativeTypeName("void (IQueryPool *, GfxIndex)")]
+        [NativeTypeName("void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr writeTimestamp;
 
-        [NativeTypeName("void (IBufferResource *, Offset, IBufferResource *, Offset, Size)")]
+        [NativeTypeName("void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr copyBuffer;
 
-        [NativeTypeName("void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents)")]
+        [NativeTypeName("void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr copyTexture;
 
-        [NativeTypeName("void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents)")]
+        [NativeTypeName("void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr copyTextureToBuffer;
 
-        [NativeTypeName("void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount)")]
+        [NativeTypeName("void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr uploadTextureData;
 
-        [NativeTypeName("void (IBufferResource *, Offset, Size, void *)")]
+        [NativeTypeName("void (IBufferResource *, Offset, Size, void *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr uploadBufferData;
 
-        [NativeTypeName("void (GfxCount, ITextureResource *const *, ResourceState, ResourceState)")]
+        [NativeTypeName("void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr textureBarrier;
 
-        [NativeTypeName("void (ITextureResource *, SubresourceRange, ResourceState, ResourceState)")]
+        [NativeTypeName("void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr textureSubresourceBarrier;
 
-        [NativeTypeName("void (GfxCount, IBufferResource *const *, ResourceState, ResourceState)")]
+        [NativeTypeName("void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr bufferBarrier;
 
-        [NativeTypeName("void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum)")]
+        [NativeTypeName("void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr clearResourceView;
 
-        [NativeTypeName("void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange)")]
+        [NativeTypeName("void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr resolveResource;
 
-        [NativeTypeName("void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset)")]
+        [NativeTypeName("void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr resolveQuery;
 
-        [NativeTypeName("void (const char *, float *)")]
+        [NativeTypeName("void (const char *, float *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr beginDebugEvent;
 
-        [NativeTypeName("void ()")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr endDebugEvent;
 
-        [NativeTypeName("void (const IAccelerationStructure::BuildDesc &, GfxCount, AccelerationStructureQueryDesc *)")]
+        [NativeTypeName("void (const IAccelerationStructure::BuildDesc &, GfxCount, AccelerationStructureQueryDesc *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr buildAccelerationStructure;
 
-        [NativeTypeName("void (IAccelerationStructure *, IAccelerationStructure *, AccelerationStructureCopyMode)")]
+        [NativeTypeName("void (IAccelerationStructure *, IAccelerationStructure *, AccelerationStructureCopyMode) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr copyAccelerationStructure;
 
-        [NativeTypeName("void (GfxCount, IAccelerationStructure *const *, GfxCount, AccelerationStructureQueryDesc *)")]
+        [NativeTypeName("void (GfxCount, IAccelerationStructure *const *, GfxCount, AccelerationStructureQueryDesc *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryAccelerationStructureProperties;
 
-        [NativeTypeName("void (DeviceAddress, IAccelerationStructure *)")]
+        [NativeTypeName("void (DeviceAddress, IAccelerationStructure *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr serializeAccelerationStructure;
 
-        [NativeTypeName("void (IAccelerationStructure *, DeviceAddress)")]
+        [NativeTypeName("void (IAccelerationStructure *, DeviceAddress) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr deserializeAccelerationStructure;
 
-        [NativeTypeName("Result (IPipelineState *, IShaderObject **)")]
+        [NativeTypeName("Result (IPipelineState *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr bindPipeline;
 
-        [NativeTypeName("Result (IPipelineState *, IShaderObject *)")]
+        [NativeTypeName("Result (IPipelineState *, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr bindPipelineWithRootObject;
 
-        [NativeTypeName("Result (GfxIndex, IShaderTable *, GfxCount, GfxCount, GfxCount)")]
+        [NativeTypeName("Result (GfxIndex, IShaderTable *, GfxCount, GfxCount, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr dispatchRays;
     }
 }

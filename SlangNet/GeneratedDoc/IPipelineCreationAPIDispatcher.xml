@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -17,19 +17,19 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
         </param>
       </delegate>
-      <delegate name="_createComputePipelineState" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createComputePipelineState" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -47,7 +47,7 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_createGraphicsPipelineState" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createGraphicsPipelineState" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -65,7 +65,7 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_createMeshPipelineState" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createMeshPipelineState" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -83,7 +83,7 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_beforeCreateRayTracingState" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_beforeCreateRayTracingState" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -95,7 +95,7 @@
           <type>IComponentType*</type>
         </param>
       </delegate>
-      <delegate name="_afterCreateRayTracingState" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_afterCreateRayTracingState" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -211,28 +211,28 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createComputePipelineState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *, void *, void **)">IntPtr</type>
+          <type native="Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createGraphicsPipelineState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *, void *, void **)">IntPtr</type>
+          <type native="Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createMeshPipelineState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *, void *, void **)">IntPtr</type>
+          <type native="Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="beforeCreateRayTracingState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *)">IntPtr</type>
+          <type native="Result (IDevice *, slang::IComponentType *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="afterCreateRayTracingState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *)">IntPtr</type>
+          <type native="Result (IDevice *, slang::IComponentType *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

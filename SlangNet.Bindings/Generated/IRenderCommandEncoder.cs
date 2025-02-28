@@ -12,118 +12,118 @@ public unsafe partial struct IRenderCommandEncoder
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IRenderCommandEncoder* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IRenderCommandEncoder* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IRenderCommandEncoder* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _endEncoding(IRenderCommandEncoder* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _writeTimestamp(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::IQueryPool *")] IQueryPool* queryPool, [NativeTypeName("gfx::GfxIndex")] int queryIndex);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _copyBuffer(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* dst, [NativeTypeName("gfx::Offset")] nuint dstOffset, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* src, [NativeTypeName("gfx::Offset")] nuint srcOffset, [NativeTypeName("gfx::Size")] nuint size);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _copyTexture(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* dst, [NativeTypeName("gfx::ResourceState")] ResourceState dstState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange dstSubresource, [NativeTypeName("gfx::ITextureResource::Offset3D")] Offset3D dstOffset, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* src, [NativeTypeName("gfx::ResourceState")] ResourceState srcState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange srcSubresource, [NativeTypeName("gfx::ITextureResource::Offset3D")] Offset3D srcOffset, [NativeTypeName("gfx::ITextureResource::Extents")] Extents extent);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _copyTextureToBuffer(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* dst, [NativeTypeName("gfx::Offset")] nuint dstOffset, [NativeTypeName("gfx::Size")] nuint dstSize, [NativeTypeName("gfx::Size")] nuint dstRowStride, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* src, [NativeTypeName("gfx::ResourceState")] ResourceState srcState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange srcSubresource, [NativeTypeName("gfx::ITextureResource::Offset3D")] Offset3D srcOffset, [NativeTypeName("gfx::ITextureResource::Extents")] Extents extent);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _uploadTextureData(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* dst, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange subResourceRange, [NativeTypeName("gfx::ITextureResource::Offset3D")] Offset3D offset, [NativeTypeName("gfx::ITextureResource::Extents")] Extents extent, [NativeTypeName("gfx::ITextureResource::SubresourceData *")] SubresourceData* subResourceData, [NativeTypeName("gfx::GfxCount")] int subResourceDataCount);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _uploadBufferData(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* dst, [NativeTypeName("gfx::Offset")] nuint offset, [NativeTypeName("gfx::Size")] nuint size, void* data);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _textureBarrier(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("ITextureResource *const *")] ITextureResource** textures, [NativeTypeName("gfx::ResourceState")] ResourceState src, [NativeTypeName("gfx::ResourceState")] ResourceState dst);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _textureSubresourceBarrier(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* texture, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange subresourceRange, [NativeTypeName("gfx::ResourceState")] ResourceState src, [NativeTypeName("gfx::ResourceState")] ResourceState dst);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _bufferBarrier(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("IBufferResource *const *")] IBufferResource** buffers, [NativeTypeName("gfx::ResourceState")] ResourceState src, [NativeTypeName("gfx::ResourceState")] ResourceState dst);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _clearResourceView(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::IResourceView *")] IResourceView* view, [NativeTypeName("gfx::ClearValue *")] ClearValue* clearValue, [NativeTypeName("gfx::ClearResourceViewFlags::Enum")] Enum flags);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _resolveResource(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* source, [NativeTypeName("gfx::ResourceState")] ResourceState sourceState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange sourceRange, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* dest, [NativeTypeName("gfx::ResourceState")] ResourceState destState, [NativeTypeName("gfx::SubresourceRange")] SubresourceRange destRange);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _resolveQuery(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::IQueryPool *")] IQueryPool* queryPool, [NativeTypeName("gfx::GfxIndex")] int index, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* buffer, [NativeTypeName("gfx::Offset")] nuint offset);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _beginDebugEvent(IRenderCommandEncoder* pThis, [NativeTypeName("const char *")] sbyte* name, [NativeTypeName("float[3]")] float* rgbColor);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _endDebugEvent(IRenderCommandEncoder* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _bindPipeline(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::IPipelineState *")] IPipelineState* state, IShaderObject** outRootShaderObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _bindPipelineWithRootObject(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::IPipelineState *")] IPipelineState* state, [NativeTypeName("gfx::IShaderObject *")] IShaderObject* rootObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setViewports(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("const Viewport *")] Viewport* viewports);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setScissorRects(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("const ScissorRect *")] ScissorRect* scissors);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setPrimitiveTopology(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::PrimitiveTopology")] PrimitiveTopology topology);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setVertexBuffers(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxIndex")] int startSlot, [NativeTypeName("gfx::GfxCount")] int slotCount, [NativeTypeName("IBufferResource *const *")] IBufferResource** buffers, [NativeTypeName("const Offset *")] nuint* offsets);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setIndexBuffer(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* buffer, [NativeTypeName("gfx::Format")] Format indexFormat, [NativeTypeName("gfx::Offset")] nuint offset = 0);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _draw(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int vertexCount, [NativeTypeName("gfx::GfxIndex")] int startVertex = 0);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _drawIndexed(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int indexCount, [NativeTypeName("gfx::GfxIndex")] int startIndex = 0, [NativeTypeName("gfx::GfxIndex")] int baseVertex = 0);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _drawIndirect(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int maxDrawCount, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* argBuffer, [NativeTypeName("gfx::Offset")] nuint argOffset, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* countBuffer = null, [NativeTypeName("gfx::Offset")] nuint countOffset = 0);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _drawIndexedIndirect(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int maxDrawCount, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* argBuffer, [NativeTypeName("gfx::Offset")] nuint argOffset, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* countBuffer = null, [NativeTypeName("gfx::Offset")] nuint countOffset = 0);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setStencilReference(IRenderCommandEncoder* pThis, [NativeTypeName("uint32_t")] uint referenceValue);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setSamplePositions(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int samplesPerPixel, [NativeTypeName("gfx::GfxCount")] int pixelCount, [NativeTypeName("const SamplePosition *")] SamplePosition* samplePositions);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _drawInstanced(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int vertexCount, [NativeTypeName("gfx::GfxCount")] int instanceCount, [NativeTypeName("gfx::GfxIndex")] int startVertex, [NativeTypeName("gfx::GfxIndex")] int startInstanceLocation);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _drawIndexedInstanced(IRenderCommandEncoder* pThis, [NativeTypeName("gfx::GfxCount")] int indexCount, [NativeTypeName("gfx::GfxCount")] int instanceCount, [NativeTypeName("gfx::GfxIndex")] int startIndexLocation, [NativeTypeName("gfx::GfxIndex")] int baseVertexLocation, [NativeTypeName("gfx::GfxIndex")] int startInstanceLocation);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _drawMeshTasks(IRenderCommandEncoder* pThis, int x, int y, int z);
 
@@ -380,106 +380,106 @@ public unsafe partial struct IRenderCommandEncoder
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void ()")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr endEncoding;
 
-        [NativeTypeName("void (IQueryPool *, GfxIndex)")]
+        [NativeTypeName("void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr writeTimestamp;
 
-        [NativeTypeName("void (IBufferResource *, Offset, IBufferResource *, Offset, Size)")]
+        [NativeTypeName("void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr copyBuffer;
 
-        [NativeTypeName("void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents)")]
+        [NativeTypeName("void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr copyTexture;
 
-        [NativeTypeName("void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents)")]
+        [NativeTypeName("void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr copyTextureToBuffer;
 
-        [NativeTypeName("void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount)")]
+        [NativeTypeName("void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr uploadTextureData;
 
-        [NativeTypeName("void (IBufferResource *, Offset, Size, void *)")]
+        [NativeTypeName("void (IBufferResource *, Offset, Size, void *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr uploadBufferData;
 
-        [NativeTypeName("void (GfxCount, ITextureResource *const *, ResourceState, ResourceState)")]
+        [NativeTypeName("void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr textureBarrier;
 
-        [NativeTypeName("void (ITextureResource *, SubresourceRange, ResourceState, ResourceState)")]
+        [NativeTypeName("void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr textureSubresourceBarrier;
 
-        [NativeTypeName("void (GfxCount, IBufferResource *const *, ResourceState, ResourceState)")]
+        [NativeTypeName("void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr bufferBarrier;
 
-        [NativeTypeName("void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum)")]
+        [NativeTypeName("void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr clearResourceView;
 
-        [NativeTypeName("void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange)")]
+        [NativeTypeName("void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr resolveResource;
 
-        [NativeTypeName("void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset)")]
+        [NativeTypeName("void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr resolveQuery;
 
-        [NativeTypeName("void (const char *, float *)")]
+        [NativeTypeName("void (const char *, float *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr beginDebugEvent;
 
-        [NativeTypeName("void ()")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr endDebugEvent;
 
-        [NativeTypeName("Result (IPipelineState *, IShaderObject **)")]
+        [NativeTypeName("Result (IPipelineState *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr bindPipeline;
 
-        [NativeTypeName("Result (IPipelineState *, IShaderObject *)")]
+        [NativeTypeName("Result (IPipelineState *, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr bindPipelineWithRootObject;
 
-        [NativeTypeName("void (GfxCount, const Viewport *)")]
+        [NativeTypeName("void (GfxCount, const Viewport *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setViewports;
 
-        [NativeTypeName("void (GfxCount, const ScissorRect *)")]
+        [NativeTypeName("void (GfxCount, const ScissorRect *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setScissorRects;
 
-        [NativeTypeName("void (PrimitiveTopology)")]
+        [NativeTypeName("void (PrimitiveTopology) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setPrimitiveTopology;
 
-        [NativeTypeName("void (GfxIndex, GfxCount, IBufferResource *const *, const Offset *)")]
+        [NativeTypeName("void (GfxIndex, GfxCount, IBufferResource *const *, const Offset *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setVertexBuffers;
 
-        [NativeTypeName("void (IBufferResource *, Format, Offset)")]
+        [NativeTypeName("void (IBufferResource *, Format, Offset) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setIndexBuffer;
 
-        [NativeTypeName("Result (GfxCount, GfxIndex)")]
+        [NativeTypeName("Result (GfxCount, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr draw;
 
-        [NativeTypeName("Result (GfxCount, GfxIndex, GfxIndex)")]
+        [NativeTypeName("Result (GfxCount, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr drawIndexed;
 
-        [NativeTypeName("Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset)")]
+        [NativeTypeName("Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr drawIndirect;
 
-        [NativeTypeName("Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset)")]
+        [NativeTypeName("Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr drawIndexedIndirect;
 
-        [NativeTypeName("void (uint32_t)")]
+        [NativeTypeName("void (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setStencilReference;
 
-        [NativeTypeName("Result (GfxCount, GfxCount, const SamplePosition *)")]
+        [NativeTypeName("Result (GfxCount, GfxCount, const SamplePosition *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setSamplePositions;
 
-        [NativeTypeName("Result (GfxCount, GfxCount, GfxIndex, GfxIndex)")]
+        [NativeTypeName("Result (GfxCount, GfxCount, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr drawInstanced;
 
-        [NativeTypeName("Result (GfxCount, GfxCount, GfxIndex, GfxIndex, GfxIndex)")]
+        [NativeTypeName("Result (GfxCount, GfxCount, GfxIndex, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr drawIndexedInstanced;
 
-        [NativeTypeName("Result (int, int, int)")]
+        [NativeTypeName("Result (int, int, int) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr drawMeshTasks;
     }
 }

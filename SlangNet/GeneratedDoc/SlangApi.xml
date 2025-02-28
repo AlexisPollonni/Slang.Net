@@ -3,67 +3,67 @@
   <namespace name="SlangNet.Bindings.Generated">
     <class name="SlangApi" access="public" static="true">
       <constant name="SLANG_DIAGNOSTIC_FLAG_VERBOSE_PATHS" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x01</code>
         </value>
       </constant>
       <constant name="SLANG_DIAGNOSTIC_FLAG_TREAT_WARNINGS_AS_ERRORS" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x02</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_NO_MANGLING" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 3</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_NO_CODEGEN" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 4</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_OBFUSCATE" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 5</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_NO_CHECKING" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_SPLIT_MIXED_TYPES" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0</code>
         </value>
       </constant>
       <constant name="SLANG_TARGET_FLAG_PARAMETER_BLOCKS_USE_REGISTER_SPACES" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 4</code>
         </value>
       </constant>
       <constant name="SLANG_TARGET_FLAG_GENERATE_WHOLE_PROGRAM" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 8</code>
         </value>
       </constant>
       <constant name="SLANG_TARGET_FLAG_DUMP_IR" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 9</code>
         </value>
       </constant>
       <constant name="SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 10</code>
         </value>
@@ -857,7 +857,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="messageID">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="overrideSeverity">
           <type>Severity</type>
@@ -1119,7 +1119,7 @@
         </param>
       </function>
       <function name="ReflectionTypeLayout_findFieldIndexByName" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_findFieldIndexByName" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
@@ -1209,7 +1209,7 @@
         </param>
       </function>
       <function name="ReflectionType_getSpecializedTypeArgCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionType_getSpecializedTypeArgCount" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="type">
           <type>SlangReflectionType*</type>
         </param>
@@ -1220,11 +1220,11 @@
           <type>SlangReflectionType*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getBindingRangeCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getBindingRangeCount" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
@@ -1235,25 +1235,25 @@
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_isBindingRangeSpecializable" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_isBindingRangeSpecializable" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getBindingRangeBindingCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getBindingRangeBindingCount" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getBindingRangeLeafTypeLayout" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getBindingRangeLeafTypeLayout" static="true" unsafe="true">
@@ -1262,7 +1262,7 @@
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getBindingRangeLeafVariable" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getBindingRangeLeafVariable" static="true" unsafe="true">
@@ -1271,7 +1271,7 @@
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getBindingRangeImageFormat" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getBindingRangeImageFormat" static="true" unsafe="true">
@@ -1280,97 +1280,97 @@
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getFieldBindingRangeOffset" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getFieldBindingRangeOffset" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="fieldIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getExplicitCounterBindingRangeOffset" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getExplicitCounterBindingRangeOffset" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="inTypeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getBindingRangeDescriptorSetIndex" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getBindingRangeDescriptorSetIndex" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getBindingRangeDescriptorRangeCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getBindingRangeDescriptorRangeCount" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="index">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getDescriptorSetCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getDescriptorSetCount" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getDescriptorSetSpaceOffset" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getDescriptorSetSpaceOffset" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="setIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getDescriptorSetDescriptorRangeCount" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="setIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="setIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="rangeIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="setIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="rangeIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getDescriptorSetDescriptorRangeType" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getDescriptorSetDescriptorRangeType" static="true" unsafe="true">
@@ -1379,10 +1379,10 @@
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="setIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="rangeIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory" static="true" unsafe="true">
@@ -1391,34 +1391,34 @@
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="setIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="rangeIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getSubObjectRangeCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getSubObjectRangeCount" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getSubObjectRangeBindingRangeIndex" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getSubObjectRangeBindingRangeIndex" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="subObjectRangeIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getSubObjectRangeSpaceOffset" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getSubObjectRangeSpaceOffset" static="true" unsafe="true">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
         <param name="typeLayout">
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="subObjectRangeIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionTypeLayout_getSubObjectRangeOffset" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionTypeLayout_getSubObjectRangeOffset" static="true" unsafe="true">
@@ -1427,7 +1427,7 @@
           <type>SlangReflectionTypeLayout*</type>
         </param>
         <param name="subObjectRangeIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
       </function>
       <function name="ReflectionVariable_GetName" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionVariable_GetName" static="true" unsafe="true">
@@ -1631,7 +1631,7 @@
           <type>SlangReflectionFunction*</type>
         </param>
         <param name="argTypeCount">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="argTypes">
           <type>SlangReflectionType**</type>
@@ -1806,7 +1806,7 @@
         </param>
       </function>
       <function name="ReflectionGeneric_GetConcreteIntVal" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionGeneric_GetConcreteIntVal" static="true" unsafe="true">
-        <type native="int64_t">nint</type>
+        <type native="int64_t">long</type>
         <param name="generic">
           <type>SlangReflectionGeneric*</type>
         </param>
@@ -1853,19 +1853,19 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="entryPointIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="targetIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="category">
           <type>ParameterCategory</type>
         </param>
         <param name="spaceIndex">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="registerIndex">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="outUsed">
           <type>bool*</type>
@@ -1916,10 +1916,10 @@
           <type>SlangEntryPointLayout*</type>
         </param>
         <param name="axisCount">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="outSizeAlongAxis">
-          <type>nuint*</type>
+          <type>ulong*</type>
         </param>
       </function>
       <function name="ReflectionEntryPoint_getComputeWaveSize" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionEntryPoint_getComputeWaveSize" static="true" unsafe="true">
@@ -1928,7 +1928,7 @@
           <type>SlangEntryPointLayout*</type>
         </param>
         <param name="outWaveSize">
-          <type>nuint*</type>
+          <type>ulong*</type>
         </param>
       </function>
       <function name="ReflectionEntryPoint_usesAnySampleRateInput" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionEntryPoint_usesAnySampleRateInput" static="true" unsafe="true">
@@ -2088,7 +2088,7 @@
         </param>
       </function>
       <function name="Reflection_getEntryPointCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflection_getEntryPointCount" static="true" unsafe="true">
-        <type native="SlangUInt">nuint</type>
+        <type native="SlangUInt">ulong</type>
         <param name="reflection">
           <type>SlangProgramLayout*</type>
         </param>
@@ -2099,7 +2099,7 @@
           <type>SlangProgramLayout*</type>
         </param>
         <param name="index">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
       </function>
       <function name="Reflection_findEntryPointByName" access="public" lib="slang" convention="Cdecl" entrypoint="spReflection_findEntryPointByName" static="true" unsafe="true">
@@ -2112,7 +2112,7 @@
         </param>
       </function>
       <function name="Reflection_getGlobalConstantBufferBinding" access="public" lib="slang" convention="Cdecl" entrypoint="spReflection_getGlobalConstantBufferBinding" static="true" unsafe="true">
-        <type native="SlangUInt">nuint</type>
+        <type native="SlangUInt">ulong</type>
         <param name="reflection">
           <type>SlangProgramLayout*</type>
         </param>
@@ -2132,7 +2132,7 @@
           <type>SlangReflectionType*</type>
         </param>
         <param name="specializationArgCount">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="specializationArgs">
           <type>SlangReflectionType**</type>
@@ -2150,7 +2150,7 @@
           <type>SlangReflectionGeneric*</type>
         </param>
         <param name="argCount">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="argTypes">
           <type>ReflectionGenericArgType*</type>
@@ -2175,7 +2175,7 @@
         </param>
       </function>
       <function name="Reflection_getHashedStringCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflection_getHashedStringCount" static="true" unsafe="true">
-        <type native="SlangUInt">nuint</type>
+        <type native="SlangUInt">ulong</type>
         <param name="reflection">
           <type>SlangProgramLayout*</type>
         </param>
@@ -2186,7 +2186,7 @@
           <type>SlangProgramLayout*</type>
         </param>
         <param name="index">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="outCount">
           <type>nuint*</type>
@@ -2222,7 +2222,7 @@
           <type>int</type>
         </param>
       </function>
-      <function name="Reflection_GetSession" access="public" lib="slang" convention="Cdecl" entrypoint="_Z23spReflection_GetSessionP18SlangProgramLayout" static="true" unsafe="true">
+      <function name="Reflection_GetSession" access="public" lib="slang" convention="Cdecl" entrypoint="?spReflection_GetSession@@YAPEAUISession@slang@@PEAUSlangProgramLayout@@@Z" static="true" unsafe="true">
         <type native="slang::ISession *">ISession*</type>
         <param name="reflection">
           <type>SlangProgramLayout*</type>
@@ -2252,7 +2252,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="entryPointIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="outEntryPoint">
           <type>IComponentType**</type>
@@ -2264,7 +2264,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="translationUnitIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="outModule">
           <type>IModule**</type>
@@ -2280,7 +2280,7 @@
         </param>
       </function>
       <constant name="kSessionFlags_None" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0</code>
         </value>
@@ -2288,7 +2288,7 @@
       <function name="slang_createGlobalSession" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="apiVersion">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="outGlobalSession">
           <type>IGlobalSession**</type>
@@ -2297,13 +2297,13 @@
       <function name="slang_createGlobalSessionWithoutCoreModule" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="apiVersion">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="outGlobalSession">
           <type>IGlobalSession**</type>
         </param>
       </function>
-      <function name="slang_getEmbeddedCoreModule" access="public" lib="slang" convention="Cdecl" entrypoint="_Z27slang_getEmbeddedCoreModulev" static="true" unsafe="true">
+      <function name="slang_getEmbeddedCoreModule" access="public" lib="slang" convention="Cdecl" entrypoint="?slang_getEmbeddedCoreModule@@YAPEAUISlangBlob@@XZ" static="true" unsafe="true">
         <type>ISlangBlob*</type>
       </function>
       <function name="slang_shutdown" access="public" lib="slang" convention="Cdecl" static="true">
@@ -2319,54 +2319,54 @@
         </value>
       </constant>
       <constant name="EnableNone" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0</code>
         </value>
       </constant>
       <constant name="EnableRed" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x01</code>
         </value>
       </constant>
       <constant name="EnableGreen" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x02</code>
         </value>
       </constant>
       <constant name="EnableBlue" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x04</code>
         </value>
       </constant>
       <constant name="EnableAlpha" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x08</code>
         </value>
       </constant>
       <constant name="EnableAll" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x0F</code>
         </value>
       </constant>
-      <function name="gfxIsCompressedFormat" access="public" lib="slang" convention="Cdecl" static="true">
+      <function name="gfxIsCompressedFormat" access="public" lib="slang" convention="StdCall" static="true">
         <type native="bool">byte</type>
         <param name="format">
           <type>Format</type>
         </param>
       </function>
-      <function name="gfxIsTypelessFormat" access="public" lib="slang" convention="Cdecl" static="true">
+      <function name="gfxIsTypelessFormat" access="public" lib="slang" convention="StdCall" static="true">
         <type native="bool">byte</type>
         <param name="format">
           <type>Format</type>
         </param>
       </function>
-      <function name="gfxGetFormatInfo" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+      <function name="gfxGetFormatInfo" access="public" lib="slang" convention="StdCall" static="true" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="format">
           <type>Format</type>
@@ -2375,7 +2375,7 @@
           <type>FormatInfo*</type>
         </param>
       </function>
-      <function name="gfxGetAdapters" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+      <function name="gfxGetAdapters" access="public" lib="slang" convention="StdCall" static="true" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="type">
           <type>DeviceType</type>
@@ -2384,7 +2384,7 @@
           <type>ISlangBlob**</type>
         </param>
       </function>
-      <function name="gfxCreateDevice" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+      <function name="gfxCreateDevice" access="public" lib="slang" convention="StdCall" static="true" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="desc">
           <type>DeviceDesc*</type>
@@ -2393,19 +2393,19 @@
           <type>IDevice**</type>
         </param>
       </function>
-      <function name="gfxReportLiveObjects" access="public" lib="slang" convention="Cdecl" static="true">
+      <function name="gfxReportLiveObjects" access="public" lib="slang" convention="StdCall" static="true">
         <type native="SlangResult">int</type>
       </function>
-      <function name="gfxSetDebugCallback" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+      <function name="gfxSetDebugCallback" access="public" lib="slang" convention="StdCall" static="true" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="callback">
           <type>IDebugCallback*</type>
         </param>
       </function>
-      <function name="gfxEnableDebugLayer" access="public" lib="slang" convention="Cdecl" static="true">
+      <function name="gfxEnableDebugLayer" access="public" lib="slang" convention="StdCall" static="true">
         <type>void</type>
       </function>
-      <function name="gfxGetDeviceTypeName" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+      <function name="gfxGetDeviceTypeName" access="public" lib="slang" convention="StdCall" static="true" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="type">
           <type>DeviceType</type>

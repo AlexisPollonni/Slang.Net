@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -17,19 +17,19 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_setFileSystem" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setFileSystem" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -38,7 +38,7 @@
           <type>ISlangFileSystem*</type>
         </param>
       </delegate>
-      <delegate name="_setCompileFlags" access="public" convention="ThisCall">
+      <delegate name="_setCompileFlags" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -47,13 +47,13 @@
           <type>uint</type>
         </param>
       </delegate>
-      <delegate name="_getCompileFlags" access="public" convention="ThisCall">
+      <delegate name="_getCompileFlags" access="public" convention="StdCall">
         <type native="SlangCompileFlags">uint</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_setDumpIntermediates" access="public" convention="ThisCall">
+      <delegate name="_setDumpIntermediates" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -62,7 +62,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_setDumpIntermediatePrefix" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setDumpIntermediatePrefix" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -71,7 +71,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_setLineDirectiveMode" access="public" convention="ThisCall">
+      <delegate name="_setLineDirectiveMode" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -80,7 +80,7 @@
           <type>LineDirectiveMode</type>
         </param>
       </delegate>
-      <delegate name="_setCodeGenTarget" access="public" convention="ThisCall">
+      <delegate name="_setCodeGenTarget" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -89,7 +89,7 @@
           <type>CompileTarget</type>
         </param>
       </delegate>
-      <delegate name="_addCodeGenTarget" access="public" convention="ThisCall">
+      <delegate name="_addCodeGenTarget" access="public" convention="StdCall">
         <type>int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -98,7 +98,7 @@
           <type>CompileTarget</type>
         </param>
       </delegate>
-      <delegate name="_setTargetProfile" access="public" convention="ThisCall">
+      <delegate name="_setTargetProfile" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -110,7 +110,7 @@
           <type>ProfileID</type>
         </param>
       </delegate>
-      <delegate name="_setTargetFlags" access="public" convention="ThisCall">
+      <delegate name="_setTargetFlags" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -122,7 +122,7 @@
           <type>uint</type>
         </param>
       </delegate>
-      <delegate name="_setTargetFloatingPointMode" access="public" convention="ThisCall">
+      <delegate name="_setTargetFloatingPointMode" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -134,7 +134,7 @@
           <type>FloatingPointMode</type>
         </param>
       </delegate>
-      <delegate name="_setTargetMatrixLayoutMode" access="public" convention="ThisCall">
+      <delegate name="_setTargetMatrixLayoutMode" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -146,7 +146,7 @@
           <type>MatrixLayoutMode</type>
         </param>
       </delegate>
-      <delegate name="_setMatrixLayoutMode" access="public" convention="ThisCall">
+      <delegate name="_setMatrixLayoutMode" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -155,7 +155,7 @@
           <type>MatrixLayoutMode</type>
         </param>
       </delegate>
-      <delegate name="_setDebugInfoLevel" access="public" convention="ThisCall">
+      <delegate name="_setDebugInfoLevel" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -164,7 +164,7 @@
           <type>DebugInfoLevel</type>
         </param>
       </delegate>
-      <delegate name="_setOptimizationLevel" access="public" convention="ThisCall">
+      <delegate name="_setOptimizationLevel" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -173,7 +173,7 @@
           <type>OptimizationLevel</type>
         </param>
       </delegate>
-      <delegate name="_setOutputContainerFormat" access="public" convention="ThisCall">
+      <delegate name="_setOutputContainerFormat" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -182,7 +182,7 @@
           <type>ContainerFormat</type>
         </param>
       </delegate>
-      <delegate name="_setPassThrough" access="public" convention="ThisCall">
+      <delegate name="_setPassThrough" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -191,7 +191,7 @@
           <type>PassThrough</type>
         </param>
       </delegate>
-      <delegate name="_setDiagnosticCallback" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setDiagnosticCallback" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -203,7 +203,7 @@
           <type>void*</type>
         </param>
       </delegate>
-      <delegate name="_setWriter" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setWriter" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -215,7 +215,7 @@
           <type>ISlangWriter*</type>
         </param>
       </delegate>
-      <delegate name="_getWriter" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getWriter" access="public" convention="StdCall" unsafe="true">
         <type>ISlangWriter*</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -224,7 +224,7 @@
           <type>WriterChannel</type>
         </param>
       </delegate>
-      <delegate name="_addSearchPath" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addSearchPath" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -233,7 +233,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_addPreprocessorDefine" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addPreprocessorDefine" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -245,7 +245,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_processCommandLineArguments" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_processCommandLineArguments" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -257,7 +257,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_addTranslationUnit" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addTranslationUnit" access="public" convention="StdCall" unsafe="true">
         <type>int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -269,7 +269,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_setDefaultModuleName" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setDefaultModuleName" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -278,7 +278,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_addTranslationUnitPreprocessorDefine" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addTranslationUnitPreprocessorDefine" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -293,7 +293,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_addTranslationUnitSourceFile" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addTranslationUnitSourceFile" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -305,7 +305,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_addTranslationUnitSourceString" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addTranslationUnitSourceString" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -320,7 +320,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_addLibraryReference" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addLibraryReference" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -335,7 +335,7 @@
           <type>nuint</type>
         </param>
       </delegate>
-      <delegate name="_addTranslationUnitSourceStringSpan" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addTranslationUnitSourceStringSpan" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -353,7 +353,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_addTranslationUnitSourceBlob" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addTranslationUnitSourceBlob" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -368,7 +368,7 @@
           <type>ISlangBlob*</type>
         </param>
       </delegate>
-      <delegate name="_addEntryPoint" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addEntryPoint" access="public" convention="StdCall" unsafe="true">
         <type>int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -383,7 +383,7 @@
           <type>Stage</type>
         </param>
       </delegate>
-      <delegate name="_addEntryPointEx" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_addEntryPointEx" access="public" convention="StdCall" unsafe="true">
         <type>int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -404,7 +404,7 @@
           <type>sbyte**</type>
         </param>
       </delegate>
-      <delegate name="_setGlobalGenericArgs" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setGlobalGenericArgs" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -416,7 +416,7 @@
           <type>sbyte**</type>
         </param>
       </delegate>
-      <delegate name="_setTypeNameForGlobalExistentialTypeParam" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setTypeNameForGlobalExistentialTypeParam" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -428,7 +428,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_setTypeNameForEntryPointExistentialTypeParam" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setTypeNameForEntryPointExistentialTypeParam" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -443,7 +443,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_setAllowGLSLInput" access="public" convention="ThisCall">
+      <delegate name="_setAllowGLSLInput" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -452,19 +452,19 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_compile" access="public" convention="ThisCall">
+      <delegate name="_compile" access="public" convention="StdCall">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_getDiagnosticOutput" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getDiagnosticOutput" access="public" convention="StdCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_getDiagnosticOutputBlob" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getDiagnosticOutputBlob" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -473,13 +473,13 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getDependencyFileCount" access="public" convention="ThisCall">
+      <delegate name="_getDependencyFileCount" access="public" convention="StdCall">
         <type>int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_getDependencyFilePath" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getDependencyFilePath" access="public" convention="StdCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -488,13 +488,13 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_getTranslationUnitCount" access="public" convention="ThisCall">
+      <delegate name="_getTranslationUnitCount" access="public" convention="StdCall">
         <type>int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_getEntryPointSource" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getEntryPointSource" access="public" convention="StdCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -503,7 +503,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_getEntryPointCode" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getEntryPointCode" access="public" convention="StdCall" unsafe="true">
         <type native="const void *">void*</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -515,7 +515,7 @@
           <type>nuint*</type>
         </param>
       </delegate>
-      <delegate name="_getEntryPointCodeBlob" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getEntryPointCodeBlob" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -530,7 +530,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getEntryPointHostCallable" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getEntryPointHostCallable" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -545,7 +545,7 @@
           <type>ISlangSharedLibrary**</type>
         </param>
       </delegate>
-      <delegate name="_getTargetCodeBlob" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getTargetCodeBlob" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -557,7 +557,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getTargetHostCallable" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getTargetHostCallable" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -569,7 +569,7 @@
           <type>ISlangSharedLibrary**</type>
         </param>
       </delegate>
-      <delegate name="_getCompileRequestCode" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getCompileRequestCode" access="public" convention="StdCall" unsafe="true">
         <type native="const void *">void*</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -578,13 +578,13 @@
           <type>nuint*</type>
         </param>
       </delegate>
-      <delegate name="_getCompileRequestResultAsFileSystem" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getCompileRequestResultAsFileSystem" access="public" convention="StdCall" unsafe="true">
         <type>ISlangMutableFileSystem*</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_getContainerCode" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getContainerCode" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -593,7 +593,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_loadRepro" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_loadRepro" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -608,7 +608,7 @@
           <type>nuint</type>
         </param>
       </delegate>
-      <delegate name="_saveRepro" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_saveRepro" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -617,13 +617,13 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_enableReproCapture" access="public" convention="ThisCall">
+      <delegate name="_enableReproCapture" access="public" convention="StdCall">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_getProgram" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getProgram" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -632,31 +632,31 @@
           <type>IComponentType**</type>
         </param>
       </delegate>
-      <delegate name="_getEntryPoint" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getEntryPoint" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
         <param name="entryPointIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="outEntryPoint">
           <type>IComponentType**</type>
         </param>
       </delegate>
-      <delegate name="_getModule" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getModule" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
         <param name="translationUnitIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="outModule">
           <type>IModule**</type>
         </param>
       </delegate>
-      <delegate name="_getSession" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getSession" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -665,31 +665,31 @@
           <type>ISession**</type>
         </param>
       </delegate>
-      <delegate name="_getReflection" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getReflection" access="public" convention="StdCall" unsafe="true">
         <type native="SlangReflection *">SlangProgramLayout*</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_setCommandLineCompilerMode" access="public" convention="ThisCall">
+      <delegate name="_setCommandLineCompilerMode" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_addTargetCapability" access="public" convention="ThisCall">
+      <delegate name="_addTargetCapability" access="public" convention="StdCall">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
         <param name="targetIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="capability">
           <type>CapabilityID</type>
         </param>
       </delegate>
-      <delegate name="_getProgramWithEntryPoints" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getProgramWithEntryPoints" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -698,43 +698,43 @@
           <type>IComponentType**</type>
         </param>
       </delegate>
-      <delegate name="_isParameterLocationUsed" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_isParameterLocationUsed" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
         <param name="entryPointIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="targetIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="category">
           <type>ParameterCategory</type>
         </param>
         <param name="spaceIndex">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="registerIndex">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="outUsed">
           <type>bool*</type>
         </param>
       </delegate>
-      <delegate name="_setTargetLineDirectiveMode" access="public" convention="ThisCall">
+      <delegate name="_setTargetLineDirectiveMode" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
         <param name="targetIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="mode">
           <type>LineDirectiveMode</type>
         </param>
       </delegate>
-      <delegate name="_setTargetForceGLSLScalarBufferLayout" access="public" convention="ThisCall">
+      <delegate name="_setTargetForceGLSLScalarBufferLayout" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -746,25 +746,25 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_overrideDiagnosticSeverity" access="public" convention="ThisCall">
+      <delegate name="_overrideDiagnosticSeverity" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
         <param name="messageID">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="overrideSeverity">
           <type>Severity</type>
         </param>
       </delegate>
-      <delegate name="_getDiagnosticFlags" access="public" convention="ThisCall">
+      <delegate name="_getDiagnosticFlags" access="public" convention="StdCall">
         <type native="SlangDiagnosticFlags">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
         </param>
       </delegate>
-      <delegate name="_setDiagnosticFlags" access="public" convention="ThisCall">
+      <delegate name="_setDiagnosticFlags" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -773,7 +773,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_setDebugInfoFormat" access="public" convention="ThisCall">
+      <delegate name="_setDebugInfoFormat" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -782,7 +782,7 @@
           <type>DebugInfoFormat</type>
         </param>
       </delegate>
-      <delegate name="_setEnableEffectAnnotations" access="public" convention="ThisCall">
+      <delegate name="_setEnableEffectAnnotations" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -791,7 +791,7 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_setReportDownstreamTime" access="public" convention="ThisCall">
+      <delegate name="_setReportDownstreamTime" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -800,7 +800,7 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_setReportPerfBenchmark" access="public" convention="ThisCall">
+      <delegate name="_setReportPerfBenchmark" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -809,7 +809,7 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_setSkipSPIRVValidation" access="public" convention="ThisCall">
+      <delegate name="_setSkipSPIRVValidation" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -818,7 +818,7 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_setTargetUseMinimumSlangOptimization" access="public" convention="ThisCall">
+      <delegate name="_setTargetUseMinimumSlangOptimization" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -830,7 +830,7 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_setIgnoreCapabilityCheck" access="public" convention="ThisCall">
+      <delegate name="_setIgnoreCapabilityCheck" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -839,7 +839,7 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_getCompileTimeProfile" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getCompileTimeProfile" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -851,7 +851,7 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_setTargetGenerateWholeProgram" access="public" convention="ThisCall">
+      <delegate name="_setTargetGenerateWholeProgram" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -863,7 +863,7 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_setTargetForceDXLayout" access="public" convention="ThisCall">
+      <delegate name="_setTargetForceDXLayout" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -875,7 +875,7 @@
           <type>byte</type>
         </param>
       </delegate>
-      <delegate name="_setTargetEmbedDownstreamIR" access="public" convention="ThisCall">
+      <delegate name="_setTargetEmbedDownstreamIR" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICompileRequest*</type>
@@ -1517,7 +1517,7 @@
       <function name="getEntryPoint" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="outEntryPoint">
           <type>IComponentType**</type>
@@ -1529,7 +1529,7 @@
       <function name="getModule" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="translationUnitIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="outModule">
           <type>IModule**</type>
@@ -1562,7 +1562,7 @@
       <function name="addTargetCapability" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="targetIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="capability">
           <type>CapabilityID</type>
@@ -1583,19 +1583,19 @@
       <function name="isParameterLocationUsed" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="targetIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="category">
           <type>ParameterCategory</type>
         </param>
         <param name="spaceIndex">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="registerIndex">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <param name="outUsed">
           <type>bool*</type>
@@ -1607,7 +1607,7 @@
       <function name="setTargetLineDirectiveMode" access="public" unsafe="true">
         <type>void</type>
         <param name="targetIndex">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="mode">
           <type>LineDirectiveMode</type>
@@ -1631,7 +1631,7 @@
       <function name="overrideDiagnosticSeverity" access="public" unsafe="true">
         <type>void</type>
         <param name="messageID">
-          <type>nint</type>
+          <type>long</type>
         </param>
         <param name="overrideSeverity">
           <type>Severity</type>
@@ -1771,253 +1771,253 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setFileSystem" access="public">
-          <type native="void (ISlangFileSystem *)">IntPtr</type>
+          <type native="void (ISlangFileSystem *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setCompileFlags" access="public">
-          <type native="void (SlangCompileFlags)">IntPtr</type>
+          <type native="void (SlangCompileFlags) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getCompileFlags" access="public">
-          <type native="SlangCompileFlags ()">IntPtr</type>
+          <type native="SlangCompileFlags () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setDumpIntermediates" access="public">
-          <type native="void (int)">IntPtr</type>
+          <type native="void (int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setDumpIntermediatePrefix" access="public">
-          <type native="void (const char *)">IntPtr</type>
+          <type native="void (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setLineDirectiveMode" access="public">
-          <type native="void (SlangLineDirectiveMode)">IntPtr</type>
+          <type native="void (SlangLineDirectiveMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setCodeGenTarget" access="public">
-          <type native="void (SlangCompileTarget)">IntPtr</type>
+          <type native="void (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addCodeGenTarget" access="public">
-          <type native="int (SlangCompileTarget)">IntPtr</type>
+          <type native="int (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetProfile" access="public">
-          <type native="void (int, SlangProfileID)">IntPtr</type>
+          <type native="void (int, SlangProfileID) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetFlags" access="public">
-          <type native="void (int, SlangTargetFlags)">IntPtr</type>
+          <type native="void (int, SlangTargetFlags) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetFloatingPointMode" access="public">
-          <type native="void (int, SlangFloatingPointMode)">IntPtr</type>
+          <type native="void (int, SlangFloatingPointMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetMatrixLayoutMode" access="public">
-          <type native="void (int, SlangMatrixLayoutMode)">IntPtr</type>
+          <type native="void (int, SlangMatrixLayoutMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setMatrixLayoutMode" access="public">
-          <type native="void (SlangMatrixLayoutMode)">IntPtr</type>
+          <type native="void (SlangMatrixLayoutMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setDebugInfoLevel" access="public">
-          <type native="void (SlangDebugInfoLevel)">IntPtr</type>
+          <type native="void (SlangDebugInfoLevel) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setOptimizationLevel" access="public">
-          <type native="void (SlangOptimizationLevel)">IntPtr</type>
+          <type native="void (SlangOptimizationLevel) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setOutputContainerFormat" access="public">
-          <type native="void (SlangContainerFormat)">IntPtr</type>
+          <type native="void (SlangContainerFormat) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setPassThrough" access="public">
-          <type native="void (SlangPassThrough)">IntPtr</type>
+          <type native="void (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setDiagnosticCallback" access="public">
-          <type native="void (SlangDiagnosticCallback, const void *)">IntPtr</type>
+          <type native="void (SlangDiagnosticCallback, const void *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setWriter" access="public">
-          <type native="void (SlangWriterChannel, ISlangWriter *)">IntPtr</type>
+          <type native="void (SlangWriterChannel, ISlangWriter *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getWriter" access="public">
-          <type native="ISlangWriter *(SlangWriterChannel)">IntPtr</type>
+          <type native="ISlangWriter *(SlangWriterChannel) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addSearchPath" access="public">
-          <type native="void (const char *)">IntPtr</type>
+          <type native="void (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addPreprocessorDefine" access="public">
-          <type native="void (const char *, const char *)">IntPtr</type>
+          <type native="void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="processCommandLineArguments" access="public">
-          <type native="SlangResult (const char *const *, int)">IntPtr</type>
+          <type native="SlangResult (const char *const *, int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addTranslationUnit" access="public">
-          <type native="int (SlangSourceLanguage, const char *)">IntPtr</type>
+          <type native="int (SlangSourceLanguage, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setDefaultModuleName" access="public">
-          <type native="void (const char *)">IntPtr</type>
+          <type native="void (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addTranslationUnitPreprocessorDefine" access="public">
-          <type native="void (int, const char *, const char *)">IntPtr</type>
+          <type native="void (int, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addTranslationUnitSourceFile" access="public">
-          <type native="void (int, const char *)">IntPtr</type>
+          <type native="void (int, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addTranslationUnitSourceString" access="public">
-          <type native="void (int, const char *, const char *)">IntPtr</type>
+          <type native="void (int, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addLibraryReference" access="public">
-          <type native="SlangResult (const char *, const void *, size_t)">IntPtr</type>
+          <type native="SlangResult (const char *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addTranslationUnitSourceStringSpan" access="public">
-          <type native="void (int, const char *, const char *, const char *)">IntPtr</type>
+          <type native="void (int, const char *, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addTranslationUnitSourceBlob" access="public">
-          <type native="void (int, const char *, ISlangBlob *)">IntPtr</type>
+          <type native="void (int, const char *, ISlangBlob *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addEntryPoint" access="public">
-          <type native="int (int, const char *, SlangStage)">IntPtr</type>
+          <type native="int (int, const char *, SlangStage) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addEntryPointEx" access="public">
-          <type native="int (int, const char *, SlangStage, int, const char **)">IntPtr</type>
+          <type native="int (int, const char *, SlangStage, int, const char **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setGlobalGenericArgs" access="public">
-          <type native="SlangResult (int, const char **)">IntPtr</type>
+          <type native="SlangResult (int, const char **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTypeNameForGlobalExistentialTypeParam" access="public">
-          <type native="SlangResult (int, const char *)">IntPtr</type>
+          <type native="SlangResult (int, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTypeNameForEntryPointExistentialTypeParam" access="public">
-          <type native="SlangResult (int, int, const char *)">IntPtr</type>
+          <type native="SlangResult (int, int, const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setAllowGLSLInput" access="public">
-          <type native="void (bool)">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="compile" access="public">
-          <type native="SlangResult ()">IntPtr</type>
+          <type native="SlangResult () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDiagnosticOutput" access="public">
-          <type native="const char *()">IntPtr</type>
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDiagnosticOutputBlob" access="public">
-          <type native="SlangResult (ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDependencyFileCount" access="public">
-          <type native="int ()">IntPtr</type>
+          <type native="int () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDependencyFilePath" access="public">
-          <type native="const char *(int)">IntPtr</type>
+          <type native="const char *(int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getTranslationUnitCount" access="public">
-          <type native="int ()">IntPtr</type>
+          <type native="int () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointSource" access="public">
-          <type native="const char *(int)">IntPtr</type>
+          <type native="const char *(int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointCode" access="public">
-          <type native="const void *(int, size_t *)">IntPtr</type>
+          <type native="const void *(int, size_t *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointCodeBlob" access="public">
-          <type native="SlangResult (int, int, ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (int, int, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointHostCallable" access="public">
-          <type native="SlangResult (int, int, ISlangSharedLibrary **)">IntPtr</type>
+          <type native="SlangResult (int, int, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getTargetCodeBlob" access="public">
-          <type native="SlangResult (int, ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (int, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getTargetHostCallable" access="public">
-          <type native="SlangResult (int, ISlangSharedLibrary **)">IntPtr</type>
+          <type native="SlangResult (int, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getCompileRequestCode" access="public">
-          <type native="const void *(size_t *)">IntPtr</type>
+          <type native="const void *(size_t *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getCompileRequestResultAsFileSystem" access="public">
-          <type native="ISlangMutableFileSystem *()">IntPtr</type>
+          <type native="ISlangMutableFileSystem *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getContainerCode" access="public">
-          <type native="SlangResult (ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="loadRepro" access="public">
-          <type native="SlangResult (ISlangFileSystem *, const void *, size_t)">IntPtr</type>
+          <type native="SlangResult (ISlangFileSystem *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="saveRepro" access="public">
-          <type native="SlangResult (ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="enableReproCapture" access="public">
-          <type native="SlangResult ()">IntPtr</type>
+          <type native="SlangResult () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getProgram" access="public">
-          <type native="SlangResult (slang::IComponentType **)">IntPtr</type>
+          <type native="SlangResult (slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPoint" access="public">
-          <type native="SlangResult (SlangInt, slang::IComponentType **)">IntPtr</type>
+          <type native="SlangResult (SlangInt, slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getModule" access="public">
-          <type native="SlangResult (SlangInt, slang::IModule **)">IntPtr</type>
+          <type native="SlangResult (SlangInt, slang::IModule **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getSession" access="public">
-          <type native="SlangResult (slang::ISession **)">IntPtr</type>
+          <type native="SlangResult (slang::ISession **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getReflection" access="public">
-          <type native="SlangReflection *()">IntPtr</type>
+          <type native="SlangReflection *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setCommandLineCompilerMode" access="public">
-          <type native="void ()">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addTargetCapability" access="public">
-          <type native="SlangResult (SlangInt, SlangCapabilityID)">IntPtr</type>
+          <type native="SlangResult (SlangInt, SlangCapabilityID) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getProgramWithEntryPoints" access="public">
-          <type native="SlangResult (slang::IComponentType **)">IntPtr</type>
+          <type native="SlangResult (slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="isParameterLocationUsed" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;)">IntPtr</type>
+          <type native="SlangResult (SlangInt, SlangInt, SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetLineDirectiveMode" access="public">
-          <type native="void (SlangInt, SlangLineDirectiveMode)">IntPtr</type>
+          <type native="void (SlangInt, SlangLineDirectiveMode) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetForceGLSLScalarBufferLayout" access="public">
-          <type native="void (int, bool)">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="overrideDiagnosticSeverity" access="public">
-          <type native="void (SlangInt, SlangSeverity)">IntPtr</type>
+          <type native="void (SlangInt, SlangSeverity) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDiagnosticFlags" access="public">
-          <type native="SlangDiagnosticFlags ()">IntPtr</type>
+          <type native="SlangDiagnosticFlags () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setDiagnosticFlags" access="public">
-          <type native="void (SlangDiagnosticFlags)">IntPtr</type>
+          <type native="void (SlangDiagnosticFlags) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setDebugInfoFormat" access="public">
-          <type native="void (SlangDebugInfoFormat)">IntPtr</type>
+          <type native="void (SlangDebugInfoFormat) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setEnableEffectAnnotations" access="public">
-          <type native="void (bool)">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setReportDownstreamTime" access="public">
-          <type native="void (bool)">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setReportPerfBenchmark" access="public">
-          <type native="void (bool)">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setSkipSPIRVValidation" access="public">
-          <type native="void (bool)">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetUseMinimumSlangOptimization" access="public">
-          <type native="void (int, bool)">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setIgnoreCapabilityCheck" access="public">
-          <type native="void (bool)">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getCompileTimeProfile" access="public">
-          <type native="SlangResult (ISlangProfiler **, bool)">IntPtr</type>
+          <type native="SlangResult (ISlangProfiler **, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetGenerateWholeProgram" access="public">
-          <type native="void (int, bool)">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetForceDXLayout" access="public">
-          <type native="void (int, bool)">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetEmbedDownstreamIR" access="public">
-          <type native="void (int, bool)">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

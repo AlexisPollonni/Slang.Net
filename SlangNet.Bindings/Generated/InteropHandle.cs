@@ -9,5 +9,5 @@ public partial struct InteropHandle
 
     /// <include file='InteropHandle.xml' path='doc/member[@name="InteropHandle.handleValue"]/*' />
     [NativeTypeName("uint64_t")]
-    public nuint handleValue;
+    public ulong handleValue;
 }

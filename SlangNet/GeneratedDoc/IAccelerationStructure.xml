@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IAccelerationStructure*</type>
@@ -17,25 +17,25 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IAccelerationStructure*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IAccelerationStructure*</type>
         </param>
       </delegate>
-      <delegate name="_getViewDesc" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getViewDesc" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::IResourceView::Desc *">ResourceViewDesc*</type>
         <param name="pThis">
           <type>IAccelerationStructure*</type>
         </param>
       </delegate>
-      <delegate name="_getNativeHandle" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getNativeHandle" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IAccelerationStructure*</type>
@@ -44,8 +44,8 @@
           <type>InteropHandle*</type>
         </param>
       </delegate>
-      <delegate name="_getDeviceAddress" access="public" convention="ThisCall">
-        <type native="gfx::DeviceAddress">nuint</type>
+      <delegate name="_getDeviceAddress" access="public" convention="StdCall">
+        <type native="gfx::DeviceAddress">ulong</type>
         <param name="pThis">
           <type>IAccelerationStructure*</type>
         </param>
@@ -61,42 +61,42 @@
       </enumeration>
       <struct name="BuildFlags" access="public">
         <enumeration name="Enum" access="public">
-          <type>uint</type>
+          <type>int</type>
           <enumerator name="None" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
           </enumerator>
           <enumerator name="AllowUpdate" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>1</code>
             </value>
           </enumerator>
           <enumerator name="AllowCompaction" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>2</code>
             </value>
           </enumerator>
           <enumerator name="PreferFastTrace" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>4</code>
             </value>
           </enumerator>
           <enumerator name="PreferFastBuild" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>8</code>
             </value>
           </enumerator>
           <enumerator name="MinimizeMemory" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>16</code>
             </value>
           </enumerator>
           <enumerator name="PerformUpdate" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>32</code>
             </value>
@@ -114,18 +114,18 @@
       </enumeration>
       <struct name="GeometryFlags" access="public">
         <enumeration name="Enum" access="public">
-          <type>uint</type>
+          <type>int</type>
           <enumerator name="None" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
           </enumerator>
           <enumerator name="Opaque" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>1</code>
             </value>
           </enumerator>
           <enumerator name="NoDuplicateAnyHitInvocation" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>2</code>
             </value>
@@ -134,7 +134,7 @@
       </struct>
       <struct name="TriangleDesc" access="public">
         <field name="transform3x4" access="public">
-          <type native="gfx::DeviceAddress">nuint</type>
+          <type native="gfx::DeviceAddress">ulong</type>
         </field>
         <field name="indexFormat" access="public">
           <type native="gfx::Format">Format</type>
@@ -149,10 +149,10 @@
           <type native="gfx::GfxCount">int</type>
         </field>
         <field name="indexData" access="public">
-          <type native="gfx::DeviceAddress">nuint</type>
+          <type native="gfx::DeviceAddress">ulong</type>
         </field>
         <field name="vertexData" access="public">
-          <type native="gfx::DeviceAddress">nuint</type>
+          <type native="gfx::DeviceAddress">ulong</type>
         </field>
         <field name="vertexStride" access="public">
           <type native="gfx::Size">nuint</type>
@@ -183,7 +183,7 @@
           <type native="gfx::GfxCount">int</type>
         </field>
         <field name="data" access="public">
-          <type native="gfx::DeviceAddress">nuint</type>
+          <type native="gfx::DeviceAddress">ulong</type>
         </field>
         <field name="stride" access="public">
           <type native="gfx::Size">nuint</type>
@@ -294,7 +294,7 @@
           </set>
         </field>
         <field name="accelerationStructure" access="public">
-          <type native="gfx::DeviceAddress">nuint</type>
+          <type native="gfx::DeviceAddress">ulong</type>
         </field>
         <struct name="_transform_e__FixedBuffer" access="public">
           <attribute>InlineArray(3 * 4)</attribute>
@@ -325,7 +325,7 @@
           <type native="gfx::GfxCount">int</type>
         </field>
         <field name="instanceDescs" access="public">
-          <type native="gfx::DeviceAddress">nuint</type>
+          <type native="gfx::DeviceAddress">ulong</type>
         </field>
         <field name="geometryDescs" access="public">
           <type native="const GeometryDesc *">GeometryDesc*</type>
@@ -356,7 +356,7 @@
           <type native="gfx::IAccelerationStructure *">IAccelerationStructure*</type>
         </field>
         <field name="scratchData" access="public">
-          <type native="gfx::DeviceAddress">nuint</type>
+          <type native="gfx::DeviceAddress">ulong</type>
         </field>
       </struct>
       <function name="queryInterface" access="public" unsafe="true">
@@ -399,29 +399,29 @@
         </body>
       </function>
       <function name="getDeviceAddress" access="public" unsafe="true">
-        <type native="gfx::DeviceAddress">nuint</type>
+        <type native="gfx::DeviceAddress">ulong</type>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDeviceAddress</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDeviceAddress</vtbl>)(<param special="thisPtr">(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getViewDesc" access="public">
-          <type native="Desc *()">IntPtr</type>
+          <type native="Desc *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeHandle" access="public">
-          <type native="Result (InteropHandle *)">IntPtr</type>
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDeviceAddress" access="public">
-          <type native="DeviceAddress ()">IntPtr</type>
+          <type native="DeviceAddress () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

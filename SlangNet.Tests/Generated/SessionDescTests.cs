@@ -31,7 +31,7 @@ public static unsafe partial class SessionDescTests
         }
         else
         {
-            Assert.That(sizeof(SessionDesc), Is.EqualTo(52));
+            Assert.That(sizeof(SessionDesc), Is.EqualTo(72));
         }
     }
 }

@@ -3,7 +3,7 @@
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="ShaderOffset" access="public">
       <field name="uniformOffset" access="public">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
       </field>
       <field name="bindingRangeIndex" access="public">
         <type native="gfx::GfxIndex">int</type>

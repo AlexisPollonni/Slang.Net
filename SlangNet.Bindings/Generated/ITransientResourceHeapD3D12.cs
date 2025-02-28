@@ -11,19 +11,19 @@ public unsafe partial struct ITransientResourceHeapD3D12
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(ITransientResourceHeapD3D12* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(ITransientResourceHeapD3D12* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(ITransientResourceHeapD3D12* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _allocateTransientDescriptorTable(ITransientResourceHeapD3D12* pThis, [NativeTypeName("gfx::ITransientResourceHeapD3D12::DescriptorType")] DescriptorType type, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("gfx::Offset &")] nuint* outDescriptorOffset, void** outD3DDescriptorHeapHandle);
 
@@ -71,16 +71,16 @@ public unsafe partial struct ITransientResourceHeapD3D12
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Result (DescriptorType, GfxCount, Offset &, void **)")]
+        [NativeTypeName("Result (DescriptorType, GfxCount, Offset &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr allocateTransientDescriptorTable;
     }
 }

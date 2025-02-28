@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -17,19 +17,19 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
         </param>
       </delegate>
-      <delegate name="_castAs" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_castAs" access="public" convention="StdCall" unsafe="true">
         <type>void*</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -38,7 +38,7 @@
           <type>SlangUUID*</type>
         </param>
       </delegate>
-      <delegate name="_loadFile" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_loadFile" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -50,7 +50,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getFileUniqueIdentity" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getFileUniqueIdentity" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -62,7 +62,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_calcCombinedPath" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_calcCombinedPath" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -80,7 +80,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getPathType" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getPathType" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -92,7 +92,7 @@
           <type>PathType*</type>
         </param>
       </delegate>
-      <delegate name="_getPath" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getPath" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -107,13 +107,13 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_clearCache" access="public" convention="ThisCall">
+      <delegate name="_clearCache" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
         </param>
       </delegate>
-      <delegate name="_enumeratePathContents" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_enumeratePathContents" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -128,13 +128,13 @@
           <type>void*</type>
         </param>
       </delegate>
-      <delegate name="_getOSPathKind" access="public" convention="ThisCall">
+      <delegate name="_getOSPathKind" access="public" convention="StdCall">
         <type>OSPathKind</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
         </param>
       </delegate>
-      <delegate name="_saveFile" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_saveFile" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -149,7 +149,7 @@
           <type>nuint</type>
         </param>
       </delegate>
-      <delegate name="_saveFileBlob" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_saveFileBlob" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -161,7 +161,7 @@
           <type>ISlangBlob*</type>
         </param>
       </delegate>
-      <delegate name="_remove" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_remove" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -170,7 +170,7 @@
           <type>sbyte*</type>
         </param>
       </delegate>
-      <delegate name="_createDirectory" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createDirectory" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangMutableFileSystem*</type>
@@ -355,52 +355,52 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="castAs" access="public">
-          <type native="void *(const SlangUUID &amp;)">IntPtr</type>
+          <type native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="loadFile" access="public">
-          <type native="SlangResult (const char *, ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getFileUniqueIdentity" access="public">
-          <type native="SlangResult (const char *, ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="calcCombinedPath" access="public">
-          <type native="SlangResult (SlangPathType, const char *, const char *, ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (SlangPathType, const char *, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getPathType" access="public">
-          <type native="SlangResult (const char *, SlangPathType *)">IntPtr</type>
+          <type native="SlangResult (const char *, SlangPathType *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getPath" access="public">
-          <type native="SlangResult (PathKind, const char *, ISlangBlob **)">IntPtr</type>
+          <type native="SlangResult (PathKind, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="clearCache" access="public">
-          <type native="void ()">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="enumeratePathContents" access="public">
-          <type native="SlangResult (const char *, FileSystemContentsCallBack, void *)">IntPtr</type>
+          <type native="SlangResult (const char *, FileSystemContentsCallBack, void *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getOSPathKind" access="public">
-          <type native="OSPathKind ()">IntPtr</type>
+          <type native="OSPathKind () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="saveFile" access="public">
-          <type native="SlangResult (const char *, const void *, size_t)">IntPtr</type>
+          <type native="SlangResult (const char *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="saveFileBlob" access="public">
-          <type native="SlangResult (const char *, ISlangBlob *)">IntPtr</type>
+          <type native="SlangResult (const char *, ISlangBlob *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="remove" access="public">
-          <type native="SlangResult (const char *)">IntPtr</type>
+          <type native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createDirectory" access="public">
-          <type native="SlangResult (const char *)">IntPtr</type>
+          <type native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

@@ -11,191 +11,191 @@ public unsafe partial struct IDevice
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IDevice* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IDevice* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IDevice* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getNativeDeviceHandles(IDevice* pThis, [NativeTypeName("gfx::IDevice::InteropHandles *")] InteropHandles* outHandles);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("bool")]
     public delegate byte _hasFeature(IDevice* pThis, [NativeTypeName("const char *")] sbyte* feature);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getFeatures(IDevice* pThis, [NativeTypeName("const char **")] sbyte** outFeatures, [NativeTypeName("gfx::Size")] nuint bufferSize, [NativeTypeName("gfx::GfxCount *")] int* outFeatureCount);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getFormatSupportedResourceStates(IDevice* pThis, [NativeTypeName("gfx::Format")] Format format, [NativeTypeName("gfx::ResourceStateSet *")] ResourceStateSet* outStates);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getSlangSession(IDevice* pThis, [NativeTypeName("slang::ISession **")] ISession** outSlangSession);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createTransientResourceHeap(IDevice* pThis, [NativeTypeName("const ITransientResourceHeap::Desc &")] TransientResourceHeapDesc* desc, ITransientResourceHeap** outHeap);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createTextureResource(IDevice* pThis, [NativeTypeName("const ITextureResource::Desc &")] TextureResourceDesc* desc, [NativeTypeName("const ITextureResource::SubresourceData *")] SubresourceData* initData, ITextureResource** outResource);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createTextureFromNativeHandle(IDevice* pThis, [NativeTypeName("gfx::InteropHandle")] InteropHandle handle, [NativeTypeName("const ITextureResource::Desc &")] TextureResourceDesc* srcDesc, ITextureResource** outResource);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createTextureFromSharedHandle(IDevice* pThis, [NativeTypeName("gfx::InteropHandle")] InteropHandle handle, [NativeTypeName("const ITextureResource::Desc &")] TextureResourceDesc* srcDesc, [NativeTypeName("const Size")] nuint size, ITextureResource** outResource);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createBufferResource(IDevice* pThis, [NativeTypeName("const IBufferResource::Desc &")] BufferResourceDesc* desc, [NativeTypeName("const void *")] void* initData, IBufferResource** outResource);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createBufferFromNativeHandle(IDevice* pThis, [NativeTypeName("gfx::InteropHandle")] InteropHandle handle, [NativeTypeName("const IBufferResource::Desc &")] BufferResourceDesc* srcDesc, IBufferResource** outResource);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createBufferFromSharedHandle(IDevice* pThis, [NativeTypeName("gfx::InteropHandle")] InteropHandle handle, [NativeTypeName("const IBufferResource::Desc &")] BufferResourceDesc* srcDesc, IBufferResource** outResource);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createSamplerState(IDevice* pThis, [NativeTypeName("const ISamplerState::Desc &")] SamplerStateDesc* desc, ISamplerState** outSampler);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createTextureView(IDevice* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* texture, [NativeTypeName("const IResourceView::Desc &")] ResourceViewDesc* desc, IResourceView** outView);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createBufferView(IDevice* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* buffer, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* counterBuffer, [NativeTypeName("const IResourceView::Desc &")] ResourceViewDesc* desc, IResourceView** outView);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createFramebufferLayout(IDevice* pThis, [NativeTypeName("const IFramebufferLayout::Desc &")] FramebufferLayoutDesc* desc, IFramebufferLayout** outFrameBuffer);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createFramebuffer(IDevice* pThis, [NativeTypeName("const IFramebuffer::Desc &")] FramebufferDesc* desc, IFramebuffer** outFrameBuffer);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createRenderPassLayout(IDevice* pThis, [NativeTypeName("const IRenderPassLayout::Desc &")] RenderPassLayoutDesc* desc, IRenderPassLayout** outRenderPassLayout);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createSwapchain(IDevice* pThis, [NativeTypeName("const ISwapchain::Desc &")] SwapchainDesc* desc, [NativeTypeName("gfx::WindowHandle")] WindowHandle window, ISwapchain** outSwapchain);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createInputLayout(IDevice* pThis, [NativeTypeName("const IInputLayout::Desc &")] InputLayoutDesc* desc, IInputLayout** outLayout);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createCommandQueue(IDevice* pThis, [NativeTypeName("const ICommandQueue::Desc &")] CommandQueueDesc* desc, ICommandQueue** outQueue);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createShaderObject(IDevice* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("gfx::ShaderObjectContainerType")] ShaderObjectContainerType container, IShaderObject** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createMutableShaderObject(IDevice* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("gfx::ShaderObjectContainerType")] ShaderObjectContainerType container, IShaderObject** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createShaderObjectFromTypeLayout(IDevice* pThis, [NativeTypeName("slang::TypeLayoutReflection *")] TypeLayoutReflection* typeLayout, IShaderObject** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createMutableShaderObjectFromTypeLayout(IDevice* pThis, [NativeTypeName("slang::TypeLayoutReflection *")] TypeLayoutReflection* typeLayout, IShaderObject** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createMutableRootShaderObject(IDevice* pThis, [NativeTypeName("gfx::IShaderProgram *")] IShaderProgram* program, IShaderObject** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createShaderTable(IDevice* pThis, [NativeTypeName("const IShaderTable::Desc &")] ShaderTableDesc* desc, IShaderTable** outTable);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createProgram(IDevice* pThis, [NativeTypeName("const IShaderProgram::Desc &")] ShaderProgramDesc* desc, IShaderProgram** outProgram, ISlangBlob** outDiagnosticBlob = null);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createProgram2(IDevice* pThis, [NativeTypeName("const IShaderProgram::CreateDesc2 &")] CreateDesc2* createDesc, IShaderProgram** outProgram, ISlangBlob** outDiagnosticBlob = null);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createGraphicsPipelineState(IDevice* pThis, [NativeTypeName("const GraphicsPipelineStateDesc &")] GraphicsPipelineStateDesc* desc, IPipelineState** outState);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createComputePipelineState(IDevice* pThis, [NativeTypeName("const ComputePipelineStateDesc &")] ComputePipelineStateDesc* desc, IPipelineState** outState);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createRayTracingPipelineState(IDevice* pThis, [NativeTypeName("const RayTracingPipelineStateDesc &")] RayTracingPipelineStateDesc* desc, IPipelineState** outState);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _readTextureResource(IDevice* pThis, [NativeTypeName("gfx::ITextureResource *")] ITextureResource* resource, [NativeTypeName("gfx::ResourceState")] ResourceState state, ISlangBlob** outBlob, [NativeTypeName("gfx::Size *")] nuint* outRowPitch, [NativeTypeName("gfx::Size *")] nuint* outPixelSize);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _readBufferResource(IDevice* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* buffer, [NativeTypeName("gfx::Offset")] nuint offset, [NativeTypeName("gfx::Size")] nuint size, ISlangBlob** outBlob);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("const DeviceInfo &")]
     public delegate DeviceInfo* _getDeviceInfo(IDevice* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createQueryPool(IDevice* pThis, [NativeTypeName("const IQueryPool::Desc &")] QueryPoolDesc* desc, IQueryPool** outPool);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getAccelerationStructurePrebuildInfo(IDevice* pThis, [NativeTypeName("const IAccelerationStructure::BuildInputs &")] BuildInputs* buildInputs, [NativeTypeName("gfx::IAccelerationStructure::PrebuildInfo *")] PrebuildInfo* outPrebuildInfo);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createAccelerationStructure(IDevice* pThis, [NativeTypeName("const IAccelerationStructure::CreateDesc &")] CreateDesc* desc, IAccelerationStructure** outView);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createFence(IDevice* pThis, [NativeTypeName("const IFence::Desc &")] FenceDesc* desc, IFence** outFence);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _waitForFences(IDevice* pThis, [NativeTypeName("gfx::GfxCount")] int fenceCount, IFence** fences, [NativeTypeName("uint64_t *")] nuint* values, [NativeTypeName("bool")] byte waitForAll, [NativeTypeName("uint64_t")] nuint timeout);
+    public delegate int _waitForFences(IDevice* pThis, [NativeTypeName("gfx::GfxCount")] int fenceCount, IFence** fences, [NativeTypeName("uint64_t *")] ulong* values, [NativeTypeName("bool")] byte waitForAll, [NativeTypeName("uint64_t")] ulong timeout);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getTextureAllocationInfo(IDevice* pThis, [NativeTypeName("const ITextureResource::Desc &")] TextureResourceDesc* desc, [NativeTypeName("gfx::Size *")] nuint* outSize, [NativeTypeName("gfx::Size *")] nuint* outAlignment);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getTextureRowAlignment(IDevice* pThis, [NativeTypeName("gfx::Size *")] nuint* outAlignment);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createShaderObject2(IDevice* pThis, [NativeTypeName("slang::ISession *")] ISession* slangSession, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("gfx::ShaderObjectContainerType")] ShaderObjectContainerType container, IShaderObject** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createMutableShaderObject2(IDevice* pThis, [NativeTypeName("slang::ISession *")] ISession* slangSession, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("gfx::ShaderObjectContainerType")] ShaderObjectContainerType container, IShaderObject** outObject);
 
@@ -658,7 +658,7 @@ public unsafe partial struct IDevice
     /// <include file='IDevice.xml' path='doc/member[@name="IDevice.waitForFences"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int waitForFences([NativeTypeName("gfx::GfxCount")] int fenceCount, IFence** fences, [NativeTypeName("uint64_t *")] nuint* values, [NativeTypeName("bool")] byte waitForAll, [NativeTypeName("uint64_t")] nuint timeout)
+    public int waitForFences([NativeTypeName("gfx::GfxCount")] int fenceCount, IFence** fences, [NativeTypeName("uint64_t *")] ulong* values, [NativeTypeName("bool")] byte waitForAll, [NativeTypeName("uint64_t")] ulong timeout)
     {
         return Marshal.GetDelegateForFunctionPointer<_waitForFences>(lpVtbl->waitForFences)((IDevice*)Unsafe.AsPointer(ref this), fenceCount, fences, values, waitForAll, timeout);
     }
@@ -697,145 +697,145 @@ public unsafe partial struct IDevice
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Result (InteropHandles *)")]
+        [NativeTypeName("Result (InteropHandles *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getNativeDeviceHandles;
 
-        [NativeTypeName("bool (const char *)")]
+        [NativeTypeName("bool (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr hasFeature;
 
-        [NativeTypeName("Result (const char **, Size, GfxCount *)")]
+        [NativeTypeName("Result (const char **, Size, GfxCount *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getFeatures;
 
-        [NativeTypeName("Result (Format, ResourceStateSet *)")]
+        [NativeTypeName("Result (Format, ResourceStateSet *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getFormatSupportedResourceStates;
 
-        [NativeTypeName("Result (slang::ISession **)")]
+        [NativeTypeName("Result (slang::ISession **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSlangSession;
 
-        [NativeTypeName("Result (const ITransientResourceHeap::Desc &, ITransientResourceHeap **)")]
+        [NativeTypeName("Result (const ITransientResourceHeap::Desc &, ITransientResourceHeap **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createTransientResourceHeap;
 
-        [NativeTypeName("Result (const ITextureResource::Desc &, const ITextureResource::SubresourceData *, ITextureResource **)")]
+        [NativeTypeName("Result (const ITextureResource::Desc &, const ITextureResource::SubresourceData *, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createTextureResource;
 
-        [NativeTypeName("Result (InteropHandle, const ITextureResource::Desc &, ITextureResource **)")]
+        [NativeTypeName("Result (InteropHandle, const ITextureResource::Desc &, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createTextureFromNativeHandle;
 
-        [NativeTypeName("Result (InteropHandle, const ITextureResource::Desc &, const Size, ITextureResource **)")]
+        [NativeTypeName("Result (InteropHandle, const ITextureResource::Desc &, const Size, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createTextureFromSharedHandle;
 
-        [NativeTypeName("Result (const IBufferResource::Desc &, const void *, IBufferResource **)")]
+        [NativeTypeName("Result (const IBufferResource::Desc &, const void *, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createBufferResource;
 
-        [NativeTypeName("Result (InteropHandle, const IBufferResource::Desc &, IBufferResource **)")]
+        [NativeTypeName("Result (InteropHandle, const IBufferResource::Desc &, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createBufferFromNativeHandle;
 
-        [NativeTypeName("Result (InteropHandle, const IBufferResource::Desc &, IBufferResource **)")]
+        [NativeTypeName("Result (InteropHandle, const IBufferResource::Desc &, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createBufferFromSharedHandle;
 
-        [NativeTypeName("Result (const ISamplerState::Desc &, ISamplerState **)")]
+        [NativeTypeName("Result (const ISamplerState::Desc &, ISamplerState **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createSamplerState;
 
-        [NativeTypeName("Result (ITextureResource *, const IResourceView::Desc &, IResourceView **)")]
+        [NativeTypeName("Result (ITextureResource *, const IResourceView::Desc &, IResourceView **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createTextureView;
 
-        [NativeTypeName("Result (IBufferResource *, IBufferResource *, const IResourceView::Desc &, IResourceView **)")]
+        [NativeTypeName("Result (IBufferResource *, IBufferResource *, const IResourceView::Desc &, IResourceView **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createBufferView;
 
-        [NativeTypeName("Result (const IFramebufferLayout::Desc &, IFramebufferLayout **)")]
+        [NativeTypeName("Result (const IFramebufferLayout::Desc &, IFramebufferLayout **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createFramebufferLayout;
 
-        [NativeTypeName("Result (const IFramebuffer::Desc &, IFramebuffer **)")]
+        [NativeTypeName("Result (const IFramebuffer::Desc &, IFramebuffer **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createFramebuffer;
 
-        [NativeTypeName("Result (const IRenderPassLayout::Desc &, IRenderPassLayout **)")]
+        [NativeTypeName("Result (const IRenderPassLayout::Desc &, IRenderPassLayout **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createRenderPassLayout;
 
-        [NativeTypeName("Result (const ISwapchain::Desc &, WindowHandle, ISwapchain **)")]
+        [NativeTypeName("Result (const ISwapchain::Desc &, WindowHandle, ISwapchain **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createSwapchain;
 
-        [NativeTypeName("Result (const IInputLayout::Desc &, IInputLayout **)")]
+        [NativeTypeName("Result (const IInputLayout::Desc &, IInputLayout **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createInputLayout;
 
-        [NativeTypeName("Result (const ICommandQueue::Desc &, ICommandQueue **)")]
+        [NativeTypeName("Result (const ICommandQueue::Desc &, ICommandQueue **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createCommandQueue;
 
-        [NativeTypeName("Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **)")]
+        [NativeTypeName("Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createShaderObject;
 
-        [NativeTypeName("Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **)")]
+        [NativeTypeName("Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createMutableShaderObject;
 
-        [NativeTypeName("Result (slang::TypeLayoutReflection *, IShaderObject **)")]
+        [NativeTypeName("Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createShaderObjectFromTypeLayout;
 
-        [NativeTypeName("Result (slang::TypeLayoutReflection *, IShaderObject **)")]
+        [NativeTypeName("Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createMutableShaderObjectFromTypeLayout;
 
-        [NativeTypeName("Result (IShaderProgram *, IShaderObject **)")]
+        [NativeTypeName("Result (IShaderProgram *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createMutableRootShaderObject;
 
-        [NativeTypeName("Result (const IShaderTable::Desc &, IShaderTable **)")]
+        [NativeTypeName("Result (const IShaderTable::Desc &, IShaderTable **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createShaderTable;
 
-        [NativeTypeName("Result (const IShaderProgram::Desc &, IShaderProgram **, ISlangBlob **)")]
+        [NativeTypeName("Result (const IShaderProgram::Desc &, IShaderProgram **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createProgram;
 
-        [NativeTypeName("Result (const IShaderProgram::CreateDesc2 &, IShaderProgram **, ISlangBlob **)")]
+        [NativeTypeName("Result (const IShaderProgram::CreateDesc2 &, IShaderProgram **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createProgram2;
 
-        [NativeTypeName("Result (const GraphicsPipelineStateDesc &, IPipelineState **)")]
+        [NativeTypeName("Result (const GraphicsPipelineStateDesc &, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createGraphicsPipelineState;
 
-        [NativeTypeName("Result (const ComputePipelineStateDesc &, IPipelineState **)")]
+        [NativeTypeName("Result (const ComputePipelineStateDesc &, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createComputePipelineState;
 
-        [NativeTypeName("Result (const RayTracingPipelineStateDesc &, IPipelineState **)")]
+        [NativeTypeName("Result (const RayTracingPipelineStateDesc &, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createRayTracingPipelineState;
 
-        [NativeTypeName("SlangResult (ITextureResource *, ResourceState, ISlangBlob **, Size *, Size *)")]
+        [NativeTypeName("SlangResult (ITextureResource *, ResourceState, ISlangBlob **, Size *, Size *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr readTextureResource;
 
-        [NativeTypeName("SlangResult (IBufferResource *, Offset, Size, ISlangBlob **)")]
+        [NativeTypeName("SlangResult (IBufferResource *, Offset, Size, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr readBufferResource;
 
-        [NativeTypeName("const DeviceInfo &() const")]
+        [NativeTypeName("const DeviceInfo &() const __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDeviceInfo;
 
-        [NativeTypeName("Result (const IQueryPool::Desc &, IQueryPool **)")]
+        [NativeTypeName("Result (const IQueryPool::Desc &, IQueryPool **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createQueryPool;
 
-        [NativeTypeName("Result (const IAccelerationStructure::BuildInputs &, IAccelerationStructure::PrebuildInfo *)")]
+        [NativeTypeName("Result (const IAccelerationStructure::BuildInputs &, IAccelerationStructure::PrebuildInfo *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getAccelerationStructurePrebuildInfo;
 
-        [NativeTypeName("Result (const IAccelerationStructure::CreateDesc &, IAccelerationStructure **)")]
+        [NativeTypeName("Result (const IAccelerationStructure::CreateDesc &, IAccelerationStructure **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createAccelerationStructure;
 
-        [NativeTypeName("Result (const IFence::Desc &, IFence **)")]
+        [NativeTypeName("Result (const IFence::Desc &, IFence **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createFence;
 
-        [NativeTypeName("Result (GfxCount, IFence **, uint64_t *, bool, uint64_t)")]
+        [NativeTypeName("Result (GfxCount, IFence **, uint64_t *, bool, uint64_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr waitForFences;
 
-        [NativeTypeName("Result (const ITextureResource::Desc &, Size *, Size *)")]
+        [NativeTypeName("Result (const ITextureResource::Desc &, Size *, Size *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getTextureAllocationInfo;
 
-        [NativeTypeName("Result (Size *)")]
+        [NativeTypeName("Result (Size *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getTextureRowAlignment;
 
-        [NativeTypeName("Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **)")]
+        [NativeTypeName("Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createShaderObject2;
 
-        [NativeTypeName("Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **)")]
+        [NativeTypeName("Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createMutableShaderObject2;
     }
 }

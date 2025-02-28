@@ -2,21 +2,21 @@
 <bindings>
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="ReflectionGenericArgType" access="public">
-      <type>uint</type>
+      <type>int</type>
       <enumerator name="GenericArgType" access="public">
-        <type primitive="False">uint</type>
+        <type primitive="False">int</type>
         <value>
           <code>0</code>
         </value>
       </enumerator>
       <enumerator name="GenericArgInt" access="public">
-        <type primitive="False">uint</type>
+        <type primitive="False">int</type>
         <value>
           <code>1</code>
         </value>
       </enumerator>
       <enumerator name="GenericArgBool" access="public">
-        <type primitive="False">uint</type>
+        <type primitive="False">int</type>
         <value>
           <code>2</code>
         </value>

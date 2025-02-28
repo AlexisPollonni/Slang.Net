@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IFence*</type>
@@ -17,37 +17,37 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IFence*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IFence*</type>
         </param>
       </delegate>
-      <delegate name="_getCurrentValue" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getCurrentValue" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IFence*</type>
         </param>
         <param name="outValue">
-          <type>nuint*</type>
+          <type>ulong*</type>
         </param>
       </delegate>
-      <delegate name="_setCurrentValue" access="public" convention="ThisCall">
+      <delegate name="_setCurrentValue" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IFence*</type>
         </param>
         <param name="value">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
       </delegate>
-      <delegate name="_getSharedHandle" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getSharedHandle" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IFence*</type>
@@ -56,7 +56,7 @@
           <type>InteropHandle*</type>
         </param>
       </delegate>
-      <delegate name="_getNativeHandle" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getNativeHandle" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IFence*</type>
@@ -67,7 +67,7 @@
       </delegate>
       <struct name="FenceDesc" access="public">
         <field name="initialValue" access="public">
-          <type native="uint64_t">nuint</type>
+          <type native="uint64_t">ulong</type>
         </field>
         <field name="isShared" access="public">
           <type native="bool">byte</type>
@@ -100,7 +100,7 @@
       <function name="getCurrentValue" access="public" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="outValue">
-          <type>nuint*</type>
+          <type>ulong*</type>
         </param>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCurrentValue</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCurrentValue</vtbl>)(<param special="thisPtr">(IFence*)Unsafe.AsPointer(ref this)</param>, <param name="outValue">outValue</param>);</code>
@@ -109,7 +109,7 @@
       <function name="setCurrentValue" access="public" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="value">
-          <type>nuint</type>
+          <type>ulong</type>
         </param>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setCurrentValue</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setCurrentValue</vtbl>)(<param special="thisPtr">(IFence*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
@@ -135,25 +135,25 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getCurrentValue" access="public">
-          <type native="Result (uint64_t *)">IntPtr</type>
+          <type native="Result (uint64_t *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setCurrentValue" access="public">
-          <type native="Result (uint64_t)">IntPtr</type>
+          <type native="Result (uint64_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getSharedHandle" access="public">
-          <type native="Result (InteropHandle *)">IntPtr</type>
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeHandle" access="public">
-          <type native="Result (InteropHandle *)">IntPtr</type>
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -25,13 +24,6 @@ public static unsafe partial class MemoryRangeTests
     [Test]
     public static void SizeOfTest()
     {
-        if (Environment.Is64BitProcess)
-        {
-            Assert.That(sizeof(MemoryRange), Is.EqualTo(16));
-        }
-        else
-        {
-            Assert.That(sizeof(MemoryRange), Is.EqualTo(8));
-        }
+        Assert.That(sizeof(MemoryRange), Is.EqualTo(16));
     }
 }

@@ -1,8 +1,7 @@
 namespace SlangNet.Bindings.Generated;
 
 /// <include file='ReflectionGenericArgType.xml' path='doc/member[@name="ReflectionGenericArgType"]/*' />
-[NativeTypeName("unsigned int")]
-public enum ReflectionGenericArgType : uint
+public enum ReflectionGenericArgType
 {
     /// <include file='ReflectionGenericArgType.xml' path='doc/member[@name="ReflectionGenericArgType.GenericArgType"]/*' />
     GenericArgType = 0,

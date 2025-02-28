@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -17,25 +17,25 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
         </param>
       </delegate>
-      <delegate name="_endEncoding" access="public" convention="ThisCall">
+      <delegate name="_endEncoding" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
         </param>
       </delegate>
-      <delegate name="_writeTimestamp" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_writeTimestamp" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -47,7 +47,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_copyBuffer" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_copyBuffer" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -68,7 +68,7 @@
           <type>nuint</type>
         </param>
       </delegate>
-      <delegate name="_copyTexture" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_copyTexture" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -101,7 +101,7 @@
           <type>Extents</type>
         </param>
       </delegate>
-      <delegate name="_copyTextureToBuffer" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_copyTextureToBuffer" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -134,7 +134,7 @@
           <type>Extents</type>
         </param>
       </delegate>
-      <delegate name="_uploadTextureData" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_uploadTextureData" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -158,7 +158,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_uploadBufferData" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_uploadBufferData" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -176,7 +176,7 @@
           <type>void*</type>
         </param>
       </delegate>
-      <delegate name="_textureBarrier" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_textureBarrier" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -194,7 +194,7 @@
           <type>ResourceState</type>
         </param>
       </delegate>
-      <delegate name="_textureSubresourceBarrier" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_textureSubresourceBarrier" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -212,7 +212,7 @@
           <type>ResourceState</type>
         </param>
       </delegate>
-      <delegate name="_bufferBarrier" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_bufferBarrier" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -230,7 +230,7 @@
           <type>ResourceState</type>
         </param>
       </delegate>
-      <delegate name="_clearResourceView" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_clearResourceView" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -245,7 +245,7 @@
           <type>Enum</type>
         </param>
       </delegate>
-      <delegate name="_resolveResource" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_resolveResource" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -269,7 +269,7 @@
           <type>SubresourceRange</type>
         </param>
       </delegate>
-      <delegate name="_resolveQuery" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_resolveQuery" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -290,7 +290,7 @@
           <type>nuint</type>
         </param>
       </delegate>
-      <delegate name="_beginDebugEvent" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_beginDebugEvent" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -302,13 +302,13 @@
           <type>float*</type>
         </param>
       </delegate>
-      <delegate name="_endDebugEvent" access="public" convention="ThisCall">
+      <delegate name="_endDebugEvent" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
         </param>
       </delegate>
-      <delegate name="_bindPipeline" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_bindPipeline" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -320,7 +320,7 @@
           <type>IShaderObject**</type>
         </param>
       </delegate>
-      <delegate name="_bindPipelineWithRootObject" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_bindPipelineWithRootObject" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -332,7 +332,7 @@
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_setViewports" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setViewports" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -344,7 +344,7 @@
           <type>Viewport*</type>
         </param>
       </delegate>
-      <delegate name="_setScissorRects" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setScissorRects" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -356,7 +356,7 @@
           <type>ScissorRect*</type>
         </param>
       </delegate>
-      <delegate name="_setPrimitiveTopology" access="public" convention="ThisCall">
+      <delegate name="_setPrimitiveTopology" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -365,7 +365,7 @@
           <type>PrimitiveTopology</type>
         </param>
       </delegate>
-      <delegate name="_setVertexBuffers" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setVertexBuffers" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -383,7 +383,7 @@
           <type>nuint*</type>
         </param>
       </delegate>
-      <delegate name="_setIndexBuffer" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setIndexBuffer" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -401,7 +401,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_draw" access="public" convention="ThisCall">
+      <delegate name="_draw" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -416,7 +416,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_drawIndexed" access="public" convention="ThisCall">
+      <delegate name="_drawIndexed" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -437,7 +437,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_drawIndirect" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_drawIndirect" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -464,7 +464,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_drawIndexedIndirect" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_drawIndexedIndirect" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -491,7 +491,7 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_setStencilReference" access="public" convention="ThisCall">
+      <delegate name="_setStencilReference" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -500,7 +500,7 @@
           <type>uint</type>
         </param>
       </delegate>
-      <delegate name="_setSamplePositions" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_setSamplePositions" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -515,7 +515,7 @@
           <type>SamplePosition*</type>
         </param>
       </delegate>
-      <delegate name="_drawInstanced" access="public" convention="ThisCall">
+      <delegate name="_drawInstanced" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -533,7 +533,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_drawIndexedInstanced" access="public" convention="ThisCall">
+      <delegate name="_drawIndexedInstanced" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -554,7 +554,7 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_drawMeshTasks" access="public" convention="ThisCall">
+      <delegate name="_drawMeshTasks" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IRenderCommandEncoder*</type>
@@ -1135,106 +1135,106 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="endEncoding" access="public">
-          <type native="void ()">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="writeTimestamp" access="public">
-          <type native="void (IQueryPool *, GfxIndex)">IntPtr</type>
+          <type native="void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyBuffer" access="public">
-          <type native="void (IBufferResource *, Offset, IBufferResource *, Offset, Size)">IntPtr</type>
+          <type native="void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyTexture" access="public">
-          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents)">IntPtr</type>
+          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyTextureToBuffer" access="public">
-          <type native="void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents)">IntPtr</type>
+          <type native="void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="uploadTextureData" access="public">
-          <type native="void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount)">IntPtr</type>
+          <type native="void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="uploadBufferData" access="public">
-          <type native="void (IBufferResource *, Offset, Size, void *)">IntPtr</type>
+          <type native="void (IBufferResource *, Offset, Size, void *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="textureBarrier" access="public">
-          <type native="void (GfxCount, ITextureResource *const *, ResourceState, ResourceState)">IntPtr</type>
+          <type native="void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="textureSubresourceBarrier" access="public">
-          <type native="void (ITextureResource *, SubresourceRange, ResourceState, ResourceState)">IntPtr</type>
+          <type native="void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="bufferBarrier" access="public">
-          <type native="void (GfxCount, IBufferResource *const *, ResourceState, ResourceState)">IntPtr</type>
+          <type native="void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="clearResourceView" access="public">
-          <type native="void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum)">IntPtr</type>
+          <type native="void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="resolveResource" access="public">
-          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange)">IntPtr</type>
+          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="resolveQuery" access="public">
-          <type native="void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset)">IntPtr</type>
+          <type native="void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="beginDebugEvent" access="public">
-          <type native="void (const char *, float *)">IntPtr</type>
+          <type native="void (const char *, float *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="endDebugEvent" access="public">
-          <type native="void ()">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="bindPipeline" access="public">
-          <type native="Result (IPipelineState *, IShaderObject **)">IntPtr</type>
+          <type native="Result (IPipelineState *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="bindPipelineWithRootObject" access="public">
-          <type native="Result (IPipelineState *, IShaderObject *)">IntPtr</type>
+          <type native="Result (IPipelineState *, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setViewports" access="public">
-          <type native="void (GfxCount, const Viewport *)">IntPtr</type>
+          <type native="void (GfxCount, const Viewport *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setScissorRects" access="public">
-          <type native="void (GfxCount, const ScissorRect *)">IntPtr</type>
+          <type native="void (GfxCount, const ScissorRect *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setPrimitiveTopology" access="public">
-          <type native="void (PrimitiveTopology)">IntPtr</type>
+          <type native="void (PrimitiveTopology) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setVertexBuffers" access="public">
-          <type native="void (GfxIndex, GfxCount, IBufferResource *const *, const Offset *)">IntPtr</type>
+          <type native="void (GfxIndex, GfxCount, IBufferResource *const *, const Offset *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setIndexBuffer" access="public">
-          <type native="void (IBufferResource *, Format, Offset)">IntPtr</type>
+          <type native="void (IBufferResource *, Format, Offset) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="draw" access="public">
-          <type native="Result (GfxCount, GfxIndex)">IntPtr</type>
+          <type native="Result (GfxCount, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="drawIndexed" access="public">
-          <type native="Result (GfxCount, GfxIndex, GfxIndex)">IntPtr</type>
+          <type native="Result (GfxCount, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="drawIndirect" access="public">
-          <type native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset)">IntPtr</type>
+          <type native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="drawIndexedIndirect" access="public">
-          <type native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset)">IntPtr</type>
+          <type native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setStencilReference" access="public">
-          <type native="void (uint32_t)">IntPtr</type>
+          <type native="void (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setSamplePositions" access="public">
-          <type native="Result (GfxCount, GfxCount, const SamplePosition *)">IntPtr</type>
+          <type native="Result (GfxCount, GfxCount, const SamplePosition *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="drawInstanced" access="public">
-          <type native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex)">IntPtr</type>
+          <type native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="drawIndexedInstanced" access="public">
-          <type native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex, GfxIndex)">IntPtr</type>
+          <type native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="drawMeshTasks" access="public">
-          <type native="Result (int, int, int)">IntPtr</type>
+          <type native="Result (int, int, int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

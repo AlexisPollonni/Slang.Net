@@ -13,7 +13,7 @@ public unsafe partial struct SlangReflectionGenericArg
     /// <include file='SlangReflectionGenericArg.xml' path='doc/member[@name="SlangReflectionGenericArg.intVal"]/*' />
     [FieldOffset(0)]
     [NativeTypeName("int64_t")]
-    public nint intVal;
+    public long intVal;
 
     /// <include file='SlangReflectionGenericArg.xml' path='doc/member[@name="SlangReflectionGenericArg.boolVal"]/*' />
     [FieldOffset(0)]

@@ -11,27 +11,27 @@ public unsafe partial struct ITransientResourceHeap
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(ITransientResourceHeap* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(ITransientResourceHeap* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(ITransientResourceHeap* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _synchronizeAndReset(ITransientResourceHeap* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _finish(ITransientResourceHeap* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _createCommandBuffer(ITransientResourceHeap* pThis, ICommandBuffer** outCommandBuffer);
 
@@ -40,8 +40,7 @@ public unsafe partial struct ITransientResourceHeap
     {
 
         /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
-        [NativeTypeName("unsigned int")]
-        public enum Enum : uint
+        public enum Enum
         {
             /// <include file='Enum.xml' path='doc/member[@name="Enum.None"]/*' />
             None = 0,
@@ -133,22 +132,22 @@ public unsafe partial struct ITransientResourceHeap
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Result ()")]
+        [NativeTypeName("Result () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr synchronizeAndReset;
 
-        [NativeTypeName("Result ()")]
+        [NativeTypeName("Result () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr finish;
 
-        [NativeTypeName("Result (ICommandBuffer **)")]
+        [NativeTypeName("Result (ICommandBuffer **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createCommandBuffer;
     }
 }

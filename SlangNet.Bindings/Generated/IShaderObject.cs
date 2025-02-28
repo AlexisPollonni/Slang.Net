@@ -11,75 +11,75 @@ public unsafe partial struct IShaderObject
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IShaderObject* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IShaderObject* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IShaderObject* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("slang::TypeLayoutReflection *")]
     public delegate TypeLayoutReflection* _getElementTypeLayout(IShaderObject* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::ShaderObjectContainerType")]
     public delegate ShaderObjectContainerType _getContainerType(IShaderObject* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::GfxCount")]
     public delegate int _getEntryPointCount(IShaderObject* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getEntryPoint(IShaderObject* pThis, [NativeTypeName("gfx::GfxIndex")] int index, IShaderObject** entryPoint);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setData(IShaderObject* pThis, [NativeTypeName("const ShaderOffset &")] ShaderOffset* offset, [NativeTypeName("const void *")] void* data, [NativeTypeName("gfx::Size")] nuint size);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getObject(IShaderObject* pThis, [NativeTypeName("const ShaderOffset &")] ShaderOffset* offset, IShaderObject** @object);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setObject(IShaderObject* pThis, [NativeTypeName("const ShaderOffset &")] ShaderOffset* offset, [NativeTypeName("gfx::IShaderObject *")] IShaderObject* @object);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setResource(IShaderObject* pThis, [NativeTypeName("const ShaderOffset &")] ShaderOffset* offset, [NativeTypeName("gfx::IResourceView *")] IResourceView* resourceView);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setSampler(IShaderObject* pThis, [NativeTypeName("const ShaderOffset &")] ShaderOffset* offset, [NativeTypeName("gfx::ISamplerState *")] ISamplerState* sampler);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setCombinedTextureSampler(IShaderObject* pThis, [NativeTypeName("const ShaderOffset &")] ShaderOffset* offset, [NativeTypeName("gfx::IResourceView *")] IResourceView* textureView, [NativeTypeName("gfx::ISamplerState *")] ISamplerState* sampler);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setSpecializationArgs(IShaderObject* pThis, [NativeTypeName("const ShaderOffset &")] ShaderOffset* offset, [NativeTypeName("const slang::SpecializationArg *")] SpecializationArg* args, [NativeTypeName("gfx::GfxCount")] int count);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getCurrentVersion(IShaderObject* pThis, [NativeTypeName("gfx::ITransientResourceHeap *")] ITransientResourceHeap* transientHeap, IShaderObject** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("const void *")]
     public delegate void* _getRawData(IShaderObject* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Size")]
     public delegate nuint _getSize(IShaderObject* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _setConstantBufferOverride(IShaderObject* pThis, [NativeTypeName("gfx::IBufferResource *")] IBufferResource* constantBuffer);
 
@@ -229,58 +229,58 @@ public unsafe partial struct IShaderObject
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("slang::TypeLayoutReflection *()")]
+        [NativeTypeName("slang::TypeLayoutReflection *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getElementTypeLayout;
 
-        [NativeTypeName("ShaderObjectContainerType ()")]
+        [NativeTypeName("ShaderObjectContainerType () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getContainerType;
 
-        [NativeTypeName("GfxCount ()")]
+        [NativeTypeName("GfxCount () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getEntryPointCount;
 
-        [NativeTypeName("Result (GfxIndex, IShaderObject **)")]
+        [NativeTypeName("Result (GfxIndex, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getEntryPoint;
 
-        [NativeTypeName("Result (const ShaderOffset &, const void *, Size)")]
+        [NativeTypeName("Result (const ShaderOffset &, const void *, Size) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setData;
 
-        [NativeTypeName("Result (const ShaderOffset &, IShaderObject **)")]
+        [NativeTypeName("Result (const ShaderOffset &, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getObject;
 
-        [NativeTypeName("Result (const ShaderOffset &, IShaderObject *)")]
+        [NativeTypeName("Result (const ShaderOffset &, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setObject;
 
-        [NativeTypeName("Result (const ShaderOffset &, IResourceView *)")]
+        [NativeTypeName("Result (const ShaderOffset &, IResourceView *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setResource;
 
-        [NativeTypeName("Result (const ShaderOffset &, ISamplerState *)")]
+        [NativeTypeName("Result (const ShaderOffset &, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setSampler;
 
-        [NativeTypeName("Result (const ShaderOffset &, IResourceView *, ISamplerState *)")]
+        [NativeTypeName("Result (const ShaderOffset &, IResourceView *, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setCombinedTextureSampler;
 
-        [NativeTypeName("Result (const ShaderOffset &, const slang::SpecializationArg *, GfxCount)")]
+        [NativeTypeName("Result (const ShaderOffset &, const slang::SpecializationArg *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setSpecializationArgs;
 
-        [NativeTypeName("Result (ITransientResourceHeap *, IShaderObject **)")]
+        [NativeTypeName("Result (ITransientResourceHeap *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getCurrentVersion;
 
-        [NativeTypeName("const void *()")]
+        [NativeTypeName("const void *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getRawData;
 
-        [NativeTypeName("Size ()")]
+        [NativeTypeName("Size () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSize;
 
-        [NativeTypeName("Result (IBufferResource *)")]
+        [NativeTypeName("Result (IBufferResource *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setConstantBufferOverride;
     }
 }

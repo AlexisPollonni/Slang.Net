@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISlangProfiler*</type>
@@ -17,25 +17,25 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISlangProfiler*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISlangProfiler*</type>
         </param>
       </delegate>
-      <delegate name="_getEntryCount" access="public" convention="ThisCall">
+      <delegate name="_getEntryCount" access="public" convention="StdCall">
         <type native="size_t">nuint</type>
         <param name="pThis">
           <type>ISlangProfiler*</type>
         </param>
       </delegate>
-      <delegate name="_getEntryName" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getEntryName" access="public" convention="StdCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>ISlangProfiler*</type>
@@ -44,8 +44,8 @@
           <type>uint</type>
         </param>
       </delegate>
-      <delegate name="_getEntryTimeMS" access="public" convention="ThisCall">
-        <type native="long">nint</type>
+      <delegate name="_getEntryTimeMS" access="public" convention="StdCall">
+        <type native="long">int</type>
         <param name="pThis">
           <type>ISlangProfiler*</type>
         </param>
@@ -53,7 +53,7 @@
           <type>uint</type>
         </param>
       </delegate>
-      <delegate name="_getEntryInvocationTimes" access="public" convention="ThisCall">
+      <delegate name="_getEntryInvocationTimes" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISlangProfiler*</type>
@@ -102,7 +102,7 @@
         </body>
       </function>
       <function name="getEntryTimeMS" access="public" unsafe="true">
-        <type native="long">nint</type>
+        <type native="long">int</type>
         <param name="index">
           <type>uint</type>
         </param>
@@ -121,25 +121,25 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryCount" access="public">
-          <type native="size_t ()">IntPtr</type>
+          <type native="size_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryName" access="public">
-          <type native="const char *(uint32_t)">IntPtr</type>
+          <type native="const char *(uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryTimeMS" access="public">
-          <type native="long (uint32_t)">IntPtr</type>
+          <type native="long (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryInvocationTimes" access="public">
-          <type native="uint32_t (uint32_t)">IntPtr</type>
+          <type native="uint32_t (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

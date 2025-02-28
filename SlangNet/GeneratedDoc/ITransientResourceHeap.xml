@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ITransientResourceHeap*</type>
@@ -17,31 +17,31 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ITransientResourceHeap*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ITransientResourceHeap*</type>
         </param>
       </delegate>
-      <delegate name="_synchronizeAndReset" access="public" convention="ThisCall">
+      <delegate name="_synchronizeAndReset" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>ITransientResourceHeap*</type>
         </param>
       </delegate>
-      <delegate name="_finish" access="public" convention="ThisCall">
+      <delegate name="_finish" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>ITransientResourceHeap*</type>
         </param>
       </delegate>
-      <delegate name="_createCommandBuffer" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_createCommandBuffer" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>ITransientResourceHeap*</type>
@@ -52,15 +52,15 @@
       </delegate>
       <struct name="Flags" access="public">
         <enumeration name="Enum" access="public">
-          <type>uint</type>
+          <type>int</type>
           <enumerator name="None" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>0</code>
             </value>
           </enumerator>
           <enumerator name="AllowResizing" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>0x1</code>
             </value>
@@ -137,22 +137,22 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="synchronizeAndReset" access="public">
-          <type native="Result ()">IntPtr</type>
+          <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="finish" access="public">
-          <type native="Result ()">IntPtr</type>
+          <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createCommandBuffer" access="public">
-          <type native="Result (ICommandBuffer **)">IntPtr</type>
+          <type native="Result (ICommandBuffer **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

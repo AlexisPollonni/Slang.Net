@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISwapchain*</type>
@@ -17,25 +17,25 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISwapchain*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ISwapchain*</type>
         </param>
       </delegate>
-      <delegate name="_getDesc" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getDesc" access="public" convention="StdCall" unsafe="true">
         <type native="const Desc &amp;">SwapchainDesc*</type>
         <param name="pThis">
           <type>ISwapchain*</type>
         </param>
       </delegate>
-      <delegate name="_getImage" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getImage" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>ISwapchain*</type>
@@ -47,19 +47,19 @@
           <type>ITextureResource**</type>
         </param>
       </delegate>
-      <delegate name="_present" access="public" convention="ThisCall">
+      <delegate name="_present" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>ISwapchain*</type>
         </param>
       </delegate>
-      <delegate name="_acquireNextImage" access="public" convention="ThisCall">
+      <delegate name="_acquireNextImage" access="public" convention="StdCall">
         <type>int</type>
         <param name="pThis">
           <type>ISwapchain*</type>
         </param>
       </delegate>
-      <delegate name="_resize" access="public" convention="ThisCall">
+      <delegate name="_resize" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>ISwapchain*</type>
@@ -71,13 +71,13 @@
           <type>int</type>
         </param>
       </delegate>
-      <delegate name="_isOccluded" access="public" convention="ThisCall">
+      <delegate name="_isOccluded" access="public" convention="StdCall">
         <type native="bool">byte</type>
         <param name="pThis">
           <type>ISwapchain*</type>
         </param>
       </delegate>
-      <delegate name="_setFullScreenMode" access="public" convention="ThisCall">
+      <delegate name="_setFullScreenMode" access="public" convention="StdCall">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>ISwapchain*</type>
@@ -189,34 +189,34 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDesc" access="public">
-          <type native="const Desc &amp;()">IntPtr</type>
+          <type native="const Desc &amp;() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getImage" access="public">
-          <type native="Result (GfxIndex, ITextureResource **)">IntPtr</type>
+          <type native="Result (GfxIndex, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="present" access="public">
-          <type native="Result ()">IntPtr</type>
+          <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="acquireNextImage" access="public">
-          <type native="int ()">IntPtr</type>
+          <type native="int () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="resize" access="public">
-          <type native="Result (GfxCount, GfxCount)">IntPtr</type>
+          <type native="Result (GfxCount, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="isOccluded" access="public">
-          <type native="bool ()">IntPtr</type>
+          <type native="bool () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setFullScreenMode" access="public">
-          <type native="Result (bool)">IntPtr</type>
+          <type native="Result (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

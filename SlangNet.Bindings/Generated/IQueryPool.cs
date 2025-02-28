@@ -11,23 +11,23 @@ public unsafe partial struct IQueryPool
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IQueryPool* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IQueryPool* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IQueryPool* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getResult(IQueryPool* pThis, [NativeTypeName("gfx::GfxIndex")] int queryIndex, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("uint64_t *")] nuint* data);
+    public delegate int _getResult(IQueryPool* pThis, [NativeTypeName("gfx::GfxIndex")] int queryIndex, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("uint64_t *")] ulong* data);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _reset(IQueryPool* pThis);
 
@@ -70,7 +70,7 @@ public unsafe partial struct IQueryPool
     /// <include file='IQueryPool.xml' path='doc/member[@name="IQueryPool.getResult"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getResult([NativeTypeName("gfx::GfxIndex")] int queryIndex, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("uint64_t *")] nuint* data)
+    public int getResult([NativeTypeName("gfx::GfxIndex")] int queryIndex, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("uint64_t *")] ulong* data)
     {
         return Marshal.GetDelegateForFunctionPointer<_getResult>(lpVtbl->getResult)((IQueryPool*)Unsafe.AsPointer(ref this), queryIndex, count, data);
     }
@@ -85,19 +85,19 @@ public unsafe partial struct IQueryPool
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Result (GfxIndex, GfxCount, uint64_t *)")]
+        [NativeTypeName("Result (GfxIndex, GfxCount, uint64_t *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getResult;
 
-        [NativeTypeName("Result ()")]
+        [NativeTypeName("Result () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr reset;
     }
 }

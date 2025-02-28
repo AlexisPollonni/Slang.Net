@@ -9,7 +9,7 @@
         <type native="const TargetDesc *">TargetDesc*</type>
       </field>
       <field name="targetCount" access="public">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
       </field>
       <field name="flags" access="public">
         <type native="slang::SessionFlags">uint</type>
@@ -21,13 +21,13 @@
         <type native="const char *const *">sbyte**</type>
       </field>
       <field name="searchPathCount" access="public">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
       </field>
       <field name="preprocessorMacros" access="public">
         <type native="const PreprocessorMacroDesc *">PreprocessorMacroDesc*</type>
       </field>
       <field name="preprocessorMacroCount" access="public">
-        <type native="SlangInt">nint</type>
+        <type native="SlangInt">long</type>
       </field>
       <field name="fileSystem" access="public">
         <type>ISlangFileSystem*</type>

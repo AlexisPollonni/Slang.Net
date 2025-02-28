@@ -5,8 +5,7 @@ public partial struct FaceMask
 {
 
     /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
-    [NativeTypeName("unsigned int")]
-    public enum Enum : uint
+    public enum Enum
     {
         /// <include file='Enum.xml' path='doc/member[@name="Enum.Front"]/*' />
         Front = 1,

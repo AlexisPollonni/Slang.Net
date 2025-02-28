@@ -11,34 +11,34 @@ public unsafe partial struct ICommandBuffer
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(ICommandBuffer* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(ICommandBuffer* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(ICommandBuffer* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _encodeRenderCommands(ICommandBuffer* pThis, [NativeTypeName("gfx::IRenderPassLayout *")] IRenderPassLayout* renderPass, [NativeTypeName("gfx::IFramebuffer *")] IFramebuffer* framebuffer, IRenderCommandEncoder** outEncoder);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _encodeComputeCommands(ICommandBuffer* pThis, IComputeCommandEncoder** outEncoder);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _encodeResourceCommands(ICommandBuffer* pThis, IResourceCommandEncoder** outEncoder);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _encodeRayTracingCommands(ICommandBuffer* pThis, IRayTracingCommandEncoder** outEncoder);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _close(ICommandBuffer* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getNativeHandle(ICommandBuffer* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
 
@@ -111,31 +111,31 @@ public unsafe partial struct ICommandBuffer
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **)")]
+        [NativeTypeName("void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr encodeRenderCommands;
 
-        [NativeTypeName("void (IComputeCommandEncoder **)")]
+        [NativeTypeName("void (IComputeCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr encodeComputeCommands;
 
-        [NativeTypeName("void (IResourceCommandEncoder **)")]
+        [NativeTypeName("void (IResourceCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr encodeResourceCommands;
 
-        [NativeTypeName("void (IRayTracingCommandEncoder **)")]
+        [NativeTypeName("void (IRayTracingCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr encodeRayTracingCommands;
 
-        [NativeTypeName("void ()")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr close;
 
-        [NativeTypeName("Result (InteropHandle *)")]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getNativeHandle;
     }
 }

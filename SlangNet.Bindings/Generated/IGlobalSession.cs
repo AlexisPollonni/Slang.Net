@@ -12,105 +12,105 @@ public unsafe partial struct IGlobalSession
 {
     public Vtbl* lpVtbl;
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _queryInterface(IGlobalSession* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _addRef(IGlobalSession* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _release(IGlobalSession* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _createSession(IGlobalSession* pThis, [NativeTypeName("const SessionDesc &")] SessionDesc* desc, ISession** outSession);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangProfileID")]
     public delegate ProfileID _findProfile(IGlobalSession* pThis, [NativeTypeName("const char *")] sbyte* name);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setDownstreamCompilerPath(IGlobalSession* pThis, [NativeTypeName("SlangPassThrough")] PassThrough passThrough, [NativeTypeName("const char *")] sbyte* path);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setDownstreamCompilerPrelude(IGlobalSession* pThis, [NativeTypeName("SlangPassThrough")] PassThrough passThrough, [NativeTypeName("const char *")] sbyte* preludeText);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _getDownstreamCompilerPrelude(IGlobalSession* pThis, [NativeTypeName("SlangPassThrough")] PassThrough passThrough, ISlangBlob** outPrelude);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("const char *")]
     public delegate sbyte* _getBuildTagString(IGlobalSession* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _setDefaultDownstreamCompiler(IGlobalSession* pThis, [NativeTypeName("SlangSourceLanguage")] SourceLanguage sourceLanguage, [NativeTypeName("SlangPassThrough")] PassThrough defaultCompiler);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangPassThrough")]
     public delegate PassThrough _getDefaultDownstreamCompiler(IGlobalSession* pThis, [NativeTypeName("SlangSourceLanguage")] SourceLanguage sourceLanguage);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setLanguagePrelude(IGlobalSession* pThis, [NativeTypeName("SlangSourceLanguage")] SourceLanguage sourceLanguage, [NativeTypeName("const char *")] sbyte* preludeText);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _getLanguagePrelude(IGlobalSession* pThis, [NativeTypeName("SlangSourceLanguage")] SourceLanguage sourceLanguage, ISlangBlob** outPrelude);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _addBuiltins(IGlobalSession* pThis, [NativeTypeName("const char *")] sbyte* sourcePath, [NativeTypeName("const char *")] sbyte* sourceString);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setSharedLibraryLoader(IGlobalSession* pThis, ISlangSharedLibraryLoader* loader);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate ISlangSharedLibraryLoader* _getSharedLibraryLoader(IGlobalSession* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _checkCompileTargetSupport(IGlobalSession* pThis, [NativeTypeName("SlangCompileTarget")] CompileTarget target);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _checkPassThroughSupport(IGlobalSession* pThis, [NativeTypeName("SlangPassThrough")] PassThrough passThrough);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _compileCoreModule(IGlobalSession* pThis, [NativeTypeName("slang::CompileCoreModuleFlags")] uint flags);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _loadCoreModule(IGlobalSession* pThis, [NativeTypeName("const void *")] void* coreModule, [NativeTypeName("size_t")] nuint coreModuleSizeInBytes);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _saveCoreModule(IGlobalSession* pThis, [NativeTypeName("SlangArchiveType")] ArchiveType archiveType, ISlangBlob** outBlob);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangCapabilityID")]
     public delegate CapabilityID _findCapability(IGlobalSession* pThis, [NativeTypeName("const char *")] sbyte* name);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setDownstreamCompilerForTransition(IGlobalSession* pThis, [NativeTypeName("SlangCompileTarget")] CompileTarget source, [NativeTypeName("SlangCompileTarget")] CompileTarget target, [NativeTypeName("SlangPassThrough")] PassThrough compiler);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangPassThrough")]
     public delegate PassThrough _getDownstreamCompilerForTransition(IGlobalSession* pThis, [NativeTypeName("SlangCompileTarget")] CompileTarget source, [NativeTypeName("SlangCompileTarget")] CompileTarget target);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _getCompilerElapsedTime(IGlobalSession* pThis, double* outTotalTime, double* outDownstreamTime);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _setSPIRVCoreGrammar(IGlobalSession* pThis, [NativeTypeName("const char *")] sbyte* jsonPath);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _parseCommandLineArguments(IGlobalSession* pThis, int argc, [NativeTypeName("const char *const *")] sbyte** argv, [NativeTypeName("slang::SessionDesc *")] SessionDesc* outSessionDesc, ISlangUnknown** outAuxAllocation);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _getSessionDescDigest(IGlobalSession* pThis, [NativeTypeName("slang::SessionDesc *")] SessionDesc* sessionDesc, ISlangBlob** outBlob);
 
@@ -330,88 +330,88 @@ public unsafe partial struct IGlobalSession
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **)")]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("SlangResult (const SessionDesc &, ISession **)")]
+        [NativeTypeName("SlangResult (const SessionDesc &, ISession **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createSession;
 
-        [NativeTypeName("SlangProfileID (const char *)")]
+        [NativeTypeName("SlangProfileID (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr findProfile;
 
-        [NativeTypeName("void (SlangPassThrough, const char *)")]
+        [NativeTypeName("void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDownstreamCompilerPath;
 
-        [NativeTypeName("void (SlangPassThrough, const char *)")]
+        [NativeTypeName("void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDownstreamCompilerPrelude;
 
-        [NativeTypeName("void (SlangPassThrough, ISlangBlob **)")]
+        [NativeTypeName("void (SlangPassThrough, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDownstreamCompilerPrelude;
 
-        [NativeTypeName("const char *()")]
+        [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getBuildTagString;
 
-        [NativeTypeName("SlangResult (SlangSourceLanguage, SlangPassThrough)")]
+        [NativeTypeName("SlangResult (SlangSourceLanguage, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDefaultDownstreamCompiler;
 
-        [NativeTypeName("SlangPassThrough (SlangSourceLanguage)")]
+        [NativeTypeName("SlangPassThrough (SlangSourceLanguage) __attribute__((stdcall))")]
         public IntPtr getDefaultDownstreamCompiler;
 
-        [NativeTypeName("void (SlangSourceLanguage, const char *)")]
+        [NativeTypeName("void (SlangSourceLanguage, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setLanguagePrelude;
 
-        [NativeTypeName("void (SlangSourceLanguage, ISlangBlob **)")]
+        [NativeTypeName("void (SlangSourceLanguage, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getLanguagePrelude;
 
-        [NativeTypeName("void (const char *, const char *)")]
+        [NativeTypeName("void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addBuiltins;
 
-        [NativeTypeName("void (ISlangSharedLibraryLoader *)")]
+        [NativeTypeName("void (ISlangSharedLibraryLoader *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setSharedLibraryLoader;
 
-        [NativeTypeName("ISlangSharedLibraryLoader *()")]
+        [NativeTypeName("ISlangSharedLibraryLoader *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSharedLibraryLoader;
 
-        [NativeTypeName("SlangResult (SlangCompileTarget)")]
+        [NativeTypeName("SlangResult (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr checkCompileTargetSupport;
 
-        [NativeTypeName("SlangResult (SlangPassThrough)")]
+        [NativeTypeName("SlangResult (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr checkPassThroughSupport;
 
-        [NativeTypeName("SlangResult (CompileCoreModuleFlags)")]
+        [NativeTypeName("SlangResult (CompileCoreModuleFlags) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr compileCoreModule;
 
-        [NativeTypeName("SlangResult (const void *, size_t)")]
+        [NativeTypeName("SlangResult (const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr loadCoreModule;
 
-        [NativeTypeName("SlangResult (SlangArchiveType, ISlangBlob **)")]
+        [NativeTypeName("SlangResult (SlangArchiveType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr saveCoreModule;
 
-        [NativeTypeName("SlangCapabilityID (const char *)")]
+        [NativeTypeName("SlangCapabilityID (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr findCapability;
 
-        [NativeTypeName("void (SlangCompileTarget, SlangCompileTarget, SlangPassThrough)")]
+        [NativeTypeName("void (SlangCompileTarget, SlangCompileTarget, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDownstreamCompilerForTransition;
 
-        [NativeTypeName("SlangPassThrough (SlangCompileTarget, SlangCompileTarget)")]
+        [NativeTypeName("SlangPassThrough (SlangCompileTarget, SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDownstreamCompilerForTransition;
 
-        [NativeTypeName("void (double *, double *)")]
+        [NativeTypeName("void (double *, double *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getCompilerElapsedTime;
 
-        [NativeTypeName("SlangResult (const char *)")]
+        [NativeTypeName("SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setSPIRVCoreGrammar;
 
-        [NativeTypeName("SlangResult (int, const char *const *, SessionDesc *, ISlangUnknown **)")]
+        [NativeTypeName("SlangResult (int, const char *const *, SessionDesc *, ISlangUnknown **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr parseCommandLineArguments;
 
-        [NativeTypeName("SlangResult (SessionDesc *, ISlangBlob **)")]
+        [NativeTypeName("SlangResult (SessionDesc *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSessionDescDigest;
     }
 }

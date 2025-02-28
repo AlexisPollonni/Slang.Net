@@ -35,7 +35,7 @@ public unsafe partial struct DeviceInfo
 
     /// <include file='DeviceInfo.xml' path='doc/member[@name="DeviceInfo.timestampFrequency"]/*' />
     [NativeTypeName("uint64_t")]
-    public nuint timestampFrequency;
+    public ulong timestampFrequency;
 
     /// <include file='_identityProjectionMatrix_e__FixedBuffer.xml' path='doc/member[@name="_identityProjectionMatrix_e__FixedBuffer"]/*' />
     [InlineArray(16)]

@@ -5,7 +5,7 @@
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
-      <delegate name="_queryInterface" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
@@ -17,19 +17,19 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_addRef" access="public" convention="ThisCall">
+      <delegate name="_addRef" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
         </param>
       </delegate>
-      <delegate name="_release" access="public" convention="ThisCall">
+      <delegate name="_release" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
         </param>
       </delegate>
-      <delegate name="_encodeRenderCommands" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_encodeRenderCommands" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
@@ -44,7 +44,7 @@
           <type>IRenderCommandEncoder**</type>
         </param>
       </delegate>
-      <delegate name="_encodeComputeCommands" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_encodeComputeCommands" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
@@ -53,7 +53,7 @@
           <type>IComputeCommandEncoder**</type>
         </param>
       </delegate>
-      <delegate name="_encodeResourceCommands" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_encodeResourceCommands" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
@@ -62,7 +62,7 @@
           <type>IResourceCommandEncoder**</type>
         </param>
       </delegate>
-      <delegate name="_encodeRayTracingCommands" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_encodeRayTracingCommands" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
@@ -71,13 +71,13 @@
           <type>IRayTracingCommandEncoder**</type>
         </param>
       </delegate>
-      <delegate name="_close" access="public" convention="ThisCall">
+      <delegate name="_close" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
         </param>
       </delegate>
-      <delegate name="_getNativeHandle" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getNativeHandle" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
@@ -86,13 +86,13 @@
           <type>InteropHandle*</type>
         </param>
       </delegate>
-      <delegate name="_invalidateDescriptorHeapBinding" access="public" convention="ThisCall">
+      <delegate name="_invalidateDescriptorHeapBinding" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
         </param>
       </delegate>
-      <delegate name="_ensureInternalDescriptorHeapsBound" access="public" convention="ThisCall">
+      <delegate name="_ensureInternalDescriptorHeapsBound" access="public" convention="StdCall">
         <type>void</type>
         <param name="pThis">
           <type>ICommandBufferD3D12*</type>
@@ -193,37 +193,37 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **)">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="encodeRenderCommands" access="public">
-          <type native="void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **)">IntPtr</type>
+          <type native="void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="encodeComputeCommands" access="public">
-          <type native="void (IComputeCommandEncoder **)">IntPtr</type>
+          <type native="void (IComputeCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="encodeResourceCommands" access="public">
-          <type native="void (IResourceCommandEncoder **)">IntPtr</type>
+          <type native="void (IResourceCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="encodeRayTracingCommands" access="public">
-          <type native="void (IRayTracingCommandEncoder **)">IntPtr</type>
+          <type native="void (IRayTracingCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="close" access="public">
-          <type native="void ()">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeHandle" access="public">
-          <type native="Result (InteropHandle *)">IntPtr</type>
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="invalidateDescriptorHeapBinding" access="public">
-          <type native="void ()">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="ensureInternalDescriptorHeapsBound" access="public">
-          <type native="void ()">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>
