@@ -4,17 +4,17 @@ namespace SlangNet.Bindings.Generated;
 public partial struct RayTracingPipelineFlags
 {
 
-    /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
+    /// <include file='RayTracingPipelineFlagsEnum.xml' path='doc/member[@name="RayTracingPipelineFlagsEnum"]/*' />
     [NativeTypeName("uint32_t")]
-    public enum Enum : uint
+    public enum RayTracingPipelineFlagsEnum : uint
     {
-        /// <include file='Enum.xml' path='doc/member[@name="Enum.None"]/*' />
+        /// <include file='RayTracingPipelineFlagsEnum.xml' path='doc/member[@name="RayTracingPipelineFlagsEnum.None"]/*' />
         None = 0,
 
-        /// <include file='Enum.xml' path='doc/member[@name="Enum.SkipTriangles"]/*' />
+        /// <include file='RayTracingPipelineFlagsEnum.xml' path='doc/member[@name="RayTracingPipelineFlagsEnum.SkipTriangles"]/*' />
         SkipTriangles = 1,
 
-        /// <include file='Enum.xml' path='doc/member[@name="Enum.SkipProcedurals"]/*' />
+        /// <include file='RayTracingPipelineFlagsEnum.xml' path='doc/member[@name="RayTracingPipelineFlagsEnum.SkipProcedurals"]/*' />
         SkipProcedurals = 2,
     }
 }

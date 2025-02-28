@@ -28,5 +28,5 @@ public unsafe partial struct RayTracingPipelineStateDesc
 
     /// <include file='RayTracingPipelineStateDesc.xml' path='doc/member[@name="RayTracingPipelineStateDesc.flags"]/*' />
     [NativeTypeName("gfx::RayTracingPipelineFlags::Enum")]
-    public Enum flags;
+    public RayTracingPipelineFlagsEnum flags;
 }

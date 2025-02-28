@@ -26,8 +26,12 @@ unsafe partial struct TypeLayoutReflection
             {
                 Container = pointer,
                 Argument = (nint)Index,
-                GetCount = &ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount,
-                TryGetAt = &TryGetRangeAt
+                GetCount = (container, arg) => checked((nint)ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount(container, arg)),
+                TryGetAt = (SlangReflectionTypeLayout* c, IntPtr arg, IntPtr i, out DescriptorRange res) =>
+                {
+                    res = default;
+                    return TryGetRangeAt(c, arg, i, ref res);
+                }
             };
         }
 

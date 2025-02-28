@@ -48,7 +48,7 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
         BindingRanges = new NativeBoundedReadOnlyList<SlangReflectionTypeLayout, BindingRange>
         {
             Container = InternalPointer,
-            GetCount = ReflectionTypeLayout_getBindingRangeCount,
+            GetCount = container => checked((nint)ReflectionTypeLayout_getBindingRangeCount(container)),
             TryGetAt = (SlangReflectionTypeLayout* type, nint index, out BindingRange bindingRange) =>
             {
                 bindingRange = new(type, index);
@@ -58,7 +58,7 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
         DescriptorSets = new NativeBoundedReadOnlyList<SlangReflectionTypeLayout, DescriptorSet>
         {
             Container = InternalPointer,
-            GetCount = ReflectionTypeLayout_getDescriptorSetCount,
+            GetCount = container => checked((nint)ReflectionTypeLayout_getDescriptorSetCount(container)),
             TryGetAt = (SlangReflectionTypeLayout* type, nint index, out DescriptorSet descriptorSet) =>
             {
                 descriptorSet = new(type, index);

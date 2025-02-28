@@ -2,7 +2,7 @@
 <bindings>
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="RayTracingPipelineFlags" access="public">
-      <enumeration name="Enum" access="public">
+      <enumeration name="RayTracingPipelineFlagsEnum" access="public">
         <type>uint</type>
         <enumerator name="None" access="public">
           <type primitive="False">uint</type>

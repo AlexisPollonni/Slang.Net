@@ -41,10 +41,13 @@ internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TElement> 
 internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TArgument, TElement> : IReadOnlyList<TElement>
     where TContainer : unmanaged
 {
+    public delegate nint GetCountDelegate(TContainer* container, TArgument argument);
+    public delegate bool TryGetAtDelegate(TContainer* container, TArgument argument, nint index, out TElement result);
+    
     public TContainer* Container { get; init; }
     public TArgument Argument { get; init; }
-    public delegate* managed<TContainer*, TArgument, nint> GetCount { get; init; }
-    public delegate* managed<TContainer*, TArgument, nint, ref TElement, bool> TryGetAt { get; init; }
+    public GetCountDelegate GetCount { get; init; }
+    public TryGetAtDelegate TryGetAt { get; init; }
 
     public long Count => GetCount(Container, Argument);
     int IReadOnlyCollection<TElement>.Count => checked((int)Count);
@@ -56,8 +59,7 @@ internal readonly unsafe struct NativeBoundedReadOnlyList<TContainer, TArgument,
         {
             if (index < 0 || index >= Count)
                 throw new ArgumentOutOfRangeException(nameof(index));
-            TElement element = default!;
-            return TryGetAt(Container, Argument, index, ref element)
+            return TryGetAt(Container, Argument, index, out var element)
                 ? element
                 : throw new SlangException("Slang list returned a null pointer");
         }

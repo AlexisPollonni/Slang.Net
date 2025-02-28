@@ -48,7 +48,7 @@ public readonly unsafe struct TypeReflection : IEquatable<TypeReflection>
         SpecializedTypeArgTypes = new NativeBoundedReadOnlyList<SlangReflectionType, TypeReflection?>
         {
             Container = InternalPointer,
-            GetCount = ReflectionType_getSpecializedTypeArgCount,
+            GetCount = container => checked((nint)ReflectionType_getSpecializedTypeArgCount(container)),
             TryGetAt = (SlangReflectionType* type, nint index, out TypeReflection? arg) =>
             {
                 var ptr = ReflectionType_getSpecializedTypeArgType(type, index);

@@ -21,7 +21,7 @@
         <type native="gfx::Size">nuint</type>
       </field>
       <field name="flags" access="public">
-        <type native="gfx::RayTracingPipelineFlags::Enum">Enum</type>
+        <type native="gfx::RayTracingPipelineFlags::Enum">RayTracingPipelineFlagsEnum</type>
       </field>
     </struct>
   </namespace>

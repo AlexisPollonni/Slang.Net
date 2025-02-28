@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SlangNet;
 
@@ -63,10 +64,10 @@ public readonly unsafe struct EntryPointReflection : IEquatable<EntryPointReflec
     {
         get
         {
-            var axes = new nuint[MaxComputeAxes];
-            fixed (nuint* axesPtr = axes)
+            var axes = new ulong[MaxComputeAxes];
+            fixed (ulong* axesPtr = axes)
                 ReflectionEntryPoint_getComputeThreadGroupSize(InternalPointer, MaxComputeAxes, axesPtr);
-            return axes;
+            return axes.Select(arg => checked((nuint)arg)).ToArray();
         }
     }
 
