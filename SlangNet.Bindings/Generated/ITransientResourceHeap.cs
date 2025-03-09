@@ -39,13 +39,13 @@ public unsafe partial struct ITransientResourceHeap
     public partial struct Flags
     {
 
-        /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
-        public enum Enum
+        /// <include file='TransientResourceHeapFlagsEnum.xml' path='doc/member[@name="TransientResourceHeapFlagsEnum"]/*' />
+        public enum TransientResourceHeapFlagsEnum
         {
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.None"]/*' />
+            /// <include file='TransientResourceHeapFlagsEnum.xml' path='doc/member[@name="TransientResourceHeapFlagsEnum.None"]/*' />
             None = 0,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.AllowResizing"]/*' />
+            /// <include file='TransientResourceHeapFlagsEnum.xml' path='doc/member[@name="TransientResourceHeapFlagsEnum.AllowResizing"]/*' />
             AllowResizing = 0x1,
         }
     }
@@ -55,7 +55,7 @@ public unsafe partial struct ITransientResourceHeap
     {
         /// <include file='TransientResourceHeapDesc.xml' path='doc/member[@name="TransientResourceHeapDesc.flags"]/*' />
         [NativeTypeName("gfx::ITransientResourceHeap::Flags::Enum")]
-        public Enum flags;
+        public TransientResourceHeapFlagsEnum flags;
 
         /// <include file='TransientResourceHeapDesc.xml' path='doc/member[@name="TransientResourceHeapDesc.constantBufferSize"]/*' />
         [NativeTypeName("gfx::Size")]

@@ -51,7 +51,7 @@
         </param>
       </delegate>
       <struct name="Flags" access="public">
-        <enumeration name="Enum" access="public">
+        <enumeration name="TransientResourceHeapFlagsEnum" access="public">
           <type>int</type>
           <enumerator name="None" access="public">
             <type primitive="False">int</type>
@@ -69,7 +69,7 @@
       </struct>
       <struct name="TransientResourceHeapDesc" access="public">
         <field name="flags" access="public">
-          <type native="gfx::ITransientResourceHeap::Flags::Enum">Enum</type>
+          <type native="gfx::ITransientResourceHeap::Flags::Enum">TransientResourceHeapFlagsEnum</type>
         </field>
         <field name="constantBufferSize" access="public">
           <type native="gfx::Size">nuint</type>
