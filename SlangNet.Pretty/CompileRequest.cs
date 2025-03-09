@@ -200,7 +200,7 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
         var ptr = Pointer->getEntryPointCode(index, &size);
         if (ptr == null)
             throw new NullReferenceException("CompileRequest::getEntryPointCode returned a null pointer");
-        return new ReadOnlySpan<byte>(ptr, checked((int)size.ToUInt64()));
+        return new(ptr, checked((int)size.ToUInt64()));
     }
 
     public SlangResult TryGetEntryPointCodeBlob(int entryPointIndex, int targetIndex, [NotNullWhen(true)] out IMemoryOwner<byte>? blob)
@@ -230,7 +230,7 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
             var ptr = Pointer->getCompileRequestCode(&size);
             if (ptr == null)
                 throw new NullReferenceException("CompileRequest::getCompileRequestCode returned a null pointer");
-            return new ReadOnlySpan<byte>(ptr, checked((int)size.ToUInt64()));
+            return new(ptr, checked((int)size.ToUInt64()));
         }
     }
 

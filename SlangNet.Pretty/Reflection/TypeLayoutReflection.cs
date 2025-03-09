@@ -86,7 +86,7 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
             var ptr = ReflectionTypeLayout_GetType(InternalPointer);
             if (ptr == null)
                 throw new SlangException($"{nameof(ReflectionTypeLayout_GetType)} returned a null pointer");
-            return new TypeReflection(ptr);
+            return new(ptr);
         }
     }
 

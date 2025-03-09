@@ -104,7 +104,7 @@ public readonly record struct SlangResult(int RawValue)
         if (Succeeded)
             return;
         if (Facility < FacilityCore)
-            Marshal.ThrowExceptionForHR(RawValue, new IntPtr(-1));
+            Marshal.ThrowExceptionForHR(RawValue, new(-1));
 
         var message = $"Slang operation returned an error: {this}";
         if (diagnostics != null)
@@ -115,6 +115,11 @@ public readonly record struct SlangResult(int RawValue)
         if (this == TimeOut) throw new TimeoutException(message);
         throw new SlangException(message, this);
     }
+}
+
+public static class SlangResultExtensions
+{
+    internal static SlangResult ToSlangResult(this int statusCode) => new(statusCode);
 }
 
 public sealed class SlangException : Exception

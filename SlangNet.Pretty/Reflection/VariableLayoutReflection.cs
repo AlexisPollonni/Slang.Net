@@ -40,7 +40,7 @@ public readonly unsafe struct VariableLayoutReflection : IEquatable<VariableLayo
             var ptr = ReflectionVariableLayout_GetVariable(InternalPointer);
             if (ptr == null)
                 throw new SlangException($"{nameof(ReflectionVariableLayout_GetVariable)} returned a null pointer");
-            return new VariableReflection(ptr);
+            return new(ptr);
         }
     }
 
@@ -51,7 +51,7 @@ public readonly unsafe struct VariableLayoutReflection : IEquatable<VariableLayo
             var ptr = ReflectionVariableLayout_GetTypeLayout(InternalPointer);
             if (ptr == null)
                 throw new SlangException($"{nameof(ReflectionVariableLayout_GetTypeLayout)} returned a null pointer");
-            return new TypeLayoutReflection(ptr);
+            return new(ptr);
         }
     }
 

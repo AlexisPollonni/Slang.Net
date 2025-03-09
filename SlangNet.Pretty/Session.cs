@@ -14,7 +14,7 @@ public sealed unsafe partial class Session : COMObject<ISession>
     {
     }
 
-    public GlobalSession GlobalSession => new GlobalSession(Pointer->getGlobalSession());
+    public GlobalSession GlobalSession => new(Pointer->getGlobalSession());
 
     public Module? TryLoadModule(ReadOnlySpan<byte> moduleName, out string? diagnostics)
     {

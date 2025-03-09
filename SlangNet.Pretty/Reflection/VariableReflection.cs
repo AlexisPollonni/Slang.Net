@@ -54,7 +54,7 @@ public readonly unsafe struct VariableReflection : IEquatable<VariableReflection
             var ptr = ReflectionVariable_GetType(InternalPointer);
             if (ptr == null)
                 throw new SlangException($"{nameof(ReflectionVariable_GetType)} returned a null pointer");
-            return new TypeReflection(ptr);
+            return new(ptr);
         }
     }
 

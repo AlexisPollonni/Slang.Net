@@ -32,7 +32,7 @@ public unsafe partial class ComponentType : COMObject<IComponentType>
 
     private protected ComponentType(IComponentType* pointer) : base(pointer) {}
 
-    public Session Session => new Session(Pointer->getSession());
+    public Session Session => new(Pointer->getSession());
 
     public ShaderReflection? TryGetLayout(long targetIndex, out string? diagnostics)
     {

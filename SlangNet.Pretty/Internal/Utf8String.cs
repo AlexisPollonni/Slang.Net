@@ -73,7 +73,7 @@ internal unsafe struct Utf8StringArray : IDisposable
             int i = 0;
             foreach (var str in managedStrings)
             {
-                strings[i] = new Utf8String(str);
+                strings[i] = new(str);
                 Memory[i] = strings[i];
                 i++;
             }
