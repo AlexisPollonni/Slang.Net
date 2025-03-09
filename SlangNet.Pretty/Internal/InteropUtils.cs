@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using Nito.Disposables;
+using SlangNet.Internal;
 
 namespace SlangNet;
 
@@ -70,4 +73,19 @@ internal static unsafe class InteropUtils
         }
     }
 #endif
+    
+    /// <summary>
+    /// Adds the disposable to the list of disposables.
+    /// </summary>
+    /// <typeparam name="T">The type of the disposable. Must implement <see cref="IDisposable"/>.</typeparam>
+    /// <param name="d">The disposable to add.</param>
+    /// <param name="disposableList">The list of disposables to add the disposable to.</param>
+    /// <returns>The disposable d that was added to be disposed</returns>
+    internal static T DisposeWith<T>(this T d, CollectionDisposable disposableList) where T : IDisposable
+    {
+        disposableList.Add(d);
+        return d;
+    }
 }
+
+
