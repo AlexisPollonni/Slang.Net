@@ -1,12 +1,10 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace SlangNet.Internal;
 
-public class COMObject<T> : IDisposable, IEquatable<COMObject<T>> where T : unmanaged
+public class COMObject<T> : SafeHandle, IEquatable<COMObject<T>> where T : unmanaged
 {
-    private unsafe T* pointer;
-    private bool disposedValue;
-
     /// <summary>Returns the raw pointer underneath the wrapper</summary>
     /// <remarks>The reference counter is not incremented</remarks>
     public unsafe T* Pointer
@@ -14,20 +12,21 @@ public class COMObject<T> : IDisposable, IEquatable<COMObject<T>> where T : unma
         get
         {
             ThrowIfDisposed();
-            return pointer;
+            return (T*)handle;
         }
     }
 
-    public bool IsDisposed => disposedValue;
+    public override bool IsInvalid => handle <= nint.Zero;
 
-    protected internal unsafe COMObject(T* pointer)
+    protected internal unsafe COMObject(T* pointer) : base(nint.Zero, true)
     {
-        this.pointer = pointer;
-        if (pointer == null) throw new NullReferenceException("Slang operation returned a null object");
+        ArgumentNullException.ThrowIfNull(pointer);
+        
+        SetHandle((nint)pointer);
     }
 
     public unsafe bool Equals(COMObject<T>? other) =>
-        other is null ? pointer == null : other.pointer == pointer;
+        other?.IsInvalid ?? true ? IsInvalid : other.handle == handle;
 
     public override bool Equals(object? obj) =>
         obj is COMObject<T> other && Equals(other);
@@ -38,38 +37,17 @@ public class COMObject<T> : IDisposable, IEquatable<COMObject<T>> where T : unma
     public static bool operator !=(COMObject<T> a, COMObject<T> b) =>
         !(a == b);
 
-    public override unsafe int GetHashCode() =>
-        new IntPtr(pointer).GetHashCode();
+    public override unsafe int GetHashCode() => handle.GetHashCode();
 
     protected internal void ThrowIfDisposed()
     {
-        if (IsDisposed) throw new ObjectDisposedException(GetType().Name);
+        ObjectDisposedException.ThrowIf(IsClosed, this);
+        ObjectDisposedException.ThrowIf(IsInvalid, this);
     }
 
-    private unsafe void Dispose(bool disposing)
+    protected unsafe override bool ReleaseHandle()
     {
-        if (!disposedValue)
-        {
-            if (pointer != null)
-            {
-                ((ISlangUnknown*)pointer)->release();
-                pointer = null;
-            }
-
-            disposedValue = true;
-        }
-    }
-
-    ~COMObject()
-    {
-        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        Dispose(disposing: false);
-    }
-
-    public void Dispose()
-    {
-        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-        Dispose(disposing: true);
-        GC.SuppressFinalize(this);
+        ((ISlangUnknown*)handle)->release();
+        return true;
     }
 }
