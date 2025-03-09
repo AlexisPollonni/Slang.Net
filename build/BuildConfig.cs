@@ -232,6 +232,7 @@ internal record BuildConfig(
             { "SlangMatrixLayoutMode::SLANG_MATRIX_LAYOUT_COLUMN_MAJOR", "ColumnMajor" },
             
             {"gfx::RayTracingPipelineFlags::Enum" , "RayTracingPipelineFlagsEnum" },
+            {"gfx::ITransientResourceHeap::Flags::Enum" , "TransientResourceHeapFlagsEnum" },
         },
         new()
         {
