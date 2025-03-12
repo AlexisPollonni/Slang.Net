@@ -37,7 +37,7 @@ public unsafe partial struct IDevice
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getFormatSupportedResourceStates(IDevice* pThis, [NativeTypeName("gfx::Format")] Format format, [NativeTypeName("gfx::ResourceStateSet *")] ResourceStateSet* outStates);
+    public delegate int _getFormatSupportedResourceStates(IDevice* pThis, [NativeTypeName("gfx::Format")] Format format, [NativeTypeName("gfx::ResourceStateSet *")] ulong* outStates);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
@@ -370,7 +370,7 @@ public unsafe partial struct IDevice
     /// <include file='IDevice.xml' path='doc/member[@name="IDevice.getFormatSupportedResourceStates"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getFormatSupportedResourceStates([NativeTypeName("gfx::Format")] Format format, [NativeTypeName("gfx::ResourceStateSet *")] ResourceStateSet* outStates)
+    public int getFormatSupportedResourceStates([NativeTypeName("gfx::Format")] Format format, [NativeTypeName("gfx::ResourceStateSet *")] ulong* outStates)
     {
         return Marshal.GetDelegateForFunctionPointer<_getFormatSupportedResourceStates>(lpVtbl->getFormatSupportedResourceStates)((IDevice*)Unsafe.AsPointer(ref this), format, outStates);
     }

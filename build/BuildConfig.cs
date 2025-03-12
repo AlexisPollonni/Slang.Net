@@ -21,6 +21,7 @@ internal record BuildConfig(
     StrDic Remap,
     StrDic WithTypes,
     StrDic WithNamespaces,
+    Dictionary<string, (string Name, PInvokeGeneratorTransparentStructKind Kind)> WithTransparentStructs,
     Dictionary<string, Guid> WithGuids,
     StrList? TraversalNames = null
 )
@@ -81,6 +82,7 @@ internal record BuildConfig(
             WithNamespaces = WithNamespaces.AsReadOnly(),
             WithGuids = WithGuids.AsReadOnly(),
             TestOutputLocation = testsOutputDir,
+            WithTransparentStructs = WithTransparentStructs.AsReadOnly(),
         };
     }
 
@@ -220,6 +222,9 @@ internal record BuildConfig(
             "slang::ParameterCategory",
             "slang::BindingType",
             "slang::LayoutRules",
+
+            // Exclude ResourceStateSet we reimplement it fully
+            "gfx::ResourceStateSet",
         ],
         new()
         {
@@ -233,6 +238,9 @@ internal record BuildConfig(
             
             {"gfx::RayTracingPipelineFlags::Enum" , "RayTracingPipelineFlagsEnum" },
             {"gfx::ITransientResourceHeap::Flags::Enum" , "TransientResourceHeapFlagsEnum" },
+        
+            // Reimplement ResourceStateSet as a ulong since we have a custom implementation
+            { "gfx::ResourceStateSet", "ulong" },
         },
         new()
         {
@@ -249,6 +257,7 @@ internal record BuildConfig(
             { "PathKind", "SlangNet" },
             { "OSPathKind", "SlangNet" },
         },
-        new()
+        [],
+        []
     );
 }

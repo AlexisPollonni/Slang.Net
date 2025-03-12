@@ -100,7 +100,7 @@
           <type native="gfx::ResourceState">ResourceState</type>
         </field>
         <field name="allowedStates" access="public">
-          <type native="gfx::ResourceStateSet">ResourceStateSet</type>
+          <type native="gfx::ResourceStateSet">ulong</type>
         </field>
         <field name="memoryType" access="public">
           <type native="gfx::MemoryType">MemoryType</type>

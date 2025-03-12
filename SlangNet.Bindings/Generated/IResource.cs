@@ -81,7 +81,7 @@ public unsafe partial struct IResource
 
         /// <include file='DescBase.xml' path='doc/member[@name="DescBase.allowedStates"]/*' />
         [NativeTypeName("gfx::ResourceStateSet")]
-        public ResourceStateSet allowedStates;
+        public ulong allowedStates;
 
         /// <include file='DescBase.xml' path='doc/member[@name="DescBase.memoryType"]/*' />
         [NativeTypeName("gfx::MemoryType")]
