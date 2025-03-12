@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using Nito.Disposables;
 using SlangNet.Internal;
@@ -13,66 +14,60 @@ internal static unsafe class InteropUtils
         if (blob == null)
             return null;
         var pointer = blob->getBufferPointer();
-        if (pointer == null)
-            return null;
+
         var size = checked((int)blob->getBufferSize().ToUInt64());
         if (size == 0)
             return "";
-        return Encoding.UTF8.GetString((byte*)pointer, size);
+        return new Utf8String((sbyte*)pointer, size).ToString();
     }
 
     public static string? AsString(this COMPointer<ISlangBlob> pointer) => BlobToString(pointer);
 
     public static string? PtrToStringUTF8(void* ptr)
-#if NETSTANDARD2_1_OR_GREATER
-        => Marshal.PtrToStringUTF8(new(ptr));
-#else
+        => new Utf8String((sbyte*)ptr).ToString();
+
+    public static unsafe string[]? PtrToStringArray(sbyte** ptr, int count)
     {
-        if (ptr == null)
+        ArgumentOutOfRangeException.ThrowIfNegative(count);
+
+        if (ptr is null || count == 0)
             return null;
-        var length = StrLen(ptr);
-        if (length == 0)
-            return "";
-        return Encoding.UTF8.GetString((byte*)ptr, length);
-    }
-#endif
 
-    // if somebody knows a better/native API usable in .NET Standard 2.0, send a PR
-    public static int StrLen(void* ptrRaw)
-    {
-        if (ptrRaw == null)
-            return 0;
-        int length = 0;
-        byte* ptr = (byte*)ptrRaw;
-        for (; *ptr != 0; ptr++, length++) ;
-        return length;
+        return new Utf8StringArray(ptr, count).ToStringArray();
     }
 
-#if !NETSTANDARD2_1_OR_GREATER
-    public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> pair, out TKey key, out TValue value)
+    public static Utf8StringArray? StringArrayToUtf8StringArray(this IReadOnlyCollection<string>? strings)
     {
-        key = pair.Key;
-        value = pair.Value;
+        if (strings is null)
+            return null;
+        return new Utf8StringArray(strings);
     }
-#endif
+
+    public unsafe static sbyte* StringToPtr(this string? str, CollectionDisposable disposables)
+    {
+        if (str is null)
+            return null;
+        return new Utf8String(str).DisposeWith(disposables).Memory;
+    }
+
+    public unsafe static sbyte** StringArrayToPtr(this IReadOnlyCollection<string>? strings, CollectionDisposable disposables)
+    {
+        if (strings is null)
+            return null;
+
+        var utf8Strings = strings.StringArrayToUtf8StringArray()?.DisposeWith(disposables);
+
+        if (utf8Strings is null)
+            return null;
+
+        return utf8Strings.Value.Memory;
+    }
 
     public static int CombineHash<T1, T2>(T1 v1, T2 v2)
         where T1 : unmanaged
-        where T2 : unmanaged
-#if NETSTANDARD2_1_OR_GREATER
+        where T2 : unmanaged 
         => HashCode.Combine(v1, v2);
-#else
-    {
-        // FNV-1a 
-        unchecked
-        {
-            int hash = (int)2166136261;
-            hash = (hash ^ v1.GetHashCode()) * 16777619;
-            hash = (hash ^ v2.GetHashCode()) * 16777619;
-            return hash;
-        }
-    }
-#endif
+
     
     /// <summary>
     /// Adds the disposable to the list of disposables.
@@ -81,10 +76,88 @@ internal static unsafe class InteropUtils
     /// <param name="d">The disposable to add.</param>
     /// <param name="disposableList">The list of disposables to add the disposable to.</param>
     /// <returns>The disposable d that was added to be disposed</returns>
-    internal static T DisposeWith<T>(this T d, CollectionDisposable disposableList) where T : IDisposable
+    internal static T? DisposeWith<T>(this T? d, CollectionDisposable disposableList) where T : IDisposable
     {
-        disposableList.Add(d);
+        if (d is not null)
+        {
+            disposableList.Add(d);
+        }
         return d;
+    }
+
+
+
+    public static MarshalableManagedArray<TManaged, TNative>? AsMarshalableManagedArray<TManaged, TNative>(this IReadOnlyCollection<TManaged> managedArray)
+    where TNative : unmanaged
+    where TManaged : IMarshalsToNative<TNative>
+    {
+        ArgumentNullException.ThrowIfNull(managedArray);
+
+        return managedArray.Count > 0 ? new(managedArray) : null;
+    }
+    
+    public static unsafe TNative* AsNullablePtr<TManaged, TNative>(this MarshalableManagedArray<TManaged, TNative>? array)
+        where TNative : unmanaged
+        where TManaged : IMarshalsToNative<TNative>
+    {
+        return array is not null ? array.AsPtr() : null;
+    }
+
+    public static MarshalableNativeArray<TManaged, TNative>? AsMarshalableNativeArray<TManaged, TNative>(TNative* nativePtr, int count)
+    where TNative : unmanaged
+    where TManaged : IMarshalsFromNative<TManaged, TNative>
+    {
+        ArgumentOutOfRangeException.ThrowIfNegative(count);
+
+        return nativePtr is not null ? new(nativePtr, count) : null;
+    }
+
+    public unsafe static TNative* MarshalArrayToNative<TManaged, TNative>(this IReadOnlyCollection<TManaged>? items, CollectionDisposable disposables)
+    where TNative : unmanaged
+    where TManaged : IMarshalsToNative<TNative>
+    {
+        var managedArray = items?.AsMarshalableManagedArray<TManaged, TNative>().DisposeWith(disposables);
+
+        return managedArray.AsNullablePtr();
+    }
+
+    public static unsafe T* AsNullablePtr<T>(this COMObject<T>? comObject) where T : unmanaged
+    {
+        return comObject is not null ? comObject.Pointer : null;
+    }
+
+    public static unsafe T** ToPtrArray<T>(this IReadOnlyCollection<COMObject<T>>? items, CollectionDisposable disposables) 
+        where T : unmanaged
+    {
+        if (items is null)
+            return null;
+            
+        var alloc = new NativeAllocMemory((nuint)(items.Count * sizeof(T*)), false).DisposeWith(disposables)!;
+        
+        var ptr = (T**)alloc.AsVoidPtr();
+        
+        var i = 0;
+        foreach (var item in items)
+        {
+            ptr[i] = item.AsNullablePtr();
+            i++;
+        }
+
+        return ptr;
+    }
+
+
+    /// <summary>
+    /// Returns the count of the collection if it is not null, 0 otherwise.
+    /// </summary>
+    /// <typeparam name="T">The type of the collection.</typeparam>
+    /// <param name="collection">The collection to get the count of.</param>
+    /// <returns>The count of the collection if it is not null, 0 if it is.</returns>
+    public static int CountIfNotNull<T>(this IReadOnlyCollection<T>? collection)
+    {
+        if (collection is null)
+            return 0;
+        return collection.Count;
     }
 }
 

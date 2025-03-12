@@ -12,6 +12,8 @@ public unsafe class NativeAllocMemory : SafeHandle
 {
     private readonly nuint _length;
 
+    public nuint Length => _length;
+
     public override bool IsInvalid => _length == 0 || handle <= nint.Zero;
 
     public static NativeAllocMemory CreateFromItems<T>(Span<T> items) where T : unmanaged

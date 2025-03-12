@@ -2,11 +2,14 @@ using System;
 
 namespace SlangNet.Internal;
 
-interface IMarshalable<TManaged, TNative> where TNative : unmanaged 
-                                          where TManaged : IMarshalable<TManaged, TNative>
+internal interface IMarshalsToNative<TNative> where TNative : unmanaged
 {
     public IDisposable AsNative(out TNative native);
-    
-    public static TManaged CreateFromNative(TNative native) =>
-        throw new NotImplementedException();
+}
+
+
+internal interface IMarshalsFromNative<TManaged, TNative> where TNative : unmanaged
+                                                 where TManaged : IMarshalsFromNative<TManaged, TNative>
+{
+    public static abstract void CreateFromNative(TNative native, out TManaged managed);
 }

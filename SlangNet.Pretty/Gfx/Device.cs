@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Nito.Disposables;
 using SlangNet.Gfx.Desc;
 using SlangNet.Internal;
@@ -70,10 +71,10 @@ public partial class Device : COMObject<IDevice>
     
     public unsafe SlangResult TryGetFormatSupportedResourceStates(Format format, out ResourceStateSet states)
     {
-        fixed (ResourceStateSet* pStates = &states)
-        {
-            return Pointer->getFormatSupportedResourceStates(format, pStates).ToSlangResult();
-        }
+        var nativeStates = new ResourceStateSet();
+        var result = Pointer->getFormatSupportedResourceStates(format, (ulong*)&nativeStates).ToSlangResult();
+        states = nativeStates;
+        return result;
     }
     
     public unsafe SlangResult TryGetSlangSession(out Session? session)
@@ -96,23 +97,17 @@ public partial class Device : COMObject<IDevice>
         }
     }
     
-    // Placeholder methods for future implementation
-    
-    /*
-    public unsafe SlangResult TryCreateTextureResource(in TextureResourceDesc desc, SubresourceData[]? initData, out TextureResource? resource)
-    {
-        // Implementation will be added when TextureResource class is created
-        resource = null;
-        return SlangResult.NotImplemented;
-    }
-    
     public unsafe SlangResult TryCreateBufferResource(in BufferResourceDesc desc, IntPtr initData, out BufferResource? resource)
     {
-        // Implementation will be added when BufferResource class is created
-        resource = null;
-        return SlangResult.NotImplemented;
+        var disposable = desc.AsNative(out var nativeDesc);
+        using (disposable)
+        {
+            IBufferResource* nativeResource = null;
+            var result = Pointer->createBufferResource(&nativeDesc, (void*)initData, &nativeResource).ToSlangResult();
+            resource = result ? new BufferResource(nativeResource) : null;
+            return result;
+        }
     }
-    */
     
     // Additional methods will be implemented for the remaining IDevice interface methods
 }
