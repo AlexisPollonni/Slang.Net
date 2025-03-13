@@ -36,33 +36,6 @@ internal static unsafe class InteropUtils
         return new Utf8StringArray(ptr, count).ToStringArray();
     }
 
-    public static Utf8StringArray? StringArrayToUtf8StringArray(this IReadOnlyCollection<string>? strings)
-    {
-        if (strings is null)
-            return null;
-        return new Utf8StringArray(strings);
-    }
-
-    public unsafe static sbyte* StringToPtr(this string? str, CollectionDisposable disposables)
-    {
-        if (str is null)
-            return null;
-        return new Utf8String(str).DisposeWith(disposables).Memory;
-    }
-
-    public unsafe static sbyte** StringArrayToPtr(this IReadOnlyCollection<string>? strings, CollectionDisposable disposables)
-    {
-        if (strings is null)
-            return null;
-
-        var utf8Strings = strings.StringArrayToUtf8StringArray()?.DisposeWith(disposables);
-
-        if (utf8Strings is null)
-            return null;
-
-        return utf8Strings.Value.Memory;
-    }
-
     public static int CombineHash<T1, T2>(T1 v1, T2 v2)
         where T1 : unmanaged
         where T2 : unmanaged 
@@ -86,32 +59,9 @@ internal static unsafe class InteropUtils
     }
 
 
-
-
-
     public static unsafe T* AsNullablePtr<T>(this COMObject<T>? comObject) where T : unmanaged
     {
         return comObject is not null ? comObject.Pointer : null;
-    }
-
-    public static unsafe T** ToPtrArray<T>(this IReadOnlyCollection<COMObject<T>>? items, CollectionDisposable disposables) 
-        where T : unmanaged
-    {
-        if (items is null)
-            return null;
-            
-        var alloc = new NativeAllocMemory((nuint)(items.Count * sizeof(T*)), false).DisposeWith(disposables)!;
-        
-        var ptr = (T**)alloc.AsVoidPtr();
-        
-        var i = 0;
-        foreach (var item in items)
-        {
-            ptr[i] = item.AsNullablePtr();
-            i++;
-        }
-
-        return ptr;
     }
 
 
@@ -124,7 +74,7 @@ internal static unsafe class InteropUtils
     public static int CountIfNotNull<T>(this IReadOnlyCollection<T>? collection)
     {
         if (collection is null)
-            return 0;
+            return 0
         return collection.Count;
     }
 }

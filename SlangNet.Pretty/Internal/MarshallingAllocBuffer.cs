@@ -159,6 +159,8 @@ public static class MarshallingAllocBufferExtensions
 
 
 
+
+
     public unsafe static T* AllocForPtr<T>(this MarshallingAllocBuffer buffer, int count) where T : unmanaged
     {
         ArgumentOutOfRangeException.ThrowIfNegative(count);
@@ -234,22 +236,38 @@ public static class MarshallingAllocBufferExtensions
         return ptr;
     }
 
-
-    public static TNative? MarshalToNative<TManaged, TNative>(this TManaged? item)
+    public unsafe static (SlangResult, TResult) MarshalToNative<TManaged, TNative, TResult>(this TManaged? item, PostMarshalDelegateWithResult<TNative, TResult> postMarshal)
         where TManaged : IMarshalsToNative<TNative>
         where TNative : unmanaged
     {
         if(item is null)
-            return null;
-
+            return postMarshal(null);
+        
         var size = item.GetNativeAllocSize();
-
         Span<byte> span = size > 1024 ? GC.AllocateUninitializedArray<byte>(size, true) : stackalloc byte[size];
 
         var buffer = new MarshallingAllocBuffer(span);
 
         item.AsNative(buffer, out var native);
 
-        return native;
+        return postMarshal(&native);
     }
+
+    public unsafe static TResult MarshalToNative<TResult>(this string? str, PostMarshalDelegate<sbyte, TResult> postMarshal)
+    {
+        if(str is null)
+            return postMarshal(null);
+
+        var size = str.GetNativeAllocSize();
+        Span<byte> span = size > 1024 ? GC.AllocateUninitializedArray<byte>(size, true) : stackalloc byte[size];
+
+        var buffer = new MarshallingAllocBuffer(span);
+
+        var ptr = str.MarshalToNative(buffer);
+
+        return postMarshal(ptr);
+    }
+
+    public unsafe delegate TResult PostMarshalDelegate<TNative, TResult>(TNative* ptr) where TNative : unmanaged;
+    public unsafe delegate (SlangResult, TResult) PostMarshalDelegateWithResult<TNative, TResult>(TNative* ptr) where TNative : unmanaged;
 }

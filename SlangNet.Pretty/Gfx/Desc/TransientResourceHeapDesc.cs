@@ -1,5 +1,6 @@
 using System;
 using Nito.Disposables;
+using SlangNet.Internal;
 
 namespace SlangNet.Gfx.Desc;
 
@@ -11,9 +12,15 @@ public record struct TransientResourceHeapDesc(
     int SrvDescriptorCount = 0,
     int ConstantBufferDescriptorCount = 0,
     int AccelerationStructureDescriptorCount = 0
-)
+) : IMarshalsToNative<ITransientResourceHeap.TransientResourceHeapDesc>, IMarshalsFromNative<TransientResourceHeapDesc, ITransientResourceHeap.TransientResourceHeapDesc>
 {
-    public IDisposable AsNative(out ITransientResourceHeap.TransientResourceHeapDesc native)
+    public readonly int GetNativeAllocSize()
+    {
+        return SysUnsafe.SizeOf<ITransientResourceHeap.TransientResourceHeapDesc>();
+    }
+    
+    
+    public unsafe void AsNative(MarshallingAllocBuffer buffer, out ITransientResourceHeap.TransientResourceHeapDesc native)
     {
         native = new ITransientResourceHeap.TransientResourceHeapDesc
         {
@@ -25,13 +32,11 @@ public record struct TransientResourceHeapDesc(
             constantBufferDescriptorCount = ConstantBufferDescriptorCount,
             accelerationStructureDescriptorCount = AccelerationStructureDescriptorCount
         };
-        
-        return NoopDisposable.Instance;
     }
     
-    public static TransientResourceHeapDesc CreateFromNative(ITransientResourceHeap.TransientResourceHeapDesc native)
+    public static unsafe void CreateFromNative(ITransientResourceHeap.TransientResourceHeapDesc native, out TransientResourceHeapDesc desc)
     {
-        return new TransientResourceHeapDesc(
+        desc = new TransientResourceHeapDesc(
             native.flags,
             native.constantBufferSize,
             native.samplerDescriptorCount,

@@ -15,18 +15,22 @@ public partial class Device : COMObject<IDevice>
     { }
 
 
+
     public static unsafe SlangResult TryCreate(in DeviceDesc desc, out Device? device)
     {
-        var nativeDesc = desc.MarshalToNative<DeviceDesc, IDevice.DeviceDesc>();
+        var res = desc.MarshalToNative<DeviceDesc, IDevice.DeviceDesc, Device?>(nDesc => 
+        {
+            var nativeDescPtr = nDesc;
 
-        var nativeDescPtr = (IDevice.DeviceDesc*)SysUnsafe.AsPointer(ref nativeDesc.DangerousGetValueOrNullReference());
+            IDevice* natDevice = null;
+            var res = gfxCreateDevice(nativeDescPtr, &natDevice).ToSlangResult();
         
-        IDevice* natDevice = null;
-        var res = gfxCreateDevice(nativeDescPtr, &natDevice).ToSlangResult();
-        
-            device = res ? new(natDevice) : null;
-            return res;
-        
+            var d = res ? new Device(natDevice) : null;
+            return (res, d);
+        });
+
+        device = res.Item2;
+        return res.Item1;
     }
     
     public unsafe SlangResult TryGetNativeDeviceHandles(out IDevice.InteropHandles handles)
@@ -39,38 +43,31 @@ public partial class Device : COMObject<IDevice>
     
     public unsafe bool HasFeature(string feature)
     {
-        using var featureUtf8 = new Utf8String(feature);
-        return Pointer->hasFeature(featureUtf8);
+        return feature.MarshalToNative(ptr => Pointer->hasFeature(ptr));
     }
     
-    public unsafe SlangResult TryGetFeatures(out string[] features)
+    public unsafe SlangResult TryGetFeatures(out string[]? features)
     {
         int count = 0;
         var result = Pointer->getFeatures(null, 0, &count).ToSlangResult();
+        if (!result || count == 0)
+        {
+            features = null;
+            return result;
+        }
+
+        sbyte** featuresArrayPtr = stackalloc sbyte*[count];
+        result = Pointer->getFeatures(featuresArrayPtr, (nuint)count, &count).ToSlangResult();
+
         if (!result)
         {
-            features = Array.Empty<string>();
+            features = null;
             return result;
         }
-        
-        var featuresArray = new sbyte*[count];
-        fixed (sbyte** pFeatures = featuresArray)
-        {
-            result = Pointer->getFeatures(pFeatures, (nuint)featuresArray.Length, &count).ToSlangResult();
-            if (!result)
-            {
-                features = Array.Empty<string>();
-                return result;
-            }
-            
-            features = new string[count];
-            for (int i = 0; i < count; i++)
-            {
-                features[i] = InteropUtils.PtrToStringUTF8(featuresArray[i])!;
-            }
-            
-            return result;
-        }
+
+        var featuresArray = InteropUtils.PtrToStringArray(featuresArrayPtr, count);
+        features = featuresArray;
+        return result;
     }
     
     public unsafe SlangResult TryGetFormatSupportedResourceStates(Format format, out ResourceStateSet states)
@@ -89,28 +86,34 @@ public partial class Device : COMObject<IDevice>
         return result;
     }
     
+
+    // CREATE RESOURCES METHODS
+
     public unsafe SlangResult TryCreateTransientResourceHeap(in TransientResourceHeapDesc desc, out TransientResourceHeap? heap)
     {
-        var disposable = desc.AsNative(out var nativeDesc);
-        using (disposable)
+        var res = desc.MarshalToNative<TransientResourceHeapDesc, ITransientResourceHeap.TransientResourceHeapDesc, TransientResourceHeap?>(descPtr => 
         {
             ITransientResourceHeap* nativeHeap = null;
-            var result = Pointer->createTransientResourceHeap(&nativeDesc, &nativeHeap).ToSlangResult();
-            heap = result ? new TransientResourceHeap(nativeHeap) : null;
-            return result;
-        }
+            var result = Pointer->createTransientResourceHeap(descPtr, &nativeHeap).ToSlangResult();
+
+            return (result, result ? new TransientResourceHeap(nativeHeap) : null);
+        });
+
+        heap = res.Item2;
+        return res.Item1;
     }
     
     public unsafe SlangResult TryCreateBufferResource(in BufferResourceDesc desc, IntPtr initData, out BufferResource? resource)
     {
-        var disposable = desc.AsNative(out var nativeDesc);
-        using (disposable)
+        var res = desc.MarshalToNative<BufferResourceDesc, IBufferResource.BufferResourceDesc, BufferResource?>(descPtr => 
         {
             IBufferResource* nativeResource = null;
-            var result = Pointer->createBufferResource(&nativeDesc, (void*)initData, &nativeResource).ToSlangResult();
-            resource = result ? new BufferResource(nativeResource) : null;
-            return result;
-        }
+            var result = Pointer->createBufferResource(descPtr, (void*)initData, &nativeResource).ToSlangResult();
+            return (result, result ? new BufferResource(nativeResource) : null);
+        });
+
+        resource = res.Item2;
+        return res.Item1;
     }
     
     // Additional methods will be implemented for the remaining IDevice interface methods
