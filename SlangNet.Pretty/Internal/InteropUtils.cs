@@ -87,39 +87,7 @@ internal static unsafe class InteropUtils
 
 
 
-    public static MarshalableManagedArray<TManaged, TNative>? AsMarshalableManagedArray<TManaged, TNative>(this IReadOnlyCollection<TManaged> managedArray)
-    where TNative : unmanaged
-    where TManaged : IMarshalsToNative<TNative>
-    {
-        ArgumentNullException.ThrowIfNull(managedArray);
 
-        return managedArray.Count > 0 ? new(managedArray) : null;
-    }
-    
-    public static unsafe TNative* AsNullablePtr<TManaged, TNative>(this MarshalableManagedArray<TManaged, TNative>? array)
-        where TNative : unmanaged
-        where TManaged : IMarshalsToNative<TNative>
-    {
-        return array is not null ? array.AsPtr() : null;
-    }
-
-    public static MarshalableNativeArray<TManaged, TNative>? AsMarshalableNativeArray<TManaged, TNative>(TNative* nativePtr, int count)
-    where TNative : unmanaged
-    where TManaged : IMarshalsFromNative<TManaged, TNative>
-    {
-        ArgumentOutOfRangeException.ThrowIfNegative(count);
-
-        return nativePtr is not null ? new(nativePtr, count) : null;
-    }
-
-    public unsafe static TNative* MarshalArrayToNative<TManaged, TNative>(this IReadOnlyCollection<TManaged>? items, CollectionDisposable disposables)
-    where TNative : unmanaged
-    where TManaged : IMarshalsToNative<TNative>
-    {
-        var managedArray = items?.AsMarshalableManagedArray<TManaged, TNative>().DisposeWith(disposables);
-
-        return managedArray.AsNullablePtr();
-    }
 
     public static unsafe T* AsNullablePtr<T>(this COMObject<T>? comObject) where T : unmanaged
     {

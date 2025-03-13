@@ -4,7 +4,7 @@ using Nito.Disposables;
 namespace SlangNet.Gfx.Desc;
 
 public record struct TransientResourceHeapDesc(
-    TransientResourceHeapFlags Flags = TransientResourceHeapFlags.None,
+    ITransientResourceHeap.Flags.TransientResourceHeapFlagsEnum Flags = ITransientResourceHeap.Flags.TransientResourceHeapFlagsEnum.None,
     nuint ConstantBufferSize = 0,
     int SamplerDescriptorCount = 0,
     int UavDescriptorCount = 0,
@@ -17,7 +17,7 @@ public record struct TransientResourceHeapDesc(
     {
         native = new ITransientResourceHeap.TransientResourceHeapDesc
         {
-            flags = (ITransientResourceHeap.Flags.Enum)Flags,
+            flags = Flags,
             constantBufferSize = ConstantBufferSize,
             samplerDescriptorCount = SamplerDescriptorCount,
             uavDescriptorCount = UavDescriptorCount,
@@ -32,7 +32,7 @@ public record struct TransientResourceHeapDesc(
     public static TransientResourceHeapDesc CreateFromNative(ITransientResourceHeap.TransientResourceHeapDesc native)
     {
         return new TransientResourceHeapDesc(
-            (TransientResourceHeapFlags)native.flags,
+            native.flags,
             native.constantBufferSize,
             native.samplerDescriptorCount,
             native.uavDescriptorCount,

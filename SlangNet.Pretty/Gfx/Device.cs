@@ -1,10 +1,12 @@
 using System;
-using System.Runtime.InteropServices;
-using Nito.Disposables;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using CommunityToolkit.HighPerformance;
 using SlangNet.Gfx.Desc;
 using SlangNet.Internal;
 
 namespace SlangNet.Gfx;
+
 
 [GenerateThrowingMethods]
 public partial class Device : COMObject<IDevice>
@@ -12,17 +14,19 @@ public partial class Device : COMObject<IDevice>
     internal unsafe Device(IDevice* pointer) : base(pointer)
     { }
 
+
     public static unsafe SlangResult TryCreate(in DeviceDesc desc, out Device? device)
     {
-        var disposable = desc.AsNative(out var natDesc);
-        using (disposable)
-        {
-            IDevice* natDevice = null;
-            var res = gfxCreateDevice(&natDesc, &natDevice).ToSlangResult();
-            
+        var nativeDesc = desc.MarshalToNative<DeviceDesc, IDevice.DeviceDesc>();
+
+        var nativeDescPtr = (IDevice.DeviceDesc*)SysUnsafe.AsPointer(ref nativeDesc.DangerousGetValueOrNullReference());
+        
+        IDevice* natDevice = null;
+        var res = gfxCreateDevice(nativeDescPtr, &natDevice).ToSlangResult();
+        
             device = res ? new(natDevice) : null;
             return res;
-        }
+        
     }
     
     public unsafe SlangResult TryGetNativeDeviceHandles(out IDevice.InteropHandles handles)

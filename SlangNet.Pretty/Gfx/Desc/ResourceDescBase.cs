@@ -13,7 +13,12 @@ public record struct ResourceDescBase(
     bool IsShared = false
 ) : IMarshalsToNative<IResource.DescBase>, IMarshalsFromNative<ResourceDescBase, IResource.DescBase>
 {
-    public IDisposable AsNative(out IResource.DescBase native)
+    public readonly int GetNativeAllocSize()
+    {
+        return SysUnsafe.SizeOf<IResource.DescBase>();
+    }
+
+    public void AsNative(MarshallingAllocBuffer buffer, out IResource.DescBase native)
     {
         native = new IResource.DescBase
         {
@@ -24,8 +29,6 @@ public record struct ResourceDescBase(
             existingHandle = ExistingHandle,
             isShared = IsShared ? (byte)1 : (byte)0
         };
-        
-        return NoopDisposable.Instance;
     }
 
     public static void CreateFromNative(IResource.DescBase native, out ResourceDescBase managed)

@@ -11,10 +11,14 @@ public record struct BufferResourceDesc(
     Format Format = Format.Unknown
 ) : IMarshalsToNative<IBufferResource.BufferResourceDesc>, IMarshalsFromNative<BufferResourceDesc, IBufferResource.BufferResourceDesc>
 {
-    public unsafe IDisposable AsNative(out IBufferResource.BufferResourceDesc native)
+    public readonly int GetNativeAllocSize()
     {
-        var disposable = new CollectionDisposable();
-        Base.AsNative(out var nativeBase).DisposeWith(disposable);
+        return Base.GetNativeAllocSize() + SysUnsafe.SizeOf<nuint>() * 2 + SysUnsafe.SizeOf<Format>();
+    }
+
+    public void AsNative(MarshallingAllocBuffer buffer, out IBufferResource.BufferResourceDesc native)
+    {
+        Base.AsNative(buffer, out var nativeBase);
         
         native = new IBufferResource.BufferResourceDesc
         {
@@ -23,8 +27,6 @@ public record struct BufferResourceDesc(
             elementSize = ElementSize,
             format = Format
         };
-        
-        return disposable;
     }
     
     public static unsafe void CreateFromNative(IBufferResource.BufferResourceDesc native, out BufferResourceDesc managed)

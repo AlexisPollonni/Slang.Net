@@ -17,26 +17,30 @@ public record struct SlangDesc(
     LineDirectiveMode LineDirectiveMode
     ) : IMarshalsToNative<IDevice.SlangDesc>, IMarshalsFromNative<SlangDesc, IDevice.SlangDesc>
 {
-    public unsafe IDisposable AsNative(out IDevice.SlangDesc native)
+    public readonly int GetNativeAllocSize()
     {
-        var disposables = new CollectionDisposable();
+        return SysUnsafe.SizeOf<IDevice.SlangDesc>()
+        + SearchPaths?.GetNativeAllocSize() ?? 0
+        + PreprocessorMacros?.GetNativeAllocSize<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>() ?? 0
+        + TargetProfile.GetNativeAllocSize();
+    }
 
+    public unsafe void AsNative(MarshallingAllocBuffer buffer, out IDevice.SlangDesc native)
+    {        
         native = new()
         {
             slangGlobalSession = GlobalSession.AsNullablePtr(),
             defaultMatrixLayoutMode = DefaultMatrixLayoutMode,
-            searchPaths = SearchPaths.StringArrayToPtr(disposables),
+            searchPaths = SearchPaths.MarshalToNative(buffer),
             searchPathCount = SearchPaths.CountIfNotNull(),
-            preprocessorMacros = PreprocessorMacros.MarshalArrayToNative<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>(disposables),
+            preprocessorMacros = PreprocessorMacros.MarshalToNative<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>(buffer),
             preprocessorMacroCount = PreprocessorMacros.CountIfNotNull(),
-            targetProfile = TargetProfile.StringToPtr(disposables),
+            targetProfile = TargetProfile.MarshalToNative(buffer),
             floatingPointMode = FloatingPointMode,
             optimizationLevel = OptimizationLevel,
             targetFlags = (uint)TargetFlags,
             lineDirectiveMode = LineDirectiveMode
         };
-        
-        return disposables;
     }
 
     public static unsafe void CreateFromNative(IDevice.SlangDesc native, out SlangDesc managed)

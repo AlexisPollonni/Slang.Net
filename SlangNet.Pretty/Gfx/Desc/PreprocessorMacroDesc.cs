@@ -7,17 +7,18 @@ namespace SlangNet.Gfx.Desc;
 public readonly record struct PreprocessorMacroDesc(string Name, string Value) : 
     IMarshalsToNative<Unsafe.PreprocessorMacroDesc>, IMarshalsFromNative<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>
 {
-    public unsafe IDisposable AsNative(out Unsafe.PreprocessorMacroDesc native)
+    public readonly int GetNativeAllocSize()
     {
-        var disposables = new CollectionDisposable();
+        return Name.GetNativeAllocSize() + Value.GetNativeAllocSize();
+    }
 
+    public unsafe void AsNative(MarshallingAllocBuffer buffer, out Unsafe.PreprocessorMacroDesc native)
+    {
         native = new()
         {
-            name = Name.StringToPtr(disposables),
-            value = Value.StringToPtr(disposables),
+            name = Name.MarshalToNative(buffer),
+            value = Value.MarshalToNative(buffer),
         };
-        
-        return disposables;
     }
 
     public static unsafe void CreateFromNative(Unsafe.PreprocessorMacroDesc native, out PreprocessorMacroDesc managed)

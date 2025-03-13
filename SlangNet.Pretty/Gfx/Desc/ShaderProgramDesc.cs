@@ -6,24 +6,26 @@ using SlangNet.Internal;
 namespace SlangNet.Gfx;
 
 public record struct ShaderProgramDesc(
-    ShaderProgramLinkingStyle LinkingStyle = ShaderProgramLinkingStyle.SingleProgram,
+    IShaderProgram.LinkingStyle LinkingStyle = IShaderProgram.LinkingStyle.SingleProgram,
     ComponentType? GlobalScope = null,
     ComponentType[]? EntryPoints = null
 ) : IMarshalsToNative<IShaderProgram.ShaderProgramDesc>//, IMarshalsFromNative<ShaderProgramDesc, IShaderProgram.ShaderProgramDesc>
 {
-    public unsafe IDisposable AsNative(out IShaderProgram.ShaderProgramDesc native)
+    public readonly int GetNativeAllocSize()
     {
-        var disposables = new CollectionDisposable();
-        
+        return SysUnsafe.SizeOf<IShaderProgram.ShaderProgramDesc>()
+            + SysUnsafe.SizeOf<nint>() * (EntryPoints?.Length ?? 0);
+    }
+
+    public unsafe void AsNative(MarshallingAllocBuffer buffer, out IShaderProgram.ShaderProgramDesc native)
+    {
         native = new IShaderProgram.ShaderProgramDesc
         {
-            linkingStyle = (IShaderProgram.LinkingStyle)LinkingStyle,
+            linkingStyle = LinkingStyle,
             slangGlobalScope = GlobalScope.AsNullablePtr(),
             entryPointCount = EntryPoints.CountIfNotNull(),
-            slangEntryPoints = EntryPoints.ToPtrArray(disposables)
+            slangEntryPoints = EntryPoints.MarshalToNative(buffer)
         };
-        
-        return disposables;
     }
     
     // This method is not needed for the example, so we'll comment it out for now

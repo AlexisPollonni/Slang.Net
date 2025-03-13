@@ -4,32 +4,53 @@ using SlangNet.Internal;
 
 namespace SlangNet.Gfx.Desc;
 
+public readonly record struct ShaderCacheDesc(string? Path, int MaxEntryCount = 0) : 
+    IMarshalsToNative<IDevice.ShaderCacheDesc>, 
+    IMarshalsFromNative<ShaderCacheDesc, IDevice.ShaderCacheDesc>
+{
+    public readonly int GetNativeAllocSize()
+    {
+        return Path.GetNativeAllocSize() + SysUnsafe.SizeOf<int>();
+    }
+
+    public unsafe void AsNative(MarshallingAllocBuffer buffer, out IDevice.ShaderCacheDesc native)
+    {
+        native = new IDevice.ShaderCacheDesc
+        {
+            shaderCachePath = Path.MarshalToNative(buffer),
+            maxEntryCount = MaxEntryCount
+        };
+    }
+
+    public static unsafe void CreateFromNative(IDevice.ShaderCacheDesc native, out ShaderCacheDesc desc)
+    {
+        desc = new ShaderCacheDesc(InteropUtils.PtrToStringUTF8(native.shaderCachePath), native.maxEntryCount);
+    }
+}
+
+
 public record struct DeviceDesc(
     DeviceType DeviceType, 
     IDevice.InteropHandles ExistingDeviceHandles,
     AdapterLUID AdapterLUID,
     string[] RequiredFeatures,
     SlangDesc Slang,
-    string ShaderCachePath,
-    int MaxShaderEntryCount = 0,
+    ShaderCacheDesc ShaderCache,
     int NvApiExtnSlot = -1
-    ) : IMarshalable<DeviceDesc, IDevice.DeviceDesc>    
+    ) : IMarshalsToNative<IDevice.DeviceDesc>
 {
-    public unsafe IDisposable AsNative(out IDevice.DeviceDesc native)
+    public readonly int GetNativeAllocSize()
     {
-        var disposables = new CollectionDisposable();
-        
-        var featuresUtf8 = new Utf8StringArray(RequiredFeatures).DisposeWith(disposables);
-        
-        Slang.AsNative(out var slangDesc).DisposeWith(disposables);
-        
-        var shaderCachePathUtf8 = new Utf8String(ShaderCachePath).DisposeWith(disposables);
-        
-        var shaderCacheDesc = new IDevice.ShaderCacheDesc
-        {
-            shaderCachePath = shaderCachePathUtf8,
-            maxEntryCount = MaxShaderEntryCount
-        };
+        return SysUnsafe.SizeOf<IDevice.DeviceDesc>()
+            + RequiredFeatures.GetNativeAllocSize()
+            + Slang.GetNativeAllocSize()
+            + ShaderCache.GetNativeAllocSize();
+    }
+
+    public unsafe void AsNative(MarshallingAllocBuffer buffer, out IDevice.DeviceDesc native)
+    {       
+        Slang.AsNative(buffer, out var slangDesc);
+        ShaderCache.AsNative(buffer, out var shaderCacheDesc);
         
         // AdapterLUID is a struct with a fixed buffer, so we can just pass it directly
         AdapterLUID* adapterLuidPtr = null;
@@ -56,8 +77,8 @@ public record struct DeviceDesc(
             deviceType = DeviceType,
             existingDeviceHandles = ExistingDeviceHandles,
             adapterLUID = adapterLuidPtr,
-            requiredFeatureCount = featuresUtf8.Count,
-            requiredFeatures = featuresUtf8.Memory,
+            requiredFeatureCount = RequiredFeatures.Length,
+            requiredFeatures = RequiredFeatures.MarshalToNative(buffer),
             apiCommandDispatcher = null, // Not implemented yet
             nvapiExtnSlot = NvApiExtnSlot,
             shaderCache = shaderCacheDesc,
@@ -65,8 +86,6 @@ public record struct DeviceDesc(
             extendedDescCount = 0,
             extendedDescs = null
         };
-        
-        return disposables;
     }
     
     public static DeviceDesc CreateFromNative(IDevice.DeviceDesc native)
