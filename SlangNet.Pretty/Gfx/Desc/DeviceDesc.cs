@@ -33,7 +33,7 @@ public record struct DeviceDesc(
     DeviceType DeviceType, 
     IDevice.InteropHandles ExistingDeviceHandles,
     AdapterLUID AdapterLUID,
-    string[] RequiredFeatures,
+    string[]? RequiredFeatures,
     SlangDesc Slang,
     ShaderCacheDesc ShaderCache,
     int NvApiExtnSlot = -1
@@ -77,7 +77,7 @@ public record struct DeviceDesc(
             deviceType = DeviceType,
             existingDeviceHandles = ExistingDeviceHandles,
             adapterLUID = adapterLuidPtr,
-            requiredFeatureCount = RequiredFeatures.Length,
+            requiredFeatureCount = RequiredFeatures.CountIfNotNull(),
             requiredFeatures = RequiredFeatures.MarshalToNative(buffer),
             apiCommandDispatcher = null, // Not implemented yet
             nvapiExtnSlot = NvApiExtnSlot,
