@@ -33,7 +33,7 @@ unsafe partial struct TypeLayoutReflection
         public override bool Equals(object? obj) => obj is BindingRange other && Equals(other);
         public static bool operator ==(BindingRange a, BindingRange b) => a.Equals(b);
         public static bool operator !=(BindingRange a, BindingRange b) => !a.Equals(b);
-        public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), Index);
+        public override int GetHashCode() => HashCode.Combine(new IntPtr(pointer), Index);
 
         public BindingType BindingRangeType =>
             ReflectionTypeLayout_getBindingRangeType(Pointer, (nint)Index);

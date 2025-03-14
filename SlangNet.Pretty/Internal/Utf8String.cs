@@ -83,7 +83,7 @@ internal unsafe struct Utf8String : IDisposable
             
         // Find the null terminator using optimized native memory search
         nuint offset = 0;
-        while (System.Runtime.CompilerServices.Unsafe.Read<sbyte>(ptr + offset) != 0 && offset < int.MaxValue)
+        while (SysUnsafe.Read<sbyte>(ptr + offset) != 0 && offset < int.MaxValue)
         {
             offset++;
         }

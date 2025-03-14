@@ -35,7 +35,7 @@ unsafe partial struct TypeLayoutReflection
         public override bool Equals(object? obj) => obj is DescriptorRange other && Equals(other);
         public static bool operator ==(DescriptorRange a, DescriptorRange b) => a.Equals(b);
         public static bool operator !=(DescriptorRange a, DescriptorRange b) => !a.Equals(b);
-        public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), SetIndex);
+        public override int GetHashCode() => HashCode.Combine(new IntPtr(pointer), SetIndex);
 
         public long IndexOffset =>
             ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset(Pointer, (nint)SetIndex, (nint)RangeIndex);

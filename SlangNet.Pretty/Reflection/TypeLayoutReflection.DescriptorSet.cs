@@ -45,7 +45,7 @@ unsafe partial struct TypeLayoutReflection
         public override bool Equals(object? obj) => obj is DescriptorSet other && Equals(other);
         public static bool operator ==(DescriptorSet a, DescriptorSet b) => a.Equals(b);
         public static bool operator !=(DescriptorSet a, DescriptorSet b) => !a.Equals(b);
-        public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), Index);
+        public override int GetHashCode() => HashCode.Combine(new IntPtr(pointer), Index);
 
         public long SpaceOffset =>
             ReflectionTypeLayout_getDescriptorSetSpaceOffset(Pointer, (nint)Index);

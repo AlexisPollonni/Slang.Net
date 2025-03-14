@@ -60,7 +60,7 @@ public readonly unsafe partial struct UserAttributeArgument : IEquatable<UserAtt
 
     public bool Equals(UserAttributeArgument arg) => InternalPointer == arg.InternalPointer && Index == arg.Index;
     public override bool Equals(object? obj) => obj is UserAttributeArgument arg && Equals(arg);
-    public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(InternalPointer), Index);
+    public override int GetHashCode() => HashCode.Combine(new IntPtr(InternalPointer), Index);
     public static bool operator ==(UserAttributeArgument left, UserAttributeArgument right) => left.Equals(right);
     public static bool operator !=(UserAttributeArgument left, UserAttributeArgument right) => !(left == right);
 

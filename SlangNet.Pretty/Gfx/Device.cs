@@ -115,7 +115,70 @@ public partial class Device : COMObject<IDevice>
         resource = res.Item2;
         return res.Item1;
     }
+
+    // public unsafe SlangResult TryCreateBufferView(in BufferViewDesc desc, out BufferView? view)
+    // {
+    //     IBufferView* nativeView = null;
+    //     var result = Pointer->createBufferView(desc, &nativeView).ToSlangResult();
+    //     view = result ? new BufferView(nativeView) : null;
+    //     return result;
+    // }
+
+    public unsafe SlangResult TryCreateProgram(in ShaderProgramDesc desc, out ShaderProgram? program)
+    {
+        var res = desc.MarshalToNative<ShaderProgramDesc, IShaderProgram.ShaderProgramDesc, ShaderProgram?>(descPtr => 
+        {
+            IShaderProgram* nativeProgram = null;
+            var result = Pointer->createProgram(descPtr, &nativeProgram).ToSlangResult();
+            return (result, result ? new ShaderProgram(nativeProgram) : null);
+        });
+
+        program = res.Item2;
+        return res.Item1;
+    }
+
+    // public unsafe SlangResult TryCreateComputePipelineState(in ComputePipelineStateDesc desc, out ComputePipelineState? pipeline)
+    // {
+    //     IComputePipelineState* nativePipeline = null;
+    //     var result = Pointer->createComputePipelineState(desc, &nativePipeline).ToSlangResult();
+    //     pipeline = result ? new ComputePipelineState(nativePipeline) : null;
+    //     return result;
+    // }
+
+    // public unsafe SlangResult TryCreateCommandQueue(in CommandQueueDesc desc, out CommandQueue? queue)
+    // {
+    //     ICommandQueue* nativeQueue = null;
+    //     var result = Pointer->createCommandQueue(desc, &nativeQueue).ToSlangResult();
+    //     queue = result ? new CommandQueue(nativeQueue) : null;
+    //     return result;
+    // }
+
+    public unsafe SlangResult TryCreateShaderObject(TypeReflection type, ShaderObjectContainerType container, out ShaderObject? shaderObject)
+    {
+        IShaderObject* nativeShaderObject = null;
+        var result = Pointer->createShaderObject(type.Pointer, container, &nativeShaderObject).ToSlangResult();
+        shaderObject = result ? new ShaderObject(nativeShaderObject) : null;
+        return result;
+    }
     
+
+    // MANIPULATION METHODS
+
+    // public unsafe SlangResult TryReadBufferResource(BufferResource resource, nuint offset, nuint size, byte* data)
+    // {
+    //     ISlangBlob* blobPtr = null;
+
+    //     var result = Pointer->readBufferResource(resource.Pointer, offset, size, &blobPtr).ToSlangResult();
+    //     if (!result)
+    //     {
+    //         return result;
+    //     }
+
+    //     blobPtr->
+
+    //     return result;
+    // }
+
     // Additional methods will be implemented for the remaining IDevice interface methods
 }
 

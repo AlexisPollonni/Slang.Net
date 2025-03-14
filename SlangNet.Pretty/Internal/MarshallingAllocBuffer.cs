@@ -114,17 +114,44 @@ public ref struct MarshallingAllocBuffer
             return (sbyte**)SysUnsafe.AsPointer(ref MemoryMarshal.GetReference(_handleToArrays));
         }
 
-        public IEnumerator<string> GetEnumerator()
-        {
-            for (int i = 0; i < _handleToArrays.Length; i++)
-            {
-                yield return this[i];
-            }
-        }
+        public Enumerator GetEnumerator() => new(this);
 
-        IEnumerator IEnumerable.GetEnumerator()
+        IEnumerator<string> IEnumerable<string>.GetEnumerator() => throw new NotSupportedException("Cannot use standard enumerator with ref struct. Use the Enumerator struct directly.");
+
+        IEnumerator IEnumerable.GetEnumerator() => throw new NotSupportedException("Cannot use standard enumerator with ref struct. Use the Enumerator struct directly.");
+
+        // Custom value-type enumerator that doesn't use yield
+        public ref struct Enumerator : IEnumerator<string>
         {
-            return GetEnumerator();
+            private readonly NativeArrayOfStrings _array;
+            private int _index;
+
+            public Enumerator(NativeArrayOfStrings array)
+            {
+                _array = array;
+                _index = -1;
+            }
+
+            public readonly string Current => _array[_index];
+
+            readonly object IEnumerator.Current => Current;
+
+            public readonly void Dispose()
+            {
+                // Do nothing
+            }
+
+            public bool MoveNext()
+            {
+                _index++;
+                return _index < _array.Count;
+            }
+
+            public void Reset()
+            {
+                _index = -1;
+            }
+            
         }
     }
 }

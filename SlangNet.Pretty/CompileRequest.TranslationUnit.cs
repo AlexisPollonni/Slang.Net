@@ -23,7 +23,7 @@ unsafe partial class CompileRequest
         public override bool Equals(object? obj) => obj is TranslationUnit other && Equals(other);
         public static bool operator ==(TranslationUnit a, TranslationUnit b) => a.Equals(b);
         public static bool operator !=(TranslationUnit a, TranslationUnit b) => !a.Equals(b);
-        public override int GetHashCode() => InteropUtils.CombineHash(new IntPtr(pointer), Index);
+        public override int GetHashCode() => HashCode.Combine(new IntPtr(pointer), Index);
 
         public void AddTranslationUnitPreprocessorDefine(ReadOnlySpan<byte> key, ReadOnlySpan<byte> value)
         {

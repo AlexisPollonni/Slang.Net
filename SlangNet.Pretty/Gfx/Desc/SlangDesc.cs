@@ -6,15 +6,15 @@ using SlangNet.Internal;
 namespace SlangNet.Gfx.Desc;
 
 public record struct SlangDesc(
-    GlobalSession? GlobalSession,
-    MatrixLayoutMode DefaultMatrixLayoutMode,
-    string[]? SearchPaths,
-    IReadOnlyList<PreprocessorMacroDesc>? PreprocessorMacros,
-    string TargetProfile,
-    FloatingPointMode FloatingPointMode,
-    OptimizationLevel OptimizationLevel,
-    TargetFlags TargetFlags,
-    LineDirectiveMode LineDirectiveMode
+    GlobalSession? GlobalSession = null,
+    MatrixLayoutMode DefaultMatrixLayoutMode =  MatrixLayoutMode.RowMajor,
+    string[]? SearchPaths =  null,
+    IReadOnlyList<PreprocessorMacroDesc>? PreprocessorMacros = null,
+    string? TargetProfile = null,
+    FloatingPointMode FloatingPointMode = FloatingPointMode.Default,
+    OptimizationLevel OptimizationLevel =  default,
+    TargetFlags TargetFlags = TargetFlags.GenerateSPIRVDirectly,
+    LineDirectiveMode LineDirectiveMode = LineDirectiveMode.Default
     ) : IMarshalsToNative<IDevice.SlangDesc>, IMarshalsFromNative<SlangDesc, IDevice.SlangDesc>
 {
     public readonly int GetNativeAllocSize()
@@ -47,7 +47,7 @@ public record struct SlangDesc(
     {
         var searchPaths = InteropUtils.PtrToStringArray(native.searchPaths, native.searchPathCount);
         
-        var preprocessorMacros = InteropUtils.AsMarshalableNativeArray<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>(native.preprocessorMacros, native.preprocessorMacroCount);
+        var preprocessorMacros = InteropUtils.MarshalArrayToManaged<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>(native.preprocessorMacros, native.preprocessorMacroCount);
         
         var targetProfile = InteropUtils.PtrToStringUTF8(native.targetProfile) ?? string.Empty;
         

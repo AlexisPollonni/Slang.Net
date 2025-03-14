@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -26,7 +27,7 @@ internal static unsafe class InteropUtils
     public static string? PtrToStringUTF8(void* ptr)
         => new Utf8String((sbyte*)ptr).ToString();
 
-    public static unsafe string[]? PtrToStringArray(sbyte** ptr, int count)
+    public static string[]? PtrToStringArray(sbyte** ptr, int count)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(count);
 
@@ -36,11 +37,25 @@ internal static unsafe class InteropUtils
         return new Utf8StringArray(ptr, count).ToStringArray();
     }
 
-    public static int CombineHash<T1, T2>(T1 v1, T2 v2)
-        where T1 : unmanaged
-        where T2 : unmanaged 
-        => HashCode.Combine(v1, v2);
+    public unsafe static TManaged[]? MarshalArrayToManaged<TManaged, TNative>(TNative* native, int count) 
+        where TNative : unmanaged 
+        where TManaged : IMarshalsFromNative<TManaged, TNative>
+    {
+        if (native is null || count == 0)
+            return null;
 
+        var res = new TManaged[count];
+        var span = new Span<TNative>(native, count);
+
+
+        for (var i = 0; i < count; i++)
+        {
+            TManaged.CreateFromNative(span[i], out var managed);
+            res[i] = managed;
+        }
+
+        return res;
+    }
     
     /// <summary>
     /// Adds the disposable to the list of disposables.
@@ -74,7 +89,7 @@ internal static unsafe class InteropUtils
     public static int CountIfNotNull<T>(this IReadOnlyCollection<T>? collection)
     {
         if (collection is null)
-            return 0
+            return 0;
         return collection.Count;
     }
 }

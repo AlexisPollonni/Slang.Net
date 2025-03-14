@@ -67,13 +67,6 @@ public partial class BufferResource : COMObject<IBufferResource>
         pointer = result ? (IntPtr)nativePointer : IntPtr.Zero;
         return result;
     }
-
-    public unsafe SlangResult TryMap(in MemoryRange? rangeToRead, out Span<byte> span)
-    {
-        var result = TryMap(rangeToRead, out nint pointer);
-        span = new Span<byte>((void*)pointer, (int)(rangeToRead?.size ?? GetDesc().SizeInBytes));
-        return result;
-    }
     
     public unsafe SlangResult TryUnmap(in MemoryRange? writtenRange = null)
     {

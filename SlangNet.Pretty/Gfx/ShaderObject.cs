@@ -36,31 +36,31 @@ public partial class ShaderObject : COMObject<IShaderObject>
         return result;
     }
     
-    public unsafe SlangResult TrySetData<T>(in ShaderOffset offset, in T data) where T : unmanaged
-    {
-        fixed (T* pData = &data)
-        fixed (ShaderOffset* pOffset = &offset)
-        {
-            return Pointer->setData(pOffset, pData, (nuint)sizeof(T)).ToSlangResult();
-        }
-    }
+    // public unsafe SlangResult TrySetData<T>(in ShaderOffset offset, in T data) where T : unmanaged
+    // {
+    //     fixed (T* pData = &data)
+    //     fixed (ShaderOffset* pOffset = &offset)
+    //     {
+    //         return Pointer->setData(pOffset, pData, (nuint)sizeof(T)).ToSlangResult();
+    //     }
+    // }
     
-    public unsafe SlangResult TryGetObject(in ShaderOffset offset, out ShaderObject? @object)
+    public unsafe SlangResult TryGetObject(in ShaderOffset offset, out ShaderObject? shaderObject)
     {
         fixed (ShaderOffset* pOffset = &offset)
         {
             IShaderObject* nativeObject = null;
             var result = Pointer->getObject(pOffset, &nativeObject).ToSlangResult();
-            @object = result ? new ShaderObject(nativeObject) : null;
+            shaderObject = result ? new ShaderObject(nativeObject) : null;
             return result;
         }
     }
     
-    public unsafe SlangResult TrySetObject(in ShaderOffset offset, ShaderObject? @object)
+    public unsafe SlangResult TrySetObject(in ShaderOffset offset, ShaderObject? shaderObject)
     {
         fixed (ShaderOffset* pOffset = &offset)
         {
-            return Pointer->setObject(pOffset, @object.AsNullablePtr()).ToSlangResult();
+            return Pointer->setObject(pOffset, shaderObject.AsNullablePtr()).ToSlangResult();
         }
     }
     
