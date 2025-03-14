@@ -8,5 +8,6 @@
   <ItemGroup>
     <SlangNativeNames Include="libslang.so"/>
     <SlangNativeNames Include="libslang-glslang.so"/>
+    <SlangNativeNames Include="libgfx.so"/>
   </ItemGroup>
 </Project>

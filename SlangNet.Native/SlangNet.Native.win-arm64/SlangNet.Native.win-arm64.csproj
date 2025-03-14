@@ -3,7 +3,11 @@
     <TargetFramework>net9.0</TargetFramework>
     <SlangRuntime>win-arm64</SlangRuntime>
     <SlangDownloadRuntime>windows-aarch64</SlangDownloadRuntime>
-    <SlangNativeDir>lib/</SlangNativeDir>
-    <SlangNativeName>slang.lib</SlangNativeName>
+    <SlangNativeDir>bin</SlangNativeDir>
   </PropertyGroup>
+  <ItemGroup>
+    <SlangNativeNames Include="slang.dll"/>
+    <SlangNativeNames Include="slang-glslang.dll"/>
+    <SlangNativeNames Include="gfx.dll"/>
+  </ItemGroup>
 </Project>

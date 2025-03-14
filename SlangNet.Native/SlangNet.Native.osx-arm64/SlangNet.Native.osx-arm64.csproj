@@ -4,6 +4,10 @@
     <SlangRuntime>osx-arm64</SlangRuntime>
     <SlangDownloadRuntime>macos-aarch64</SlangDownloadRuntime>
     <SlangNativeDir>lib/</SlangNativeDir>
-    <SlangNativeName>libslang.dylib</SlangNativeName>
   </PropertyGroup>
+  <ItemGroup>
+    <SlangNativeNames Include="libslang.dylib"/>
+    <SlangNativeNames Include="libslang-glslang.dylib"/>
+    <SlangNativeNames Include="libgfx.dylib"/>
+  </ItemGroup>
 </Project>

@@ -8,8 +8,13 @@
 
   <ItemGroup>
     <HackRuntimes Include="linux-x64" LibraryName="libslang*.so" />
-    <HackRuntimes Include="osx-x64" LibraryName="libslang.dylib" />
+    <HackRuntimes Include="linux-x64" LibraryName="libgfx.so" />
+    
+    <HackRuntimes Include="osx-x64" LibraryName="libslang*.dylib" />
+    <HackRuntimes Include="osx-x64" LibraryName="libgfx.dylib" />
+    
     <HackRuntimes Include="win-x64" LibraryName="slang*.dll" />
+    <HackRuntimes Include="win-x64" LibraryName="gfx.dll" />
   </ItemGroup>
 
   <Target Name="HackyRuntimeCopy" AfterTargets="Build">
