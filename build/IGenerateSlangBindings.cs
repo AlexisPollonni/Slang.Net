@@ -47,14 +47,6 @@ public interface IGenerateSlangBindings : INukeBuild
 
     private void Build()
     {
-        AbsolutePath[] files =
-        [
-            SlangGfxHeaderPath
-        ];
-
-        var config = BuildConfig.SlangConfig;
-        config.TraversalNames = [SlangHeaderPath, SlangDeprHeaderPath, SlangGfxHeaderPath];
-
         if (EnvironmentInfo.IsLinux)
         {
             var apt = ToolResolver.GetEnvironmentOrPathTool("apt");
@@ -67,20 +59,33 @@ public interface IGenerateSlangBindings : INukeBuild
             });
         }
 
+        var slangConfig = BuildConfig.SlangConfig;
+        slangConfig.TraversalNames = [SlangDeprHeaderPath, SlangHeaderPath];
+        
+        var gfxConfig = BuildConfig.GfxConfig;
+        gfxConfig.TraversalNames = [SlangGfxHeaderPath];
+
+
         using var ver = clang.getClangVersion();
         using var ver2 = clangsharp.getVersion();
 
         Log.Information("Generating CSharp bindings...");
         Log.Information("CLANG VERSION: {Version}", ver);
         Log.Information("CLANGSHARP VERSION: {Version}", ver2);
-        var srcFiles = Generate(files, SrcOutputDir, config);
         
-        WriteFilesToDisk(srcFiles);
-
+        
+        var genFiles = Generate([SlangHeaderPath], SrcOutputDir, slangConfig);
+        WriteFilesToDisk(genFiles);
+        
+        genFiles = Generate([SlangGfxHeaderPath], SrcOutputDir, gfxConfig);
+        WriteFilesToDisk(genFiles);
+        
         Log.Information("Generating XML documentation files...");
-        var docFiles = Generate(files, XmlOutputDir, config, PInvokeGeneratorOutputMode.Xml);
+        genFiles = Generate([SlangHeaderPath], XmlOutputDir, slangConfig, PInvokeGeneratorOutputMode.Xml);
+        WriteFilesToDisk(genFiles);
         
-        WriteFilesToDisk(docFiles);
+        genFiles = Generate([SlangGfxHeaderPath], SrcOutputDir, gfxConfig,  PInvokeGeneratorOutputMode.Xml);
+        WriteFilesToDisk(genFiles);
     }
 
     private Dictionary<AbsolutePath, string> Generate(AbsolutePath[] files,
@@ -160,11 +165,11 @@ public interface IGenerateSlangBindings : INukeBuild
         foreach (var (path, textBody) in outputFiles)
         {
             Log.Debug("Writing file \'{FilePath}\' to disk", path);
-            
+
             path.WriteAllText(textBody, Encoding.Default, false);
         }
     }
-    
+
     private TranslationUnit? CreateTranslationUnitForFile(AbsolutePath filePath,
                                                           CXIndex index,
                                                           ReadOnlySpan<string> clangCmdArgs,

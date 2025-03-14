@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace SlangNet.Gfx;
 
 
-public static unsafe partial class GfxApi
+public static unsafe partial class Api
 {
     public static bool IsCompressedFormat(Format format)
     {

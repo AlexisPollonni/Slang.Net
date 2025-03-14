@@ -112,9 +112,8 @@ internal record BuildConfig(
         return null!;
     }
 
-
-    public static readonly BuildConfig SlangConfig = new(
-        "c++", "SlangApi", "slang",
+    public static BuildConfig GetBuildConfig(string defClass, string libPath) => new(
+        "c++", defClass, libPath,
         "SlangNet.Bindings.Generated",
         "sp", // Remove the function prefixes, also fix over-removing of prefixes
         GeneratePreviewCode
@@ -260,4 +259,8 @@ internal record BuildConfig(
         [],
         []
     );
+    
+
+    public static BuildConfig SlangConfig => GetBuildConfig("SlangApi", "slang");
+    public static BuildConfig GfxConfig => GetBuildConfig("GfxApi", "gfx");
 }

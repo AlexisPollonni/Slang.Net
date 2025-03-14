@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Runtime.InteropServices;
-using static SlangNet.Bindings.Generated.SlangApi;
+using static SlangNet.Bindings.Generated.GfxApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
