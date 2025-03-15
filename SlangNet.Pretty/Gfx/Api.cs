@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace SlangNet.Gfx;
@@ -25,8 +26,30 @@ public static unsafe partial class Api
         return res;
     }
     
-    //TODO: GetAdapters here
+    public static SlangResult TryGetAdapters(DeviceType deviceType, out IReadOnlyList<AdapterInfo>? adapters)
+    {
+        ISlangBlob* adaptersBlob = null;
+        var res = gfxGetAdapters(deviceType, &adaptersBlob).ToSlangResult();
+        
+        if(!res)
+        {
+            adapters = null;
+            return res;
+        }
+        var ptr = (Unsafe.AdapterInfo*)adaptersBlob->getBufferPointer();
 
+        if(ptr is null)
+        {
+            adapters = null;
+            return res;
+        }
+        var count = (int)adaptersBlob->getBufferSize() / sizeof(Unsafe.AdapterInfo);
+
+        adapters = InteropUtils.MarshalArrayToManaged<AdapterInfo, Unsafe.AdapterInfo>(ptr, count);
+
+        adaptersBlob->release();
+        return res;
+    }
     public static SlangResult TryReportLiveObjects() =>
         gfxReportLiveObjects().ToSlangResult();
 
