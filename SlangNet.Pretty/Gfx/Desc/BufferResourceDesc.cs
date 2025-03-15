@@ -16,9 +16,9 @@ public record struct BufferResourceDesc(
         return Base.GetNativeAllocSize() + SysUnsafe.SizeOf<nuint>() * 2 + SysUnsafe.SizeOf<Format>();
     }
 
-    public void AsNative(MarshallingAllocBuffer buffer, out IBufferResource.BufferResourceDesc native)
+    public void AsNative(ref MarshallingAllocBuffer buffer, out IBufferResource.BufferResourceDesc native)
     {
-        Base.AsNative(buffer, out var nativeBase);
+        Base.AsNative(ref buffer, out var nativeBase);
         
         native = new IBufferResource.BufferResourceDesc
         {

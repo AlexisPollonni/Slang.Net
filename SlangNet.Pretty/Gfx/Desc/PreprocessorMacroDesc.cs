@@ -12,12 +12,12 @@ public readonly record struct PreprocessorMacroDesc(string Name, string Value) :
         return Name.GetNativeAllocSize() + Value.GetNativeAllocSize();
     }
 
-    public unsafe void AsNative(MarshallingAllocBuffer buffer, out Unsafe.PreprocessorMacroDesc native)
+    public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out Unsafe.PreprocessorMacroDesc native)
     {
         native = new()
         {
-            name = Name.MarshalToNative(buffer),
-            value = Value.MarshalToNative(buffer),
+            name = Name.MarshalToNative(ref buffer),
+            value = Value.MarshalToNative(ref buffer),
         };
     }
 

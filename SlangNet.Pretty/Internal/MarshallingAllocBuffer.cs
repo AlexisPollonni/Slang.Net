@@ -33,12 +33,14 @@ public ref struct MarshallingAllocBuffer
 
         Encoding.UTF8.GetBytes(str, span.AsBytes());
 
+        span[^1] = (sbyte)'\0'; //Get bytes does not add the null terminal character
+
         return span;
     }
 
     public unsafe NativeArrayOfStrings ConvertStringArray(IReadOnlyCollection<string> strings)
     {
-        Span<nint> handleToArrays = AllocWithBackup<nint>(strings.Count);
+        var handleToArrays = AllocWithBackup<nint>(strings.Count);
 
         var start = _allocatedSize;
         
@@ -47,14 +49,15 @@ public ref struct MarshallingAllocBuffer
         {
             var strSpan = ConvertString(str);
 
-            handleToArrays[i] = (nint)SysUnsafe.AsPointer(ref strSpan);
+            var ptr = (sbyte*)SysUnsafe.AsPointer(ref strSpan.DangerousGetReference());
+            handleToArrays[i] = (nint)ptr;
             
             i++;
         }
 
         var fullDataSpan = _data[start..].Cast<byte, sbyte>();
 
-        return new NativeArrayOfStrings(handleToArrays, fullDataSpan);
+        return new(handleToArrays, fullDataSpan);
     }
 
     public Span<T> AllocFor<T>(int count) where T : unmanaged
@@ -111,7 +114,9 @@ public ref struct MarshallingAllocBuffer
 
         public unsafe sbyte** AsPointer()
         {
-            return (sbyte**)SysUnsafe.AsPointer(ref MemoryMarshal.GetReference(_handleToArrays));
+            ref var h = ref _handleToArrays.DangerousGetReference();
+            var ptr = (sbyte**)SysUnsafe.AsPointer(ref h);
+            return ptr;
         }
 
         public Enumerator GetEnumerator() => new(this);
@@ -188,7 +193,7 @@ public static class MarshallingAllocBufferExtensions
 
 
 
-    public unsafe static T* AllocForPtr<T>(this MarshallingAllocBuffer buffer, int count) where T : unmanaged
+    public unsafe static T* AllocForPtr<T>(ref this MarshallingAllocBuffer buffer, int count) where T : unmanaged
     {
         ArgumentOutOfRangeException.ThrowIfNegative(count);
 
@@ -200,7 +205,7 @@ public static class MarshallingAllocBufferExtensions
         return (T*)SysUnsafe.AsPointer(ref MemoryMarshal.GetReference(span));
     }
 
-    public unsafe static sbyte* MarshalToNative(this string? str, MarshallingAllocBuffer buffer)
+    public unsafe static sbyte* MarshalToNative(this string? str, ref MarshallingAllocBuffer buffer)
     {
         if (str is null)
             return null;
@@ -210,7 +215,7 @@ public static class MarshallingAllocBufferExtensions
         return (sbyte*)SysUnsafe.AsPointer(ref MemoryMarshal.GetReference(span));
     }
 
-    public unsafe static sbyte** MarshalToNative(this IReadOnlyCollection<string>? strings, MarshallingAllocBuffer buffer)
+    public unsafe static sbyte** MarshalToNative(this IReadOnlyCollection<string>? strings, ref MarshallingAllocBuffer buffer)
     {
         if (strings is null)
             return null;
@@ -221,7 +226,7 @@ public static class MarshallingAllocBufferExtensions
         return res.AsPointer();
     }
 
-    public unsafe static TNative* MarshalToNative<TManaged, TNative>(this IReadOnlyCollection<TManaged>? items, MarshallingAllocBuffer buffer) 
+    public unsafe static TNative* MarshalToNative<TManaged, TNative>(this IReadOnlyCollection<TManaged>? items, ref MarshallingAllocBuffer buffer) 
         where TManaged : IMarshalsToNative<TNative>
         where TNative : unmanaged
     {
@@ -233,7 +238,7 @@ public static class MarshallingAllocBufferExtensions
         var i = 0;
         foreach (var item in items)
         {
-            item.AsNative(buffer, out var native);
+            item.AsNative(ref buffer, out var native);
             span[i] = native;
             i++;
         }
@@ -241,7 +246,7 @@ public static class MarshallingAllocBufferExtensions
         return (TNative*)SysUnsafe.AsPointer(ref MemoryMarshal.GetReference(span));
     }
 
-    public unsafe static T** MarshalToNative<T>(this IReadOnlyCollection<COMObject<T>>? items, MarshallingAllocBuffer buffer)
+    public unsafe static T** MarshalToNative<T>(this IReadOnlyCollection<COMObject<T>>? items, ref MarshallingAllocBuffer buffer)
         where T : unmanaged
     {
         if (items is null)  
@@ -271,12 +276,12 @@ public static class MarshallingAllocBufferExtensions
             return postMarshal(null);
         
         var size = item.GetNativeAllocSize();
-        Span<byte> span = size > 1024 ? GC.AllocateUninitializedArray<byte>(size, true) : stackalloc byte[size];
+        var span = size > 1024 ? GC.AllocateUninitializedArray<byte>(size, true) : stackalloc byte[size];
 
         var buffer = new MarshallingAllocBuffer(span);
 
-        item.AsNative(buffer, out var native);
-
+        item.AsNative(ref buffer, out var native);
+        
         return postMarshal(&native);
     }
 
@@ -286,11 +291,11 @@ public static class MarshallingAllocBufferExtensions
             return postMarshal(null);
 
         var size = str.GetNativeAllocSize();
-        Span<byte> span = size > 1024 ? GC.AllocateUninitializedArray<byte>(size, true) : stackalloc byte[size];
+        var span = size > 1024 ? GC.AllocateUninitializedArray<byte>(size, true) : stackalloc byte[size];
 
         var buffer = new MarshallingAllocBuffer(span);
 
-        var ptr = str.MarshalToNative(buffer);
+        var ptr = str.MarshalToNative(ref buffer);
 
         return postMarshal(ptr);
     }

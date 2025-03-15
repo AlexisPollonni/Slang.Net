@@ -17,14 +17,14 @@ public record struct ShaderProgramDesc(
             + SysUnsafe.SizeOf<nint>() * (EntryPoints?.Length ?? 0);
     }
 
-    public unsafe void AsNative(MarshallingAllocBuffer buffer, out IShaderProgram.ShaderProgramDesc native)
+    public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out IShaderProgram.ShaderProgramDesc native)
     {
         native = new IShaderProgram.ShaderProgramDesc
         {
             linkingStyle = LinkingStyle,
             slangGlobalScope = GlobalScope.AsNullablePtr(),
             entryPointCount = EntryPoints.CountIfNotNull(),
-            slangEntryPoints = EntryPoints.MarshalToNative(buffer)
+            slangEntryPoints = EntryPoints.MarshalToNative(ref buffer)
         };
     }
     

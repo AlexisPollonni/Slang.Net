@@ -20,10 +20,8 @@ public partial class Device : COMObject<IDevice>
     {
         var res = desc.MarshalToNative<DeviceDesc, IDevice.DeviceDesc, Device?>(nDesc => 
         {
-            var nativeDescPtr = nDesc;
-
             IDevice* natDevice = null;
-            var res = gfxCreateDevice(nativeDescPtr, &natDevice).ToSlangResult();
+            var res = gfxCreateDevice(nDesc, &natDevice).ToSlangResult();
         
             var d = res ? new Device(natDevice) : null;
             return (res, d);

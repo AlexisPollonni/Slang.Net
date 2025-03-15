@@ -18,7 +18,7 @@ public record struct ResourceDescBase(
         return SysUnsafe.SizeOf<IResource.DescBase>();
     }
 
-    public void AsNative(MarshallingAllocBuffer buffer, out IResource.DescBase native)
+    public void AsNative(ref MarshallingAllocBuffer buffer, out IResource.DescBase native)
     {
         native = new IResource.DescBase
         {

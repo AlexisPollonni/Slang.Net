@@ -13,11 +13,11 @@ public readonly record struct ShaderCacheDesc(string? Path, int MaxEntryCount = 
         return Path.GetNativeAllocSize() + SysUnsafe.SizeOf<int>();
     }
 
-    public unsafe void AsNative(MarshallingAllocBuffer buffer, out IDevice.ShaderCacheDesc native)
+    public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out IDevice.ShaderCacheDesc native)
     {
         native = new IDevice.ShaderCacheDesc
         {
-            shaderCachePath = Path.MarshalToNative(buffer),
+            shaderCachePath = Path.MarshalToNative(ref buffer),
             maxEntryCount = MaxEntryCount
         };
     }
@@ -47,10 +47,10 @@ public record struct DeviceDesc(
             + ShaderCache.GetNativeAllocSize();
     }
 
-    public unsafe void AsNative(MarshallingAllocBuffer buffer, out IDevice.DeviceDesc native)
+    public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out IDevice.DeviceDesc native)
     {       
-        Slang.AsNative(buffer, out var slangDesc);
-        ShaderCache.AsNative(buffer, out var shaderCacheDesc);
+        Slang.AsNative(ref buffer, out var slangDesc);
+        ShaderCache.AsNative(ref buffer, out var shaderCacheDesc);
         
         // AdapterLUID is a struct with a fixed buffer, so we can just pass it directly
         AdapterLUID* adapterLuidPtr = null;
@@ -72,13 +72,13 @@ public record struct DeviceDesc(
             adapterLuidPtr = &luid;
         }
         
-        native = new IDevice.DeviceDesc
+        native = new()
         {
             deviceType = DeviceType,
             existingDeviceHandles = ExistingDeviceHandles,
             adapterLUID = adapterLuidPtr,
             requiredFeatureCount = RequiredFeatures.CountIfNotNull(),
-            requiredFeatures = RequiredFeatures.MarshalToNative(buffer),
+            requiredFeatures = RequiredFeatures.MarshalToNative(ref buffer),
             apiCommandDispatcher = null, // Not implemented yet
             nvapiExtnSlot = NvApiExtnSlot,
             shaderCache = shaderCacheDesc,

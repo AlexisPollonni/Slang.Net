@@ -25,17 +25,17 @@ public record struct SlangDesc(
         + TargetProfile.GetNativeAllocSize();
     }
 
-    public unsafe void AsNative(MarshallingAllocBuffer buffer, out IDevice.SlangDesc native)
-    {        
+    public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out IDevice.SlangDesc native)
+    {
         native = new()
         {
             slangGlobalSession = GlobalSession.AsNullablePtr(),
             defaultMatrixLayoutMode = DefaultMatrixLayoutMode,
-            searchPaths = SearchPaths.MarshalToNative(buffer),
+            searchPaths = SearchPaths.MarshalToNative(ref buffer),
             searchPathCount = SearchPaths.CountIfNotNull(),
-            preprocessorMacros = PreprocessorMacros.MarshalToNative<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>(buffer),
+            preprocessorMacros = PreprocessorMacros.MarshalToNative<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>(ref buffer),
             preprocessorMacroCount = PreprocessorMacros.CountIfNotNull(),
-            targetProfile = TargetProfile.MarshalToNative(buffer),
+            targetProfile = TargetProfile.MarshalToNative(ref buffer),
             floatingPointMode = FloatingPointMode,
             optimizationLevel = OptimizationLevel,
             targetFlags = (uint)TargetFlags,

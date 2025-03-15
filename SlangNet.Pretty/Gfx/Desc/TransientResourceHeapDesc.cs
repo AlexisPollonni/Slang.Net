@@ -20,7 +20,7 @@ public record struct TransientResourceHeapDesc(
     }
     
     
-    public unsafe void AsNative(MarshallingAllocBuffer buffer, out ITransientResourceHeap.TransientResourceHeapDesc native)
+    public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out ITransientResourceHeap.TransientResourceHeapDesc native)
     {
         native = new ITransientResourceHeap.TransientResourceHeapDesc
         {

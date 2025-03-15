@@ -14,7 +14,7 @@ public record struct ComputePipelineStateDesc(
         return SysUnsafe.SizeOf<Unsafe.ComputePipelineStateDesc>();
     }
 
-    public unsafe void AsNative(MarshallingAllocBuffer buffer, out Unsafe.ComputePipelineStateDesc native)
+    public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out Unsafe.ComputePipelineStateDesc native)
     {
         native = new Unsafe.ComputePipelineStateDesc
         {

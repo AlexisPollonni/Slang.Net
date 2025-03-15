@@ -15,7 +15,7 @@ public interface IMarshalsToNative<TNative> where TNative : unmanaged
     /// <summary>
     /// Marshals the object to its native representation.
     /// </summary>
-    public void AsNative(MarshallingAllocBuffer buffer, out TNative native);
+    public void AsNative(ref MarshallingAllocBuffer buffer, out TNative native);
 }
 
 
