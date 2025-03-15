@@ -50,6 +50,15 @@ public readonly record struct SlangResult(int RawValue)
     public static readonly SlangResult NotAvailable = new (SLANG_E_NOT_AVAILABLE);
     /// <summary>Could not complete because the operation times out. </summary>
     public static readonly SlangResult TimeOut = new (SLANG_E_TIME_OUT);
+    /// <summary>
+    /// The buffer is not large enough to hold the data.
+    /// </summary>
+    public static readonly SlangResult InsufficientBuffer = new(SLANG_ERROR_INSUFFICIENT_BUFFER);
+    /// <summary>
+    /// The parameter is invalid.
+    /// </summary>
+    public static readonly SlangResult InvalidParameter = new(SLANG_ERROR_INVALID_PARAMETER);
+
 
     public bool Succeeded => RawValue >= 0;
     public bool Failed => RawValue < 0;
@@ -77,6 +86,7 @@ public readonly record struct SlangResult(int RawValue)
                 return winException.Message;
         }
         else if (this == BufferTooSmall) return nameof(BufferTooSmall);
+        else if (this == OutOfMemory) return nameof(OutOfMemory);
         else if (this == Uninitialized) return nameof(Uninitialized);
         else if (this == Pending) return nameof(Pending);
         else if (this == CannotOpen) return nameof(CannotOpen);
@@ -84,6 +94,10 @@ public readonly record struct SlangResult(int RawValue)
         else if (this == InternalFail) return nameof(InternalFail);
         else if (this == NotAvailable) return nameof(NotAvailable);
         else if (this == TimeOut) return nameof(TimeOut);
+        else if (this == InsufficientBuffer) return nameof(InsufficientBuffer);
+        else if (this == InvalidHandle) return nameof(InvalidHandle);
+        else if (this == InvalidArg) return nameof(InvalidArg);
+        else if (this == InvalidParameter) return nameof(InvalidParameter);
 
         var builder = new StringBuilder();
         if (Succeeded)
