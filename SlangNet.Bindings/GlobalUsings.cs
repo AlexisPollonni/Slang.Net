@@ -9,6 +9,8 @@ global using BuildInputs = SlangNet.Bindings.Generated.IAccelerationStructure.Bu
 global using CreateDesc = SlangNet.Bindings.Generated.IAccelerationStructure.CreateDesc;
 global using CreateDesc2 = SlangNet.Bindings.Generated.IShaderProgram.CreateDesc2;
 global using PrebuildInfo = SlangNet.Bindings.Generated.IAccelerationStructure.PrebuildInfo;
+global using ResourceType = SlangNet.Bindings.Generated.IResource.ResourceType;
+global using ResourceViewType = SlangNet.Bindings.Generated.IResourceView.ResourceViewType;
 
 global using RayTracingPipelineFlagsEnum = SlangNet.Bindings.Generated.RayTracingPipelineFlags.RayTracingPipelineFlagsEnum;
 global using TransientResourceHeapFlagsEnum = SlangNet.Bindings.Generated.ITransientResourceHeap.Flags.TransientResourceHeapFlagsEnum;

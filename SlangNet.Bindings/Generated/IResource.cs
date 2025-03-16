@@ -25,7 +25,7 @@ public unsafe partial struct IResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::IResource::Type")]
-    public delegate Type _getType(IResource* pThis);
+    public delegate ResourceType _getType(IResource* pThis);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
@@ -43,28 +43,28 @@ public unsafe partial struct IResource
     [return: NativeTypeName("const char *")]
     public delegate sbyte* _getDebugName(IResource* pThis);
 
-    /// <include file='Type.xml' path='doc/member[@name="Type"]/*' />
-    public enum Type
+    /// <include file='ResourceType.xml' path='doc/member[@name="ResourceType"]/*' />
+    public enum ResourceType
     {
-        /// <include file='Type.xml' path='doc/member[@name="Type.Unknown"]/*' />
+        /// <include file='ResourceType.xml' path='doc/member[@name="ResourceType.Unknown"]/*' />
         Unknown,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.Buffer"]/*' />
+        /// <include file='ResourceType.xml' path='doc/member[@name="ResourceType.Buffer"]/*' />
         Buffer,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.Texture1D"]/*' />
+        /// <include file='ResourceType.xml' path='doc/member[@name="ResourceType.Texture1D"]/*' />
         Texture1D,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.Texture2D"]/*' />
+        /// <include file='ResourceType.xml' path='doc/member[@name="ResourceType.Texture2D"]/*' />
         Texture2D,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.Texture3D"]/*' />
+        /// <include file='ResourceType.xml' path='doc/member[@name="ResourceType.Texture3D"]/*' />
         Texture3D,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.TextureCube"]/*' />
+        /// <include file='ResourceType.xml' path='doc/member[@name="ResourceType.TextureCube"]/*' />
         TextureCube,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type._Count"]/*' />
+        /// <include file='ResourceType.xml' path='doc/member[@name="ResourceType._Count"]/*' />
         _Count,
     }
 
@@ -73,7 +73,7 @@ public unsafe partial struct IResource
     {
         /// <include file='DescBase.xml' path='doc/member[@name="DescBase.type"]/*' />
         [NativeTypeName("gfx::IResource::Type")]
-        public Type type;
+        public ResourceType type;
 
         /// <include file='DescBase.xml' path='doc/member[@name="DescBase.defaultState"]/*' />
         [NativeTypeName("gfx::ResourceState")]
@@ -123,7 +123,7 @@ public unsafe partial struct IResource
     /// <include file='IResource.xml' path='doc/member[@name="IResource.getType"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::IResource::Type")]
-    public Type getType()
+    public ResourceType getType()
     {
         return Marshal.GetDelegateForFunctionPointer<_getType>(lpVtbl->getType)((IResource*)Unsafe.AsPointer(ref this));
     }

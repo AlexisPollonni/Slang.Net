@@ -30,7 +30,7 @@
         </param>
       </delegate>
       <delegate name="_getType" access="public" convention="StdCall">
-        <type native="gfx::IResource::Type">Type</type>
+        <type native="gfx::IResource::Type">ResourceType</type>
         <param name="pThis">
           <type>IResource*</type>
         </param>
@@ -68,7 +68,7 @@
           <type>IResource*</type>
         </param>
       </delegate>
-      <enumeration name="Type" access="public">
+      <enumeration name="ResourceType" access="public">
         <type>int</type>
         <enumerator name="Unknown" access="public">
           <type primitive="False">int</type>
@@ -94,7 +94,7 @@
       </enumeration>
       <struct name="DescBase" access="public">
         <field name="type" access="public">
-          <type native="gfx::IResource::Type">Type</type>
+          <type native="gfx::IResource::Type">ResourceType</type>
         </field>
         <field name="defaultState" access="public">
           <type native="gfx::ResourceState">ResourceState</type>
@@ -137,7 +137,7 @@
         </body>
       </function>
       <function name="getType" access="public" unsafe="true">
-        <type native="gfx::IResource::Type">Type</type>
+        <type native="gfx::IResource::Type">ResourceType</type>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getType</vtbl>)(<param special="thisPtr">(IResource*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>

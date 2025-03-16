@@ -25,7 +25,7 @@ public unsafe partial struct IBufferResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::IResource::Type")]
-    public delegate Type _getType(IBufferResource* pThis);
+    public delegate ResourceType _getType(IBufferResource* pThis);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
@@ -106,7 +106,7 @@ public unsafe partial struct IBufferResource
     /// <inheritdoc cref="IResource.getType" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::IResource::Type")]
-    public Type getType()
+    public ResourceType getType()
     {
         return Marshal.GetDelegateForFunctionPointer<_getType>(lpVtbl->getType)((IBufferResource*)Unsafe.AsPointer(ref this));
     }

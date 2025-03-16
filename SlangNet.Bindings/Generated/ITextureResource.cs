@@ -25,7 +25,7 @@ public unsafe partial struct ITextureResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::IResource::Type")]
-    public delegate Type _getType(ITextureResource* pThis);
+    public delegate ResourceType _getType(ITextureResource* pThis);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
@@ -165,7 +165,7 @@ public unsafe partial struct ITextureResource
     /// <inheritdoc cref="IResource.getType" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::IResource::Type")]
-    public Type getType()
+    public ResourceType getType()
     {
         return Marshal.GetDelegateForFunctionPointer<_getType>(lpVtbl->getType)((ITextureResource*)Unsafe.AsPointer(ref this));
     }

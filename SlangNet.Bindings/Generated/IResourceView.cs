@@ -31,28 +31,28 @@ public unsafe partial struct IResourceView
     [return: NativeTypeName("gfx::Result")]
     public delegate int _getNativeHandle(IResourceView* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle);
 
-    /// <include file='Type.xml' path='doc/member[@name="Type"]/*' />
-    public enum Type
+    /// <include file='ResourceViewType.xml' path='doc/member[@name="ResourceViewType"]/*' />
+    public enum ResourceViewType
     {
-        /// <include file='Type.xml' path='doc/member[@name="Type.Unknown"]/*' />
+        /// <include file='ResourceViewType.xml' path='doc/member[@name="ResourceViewType.Unknown"]/*' />
         Unknown,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.RenderTarget"]/*' />
+        /// <include file='ResourceViewType.xml' path='doc/member[@name="ResourceViewType.RenderTarget"]/*' />
         RenderTarget,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.DepthStencil"]/*' />
+        /// <include file='ResourceViewType.xml' path='doc/member[@name="ResourceViewType.DepthStencil"]/*' />
         DepthStencil,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.ShaderResource"]/*' />
+        /// <include file='ResourceViewType.xml' path='doc/member[@name="ResourceViewType.ShaderResource"]/*' />
         ShaderResource,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.UnorderedAccess"]/*' />
+        /// <include file='ResourceViewType.xml' path='doc/member[@name="ResourceViewType.UnorderedAccess"]/*' />
         UnorderedAccess,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.AccelerationStructure"]/*' />
+        /// <include file='ResourceViewType.xml' path='doc/member[@name="ResourceViewType.AccelerationStructure"]/*' />
         AccelerationStructure,
 
-        /// <include file='Type.xml' path='doc/member[@name="Type.CountOf_"]/*' />
+        /// <include file='ResourceViewType.xml' path='doc/member[@name="ResourceViewType.CountOf_"]/*' />
         CountOf_,
     }
 
@@ -61,7 +61,7 @@ public unsafe partial struct IResourceView
     {
         /// <include file='RenderTargetDesc.xml' path='doc/member[@name="RenderTargetDesc.shape"]/*' />
         [NativeTypeName("gfx::IResource::Type")]
-        public Type shape;
+        public ResourceType shape;
     }
 
     /// <include file='ResourceViewDesc.xml' path='doc/member[@name="ResourceViewDesc"]/*' />
@@ -69,7 +69,7 @@ public unsafe partial struct IResourceView
     {
         /// <include file='ResourceViewDesc.xml' path='doc/member[@name="ResourceViewDesc.type"]/*' />
         [NativeTypeName("gfx::IResourceView::Type")]
-        public Type type;
+        public ResourceViewType type;
 
         /// <include file='ResourceViewDesc.xml' path='doc/member[@name="ResourceViewDesc.format"]/*' />
         [NativeTypeName("gfx::Format")]

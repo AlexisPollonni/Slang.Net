@@ -5,7 +5,7 @@ using SlangNet.Internal;
 namespace SlangNet.Gfx.Desc;
 
 public record struct ResourceDescBase(
-    IResource.Type Type = IResource.Type.Unknown,
+    IResource.ResourceType Type = IResource.ResourceType.Unknown,
     ResourceState DefaultState = ResourceState.Undefined,
     ResourceStateSet AllowedStates = default,
     MemoryType MemoryType = MemoryType.DeviceLocal,

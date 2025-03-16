@@ -44,7 +44,7 @@
           <type>InteropHandle*</type>
         </param>
       </delegate>
-      <enumeration name="Type" access="public">
+      <enumeration name="ResourceViewType" access="public">
         <type>int</type>
         <enumerator name="Unknown" access="public">
           <type primitive="False">int</type>
@@ -70,12 +70,12 @@
       </enumeration>
       <struct name="RenderTargetDesc" access="public">
         <field name="shape" access="public">
-          <type native="gfx::IResource::Type">Type</type>
+          <type native="gfx::IResource::Type">ResourceType</type>
         </field>
       </struct>
       <struct name="ResourceViewDesc" access="public">
         <field name="type" access="public">
-          <type native="gfx::IResourceView::Type">Type</type>
+          <type native="gfx::IResourceView::Type">ResourceViewType</type>
         </field>
         <field name="format" access="public">
           <type native="gfx::Format">Format</type>

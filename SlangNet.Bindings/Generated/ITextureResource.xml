@@ -30,7 +30,7 @@
         </param>
       </delegate>
       <delegate name="_getType" access="public" convention="StdCall">
-        <type native="gfx::IResource::Type">Type</type>
+        <type native="gfx::IResource::Type">ResourceType</type>
         <param name="pThis">
           <type>ITextureResource*</type>
         </param>
@@ -163,7 +163,7 @@
         </body>
       </function>
       <function name="getType" access="public" unsafe="true">
-        <type native="gfx::IResource::Type">Type</type>
+        <type native="gfx::IResource::Type">ResourceType</type>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getType</vtbl>)(<param special="thisPtr">(ITextureResource*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
