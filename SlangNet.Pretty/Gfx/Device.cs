@@ -114,13 +114,18 @@ public partial class Device : COMObject<IDevice>
         return res.Item1;
     }
 
-    // public unsafe SlangResult TryCreateBufferView(in BufferViewDesc desc, out BufferView? view)
-    // {
-    //     IBufferView* nativeView = null;
-    //     var result = Pointer->createBufferView(desc, &nativeView).ToSlangResult();
-    //     view = result ? new BufferView(nativeView) : null;
-    //     return result;
-    // }
+    public unsafe SlangResult TryCreateBufferView(BufferResource buffer, BufferResource? counterBuffer, in ResourceViewDesc desc, out ResourceView? view)
+    {
+        var res = desc.MarshalToNative<ResourceViewDesc, IResourceView.ResourceViewDesc, ResourceView?>(descPtr => 
+        {
+            IResourceView* nativeView = null;
+            var result = Pointer->createBufferView(buffer.Pointer, counterBuffer.AsNullablePtr(), descPtr, &nativeView).ToSlangResult();
+            return (result, result ? new ResourceView(nativeView) : null);
+        });
+
+        view = res.Item2;
+        return res.Item1;
+    }
 
     public unsafe SlangResult TryCreateProgram(in ShaderProgramDesc desc, out ShaderProgram? program)
     {
@@ -135,13 +140,18 @@ public partial class Device : COMObject<IDevice>
         return res.Item1;
     }
 
-    // public unsafe SlangResult TryCreateComputePipelineState(in ComputePipelineStateDesc desc, out ComputePipelineState? pipeline)
-    // {
-    //     IComputePipelineState* nativePipeline = null;
-    //     var result = Pointer->createComputePipelineState(desc, &nativePipeline).ToSlangResult();
-    //     pipeline = result ? new ComputePipelineState(nativePipeline) : null;
-    //     return result;
-    // }
+    public unsafe SlangResult TryCreateComputePipelineState(in ComputePipelineStateDesc desc, out PipelineState? pipeline)
+    {
+        var res = desc.MarshalToNative<ComputePipelineStateDesc, Unsafe.ComputePipelineStateDesc, PipelineState?>(descPtr => 
+        {
+            IPipelineState* nativePipeline = null;
+            var result = Pointer->createComputePipelineState(descPtr, &nativePipeline).ToSlangResult();
+            return (result, result ? new PipelineState(nativePipeline) : null);
+        });
+
+        pipeline = res.Item2;
+        return res.Item1;
+    }
 
     // public unsafe SlangResult TryCreateCommandQueue(in CommandQueueDesc desc, out CommandQueue? queue)
     // {
@@ -180,3 +190,20 @@ public partial class Device : COMObject<IDevice>
     // Additional methods will be implemented for the remaining IDevice interface methods
 }
 
+
+public static class DeviceExtensions
+{
+    public static unsafe SlangResult TryCreateBufferResource<T>(this Device device, in BufferResourceDesc desc, ReadOnlySpan<T> initData, out BufferResource? resource) where T : unmanaged
+    {
+        if ((nuint)(initData.Length * sizeof(T)) > desc.SizeInBytes)
+        {
+            resource = null;
+            return SlangResult.InsufficientBuffer;
+        }
+
+        fixed (T* pData = initData)
+        {
+            return device.TryCreateBufferResource(desc, (nint)pData, out resource);
+        }
+    }
+}
