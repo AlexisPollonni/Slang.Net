@@ -153,13 +153,18 @@ public partial class Device : COMObject<IDevice>
         return res.Item1;
     }
 
-    // public unsafe SlangResult TryCreateCommandQueue(in CommandQueueDesc desc, out CommandQueue? queue)
-    // {
-    //     ICommandQueue* nativeQueue = null;
-    //     var result = Pointer->createCommandQueue(desc, &nativeQueue).ToSlangResult();
-    //     queue = result ? new CommandQueue(nativeQueue) : null;
-    //     return result;
-    // }
+    public unsafe SlangResult TryCreateCommandQueue(in CommandQueueDesc desc, out CommandQueue? queue)
+    {
+        var res = desc.MarshalToNative<CommandQueueDesc, ICommandQueue.CommandQueueDesc, CommandQueue?>(descPtr => 
+        {
+            ICommandQueue* nativeQueue = null;
+            var result = Pointer->createCommandQueue(descPtr, &nativeQueue).ToSlangResult();
+            return (result, result ? new CommandQueue(nativeQueue) : null);
+        });
+
+        queue = res.Item2;
+        return res.Item1;
+    }
 
     public unsafe SlangResult TryCreateShaderObject(TypeReflection type, ShaderObjectContainerType container, out ShaderObject? shaderObject)
     {

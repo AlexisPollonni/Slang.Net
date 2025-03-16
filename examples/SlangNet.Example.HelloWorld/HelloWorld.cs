@@ -79,7 +79,7 @@ internal static class HelloWorld
 
         LoadShaderProgram(device, out var program, out var slangReflection).ThrowIfFailed();
 
-        var pipeline = device.CreateComputePipelineState(new(program));
+        var pipelineState = device.CreateComputePipelineState(new(program));
 
         const int numberCount = 4;
         float[] initialData = [0, 1, 2, 3];
@@ -106,6 +106,19 @@ internal static class HelloWorld
         });
 
         
+
+        var queue = device.CreateCommandQueue(new(ICommandQueue.QueueType.Graphics));
+
+        var cmdBuffer = heap.CreateCommandBuffer();
+
+        var encoder = cmdBuffer.EncodeComputeCommands();
+
+        var rootObject = encoder.BindPipeline(pipelineState);
+
+        var addTransformerType = slangReflection.FindTypeByName("AddTransformer").Value;
+
+        var transformer = device.CreateShaderObject(addTransformerType, ShaderObjectContainerType.None);
+
 
 
         // try
