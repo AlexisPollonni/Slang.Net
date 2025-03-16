@@ -14,11 +14,16 @@
     <Content Include="../hello-world.slang">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Remove="shader-object.slang" />
+    <Content Include="shader-object.slang">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Veldrid" Version="4.9.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.3" />
   </ItemGroup>
+
   <Import Project="../../ImportMainProject.targets" />
   <Import Project="../../SlangNet.Native/HackyRuntimeCopy.targets"/>
 

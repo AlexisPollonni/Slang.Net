@@ -240,6 +240,9 @@ internal record BuildConfig(
         
             // Reimplement ResourceStateSet as a ulong since we have a custom implementation
             { "gfx::ResourceStateSet", "ulong" },
+            { "gfx::IResource::Type", "ResourceType" },
+            { "gfx::IResourceView::Type", "ResourceViewType" },
+
         },
         new()
         {
