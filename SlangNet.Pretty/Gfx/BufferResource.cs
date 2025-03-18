@@ -6,9 +6,8 @@ namespace SlangNet.Gfx;
 [GenerateThrowingMethods]
 public partial class BufferResource : COMObject<IBufferResource>
 {
-    internal unsafe BufferResource(IBufferResource* pointer) : base(pointer)
-    { }
-    
+    internal unsafe BufferResource(IBufferResource* pointer) : base(pointer) { }
+
     public unsafe SlangResult TryGetNativeResourceHandle(out InteropHandle handle)
     {
         fixed (InteropHandle* pHandle = &handle)
@@ -16,7 +15,7 @@ public partial class BufferResource : COMObject<IBufferResource>
             return Pointer->getNativeResourceHandle(pHandle).ToSlangResult();
         }
     }
-    
+
     public unsafe SlangResult TryGetSharedHandle(out InteropHandle handle)
     {
         fixed (InteropHandle* pHandle = &handle)
@@ -24,50 +23,95 @@ public partial class BufferResource : COMObject<IBufferResource>
             return Pointer->getSharedHandle(pHandle).ToSlangResult();
         }
     }
-    
+
     public unsafe SlangResult TrySetDebugName(string name)
     {
-        using var nameUtf8 = new Utf8String(name);
-        return Pointer->setDebugName(nameUtf8).ToSlangResult();
+        return name.MarshalToNative(ptrName => Pointer->setDebugName(ptrName).ToSlangResult());
     }
-    
+
     public unsafe string GetDebugName()
     {
         var namePtr = Pointer->getDebugName();
         return InteropUtils.PtrToStringUTF8(namePtr) ?? string.Empty;
     }
-    
+
     public unsafe BufferResourceDesc GetDesc()
     {
         var descPtr = Pointer->getDesc();
         BufferResourceDesc.CreateFromNative(*descPtr, out var desc);
         return desc;
     }
-    
+
     public unsafe ulong GetDeviceAddress()
     {
         return Pointer->getDeviceAddress();
     }
-    
-    public unsafe SlangResult TryMap(in MemoryRange? rangeToRead, out IntPtr pointer)
+
+    public unsafe SlangResult TryMap(MemoryRange? rangeToRead, out Span<byte> span)
     {
+        var range = rangeToRead;
         void* nativePointer = null;
-        
-        var result = SlangResult.NotImplemented;
-        if (rangeToRead.HasValue)
+        int size;
+
+        var result = Pointer->map(range.AsNullablePtr(), &nativePointer).ToSlangResult();
+
+        if (!result)
         {
-            var nativeRange = rangeToRead.Value;
-            result = Pointer->map(&nativeRange, &nativePointer).ToSlangResult();
+            span = [];
+            return result;
+        }
+
+        if (range is null)
+        {
+            size = checked((int)GetDesc().SizeInBytes);
         }
         else
         {
-            result = Pointer->map(null, &nativePointer).ToSlangResult();
+            size = checked((int)range.Value.size);
+            var offset = checked((int)range.Value.offset);
+
+            //Range is not implemented for vulkan, always returns the full data so we handle it separately
+            //TODO: Replace this when slang supports it
+            if (TryGetNativeResourceHandle(out var natHandle))
+            {
+                if (natHandle.api is InteropHandleAPI.Vulkan)
+                {
+                    var fullSize = checked((int)GetDesc().SizeInBytes);
+                    span = new Span<byte>(nativePointer, fullSize).Slice(offset, size);
+                    return result;
+                }
+            }
         }
-        
-        pointer = result ? (IntPtr)nativePointer : IntPtr.Zero;
+
+        span = new(nativePointer, size);
+
         return result;
     }
-    
+
+    public Span<byte> Map(ulong offset = 0, ulong size = 0)
+    {
+        Span<byte> span;
+        if (size is 0 && offset is 0)
+        {
+            TryMap(null, out span).ThrowIfFailed();
+            return span;
+        }
+
+        if (size is 0)
+        {
+            size = GetDesc().SizeInBytes;
+        }
+
+        TryMap(new()
+               {
+                   offset = offset,
+                   size = size
+               },
+               out span).ThrowIfFailed();
+        
+        return span;
+    }
+
     public unsafe SlangResult TryUnmap(in MemoryRange? writtenRange = null)
     {
         if (writtenRange.HasValue)

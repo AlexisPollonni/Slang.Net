@@ -20,7 +20,7 @@ public partial class ShaderObject : COMObject<IShaderObject>
     
     public unsafe ShaderObjectContainerType GetContainerType()
     {
-        return (ShaderObjectContainerType)Pointer->getContainerType();
+        return Pointer->getContainerType();
     }
     
     public unsafe int GetEntryPointCount()
@@ -36,62 +36,83 @@ public partial class ShaderObject : COMObject<IShaderObject>
         return result;
     }
     
-    // public unsafe SlangResult TrySetData<T>(in ShaderOffset offset, in T data) where T : unmanaged
+    public unsafe SlangResult TrySetData(in Tools.ShaderOffset offset, ReadOnlySpan<byte> data)
+    {
+        return offset.MarshalToNative<Tools.ShaderOffset, Unsafe.ShaderOffset, ReadOnlySpan<byte>, SlangResult>(data, 
+        (native, dataSpan) =>
+        {
+            fixed (byte* pData = dataSpan)
+            {
+                return Pointer->setData(native, pData, (nuint)dataSpan.Length).ToSlangResult();
+            }
+        });
+    }
+    
+    public unsafe SlangResult TryGetObject(in Tools.ShaderOffset offset, out ShaderObject? shaderObject)
+    {
+        return offset.MarshalToNative<Tools.ShaderOffset, Unsafe.ShaderOffset, ShaderObject?>(out shaderObject, native => 
+        {
+            IShaderObject* nativeObject = null;
+            var result = Pointer->getObject(native, &nativeObject).ToSlangResult();
+
+            return (result, result ? new ShaderObject(nativeObject) : null);
+        });
+    }
+    
+    public unsafe SlangResult TrySetObject(in Tools.ShaderOffset offset, ShaderObject? shaderObject)
+    {
+        return offset.MarshalToNative<Tools.ShaderOffset, Unsafe.ShaderOffset, ShaderObject?, SlangResult>(shaderObject,
+        (native, shaderObject) =>
+        {
+            var result = Pointer->setObject(native, shaderObject.AsNullablePtr()).ToSlangResult();
+            return result;
+        });
+    }
+
+    public unsafe SlangResult TrySetResource(in Tools.ShaderOffset offset, ResourceView? resourceView)
+    {
+        return offset.MarshalToNative<Tools.ShaderOffset, Unsafe.ShaderOffset, ResourceView?, SlangResult>(resourceView,
+        (native, resourceView) =>
+        {
+            return Pointer->setResource(native, resourceView.AsNullablePtr()).ToSlangResult();
+        });
+    }
+    
+    //TODO: Implement when SamplerState is implemented
+    // public unsafe SlangResult TrySetSampler(in ShaderOffset offset, SamplerState? sampler)
     // {
-    //     fixed (T* pData = &data)
     //     fixed (ShaderOffset* pOffset = &offset)
     //     {
-    //         return Pointer->setData(pOffset, pData, (nuint)sizeof(T)).ToSlangResult();
+    //         return Pointer->setSampler(pOffset, sampler?.Pointer ?? null).ToSlangResult();
     //     }
     // }
     
-    public unsafe SlangResult TryGetObject(in ShaderOffset offset, out ShaderObject? shaderObject)
-    {
-        fixed (ShaderOffset* pOffset = &offset)
-        {
-            IShaderObject* nativeObject = null;
-            var result = Pointer->getObject(pOffset, &nativeObject).ToSlangResult();
-            shaderObject = result ? new ShaderObject(nativeObject) : null;
-            return result;
-        }
-    }
+    //TODO: Implement when SamplerState is implemented
+    // public unsafe SlangResult TrySetCombinedTextureSampler(in ShaderOffset offset, ResourceView? textureView, SamplerState? sampler)
+    // {
+    //     fixed (ShaderOffset* pOffset = &offset)
+    //     {
+    //         return Pointer->setCombinedTextureSampler(pOffset, textureView?.Pointer ?? null, sampler?.Pointer ?? null).ToSlangResult();
+    //     }
+    // }
     
-    public unsafe SlangResult TrySetObject(in ShaderOffset offset, ShaderObject? shaderObject)
+    /// <summary>
+    /// Manually overrides the specialization argument for the sub-object binding at `offset`.
+    /// Specialization arguments are passed to the shader compiler to specialize the type
+    /// of interface-typed shader parameters.
+    /// </summary>
+    public unsafe SlangResult TrySetSpecializationArgs(in Tools.ShaderOffset offset, ReadOnlySpan<SpecializationArg> args)
     {
-        fixed (ShaderOffset* pOffset = &offset)
+        return offset.MarshalToNative<Tools.ShaderOffset, Unsafe.ShaderOffset, ReadOnlySpan<SpecializationArg>, SlangResult>(args,
+        (native, argsSpan) =>
         {
-            return Pointer->setObject(pOffset, shaderObject.AsNullablePtr()).ToSlangResult();
-        }
+            fixed (SpecializationArg* pArgs = argsSpan)
+            {
+                return Pointer->setSpecializationArgs(native, pArgs, argsSpan.Length).ToSlangResult();
+            }
+        });
     }
-    
-    // ResourceView and SamplerState methods are commented out for now
-    // They will be implemented when those classes are created
-    /*
-    public unsafe SlangResult TrySetResource(in ShaderOffset offset, ResourceView? resourceView)
-    {
-        fixed (ShaderOffset* pOffset = &offset)
-        {
-            return Pointer->setResource(pOffset, resourceView?.Pointer ?? null).ToSlangResult();
-        }
-    }
-    
-    public unsafe SlangResult TrySetSampler(in ShaderOffset offset, SamplerState? sampler)
-    {
-        fixed (ShaderOffset* pOffset = &offset)
-        {
-            return Pointer->setSampler(pOffset, sampler?.Pointer ?? null).ToSlangResult();
-        }
-    }
-    
-    public unsafe SlangResult TrySetCombinedTextureSampler(in ShaderOffset offset, ResourceView? textureView, SamplerState? sampler)
-    {
-        fixed (ShaderOffset* pOffset = &offset)
-        {
-            return Pointer->setCombinedTextureSampler(pOffset, textureView?.Pointer ?? null, sampler?.Pointer ?? null).ToSlangResult();
-        }
-    }
-    */
-    
+
     public unsafe SlangResult TryGetCurrentVersion(TransientResourceHeap transientHeap, out ShaderObject? currentVersion)
     {
         IShaderObject* nativeObject = null;
@@ -99,7 +120,7 @@ public partial class ShaderObject : COMObject<IShaderObject>
         currentVersion = result ? new ShaderObject(nativeObject) : null;
         return result;
     }
-    
+
     public unsafe IntPtr GetRawData()
     {
         return (IntPtr)Pointer->getRawData();
@@ -109,9 +130,12 @@ public partial class ShaderObject : COMObject<IShaderObject>
     {
         return Pointer->getSize();
     }
-    
+
+    /// <summary>
+    /// Use the provided constant buffer instead of the internally created one.
+    /// </summary>
     public unsafe SlangResult TrySetConstantBufferOverride(BufferResource? constantBuffer)
     {
         return Pointer->setConstantBufferOverride(constantBuffer.AsNullablePtr()).ToSlangResult();
-    }
+    }   
 }

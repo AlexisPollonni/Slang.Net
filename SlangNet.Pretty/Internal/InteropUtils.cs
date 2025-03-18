@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Buffers;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using CommunityToolkit.HighPerformance;
 using Nito.Disposables;
 using SlangNet.Internal;
 
@@ -16,16 +16,23 @@ internal static unsafe class InteropUtils
             return null;
         var pointer = blob->getBufferPointer();
 
-        var size = checked((int)blob->getBufferSize().ToUInt64());
+        var size = checked((int)blob->getBufferSize().ToUInt32());
         if (size == 0)
             return "";
-        return new Utf8String((sbyte*)pointer, size).ToString();
+        return Encoding.UTF8.GetString((byte*)pointer, size);
     }
 
     public static string? AsString(this COMPointer<ISlangBlob> pointer) => BlobToString(pointer);
 
-    public static string? PtrToStringUTF8(void* ptr)
-        => new Utf8String((sbyte*)ptr).ToString();
+    public static string? PtrToStringUTF8(void* ptr, Encoding? encoding = null)
+    {
+        if (ptr is null) return null;
+        
+        encoding ??= Encoding.UTF8;
+
+        var span = MemoryMarshal.CreateReadOnlySpanFromNullTerminated((byte*)ptr);
+        return encoding.GetString(span);
+    }
 
     public static string[]? PtrToStringArray(sbyte** ptr, int count)
     {
@@ -37,7 +44,7 @@ internal static unsafe class InteropUtils
         return new Utf8StringArray(ptr, count).ToStringArray();
     }
 
-    public unsafe static TManaged[]? MarshalArrayToManaged<TManaged, TNative>(TNative* native, int count) 
+    public static TManaged[]? MarshalArrayToManaged<TManaged, TNative>(TNative* native, int count) 
         where TNative : unmanaged 
         where TManaged : IMarshalsFromNative<TManaged, TNative>
     {
@@ -73,8 +80,12 @@ internal static unsafe class InteropUtils
         return d;
     }
 
+    public static T* AsNullablePtr<T>(this ref T? item) where T : unmanaged
+    {
+        return (T*)SysUnsafe.AsPointer(ref item.DangerousGetValueOrNullReference());
+    }
 
-    public static unsafe T* AsNullablePtr<T>(this COMObject<T>? comObject) where T : unmanaged
+    public static T* AsNullablePtr<T>(this COMObject<T>? comObject) where T : unmanaged
     {
         return comObject is not null ? comObject.Pointer : null;
     }
@@ -91,6 +102,25 @@ internal static unsafe class InteropUtils
         if (collection is null)
             return 0;
         return collection.Count;
+    }
+
+
+    public static ReadOnlySpan<T> AsReadOnlySpan<T>(ref this T inline) where T : unmanaged
+    {
+        return MemoryMarshal.CreateReadOnlySpan(in inline, 1);
+    }
+
+    public static ReadOnlySpan<TCast> AsReadOnlySpan<T, TCast>(ref this T inline) 
+        where T : unmanaged 
+        where TCast : unmanaged
+    {
+        return inline.AsReadOnlySpan().Cast<T, TCast>();
+    }
+
+    public static ReadOnlySpan<uint> AsUintSpan<T>(ref this T inline) 
+        where T : unmanaged 
+    {
+        return inline.AsReadOnlySpan().Cast<T, uint>();
     }
 }
 
