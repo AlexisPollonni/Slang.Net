@@ -2,6 +2,7 @@
 using SlangNet.Bindings.Generated;
 using SlangNet.Gfx;
 using SlangNet.Gfx.Desc;
+using SlangNet.Gfx.Tools;
 using SlangNet.Internal;
 
 namespace SlangNet.Example.HelloWorld;
@@ -74,7 +75,6 @@ internal static class HelloWorld
         
         var device = Device.Create(devDesc1);
 
-
         var heap = device.CreateTransientResourceHeap(new(ConstantBufferSize: 4096));
 
         LoadShaderProgram(device, out var program, out var slangReflection).ThrowIfFailed();
@@ -97,9 +97,9 @@ internal static class HelloWorld
             SizeInBytes = numberCount * sizeof(float)
         };
 
-        device.TryCreateBufferResource(bufferDesc, initialData.AsSpan(), out var buffer).ThrowIfFailed();
+        device.TryCreateBufferResource(bufferDesc, initialData.AsSpan(), out var numbersBuffer).ThrowIfFailed();
 
-        var bufferView = device.CreateBufferView(buffer, null, new()
+        var bufferView = device.CreateBufferView(numbersBuffer, null, new()
         {
             Type = IResourceView.ResourceViewType.UnorderedAccess,
             Format = Format.Unknown
@@ -119,7 +119,28 @@ internal static class HelloWorld
 
         var transformer = device.CreateShaderObject(addTransformerType, ShaderObjectContainerType.None);
 
+        const float c = 1.0f;
 
+        new ShaderCursor(transformer).GetPath("c").SetData(c);
+
+        var entryPointCursor = new ShaderCursor(rootObject.GetEntryPoint(0));
+
+        entryPointCursor.GetPath("buffer").SetResource(bufferView);
+
+        entryPointCursor.GetPath("transformer").SetObject(transformer);
+
+        encoder.DispatchCompute(1, 1, 1);
+        encoder.EndEncoding();
+        cmdBuffer.Close();
+        queue.ExecuteCommandBuffer(cmdBuffer);
+        queue.WaitOnHost();
+
+        var data = device.ReadBufferResource<float>(numbersBuffer);
+
+        foreach (var item in data)
+        {
+            Console.WriteLine(item);
+        }
 
         // try
         // {
@@ -250,4 +271,7 @@ internal static class HelloWorld
     //         Console.WriteLine(mapped[i]);
     //     graphicsDevice.Unmap(stagingBuffer);
     // }
+    
+    
+    
 }
