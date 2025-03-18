@@ -4,10 +4,10 @@ using SlangNet.Internal;
 
 namespace SlangNet.Gfx;
 
-public abstract class ResourceCommandEncoder : CommandBuffer
+public abstract class ResourceCommandEncoder : CommandEncoder
 {
     private unsafe IResourceCommandEncoder* ImplPtr => (IResourceCommandEncoder*)Pointer;
-    internal unsafe ResourceCommandEncoder(IResourceCommandEncoder* pointer) : base((ICommandBuffer*)pointer)
+    internal unsafe ResourceCommandEncoder(IResourceCommandEncoder* pointer) : base((ICommandEncoder*)pointer)
     { }
 
     public unsafe void CopyBuffer(BufferResource dst, ulong dstOffset, BufferResource src, ulong srcOffset, ulong size)
