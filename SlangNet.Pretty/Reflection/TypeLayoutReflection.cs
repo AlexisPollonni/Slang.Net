@@ -92,13 +92,13 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
 
     public TypeKind Kind => ReflectionTypeLayout_getKind(InternalPointer);
 
-    public ulong GetSize(ParameterCategory category) =>
+    public ulong GetSize(ParameterCategory category = ParameterCategory.Uniform) =>
         ReflectionTypeLayout_GetSize(InternalPointer, category).ToUInt64();
 
-    public ulong GetStride(ParameterCategory category) =>
+    public ulong GetStride(ParameterCategory category = ParameterCategory.Uniform) =>
         ReflectionTypeLayout_GetStride(InternalPointer, category).ToUInt64();
 
-    public int GetAlignment(ParameterCategory category) =>
+    public int GetAlignment(ParameterCategory category = ParameterCategory.Uniform) =>
         ReflectionTypeLayout_getAlignment(InternalPointer, category);
 
     public ulong GetElementStride(ParameterCategory category) =>
@@ -116,7 +116,7 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
     public long FindFieldIndexByName(string name)
     {
         using var nameStr = new Utf8String(name);
-        return ReflectionTypeLayout_findFieldIndexByName(InternalPointer, nameStr, nameStr.MemoryEnd);
+        return ReflectionTypeLayout_findFieldIndexByName(InternalPointer, nameStr, null);
     }
 
     public long GetFieldBindingRangeOffset(long fieldIndex) =>

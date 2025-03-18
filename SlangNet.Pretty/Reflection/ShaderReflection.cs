@@ -170,7 +170,7 @@ public readonly unsafe struct ShaderReflection : IEquatable<ShaderReflection>
     public static uint ComputeStringHash(string chars)
     {
         using var charsStr = new Utf8String(chars);
-        return SlangApi.ComputeStringHash(charsStr, new((ulong)(charsStr.MemoryEnd - charsStr.Memory)));
+        return SlangApi.ComputeStringHash(charsStr, (nuint)charsStr.ByteSize);
     }
 
     public TypeLayoutReflection? GlobalParamsTypeLayout

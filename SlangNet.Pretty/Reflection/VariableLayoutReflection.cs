@@ -55,7 +55,7 @@ public readonly unsafe struct VariableLayoutReflection : IEquatable<VariableLayo
         }
     }
 
-    public ulong GetOffset(ParameterCategory category) =>
+    public ulong GetOffset(ParameterCategory category = ParameterCategory.Uniform) =>
         ReflectionVariableLayout_GetOffset(InternalPointer, category).ToUInt64();
 
     public ulong GetSpace(ParameterCategory category) =>
