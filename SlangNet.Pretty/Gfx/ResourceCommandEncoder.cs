@@ -43,10 +43,12 @@ public abstract class ResourceCommandEncoder : CommandEncoder
         ImplPtr->bufferBarrier(buffers.Length, ptr, src, dst);
     }
     
-    //TODO: Use wrapper types?
     public unsafe void ClearResourceView(ResourceView view, ClearValue value, ClearResourceViewFlags.Enum flags)
     {
-        ImplPtr->clearResourceView(view.Pointer, &value, flags);
+        value.MarshalToNative<ClearValue, Unsafe.ClearValue>(clearPtr =>
+        {
+            ImplPtr->clearResourceView(view.Pointer, clearPtr, flags);
+        });
     }
 
     //TODO: ResolveResource

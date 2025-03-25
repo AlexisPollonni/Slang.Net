@@ -136,6 +136,6 @@ public partial class ShaderObject : COMObject<IShaderObject>
     /// </summary>
     public unsafe SlangResult TrySetConstantBufferOverride(BufferResource? constantBuffer)
     {
-        return Pointer->setConstantBufferOverride(constantBuffer.AsNullablePtr()).ToSlangResult();
+        return Pointer->setConstantBufferOverride((IBufferResource*)constantBuffer.AsNullablePtr()).ToSlangResult();
     }   
 }

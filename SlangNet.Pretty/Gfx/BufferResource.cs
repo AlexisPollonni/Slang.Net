@@ -5,20 +5,20 @@ namespace SlangNet.Gfx;
 [GenerateThrowingMethods]
 public partial class BufferResource : Resource
 {
-    private unsafe IBufferResource* ImplPtr => (IBufferResource*)Pointer;
+    public new unsafe IBufferResource* Pointer => (IBufferResource*)base.Pointer;
 
     internal unsafe BufferResource(IBufferResource* pointer) : base((IResource*)pointer) { }
 
     public unsafe BufferResourceDesc GetDesc()
     {
-        var descPtr = ImplPtr->getDesc();
+        var descPtr = Pointer->getDesc();
         BufferResourceDesc.CreateFromNative(*descPtr, out var desc);
         return desc;
     }
 
     public unsafe ulong GetDeviceAddress()
     {
-        return ImplPtr->getDeviceAddress();
+        return Pointer->getDeviceAddress();
     }
 
     public unsafe SlangResult TryMap(MemoryRange? rangeToRead, out Span<byte> span)
@@ -27,7 +27,7 @@ public partial class BufferResource : Resource
         void* nativePointer = null;
         int size;
 
-        var result = ImplPtr->map(range.AsNullablePtr(), &nativePointer).ToSlangResult();
+        var result = Pointer->map(range.AsNullablePtr(), &nativePointer).ToSlangResult();
 
         if (!result)
         {
@@ -92,11 +92,11 @@ public partial class BufferResource : Resource
         if (writtenRange.HasValue)
         {
             var nativeRange = writtenRange.Value;
-            return ImplPtr->unmap(&nativeRange).ToSlangResult();
+            return Pointer->unmap(&nativeRange).ToSlangResult();
         }
         else
         {
-            return ImplPtr->unmap(null).ToSlangResult();
+            return Pointer->unmap(null).ToSlangResult();
         }
     }
 }
