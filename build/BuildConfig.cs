@@ -50,6 +50,7 @@ internal record BuildConfig(
             $"--language={Language}", // Treat subsequent input files as having type <language>
             "-stdlib=libc++",
             "-Wno-pragma-once-outside-header", // We are processing files which may be header files
+            "-D __clang_major__=19", //Header yvals_core expects clang19, we fake it for binding gen before clangsharp updates
 
             "-Wno-deprecated-declarations",
             ..DefineMacros

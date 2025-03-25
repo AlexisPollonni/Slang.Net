@@ -302,6 +302,48 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
+      <delegate name="_compileBuiltinModule" access="public" convention="StdCall">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IGlobalSession*</type>
+        </param>
+        <param name="module">
+          <type>BuiltinModuleName</type>
+        </param>
+        <param name="flags">
+          <type>uint</type>
+        </param>
+      </delegate>
+      <delegate name="_loadBuiltinModule" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IGlobalSession*</type>
+        </param>
+        <param name="module">
+          <type>BuiltinModuleName</type>
+        </param>
+        <param name="moduleData">
+          <type>void*</type>
+        </param>
+        <param name="sizeInBytes">
+          <type>nuint</type>
+        </param>
+      </delegate>
+      <delegate name="_saveBuiltinModule" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IGlobalSession*</type>
+        </param>
+        <param name="module">
+          <type>BuiltinModuleName</type>
+        </param>
+        <param name="archiveType">
+          <type>ArchiveType</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
       <function name="queryInterface" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="uuid">
@@ -599,6 +641,48 @@
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSessionDescDigest</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSessionDescDigest</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="sessionDesc">sessionDesc</param>, <param name="outBlob">outBlob</param>);</code>
         </body>
       </function>
+      <function name="compileBuiltinModule" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="module">
+          <type>BuiltinModuleName</type>
+        </param>
+        <param name="flags">
+          <type>uint</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_compileBuiltinModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">compileBuiltinModule</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="module">module</param>, <param name="flags">flags</param>);</code>
+        </body>
+      </function>
+      <function name="loadBuiltinModule" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="module">
+          <type>BuiltinModuleName</type>
+        </param>
+        <param name="moduleData">
+          <type>void*</type>
+        </param>
+        <param name="sizeInBytes">
+          <type>nuint</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadBuiltinModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadBuiltinModule</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="module">module</param>, <param name="moduleData">moduleData</param>, <param name="sizeInBytes">sizeInBytes</param>);</code>
+        </body>
+      </function>
+      <function name="saveBuiltinModule" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="module">
+          <type>BuiltinModuleName</type>
+        </param>
+        <param name="archiveType">
+          <type>ArchiveType</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveBuiltinModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">saveBuiltinModule</vtbl>)(<param special="thisPtr">(IGlobalSession*)Unsafe.AsPointer(ref this)</param>, <param name="module">module</param>, <param name="archiveType">archiveType</param>, <param name="outBlob">outBlob</param>);</code>
+        </body>
+      </function>
       <vtbl>
         <field name="queryInterface" access="public">
           <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
@@ -683,6 +767,15 @@
         </field>
         <field name="getSessionDescDigest" access="public">
           <type native="SlangResult (SessionDesc *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="compileBuiltinModule" access="public">
+          <type native="SlangResult (BuiltinModuleName, CompileCoreModuleFlags) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="loadBuiltinModule" access="public">
+          <type native="SlangResult (BuiltinModuleName, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="saveBuiltinModule" access="public">
+          <type native="SlangResult (BuiltinModuleName, SlangArchiveType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

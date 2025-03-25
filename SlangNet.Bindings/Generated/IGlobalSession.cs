@@ -114,6 +114,18 @@ public unsafe partial struct IGlobalSession
     [return: NativeTypeName("SlangResult")]
     public delegate int _getSessionDescDigest(IGlobalSession* pThis, [NativeTypeName("slang::SessionDesc *")] SessionDesc* sessionDesc, ISlangBlob** outBlob);
 
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _compileBuiltinModule(IGlobalSession* pThis, [NativeTypeName("slang::BuiltinModuleName")] BuiltinModuleName module, [NativeTypeName("slang::CompileCoreModuleFlags")] uint flags);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _loadBuiltinModule(IGlobalSession* pThis, [NativeTypeName("slang::BuiltinModuleName")] BuiltinModuleName module, [NativeTypeName("const void *")] void* moduleData, [NativeTypeName("size_t")] nuint sizeInBytes);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _saveBuiltinModule(IGlobalSession* pThis, [NativeTypeName("slang::BuiltinModuleName")] BuiltinModuleName module, [NativeTypeName("SlangArchiveType")] ArchiveType archiveType, ISlangBlob** outBlob);
+
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
@@ -328,6 +340,30 @@ public unsafe partial struct IGlobalSession
         return Marshal.GetDelegateForFunctionPointer<_getSessionDescDigest>(lpVtbl->getSessionDescDigest)((IGlobalSession*)Unsafe.AsPointer(ref this), sessionDesc, outBlob);
     }
 
+    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.compileBuiltinModule"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NativeTypeName("SlangResult")]
+    public int compileBuiltinModule([NativeTypeName("slang::BuiltinModuleName")] BuiltinModuleName module, [NativeTypeName("slang::CompileCoreModuleFlags")] uint flags)
+    {
+        return Marshal.GetDelegateForFunctionPointer<_compileBuiltinModule>(lpVtbl->compileBuiltinModule)((IGlobalSession*)Unsafe.AsPointer(ref this), module, flags);
+    }
+
+    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.loadBuiltinModule"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NativeTypeName("SlangResult")]
+    public int loadBuiltinModule([NativeTypeName("slang::BuiltinModuleName")] BuiltinModuleName module, [NativeTypeName("const void *")] void* moduleData, [NativeTypeName("size_t")] nuint sizeInBytes)
+    {
+        return Marshal.GetDelegateForFunctionPointer<_loadBuiltinModule>(lpVtbl->loadBuiltinModule)((IGlobalSession*)Unsafe.AsPointer(ref this), module, moduleData, sizeInBytes);
+    }
+
+    /// <include file='IGlobalSession.xml' path='doc/member[@name="IGlobalSession.saveBuiltinModule"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NativeTypeName("SlangResult")]
+    public int saveBuiltinModule([NativeTypeName("slang::BuiltinModuleName")] BuiltinModuleName module, [NativeTypeName("SlangArchiveType")] ArchiveType archiveType, ISlangBlob** outBlob)
+    {
+        return Marshal.GetDelegateForFunctionPointer<_saveBuiltinModule>(lpVtbl->saveBuiltinModule)((IGlobalSession*)Unsafe.AsPointer(ref this), module, archiveType, outBlob);
+    }
+
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
@@ -413,5 +449,14 @@ public unsafe partial struct IGlobalSession
 
         [NativeTypeName("SlangResult (SessionDesc *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSessionDescDigest;
+
+        [NativeTypeName("SlangResult (BuiltinModuleName, CompileCoreModuleFlags) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr compileBuiltinModule;
+
+        [NativeTypeName("SlangResult (BuiltinModuleName, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr loadBuiltinModule;
+
+        [NativeTypeName("SlangResult (BuiltinModuleName, SlangArchiveType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr saveBuiltinModule;
     }
 }

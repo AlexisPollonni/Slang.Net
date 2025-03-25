@@ -362,6 +362,15 @@
           <type>IModule*</type>
         </param>
       </delegate>
+      <delegate name="_disassemble" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IModule*</type>
+        </param>
+        <param name="outDisassembledBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
       <function name="queryInterface" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="uuid">
@@ -719,6 +728,15 @@
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModuleReflection</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getModuleReflection</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
+      <function name="disassemble" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="outDisassembledBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_disassemble</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">disassemble</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="outDisassembledBlob">outDisassembledBlob</param>);</code>
+        </body>
+      </function>
       <vtbl>
         <field name="queryInterface" access="public">
           <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
@@ -806,6 +824,9 @@
         </field>
         <field name="getModuleReflection" access="public">
           <type native="DeclReflection *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="disassemble" access="public">
+          <type native="SlangResult (slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

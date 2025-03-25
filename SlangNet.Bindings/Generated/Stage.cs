@@ -49,6 +49,9 @@ public enum Stage : uint
     /// <include file='Stage.xml' path='doc/member[@name="Stage.Amplification"]/*' />
     Amplification,
 
+    /// <include file='Stage.xml' path='doc/member[@name="Stage.Count"]/*' />
+    Count,
+
     /// <include file='Stage.xml' path='doc/member[@name="Stage.Pixel"]/*' />
     Pixel = Fragment,
 }

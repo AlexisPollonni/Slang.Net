@@ -127,6 +127,10 @@ public unsafe partial struct IModule
     [return: NativeTypeName("slang::DeclReflection *")]
     public delegate DeclReflection* _getModuleReflection(IModule* pThis);
 
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _disassemble(IModule* pThis, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDisassembledBlob);
+
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
@@ -358,6 +362,14 @@ public unsafe partial struct IModule
         return Marshal.GetDelegateForFunctionPointer<_getModuleReflection>(lpVtbl->getModuleReflection)((IModule*)Unsafe.AsPointer(ref this));
     }
 
+    /// <include file='IModule.xml' path='doc/member[@name="IModule.disassemble"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NativeTypeName("SlangResult")]
+    public int disassemble([NativeTypeName("slang::IBlob **")] ISlangBlob** outDisassembledBlob)
+    {
+        return Marshal.GetDelegateForFunctionPointer<_disassemble>(lpVtbl->disassemble)((IModule*)Unsafe.AsPointer(ref this), outDisassembledBlob);
+    }
+
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
@@ -446,5 +458,8 @@ public unsafe partial struct IModule
 
         [NativeTypeName("DeclReflection *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getModuleReflection;
+
+        [NativeTypeName("SlangResult (slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr disassemble;
     }
 }

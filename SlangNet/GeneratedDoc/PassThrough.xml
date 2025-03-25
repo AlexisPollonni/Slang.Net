@@ -45,6 +45,9 @@
       <enumerator name="Tint" access="public">
         <type primitive="False">int</type>
       </enumerator>
+      <enumerator name="SpirvLink" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
       <enumerator name="CountOf" access="public">
         <type primitive="False">int</type>
       </enumerator>

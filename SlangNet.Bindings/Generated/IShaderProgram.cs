@@ -37,6 +37,16 @@ public unsafe partial struct IShaderProgram
         SeparateEntryPointCompilation,
     }
 
+    /// <include file='DownstreamLinkMode.xml' path='doc/member[@name="DownstreamLinkMode"]/*' />
+    public enum DownstreamLinkMode
+    {
+        /// <include file='DownstreamLinkMode.xml' path='doc/member[@name="DownstreamLinkMode.None"]/*' />
+        None,
+
+        /// <include file='DownstreamLinkMode.xml' path='doc/member[@name="DownstreamLinkMode.Deferred"]/*' />
+        Deferred,
+    }
+
     /// <include file='ShaderProgramDesc.xml' path='doc/member[@name="ShaderProgramDesc"]/*' />
     public unsafe partial struct ShaderProgramDesc
     {
@@ -55,6 +65,10 @@ public unsafe partial struct IShaderProgram
         /// <include file='ShaderProgramDesc.xml' path='doc/member[@name="ShaderProgramDesc.slangEntryPoints"]/*' />
         [NativeTypeName("slang::IComponentType **")]
         public IComponentType** slangEntryPoints;
+
+        /// <include file='ShaderProgramDesc.xml' path='doc/member[@name="ShaderProgramDesc.downstreamLinkMode"]/*' />
+        [NativeTypeName("gfx::IShaderProgram::DownstreamLinkMode")]
+        public DownstreamLinkMode downstreamLinkMode;
     }
 
     /// <include file='CreateDesc2.xml' path='doc/member[@name="CreateDesc2"]/*' />

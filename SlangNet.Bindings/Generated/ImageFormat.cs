@@ -129,4 +129,7 @@ public enum ImageFormat : uint
 
     /// <include file='ImageFormat.xml' path='doc/member[@name="ImageFormat.R64i"]/*' />
     R64i,
+
+    /// <include file='ImageFormat.xml' path='doc/member[@name="ImageFormat.Bgra8"]/*' />
+    Bgra8,
 }

@@ -797,6 +797,11 @@ public static unsafe partial class SlangApi
     [return: NativeTypeName("bool")]
     public static extern byte ReflectionVariable_HasDefaultValue(SlangReflectionVariable* inVar);
 
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionVariable_GetDefaultValueInt"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionVariable_GetDefaultValueInt", ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int ReflectionVariable_GetDefaultValueInt(SlangReflectionVariable* inVar, [NativeTypeName("int64_t *")] long* rs);
+
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionVariable_GetGenericContainer"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionVariable_GetGenericContainer", ExactSpelling = true)]
     public static extern SlangReflectionGeneric* ReflectionVariable_GetGenericContainer(SlangReflectionVariable* var);
@@ -822,6 +827,11 @@ public static unsafe partial class SlangApi
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionVariableLayout_GetSpace", ExactSpelling = true)]
     [return: NativeTypeName("size_t")]
     public static extern nuint ReflectionVariableLayout_GetSpace(SlangReflectionVariableLayout* var, [NativeTypeName("SlangParameterCategory")] ParameterCategory category);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionVariableLayout_GetImageFormat"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionVariableLayout_GetImageFormat", ExactSpelling = true)]
+    [return: NativeTypeName("SlangImageFormat")]
+    public static extern ImageFormat ReflectionVariableLayout_GetImageFormat(SlangReflectionVariableLayout* var);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionVariableLayout_GetSemanticName"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionVariableLayout_GetSemanticName", ExactSpelling = true)]
@@ -1244,6 +1254,11 @@ public static unsafe partial class SlangApi
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     [return: NativeTypeName("SlangResult")]
     public static extern int slang_createGlobalSession([NativeTypeName("SlangInt")] long apiVersion, [NativeTypeName("slang::IGlobalSession **")] IGlobalSession** outGlobalSession);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_createGlobalSession2"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int slang_createGlobalSession2([NativeTypeName("const SlangGlobalSessionDesc *")] SlangGlobalSessionDesc* desc, [NativeTypeName("slang::IGlobalSession **")] IGlobalSession** outGlobalSession);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_createGlobalSessionWithoutCoreModule"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]

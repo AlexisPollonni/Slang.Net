@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
-    <SlangVersion>2024.17</SlangVersion>
+    <SlangVersion>2025.6.3</SlangVersion>
     <SlangNativeRepo>https://github.com/shader-slang/slang</SlangNativeRepo>
-    <SlangNativeCommit>772c48af91951bda9ff7064fc7a089550c759f76</SlangNativeCommit>
+    <SlangNativeCommit>b9300bae08a77df6ef2efe2b62de14a13b10b9a4</SlangNativeCommit>
 
     <Author>Helco</Author>
     <VersionPrefix>2023.4.3</VersionPrefix> <!-- Do not copy SlangVersion as we might want to increment for our own code -->
