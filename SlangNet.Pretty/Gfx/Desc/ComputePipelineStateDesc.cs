@@ -14,9 +14,9 @@ public record struct ComputePipelineStateDesc(
         return SysUnsafe.SizeOf<Unsafe.ComputePipelineStateDesc>();
     }
 
-    public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out Unsafe.ComputePipelineStateDesc native)
+    public readonly unsafe void AsNative(ref MarshallingAllocBuffer buffer, out Unsafe.ComputePipelineStateDesc native)
     {
-        native = new Unsafe.ComputePipelineStateDesc
+        native = new()
         {
             program = Program.Pointer,
             d3d12RootSignatureOverride = (void*)D3D12RootSignatureOverride
