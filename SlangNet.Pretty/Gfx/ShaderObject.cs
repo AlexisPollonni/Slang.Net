@@ -15,7 +15,7 @@ public partial class ShaderObject : COMObject<IShaderObject>
         if (typeLayout == null)
             throw new InvalidOperationException("Failed to get element type layout");
         
-        return new TypeLayoutReflection(typeLayout);
+        return new(typeLayout);
     }
     
     public unsafe ShaderObjectContainerType GetContainerType()

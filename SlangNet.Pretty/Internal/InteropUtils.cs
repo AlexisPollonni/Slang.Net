@@ -104,6 +104,17 @@ internal static unsafe class InteropUtils
         return collection.Count;
     }
 
+    public static Span<T> AsSpan<T>(ref this T inline) where T : unmanaged
+    {
+        return MemoryMarshal.CreateSpan(ref inline, 1);
+    }
+
+    public static Span<TCast> AsSpan<T, TCast>(ref this T inline)
+        where T : unmanaged
+        where TCast : unmanaged
+    {
+        return inline.AsSpan().Cast<T, TCast>();
+    }
 
     public static ReadOnlySpan<T> AsReadOnlySpan<T>(ref this T inline) where T : unmanaged
     {

@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using CommunityToolkit.HighPerformance;
 using SlangNet.Gfx.Desc;
 using SlangNet.Internal;
@@ -12,7 +10,7 @@ namespace SlangNet.Gfx;
 [GenerateThrowingMethods]
 public partial class Device : COMObject<IDevice>
 {
-    internal unsafe Device(IDevice* pointer) : base(pointer)
+    private unsafe Device(IDevice* pointer) : base(pointer)
     { }
 
 
@@ -138,7 +136,7 @@ public partial class Device : COMObject<IDevice>
         return desc.MarshalToNative<ResourceViewDesc, IResourceView.ResourceViewDesc, ResourceView?>(out view, descPtr => 
         {
             IResourceView* nativeView = null;
-            var result = Pointer->createBufferView(buffer.Pointer, counterBuffer.AsNullablePtr(), descPtr, &nativeView).ToSlangResult();
+            var result = Pointer->createBufferView((IBufferResource*)buffer.Pointer, (IBufferResource*)counterBuffer.AsNullablePtr(), descPtr, &nativeView).ToSlangResult();
             return (result, result ? new ResourceView(nativeView) : null);
         });
 
@@ -147,7 +145,17 @@ public partial class Device : COMObject<IDevice>
     //TODO: Implement TryCreateFrameBufferLayout
     //TODO: Implement TryCreateFrameBuffer
     //TODO: Implement TryCreateRenderPassLayout
-    //TODO: Implement TryCreateSwapChain
+
+    public unsafe SlangResult TryCreateSwapchain(SwapchainDesc desc, WindowHandle window, out Swapchain? swapchain)
+    {
+        return desc.MarshalToNative<SwapchainDesc, ISwapchain.SwapchainDesc, Swapchain?>(out swapchain, descPtr =>
+        {
+            ISwapchain* nativeSwapchain = null;
+            var result = Pointer->createSwapchain(descPtr, window, &nativeSwapchain).ToSlangResult();
+            return (result, result ? new Swapchain(nativeSwapchain) : null);
+        });
+    }
+
     //TODO: Implement TryCreateInputLayout
 
     public unsafe SlangResult TryCreateCommandQueue(in CommandQueueDesc desc, out CommandQueue? queue)
@@ -238,7 +246,7 @@ public partial class Device : COMObject<IDevice>
     {
         ISlangBlob* blobPtr = null;
 
-        var result = Pointer->readBufferResource(resource.Pointer, offset, (nuint)data.Length, &blobPtr).ToSlangResult();
+        var result = Pointer->readBufferResource((IBufferResource*)resource.Pointer, offset, (nuint)data.Length, &blobPtr).ToSlangResult();
         if (!result)
         {
             return result;
