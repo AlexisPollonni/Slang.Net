@@ -1,5 +1,7 @@
 using System;
+using System.Buffers;
 using CommunityToolkit.HighPerformance;
+using Nito.Disposables;
 using SlangNet.Gfx.Desc;
 using SlangNet.Internal;
 using DeviceInfo = SlangNet.Gfx.Desc.DeviceInfo;
@@ -94,9 +96,78 @@ public partial class Device : COMObject<IDevice>
         });
     }
 
-    //TODO: Implement TryCreateTextureResource
-    //TODO: Implement TryCreateTextureFromNativeHandle
-    //TODO: Implement TryCreateBufferResourceFromSharedHandle
+    /// <summary>
+    /// Create a texture resource.
+    ///
+    /// If `initData` is non-null, then it must point to an array of
+    /// `ITextureResource::SubresourceData` with one element for each
+    /// subresource of the texture being created.
+    ///
+    /// The number of subresources in a texture is:
+    ///
+    ///     effectiveElementCount * mipLevelCount
+    ///
+    /// where the effective element count is computed as:
+    ///
+    ///     effectiveElementCount = (isArray ? arrayElementCount : 1) * (isCube ? 6 : 1);
+    /// </summary>
+    public unsafe SlangResult TryCreateTextureResource(in TextureResourceDesc desc,
+                                                       ReadOnlySpan<TextureResource.SubresourceData> initData,
+                                                       out TextureResource? texture)
+    {
+        var m = new MarshallingAllocBuffer(stackalloc byte[initData.Length * sizeof(ITextureResource.SubresourceData*) + desc.GetNativeAllocSize()]);
+
+        var sbRrcSpan = m.AllocFor<ITextureResource.SubresourceData>(initData.Length);
+        using var d = new CollectionDisposable();
+        
+        for (var i = 0; i < initData.Length; i++)
+        {
+            sbRrcSpan[i] = new()
+            {
+                data = initData[i].Data.Pin().DisposeWith(d).Pointer,
+                strideY = initData[i].StrideY,
+                strideZ = initData[i].StrideZ
+            };
+        }
+
+        desc.AsNative(ref m, out var natDesc);
+        
+        fixed(ITextureResource.SubresourceData* pData = sbRrcSpan)
+        {
+            ITextureResource* nativeTexture = null;
+            var res = Pointer->createTextureResource(&natDesc, pData, &nativeTexture).ToSlangResult();
+            texture = res ? new TextureResource(nativeTexture) : null;
+            return res;
+        }
+    }
+    
+    public unsafe SlangResult TryCreateTextureFromNativeHandle(InteropHandle handle,
+                                                               in TextureResourceDesc srcDesc,
+                                                               out TextureResource? texture)
+    {
+        return srcDesc.MarshalToNative<TextureResourceDesc, ITextureResource.TextureResourceDesc, TextureResource?>(out texture, ptr =>
+        {
+          ITextureResource* nativeTexture = null;
+          var res = Pointer->createTextureFromNativeHandle(handle, ptr, &nativeTexture)
+              .ToSlangResult();
+          return (res, res ? new TextureResource(nativeTexture) : null);
+        });
+    }
+    
+    public unsafe SlangResult TryCreateTextureFromSharedHandle(InteropHandle handle,
+                                                               TextureResourceDesc srcDesc,
+                                                               nuint size,
+                                                               out TextureResource? texture)
+    {
+        return srcDesc.MarshalToNative<TextureResourceDesc, ITextureResource.TextureResourceDesc, TextureResource?>(out texture, ptr =>
+        {
+            ITextureResource* nativeTexture = null;
+            var res = Pointer->createTextureFromSharedHandle(handle, ptr, size, &nativeTexture)
+                .ToSlangResult();
+            return (res, res ? new TextureResource(nativeTexture) : null);
+        });
+    }
+    
     
     public unsafe SlangResult TryCreateBufferResource(in BufferResourceDesc desc, IntPtr initData, out BufferResource? resource)
     {
@@ -241,6 +312,23 @@ public partial class Device : COMObject<IDevice>
     // MANIPULATION METHODS
 
     //TODO: Implement ReadTextureResource
+    public unsafe SlangResult TryReadTextureResource(TextureResource resource,
+                                                     ResourceState state,
+                                                     out MemoryManager<byte> data,
+                                                     out nuint rowPitch,
+                                                     out nuint pixelSize)
+    {
+        ISlangBlob* blobPtr = null;
+        
+        fixed (nuint* rowPitchPtr = &rowPitch)
+            fixed (nuint* pixelSizePtr = &pixelSize)
+        {
+            var res = Pointer->readTextureResource(resource.Pointer, state, &blobPtr, rowPitchPtr, pixelSizePtr).ToSlangResult();
+
+            data = new BlobMemoryManager(blobPtr);
+            return res;
+        }
+    }
 
     public unsafe SlangResult TryReadBufferResource(BufferResource resource, Span<byte> data, nuint offset = 0)
     {
