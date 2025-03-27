@@ -129,6 +129,9 @@
       <enumerator name="R64i" access="public">
         <type primitive="False">uint</type>
       </enumerator>
+      <enumerator name="Bgra8" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
     </enumeration>
   </namespace>
 </bindings>

@@ -1,10 +1,8 @@
-using System;
-using Nito.Disposables;
 using SlangNet.Internal;
 
 namespace SlangNet.Gfx.Desc;
 
-public record struct ResourceDescBase(
+public readonly record struct ResourceDescBase(
     IResource.ResourceType Type = IResource.ResourceType.Unknown,
     ResourceState DefaultState = ResourceState.Undefined,
     ResourceStateSet AllowedStates = default,
@@ -13,14 +11,14 @@ public record struct ResourceDescBase(
     bool IsShared = false
 ) : IMarshalsToNative<IResource.DescBase>, IMarshalsFromNative<ResourceDescBase, IResource.DescBase>
 {
-    public readonly int GetNativeAllocSize()
+    public int GetNativeAllocSize()
     {
         return SysUnsafe.SizeOf<IResource.DescBase>();
     }
 
     public void AsNative(ref MarshallingAllocBuffer buffer, out IResource.DescBase native)
     {
-        native = new IResource.DescBase
+        native = new()
         {
             type = Type,
             defaultState = DefaultState,
@@ -33,7 +31,7 @@ public record struct ResourceDescBase(
 
     public static void CreateFromNative(IResource.DescBase native, out ResourceDescBase managed)
     {
-        managed = new ResourceDescBase(
+        managed = new(
             native.type,
             native.defaultState,
             native.allowedStates,

@@ -46,6 +46,9 @@ public enum PassThrough
     /// <include file='PassThrough.xml' path='doc/member[@name="PassThrough.Tint"]/*' />
     Tint,
 
+    /// <include file='PassThrough.xml' path='doc/member[@name="PassThrough.SpirvLink"]/*' />
+    SpirvLink,
+
     /// <include file='PassThrough.xml' path='doc/member[@name="PassThrough.CountOf"]/*' />
     CountOf,
 }

@@ -189,7 +189,7 @@ public unsafe partial struct IAccelerationStructure
         public Enum flags;
 
         /// <include file='GeometryDesc.xml' path='doc/member[@name="GeometryDesc.content"]/*' />
-        [NativeTypeName("__AnonymousRecord_slang-gfx_L1029_C9")]
+        [NativeTypeName("__AnonymousRecord_slang-gfx_L1038_C9")]
         public _content_e__Union content;
 
         /// <include file='_content_e__Union.xml' path='doc/member[@name="_content_e__Union"]/*' />

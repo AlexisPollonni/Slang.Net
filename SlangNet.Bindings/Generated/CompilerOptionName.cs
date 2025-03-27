@@ -282,6 +282,9 @@ public enum CompilerOptionName
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EnableExperimentalPasses"]/*' />
     EnableExperimentalPasses,
 
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.BindlessSpaceIndex"]/*' />
+    BindlessSpaceIndex,
+
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.ArchiveType"]/*' />
     ArchiveType,
 
@@ -341,6 +344,15 @@ public enum CompilerOptionName
 
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EmitReflectionJSON"]/*' />
     EmitReflectionJSON,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.SaveGLSLModuleBinSource"]/*' />
+    SaveGLSLModuleBinSource,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.SkipDownstreamLinking"]/*' />
+    SkipDownstreamLinking,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.DumpModule"]/*' />
+    DumpModule,
 
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.CountOf"]/*' />
     CountOf,

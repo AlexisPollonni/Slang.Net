@@ -197,7 +197,7 @@
           <type native="gfx::IAccelerationStructure::GeometryFlags::Enum">Enum</type>
         </field>
         <field name="content" access="public">
-          <type native="__AnonymousRecord_slang-gfx_L1029_C9">_content_e__Union</type>
+          <type native="__AnonymousRecord_slang-gfx_L1038_C9">_content_e__Union</type>
         </field>
         <struct name="_content_e__Union" access="public" layout="Explicit">
           <field name="triangles" access="public" offset="0">

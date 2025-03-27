@@ -282,6 +282,9 @@
       <enumerator name="EnableExperimentalPasses" access="public">
         <type primitive="False">int</type>
       </enumerator>
+      <enumerator name="BindlessSpaceIndex" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
       <enumerator name="ArchiveType" access="public">
         <type primitive="False">int</type>
       </enumerator>
@@ -340,6 +343,15 @@
         <type primitive="False">int</type>
       </enumerator>
       <enumerator name="EmitReflectionJSON" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SaveGLSLModuleBinSource" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SkipDownstreamLinking" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="DumpModule" access="public">
         <type primitive="False">int</type>
       </enumerator>
       <enumerator name="CountOf" access="public">

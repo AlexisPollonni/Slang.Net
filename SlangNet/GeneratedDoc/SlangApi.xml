@@ -1674,6 +1674,15 @@
           <type>SlangReflectionVariable*</type>
         </param>
       </function>
+      <function name="ReflectionVariable_GetDefaultValueInt" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionVariable_GetDefaultValueInt" static="true" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="inVar">
+          <type>SlangReflectionVariable*</type>
+        </param>
+        <param name="rs">
+          <type>long*</type>
+        </param>
+      </function>
       <function name="ReflectionVariable_GetGenericContainer" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionVariable_GetGenericContainer" static="true" unsafe="true">
         <type>SlangReflectionGeneric*</type>
         <param name="var">
@@ -1717,6 +1726,12 @@
         </param>
         <param name="category">
           <type>ParameterCategory</type>
+        </param>
+      </function>
+      <function name="ReflectionVariableLayout_GetImageFormat" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionVariableLayout_GetImageFormat" static="true" unsafe="true">
+        <type native="SlangImageFormat">ImageFormat</type>
+        <param name="var">
+          <type>SlangReflectionVariableLayout*</type>
         </param>
       </function>
       <function name="ReflectionVariableLayout_GetSemanticName" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionVariableLayout_GetSemanticName" static="true" unsafe="true">
@@ -2479,6 +2494,15 @@
         <type native="SlangResult">int</type>
         <param name="apiVersion">
           <type>long</type>
+        </param>
+        <param name="outGlobalSession">
+          <type>IGlobalSession**</type>
+        </param>
+      </function>
+      <function name="slang_createGlobalSession2" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="desc">
+          <type>SlangGlobalSessionDesc*</type>
         </param>
         <param name="outGlobalSession">
           <type>IGlobalSession**</type>

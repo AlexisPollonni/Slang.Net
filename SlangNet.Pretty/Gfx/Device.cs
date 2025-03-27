@@ -1,7 +1,7 @@
 using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Buffers;
 using CommunityToolkit.HighPerformance;
+using Nito.Disposables;
 using SlangNet.Gfx.Desc;
 using SlangNet.Internal;
 using DeviceInfo = SlangNet.Gfx.Desc.DeviceInfo;
@@ -12,7 +12,7 @@ namespace SlangNet.Gfx;
 [GenerateThrowingMethods]
 public partial class Device : COMObject<IDevice>
 {
-    internal unsafe Device(IDevice* pointer) : base(pointer)
+    private unsafe Device(IDevice* pointer) : base(pointer)
     { }
 
 
@@ -96,9 +96,78 @@ public partial class Device : COMObject<IDevice>
         });
     }
 
-    //TODO: Implement TryCreateTextureResource
-    //TODO: Implement TryCreateTextureFromNativeHandle
-    //TODO: Implement TryCreateBufferResourceFromSharedHandle
+    /// <summary>
+    /// Create a texture resource.
+    ///
+    /// If `initData` is non-null, then it must point to an array of
+    /// `ITextureResource::SubresourceData` with one element for each
+    /// subresource of the texture being created.
+    ///
+    /// The number of subresources in a texture is:
+    ///
+    ///     effectiveElementCount * mipLevelCount
+    ///
+    /// where the effective element count is computed as:
+    ///
+    ///     effectiveElementCount = (isArray ? arrayElementCount : 1) * (isCube ? 6 : 1);
+    /// </summary>
+    public unsafe SlangResult TryCreateTextureResource(in TextureResourceDesc desc,
+                                                       ReadOnlySpan<TextureResource.SubresourceData> initData,
+                                                       out TextureResource? texture)
+    {
+        var m = new MarshallingAllocBuffer(stackalloc byte[initData.Length * sizeof(ITextureResource.SubresourceData*) + desc.GetNativeAllocSize()]);
+
+        var sbRrcSpan = m.AllocFor<ITextureResource.SubresourceData>(initData.Length);
+        using var d = new CollectionDisposable();
+        
+        for (var i = 0; i < initData.Length; i++)
+        {
+            sbRrcSpan[i] = new()
+            {
+                data = initData[i].Data.Pin().DisposeWith(d).Pointer,
+                strideY = initData[i].StrideY,
+                strideZ = initData[i].StrideZ
+            };
+        }
+
+        desc.AsNative(ref m, out var natDesc);
+        
+        fixed(ITextureResource.SubresourceData* pData = sbRrcSpan)
+        {
+            ITextureResource* nativeTexture = null;
+            var res = Pointer->createTextureResource(&natDesc, pData, &nativeTexture).ToSlangResult();
+            texture = res ? new TextureResource(nativeTexture) : null;
+            return res;
+        }
+    }
+    
+    public unsafe SlangResult TryCreateTextureFromNativeHandle(InteropHandle handle,
+                                                               in TextureResourceDesc srcDesc,
+                                                               out TextureResource? texture)
+    {
+        return srcDesc.MarshalToNative<TextureResourceDesc, ITextureResource.TextureResourceDesc, TextureResource?>(out texture, ptr =>
+        {
+          ITextureResource* nativeTexture = null;
+          var res = Pointer->createTextureFromNativeHandle(handle, ptr, &nativeTexture)
+              .ToSlangResult();
+          return (res, res ? new TextureResource(nativeTexture) : null);
+        });
+    }
+    
+    public unsafe SlangResult TryCreateTextureFromSharedHandle(InteropHandle handle,
+                                                               TextureResourceDesc srcDesc,
+                                                               nuint size,
+                                                               out TextureResource? texture)
+    {
+        return srcDesc.MarshalToNative<TextureResourceDesc, ITextureResource.TextureResourceDesc, TextureResource?>(out texture, ptr =>
+        {
+            ITextureResource* nativeTexture = null;
+            var res = Pointer->createTextureFromSharedHandle(handle, ptr, size, &nativeTexture)
+                .ToSlangResult();
+            return (res, res ? new TextureResource(nativeTexture) : null);
+        });
+    }
+    
     
     public unsafe SlangResult TryCreateBufferResource(in BufferResourceDesc desc, IntPtr initData, out BufferResource? resource)
     {
@@ -138,17 +207,66 @@ public partial class Device : COMObject<IDevice>
         return desc.MarshalToNative<ResourceViewDesc, IResourceView.ResourceViewDesc, ResourceView?>(out view, descPtr => 
         {
             IResourceView* nativeView = null;
-            var result = Pointer->createBufferView(buffer.Pointer, counterBuffer.AsNullablePtr(), descPtr, &nativeView).ToSlangResult();
+            var result = Pointer->createBufferView(buffer.Pointer, (IBufferResource*)counterBuffer.AsNullablePtr(), descPtr, &nativeView).ToSlangResult();
             return (result, result ? new ResourceView(nativeView) : null);
         });
 
     }
+    
+    public unsafe SlangResult TryCreateFrameBufferLayout(in FramebufferLayout.FramebufferLayoutDesc desc, out FramebufferLayout? framebufferLayout)
+    {
+        return desc.MarshalToNative<FramebufferLayout.FramebufferLayoutDesc, IFramebufferLayout.FramebufferLayoutDesc, FramebufferLayout?>(out framebufferLayout, framebufferLayoutPtr =>
+        {
+            IFramebufferLayout* nativeFramebufferLayout = null;
+            var result = Pointer->createFramebufferLayout(framebufferLayoutPtr, &nativeFramebufferLayout).ToSlangResult();
+            return (result, result ? new FramebufferLayout(nativeFramebufferLayout) : null);
+        });
+    }
+    
+    public unsafe SlangResult TryCreateFrameBuffer(in Framebuffer.FramebufferDesc desc,
+                                                   out Framebuffer? framebuffer)
+    {
+        return desc.MarshalToNative<Framebuffer.FramebufferDesc, IFramebuffer.FramebufferDesc, Framebuffer?>(out framebuffer, framebufferPtr =>
+        {
+            IFramebuffer* nativeFramebuffer = null;
+            var result = Pointer->createFramebuffer(framebufferPtr, &nativeFramebuffer).ToSlangResult();
+            return (result, result ? new Framebuffer(nativeFramebuffer) : null);
+        });
+    }
+    
+    public unsafe SlangResult TryCreateRenderPassLayout(in RenderPassLayout.RenderPassLayoutDesc desc,
+                                                        out RenderPassLayout? layout)
+    {
+        return desc
+            .MarshalToNative<RenderPassLayout.RenderPassLayoutDesc, IRenderPassLayout.RenderPassLayoutDesc, RenderPassLayout?>(out layout, 
+   renderPassLayoutPtr =>
+            {
+                IRenderPassLayout* nativeLayout = null;
+                var result = Pointer->createRenderPassLayout(renderPassLayoutPtr, &nativeLayout).ToSlangResult();
+                return (result, result ? new RenderPassLayout(nativeLayout) : null);
+            });
+    }
 
-    //TODO: Implement TryCreateFrameBufferLayout
-    //TODO: Implement TryCreateFrameBuffer
-    //TODO: Implement TryCreateRenderPassLayout
-    //TODO: Implement TryCreateSwapChain
-    //TODO: Implement TryCreateInputLayout
+    public unsafe SlangResult TryCreateSwapchain(SwapchainDesc desc, WindowHandle window, out Swapchain? swapchain)
+    {
+        return desc.MarshalToNative<SwapchainDesc, ISwapchain.SwapchainDesc, Swapchain?>(out swapchain, descPtr =>
+        {
+            ISwapchain* nativeSwapchain = null;
+            var result = Pointer->createSwapchain(descPtr, window, &nativeSwapchain).ToSlangResult();
+            return (result, result ? new Swapchain(nativeSwapchain) : null);
+        });
+    }
+
+    public unsafe SlangResult TryCreateInputLayout(in InputLayout.InputLayoutDesc desc, out InputLayout? layout)
+    {
+        return desc.MarshalToNative<InputLayout.InputLayoutDesc, IInputLayout.InputLayoutDesc, InputLayout?>(out layout,
+        layoutPtr =>
+        {
+            IInputLayout* nativeLayout = null;
+            var result = Pointer->createInputLayout(layoutPtr, &nativeLayout).ToSlangResult();
+            return (result, result ? new InputLayout(nativeLayout) : null);
+        });
+    }
 
     public unsafe SlangResult TryCreateCommandQueue(in CommandQueueDesc desc, out CommandQueue? queue)
     {
@@ -216,6 +334,7 @@ public partial class Device : COMObject<IDevice>
     //public unsafe SlangResult TryCreateProgram2(in ShaderProgramDesc2 desc, out ShaderProgram? program);
 
     //TODO: Implement TryCreateGraphicsPipelineState
+    
 
     public unsafe SlangResult TryCreateComputePipelineState(in ComputePipelineStateDesc desc, out PipelineState? pipeline)
     {
@@ -231,14 +350,30 @@ public partial class Device : COMObject<IDevice>
 
 
     // MANIPULATION METHODS
+    
+    public unsafe SlangResult TryReadTextureResource(TextureResource resource,
+                                                     ResourceState state,
+                                                     out MemoryManager<byte> data,
+                                                     out nuint rowPitch,
+                                                     out nuint pixelSize)
+    {
+        ISlangBlob* blobPtr = null;
+        
+        fixed (nuint* rowPitchPtr = &rowPitch)
+            fixed (nuint* pixelSizePtr = &pixelSize)
+        {
+            var res = Pointer->readTextureResource(resource.Pointer, state, &blobPtr, rowPitchPtr, pixelSizePtr).ToSlangResult();
 
-    //TODO: Implement ReadTextureResource
+            data = new BlobMemoryManager(blobPtr);
+            return res;
+        }
+    }
 
     public unsafe SlangResult TryReadBufferResource(BufferResource resource, Span<byte> data, nuint offset = 0)
     {
         ISlangBlob* blobPtr = null;
 
-        var result = Pointer->readBufferResource(resource.Pointer, offset, (nuint)data.Length, &blobPtr).ToSlangResult();
+        var result = Pointer->readBufferResource((IBufferResource*)resource.Pointer, offset, (nuint)data.Length, &blobPtr).ToSlangResult();
         if (!result)
         {
             return result;

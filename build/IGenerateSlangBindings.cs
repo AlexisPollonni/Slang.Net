@@ -84,7 +84,7 @@ public interface IGenerateSlangBindings : INukeBuild
         genFiles = Generate([SlangHeaderPath], XmlOutputDir, slangConfig, PInvokeGeneratorOutputMode.Xml);
         WriteFilesToDisk(genFiles);
         
-        genFiles = Generate([SlangGfxHeaderPath], SrcOutputDir, gfxConfig,  PInvokeGeneratorOutputMode.Xml);
+        genFiles = Generate([SlangGfxHeaderPath], XmlOutputDir, gfxConfig,  PInvokeGeneratorOutputMode.Xml);
         WriteFilesToDisk(genFiles);
     }
 

@@ -1,39 +1,13 @@
 using System;
-using SlangNet.Internal;
 
 namespace SlangNet.Gfx;
 
 [GenerateThrowingMethods]
-public partial class BufferResource : COMObject<IBufferResource>
+public partial class BufferResource : Resource
 {
-    internal unsafe BufferResource(IBufferResource* pointer) : base(pointer) { }
+    public new unsafe IBufferResource* Pointer => (IBufferResource*)base.Pointer;
 
-    public unsafe SlangResult TryGetNativeResourceHandle(out InteropHandle handle)
-    {
-        fixed (InteropHandle* pHandle = &handle)
-        {
-            return Pointer->getNativeResourceHandle(pHandle).ToSlangResult();
-        }
-    }
-
-    public unsafe SlangResult TryGetSharedHandle(out InteropHandle handle)
-    {
-        fixed (InteropHandle* pHandle = &handle)
-        {
-            return Pointer->getSharedHandle(pHandle).ToSlangResult();
-        }
-    }
-
-    public unsafe SlangResult TrySetDebugName(string name)
-    {
-        return name.MarshalToNative(ptrName => Pointer->setDebugName(ptrName).ToSlangResult());
-    }
-
-    public unsafe string GetDebugName()
-    {
-        var namePtr = Pointer->getDebugName();
-        return InteropUtils.PtrToStringUTF8(namePtr) ?? string.Empty;
-    }
+    internal unsafe BufferResource(IBufferResource* pointer) : base((IResource*)pointer) { }
 
     public unsafe BufferResourceDesc GetDesc()
     {
@@ -107,8 +81,9 @@ public partial class BufferResource : COMObject<IBufferResource>
                    offset = offset,
                    size = size
                },
-               out span).ThrowIfFailed();
-        
+               out span)
+            .ThrowIfFailed();
+
         return span;
     }
 

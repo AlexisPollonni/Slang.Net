@@ -15,7 +15,7 @@ public partial class ShaderObject : COMObject<IShaderObject>
         if (typeLayout == null)
             throw new InvalidOperationException("Failed to get element type layout");
         
-        return new TypeLayoutReflection(typeLayout);
+        return new(typeLayout);
     }
     
     public unsafe ShaderObjectContainerType GetContainerType()
@@ -136,6 +136,6 @@ public partial class ShaderObject : COMObject<IShaderObject>
     /// </summary>
     public unsafe SlangResult TrySetConstantBufferOverride(BufferResource? constantBuffer)
     {
-        return Pointer->setConstantBufferOverride(constantBuffer.AsNullablePtr()).ToSlangResult();
+        return Pointer->setConstantBufferOverride((IBufferResource*)constantBuffer.AsNullablePtr()).ToSlangResult();
     }   
 }

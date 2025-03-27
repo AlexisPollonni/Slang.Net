@@ -47,6 +47,15 @@
           <type primitive="False">int</type>
         </enumerator>
       </enumeration>
+      <enumeration name="DownstreamLinkMode" access="public">
+        <type>int</type>
+        <enumerator name="None" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="Deferred" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+      </enumeration>
       <struct name="ShaderProgramDesc" access="public" unsafe="true">
         <field name="linkingStyle" access="public">
           <type native="gfx::IShaderProgram::LinkingStyle">LinkingStyle</type>
@@ -59,6 +68,9 @@
         </field>
         <field name="slangEntryPoints" access="public">
           <type native="slang::IComponentType **">IComponentType**</type>
+        </field>
+        <field name="downstreamLinkMode" access="public">
+          <type native="gfx::IShaderProgram::DownstreamLinkMode">DownstreamLinkMode</type>
         </field>
       </struct>
       <struct name="CreateDesc2" access="public" unsafe="true">
