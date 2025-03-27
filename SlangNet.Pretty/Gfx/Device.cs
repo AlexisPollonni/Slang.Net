@@ -207,15 +207,45 @@ public partial class Device : COMObject<IDevice>
         return desc.MarshalToNative<ResourceViewDesc, IResourceView.ResourceViewDesc, ResourceView?>(out view, descPtr => 
         {
             IResourceView* nativeView = null;
-            var result = Pointer->createBufferView((IBufferResource*)buffer.Pointer, (IBufferResource*)counterBuffer.AsNullablePtr(), descPtr, &nativeView).ToSlangResult();
+            var result = Pointer->createBufferView(buffer.Pointer, (IBufferResource*)counterBuffer.AsNullablePtr(), descPtr, &nativeView).ToSlangResult();
             return (result, result ? new ResourceView(nativeView) : null);
         });
 
     }
-
-    //TODO: Implement TryCreateFrameBufferLayout
-    //TODO: Implement TryCreateFrameBuffer
-    //TODO: Implement TryCreateRenderPassLayout
+    
+    public unsafe SlangResult TryCreateFrameBufferLayout(in FramebufferLayout.FramebufferLayoutDesc desc, out FramebufferLayout? framebufferLayout)
+    {
+        return desc.MarshalToNative<FramebufferLayout.FramebufferLayoutDesc, IFramebufferLayout.FramebufferLayoutDesc, FramebufferLayout?>(out framebufferLayout, framebufferLayoutPtr =>
+        {
+            IFramebufferLayout* nativeFramebufferLayout = null;
+            var result = Pointer->createFramebufferLayout(framebufferLayoutPtr, &nativeFramebufferLayout).ToSlangResult();
+            return (result, result ? new FramebufferLayout(nativeFramebufferLayout) : null);
+        });
+    }
+    
+    public unsafe SlangResult TryCreateFrameBuffer(in Framebuffer.FramebufferDesc desc,
+                                                   out Framebuffer? framebuffer)
+    {
+        return desc.MarshalToNative<Framebuffer.FramebufferDesc, IFramebuffer.FramebufferDesc, Framebuffer?>(out framebuffer, framebufferPtr =>
+        {
+            IFramebuffer* nativeFramebuffer = null;
+            var result = Pointer->createFramebuffer(framebufferPtr, &nativeFramebuffer).ToSlangResult();
+            return (result, result ? new Framebuffer(nativeFramebuffer) : null);
+        });
+    }
+    
+    public unsafe SlangResult TryCreateRenderPassLayout(in RenderPassLayout.RenderPassLayoutDesc desc,
+                                                        out RenderPassLayout? layout)
+    {
+        return desc
+            .MarshalToNative<RenderPassLayout.RenderPassLayoutDesc, IRenderPassLayout.RenderPassLayoutDesc, RenderPassLayout?>(out layout, 
+   renderPassLayoutPtr =>
+            {
+                IRenderPassLayout* nativeLayout = null;
+                var result = Pointer->createRenderPassLayout(renderPassLayoutPtr, &nativeLayout).ToSlangResult();
+                return (result, result ? new RenderPassLayout(nativeLayout) : null);
+            });
+    }
 
     public unsafe SlangResult TryCreateSwapchain(SwapchainDesc desc, WindowHandle window, out Swapchain? swapchain)
     {
@@ -227,7 +257,16 @@ public partial class Device : COMObject<IDevice>
         });
     }
 
-    //TODO: Implement TryCreateInputLayout
+    public unsafe SlangResult TryCreateInputLayout(in InputLayout.InputLayoutDesc desc, out InputLayout? layout)
+    {
+        return desc.MarshalToNative<InputLayout.InputLayoutDesc, IInputLayout.InputLayoutDesc, InputLayout?>(out layout,
+        layoutPtr =>
+        {
+            IInputLayout* nativeLayout = null;
+            var result = Pointer->createInputLayout(layoutPtr, &nativeLayout).ToSlangResult();
+            return (result, result ? new InputLayout(nativeLayout) : null);
+        });
+    }
 
     public unsafe SlangResult TryCreateCommandQueue(in CommandQueueDesc desc, out CommandQueue? queue)
     {
@@ -295,6 +334,7 @@ public partial class Device : COMObject<IDevice>
     //public unsafe SlangResult TryCreateProgram2(in ShaderProgramDesc2 desc, out ShaderProgram? program);
 
     //TODO: Implement TryCreateGraphicsPipelineState
+    
 
     public unsafe SlangResult TryCreateComputePipelineState(in ComputePipelineStateDesc desc, out PipelineState? pipeline)
     {
@@ -310,8 +350,7 @@ public partial class Device : COMObject<IDevice>
 
 
     // MANIPULATION METHODS
-
-    //TODO: Implement ReadTextureResource
+    
     public unsafe SlangResult TryReadTextureResource(TextureResource resource,
                                                      ResourceState state,
                                                      out MemoryManager<byte> data,
