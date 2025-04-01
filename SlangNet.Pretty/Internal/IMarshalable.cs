@@ -19,8 +19,8 @@ public interface IMarshalsToNative<TNative> where TNative : unmanaged
 }
 
 
-public interface IMarshalsFromNative<TManaged, TNative> where TNative : unmanaged
-                                                 where TManaged : IMarshalsFromNative<TManaged, TNative>
+public interface IMarshalsFromNative<TManaged, in TNative> where TNative : unmanaged
+                                                           where TManaged : IMarshalsFromNative<TManaged, TNative>
 {
     public static abstract void CreateFromNative(TNative native, out TManaged managed);
 }
