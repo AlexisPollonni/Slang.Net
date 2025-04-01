@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -10,18 +7,9 @@ using Microsoft.CodeAnalysis.Text;
 namespace SlangNet.Pretty.SourceGenerator;
 
 [Generator]
-public class ThrowingMethodGenerator : ISourceGenerator
+public class ThrowingMethodGenerator : IIncrementalGenerator
 {
-    public void Execute(GeneratorExecutionContext context)
-    {
-        if (context.SyntaxContextReceiver is not SyntaxReceiver receiver)
-            return;
-
-        foreach (var clazz in receiver.Classes)
-            ProcessClass(context, clazz);
-    }
-
-    private void ProcessClass(GeneratorExecutionContext context, ITypeSymbol clazz)
+    private static void ProcessClass(SourceProductionContext context, ITypeSymbol clazz)
     {
         var source = new StringBuilder();
         source.AppendLine("#nullable enable");
@@ -133,28 +121,13 @@ public class ThrowingMethodGenerator : ISourceGenerator
         context.AddSource($"{clazz.Name}_throwing.g.cs", SourceText.From(source.ToString(), Encoding.UTF8));
     }
 
-    public void Initialize(GeneratorInitializationContext context)
+    public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        context.RegisterForSyntaxNotifications(() => new SyntaxReceiver());
-    }
-
-    private class SyntaxReceiver : ISyntaxContextReceiver
-    {
-        public HashSet<ITypeSymbol> Classes { get; } = new(SymbolEqualityComparer.Default);
-
-        public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
-        {
-            if (context.Node is not ClassDeclarationSyntax and not StructDeclarationSyntax ||
-                context.SemanticModel.GetDeclaredSymbol(context.Node) is not ITypeSymbol classSymbol)
-                return;
-
-            var attributeData = classSymbol
-                .GetAttributes()
-                .FirstOrDefault(a => a.AttributeClass?.ToDisplayString() == "SlangNet.GenerateThrowingMethodsAttribute");
-            if (attributeData == null)
-                return;
-
-            Classes.Add(classSymbol);
-        }
+        var classProvider = context.SyntaxProvider.ForAttributeWithMetadataName("SlangNet.GenerateThrowingMethodsAttribute",
+                                                            (node, _) => node is ClassDeclarationSyntax
+                                                                or StructDeclarationSyntax,
+                                                            (syntaxContext, _) => (ITypeSymbol)syntaxContext.TargetSymbol);
+        
+        context.RegisterSourceOutput(classProvider, ProcessClass);
     }
 }
