@@ -11,7 +11,7 @@ class ComObjectToNative(CSharpSourceBuilder builder, IParameterSymbol managed, I
     }
     public override void WriteBeforeMarshal(string _)
     {
-        var natType = IsOutParameter ? ((IPointerTypeSymbol)Native.Type).PointedAtType.ToFullyQualified() : native.Type.ToFullyQualified();
+        var natType = IsOutParameter ? ((IPointerTypeSymbol)Native.Type).PointedAtType.ToFullyQualified() : Native.Type.ToFullyQualified();
         Builder.AppendLine(!IsOutParameter
                                ? $"var {NativeVarName} = ({natType})({Managed.Name} is not null ? {Managed.Name}.Pointer : null);"
                                : $"{natType} {NativeVarName};");
