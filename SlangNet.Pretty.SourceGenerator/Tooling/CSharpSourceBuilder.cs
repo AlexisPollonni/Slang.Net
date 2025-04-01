@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 
-namespace SlangNet.Pretty.SourceGenerator;
+namespace SlangNet.Pretty.SourceGenerator.Tooling;
 
 /// <summary>
 /// A type-safe builder for generating C# source code with proper indentation and scope handling.
@@ -43,6 +43,7 @@ public sealed class CSharpSourceBuilder
         {
             _builder.Append(IndentString.Repeat(_indentLevel));
         }
+        
         _builder.AppendLine(text);
         _isNewLine = true;
         return this;
@@ -214,7 +215,7 @@ public sealed class CSharpSourceBuilder
     }
 }
 
-internal static class CSharpSourceBuilderExtensions
+static class CSharpSourceBuilderExtensions
 {
     public static string Repeat(this string str, int count)
     {

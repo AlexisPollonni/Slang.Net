@@ -1,8 +1,8 @@
 using Microsoft.CodeAnalysis;
 
-namespace SlangNet.Pretty.SourceGenerator;
+namespace SlangNet.Pretty.SourceGenerator.Tooling;
 
-internal static class DiagnosticDescriptors
+static class DiagnosticDescriptors
 {
     private const string Category = "SlangNet";
 
@@ -37,4 +37,4 @@ internal static class DiagnosticDescriptors
         category: Category,
         defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true);
-} 
+}

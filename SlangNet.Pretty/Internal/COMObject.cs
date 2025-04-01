@@ -3,7 +3,8 @@ using System.Runtime.InteropServices;
 
 namespace SlangNet.Internal;
 
-public class COMObject<T> : SafeHandle, IEquatable<COMObject<T>> where T : unmanaged
+public class COMObject<T> : SafeHandle, IEquatable<COMObject<T>>
+    where T : unmanaged
 {
     /// <summary>Returns the raw pointer underneath the wrapper</summary>
     /// <remarks>The reference counter is not incremented</remarks>
@@ -45,7 +46,7 @@ public class COMObject<T> : SafeHandle, IEquatable<COMObject<T>> where T : unman
         ObjectDisposedException.ThrowIf(IsInvalid, this);
     }
 
-    protected unsafe override bool ReleaseHandle()
+    protected override unsafe bool ReleaseHandle()
     {
         ((ISlangUnknown*)handle)->release();
         return true;

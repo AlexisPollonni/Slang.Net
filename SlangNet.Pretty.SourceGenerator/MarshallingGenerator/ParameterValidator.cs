@@ -1,8 +1,9 @@
 using Microsoft.CodeAnalysis;
+using SlangNet.Pretty.SourceGenerator.Tooling;
 
-namespace SlangNet.Pretty.SourceGenerator;
+namespace SlangNet.Pretty.SourceGenerator.MarshallingGenerator;
 
-internal static class ParameterValidator
+static class ParameterValidator
 {
     public static bool ValidateParameters(
         IMethodSymbol managedMethod,
