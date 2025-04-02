@@ -23,11 +23,7 @@ public readonly unsafe partial struct TypeLayoutReflection : IEquatable<TypeLayo
         Fields = new NativeBoundedReadOnlyList<SlangReflectionTypeLayout, VariableLayoutReflection>
         {
             Container = InternalPointer,
-            GetCount = internalPointer =>
-            {
-                var typePtr = ReflectionTypeLayout_GetType(internalPointer);
-                return (nint)ReflectionType_GetFieldCount(typePtr);
-            },
+            GetCount = internalPointer => (nint)ReflectionTypeLayout_GetFieldCount(internalPointer),
             TryGetAt = (SlangReflectionTypeLayout* internalPointer, nint index, out VariableLayoutReflection variable) =>
             {
                 var ptr = ReflectionTypeLayout_GetFieldByIndex(internalPointer, (uint)index);
