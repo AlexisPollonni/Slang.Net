@@ -179,9 +179,16 @@ public sealed class CSharpSourceBuilder
     /// <summary>
     /// Adds using directives with aliases.
     /// </summary>
-    public CSharpSourceBuilder AddUsing(string alias, INamedTypeSymbol type)
+    public CSharpSourceBuilder AddUsingAlias(string alias, INamedTypeSymbol type)
     {
         AppendLine($"using {alias} = {type.ToDisplayString()};");
+        return this;
+    }
+
+    public CSharpSourceBuilder AddDefaultVar(ITypeSymbol type, string name, bool init = true)
+    {
+        AppendLine($"{type.ToFullyQualified()} {name}");
+        Append(init ? " = default!;" : ";");
         return this;
     }
 
@@ -194,22 +201,13 @@ public sealed class CSharpSourceBuilder
         AppendLine("}");
     }
 
-    private sealed class ScopeGuard : IDisposable
+    private sealed class ScopeGuard(CSharpSourceBuilder builder, bool addBraces = true) : IDisposable
     {
-        private readonly CSharpSourceBuilder _builder;
-        private readonly bool _addBraces;
-
-        public ScopeGuard(CSharpSourceBuilder builder, bool addBraces = true)
-        {
-            _builder = builder;
-            _addBraces = addBraces;
-        }
-
         public void Dispose()
         {
-            if (_addBraces)
+            if (addBraces)
             {
-                _builder.EndScope();
+                builder.EndScope();
             }
         }
     }
