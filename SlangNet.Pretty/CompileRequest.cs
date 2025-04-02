@@ -302,8 +302,10 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
         ulong registerIndex,
         out bool used)
     {
-        fixed (bool* usedPtr = &used)
-            return new(Pointer->isParameterLocationUsed((nint)entryPointIndex, (nint)targetIndex, category, (nuint)spaceIndex, (nuint)registerIndex, usedPtr));
+        Unsafe.Boolean usedB;
+        var res = Pointer->isParameterLocationUsed((nint)entryPointIndex, (nint)targetIndex, category, (nuint)spaceIndex, (nuint)registerIndex, &usedB).ToSlangResult();
+        used = usedB;
+        return res;
     }
 
     public void SetTargetLineDirectiveMode(long targetIndex, LineDirectiveMode mode) =>
