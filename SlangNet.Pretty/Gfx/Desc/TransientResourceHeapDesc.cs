@@ -22,7 +22,7 @@ public record struct TransientResourceHeapDesc(
     
     public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out ITransientResourceHeap.TransientResourceHeapDesc native)
     {
-        native = new ITransientResourceHeap.TransientResourceHeapDesc
+        native = new()
         {
             flags = Flags,
             constantBufferSize = ConstantBufferSize,
@@ -36,7 +36,7 @@ public record struct TransientResourceHeapDesc(
     
     public static unsafe void CreateFromNative(ITransientResourceHeap.TransientResourceHeapDesc native, out TransientResourceHeapDesc desc)
     {
-        desc = new TransientResourceHeapDesc(
+        desc = new(
             native.flags,
             native.constantBufferSize,
             native.samplerDescriptorCount,

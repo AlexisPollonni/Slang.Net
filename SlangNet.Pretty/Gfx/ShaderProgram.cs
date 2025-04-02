@@ -16,6 +16,6 @@ public partial class ShaderProgram : COMObject<IShaderProgram>
         if (typeReflection == null)
             throw new InvalidOperationException($"Type '{name}' not found in shader program");
         
-        return new TypeReflection(typeReflection);
+        return new(typeReflection);
     }
 }

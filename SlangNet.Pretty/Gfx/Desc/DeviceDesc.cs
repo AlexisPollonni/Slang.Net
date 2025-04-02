@@ -15,7 +15,7 @@ public readonly record struct ShaderCacheDesc(string? Path, int MaxEntryCount = 
 
     public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out IDevice.ShaderCacheDesc native)
     {
-        native = new IDevice.ShaderCacheDesc
+        native = new()
         {
             shaderCachePath = Path.MarshalToNative(ref buffer),
             maxEntryCount = MaxEntryCount
@@ -24,7 +24,7 @@ public readonly record struct ShaderCacheDesc(string? Path, int MaxEntryCount = 
 
     public static unsafe void CreateFromNative(IDevice.ShaderCacheDesc native, out ShaderCacheDesc desc)
     {
-        desc = new ShaderCacheDesc(InteropUtils.PtrToStringUTF8(native.shaderCachePath), native.maxEntryCount);
+        desc = new(InteropUtils.PtrToStringUTF8(native.shaderCachePath), native.maxEntryCount);
     }
 }
 

@@ -36,7 +36,7 @@ public struct ShaderCursor
         BaseObject = obj;
         TypeLayout = obj.GetElementTypeLayout();
         ContainerType = obj.GetContainerType();
-        Offset = new ShaderOffset();
+        Offset = new();
     }
 
     public readonly unsafe SlangResult SetData(ReadOnlySpan<byte> data)
@@ -141,7 +141,7 @@ public struct ShaderCursor
                 TypeLayout = counterVarLayout.Value.Type,
 
 
-                Offset = new ShaderOffset(
+                Offset = new(
                     // The byte offset is the current offset plus the relative offset of the counter.
                     // The offset in binding ranges is computed similarly.
                     Offset.UniformOffset + (long)counterVarLayout.Value.GetOffset(),

@@ -19,7 +19,7 @@ public record struct ShaderProgramDesc(
 
     public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out IShaderProgram.ShaderProgramDesc native)
     {
-        native = new IShaderProgram.ShaderProgramDesc
+        native = new()
         {
             linkingStyle = LinkingStyle,
             slangGlobalScope = GlobalScope.AsNullablePtr(),

@@ -4,7 +4,7 @@ using SlangNet.Gfx.Desc;
 using SlangNet.Internal;
 namespace SlangNet.Gfx;
 
-public record struct BufferResourceDesc(
+public readonly record struct BufferResourceDesc(
     ResourceDescBase Base,
     nuint SizeInBytes = 0,
     nuint ElementSize = 0,
@@ -20,7 +20,7 @@ public record struct BufferResourceDesc(
     {
         Base.AsNative(ref buffer, out var nativeBase);
         
-        native = new IBufferResource.BufferResourceDesc
+        native = new()
         {
             Base = nativeBase,
             sizeInBytes = SizeInBytes,
@@ -33,7 +33,7 @@ public record struct BufferResourceDesc(
     {
         ResourceDescBase.CreateFromNative(native.Base, out var baseDesc);
         
-        managed = new BufferResourceDesc(
+        managed = new(
             baseDesc,
             native.sizeInBytes,
             native.elementSize,

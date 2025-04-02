@@ -73,7 +73,7 @@ public static unsafe partial class Api
 
 
         // Create our implementation
-        _debugCallbackInstance = new DebugCallbackImpl(callback);
+        _debugCallbackInstance = new(callback);
         
         // Get the native pointer to our implementation
         var nativePtr = _debugCallbackInstance.NativePointer;
@@ -108,7 +108,7 @@ public static unsafe partial class Api
             _handleMessageDelegate = HandleMessage;
             
             // Create the vtable
-            _vtbl = new IDebugCallback.Vtbl
+            _vtbl = new()
             {
                 handleMessage = Marshal.GetFunctionPointerForDelegate(_handleMessageDelegate)
             };

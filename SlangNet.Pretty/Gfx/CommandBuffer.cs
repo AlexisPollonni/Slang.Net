@@ -29,7 +29,7 @@ public partial class CommandBuffer : COMObject<ICommandBuffer>
     {
         IComputeCommandEncoder* nativeEncoder = null;
         Pointer->encodeComputeCommands(&nativeEncoder);
-        return new ComputeCommandEncoder(nativeEncoder);
+        return new(nativeEncoder);
     }
     
     // public unsafe void EncodeResourceCommands(out ResourceCommandEncoder encoder)

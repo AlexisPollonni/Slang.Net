@@ -30,17 +30,17 @@ public struct ResourceStateSet
 
     public static ResourceStateSet operator |(ResourceStateSet a, ResourceStateSet b)
     {
-        return new ResourceStateSet { bitFields = a.bitFields | b.bitFields };
+        return new() { bitFields = a.bitFields | b.bitFields };
     }
     
     public static ResourceStateSet operator &(ResourceStateSet a, ResourceStateSet b)
     {
-        return new ResourceStateSet { bitFields = a.bitFields & b.bitFields };
+        return new() { bitFields = a.bitFields & b.bitFields };
     }
 
     public static ResourceStateSet operator ~(ResourceStateSet a)
     {
-        return new ResourceStateSet { bitFields = ~a.bitFields };
+        return new() { bitFields = ~a.bitFields };
     }
 
     public static bool operator ==(ResourceStateSet a, ResourceStateSet b)
@@ -53,7 +53,7 @@ public struct ResourceStateSet
         return !(a == b);
     }
 
-    public override readonly bool Equals(object? obj)
+    public readonly override bool Equals(object? obj)
     {
         if (obj is ResourceStateSet other)
         {
@@ -62,7 +62,7 @@ public struct ResourceStateSet
         return false;
     }
 
-    public override readonly int GetHashCode()
+    public readonly override int GetHashCode()
     {
         return bitFields.GetHashCode();
     }
