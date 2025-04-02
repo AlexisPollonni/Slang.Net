@@ -133,7 +133,7 @@ public sealed unsafe partial class GlobalSession : COMObject<IGlobalSession>
         ISlangBlob* blob;
         var result = Pointer->saveCoreModule(archiveType, &blob);
         if (blob != null)
-            coreModule = new BlobMemoryManager(blob);
+            coreModule = new BlobMemoryManager<byte>(blob);
         return new(result);
     }
 

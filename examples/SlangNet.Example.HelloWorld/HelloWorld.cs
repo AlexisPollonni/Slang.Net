@@ -7,13 +7,13 @@ using SlangNet.Internal;
 
 namespace SlangNet.Example.HelloWorld;
 
+/// <summary>
+/// For detailed explanations of the shader object example, see the original C++ implementation at
+/// <see href="./slang/examples/shader-object/main.cpp">shader-object/main.cpp</see>.
+/// </summary>
 internal static class HelloWorld
 {
-    private const int ElementCount = 16;
-    private const int BufferSize = sizeof(float) * ElementCount;
-
-
-    static SlangResult LoadShaderProgram(Device device, out ShaderProgram program, out ShaderReflection slangReflection)
+    private static SlangResult LoadShaderProgram(Device device, out ShaderProgram program, out ShaderReflection slangReflection)
     {
         var slangSession = device.GetSlangSession();
 
@@ -34,7 +34,7 @@ internal static class HelloWorld
         return SlangResult.Ok;
     }
     
-    private static unsafe void Main(string[] args)
+    private static void Main(string[] args)
     {
         var factory = LoggerFactory.Create(builder => builder.AddConsole());
         var logger = factory.CreateLogger("Gfx");
@@ -104,9 +104,7 @@ internal static class HelloWorld
             Type = IResourceView.ResourceViewType.UnorderedAccess,
             Format = Format.Unknown
         });
-
         
-
         var queue = device.CreateCommandQueue(new(ICommandQueue.QueueType.Graphics));
 
         var cmdBuffer = heap.CreateCommandBuffer();
@@ -115,7 +113,7 @@ internal static class HelloWorld
 
         var rootObject = encoder.BindPipeline(pipelineState);
 
-        var addTransformerType = slangReflection.FindTypeByName("AddTransformer").Value;
+        var addTransformerType = slangReflection.FindTypeByName("AddTransformer")!.Value;
 
         var transformer = device.CreateShaderObject(addTransformerType, ShaderObjectContainerType.None);
 
@@ -135,9 +133,9 @@ internal static class HelloWorld
         queue.ExecuteCommandBuffer(cmdBuffer);
         queue.WaitOnHost();
 
-        var data = device.ReadBufferResource<float>(numbersBuffer);
+        device.ReadBufferResource<float>(numbersBuffer, Range.All, out var data).ThrowIfFailed();
 
-        foreach (var item in data)
+        foreach (var item in data!.Memory.Span)
         {
             Console.WriteLine(item);
         }

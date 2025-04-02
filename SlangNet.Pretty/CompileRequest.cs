@@ -207,7 +207,7 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
     {
         ISlangBlob* blobPtr = null;
         var result = Pointer->getEntryPointCodeBlob(entryPointIndex, targetIndex, &blobPtr);
-        blob = blobPtr == null ? null : new BlobMemoryManager(blobPtr);
+        blob = blobPtr == null ? null : new BlobMemoryManager<byte>(blobPtr);
         return new(result);
     }
 
@@ -218,7 +218,7 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
     {
         ISlangBlob* blobPtr = null;
         var result = Pointer->getTargetCodeBlob(targetIndex, &blobPtr);
-        blob = blobPtr == null ? null : new BlobMemoryManager(blobPtr);
+        blob = blobPtr == null ? null : new BlobMemoryManager<byte>(blobPtr);
         return new(result);
     }
 
@@ -226,7 +226,7 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
     {
         get
         {
-            UIntPtr size = default;
+            nuint size = 0;
             var ptr = Pointer->getCompileRequestCode(&size);
             if (ptr == null)
                 throw new NullReferenceException("CompileRequest::getCompileRequestCode returned a null pointer");
@@ -240,7 +240,7 @@ public sealed unsafe partial class CompileRequest : COMObject<ICompileRequest>
     {
         ISlangBlob* blobPtr = null;
         var result = Pointer->saveRepro(&blobPtr);
-        blob = blobPtr == null ? null : new BlobMemoryManager(blobPtr);
+        blob = blobPtr == null ? null : new BlobMemoryManager<byte>(blobPtr);
         return new(result);
     }
 

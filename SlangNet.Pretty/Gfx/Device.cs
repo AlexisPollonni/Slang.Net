@@ -1,6 +1,5 @@
 using System;
 using System.Buffers;
-using CommunityToolkit.HighPerformance;
 using Nito.Disposables;
 using SlangNet.Gfx.Desc;
 using SlangNet.Internal;
@@ -236,7 +235,7 @@ public partial class Device : COMObject<IDevice>
     
     public unsafe SlangResult TryReadTextureResource(TextureResource resource,
                                                      ResourceState state,
-                                                     out MemoryManager<byte> data,
+                                                     out IMemoryOwner<byte> data,
                                                      out nuint rowPitch,
                                                      out nuint pixelSize)
     {
@@ -247,44 +246,23 @@ public partial class Device : COMObject<IDevice>
         {
             var res = Pointer->readTextureResource(resource.Pointer, state, &blobPtr, rowPitchPtr, pixelSizePtr).ToSlangResult();
 
-            data = new BlobMemoryManager(blobPtr);
+            data = new BlobMemoryManager<byte>(blobPtr);
             return res;
         }
     }
 
-    public unsafe SlangResult TryReadBufferResource(BufferResource resource, Span<byte> data, nuint offset = 0)
+    //TODO: rename when throwing source gen supports generic methods
+    public unsafe SlangResult ReadBufferResource<T>(BufferResource resource, Range range, out IMemoryOwner<T>? data) 
+        where T : unmanaged
     {
+        var byteSize = resource.GetDesc().SizeInBytes;
+        ArgumentOutOfRangeException.ThrowIfNotEqual(byteSize % (nuint)sizeof(T), (nuint)0);
+        var pair = range.GetOffsetAndLength((int)(byteSize / (nuint)sizeof(T)));
+        
         ISlangBlob* blobPtr = null;
-
-        var result = Pointer->readBufferResource((IBufferResource*)resource.Pointer, offset, (nuint)data.Length, &blobPtr).ToSlangResult();
-        if (!result)
-        {
-            return result;
-        }
-
-        var blobSpan = new Span<byte>(blobPtr->getBufferPointer(), (int)blobPtr->getBufferSize());
-        blobSpan.CopyTo(data);
-        blobPtr->release();
-
+        var result = Pointer->readBufferResource(resource.Pointer, (nuint)pair.Offset * (nuint)sizeof(T), (nuint)pair.Length * (nuint)sizeof(T), &blobPtr).ToSlangResult();
+        data = result ? new BlobMemoryManager<T>(blobPtr) : null;
         return result;
-    }
-
-    public Span<T> ReadBufferResource<T>(BufferResource resource, nuint offset, int size) where T : unmanaged
-    {
-        ArgumentOutOfRangeException.ThrowIfNotEqual(size % SysUnsafe.SizeOf<T>(), 0);
-
-        var byteSize = (nuint)size * (nuint)SysUnsafe.SizeOf<T>();
-
-        var data = new byte[byteSize];
-
-        TryReadBufferResource(resource, data, offset).ThrowIfFailed();
-        return data.AsSpan().Cast<byte, T>();
-    }
-
-    public Span<T> ReadBufferResource<T>(BufferResource resource) where T : unmanaged
-    {
-        var size = resource.GetDesc().SizeInBytes;
-        return ReadBufferResource<T>(resource, 0, checked((int)size));
     }
 
     public unsafe DeviceInfo GetDeviceInfo()

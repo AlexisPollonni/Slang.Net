@@ -57,7 +57,7 @@ public unsafe partial class ComponentType : COMObject<IComponentType>
         ISlangBlob* codePtr = null;
         var result = Pointer->getEntryPointCode((nint)entryPointIndex, (nint)targetIndex, &codePtr, &diagnosticsBlob.Pointer);
         diagnostics = diagnosticsBlob.AsString();
-        code = codePtr == null ? null : new BlobMemoryManager(codePtr);
+        code = codePtr == null ? null : new BlobMemoryManager<byte>(codePtr);
         return new(result);
     }
 
@@ -68,7 +68,7 @@ public unsafe partial class ComponentType : COMObject<IComponentType>
     {
         ISlangBlob* codePtr = null;
         Pointer->getEntryPointHash((nint)entryPointIndex, (nint)targetIndex, &codePtr);
-        return codePtr == null ? null : new BlobMemoryManager(codePtr);
+        return codePtr == null ? null : new BlobMemoryManager<byte>(codePtr);
     }
 
     public IMemoryOwner<byte> GetEntryPointHash(long entryPointIndex, long targetIndex) =>
