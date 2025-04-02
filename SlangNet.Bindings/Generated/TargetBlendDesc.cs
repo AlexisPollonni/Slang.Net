@@ -13,7 +13,7 @@ public partial struct TargetBlendDesc
 
     /// <include file='TargetBlendDesc.xml' path='doc/member[@name="TargetBlendDesc.enableBlend"]/*' />
     [NativeTypeName("bool")]
-    public byte enableBlend;
+    public Boolean enableBlend;
 
     /// <include file='TargetBlendDesc.xml' path='doc/member[@name="TargetBlendDesc.logicOp"]/*' />
     [NativeTypeName("gfx::LogicOp")]

@@ -19,5 +19,5 @@ public unsafe partial struct GenericArgReflection
     /// <include file='GenericArgReflection.xml' path='doc/member[@name="GenericArgReflection.boolVal"]/*' />
     [FieldOffset(0)]
     [NativeTypeName("bool")]
-    public byte boolVal;
+    public Boolean boolVal;
 }

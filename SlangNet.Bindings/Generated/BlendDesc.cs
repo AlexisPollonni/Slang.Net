@@ -15,7 +15,7 @@ public partial struct BlendDesc
 
     /// <include file='BlendDesc.xml' path='doc/member[@name="BlendDesc.alphaToCoverageEnable"]/*' />
     [NativeTypeName("bool")]
-    public byte alphaToCoverageEnable;
+    public Boolean alphaToCoverageEnable;
 
     /// <include file='_targets_e__FixedBuffer.xml' path='doc/member[@name="_targets_e__FixedBuffer"]/*' />
     [InlineArray(8)]

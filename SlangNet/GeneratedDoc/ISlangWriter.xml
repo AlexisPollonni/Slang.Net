@@ -69,7 +69,7 @@
         </param>
       </delegate>
       <delegate name="_isConsole" access="public" convention="StdCall">
-        <type native="SlangBool">byte</type>
+        <type native="SlangBool">Boolean</type>
         <param name="pThis">
           <type>ISlangWriter*</type>
         </param>
@@ -147,9 +147,9 @@
         </body>
       </function>
       <function name="isConsole" access="public" unsafe="true">
-        <type native="SlangBool">bool</type>
+        <type native="SlangBool">Boolean</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isConsole</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isConsole</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>) != 0;</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isConsole</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isConsole</vtbl>)(<param special="thisPtr">(ISlangWriter*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="setMode" access="public" unsafe="true">

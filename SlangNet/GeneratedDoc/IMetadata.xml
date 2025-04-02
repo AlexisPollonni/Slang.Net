@@ -53,7 +53,7 @@
           <type>ulong</type>
         </param>
         <param name="outUsed">
-          <type>bool*</type>
+          <type>Boolean*</type>
         </param>
       </delegate>
       <function name="queryInterface" access="public" unsafe="true">
@@ -101,7 +101,7 @@
           <type>ulong</type>
         </param>
         <param name="outUsed">
-          <type>bool*</type>
+          <type>Boolean*</type>
         </param>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isParameterLocationUsed</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isParameterLocationUsed</vtbl>)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param name="category">category</param>, <param name="spaceIndex">spaceIndex</param>, <param name="registerIndex">registerIndex</param>, <param name="outUsed">outUsed</param>);</code>

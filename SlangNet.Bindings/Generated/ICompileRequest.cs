@@ -139,7 +139,7 @@ public unsafe partial struct ICompileRequest
     public delegate int _setTypeNameForEntryPointExistentialTypeParam(ICompileRequest* pThis, int entryPointIndex, int slotIndex, [NativeTypeName("const char *")] sbyte* typeName);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setAllowGLSLInput(ICompileRequest* pThis, [NativeTypeName("bool")] byte value);
+    public delegate void _setAllowGLSLInput(ICompileRequest* pThis, [NativeTypeName("bool")] Boolean value);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -243,13 +243,13 @@ public unsafe partial struct ICompileRequest
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _isParameterLocationUsed(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] bool* outUsed);
+    public delegate int _isParameterLocationUsed(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] Boolean* outUsed);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setTargetLineDirectiveMode(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangLineDirectiveMode")] LineDirectiveMode mode);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setTargetForceGLSLScalarBufferLayout(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] byte forceScalarLayout);
+    public delegate void _setTargetForceGLSLScalarBufferLayout(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] Boolean forceScalarLayout);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _overrideDiagnosticSeverity(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long messageID, [NativeTypeName("SlangSeverity")] Severity overrideSeverity);
@@ -265,35 +265,35 @@ public unsafe partial struct ICompileRequest
     public delegate void _setDebugInfoFormat(ICompileRequest* pThis, [NativeTypeName("SlangDebugInfoFormat")] DebugInfoFormat debugFormat);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setEnableEffectAnnotations(ICompileRequest* pThis, [NativeTypeName("bool")] byte value);
+    public delegate void _setEnableEffectAnnotations(ICompileRequest* pThis, [NativeTypeName("bool")] Boolean value);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setReportDownstreamTime(ICompileRequest* pThis, [NativeTypeName("bool")] byte value);
+    public delegate void _setReportDownstreamTime(ICompileRequest* pThis, [NativeTypeName("bool")] Boolean value);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setReportPerfBenchmark(ICompileRequest* pThis, [NativeTypeName("bool")] byte value);
+    public delegate void _setReportPerfBenchmark(ICompileRequest* pThis, [NativeTypeName("bool")] Boolean value);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setSkipSPIRVValidation(ICompileRequest* pThis, [NativeTypeName("bool")] byte value);
+    public delegate void _setSkipSPIRVValidation(ICompileRequest* pThis, [NativeTypeName("bool")] Boolean value);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setTargetUseMinimumSlangOptimization(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] byte value);
+    public delegate void _setTargetUseMinimumSlangOptimization(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] Boolean value);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setIgnoreCapabilityCheck(ICompileRequest* pThis, [NativeTypeName("bool")] byte value);
+    public delegate void _setIgnoreCapabilityCheck(ICompileRequest* pThis, [NativeTypeName("bool")] Boolean value);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _getCompileTimeProfile(ICompileRequest* pThis, ISlangProfiler** compileTimeProfile, [NativeTypeName("bool")] byte shouldClear);
+    public delegate int _getCompileTimeProfile(ICompileRequest* pThis, ISlangProfiler** compileTimeProfile, [NativeTypeName("bool")] Boolean shouldClear);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setTargetGenerateWholeProgram(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] byte value);
+    public delegate void _setTargetGenerateWholeProgram(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] Boolean value);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setTargetForceDXLayout(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] byte value);
+    public delegate void _setTargetForceDXLayout(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] Boolean value);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setTargetEmbedDownstreamIR(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] byte value);
+    public delegate void _setTargetEmbedDownstreamIR(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] Boolean value);
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -579,7 +579,7 @@ public unsafe partial struct ICompileRequest
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setAllowGLSLInput"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setAllowGLSLInput([NativeTypeName("bool")] byte value)
+    public void setAllowGLSLInput([NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setAllowGLSLInput>(lpVtbl->setAllowGLSLInput)((ICompileRequest*)Unsafe.AsPointer(ref this), value);
     }
@@ -791,7 +791,7 @@ public unsafe partial struct ICompileRequest
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.isParameterLocationUsed"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int isParameterLocationUsed([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] bool* outUsed)
+    public int isParameterLocationUsed([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] Boolean* outUsed)
     {
         return Marshal.GetDelegateForFunctionPointer<_isParameterLocationUsed>(lpVtbl->isParameterLocationUsed)((ICompileRequest*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, category, spaceIndex, registerIndex, outUsed);
     }
@@ -805,7 +805,7 @@ public unsafe partial struct ICompileRequest
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setTargetForceGLSLScalarBufferLayout"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setTargetForceGLSLScalarBufferLayout(int targetIndex, [NativeTypeName("bool")] byte forceScalarLayout)
+    public void setTargetForceGLSLScalarBufferLayout(int targetIndex, [NativeTypeName("bool")] Boolean forceScalarLayout)
     {
         Marshal.GetDelegateForFunctionPointer<_setTargetForceGLSLScalarBufferLayout>(lpVtbl->setTargetForceGLSLScalarBufferLayout)((ICompileRequest*)Unsafe.AsPointer(ref this), targetIndex, forceScalarLayout);
     }
@@ -841,42 +841,42 @@ public unsafe partial struct ICompileRequest
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setEnableEffectAnnotations"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setEnableEffectAnnotations([NativeTypeName("bool")] byte value)
+    public void setEnableEffectAnnotations([NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setEnableEffectAnnotations>(lpVtbl->setEnableEffectAnnotations)((ICompileRequest*)Unsafe.AsPointer(ref this), value);
     }
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setReportDownstreamTime"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setReportDownstreamTime([NativeTypeName("bool")] byte value)
+    public void setReportDownstreamTime([NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setReportDownstreamTime>(lpVtbl->setReportDownstreamTime)((ICompileRequest*)Unsafe.AsPointer(ref this), value);
     }
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setReportPerfBenchmark"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setReportPerfBenchmark([NativeTypeName("bool")] byte value)
+    public void setReportPerfBenchmark([NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setReportPerfBenchmark>(lpVtbl->setReportPerfBenchmark)((ICompileRequest*)Unsafe.AsPointer(ref this), value);
     }
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setSkipSPIRVValidation"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setSkipSPIRVValidation([NativeTypeName("bool")] byte value)
+    public void setSkipSPIRVValidation([NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setSkipSPIRVValidation>(lpVtbl->setSkipSPIRVValidation)((ICompileRequest*)Unsafe.AsPointer(ref this), value);
     }
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setTargetUseMinimumSlangOptimization"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setTargetUseMinimumSlangOptimization(int targetIndex, [NativeTypeName("bool")] byte value)
+    public void setTargetUseMinimumSlangOptimization(int targetIndex, [NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setTargetUseMinimumSlangOptimization>(lpVtbl->setTargetUseMinimumSlangOptimization)((ICompileRequest*)Unsafe.AsPointer(ref this), targetIndex, value);
     }
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setIgnoreCapabilityCheck"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setIgnoreCapabilityCheck([NativeTypeName("bool")] byte value)
+    public void setIgnoreCapabilityCheck([NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setIgnoreCapabilityCheck>(lpVtbl->setIgnoreCapabilityCheck)((ICompileRequest*)Unsafe.AsPointer(ref this), value);
     }
@@ -884,28 +884,28 @@ public unsafe partial struct ICompileRequest
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.getCompileTimeProfile"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int getCompileTimeProfile(ISlangProfiler** compileTimeProfile, [NativeTypeName("bool")] byte shouldClear)
+    public int getCompileTimeProfile(ISlangProfiler** compileTimeProfile, [NativeTypeName("bool")] Boolean shouldClear)
     {
         return Marshal.GetDelegateForFunctionPointer<_getCompileTimeProfile>(lpVtbl->getCompileTimeProfile)((ICompileRequest*)Unsafe.AsPointer(ref this), compileTimeProfile, shouldClear);
     }
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setTargetGenerateWholeProgram"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setTargetGenerateWholeProgram(int targetIndex, [NativeTypeName("bool")] byte value)
+    public void setTargetGenerateWholeProgram(int targetIndex, [NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setTargetGenerateWholeProgram>(lpVtbl->setTargetGenerateWholeProgram)((ICompileRequest*)Unsafe.AsPointer(ref this), targetIndex, value);
     }
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setTargetForceDXLayout"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setTargetForceDXLayout(int targetIndex, [NativeTypeName("bool")] byte value)
+    public void setTargetForceDXLayout(int targetIndex, [NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setTargetForceDXLayout>(lpVtbl->setTargetForceDXLayout)((ICompileRequest*)Unsafe.AsPointer(ref this), targetIndex, value);
     }
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setTargetEmbedDownstreamIR"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setTargetEmbedDownstreamIR(int targetIndex, [NativeTypeName("bool")] byte value)
+    public void setTargetEmbedDownstreamIR(int targetIndex, [NativeTypeName("bool")] Boolean value)
     {
         Marshal.GetDelegateForFunctionPointer<_setTargetEmbedDownstreamIR>(lpVtbl->setTargetEmbedDownstreamIR)((ICompileRequest*)Unsafe.AsPointer(ref this), targetIndex, value);
     }

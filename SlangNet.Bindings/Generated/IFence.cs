@@ -48,7 +48,7 @@ public unsafe partial struct IFence
 
         /// <include file='FenceDesc.xml' path='doc/member[@name="FenceDesc.isShared"]/*' />
         [NativeTypeName("bool")]
-        public byte isShared;
+        public Boolean isShared;
     }
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />

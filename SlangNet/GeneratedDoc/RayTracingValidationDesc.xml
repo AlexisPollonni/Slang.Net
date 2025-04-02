@@ -6,7 +6,7 @@
         <type native="gfx::StructType">StructType</type>
       </field>
       <field name="enableRaytracingValidation" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
     </struct>
   </namespace>

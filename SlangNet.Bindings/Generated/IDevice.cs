@@ -29,7 +29,7 @@ public unsafe partial struct IDevice
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("bool")]
-    public delegate byte _hasFeature(IDevice* pThis, [NativeTypeName("const char *")] sbyte* feature);
+    public delegate Boolean _hasFeature(IDevice* pThis, [NativeTypeName("const char *")] sbyte* feature);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
@@ -181,7 +181,7 @@ public unsafe partial struct IDevice
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _waitForFences(IDevice* pThis, [NativeTypeName("gfx::GfxCount")] int fenceCount, IFence** fences, [NativeTypeName("uint64_t *")] ulong* values, [NativeTypeName("bool")] byte waitForAll, [NativeTypeName("uint64_t")] ulong timeout);
+    public delegate int _waitForFences(IDevice* pThis, [NativeTypeName("gfx::GfxCount")] int fenceCount, IFence** fences, [NativeTypeName("uint64_t *")] ulong* values, [NativeTypeName("bool")] Boolean waitForAll, [NativeTypeName("uint64_t")] ulong timeout);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
@@ -354,9 +354,10 @@ public unsafe partial struct IDevice
 
     /// <include file='IDevice.xml' path='doc/member[@name="IDevice.hasFeature"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool hasFeature([NativeTypeName("const char *")] sbyte* feature)
+    [return: NativeTypeName("bool")]
+    public Boolean hasFeature([NativeTypeName("const char *")] sbyte* feature)
     {
-        return Marshal.GetDelegateForFunctionPointer<_hasFeature>(lpVtbl->hasFeature)((IDevice*)Unsafe.AsPointer(ref this), feature) != 0;
+        return Marshal.GetDelegateForFunctionPointer<_hasFeature>(lpVtbl->hasFeature)((IDevice*)Unsafe.AsPointer(ref this), feature);
     }
 
     /// <include file='IDevice.xml' path='doc/member[@name="IDevice.getFeatures"]/*' />
@@ -658,7 +659,7 @@ public unsafe partial struct IDevice
     /// <include file='IDevice.xml' path='doc/member[@name="IDevice.waitForFences"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int waitForFences([NativeTypeName("gfx::GfxCount")] int fenceCount, IFence** fences, [NativeTypeName("uint64_t *")] ulong* values, [NativeTypeName("bool")] byte waitForAll, [NativeTypeName("uint64_t")] ulong timeout)
+    public int waitForFences([NativeTypeName("gfx::GfxCount")] int fenceCount, IFence** fences, [NativeTypeName("uint64_t *")] ulong* values, [NativeTypeName("bool")] Boolean waitForAll, [NativeTypeName("uint64_t")] ulong timeout)
     {
         return Marshal.GetDelegateForFunctionPointer<_waitForFences>(lpVtbl->waitForFences)((IDevice*)Unsafe.AsPointer(ref this), fenceCount, fences, values, waitForAll, timeout);
     }

@@ -18,12 +18,12 @@ public static unsafe partial class GfxApi
     /// <include file='GfxApi.xml' path='doc/member[@name="GfxApi.gfxIsCompressedFormat"]/*' />
     [DllImport("gfx", CallingConvention = CallingConvention.StdCall, ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte gfxIsCompressedFormat([NativeTypeName("gfx::Format")] Format format);
+    public static extern Boolean gfxIsCompressedFormat([NativeTypeName("gfx::Format")] Format format);
 
     /// <include file='GfxApi.xml' path='doc/member[@name="GfxApi.gfxIsTypelessFormat"]/*' />
     [DllImport("gfx", CallingConvention = CallingConvention.StdCall, ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte gfxIsTypelessFormat([NativeTypeName("gfx::Format")] Format format);
+    public static extern Boolean gfxIsTypelessFormat([NativeTypeName("gfx::Format")] Format format);
 
     /// <include file='GfxApi.xml' path='doc/member[@name="GfxApi.gfxGetFormatInfo"]/*' />
     [DllImport("gfx", CallingConvention = CallingConvention.StdCall, ExactSpelling = true)]

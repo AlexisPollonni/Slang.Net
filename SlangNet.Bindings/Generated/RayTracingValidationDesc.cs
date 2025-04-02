@@ -9,5 +9,5 @@ public partial struct RayTracingValidationDesc
 
     /// <include file='RayTracingValidationDesc.xml' path='doc/member[@name="RayTracingValidationDesc.enableRaytracingValidation"]/*' />
     [NativeTypeName("bool")]
-    public byte enableRaytracingValidation;
+    public Boolean enableRaytracingValidation;
 }

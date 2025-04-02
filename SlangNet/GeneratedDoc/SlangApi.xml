@@ -405,7 +405,7 @@
           <type>int</type>
         </param>
         <param name="forceScalarLayout">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </function>
       <function name="SetTargetUseMinimumSlangOptimization" access="public" lib="slang" convention="Cdecl" entrypoint="spSetTargetUseMinimumSlangOptimization" static="true" unsafe="true">
@@ -417,7 +417,7 @@
           <type>int</type>
         </param>
         <param name="val">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </function>
       <function name="SetIgnoreCapabilityCheck" access="public" lib="slang" convention="Cdecl" entrypoint="spSetIgnoreCapabilityCheck" static="true" unsafe="true">
@@ -426,7 +426,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="val">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </function>
       <function name="SetCodeGenTarget" access="public" lib="slang" convention="Cdecl" entrypoint="spSetCodeGenTarget" static="true" unsafe="true">
@@ -1005,7 +1005,7 @@
           <type>ISlangProfiler**</type>
         </param>
         <param name="shouldClear">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </function>
       <function name="ExtractRepro" access="public" lib="slang" convention="Cdecl" entrypoint="spExtractRepro" static="true" unsafe="true">
@@ -1669,7 +1669,7 @@
         </param>
       </function>
       <function name="ReflectionVariable_HasDefaultValue" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionVariable_HasDefaultValue" static="true" unsafe="true">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
         <param name="inVar">
           <type>SlangReflectionVariable*</type>
         </param>
@@ -1843,7 +1843,7 @@
         </param>
       </function>
       <function name="ReflectionFunction_isOverloaded" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionFunction_isOverloaded" static="true" unsafe="true">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
         <param name="func">
           <type>SlangReflectionFunction*</type>
         </param>
@@ -2073,7 +2073,7 @@
           <type>ulong</type>
         </param>
         <param name="outUsed">
-          <type>bool*</type>
+          <type>Boolean*</type>
         </param>
       </function>
       <function name="ReflectionEntryPoint_getName" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionEntryPoint_getName" static="true" unsafe="true">
@@ -2368,7 +2368,7 @@
         </param>
       </function>
       <function name="Reflection_isSubType" access="public" lib="slang" convention="Cdecl" entrypoint="spReflection_isSubType" static="true" unsafe="true">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
         <param name="reflection">
           <type>SlangProgramLayout*</type>
         </param>

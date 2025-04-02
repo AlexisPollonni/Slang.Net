@@ -9,7 +9,7 @@
         <type native="gfx::GfxCount">int</type>
       </field>
       <field name="alphaToCoverageEnable" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <struct name="_targets_e__FixedBuffer" access="public">
         <attribute>InlineArray(8)</attribute>

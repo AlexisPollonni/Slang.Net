@@ -93,7 +93,7 @@ public unsafe partial struct IResource
 
         /// <include file='DescBase.xml' path='doc/member[@name="DescBase.isShared"]/*' />
         [NativeTypeName("bool")]
-        public byte isShared;
+        public Boolean isShared;
     }
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />

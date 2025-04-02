@@ -12,7 +12,7 @@
         <type native="uint32_t">uint</type>
       </field>
       <field name="enableGLSL" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="reserved" access="public">
         <type native="uint32_t[16]" count="16" fixed="_reserved_e__FixedBuffer">uint</type>

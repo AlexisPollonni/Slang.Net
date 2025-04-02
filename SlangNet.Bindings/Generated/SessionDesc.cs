@@ -44,11 +44,11 @@ public unsafe partial struct SessionDesc
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.enableEffectAnnotations"]/*' />
     [NativeTypeName("bool")]
-    public byte enableEffectAnnotations;
+    public Boolean enableEffectAnnotations;
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.allowGLSLSyntax"]/*' />
     [NativeTypeName("bool")]
-    public byte allowGLSLSyntax;
+    public Boolean allowGLSLSyntax;
 
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.compilerOptionEntries"]/*' />
     [NativeTypeName("slang::CompilerOptionEntry *")]

@@ -9,7 +9,7 @@
         <type native="gfx::AspectBlendDesc">AspectBlendDesc</type>
       </field>
       <field name="enableBlend" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="logicOp" access="public">
         <type native="gfx::LogicOp">LogicOp</type>

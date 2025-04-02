@@ -3,16 +3,16 @@
   <namespace name="SlangNet.Bindings.Generated">
     <struct name="DepthStencilDesc" access="public">
       <field name="depthTestEnable" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="depthWriteEnable" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="depthFunc" access="public">
         <type native="gfx::ComparisonFunc">ComparisonFunc</type>
       </field>
       <field name="stencilEnable" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="stencilReadMask" access="public">
         <type native="uint32_t">uint</type>

@@ -39,7 +39,7 @@
         </param>
       </delegate>
       <delegate name="_hasFeature" access="public" convention="StdCall" unsafe="true">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
         <param name="pThis">
           <type>IDevice*</type>
         </param>
@@ -566,7 +566,7 @@
           <type>ulong*</type>
         </param>
         <param name="waitForAll">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <param name="timeout">
           <type>ulong</type>
@@ -755,12 +755,12 @@
         </body>
       </function>
       <function name="hasFeature" access="public" unsafe="true">
-        <type>bool</type>
+        <type native="bool">Boolean</type>
         <param name="feature">
           <type>sbyte*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_hasFeature</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">hasFeature</vtbl>)(<param special="thisPtr">(IDevice*)Unsafe.AsPointer(ref this)</param>, <param name="feature">feature</param>) != 0;</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_hasFeature</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">hasFeature</vtbl>)(<param special="thisPtr">(IDevice*)Unsafe.AsPointer(ref this)</param>, <param name="feature">feature</param>);</code>
         </body>
       </function>
       <function name="getFeatures" access="public" unsafe="true">
@@ -1279,7 +1279,7 @@
           <type>ulong*</type>
         </param>
         <param name="waitForAll">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <param name="timeout">
           <type>ulong</type>

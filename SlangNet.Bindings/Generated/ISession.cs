@@ -87,7 +87,7 @@ public unsafe partial struct ISession
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("bool")]
-    public delegate byte _isBinaryModuleUpToDate(ISession* pThis, [NativeTypeName("const char *")] sbyte* modulePath, [NativeTypeName("slang::IBlob *")] ISlangBlob* binaryModuleBlob);
+    public delegate Boolean _isBinaryModuleUpToDate(ISession* pThis, [NativeTypeName("const char *")] sbyte* modulePath, [NativeTypeName("slang::IBlob *")] ISlangBlob* binaryModuleBlob);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("slang::IModule *")]
@@ -239,9 +239,10 @@ public unsafe partial struct ISession
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.isBinaryModuleUpToDate"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool isBinaryModuleUpToDate([NativeTypeName("const char *")] sbyte* modulePath, [NativeTypeName("slang::IBlob *")] ISlangBlob* binaryModuleBlob)
+    [return: NativeTypeName("bool")]
+    public Boolean isBinaryModuleUpToDate([NativeTypeName("const char *")] sbyte* modulePath, [NativeTypeName("slang::IBlob *")] ISlangBlob* binaryModuleBlob)
     {
-        return Marshal.GetDelegateForFunctionPointer<_isBinaryModuleUpToDate>(lpVtbl->isBinaryModuleUpToDate)((ISession*)Unsafe.AsPointer(ref this), modulePath, binaryModuleBlob) != 0;
+        return Marshal.GetDelegateForFunctionPointer<_isBinaryModuleUpToDate>(lpVtbl->isBinaryModuleUpToDate)((ISession*)Unsafe.AsPointer(ref this), modulePath, binaryModuleBlob);
     }
 
     /// <include file='ISession.xml' path='doc/member[@name="ISession.loadModuleFromSourceString"]/*' />

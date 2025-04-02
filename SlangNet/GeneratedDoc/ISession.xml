@@ -264,7 +264,7 @@
         </param>
       </delegate>
       <delegate name="_isBinaryModuleUpToDate" access="public" convention="StdCall" unsafe="true">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
         <param name="pThis">
           <type>ISession*</type>
         </param>
@@ -555,7 +555,7 @@
         </body>
       </function>
       <function name="isBinaryModuleUpToDate" access="public" unsafe="true">
-        <type>bool</type>
+        <type native="bool">Boolean</type>
         <param name="modulePath">
           <type>sbyte*</type>
         </param>
@@ -563,7 +563,7 @@
           <type>ISlangBlob*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isBinaryModuleUpToDate</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isBinaryModuleUpToDate</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="modulePath">modulePath</param>, <param name="binaryModuleBlob">binaryModuleBlob</param>) != 0;</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isBinaryModuleUpToDate</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isBinaryModuleUpToDate</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="modulePath">modulePath</param>, <param name="binaryModuleBlob">binaryModuleBlob</param>);</code>
         </body>
       </function>
       <function name="loadModuleFromSourceString" access="public" unsafe="true">

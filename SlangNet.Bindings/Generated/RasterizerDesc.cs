@@ -27,23 +27,23 @@ public partial struct RasterizerDesc
 
     /// <include file='RasterizerDesc.xml' path='doc/member[@name="RasterizerDesc.depthClipEnable"]/*' />
     [NativeTypeName("bool")]
-    public byte depthClipEnable;
+    public Boolean depthClipEnable;
 
     /// <include file='RasterizerDesc.xml' path='doc/member[@name="RasterizerDesc.scissorEnable"]/*' />
     [NativeTypeName("bool")]
-    public byte scissorEnable;
+    public Boolean scissorEnable;
 
     /// <include file='RasterizerDesc.xml' path='doc/member[@name="RasterizerDesc.multisampleEnable"]/*' />
     [NativeTypeName("bool")]
-    public byte multisampleEnable;
+    public Boolean multisampleEnable;
 
     /// <include file='RasterizerDesc.xml' path='doc/member[@name="RasterizerDesc.antialiasedLineEnable"]/*' />
     [NativeTypeName("bool")]
-    public byte antialiasedLineEnable;
+    public Boolean antialiasedLineEnable;
 
     /// <include file='RasterizerDesc.xml' path='doc/member[@name="RasterizerDesc.enableConservativeRasterization"]/*' />
     [NativeTypeName("bool")]
-    public byte enableConservativeRasterization;
+    public Boolean enableConservativeRasterization;
 
     /// <include file='RasterizerDesc.xml' path='doc/member[@name="RasterizerDesc.forcedSampleCount"]/*' />
     [NativeTypeName("uint32_t")]

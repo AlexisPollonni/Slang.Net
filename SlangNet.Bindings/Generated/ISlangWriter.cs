@@ -41,7 +41,7 @@ public unsafe partial struct ISlangWriter
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangBool")]
-    public delegate byte _isConsole(ISlangWriter* pThis);
+    public delegate Boolean _isConsole(ISlangWriter* pThis);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -105,9 +105,9 @@ public unsafe partial struct ISlangWriter
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.isConsole"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangBool")]
-    public bool isConsole()
+    public Boolean isConsole()
     {
-        return Marshal.GetDelegateForFunctionPointer<_isConsole>(lpVtbl->isConsole)((ISlangWriter*)Unsafe.AsPointer(ref this)) != 0;
+        return Marshal.GetDelegateForFunctionPointer<_isConsole>(lpVtbl->isConsole)((ISlangWriter*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangWriter.xml' path='doc/member[@name="ISlangWriter.setMode"]/*' />

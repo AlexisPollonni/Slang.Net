@@ -45,13 +45,13 @@
         </value>
       </constant>
       <function name="gfxIsCompressedFormat" access="public" lib="gfx" convention="StdCall" static="true">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
         <param name="format">
           <type>Format</type>
         </param>
       </function>
       <function name="gfxIsTypelessFormat" access="public" lib="gfx" convention="StdCall" static="true">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
         <param name="format">
           <type>Format</type>
         </param>

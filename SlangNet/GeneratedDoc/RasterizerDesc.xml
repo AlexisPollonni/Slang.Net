@@ -21,19 +21,19 @@
         <type>float</type>
       </field>
       <field name="depthClipEnable" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="scissorEnable" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="multisampleEnable" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="antialiasedLineEnable" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="enableConservativeRasterization" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="forcedSampleCount" access="public">
         <type native="uint32_t">uint</type>

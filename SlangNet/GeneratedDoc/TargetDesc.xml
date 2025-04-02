@@ -21,7 +21,7 @@
         <type native="SlangLineDirectiveMode">LineDirectiveMode</type>
       </field>
       <field name="forceGLSLScalarBufferLayout" access="public">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
       <field name="compilerOptionEntries" access="public">
         <type native="slang::CompilerOptionEntry *">CompilerOptionEntry*</type>

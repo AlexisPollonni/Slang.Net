@@ -9,7 +9,7 @@
         <type native="int64_t">long</type>
       </field>
       <field name="boolVal" access="public" offset="0">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
       </field>
     </struct>
   </namespace>

@@ -44,11 +44,11 @@ public unsafe partial struct ISwapchain
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("bool")]
-    public delegate byte _isOccluded(ISwapchain* pThis);
+    public delegate Boolean _isOccluded(ISwapchain* pThis);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _setFullScreenMode(ISwapchain* pThis, [NativeTypeName("bool")] byte mode);
+    public delegate int _setFullScreenMode(ISwapchain* pThis, [NativeTypeName("bool")] Boolean mode);
 
     /// <include file='SwapchainDesc.xml' path='doc/member[@name="SwapchainDesc"]/*' />
     public unsafe partial struct SwapchainDesc
@@ -75,7 +75,7 @@ public unsafe partial struct ISwapchain
 
         /// <include file='SwapchainDesc.xml' path='doc/member[@name="SwapchainDesc.enableVSync"]/*' />
         [NativeTypeName("bool")]
-        public byte enableVSync;
+        public Boolean enableVSync;
     }
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
@@ -143,15 +143,16 @@ public unsafe partial struct ISwapchain
 
     /// <include file='ISwapchain.xml' path='doc/member[@name="ISwapchain.isOccluded"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool isOccluded()
+    [return: NativeTypeName("bool")]
+    public Boolean isOccluded()
     {
-        return Marshal.GetDelegateForFunctionPointer<_isOccluded>(lpVtbl->isOccluded)((ISwapchain*)Unsafe.AsPointer(ref this)) != 0;
+        return Marshal.GetDelegateForFunctionPointer<_isOccluded>(lpVtbl->isOccluded)((ISwapchain*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISwapchain.xml' path='doc/member[@name="ISwapchain.setFullScreenMode"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int setFullScreenMode([NativeTypeName("bool")] byte mode)
+    public int setFullScreenMode([NativeTypeName("bool")] Boolean mode)
     {
         return Marshal.GetDelegateForFunctionPointer<_setFullScreenMode>(lpVtbl->setFullScreenMode)((ISwapchain*)Unsafe.AsPointer(ref this), mode);
     }

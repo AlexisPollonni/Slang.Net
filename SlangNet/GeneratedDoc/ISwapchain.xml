@@ -72,7 +72,7 @@
         </param>
       </delegate>
       <delegate name="_isOccluded" access="public" convention="StdCall">
-        <type native="bool">byte</type>
+        <type native="bool">Boolean</type>
         <param name="pThis">
           <type>ISwapchain*</type>
         </param>
@@ -83,7 +83,7 @@
           <type>ISwapchain*</type>
         </param>
         <param name="mode">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <struct name="SwapchainDesc" access="public" unsafe="true">
@@ -103,7 +103,7 @@
           <type native="gfx::ICommandQueue *">ICommandQueue*</type>
         </field>
         <field name="enableVSync" access="public">
-          <type native="bool">byte</type>
+          <type native="bool">Boolean</type>
         </field>
       </struct>
       <function name="queryInterface" access="public" unsafe="true">
@@ -173,15 +173,15 @@
         </body>
       </function>
       <function name="isOccluded" access="public" unsafe="true">
-        <type>bool</type>
+        <type native="bool">Boolean</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isOccluded</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isOccluded</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>) != 0;</code>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isOccluded</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isOccluded</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="setFullScreenMode" access="public" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="mode">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setFullScreenMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setFullScreenMode</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>

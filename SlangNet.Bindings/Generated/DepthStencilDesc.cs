@@ -5,11 +5,11 @@ public partial struct DepthStencilDesc
 {
     /// <include file='DepthStencilDesc.xml' path='doc/member[@name="DepthStencilDesc.depthTestEnable"]/*' />
     [NativeTypeName("bool")]
-    public byte depthTestEnable;
+    public Boolean depthTestEnable;
 
     /// <include file='DepthStencilDesc.xml' path='doc/member[@name="DepthStencilDesc.depthWriteEnable"]/*' />
     [NativeTypeName("bool")]
-    public byte depthWriteEnable;
+    public Boolean depthWriteEnable;
 
     /// <include file='DepthStencilDesc.xml' path='doc/member[@name="DepthStencilDesc.depthFunc"]/*' />
     [NativeTypeName("gfx::ComparisonFunc")]
@@ -17,7 +17,7 @@ public partial struct DepthStencilDesc
 
     /// <include file='DepthStencilDesc.xml' path='doc/member[@name="DepthStencilDesc.stencilEnable"]/*' />
     [NativeTypeName("bool")]
-    public byte stencilEnable;
+    public Boolean stencilEnable;
 
     /// <include file='DepthStencilDesc.xml' path='doc/member[@name="DepthStencilDesc.stencilReadMask"]/*' />
     [NativeTypeName("uint32_t")]

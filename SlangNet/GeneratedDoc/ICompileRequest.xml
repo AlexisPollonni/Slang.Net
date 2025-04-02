@@ -449,7 +449,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_compile" access="public" convention="StdCall">
@@ -719,7 +719,7 @@
           <type>ulong</type>
         </param>
         <param name="outUsed">
-          <type>bool*</type>
+          <type>Boolean*</type>
         </param>
       </delegate>
       <delegate name="_setTargetLineDirectiveMode" access="public" convention="StdCall">
@@ -743,7 +743,7 @@
           <type>int</type>
         </param>
         <param name="forceScalarLayout">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_overrideDiagnosticSeverity" access="public" convention="StdCall">
@@ -788,7 +788,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_setReportDownstreamTime" access="public" convention="StdCall">
@@ -797,7 +797,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_setReportPerfBenchmark" access="public" convention="StdCall">
@@ -806,7 +806,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_setSkipSPIRVValidation" access="public" convention="StdCall">
@@ -815,7 +815,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_setTargetUseMinimumSlangOptimization" access="public" convention="StdCall">
@@ -827,7 +827,7 @@
           <type>int</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_setIgnoreCapabilityCheck" access="public" convention="StdCall">
@@ -836,7 +836,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_getCompileTimeProfile" access="public" convention="StdCall" unsafe="true">
@@ -848,7 +848,7 @@
           <type>ISlangProfiler**</type>
         </param>
         <param name="shouldClear">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_setTargetGenerateWholeProgram" access="public" convention="StdCall">
@@ -860,7 +860,7 @@
           <type>int</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_setTargetForceDXLayout" access="public" convention="StdCall">
@@ -872,7 +872,7 @@
           <type>int</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <delegate name="_setTargetEmbedDownstreamIR" access="public" convention="StdCall">
@@ -884,7 +884,7 @@
           <type>int</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
       </delegate>
       <function name="queryInterface" access="public" unsafe="true">
@@ -1328,7 +1328,7 @@
       <function name="setAllowGLSLInput" access="public" unsafe="true">
         <type>void</type>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setAllowGLSLInput</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setAllowGLSLInput</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
@@ -1598,7 +1598,7 @@
           <type>ulong</type>
         </param>
         <param name="outUsed">
-          <type>bool*</type>
+          <type>Boolean*</type>
         </param>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isParameterLocationUsed</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isParameterLocationUsed</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="category">category</param>, <param name="spaceIndex">spaceIndex</param>, <param name="registerIndex">registerIndex</param>, <param name="outUsed">outUsed</param>);</code>
@@ -1622,7 +1622,7 @@
           <type>int</type>
         </param>
         <param name="forceScalarLayout">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetForceGLSLScalarBufferLayout</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetForceGLSLScalarBufferLayout</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="forceScalarLayout">forceScalarLayout</param>);</code>
@@ -1667,7 +1667,7 @@
       <function name="setEnableEffectAnnotations" access="public" unsafe="true">
         <type>void</type>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setEnableEffectAnnotations</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setEnableEffectAnnotations</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
@@ -1676,7 +1676,7 @@
       <function name="setReportDownstreamTime" access="public" unsafe="true">
         <type>void</type>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setReportDownstreamTime</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setReportDownstreamTime</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
@@ -1685,7 +1685,7 @@
       <function name="setReportPerfBenchmark" access="public" unsafe="true">
         <type>void</type>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setReportPerfBenchmark</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setReportPerfBenchmark</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
@@ -1694,7 +1694,7 @@
       <function name="setSkipSPIRVValidation" access="public" unsafe="true">
         <type>void</type>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSkipSPIRVValidation</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setSkipSPIRVValidation</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
@@ -1706,7 +1706,7 @@
           <type>int</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetUseMinimumSlangOptimization</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetUseMinimumSlangOptimization</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>
@@ -1715,7 +1715,7 @@
       <function name="setIgnoreCapabilityCheck" access="public" unsafe="true">
         <type>void</type>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setIgnoreCapabilityCheck</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setIgnoreCapabilityCheck</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="value">value</param>);</code>
@@ -1727,7 +1727,7 @@
           <type>ISlangProfiler**</type>
         </param>
         <param name="shouldClear">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCompileTimeProfile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCompileTimeProfile</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="compileTimeProfile">compileTimeProfile</param>, <param name="shouldClear">shouldClear</param>);</code>
@@ -1739,7 +1739,7 @@
           <type>int</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetGenerateWholeProgram</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetGenerateWholeProgram</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>
@@ -1751,7 +1751,7 @@
           <type>int</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetForceDXLayout</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetForceDXLayout</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>
@@ -1763,7 +1763,7 @@
           <type>int</type>
         </param>
         <param name="value">
-          <type>byte</type>
+          <type>Boolean</type>
         </param>
         <body>
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetEmbedDownstreamIR</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetEmbedDownstreamIR</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>

@@ -13,7 +13,7 @@ public unsafe partial struct D3D12DeviceExtendedDesc
 
     /// <include file='D3D12DeviceExtendedDesc.xml' path='doc/member[@name="D3D12DeviceExtendedDesc.debugBreakOnD3D12Error"]/*' />
     [NativeTypeName("bool")]
-    public byte debugBreakOnD3D12Error;
+    public Boolean debugBreakOnD3D12Error;
 
     /// <include file='D3D12DeviceExtendedDesc.xml' path='doc/member[@name="D3D12DeviceExtendedDesc.highestShaderModel"]/*' />
     [NativeTypeName("uint32_t")]

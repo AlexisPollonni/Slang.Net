@@ -29,7 +29,7 @@ public unsafe partial struct TargetDesc
 
     /// <include file='TargetDesc.xml' path='doc/member[@name="TargetDesc.forceGLSLScalarBufferLayout"]/*' />
     [NativeTypeName("bool")]
-    public byte forceGLSLScalarBufferLayout;
+    public Boolean forceGLSLScalarBufferLayout;
 
     /// <include file='TargetDesc.xml' path='doc/member[@name="TargetDesc.compilerOptionEntries"]/*' />
     [NativeTypeName("slang::CompilerOptionEntry *")]

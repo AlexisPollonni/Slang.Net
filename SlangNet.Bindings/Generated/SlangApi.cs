@@ -173,15 +173,15 @@ public static unsafe partial class SlangApi
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.SetTargetForceGLSLScalarBufferLayout"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spSetTargetForceGLSLScalarBufferLayout", ExactSpelling = true)]
-    public static extern void SetTargetForceGLSLScalarBufferLayout([NativeTypeName("SlangCompileRequest *")] ICompileRequest* request, int targetIndex, [NativeTypeName("bool")] byte forceScalarLayout);
+    public static extern void SetTargetForceGLSLScalarBufferLayout([NativeTypeName("SlangCompileRequest *")] ICompileRequest* request, int targetIndex, [NativeTypeName("bool")] Boolean forceScalarLayout);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.SetTargetUseMinimumSlangOptimization"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spSetTargetUseMinimumSlangOptimization", ExactSpelling = true)]
-    public static extern void SetTargetUseMinimumSlangOptimization([NativeTypeName("slang::ICompileRequest *")] ICompileRequest* request, int targetIndex, [NativeTypeName("bool")] byte val);
+    public static extern void SetTargetUseMinimumSlangOptimization([NativeTypeName("slang::ICompileRequest *")] ICompileRequest* request, int targetIndex, [NativeTypeName("bool")] Boolean val);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.SetIgnoreCapabilityCheck"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spSetIgnoreCapabilityCheck", ExactSpelling = true)]
-    public static extern void SetIgnoreCapabilityCheck([NativeTypeName("slang::ICompileRequest *")] ICompileRequest* request, [NativeTypeName("bool")] byte val);
+    public static extern void SetIgnoreCapabilityCheck([NativeTypeName("slang::ICompileRequest *")] ICompileRequest* request, [NativeTypeName("bool")] Boolean val);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.SetCodeGenTarget"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spSetCodeGenTarget", ExactSpelling = true)]
@@ -412,7 +412,7 @@ public static unsafe partial class SlangApi
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.GetCompileTimeProfile"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spGetCompileTimeProfile", ExactSpelling = true)]
     [return: NativeTypeName("SlangResult")]
-    public static extern int GetCompileTimeProfile([NativeTypeName("SlangCompileRequest *")] ICompileRequest* request, ISlangProfiler** compileTimeProfile, [NativeTypeName("bool")] byte shouldClear);
+    public static extern int GetCompileTimeProfile([NativeTypeName("SlangCompileRequest *")] ICompileRequest* request, ISlangProfiler** compileTimeProfile, [NativeTypeName("bool")] Boolean shouldClear);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ExtractRepro"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spExtractRepro", ExactSpelling = true)]
@@ -795,7 +795,7 @@ public static unsafe partial class SlangApi
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionVariable_HasDefaultValue"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionVariable_HasDefaultValue", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte ReflectionVariable_HasDefaultValue(SlangReflectionVariable* inVar);
+    public static extern Boolean ReflectionVariable_HasDefaultValue(SlangReflectionVariable* inVar);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionVariable_GetDefaultValueInt"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionVariable_GetDefaultValueInt", ExactSpelling = true)]
@@ -897,7 +897,7 @@ public static unsafe partial class SlangApi
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionFunction_isOverloaded"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionFunction_isOverloaded", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte ReflectionFunction_isOverloaded(SlangReflectionFunction* func);
+    public static extern Boolean ReflectionFunction_isOverloaded(SlangReflectionFunction* func);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionFunction_getOverloadCount"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionFunction_getOverloadCount", ExactSpelling = true)]
@@ -1031,7 +1031,7 @@ public static unsafe partial class SlangApi
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.IsParameterLocationUsed"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spIsParameterLocationUsed", ExactSpelling = true)]
     [return: NativeTypeName("SlangResult")]
-    public static extern int IsParameterLocationUsed([NativeTypeName("SlangCompileRequest *")] ICompileRequest* request, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] bool* outUsed);
+    public static extern int IsParameterLocationUsed([NativeTypeName("SlangCompileRequest *")] ICompileRequest* request, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] Boolean* outUsed);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionEntryPoint_getName"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionEntryPoint_getName", ExactSpelling = true)]
@@ -1188,7 +1188,7 @@ public static unsafe partial class SlangApi
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.Reflection_isSubType"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflection_isSubType", ExactSpelling = true)]
     [return: NativeTypeName("bool")]
-    public static extern byte Reflection_isSubType([NativeTypeName("SlangReflection *")] SlangProgramLayout* reflection, SlangReflectionType* subType, SlangReflectionType* superType);
+    public static extern Boolean Reflection_isSubType([NativeTypeName("SlangReflection *")] SlangProgramLayout* reflection, SlangReflectionType* subType, SlangReflectionType* superType);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.Reflection_getHashedStringCount"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflection_getHashedStringCount", ExactSpelling = true)]

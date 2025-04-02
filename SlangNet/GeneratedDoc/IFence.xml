@@ -70,7 +70,7 @@
           <type native="uint64_t">ulong</type>
         </field>
         <field name="isShared" access="public">
-          <type native="bool">byte</type>
+          <type native="bool">Boolean</type>
         </field>
       </struct>
       <function name="queryInterface" access="public" unsafe="true">

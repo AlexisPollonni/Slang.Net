@@ -19,7 +19,7 @@ public partial struct SlangGlobalSessionDesc
 
     /// <include file='SlangGlobalSessionDesc.xml' path='doc/member[@name="SlangGlobalSessionDesc.enableGLSL"]/*' />
     [NativeTypeName("bool")]
-    public byte enableGLSL;
+    public Boolean enableGLSL;
 
     /// <include file='SlangGlobalSessionDesc.xml' path='doc/member[@name="SlangGlobalSessionDesc.reserved"]/*' />
     [NativeTypeName("uint32_t[16]")]
