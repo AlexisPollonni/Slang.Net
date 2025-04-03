@@ -2,6 +2,7 @@
 using System.Buffers;
 using System.Diagnostics.CodeAnalysis;
 using SlangNet.Internal;
+using SlangNet.Pretty.SourceGenerator;
 using static SlangNet.InteropUtils;
 
 namespace SlangNet;
@@ -138,11 +139,8 @@ public sealed unsafe partial class GlobalSession : COMObject<IGlobalSession>
     }
 
 
-    public SlangResult TrySetSPIRVCoreGrammar(string jsonPath)
-    {
-        using var jsonPathStr = new Utf8String(jsonPath);
-        return new(Pointer->setSPIRVCoreGrammar(jsonPathStr));
-    }
+    [GenerateMarshallingCode<IGlobalSession>(nameof(IGlobalSession.setSPIRVCoreGrammar))]
+    public partial SlangResult TrySetSPIRVCoreGrammar(string jsonPath);
 
     public SlangResult TrySetSPIRVCoreGrammar(ReadOnlySpan<byte> jsonPath)
     {
@@ -156,16 +154,8 @@ public sealed unsafe partial class GlobalSession : COMObject<IGlobalSession>
         set;
     }*/
 
-    public SlangResult TryCreateSession(SessionDescription desc, [NotNullWhen(true)] out Session? session)
-    {
-        session = null;
-        using var nativeDesc = desc.AsNative();
-        ISession* sessionPtr;
-        var result = Pointer->createSession(&nativeDesc.Native, &sessionPtr);
-        if (sessionPtr != null)
-            session = new(sessionPtr);
-        return new(result);
-    }
+    [GenerateMarshallingCode<IGlobalSession>(nameof(IGlobalSession.createSession))]
+    public partial SlangResult TryCreateSession(SessionDescription desc, [NotNullWhen(true)] out Session? session);
     
     public SlangResult TryCreateCompileRequest([NotNullWhen(true)] out CompileRequest? request)
     {

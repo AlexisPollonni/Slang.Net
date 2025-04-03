@@ -2,7 +2,7 @@ using System;
 using Nito.Disposables;
 using SlangNet.Internal;
 
-namespace SlangNet.Gfx.Desc;
+namespace SlangNet;
 
 public readonly record struct PreprocessorMacroDesc(string Name, string Value) : 
     IMarshalsToNative<Unsafe.PreprocessorMacroDesc>, IMarshalsFromNative<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>

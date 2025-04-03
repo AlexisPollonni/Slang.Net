@@ -1,48 +1,31 @@
-﻿namespace SlangNet;
+﻿using System;
+using System.Collections.Generic;
+using SlangNet.Internal;
 
-public struct TargetDescription
+namespace SlangNet;
+
+//TODO: Implement compiler option entries
+public readonly record struct TargetDescription(CompileTarget Format = CompileTarget.TargetUnknown,
+                                                ProfileID Profile = ProfileID.ProfileUnknown,
+                                                TargetFlags Flags = TargetFlags.GenerateSPIRVDirectly,
+                                                FloatingPointMode FloatingPointMode = FloatingPointMode.Default,
+                                                LineDirectiveMode LineDirectiveMode = LineDirectiveMode.Default,
+                                                bool ForceGlslScalarBufferLayout =  false)
+    : IMarshalsToNative<TargetDesc>
 {
-    private TargetDesc native;
+    public unsafe int GetNativeAllocSize() => sizeof(TargetDesc);
 
-    public CompileTarget Format
+    public unsafe void AsNative(ref MarshallingAllocBuffer _, out TargetDesc native)
     {
-        get => native.format;
-        set => native.format = value;
-    }
-
-    public ProfileID Profile
-    {
-        get => native.profile;
-        set => native.profile = value;
-    }
-
-    public TargetFlags Flags
-    {
-        get => (TargetFlags)native.flags;
-        set => native.flags = (uint)value;
-    }
-
-    public FloatingPointMode FloatingPointMode
-    {
-        get => native.floatingPointMode;
-        set => native.floatingPointMode = value;
-    }
-
-    public LineDirectiveMode LineDirectiveMode
-    {
-        get => native.lineDirectiveMode;
-        set => native.lineDirectiveMode = value;
-    }
-
-    public bool ForceGLSLScalarBufferLayout
-    {
-        get => native.forceGLSLScalarBufferLayout != 0;
-        set => native.forceGLSLScalarBufferLayout = value ? (byte)1 : (byte)0;
-    }
-
-    internal unsafe void AsNative(TargetDesc* ptr)
-    {
-        native.structureSize = new((uint)sizeof(TargetDesc));
-        *ptr = native;
+        native = new()
+        {
+            structureSize = (nuint)sizeof(TargetDesc),
+            format = Format,
+            profile = Profile,
+            flags = (uint)Flags,
+            floatingPointMode = FloatingPointMode,
+            lineDirectiveMode = LineDirectiveMode,
+            forceGLSLScalarBufferLayout = ForceGlslScalarBufferLayout,
+        };
     }
 }

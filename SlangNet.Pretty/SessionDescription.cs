@@ -1,75 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using SlangNet.Internal;
 
 namespace SlangNet;
 
-internal unsafe struct NativeSessionDescription : IDisposable
+public sealed record SessionDescription(IReadOnlyList<TargetDescription> Targets,
+                                        SessionFlags Flags = SessionFlags.None,
+                                        MatrixLayoutMode DefaultMatrixLayoutMode = MatrixLayoutMode.RowMajor,
+                                        IReadOnlyList<string>? SearchPaths = null,
+                                        IReadOnlyList<PreprocessorMacroDesc>? PreprocessorMacros = null,
+                                        bool EnableEffectAnnotations = false,
+                                        bool AllowGlslSyntax = false) : IMarshalsToNative<SessionDesc>
 {
-    public SessionDesc Native;
-    public Utf8String[] Strings;
+    public unsafe int GetNativeAllocSize() => sizeof(SessionDesc) 
+                                              + Targets.GetNativeAllocSize<TargetDescription, TargetDesc>()
+                                              + SearchPaths.GetNativeAllocSize()
+                                              + PreprocessorMacros.GetNativeAllocSize<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>();
 
-    public void Dispose()
+    public unsafe void AsNative(ref MarshallingAllocBuffer buffer, out SessionDesc native)
     {
-        Marshal.FreeCoTaskMem(new(Native.targets));
-        Marshal.FreeCoTaskMem(new(Native.searchPaths));
-        Marshal.FreeCoTaskMem(new(Native.preprocessorMacros));
-        foreach (var str in Strings)
-            str.Dispose();
-    }
-}
-
-public sealed unsafe class SessionDescription
-{
-    public IList<TargetDescription> Targets { get; } = new List<TargetDescription>();
-    public SessionFlags Flags { get; set; }
-    public MatrixLayoutMode DefaultMatrixLayoutMode { get; set; } = MatrixLayoutMode.RowMajor;
-    public IList<string> SearchPaths { get; } = new List<string>();
-    public IDictionary<string, string> PreprocessorMacros { get; } = new Dictionary<string, string>();
-    //public ISlangFileSystem? FileSystem { get; set; }
-    public bool EnableEffectAnnotations { get; set; }
-
-    internal NativeSessionDescription AsNative()
-    {
-        var desc = new NativeSessionDescription
+        native = new()
         {
-            Native = new()
-            {
-                structureSize = new((uint)sizeof(SessionDesc)),
-                targetCount = Targets.Count,
-                flags = (uint)Flags,
-                defaultMatrixLayoutMode = DefaultMatrixLayoutMode,
-                searchPathCount = SearchPaths.Count,
-                preprocessorMacroCount = PreprocessorMacros.Count,
-                fileSystem = null,
-                enableEffectAnnotations = EnableEffectAnnotations ? (byte)1 : (byte)0
-            },
-            Strings = new Utf8String[SearchPaths.Count + 2 * PreprocessorMacros.Count]
+            structureSize = (nuint)sizeof(SessionDesc),
+            targets = Targets.MarshalToNative<TargetDescription, TargetDesc>(ref buffer),
+            targetCount = Targets.Count,
+            flags = (uint)Flags,
+            defaultMatrixLayoutMode = DefaultMatrixLayoutMode,
+            searchPaths = SearchPaths.MarshalToNative(ref buffer),
+            searchPathCount = SearchPaths.CountIfNotNull(),
+            preprocessorMacros
+                = PreprocessorMacros.MarshalToNative<PreprocessorMacroDesc, Unsafe.PreprocessorMacroDesc>(ref buffer),
+            preprocessorMacroCount = PreprocessorMacros.CountIfNotNull(),
+            fileSystem = null, //TODO,
+            enableEffectAnnotations = EnableEffectAnnotations,
+            allowGLSLSyntax = AllowGlslSyntax,
+            compilerOptionEntries = null, //TODO
+            compilerOptionEntryCount = 0
         };
-
-        var targets = (TargetDesc*)Marshal.AllocCoTaskMem(sizeof(TargetDesc) * Targets.Count);
-        var curTarget = targets;
-        foreach (var target in Targets)
-            target.AsNative(curTarget++);
-        desc.Native.targets = targets;
-
-        var stringI = 0;
-        var searchPathPtrs = (sbyte**)Marshal.AllocCoTaskMem(sizeof(void*) * SearchPaths.Count);
-        var curSearchPathPtr = searchPathPtrs;
-        foreach (var path in SearchPaths)
-            *curSearchPathPtr++ = desc.Strings[stringI++] = new(path);
-        desc.Native.searchPaths = searchPathPtrs;
-
-        var macros = (PreprocessorMacroDesc*)Marshal.AllocCoTaskMem(sizeof(PreprocessorMacroDesc) * PreprocessorMacros.Count);
-        var curMacro = macros;
-        foreach (var (name, value) in PreprocessorMacros)
-        {
-            curMacro->name = desc.Strings[stringI++] = new(name);
-            curMacro->value = desc.Strings[stringI++] = new(value);
-            curMacro++;
-        }
-        desc.Native.preprocessorMacros = macros;
-
-        return desc;
     }
 }
