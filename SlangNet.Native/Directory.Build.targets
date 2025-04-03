@@ -14,7 +14,7 @@
     <RepositoryBranch>v$(SlangVersion)</RepositoryBranch>
     <RepositoryCommit>$(SlangNativeCommit)</RepositoryCommit>
 
-    <SlangTempArchiveName>slang-$(SlangRuntime).zip</SlangTempArchiveName>
+    <SlangTempArchiveName>slang-$(SlangRuntime)-$(SlangVersion).zip</SlangTempArchiveName>
     <SlangTempArchiveDir>$(IntermediateOutputPath)</SlangTempArchiveDir>
     <SlangTempArchivePath>$(SlangTempArchiveDir)$(SlangTempArchiveName)</SlangTempArchivePath>
     <SlangTempOutputPath>$(IntermediateOutputPath)slang-$(SlangVersion)-$(SlangRuntime)</SlangTempOutputPath>
