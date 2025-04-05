@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using SlangNet.Bindings.Generated;
 
@@ -10,40 +11,73 @@ public unsafe struct SessionDescription
 
     public List<TargetDesc> Targets = [];
 
-    public SessionDescription()
-    { }
+    public SessionDescription() { }
 }
 
 
-public unsafe struct TargetDescription
+public readonly unsafe record struct TargetDescription(CompileTarget Format = CompileTarget.TargetUnknown,
+                                                       ProfileID Profile = ProfileID.ProfileUnknown,
+                                                       uint Flags = 0,
+                                                       FloatingPointMode FloatingPointMode = FloatingPointMode.Default,
+                                                       LineDirectiveMode LineDirectiveMode = LineDirectiveMode.Default,
+                                                       bool ForceGlslScalarBufferLayout = false,
+                                                       CompilerOptionEntry[]? CompilerOptions = null)
 {
-    internal uint StructureSize = (uint)sizeof(TargetDesc);
+    [CustomMarshaller(typeof(TargetDescription), MarshalMode.Default, typeof(TargetDescriptionMarshaller))]
+    internal static class TargetDescriptionMarshaller
+    {
+        public static Bindings.Generated.TargetDesc ConvertToUnmanaged(in TargetDescription managed)
+        {
+            
+        }
 
-    public CompileTarget Format = CompileTarget.TargetUnknown;
-    public ProfileID Profile = ProfileID.ProfileUnknown;
-    public uint Flags = 0;
-    public FloatingPointMode FloatingPointMode = FloatingPointMode.Default;
-    public LineDirectiveMode LineDirectiveMode = LineDirectiveMode.Default;
-    public bool ForceGLSLScalarBufferLayout = false;
-
-    [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStruct)]
-    public CompilerOptionEntry[] CompilerOptionEntries = [];
-
-    public TargetDescription()
-    { }
+        public static TargetDescription ConvertToManaged(in TargetDesc unmanaged)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 
-public unsafe struct CompilerOptionEntry
+
+
+
+public readonly unsafe record struct CompilerOptionEntry(
+    CompilerOptionName Name,
+    CompilerOptionValueKind Kind,
+    int IntValue0,
+    int IntValue1,
+    string? StringValue0,
+    string? StringValue1)
 {
-    public CompilerOptionName Name;
-    public CompilerOptionValueKind Kind;
+    
+    [CustomMarshaller(typeof(CompilerOptionEntry), MarshalMode.Default, typeof(CompilerOptionEntryMarshaller))]
+    internal static class CompilerOptionEntryMarshaller
+    {
+        public static Bindings.Generated.CompilerOptionEntry ConvertToUnmanaged(in CompilerOptionEntry managed)
+        {
+            return new()
+            {
+                name = managed.Name,
+                value = new()
+                {
+                    kind = managed.Kind,
+                    intValue0 = managed.IntValue0,
+                    intValue1 = managed.IntValue1,
+                    stringValue0 = (sbyte*)Utf8StringMarshaller.ConvertToUnmanaged(managed.StringValue0),
+                    stringValue1 = (sbyte*)Utf8StringMarshaller.ConvertToUnmanaged(managed.StringValue1),
+                }
+            };
+        }
 
-    public int IntValue0;
-    public int IntValue1;
-    public string StringValue0;
-    public string StringValue1;
+        public static CompilerOptionEntry ConvertToManaged(in Bindings.Generated.CompilerOptionEntry unmanaged)
+        {
+            throw new NotImplementedException();
+        }
 
-
-    public CompilerOptionEntry()
-    { }
+        public static void Free(in Bindings.Generated.CompilerOptionEntry unmanaged)
+        {
+            Utf8StringMarshaller.Free((byte*)unmanaged.value.stringValue0);
+            Utf8StringMarshaller.Free((byte*)unmanaged.value.stringValue1);
+        }
+    }
 }

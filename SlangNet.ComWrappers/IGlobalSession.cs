@@ -11,9 +11,7 @@ namespace SlangNet.ComWrappers;
 public partial interface IGlobalSession : IUnknown
 {
     //TODO: create session
-    void CreateSession(
-        [MarshalUsing(typeof(TestMarshaller))]
-        in SessionDescription desc, out ISession session);
+    void CreateSession(in SessionDescription desc, out ISession session);
     
     [PreserveSig]
     ProfileID FindProfile(string name);
