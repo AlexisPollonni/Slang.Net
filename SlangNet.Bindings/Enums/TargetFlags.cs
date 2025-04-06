@@ -1,5 +1,7 @@
 ﻿using System;
 
+using static SlangNet.Bindings.Generated.SlangApi;
+
 namespace SlangNet;
 
 [Flags]
