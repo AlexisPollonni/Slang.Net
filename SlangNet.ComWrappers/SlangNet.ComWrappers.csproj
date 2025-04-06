@@ -12,6 +12,10 @@
       <ProjectReference Include="..\SlangNet.Bindings\SlangNet.Bindings.csproj" />
     </ItemGroup>
 
-    <Import Project="../SlangNet.Native/HackyRuntimeCopy.targets"/>
+    <ItemGroup>
+      <Folder Include="Tools\Extensions\" />
+    </ItemGroup>
+
+    <Import Project="../SlangNet.Native/HackyRuntimeCopy.targets" />
     
 </Project>

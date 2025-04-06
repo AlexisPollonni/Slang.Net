@@ -1,83 +1,62 @@
-﻿using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
+﻿using System.Runtime.InteropServices.Marshalling;
 using SlangNet.Bindings.Generated;
 
 namespace SlangNet.ComWrappers;
 
-public unsafe struct SessionDescription
+[NativeMarshalling(typeof(ManagedToUnmanagedIn))]
+public readonly record struct SessionDescription(TargetDescription[]? Targets = null,
+                                                SessionFlags Flags = SessionFlags.None,
+                                                MatrixLayoutMode DefaultMatrixLayoutMode = MatrixLayoutMode.RowMajor,
+                                                string[]? SearchPaths = null,
+                                                PreprocessorMacroDescription[]? PreprocessorMacros = null,
+                                                IFileSystem? FileSystem = null,
+                                                bool EnableEffectAnnotations = false,
+                                                bool AllowGlslSyntax = false,
+                                                CompilerOptionEntry[]? CompilerOptions = null)
 {
-    internal uint StructureSize = (uint)sizeof(SessionDesc);
-
-    public List<TargetDesc> Targets = [];
-
-    public SessionDescription() { }
-}
-
-
-public readonly unsafe record struct TargetDescription(CompileTarget Format = CompileTarget.TargetUnknown,
-                                                       ProfileID Profile = ProfileID.ProfileUnknown,
-                                                       uint Flags = 0,
-                                                       FloatingPointMode FloatingPointMode = FloatingPointMode.Default,
-                                                       LineDirectiveMode LineDirectiveMode = LineDirectiveMode.Default,
-                                                       bool ForceGlslScalarBufferLayout = false,
-                                                       CompilerOptionEntry[]? CompilerOptions = null)
-{
-    [CustomMarshaller(typeof(TargetDescription), MarshalMode.Default, typeof(TargetDescriptionMarshaller))]
-    internal static class TargetDescriptionMarshaller
+    [CustomMarshaller(typeof(SessionDescription), MarshalMode.ManagedToUnmanagedIn, typeof(ManagedToUnmanagedIn))]
+    internal unsafe ref struct ManagedToUnmanagedIn
     {
-        public static Bindings.Generated.TargetDesc ConvertToUnmanaged(in TargetDescription managed)
-        {
-            
-        }
+        public static int BufferSize => 1024;
 
-        public static TargetDescription ConvertToManaged(in TargetDesc unmanaged)
+        private GrowingStackBuffer _buffer;
+        private SessionDesc* _unmanaged;
+
+        public void FromManaged(SessionDescription managed, Span<byte> unmanaged)
         {
-            throw new NotImplementedException();
+            _buffer = new(unmanaged);
+
+            _unmanaged = _buffer.GetStructPtr(ManagedToUnmanagedConverters.SessionDescConverter(in managed, ref _buffer));
+        }
+        
+        public readonly SessionDesc* ToUnmanaged() => _unmanaged;
+
+        public void Free()
+        {
+            //Do not forget to free the filesystem interface
+            ComInterfaceMarshaller<IFileSystem>.Free(_unmanaged->fileSystem);
+            _buffer.Free();
         }
     }
 }
 
+public readonly record struct TargetDescription(CompileTarget Format = CompileTarget.TargetUnknown,
+                                                ProfileID Profile = ProfileID.ProfileUnknown,
+                                                TargetFlags Flags = 0,
+                                                FloatingPointMode FloatingPointMode = FloatingPointMode.Default,
+                                                LineDirectiveMode LineDirectiveMode = LineDirectiveMode.Default,
+                                                bool ForceGlslScalarBufferLayout = false,
+                                                CompilerOptionEntry[]? CompilerOptions = null);
 
 
 
-public readonly unsafe record struct CompilerOptionEntry(
+
+public readonly record struct CompilerOptionEntry(
     CompilerOptionName Name,
     CompilerOptionValueKind Kind,
     int IntValue0,
     int IntValue1,
     string? StringValue0,
-    string? StringValue1)
-{
-    
-    [CustomMarshaller(typeof(CompilerOptionEntry), MarshalMode.Default, typeof(CompilerOptionEntryMarshaller))]
-    internal static class CompilerOptionEntryMarshaller
-    {
-        public static Bindings.Generated.CompilerOptionEntry ConvertToUnmanaged(in CompilerOptionEntry managed)
-        {
-            return new()
-            {
-                name = managed.Name,
-                value = new()
-                {
-                    kind = managed.Kind,
-                    intValue0 = managed.IntValue0,
-                    intValue1 = managed.IntValue1,
-                    stringValue0 = (sbyte*)Utf8StringMarshaller.ConvertToUnmanaged(managed.StringValue0),
-                    stringValue1 = (sbyte*)Utf8StringMarshaller.ConvertToUnmanaged(managed.StringValue1),
-                }
-            };
-        }
+    string? StringValue1);
 
-        public static CompilerOptionEntry ConvertToManaged(in Bindings.Generated.CompilerOptionEntry unmanaged)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void Free(in Bindings.Generated.CompilerOptionEntry unmanaged)
-        {
-            Utf8StringMarshaller.Free((byte*)unmanaged.value.stringValue0);
-            Utf8StringMarshaller.Free((byte*)unmanaged.value.stringValue1);
-        }
-    }
-}
+public readonly record struct PreprocessorMacroDescription(string Name, string Value);

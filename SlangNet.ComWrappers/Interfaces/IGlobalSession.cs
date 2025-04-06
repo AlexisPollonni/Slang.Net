@@ -10,8 +10,7 @@ namespace SlangNet.ComWrappers;
 [Guid("C140B5FD-0C78-452E-BA7C-1A1E70C7F71C")]
 public partial interface IGlobalSession : IUnknown
 {
-    //TODO: create session
-    void CreateSession(in SessionDescription desc, out ISession session);
+    void CreateSession(SessionDescription desc, out ISession session);
     
     [PreserveSig]
     ProfileID FindProfile(string name);
