@@ -1,9 +1,10 @@
 ﻿using System.Runtime.InteropServices.Marshalling;
 using SlangNet.Bindings.Generated;
+using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers;
 
-[NativeMarshalling(typeof(ManagedToUnmanagedIn))]
+[NativeMarshalling(typeof(SessionDescriptionMarshaller))]
 public readonly record struct SessionDescription(TargetDescription[]? Targets = null,
                                                 SessionFlags Flags = SessionFlags.None,
                                                 MatrixLayoutMode DefaultMatrixLayoutMode = MatrixLayoutMode.RowMajor,
@@ -12,33 +13,7 @@ public readonly record struct SessionDescription(TargetDescription[]? Targets = 
                                                 IFileSystem? FileSystem = null,
                                                 bool EnableEffectAnnotations = false,
                                                 bool AllowGlslSyntax = false,
-                                                CompilerOptionEntry[]? CompilerOptions = null)
-{
-    [CustomMarshaller(typeof(SessionDescription), MarshalMode.ManagedToUnmanagedIn, typeof(ManagedToUnmanagedIn))]
-    internal unsafe ref struct ManagedToUnmanagedIn
-    {
-        public static int BufferSize => 1024;
-
-        private GrowingStackBuffer _buffer;
-        private SessionDesc* _unmanaged;
-
-        public void FromManaged(SessionDescription managed, Span<byte> unmanaged)
-        {
-            _buffer = new(unmanaged);
-
-            _unmanaged = _buffer.GetStructPtr(ManagedToUnmanagedConverters.SessionDescConverter(in managed, ref _buffer));
-        }
-        
-        public readonly SessionDesc* ToUnmanaged() => _unmanaged;
-
-        public void Free()
-        {
-            //Do not forget to free the filesystem interface
-            ComInterfaceMarshaller<IFileSystem>.Free(_unmanaged->fileSystem);
-            _buffer.Free();
-        }
-    }
-}
+                                                CompilerOptionEntry[]? CompilerOptions = null);
 
 public readonly record struct TargetDescription(CompileTarget Format = CompileTarget.TargetUnknown,
                                                 ProfileID Profile = ProfileID.ProfileUnknown,

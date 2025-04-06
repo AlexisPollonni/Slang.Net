@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Text;
 
+using static SlangNet.Bindings.Generated.SlangApi;
+
 namespace SlangNet;
 
 [StructLayout(LayoutKind.Sequential, Pack = 4, Size = sizeof(int))]
