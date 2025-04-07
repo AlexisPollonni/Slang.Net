@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using SlangNet.Bindings.Generated;
 
@@ -81,4 +82,13 @@ public partial interface IGlobalSession : IUnknown
 
     [PreserveSig]
     SlangResult GetSessionDescDigest(SessionDescription sessionDesc, out IBlob outBlob);
+
+    [PreserveSig]
+    SlangResult CompileBuiltInModule(BuiltinModuleName module, CompileCoreModuleFlag flags);
+    
+    [PreserveSig]
+    SlangResult LoadBuiltinModule(BuiltinModuleName module, ReadOnlySpan<byte> builtinModule, ulong sizeInBytes);
+
+    [PreserveSig]
+    SlangResult SaveBuiltInModule(BuiltinModuleName module, ArchiveType archiveType, out IBlob blob);
 }

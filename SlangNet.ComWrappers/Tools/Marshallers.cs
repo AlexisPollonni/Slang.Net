@@ -1,19 +1,18 @@
-using System;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
-using SlangNet.Bindings.Generated;
 
 namespace SlangNet.ComWrappers.Tools;
 
 [CustomMarshaller(typeof(SessionDescription), MarshalMode.ManagedToUnmanagedIn, typeof(ManagedToUnmanagedIn))]
 [CustomMarshaller(typeof(SessionDescription), MarshalMode.ManagedToUnmanagedOut, typeof(SessionDescriptionMarshaller))]
-public static class SessionDescriptionMarshaller
+internal static class SessionDescriptionMarshaller
 {
     internal unsafe ref struct ManagedToUnmanagedIn
     {
         public static int BufferSize => 1024;
 
         private GrowingStackBuffer _buffer;
-        private SessionDesc* _unmanaged;
+        private Unmanaged.SessionDesc* _unmanaged;
 
         public void FromManaged(SessionDescription managed, Span<byte> unmanaged)
         {
@@ -22,7 +21,7 @@ public static class SessionDescriptionMarshaller
             _unmanaged = _buffer.GetStructPtr(ManagedToUnmanagedConverters.SessionDescConverter(in managed, ref _buffer));
         }
         
-        public readonly SessionDesc* ToUnmanaged() => _unmanaged;
+        public readonly Unmanaged.SessionDesc* ToUnmanaged() => _unmanaged;
 
         public void Free()
         {
@@ -32,8 +31,47 @@ public static class SessionDescriptionMarshaller
         }
     }
 
-    public unsafe static SessionDescription ConvertToManaged(SessionDesc* unmanaged)
+    public static unsafe SessionDescription ConvertToManaged(Unmanaged.SessionDesc* unmanaged)
     {
         throw new NotImplementedException();
+    }
+}
+
+
+[CustomMarshaller(typeof(Action<Unmanaged.PathType, string, nint>), MarshalMode.Default, typeof(FileSystemContentsCallBackMarshaller))]
+internal static unsafe class FileSystemContentsCallBackMarshaller
+{
+    public static nint ConvertToUnmanaged(Action<Unmanaged.PathType, string, nint> managed)
+    {
+        return Marshal.GetFunctionPointerForDelegate<Unmanaged.FileSystemContentsCallBack>((type, name, dataPtr) =>
+        {
+            managed(type, new(name), (nint)dataPtr);
+        });
+    }
+
+    public static Action<Unmanaged.PathType, string, nint> ConvertToManaged(nint unmanaged)
+    {
+        var managedDelegate = Marshal.GetDelegateForFunctionPointer<Unmanaged.FileSystemContentsCallBack>(unmanaged);
+
+        return (type, str, data) =>
+        {
+            var b = new GrowingStackBuffer(stackalloc byte[256]);
+            managedDelegate(type, b.GetStringPtr(str), (void*)data);
+            b.Free();
+        };
+    }
+}
+
+[CustomMarshaller(typeof(TimeSpan), MarshalMode.Default, typeof(TimeSpanMillisecondsMarshaller))]
+internal static class TimeSpanMillisecondsMarshaller
+{
+    public static uint ConvertToUnmanaged(TimeSpan managed)
+    {
+        return (uint)managed.Milliseconds;
+    }
+
+    public static TimeSpan ConvertToManaged(uint unmanaged)
+    {
+        return TimeSpan.FromMilliseconds(unmanaged);
     }
 }
