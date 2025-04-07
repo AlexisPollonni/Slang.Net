@@ -23,4 +23,7 @@ public static class BlobExtensions
         
         return new((char*)ptr, 0, (int)blob.GetBufferSize());
     }
+
+    public static unsafe ReadOnlySpan<byte> AsReadOnlySpan(this IBlob blob) =>
+        new(blob.GetBufferPointer(), (int)blob.GetBufferSize());
 }
