@@ -25,10 +25,10 @@ public partial interface IFileSystemExt : IFileSystem
     void ClearCache();
 
     [PreserveSig]
-    unsafe SlangResult EnumeratePathContents(string path, 
-                                             [MarshalUsing(typeof(FileSystemContentsCallBackMarshaller))]
-                                             Action<Unmanaged.PathType, string, nint> callback,
-                                             void* userData);
+    SlangResult EnumeratePathContents(string path, 
+                                      [MarshalUsing(typeof(FileSystemContentsCallBackMarshaller))]
+                                      Action<Unmanaged.PathType, string, nint> callback,
+                                      nint userData);
     
     [PreserveSig]
     PathKind GetOsPathKind();
