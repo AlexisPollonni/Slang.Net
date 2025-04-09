@@ -75,3 +75,40 @@ internal static class TimeSpanMillisecondsMarshaller
         return TimeSpan.FromMilliseconds(unmanaged);
     }
 }
+
+
+internal interface INativeHandleMarshallable<out TManaged>
+{
+    internal nint Handle { get; }
+    internal static abstract TManaged CreateFromHandle(nint handle);
+}
+
+[CustomMarshaller(typeof(CustomMarshallerAttribute.GenericPlaceholder), MarshalMode.Default, typeof(HandleStructMarshaller<>))]
+internal static class HandleStructMarshaller<T> where T : struct, INativeHandleMarshallable<T>
+{
+    public static nint ConvertToUnmanaged(T managed)
+    {
+        return managed.Handle;
+    }
+
+    public static T ConvertToManaged(nint unmanaged)
+    {
+        if (unmanaged == nint.Zero)
+            throw new NullReferenceException($"Native handle was null when marshalling to managed type {typeof(T)}.");
+        return T.CreateFromHandle(unmanaged);
+    }
+}
+
+[CustomMarshaller(typeof(Nullable<>), MarshalMode.Default, typeof(NullableHandleStructMarshaller<>))]
+internal static class NullableHandleStructMarshaller<T> where T : struct, INativeHandleMarshallable<T>
+{
+    public static nint ConvertToUnmanaged(T? managed)
+    {
+        return managed?.Handle ?? nint.Zero;
+    }
+    public static T? ConvertToManaged(nint unmanaged)
+    {
+        if (unmanaged == nint.Zero) return null;
+        return T.CreateFromHandle(unmanaged);
+    }
+}
