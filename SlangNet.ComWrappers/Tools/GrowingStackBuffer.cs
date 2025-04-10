@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using SlangNet.Internal;
 
 namespace SlangNet.ComWrappers;
 
@@ -10,6 +11,11 @@ internal unsafe ref struct GrowingStackBuffer(Span<byte> buffer) : IDisposable
     private int _allocatedSize = 0;
     private bool _grewFromHeap;
 
+    public GrowingStackBuffer(int capacity) : this(new Span<byte>(NativeMemory.Alloc((nuint)capacity), capacity))
+    {
+        _grewFromHeap = true;
+    }
+    
     public readonly Span<byte> FreeMemory => _bufferData[_allocatedSize..];
 
     /// <summary>
@@ -60,6 +66,28 @@ internal unsafe ref struct GrowingStackBuffer(Span<byte> buffer) : IDisposable
         {
             var span = Allocate(sizeof(TUnmanaged));
             if(!MemoryMarshal.TryWrite(span, converter(item, ref this))) throw new InvalidOperationException("Failed to write struct to buffer");
+            count++;
+        }
+
+        // If the collection is empty, return null
+        if(start == _allocatedSize)
+            return null;
+
+        return (TUnmanaged*)Unsafe.AsPointer(ref _bufferData[start]);
+    }
+    public TUnmanaged* GetCollectionPtr<TManaged, TUnmanaged>(IEnumerable<TManaged>? collection, out uint count)
+        where TManaged : IMarshalsToNative<TUnmanaged>
+        where TUnmanaged : unmanaged
+    {
+        count = 0;
+        if(collection == null) return null;
+
+        var start = _allocatedSize;
+        foreach (var item in collection)
+        {
+            var span = Allocate(sizeof(TUnmanaged));
+            var unmanaged = item.AsNative(ref this);
+            if(!MemoryMarshal.TryWrite(span, unmanaged)) throw new InvalidOperationException("Failed to write struct to buffer");
             count++;
         }
 
