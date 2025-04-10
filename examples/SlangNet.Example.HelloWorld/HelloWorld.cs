@@ -1,5 +1,7 @@
 ﻿using SlangNet.Bindings.Generated;
+using SlangNet.ComWrappers;
 using Veldrid;
+using IComponentType = SlangNet.ComWrappers.IComponentType;
 
 namespace SlangNet.Example.HelloWorld.Unsafe;
 
@@ -46,39 +48,52 @@ internal unsafe class HelloWorldUnsafe
     private static void LoadModuleAndCreatePipeline()
     {
         // First a global session is necessary
-        using var globalSession = GlobalSession.Create();
+        var globalSession = Slang.CreateGlobalSession();
 
         // Next a session to generate SPIRV code is created
-        using var session = globalSession.CreateSession(new([
-            new(CompileTarget.Spirv, globalSession.FindProfile("glsl440"u8))
-        ]));
+        globalSession.CreateSession(new([
+            new(CompileTarget.Spirv, globalSession.FindProfile("glsl440"))
+        ]), out var session);
 
         // Once the session has been obtained, we can start loading code into it.
-        Environment.CurrentDirectory = Path.GetDirectoryName(typeof(HelloWorldUnsafe).Assembly.Location);
-        using var module = session.LoadModule("hello-world"u8);
+        Environment.CurrentDirectory = Path.GetDirectoryName(typeof(HelloWorldUnsafe).Assembly.Location)!;
+        var module = session.LoadModule("hello-world", out _);
 
+        Console.WriteLine($"Slang API Version : {globalSession.GetBuildTagString()}");
+        Console.WriteLine(module?.GetFilePath());
+
+        for (var i = 0; i < module!.GetDefinedEntryPointCount(); i++)
+        {
+            module.GetDefinedEntryPoint(i, out var e).ThrowIfFailed();
+
+            var func = e.GetFunctionReflection();
+
+            Console.WriteLine(func?.Name);
+        }
+        
         // Now that the module is loaded we can look up those entry points by name.
-        using var entryPoint = module.GetEntryPointByName("computeMain"u8);
+        module.FindEntryPointByName("computeMain", out var entryPoint).ThrowIfFailed();
 
         // A single Slang module could contain many different entry points (e.g.,
         // four vertex entry points, three fragment entry points, and two compute
         // shaders), and before we try to generate output code for our target API
         // we need to identify which entry points we plan to use together.
-        var componentTypes = new ComponentType[] { module, entryPoint };
+        var componentTypes = new IComponentType[] { module, entryPoint };
 
         // Actually creating the composite component type is a single operation
         // on the Slang session, but the operation could potentially fail if
         // something about the composite was invalid (e.g., you are trying to
         // combine multiple copies of the same module), so we need to deal
         // with the possibility of diagnostic output.
-        using var composedProgram = session.CreateCompositeComponentType(componentTypes);
+        session.CreateCompositeComponentType(componentTypes, componentTypes.Length, out var composedProgram, out _)
+               .ThrowIfFailed();
 
         // Now we can call `composedProgram->getEntryPointCode()` to retrieve the
         // compiled SPIRV code that we will use to create a vulkan compute pipeline.
         // This will trigger the final Slang compilation and spirv code generation.
-        using var spirvCode = composedProgram.GetEntryPointCode(0, 0);
+        composedProgram.GetEntryPointCode(0, 0, out var spirvCode, out _);
 
-        CreatePipelineFromSpirv(spirvCode.Memory.Span);
+        CreatePipelineFromSpirv(spirvCode.AsReadOnlySpan());
     }
 
     private static void CreatePipelineFromSpirv(ReadOnlySpan<byte> spirvCode)
