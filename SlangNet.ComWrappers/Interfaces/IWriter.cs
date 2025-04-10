@@ -1,28 +1,30 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Utf8)]
+[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("EC457F0E-9ADD-4E6B-851C-D7FA716D15FD")]
 public partial interface IWriter : IUnknown
 {
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     unsafe char* BeginAppendBuffer(ulong maxNumChars);
     
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult EndAppendBuffer(ref byte buffer, ulong numChars);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult Write(in byte chars, ulong numChars);
     
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void Flush();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     [return:MarshalAs(UnmanagedType.I1)]
     bool IsConsole();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult SetMode(Unmanaged.WriterMode mode);
 }

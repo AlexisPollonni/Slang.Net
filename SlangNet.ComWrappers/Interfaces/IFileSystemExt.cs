@@ -5,31 +5,31 @@ using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Utf8)]
+[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("5FB632D2-979D-4481-9FEE-663C3F1449E1")]
 public partial interface IFileSystemExt : IFileSystem
 {
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetFileUniqueIdentity(string path, out IBlob uniqueIdentity);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult CalcCombinedPath(Unmanaged.PathType fromPathType, string fromPath, string path, out IBlob pathOut);
     
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetPathType(string path, out Unmanaged.PathType pathType);
     
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetPath(PathKind kind, string path, out IBlob pathOut);
     
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void ClearCache();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult EnumeratePathContents(string path, 
                                       [MarshalUsing(typeof(FileSystemContentsCallBackMarshaller))]
                                       Action<Unmanaged.PathType, string, nint> callback,
                                       nint userData);
     
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     PathKind GetOsPathKind();
 }

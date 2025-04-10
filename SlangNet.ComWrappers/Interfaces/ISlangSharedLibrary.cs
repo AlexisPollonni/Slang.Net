@@ -1,17 +1,19 @@
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Interfaces;
+using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Utf8)]
+[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("70DBC7C4-DC3B-4A07-AE7E-752AF6A81555")]
 public partial interface ISlangSharedLibrary : ICastable
 {
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     unsafe void* FindFuncByName(string name);
 
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     unsafe void* FindSymbolAddressByName(string name);
 }

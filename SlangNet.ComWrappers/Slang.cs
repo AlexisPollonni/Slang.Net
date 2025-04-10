@@ -1,4 +1,6 @@
 ﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers;
 
@@ -21,5 +23,14 @@ public static partial class Slang
     public static partial void Shutdown();
 
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "slang_getLastInternalErrorMessage")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? GetLastInternalErrorMessage();
+
+
+    public static IGlobalSession CreateGlobalSession()
+    {
+        CreateGlobalSession(new GlobalSessionDescription(Unmanaged.SlangApi.SLANG_API_VERSION), out var globalSession)
+            .ThrowIfFailed();
+        return globalSession;
+    }
 }

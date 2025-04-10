@@ -1,7 +1,73 @@
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using System.Text;
 
 namespace SlangNet.ComWrappers.Tools;
+
+//The built in string marshaller frees the unmanaged memory when it returns from a native function. Needs this to avoid errors.
+[CustomMarshaller(typeof(string), MarshalMode.Default, typeof(UnownedUTF8StringMarshaller))]
+internal ref struct UnownedUTF8StringMarshaller
+{
+    private string? _str;
+    private unsafe sbyte* _unmanagedValue;
+    private bool _allocated;
+
+    public static int BufferSize => Utf8StringMarshaller.ManagedToUnmanagedIn.BufferSize;
+    
+    public unsafe void Free()
+    {
+        if(_allocated)
+            NativeMemory.Free(_unmanagedValue);
+    }
+
+    public unsafe void FromManaged(string? managed, Span<byte> buffer)
+    {
+        _allocated = false;
+
+        if (managed is null)
+        {
+            _unmanagedValue = null;
+            return;
+        }
+
+        const int maxUtf8BytesPerChar = 3;
+
+        // >= for null terminator
+        // Use the cast to long to avoid the checked operation
+        if ((long)maxUtf8BytesPerChar * managed.Length >= buffer.Length)
+        {
+            // Calculate accurate byte count when the provided stack-allocated buffer is not sufficient
+            var exactByteCount = checked(Encoding.UTF8.GetByteCount(managed) + 1); // + 1 for null terminator
+            if (exactByteCount > buffer.Length)
+            {
+                buffer = new((byte*)NativeMemory.Alloc((nuint)exactByteCount), exactByteCount);
+                _allocated = true;
+            }
+        }
+
+        // Unsafe.AsPointer is safe since buffer must be pinned
+        _unmanagedValue = (sbyte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(buffer));
+
+        var byteCount = Encoding.UTF8.GetBytes(managed, buffer);
+        buffer[byteCount] = 0; // null-terminate
+    }
+
+    public unsafe sbyte* ToUnmanaged()
+    {
+        return _unmanagedValue;
+    }
+
+    public string? ToManaged()
+    {
+        return _str;
+    }
+
+    public unsafe void FromUnmanaged(sbyte* unmanaged)
+    {
+        _str = Utf8StringMarshaller.ConvertToManaged((byte*)unmanaged);
+    }
+}
 
 
 [CustomMarshaller(typeof(Action<Unmanaged.PathType, string, nint>), MarshalMode.Default, typeof(FileSystemContentsCallBackMarshaller))]

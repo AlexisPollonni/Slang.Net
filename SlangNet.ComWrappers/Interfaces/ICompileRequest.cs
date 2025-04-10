@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Interfaces;
@@ -6,212 +7,214 @@ using SlangNet.Enums;
 
 namespace SlangNet.ComWrappers;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Utf8, Options = ComInterfaceOptions.ComObjectWrapper)]
+[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("96D33993-317C-4DB5-AFD8-666EE77248E2")]
 public partial interface ICompileRequest : IUnknown
 {
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetFileSystem(IFileSystem fileSystem);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetCompileFlags(CompileFlags flags);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     CompileFlags GetCompileFlags();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetDumpIntermediates(int enable);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetDumpIntermediatePrefix(string prefix);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetLineDirectiveMode(Unmanaged.LineDirectiveMode mode);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetCodeGenTarget(Unmanaged.CompileTarget target);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     int AddCodeGenTarget(Unmanaged.CompileTarget target);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetProfile(int targetIndex, Unmanaged.ProfileID profile);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetFlags(int targetIndex, TargetFlags flags);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetFloatingPointMode(int targetIndex, Unmanaged.FloatingPointMode mode);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetMatrixLayoutMode(int targetIndex, Unmanaged.MatrixLayoutMode mode);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetMatrixLayoutMode(Unmanaged.MatrixLayoutMode mode);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetDebugInfoLevel(Unmanaged.DebugInfoLevel level);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetOptimizationLevel(Unmanaged.OptimizationLevel level);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetOutputContainerFormat(Unmanaged.ContainerFormat format);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetPassThrough(Unmanaged.PassThrough passThrough);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetDiagnosticCallback(Unmanaged.SlangDiagnosticCallback callback, string userData);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetWriter(Unmanaged.WriterChannel channel, IWriter writer);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     IWriter? GetWriter(Unmanaged.WriterChannel channel);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void AddSearchPath(string searchDir);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void AddPreprocessorDefine(string key, string value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult ProcessCommandLineArguments([MarshalUsing(CountElementName = "argCount")] Span<string> args, int argCount);
-
-    [PreserveSig]
+    
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     int AddTranslationUnit(Unmanaged.SourceLanguage language, string name);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetDefaultModuleName(string defaultModuleName);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void AddTranslationUnitPreprocessorDefine(int translationUnitIndex, string key, string value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void AddTranslationUnitSourceFile(int translationUnitIndex, string path);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void AddTranslationUnitSourceString(int translationUnitIndex, string path, string source);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult AddLibraryReference(string basePath,
                                     [MarshalUsing(CountElementName = "libDataSize")] Span<byte> libData,
                                     nuint libDataSize);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void AddTranslationUnitSourceStringSpan(int translationUnitIndex, string path, string source, nint unused = 0);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void AddTranslationUnitSourceBlob(int translationUnitIndex, string path, IBlob sourceBlob);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     int AddEntryPoint(int translationUnitIndex, string name, Unmanaged.Stage stage);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     int AddEntryPointEx(int translationUnitIndex,
                         string name,
                         Unmanaged.Stage stage,
                         int genericArgCount,
                         [MarshalUsing(CountElementName = "genericArgCount")] Span<string> genericArgs);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult SetGlobalGenericArgs(int genericArgCount,
                                      [MarshalUsing(CountElementName = "genericArgCount")] Span<string> genericArgs);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult SetTypeNameForGlobalExistentialTypeParam(int slotIndex, string typeName);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult SetTypeNameForEntryPointExistentialTypeParam(int entryPointIndex, int slotIndex, string typeName);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetAllowGlslInput([MarshalAs(UnmanagedType.I1)] bool value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult Compile();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     string? GetDiagnosticOutput();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetDiagnosticOutputBlob(out IBlob outBlob);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     int GetDependencyFileCount();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     string? GetDependencyFilePath(int index);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     int GetTranslationUnitCount();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     string? GetEntryPointSource(int entryPointIndex);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     [return: MarshalUsing(CountElementName = "outSize")]
     ReadOnlySpan<byte> GetEntryPointCode(int entryPointIndex, out nuint outSize);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetEntryPointCodeBlob(int entryPointIndex, int targetIndex, out IBlob outBlob);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetEntryPointHostCallable(int entryPointIndex, int targetIndex, out ISlangSharedLibrary outSharedLibrary);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetTargetCodeBlob(int targetIndex, out IBlob outBlob);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetTargetHostCallable(int targetIndex, out ISlangSharedLibrary outSharedLibrary);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     [return: MarshalUsing(CountElementName = "outSize")]
     ReadOnlySpan<byte> GetCompileRequestCode(out nuint outSize);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     IMutableFileSystem GetCompileRequestResultAsFileSystem();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetContainerCode(out IBlob outBlob);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult LoadRepro(IFileSystem fileSystem,
-                          [MarshalUsing(CountElementName = "size")] ReadOnlySpan<byte> data,
+                          [MarshalUsing(CountElementName = "size")] Span<byte> data,
                           nuint size);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult SaveRepro(out IBlob outBlob);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult EnableReproCapture();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetProgram(out IComponentType outProgram);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetEntryPoint(nint entryPointIndex, out IComponentType outEntryPoint);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetModule(nint translationUnitIndex, out IModule outModule);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetSession(out ISession outSession);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     [return: MarshalUsing(typeof(NullableHandleStructMarshaller<ShaderReflection>))]
     ShaderReflection? GetReflection();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetCommandLineCompilerMode();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult AddTargetCapability(nint targetIndex, Unmanaged.CapabilityID capability);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetProgramWithEntryPoints(out IComponentType outProgram);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult IsParameterLocationUsed(nint entryPointIndex,
                                         nint targetIndex,
                                         ParameterCategory category,
@@ -219,51 +222,51 @@ public partial interface ICompileRequest : IUnknown
                                         nuint registerIndex,
                                         [MarshalAs(UnmanagedType.I1)] out bool outUsed);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetLineDirectiveMode(nint targetIndex, Unmanaged.LineDirectiveMode mode);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetForceGlslScalarBufferLayout(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool forceScalarLayout);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void OverrideDiagnosticSeverity(nint messageId, Unmanaged.Severity overrideSeverity);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     DiagnosticFlags GetDiagnosticFlags();
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetDiagnosticFlags(DiagnosticFlags flags);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetDebugInfoFormat(Unmanaged.DebugInfoFormat debugFormat);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetEnableEffectAnnotations([MarshalAs(UnmanagedType.I1)] bool value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetReportDownstreamTime([MarshalAs(UnmanagedType.I1)] bool value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetReportPerfBenchmark([MarshalAs(UnmanagedType.I1)] bool value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetSkipSpirvValidation([MarshalAs(UnmanagedType.I1)] bool value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetUseMinimumSlangOptimization(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetIgnoreCapabilityCheck([MarshalAs(UnmanagedType.I1)] bool value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetCompileTimeProfile(out IProfiler compileTimeProfile, [MarshalAs(UnmanagedType.I1)] bool shouldClear);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetGenerateWholeProgram(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetForceDxLayout(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetEmbedDownstreamIr(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
 }

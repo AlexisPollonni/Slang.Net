@@ -1,7 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
-using CommunityToolkit.HighPerformance;
 using SlangNet.ComWrappers;
 using SlangNet.ComWrappers.Reflection;
 using SlangNet.ComWrappers.Tools;
@@ -29,6 +27,7 @@ internal static partial class ReflectionApi
     public static partial SlangResult ReflectionUserAttribute_GetArgumentValueFloat(UserAttribute attrib, uint index, out float rs);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionUserAttribute_GetArgumentValueString")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionUserAttribute_GetArgumentValueString(UserAttribute attrib, uint index, out nuint outSize);
     
     #endregion
@@ -89,6 +88,7 @@ internal static partial class ReflectionApi
     public static partial TypeReflection? ReflectionType_GetResourceResultType(TypeReflection type);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionType_GetName")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionType_GetName(TypeReflection type);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionType_GetFullName")]
@@ -273,6 +273,7 @@ internal static partial class ReflectionApi
     #region VariableReflection
 
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionVariable_GetName")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionVariable_GetName(VariableReflection var);
 
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionVariable_GetType")]
@@ -338,6 +339,7 @@ internal static partial class ReflectionApi
     public static partial Unmanaged.ImageFormat ReflectionVariableLayout_GetImageFormat(VariableLayoutReflection var);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionVariableLayout_GetSemanticName")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionVariableLayout_GetSemanticName(VariableLayoutReflection var);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionVariableLayout_GetSemanticIndex")]
@@ -373,6 +375,7 @@ internal static partial class ReflectionApi
     public static partial DeclReflection? ReflectionFunction_asDecl(FunctionReflection func);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionFunction_GetName")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionFunction_GetName(FunctionReflection func);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionFunction_FindModifier")]
@@ -440,6 +443,7 @@ internal static partial class ReflectionApi
     public static partial DeclReflection? ReflectionDecl_getChild(DeclReflection parentDecl, uint index);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionDecl_getName")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionDecl_getName(DeclReflection decl);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionDecl_getKind")]
@@ -478,6 +482,7 @@ internal static partial class ReflectionApi
     public static partial DeclReflection? ReflectionGeneric_asDecl(GenericReflection generic);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionGeneric_GetName")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionGeneric_GetName(GenericReflection generic);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionGeneric_GetTypeParameterCount")]
@@ -533,9 +538,11 @@ internal static partial class ReflectionApi
     #region EntryPointReflection
 
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionEntryPoint_getName")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionEntryPoint_getName(EntryPointReflection entryPoint);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionEntryPoint_getNameOverride")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionEntryPoint_getNameOverride(EntryPointReflection entryPoint);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionEntryPoint_getFunction")]
@@ -580,6 +587,7 @@ internal static partial class ReflectionApi
     #region TypeParameterReflection
 
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionTypeParameter_GetName")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? ReflectionTypeParameter_GetName(TypeParameterReflection typeParam);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionTypeParameter_GetIndex")]
@@ -674,6 +682,7 @@ internal static partial class ReflectionApi
     public static partial ulong Reflection_getHashedStringCount(ShaderReflection reflection);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflection_getHashedString")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? Reflection_getHashedString(ShaderReflection reflection, ulong index, out nuint outCount);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflection_getGlobalParamsTypeLayout")]
@@ -696,6 +705,7 @@ internal static partial class ReflectionApi
 
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spGetTranslationUnitSource")]
+    [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? GetTranslationUnitSource(ICompileRequest request, int translationUnitIndex);
 
 }

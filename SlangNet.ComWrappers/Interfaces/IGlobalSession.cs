@@ -1,94 +1,102 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
-using SlangNet.Bindings.Generated;
+using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers;
 
 
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Utf8, Options = ComInterfaceOptions.ComObjectWrapper)]
+[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("C140B5FD-0C78-452E-BA7C-1A1E70C7F71C")]
 public partial interface IGlobalSession : IUnknown
 {
-    void CreateSession(SessionDescription desc, out ISession session);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult CreateSession(SessionDescription desc, out ISession session);
     
-    [PreserveSig]
-    ProfileID FindProfile(string name);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    Unmanaged.ProfileID FindProfile(string name);
 
-    void SetDownstreamCompilerPath(PassThrough passThrough, string path);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    void SetDownstreamCompilerPath(Unmanaged.PassThrough passThrough, string path);
 
     [Obsolete("Use SetLanguagePrelude instead")]
-    void SetDownstreamCompilerPrelude(PassThrough passThrough, string preludeText);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    void SetDownstreamCompilerPrelude(Unmanaged.PassThrough passThrough, string preludeText);
     
     [Obsolete("Use GetLanguagePrelude instead")]
-    void GetDownstreamCompilerPrelude(PassThrough passThrough, out IBlob prelude);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    void GetDownstreamCompilerPrelude(Unmanaged.PassThrough passThrough, out IBlob prelude);
     
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     string GetBuildTagString();
 
-    void SetDefaultDownstreamCompiler(SourceLanguage sourceLanguage, PassThrough defaultCompiler);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    void SetDefaultDownstreamCompiler(Unmanaged.SourceLanguage sourceLanguage, Unmanaged.PassThrough defaultCompiler);
 
-    [PreserveSig]
-    PassThrough GetDefaultDownstreamCompiler(SourceLanguage sourceLanguage);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    Unmanaged.PassThrough GetDefaultDownstreamCompiler(Unmanaged.SourceLanguage sourceLanguage);
 
-    void SetLanguagePrelude(SourceLanguage sourceLanguage, string preludeText);
-    void GetLanguagePrelude(SourceLanguage sourceLanguage, out IBlob prelude);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    void SetLanguagePrelude(Unmanaged.SourceLanguage sourceLanguage, string preludeText);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    void GetLanguagePrelude(Unmanaged.SourceLanguage sourceLanguage, out IBlob prelude);
 
     [Obsolete]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void CreateCompileRequest(out ICompileRequest compileRequest);
     
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void AddBuiltins(string sourcePath, string sourceString);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetSharedLibraryLoader(ISlangSharedLibraryLoader loader);
     
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     ISlangSharedLibraryLoader GetSharedLibraryLoader();
 
 
-    [PreserveSig]
-    SlangResult CheckCompileTargetSupport(CompileTarget target);
-    [PreserveSig]
-    SlangResult CheckPassThroughSupport(PassThrough passThrough);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult CheckCompileTargetSupport(Unmanaged.CompileTarget target);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult CheckPassThroughSupport(Unmanaged.PassThrough passThrough);
 
-    [PreserveSig]
-    SlangResult CompileCoreModule(CompileCoreModuleFlag flags);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult CompileCoreModule(Unmanaged.CompileCoreModuleFlag flags);
 
-    [PreserveSig]
-    SlangResult LoadCoreModule(ReadOnlySpan<byte> coreModule, ulong coreModuleSizeInBytes);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult LoadCoreModule([MarshalUsing(CountElementName = "coreModuleSizeInBytes")]Span<byte> coreModule, ulong coreModuleSizeInBytes);
 
-    [PreserveSig]
-    SlangResult SaveCoreModule(ArchiveType archiveType, out IBlob outBlob);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult SaveCoreModule(Unmanaged.ArchiveType archiveType, out IBlob outBlob);
 
-    [PreserveSig]
-    CapabilityID FindCapability(string name);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    Unmanaged.CapabilityID FindCapability(string name);
 
-    [PreserveSig]
-    void SetDownstreamCompilerForTransition(CompileTarget source, CompileTarget target, PassThrough passThrough);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    void SetDownstreamCompilerForTransition(Unmanaged.CompileTarget source, Unmanaged.CompileTarget target, Unmanaged.PassThrough passThrough);
 
-    [PreserveSig]
-    PassThrough GetDownstreamCompilerForTransition(CompileTarget source, CompileTarget target);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    Unmanaged.PassThrough GetDownstreamCompilerForTransition(Unmanaged.CompileTarget source, Unmanaged.CompileTarget target);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void GetCompilerElapsedTime(out double totalTime, out double downstreamTime);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult SetSPIRVCoreGrammar(string path);
 
-    [PreserveSig]
-    SlangResult ParseCommandLineArguments(int argc, string[] argv, out SessionDescription sessionDesc, out IUnknown auxAllocation);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult ParseCommandLineArguments(int argc, [MarshalUsing(CountElementName = "argc")] string[] argv, out SessionDescription sessionDesc, out IUnknown auxAllocation);
 
-    [PreserveSig]
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetSessionDescDigest(SessionDescription sessionDesc, out IBlob outBlob);
 
-    [PreserveSig]
-    SlangResult CompileBuiltInModule(BuiltinModuleName module, CompileCoreModuleFlag flags);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult CompileBuiltInModule(Unmanaged.BuiltinModuleName module, Unmanaged.CompileCoreModuleFlag flags);
     
-    [PreserveSig]
-    SlangResult LoadBuiltinModule(BuiltinModuleName module, ReadOnlySpan<byte> builtinModule, ulong sizeInBytes);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult LoadBuiltinModule(Unmanaged.BuiltinModuleName module, [MarshalUsing(CountElementName = "sizeInBytes")] Span<byte> builtinModule, ulong sizeInBytes);
 
-    [PreserveSig]
-    SlangResult SaveBuiltInModule(BuiltinModuleName module, ArchiveType archiveType, out IBlob blob);
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult SaveBuiltInModule(Unmanaged.BuiltinModuleName module, Unmanaged.ArchiveType archiveType, out IBlob blob);
 }
