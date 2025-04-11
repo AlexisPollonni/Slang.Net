@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Interfaces;
 
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("8BA5FB08-5195-40E2-AC58-0D989C3A0102")]

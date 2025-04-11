@@ -1,8 +1,8 @@
 ﻿using System.Runtime.InteropServices.Marshalling;
-using SlangNet.ComWrappers;
+using SlangNet.ComWrappers.Interfaces;
 using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 [NativeMarshalling(typeof(HandleStructMarshaller<FunctionReflection>))]
 public readonly unsafe struct FunctionReflection : IEquatable<FunctionReflection>, INativeHandleMarshallable<FunctionReflection>

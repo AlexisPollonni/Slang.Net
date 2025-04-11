@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 [NativeMarshalling(typeof(HandleStructMarshaller<EntryPointReflection>))]
 public readonly unsafe struct EntryPointReflection : IEquatable<EntryPointReflection>, INativeHandleMarshallable<EntryPointReflection>

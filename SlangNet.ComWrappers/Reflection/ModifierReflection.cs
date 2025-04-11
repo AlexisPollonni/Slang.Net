@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 [NativeMarshalling(typeof(HandleStructMarshaller<ModifierReflection>))]
 public readonly unsafe struct ModifierReflection : IEquatable<ModifierReflection>, INativeHandleMarshallable<ModifierReflection>

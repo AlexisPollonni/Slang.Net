@@ -1,7 +1,8 @@
 ﻿using System.Runtime.InteropServices.Marshalling;
-using SlangNet.Internal;
+using SlangNet.ComWrappers.Reflection;
+using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Descriptions;
 
 [NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<SpecializationArgument, Unmanaged.SpecializationArg>))]
 public readonly record struct SpecializationArgument(Unmanaged.SpecializationArg.TypeKind Kind, TypeReflection Type) : IMarshalsToNative<Unmanaged.SpecializationArg>, IMarshalsFromNative<SpecializationArgument, Unmanaged.SpecializationArg> {

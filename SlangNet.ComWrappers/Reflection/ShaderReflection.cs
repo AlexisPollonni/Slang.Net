@@ -1,10 +1,10 @@
 ﻿using System.Runtime.InteropServices.Marshalling;
 using System.Text;
-using SlangNet.ComWrappers;
+using SlangNet.ComWrappers.Interfaces;
 using SlangNet.ComWrappers.Tools;
-using static SlangNet.ReflectionApi;
+using static SlangNet.ComWrappers.Reflection.ReflectionApi;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 //TODO: COMPLETE PROPERTIES
 [NativeMarshalling(typeof(HandleStructMarshaller<ShaderReflection>))]

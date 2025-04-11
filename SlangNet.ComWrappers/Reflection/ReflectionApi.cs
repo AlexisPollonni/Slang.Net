@@ -1,10 +1,9 @@
 ﻿using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
-using SlangNet.ComWrappers;
-using SlangNet.ComWrappers.Reflection;
+using SlangNet.ComWrappers.Interfaces;
 using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 internal static partial class ReflectionApi
 {

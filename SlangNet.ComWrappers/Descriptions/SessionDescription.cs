@@ -1,7 +1,8 @@
 ﻿using System.Runtime.InteropServices.Marshalling;
-using SlangNet.Internal;
+using SlangNet.ComWrappers.Interfaces;
+using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Descriptions;
 
 [NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<SessionDescription, Unmanaged.SessionDesc>))]
 public readonly record struct SessionDescription(

@@ -1,9 +1,8 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
-using SlangNet.Internal;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Tools;
 
 internal unsafe ref struct GrowingStackBuffer(Span<byte> buffer) : IDisposable
 {

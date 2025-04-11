@@ -1,10 +1,8 @@
-﻿using System;
-using System.Reflection;
-using System.Runtime.InteropServices.Marshalling;
+﻿using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Tools;
-using static SlangNet.ReflectionApi;
+using static SlangNet.ComWrappers.Reflection.ReflectionApi;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 [NativeMarshalling(typeof(HandleStructMarshaller<VariableLayoutReflection>))]
 public readonly unsafe struct VariableLayoutReflection : IEquatable<VariableLayoutReflection>, INativeHandleMarshallable<VariableLayoutReflection>

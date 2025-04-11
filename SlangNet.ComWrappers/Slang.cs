@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using SlangNet.ComWrappers.Descriptions;
+using SlangNet.ComWrappers.Interfaces;
 using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers;

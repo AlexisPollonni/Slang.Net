@@ -1,6 +1,6 @@
-﻿using SlangNet.Internal;
+﻿using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Descriptions;
 
 public readonly record struct PreprocessorMacroDescription(string Name, string Value)
     : IMarshalsToNative<Unmanaged.PreprocessorMacroDesc>, IMarshalsFromNative<PreprocessorMacroDescription, Unmanaged.PreprocessorMacroDesc>

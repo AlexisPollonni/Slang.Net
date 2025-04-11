@@ -1,6 +1,6 @@
-﻿using SlangNet.Internal;
+﻿using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Descriptions;
 
 public readonly record struct TargetDescription(
     Unmanaged.CompileTarget Format = Unmanaged.CompileTarget.TargetUnknown,

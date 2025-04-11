@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices.Marshalling;
-using SlangNet.Internal;
+using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Descriptions;
 
 [NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<CompilerOptionEntry, Unmanaged.CompilerOptionEntry>))]
 public readonly record struct CompilerOptionEntry(

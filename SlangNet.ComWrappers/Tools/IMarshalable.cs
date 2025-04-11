@@ -1,8 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.Marshalling;
-using SlangNet.ComWrappers;
 
-namespace SlangNet.Internal;
+namespace SlangNet.ComWrappers.Tools;
 
 internal interface IMarshalsToNative<out TNative> where TNative : unmanaged
 {

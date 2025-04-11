@@ -1,10 +1,11 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
-using SlangNet.ComWrappers.Interfaces;
+using SlangNet.ComWrappers.Descriptions;
+using SlangNet.ComWrappers.Reflection;
 using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Interfaces;
 
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("5BC42BE8-5C50-4929-9E5E-D15E7C24015F")]

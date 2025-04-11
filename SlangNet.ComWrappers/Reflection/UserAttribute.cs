@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
+﻿using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 [NativeMarshalling(typeof(HandleStructMarshaller<UserAttribute>))]
 public readonly unsafe struct UserAttribute : IEquatable<UserAttribute>, INativeHandleMarshallable<UserAttribute>

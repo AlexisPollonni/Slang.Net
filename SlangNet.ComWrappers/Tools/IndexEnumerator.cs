@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Tools;
 
 internal class IndexEnumerator<T>(IReadOnlyList<T> list) : IEnumerator<T>
 {

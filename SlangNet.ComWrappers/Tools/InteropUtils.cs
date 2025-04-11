@@ -1,8 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
-using SlangNet.Internal;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Tools;
 
 internal static unsafe class InteropUtils
 {

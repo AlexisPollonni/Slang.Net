@@ -4,7 +4,7 @@ using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Reflection;
 using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Interfaces;
 
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("0C720E64-8722-4D31-8990-638A98B1C279")]

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Tools;
 
 // for lists of opaque objects returned as pair of
 //   X_getCount

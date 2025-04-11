@@ -1,7 +1,6 @@
-﻿using System;
-using static SlangNet.ReflectionApi;
+﻿using static SlangNet.ComWrappers.Reflection.ReflectionApi;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 partial struct TypeLayoutReflection
 {

@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Tools;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 [NativeMarshalling(typeof(HandleStructMarshaller<TypeParameterReflection>))]
 public readonly unsafe struct TypeParameterReflection : IEquatable<TypeParameterReflection>, INativeHandleMarshallable<TypeParameterReflection>

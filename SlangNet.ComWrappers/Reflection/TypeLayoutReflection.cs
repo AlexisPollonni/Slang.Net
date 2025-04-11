@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Tools;
-using static SlangNet.ReflectionApi;
+using static SlangNet.ComWrappers.Reflection.ReflectionApi;
 
-namespace SlangNet;
+namespace SlangNet.ComWrappers.Reflection;
 
 //TODO: Check api parity with native header
 [NativeMarshalling(typeof(HandleStructMarshaller<TypeLayoutReflection>))]
