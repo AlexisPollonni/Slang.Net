@@ -12,10 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Tools\Extensions\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.4.0" />
     </ItemGroup>
     <Import Project="../SlangNet.Native/HackyRuntimeCopy.targets" />

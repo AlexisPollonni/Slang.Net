@@ -2,6 +2,7 @@
 using System.Text;
 using SlangNet.ComWrappers.Interfaces;
 using SlangNet.ComWrappers.Tools;
+using SlangNet.ComWrappers.Tools.Extensions;
 using static SlangNet.ComWrappers.Reflection.ReflectionApi;
 
 namespace SlangNet.ComWrappers.Reflection;
