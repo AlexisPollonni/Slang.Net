@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
+using SlangNet.ComWrappers.Interfaces;
 
 namespace SlangNet.ComWrappers.Tools;
 
@@ -47,5 +49,30 @@ internal static unsafe class InteropUtils
         }
 
         return res;
+    }
+    public static TManaged[]? ComPtrToManagedMarshal<TManaged, TUnmanaged>(TUnmanaged** native, int count) 
+        where TUnmanaged : unmanaged 
+        where TManaged : IUnknown
+    {
+        if (native is null || count == 0)
+            return null;
+
+        var res = new TManaged[count];
+
+        for (var i = 0; i < count; i++)
+        {
+            var managed = ComInterfaceMarshaller<TManaged>.ConvertToManaged(native[i]);
+            res[i] = managed;
+        }
+
+        return res;
+    }
+
+
+    public static TUnmanaged* InterfaceToPtr<TManagedInterface, TUnmanaged>(this TManagedInterface? comObject)
+        where TManagedInterface : IUnknown 
+        where TUnmanaged : unmanaged
+    {
+        return (TUnmanaged*)ComInterfaceMarshaller<TManagedInterface>.ConvertToUnmanaged(comObject);
     }
 }
