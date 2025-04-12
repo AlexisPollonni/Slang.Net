@@ -1,7 +1,8 @@
 ﻿using SlangNet.Bindings.Generated;
 using SlangNet.ComWrappers;
+using SlangNet.ComWrappers.Tools.Extensions;
 using Veldrid;
-using IComponentType = SlangNet.ComWrappers.IComponentType;
+using IComponentType = SlangNet.ComWrappers.Interfaces.IComponentType;
 
 namespace SlangNet.Example.HelloWorld.Unsafe;
 
