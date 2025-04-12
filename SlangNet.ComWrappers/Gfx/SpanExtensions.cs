@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using CommunityToolkit.HighPerformance;
 
-namespace SlangNet.ComWrappers;
+namespace SlangNet.ComWrappers.Gfx;
 
 public static class SpanExtensions
 {

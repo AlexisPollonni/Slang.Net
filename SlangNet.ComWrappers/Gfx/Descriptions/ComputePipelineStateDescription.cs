@@ -1,0 +1,27 @@
+using System.Runtime.InteropServices.Marshalling;
+using SlangNet.ComWrappers.Gfx.Interfaces;
+using SlangNet.ComWrappers.Tools;
+
+namespace SlangNet.ComWrappers.Gfx.Descriptions;
+
+[NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<ComputePipelineStateDescription, Unmanaged.ComputePipelineStateDesc>))]
+public readonly record struct ComputePipelineStateDescription(IShaderProgram? Program, nint D3D12RootSignatureOverride = 0)
+    : IMarshalsToNative<Unmanaged.ComputePipelineStateDesc>, 
+      IMarshalsFromNative<ComputePipelineStateDescription, Unmanaged.ComputePipelineStateDesc>,
+      IFreeAfterMarshal<Unmanaged.ComputePipelineStateDesc>
+
+{
+    unsafe Unmanaged.ComputePipelineStateDesc IMarshalsToNative<Unmanaged.ComputePipelineStateDesc>.AsNative(ref GrowingStackBuffer buffer) =>
+        new()
+        {
+            program = (Unmanaged.IShaderProgram*)ComInterfaceMarshaller<IShaderProgram>.ConvertToUnmanaged(Program),
+            d3d12RootSignatureOverride = (void*)D3D12RootSignatureOverride
+        };
+
+    public static unsafe ComputePipelineStateDescription CreateFromNative(Unmanaged.ComputePipelineStateDesc unmanaged) =>
+        new(ComInterfaceMarshaller<IShaderProgram>.ConvertToManaged(unmanaged.program),
+            (nint)unmanaged.d3d12RootSignatureOverride);
+
+    public unsafe void Free(Unmanaged.ComputePipelineStateDesc* unmanaged) =>
+        ComInterfaceMarshaller<IShaderProgram>.Free(unmanaged->program);
+}
