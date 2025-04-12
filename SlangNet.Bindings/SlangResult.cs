@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
 using System.Text;
-
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet;
@@ -135,7 +133,7 @@ public readonly record struct SlangResult(int RawValue)
 
 public static class SlangResultExtensions
 {
-    internal static SlangResult ToSlangResult(this int statusCode) => new(statusCode);
+    public static SlangResult ToSlangResult(this int statusCode) => new(statusCode);
 }
 
 public sealed class SlangException : Exception
