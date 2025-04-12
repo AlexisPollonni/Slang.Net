@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using SlangNet.ComWrappers.Interfaces;
 
 namespace SlangNet.ComWrappers.Tools;
 
@@ -105,6 +106,29 @@ internal unsafe ref struct GrowingStackBuffer(Span<byte> buffer) : IDisposable
         static nint StringConverter(in string s, ref GrowingStackBuffer buffer)
         {
             return (nint)buffer.GetStringPtr(s);
+        }
+    }
+
+    public TUnmanaged* GetCollectionPtr<TUnmanaged>(IEnumerable<TUnmanaged>? collection, out uint count) 
+        where TUnmanaged : unmanaged
+    {
+        return GetCollectionPtr(collection, UnmanagedToUnmanagedConverter, out count);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        static TUnmanaged UnmanagedToUnmanagedConverter(in TUnmanaged managed, ref GrowingStackBuffer growingStackBuffer) =>
+            managed;
+    }
+    
+    public TUnmanaged** GetComCollectionPtr<TManagedInterface, TUnmanaged>(
+        IEnumerable<TManagedInterface>? comObject, out uint count)
+        where TManagedInterface : IUnknown 
+        where TUnmanaged : unmanaged
+    {
+        return (TUnmanaged**)GetCollectionPtr(comObject, UnknownConverter, out count);
+
+        static nint UnknownConverter(in TManagedInterface com, ref GrowingStackBuffer buffer)
+        {
+            return (nint)com.InterfaceToPtr<TManagedInterface, TUnmanaged>();
         }
     }
 
