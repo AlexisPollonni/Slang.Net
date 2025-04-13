@@ -1,7 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
-using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers.Gfx.Interfaces;
 
@@ -11,7 +10,7 @@ namespace SlangNet.ComWrappers.Gfx.Interfaces;
 public partial interface IComputeCommandEncoder : IResourceCommandEncoder
 {
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult BindPipeline(IPipelineState state);
+    SlangResult BindPipeline(IPipelineState state, out IShaderObject rootObject);
     
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult BindPipelineWithRootObject(IPipelineState state, IShaderObject rootObject);
