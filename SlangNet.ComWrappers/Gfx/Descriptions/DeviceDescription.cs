@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices.Marshalling;
+using CommunityToolkit.HighPerformance;
 using SlangNet.ComWrappers.Interfaces;
 using SlangNet.ComWrappers.Tools;
 
@@ -8,7 +9,7 @@ namespace SlangNet.ComWrappers.Gfx.Descriptions;
 public readonly record struct DeviceDescription(
     Unmanaged.DeviceType DeviceType,
     Unmanaged.IDevice.InteropHandles ExistingDeviceHandles,
-    Unmanaged.AdapterLUID AdapterLUID,
+    Guid AdapterLuid,
     string[]? RequiredFeatures,
     SlangDescription Slang,
     ShaderCacheDescription ShaderCache,
@@ -22,23 +23,11 @@ public readonly record struct DeviceDescription(
     {
         var slangDesc = ((IMarshalsToNative<Unmanaged.IDevice.SlangDesc>)Slang).AsNative(ref buffer);
         var shaderCacheDesc = ((IMarshalsToNative<Unmanaged.IDevice.ShaderCacheDesc>)ShaderCache).AsNative(ref buffer);
-
-        // AdapterLUID is a struct with a fixed buffer, so we can just pass it directly
-        Unmanaged.AdapterLUID* adapterLuidPtr = null;
-        // Check if the LUID is not empty (all zeros)
-        var isNonZero = false;
-        for (var i = 0; i < 16; i++)
-        {
-            if (AdapterLUID.luid.e0 == 0) continue;
-            isNonZero = true;
-            break;
-        }
-
+        
         var desc = new Unmanaged.IDevice.DeviceDesc
         {
             deviceType = DeviceType,
             existingDeviceHandles = ExistingDeviceHandles,
-            adapterLUID = adapterLuidPtr,
             requiredFeatures = buffer.GetCollectionPtr(RequiredFeatures, out var featureCount),
             requiredFeatureCount = (int)featureCount,
             nvapiExtnSlot = NvApiExtnSlot,
@@ -48,9 +37,12 @@ public readonly record struct DeviceDescription(
             extendedDescs = null
         };
         
-        if (isNonZero)
+        // Check if the LUID is not empty (all zeros)
+        if (AdapterLuid != Guid.Empty)
         {
-            desc.adapterLUID = buffer.GetStructPtr(AdapterLUID);
+            Unmanaged.AdapterLUID adapterLuid = default;
+            AdapterLuid.TryWriteBytes(adapterLuid.AsSpan().AsBytes());
+            desc.adapterLUID = buffer.GetStructPtr(in adapterLuid);
         }
 
         if (ApiDispatcher is not null 
@@ -63,7 +55,7 @@ public readonly record struct DeviceDescription(
     public static unsafe DeviceDescription CreateFromNative(Unmanaged.IDevice.DeviceDesc unmanaged) =>
         new(unmanaged.deviceType,
             unmanaged.existingDeviceHandles,
-            *unmanaged.adapterLUID,
+            new(unmanaged.adapterLUID->AsReadOnlySpan().AsBytes()),
             InteropUtils.PtrToStringArray(unmanaged.requiredFeatures, unmanaged.requiredFeatureCount),
             SlangDescription.CreateFromNative(unmanaged.slang),
             ShaderCacheDescription.CreateFromNative(unmanaged.shaderCache),
