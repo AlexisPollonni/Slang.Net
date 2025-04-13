@@ -23,16 +23,16 @@ public readonly record struct SessionDescription(
         {
             structureSize = (nuint)sizeof(Unmanaged.SessionDesc),
             targets = buffer.GetCollectionPtr<TargetDescription, Unmanaged.TargetDesc>(Targets, out var targetCount),
-            targetCount = targetCount,
+            targetCount = (nint)targetCount,
             flags = (uint)Flags,
             defaultMatrixLayoutMode = DefaultMatrixLayoutMode,
             searchPaths = buffer.GetCollectionPtr(SearchPaths, out var searchPathCount),
-            searchPathCount = searchPathCount,
+            searchPathCount = (nint)searchPathCount,
             preprocessorMacros
                 = buffer.GetCollectionPtr<PreprocessorMacroDescription, Unmanaged.PreprocessorMacroDesc>(PreprocessorMacros,
                                                                                                          out
                                                                                                          var preprocessorMacroCount),
-            preprocessorMacroCount = preprocessorMacroCount,
+            preprocessorMacroCount = (nint)preprocessorMacroCount,
             fileSystem = (Unmanaged.ISlangFileSystem*)ComInterfaceMarshaller<IFileSystem>.ConvertToUnmanaged(FileSystem),
             enableEffectAnnotations = EnableEffectAnnotations,
             allowGLSLSyntax = AllowGlslSyntax,

@@ -14,7 +14,7 @@ public readonly struct ShaderOffset : IComparable<ShaderOffset>, IEquatable<Shad
     {
         _offset = new()
         {
-            uniformOffset = uniformOffset,
+            uniformOffset = (nint)uniformOffset,
             bindingRangeIndex = bindingRangeIndex,
             bindingArrayIndex = bindingArrayIndex
         };
@@ -82,7 +82,7 @@ public readonly struct ShaderOffset : IComparable<ShaderOffset>, IEquatable<Shad
     Unmanaged.ShaderOffset IMarshalsToNative<Unmanaged.ShaderOffset>.AsNative(ref GrowingStackBuffer buffer) =>
         new()
         {
-            uniformOffset = UniformOffset,
+            uniformOffset = (nint)UniformOffset,
             bindingRangeIndex = BindingRangeIndex,
             bindingArrayIndex = BindingArrayIndex
         };

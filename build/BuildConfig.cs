@@ -243,7 +243,14 @@ internal record BuildConfig(
                 { "gfx::IResourceView::Type", "ResourceViewType" },
                 
                 {"bool", "Boolean" },
-
+                {"SlangBool", "Boolean"},
+                
+                {"SlangInt", "nint"},
+                {"SlangUInt", "nuint"},
+                {"SlangSSizeT", "nint"},
+                {"SlangSizeT", "nuint"},
+                
+                {"uint64_t", "ulong"},
             },
             new()
             {

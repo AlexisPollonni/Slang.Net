@@ -4,6 +4,7 @@ using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Descriptions;
 using SlangNet.ComWrappers.Gfx.Descriptions;
 using SlangNet.ComWrappers.Reflection;
+using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers.Gfx.Interfaces;
 
