@@ -80,7 +80,7 @@
           <type>IComponentType**</type>
         </param>
         <param name="componentTypeCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCompositeComponentType">
           <type>IComponentType**</type>
@@ -104,7 +104,7 @@
           <type>SpecializationArg*</type>
         </param>
         <param name="specializationArgCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outDiagnostics">
           <type>ISlangBlob**</type>
@@ -122,7 +122,7 @@
           <type>TypeReflection*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
           <init>
             <code>0</code>
           </init>
@@ -221,7 +221,7 @@
           <type>ITypeConformance**</type>
         </param>
         <param name="conformanceIdOverride">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outDiagnostics">
           <type>ISlangBlob**</type>
@@ -249,7 +249,7 @@
         </param>
       </delegate>
       <delegate name="_getLoadedModuleCount" access="public" convention="StdCall">
-        <type native="SlangInt">long</type>
+        <type native="SlangInt">nint</type>
         <param name="pThis">
           <type>ISession*</type>
         </param>
@@ -260,7 +260,7 @@
           <type>ISession*</type>
         </param>
         <param name="index">
-          <type>long</type>
+          <type>nint</type>
         </param>
       </delegate>
       <delegate name="_isBinaryModuleUpToDate" access="public" convention="StdCall" unsafe="true">
@@ -368,7 +368,7 @@
           <type>IComponentType**</type>
         </param>
         <param name="componentTypeCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCompositeComponentType">
           <type>IComponentType**</type>
@@ -392,7 +392,7 @@
           <type>SpecializationArg*</type>
         </param>
         <param name="specializationArgCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outDiagnostics">
           <type>ISlangBlob**</type>
@@ -410,7 +410,7 @@
           <type>TypeReflection*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
           <init>
             <code>0</code>
           </init>
@@ -509,7 +509,7 @@
           <type>ITypeConformance**</type>
         </param>
         <param name="conformanceIdOverride">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outDiagnostics">
           <type>ISlangBlob**</type>
@@ -540,7 +540,7 @@
         </body>
       </function>
       <function name="getLoadedModuleCount" access="public" unsafe="true">
-        <type native="SlangInt">long</type>
+        <type native="SlangInt">nint</type>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLoadedModuleCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getLoadedModuleCount</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
@@ -548,7 +548,7 @@
       <function name="getLoadedModule" access="public" unsafe="true">
         <type native="slang::IModule *">IModule*</type>
         <param name="index">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLoadedModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getLoadedModule</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>

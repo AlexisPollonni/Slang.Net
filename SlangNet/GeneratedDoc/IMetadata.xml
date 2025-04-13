@@ -47,10 +47,10 @@
           <type>ParameterCategory</type>
         </param>
         <param name="spaceIndex">
-          <type>ulong</type>
+          <type>nuint</type>
         </param>
         <param name="registerIndex">
-          <type>ulong</type>
+          <type>nuint</type>
         </param>
         <param name="outUsed">
           <type>Boolean*</type>
@@ -95,10 +95,10 @@
           <type>ParameterCategory</type>
         </param>
         <param name="spaceIndex">
-          <type>ulong</type>
+          <type>nuint</type>
         </param>
         <param name="registerIndex">
-          <type>ulong</type>
+          <type>nuint</type>
         </param>
         <param name="outUsed">
           <type>Boolean*</type>

@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using NUnit.Framework;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -24,6 +24,13 @@ public static unsafe partial class ShaderOffsetTests
     [Test]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(ShaderOffset), Is.EqualTo(16));
+        if (Environment.Is64BitProcess)
+        {
+            Assert.That(sizeof(ShaderOffset), Is.EqualTo(16));
+        }
+        else
+        {
+            Assert.That(sizeof(ShaderOffset), Is.EqualTo(12));
+        }
     }
 }

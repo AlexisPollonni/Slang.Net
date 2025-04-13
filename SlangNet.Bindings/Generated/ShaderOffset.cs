@@ -5,7 +5,7 @@ public partial struct ShaderOffset
 {
     /// <include file='ShaderOffset.xml' path='doc/member[@name="ShaderOffset.uniformOffset"]/*' />
     [NativeTypeName("SlangInt")]
-    public long uniformOffset;
+    public nint uniformOffset;
 
     /// <include file='ShaderOffset.xml' path='doc/member[@name="ShaderOffset.bindingRangeIndex"]/*' />
     [NativeTypeName("gfx::GfxIndex")]

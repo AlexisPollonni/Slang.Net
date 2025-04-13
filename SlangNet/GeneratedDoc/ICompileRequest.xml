@@ -638,7 +638,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outEntryPoint">
           <type>IComponentType**</type>
@@ -650,7 +650,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="translationUnitIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outModule">
           <type>IModule**</type>
@@ -683,7 +683,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="capability">
           <type>CapabilityID</type>
@@ -704,19 +704,19 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="category">
           <type>ParameterCategory</type>
         </param>
         <param name="spaceIndex">
-          <type>ulong</type>
+          <type>nuint</type>
         </param>
         <param name="registerIndex">
-          <type>ulong</type>
+          <type>nuint</type>
         </param>
         <param name="outUsed">
           <type>Boolean*</type>
@@ -728,7 +728,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="mode">
           <type>LineDirectiveMode</type>
@@ -752,7 +752,7 @@
           <type>ICompileRequest*</type>
         </param>
         <param name="messageID">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="overrideSeverity">
           <type>Severity</type>
@@ -1517,7 +1517,7 @@
       <function name="getEntryPoint" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outEntryPoint">
           <type>IComponentType**</type>
@@ -1529,7 +1529,7 @@
       <function name="getModule" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="translationUnitIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outModule">
           <type>IModule**</type>
@@ -1562,7 +1562,7 @@
       <function name="addTargetCapability" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="capability">
           <type>CapabilityID</type>
@@ -1583,19 +1583,19 @@
       <function name="isParameterLocationUsed" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="category">
           <type>ParameterCategory</type>
         </param>
         <param name="spaceIndex">
-          <type>ulong</type>
+          <type>nuint</type>
         </param>
         <param name="registerIndex">
-          <type>ulong</type>
+          <type>nuint</type>
         </param>
         <param name="outUsed">
           <type>Boolean*</type>
@@ -1607,7 +1607,7 @@
       <function name="setTargetLineDirectiveMode" access="public" unsafe="true">
         <type>void</type>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="mode">
           <type>LineDirectiveMode</type>
@@ -1631,7 +1631,7 @@
       <function name="overrideDiagnosticSeverity" access="public" unsafe="true">
         <type>void</type>
         <param name="messageID">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="overrideSeverity">
           <type>Severity</type>

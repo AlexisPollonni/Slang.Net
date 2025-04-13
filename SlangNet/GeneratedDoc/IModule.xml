@@ -41,7 +41,7 @@
           <type>IModule*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
           <init>
             <code>0</code>
           </init>
@@ -54,7 +54,7 @@
         </param>
       </delegate>
       <delegate name="_getSpecializationParamCount" access="public" convention="StdCall">
-        <type native="SlangInt">long</type>
+        <type native="SlangInt">nint</type>
         <param name="pThis">
           <type>IModule*</type>
         </param>
@@ -65,10 +65,10 @@
           <type>IModule*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCode">
           <type>ISlangBlob**</type>
@@ -86,10 +86,10 @@
           <type>IModule*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outFileSystem">
           <type>ISlangMutableFileSystem**</type>
@@ -101,10 +101,10 @@
           <type>IModule*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outHash">
           <type>ISlangBlob**</type>
@@ -119,7 +119,7 @@
           <type>SpecializationArg*</type>
         </param>
         <param name="specializationArgCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outSpecializedComponentType">
           <type>IComponentType**</type>
@@ -206,7 +206,7 @@
           <type>IModule*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCode">
           <type>ISlangBlob**</type>
@@ -224,7 +224,7 @@
           <type>IModule*</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outMetadata">
           <type>IMetadata**</type>
@@ -242,10 +242,10 @@
           <type>IModule*</type>
         </param>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outMetadata">
           <type>IMetadata**</type>
@@ -404,7 +404,7 @@
       <function name="getLayout" access="public" unsafe="true">
         <type native="slang::ProgramLayout *">ShaderReflection*</type>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
           <init>
             <code>0</code>
           </init>
@@ -420,7 +420,7 @@
         </body>
       </function>
       <function name="getSpecializationParamCount" access="public" unsafe="true">
-        <type native="SlangInt">long</type>
+        <type native="SlangInt">nint</type>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSpecializationParamCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSpecializationParamCount</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
@@ -428,10 +428,10 @@
       <function name="getEntryPointCode" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCode">
           <type>ISlangBlob**</type>
@@ -449,10 +449,10 @@
       <function name="getResultAsFileSystem" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outFileSystem">
           <type>ISlangMutableFileSystem**</type>
@@ -464,10 +464,10 @@
       <function name="getEntryPointHash" access="public" unsafe="true">
         <type>void</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outHash">
           <type>ISlangBlob**</type>
@@ -482,7 +482,7 @@
           <type>SpecializationArg*</type>
         </param>
         <param name="specializationArgCount">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outSpecializedComponentType">
           <type>IComponentType**</type>
@@ -569,7 +569,7 @@
       <function name="getTargetCode" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outCode">
           <type>ISlangBlob**</type>
@@ -587,7 +587,7 @@
       <function name="getTargetMetadata" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outMetadata">
           <type>IMetadata**</type>
@@ -605,10 +605,10 @@
       <function name="getEntryPointMetadata" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="entryPointIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="targetIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outMetadata">
           <type>IMetadata**</type>

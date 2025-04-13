@@ -216,11 +216,11 @@ public unsafe partial struct ICompileRequest
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _getEntryPoint(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("slang::IComponentType **")] IComponentType** outEntryPoint);
+    public delegate int _getEntryPoint(ICompileRequest* pThis, [NativeTypeName("SlangInt")] nint entryPointIndex, [NativeTypeName("slang::IComponentType **")] IComponentType** outEntryPoint);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _getModule(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long translationUnitIndex, [NativeTypeName("slang::IModule **")] IModule** outModule);
+    public delegate int _getModule(ICompileRequest* pThis, [NativeTypeName("SlangInt")] nint translationUnitIndex, [NativeTypeName("slang::IModule **")] IModule** outModule);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -235,7 +235,7 @@ public unsafe partial struct ICompileRequest
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _addTargetCapability(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangCapabilityID")] CapabilityID capability);
+    public delegate int _addTargetCapability(ICompileRequest* pThis, [NativeTypeName("SlangInt")] nint targetIndex, [NativeTypeName("SlangCapabilityID")] CapabilityID capability);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -243,16 +243,16 @@ public unsafe partial struct ICompileRequest
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _isParameterLocationUsed(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] Boolean* outUsed);
+    public delegate int _isParameterLocationUsed(ICompileRequest* pThis, [NativeTypeName("SlangInt")] nint entryPointIndex, [NativeTypeName("SlangInt")] nint targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] nuint spaceIndex, [NativeTypeName("SlangUInt")] nuint registerIndex, [NativeTypeName("bool &")] Boolean* outUsed);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _setTargetLineDirectiveMode(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangLineDirectiveMode")] LineDirectiveMode mode);
+    public delegate void _setTargetLineDirectiveMode(ICompileRequest* pThis, [NativeTypeName("SlangInt")] nint targetIndex, [NativeTypeName("SlangLineDirectiveMode")] LineDirectiveMode mode);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setTargetForceGLSLScalarBufferLayout(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] Boolean forceScalarLayout);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _overrideDiagnosticSeverity(ICompileRequest* pThis, [NativeTypeName("SlangInt")] long messageID, [NativeTypeName("SlangSeverity")] Severity overrideSeverity);
+    public delegate void _overrideDiagnosticSeverity(ICompileRequest* pThis, [NativeTypeName("SlangInt")] nint messageID, [NativeTypeName("SlangSeverity")] Severity overrideSeverity);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangDiagnosticFlags")]
@@ -736,7 +736,7 @@ public unsafe partial struct ICompileRequest
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.getEntryPoint"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int getEntryPoint([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("slang::IComponentType **")] IComponentType** outEntryPoint)
+    public int getEntryPoint([NativeTypeName("SlangInt")] nint entryPointIndex, [NativeTypeName("slang::IComponentType **")] IComponentType** outEntryPoint)
     {
         return Marshal.GetDelegateForFunctionPointer<_getEntryPoint>(lpVtbl->getEntryPoint)((ICompileRequest*)Unsafe.AsPointer(ref this), entryPointIndex, outEntryPoint);
     }
@@ -744,7 +744,7 @@ public unsafe partial struct ICompileRequest
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.getModule"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int getModule([NativeTypeName("SlangInt")] long translationUnitIndex, [NativeTypeName("slang::IModule **")] IModule** outModule)
+    public int getModule([NativeTypeName("SlangInt")] nint translationUnitIndex, [NativeTypeName("slang::IModule **")] IModule** outModule)
     {
         return Marshal.GetDelegateForFunctionPointer<_getModule>(lpVtbl->getModule)((ICompileRequest*)Unsafe.AsPointer(ref this), translationUnitIndex, outModule);
     }
@@ -775,7 +775,7 @@ public unsafe partial struct ICompileRequest
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.addTargetCapability"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int addTargetCapability([NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangCapabilityID")] CapabilityID capability)
+    public int addTargetCapability([NativeTypeName("SlangInt")] nint targetIndex, [NativeTypeName("SlangCapabilityID")] CapabilityID capability)
     {
         return Marshal.GetDelegateForFunctionPointer<_addTargetCapability>(lpVtbl->addTargetCapability)((ICompileRequest*)Unsafe.AsPointer(ref this), targetIndex, capability);
     }
@@ -791,14 +791,14 @@ public unsafe partial struct ICompileRequest
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.isParameterLocationUsed"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int isParameterLocationUsed([NativeTypeName("SlangInt")] long entryPointIndex, [NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] ulong spaceIndex, [NativeTypeName("SlangUInt")] ulong registerIndex, [NativeTypeName("bool &")] Boolean* outUsed)
+    public int isParameterLocationUsed([NativeTypeName("SlangInt")] nint entryPointIndex, [NativeTypeName("SlangInt")] nint targetIndex, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] nuint spaceIndex, [NativeTypeName("SlangUInt")] nuint registerIndex, [NativeTypeName("bool &")] Boolean* outUsed)
     {
         return Marshal.GetDelegateForFunctionPointer<_isParameterLocationUsed>(lpVtbl->isParameterLocationUsed)((ICompileRequest*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, category, spaceIndex, registerIndex, outUsed);
     }
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setTargetLineDirectiveMode"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void setTargetLineDirectiveMode([NativeTypeName("SlangInt")] long targetIndex, [NativeTypeName("SlangLineDirectiveMode")] LineDirectiveMode mode)
+    public void setTargetLineDirectiveMode([NativeTypeName("SlangInt")] nint targetIndex, [NativeTypeName("SlangLineDirectiveMode")] LineDirectiveMode mode)
     {
         Marshal.GetDelegateForFunctionPointer<_setTargetLineDirectiveMode>(lpVtbl->setTargetLineDirectiveMode)((ICompileRequest*)Unsafe.AsPointer(ref this), targetIndex, mode);
     }
@@ -812,7 +812,7 @@ public unsafe partial struct ICompileRequest
 
     /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.overrideDiagnosticSeverity"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void overrideDiagnosticSeverity([NativeTypeName("SlangInt")] long messageID, [NativeTypeName("SlangSeverity")] Severity overrideSeverity)
+    public void overrideDiagnosticSeverity([NativeTypeName("SlangInt")] nint messageID, [NativeTypeName("SlangSeverity")] Severity overrideSeverity)
     {
         Marshal.GetDelegateForFunctionPointer<_overrideDiagnosticSeverity>(lpVtbl->overrideDiagnosticSeverity)((ICompileRequest*)Unsafe.AsPointer(ref this), messageID, overrideSeverity);
     }

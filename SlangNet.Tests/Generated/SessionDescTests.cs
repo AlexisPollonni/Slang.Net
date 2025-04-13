@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using NUnit.Framework;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -31,7 +30,7 @@ public static unsafe partial class SessionDescTests
         }
         else
         {
-            Assert.That(sizeof(SessionDesc), Is.EqualTo(72));
+            Assert.That(sizeof(SessionDesc), Is.EqualTo(52));
         }
     }
 }

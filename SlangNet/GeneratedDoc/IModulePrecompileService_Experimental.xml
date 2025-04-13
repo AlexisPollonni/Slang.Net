@@ -60,7 +60,7 @@
         </param>
       </delegate>
       <delegate name="_getModuleDependencyCount" access="public" convention="StdCall">
-        <type native="SlangInt">long</type>
+        <type native="SlangInt">nint</type>
         <param name="pThis">
           <type>IModulePrecompileService_Experimental*</type>
         </param>
@@ -71,7 +71,7 @@
           <type>IModulePrecompileService_Experimental*</type>
         </param>
         <param name="dependencyIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outModule">
           <type>IModule**</type>
@@ -138,7 +138,7 @@
         </body>
       </function>
       <function name="getModuleDependencyCount" access="public" unsafe="true">
-        <type native="SlangInt">long</type>
+        <type native="SlangInt">nint</type>
         <body>
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModuleDependencyCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getModuleDependencyCount</vtbl>)(<param special="thisPtr">(IModulePrecompileService_Experimental*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
@@ -146,7 +146,7 @@
       <function name="getModuleDependency" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="dependencyIndex">
-          <type>long</type>
+          <type>nint</type>
         </param>
         <param name="outModule">
           <type>IModule**</type>
