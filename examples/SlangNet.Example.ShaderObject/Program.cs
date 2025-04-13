@@ -1,144 +1,156 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using CommunityToolkit.HighPerformance;
 using Microsoft.Extensions.Logging;
 using SlangNet;
-using SlangNet.Bindings.Generated;
-using SlangNet.Gfx;
-using SlangNet.Gfx.Desc;
+using SlangNet.ComWrappers.Gfx;
+using SlangNet.ComWrappers.Gfx.Descriptions;
+using SlangNet.ComWrappers.Gfx.Interfaces;
+using SlangNet.ComWrappers.Interfaces;
+using SlangNet.ComWrappers.Reflection;
+using SlangNet.ComWrappers.Tools.Extensions;
 using SlangNet.Gfx.Tools;
-using ShaderReflection = SlangNet.ShaderReflection;
+using Unmanaged = SlangNet.Bindings.Generated;
 
-var factory = LoggerFactory.Create(builder => builder.AddConsole());
-var logger = factory.CreateLogger("Gfx");
+unsafe
+{
+    var factory = LoggerFactory.Create(builder => builder.AddConsole());
+    var logger = factory.CreateLogger("Gfx");
 #if DEBUG
-Api.EnableDebugLayer();
+    Gfx.EnableDebugLayer();
 
-Api.TrySetDebugCallback((type, source, message) =>
-   {
-       var level = type switch
+    Gfx.SetDebugCallback((type, source, message) =>
        {
-           DebugMessageType.Info => LogLevel.Information,
-           DebugMessageType.Warning => LogLevel.Warning,
-           DebugMessageType.Error => LogLevel.Error,
-           _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-       };
+           var level = type switch
+           {
+               Unmanaged.DebugMessageType.Info => LogLevel.Information,
+               Unmanaged.DebugMessageType.Warning => LogLevel.Warning,
+               Unmanaged.DebugMessageType.Error => LogLevel.Error,
+               _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+           };
 
-       logger.Log(level, "{Source}: {Message}", source, message);
-   })
-   .ThrowIfFailed();
+           logger.Log(level, "{Source}: {Message}", source, message);
+       })
+       .ThrowIfFailed();
 #endif
 
-var shaderIncludePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
-var devDesc1 = new DeviceDesc
-{
-    DeviceType = DeviceType.Default,
-    Slang = new()
+    var shaderIncludePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+
+    var adapters = Gfx.GetAdapters(Unmanaged.DeviceType.Vulkan);
+    var devDesc = new DeviceDescription
     {
-        TargetFlags = TargetFlags.GenerateSPIRVDirectly,
-        OptimizationLevel = OptimizationLevel.None,
-        DefaultMatrixLayoutMode = MatrixLayoutMode.RowMajor,
-        TargetProfile = "glsl440",
-        SearchPaths = [shaderIncludePath]
-    },
-    ShaderCache = new()
+        DeviceType = Unmanaged.DeviceType.Vulkan,
+        Slang = new()
+        {
+            TargetFlags = TargetFlags.GenerateSPIRVDirectly,
+            OptimizationLevel = Unmanaged.OptimizationLevel.None,
+            DefaultMatrixLayoutMode = Unmanaged.MatrixLayoutMode.RowMajor,
+            TargetProfile = "glsl440",
+            SearchPaths = [shaderIncludePath]
+        },
+        ShaderCache = new()
+        {
+            Path = "./ShaderCache"
+        },
+        AdapterLuid = adapters[0].Luid
+    };
+
+    Gfx.CreateDevice(devDesc, out var device).ThrowIfFailed();
+
+    device.CreateTransientResourceHeap(new(ConstantBufferSize: 4096), out var heap).ThrowIfFailed();
+
+    ShaderObjectExample.LoadShaderProgram(device, out var program, out var slangReflection).ThrowIfFailed();
+
+    device.CreateComputePipelineState(new(program), out var pipelineState).ThrowIfFailed();
+
+    const int numberCount = 4;
+    float[] initialData = [0, 1, 2, 3];
+
+    var bufferDesc = new BufferResourceDescription
     {
-        Path = "./ShaderCache",
+        Base = new()
+        {
+            AllowedStates = new(Unmanaged.ResourceState.ShaderResource,
+                                Unmanaged.ResourceState.UnorderedAccess,
+                                Unmanaged.ResourceState.CopyDestination,
+                                Unmanaged.ResourceState.CopySource),
+            DefaultState = Unmanaged.ResourceState.UnorderedAccess,
+            MemoryType = Unmanaged.MemoryType.DeviceLocal,
+        },
+        Format = Unmanaged.Format.Unknown,
+        ElementSize = sizeof(float),
+        SizeInBytes = numberCount * sizeof(float)
+    };
+    
+        device.CreateBufferResource(bufferDesc, in initialData.AsBytes().DangerousGetReference(), out var numbersBuffer).ThrowIfFailed();
+
+    device.CreateBufferView(numbersBuffer,
+                                             null,
+                                             new()
+                                             {
+                                                 Type = Unmanaged.IResourceView.ResourceViewType.UnorderedAccess,
+                                                 Format = Unmanaged.Format.Unknown
+                                             }, out var bufferView).ThrowIfFailed();
+
+    device.CreateCommandQueue(new(Unmanaged.ICommandQueue.QueueType.Graphics), out var queue).ThrowIfFailed();
+
+    heap.CreateCommandBuffer(out var cmdBuffer).ThrowIfFailed();
+
+    cmdBuffer.EncodeComputeCommands(out var encoder);
+
+    encoder.BindPipeline(pipelineState, out var rootObject).ThrowIfFailed();
+
+    var addTransformerType = slangReflection.FindTypeByName("AddTransformer")!.Value;
+
+    device.CreateShaderObject(addTransformerType, Unmanaged.ShaderObjectContainerType.None, out var transformer).ThrowIfFailed();
+
+    const float c = 1.0f;
+
+    new ShaderCursor(transformer).GetPath("c").SetData(c);
+
+    rootObject.GetEntryPoint(0, out var entryPoint).ThrowIfFailed();
+    var entryPointCursor = new ShaderCursor(entryPoint);
+
+    entryPointCursor.GetPath("buffer").SetResource(bufferView);
+
+    entryPointCursor.GetPath("transformer").SetObject(transformer);
+
+    encoder.DispatchCompute(1, 1, 1);
+    encoder.EndEncoding();
+    cmdBuffer.Close();
+    queue.ExecuteCommandBuffers(1, [cmdBuffer]);
+    queue.WaitOnHost();
+
+    device.ReadBufferResource(numbersBuffer, 0, (nuint)initialData.AsBytes().Length, out var dataBlob).ThrowIfFailed();
+
+    foreach (var item in dataBlob.AsReadOnlySpan().Cast<byte, float>())
+    {
+        Console.WriteLine(item);
     }
-};
-
-var device = Device.Create(devDesc1);
-
-var heap = device.CreateTransientResourceHeap(new(ConstantBufferSize: 4096));
-
-ShaderObjectExample.LoadShaderProgram(device, out var program, out var slangReflection).ThrowIfFailed();
-
-var pipelineState = device.CreateComputePipelineState(new(program));
-
-const int numberCount = 4;
-float[] initialData = [0, 1, 2, 3];
-
-var bufferDesc = new BufferResourceDesc
-{
-    Base = new()
-    {
-        AllowedStates = new(ResourceState.ShaderResource,
-                            ResourceState.UnorderedAccess,
-                            ResourceState.CopyDestination,
-                            ResourceState.CopySource),
-        DefaultState = ResourceState.UnorderedAccess,
-        MemoryType = MemoryType.DeviceLocal,
-    },
-    Format = Format.Unknown,
-    ElementSize = sizeof(float),
-    SizeInBytes = numberCount * sizeof(float)
-};
-
-device.TryCreateBufferResource(bufferDesc, initialData.AsSpan(), out var numbersBuffer).ThrowIfFailed();
-
-var bufferView = device.CreateBufferView(numbersBuffer,
-                                         null,
-                                         new()
-                                         {
-                                             Type = IResourceView.ResourceViewType.UnorderedAccess,
-                                             Format = Format.Unknown
-                                         });
-
-var queue = device.CreateCommandQueue(new(ICommandQueue.QueueType.Graphics));
-
-var cmdBuffer = heap.CreateCommandBuffer();
-
-var encoder = cmdBuffer.EncodeComputeCommands();
-
-var rootObject = encoder.BindPipeline(pipelineState);
-
-var addTransformerType = slangReflection.FindTypeByName("AddTransformer")!.Value;
-
-var transformer = device.CreateShaderObject(addTransformerType, ShaderObjectContainerType.None);
-
-const float c = 1.0f;
-
-new ShaderCursor(transformer).GetPath("c").SetData(c);
-
-var entryPointCursor = new ShaderCursor(rootObject.GetEntryPoint(0));
-
-entryPointCursor.GetPath("buffer").SetResource(bufferView);
-
-entryPointCursor.GetPath("transformer").SetObject(transformer);
-
-encoder.DispatchCompute(1, 1, 1);
-encoder.EndEncoding();
-cmdBuffer.Close();
-queue.ExecuteCommandBuffer(cmdBuffer);
-queue.WaitOnHost();
-
-device.ReadBufferResource<float>(numbersBuffer, Range.All, out var data).ThrowIfFailed();
-
-foreach (var item in data!.Memory.Span)
-{
-    Console.WriteLine(item);
 }
 
 static class ShaderObjectExample
 {
-    internal static SlangResult LoadShaderProgram(Device device,
-                                                 out ShaderProgram program,
+    internal static SlangResult LoadShaderProgram(IDevice device,
+                                                 out IShaderProgram program,
                                                  out ShaderReflection slangReflection)
     {
-        var slangSession = device.GetSlangSession();
+        device.GetSlangSession(out var slangSession).ThrowIfFailed();
 
-        var module = slangSession.LoadModule("shader-object"u8);
+        var module = slangSession.LoadModule("shader-object", out var diag);
 
-        var computeEntryPoint = module.GetEntryPointByName("computeMain"u8);
+        module.FindEntryPointByName("computeMain", out var computeEntryPoint).ThrowIfFailed();
 
-        var componentTypes = new ComponentType[] { module, computeEntryPoint };
+        var componentTypes = new IComponentType[] { module, computeEntryPoint };
 
-        var composedProgram = slangSession.CreateCompositeComponentType(componentTypes);
+        slangSession.CreateCompositeComponentType(componentTypes, 2, out var composedProgram, out diag)
+                                          .ThrowIfFailed();
 
-        slangReflection = composedProgram.GetLayout();
+        slangReflection = composedProgram.GetLayout(0, out diag).Value!;
 
-        var programDesc = new ShaderProgramDesc(GlobalScope: composedProgram);
+        var programDesc = new ShaderProgramDescription(GlobalScope: composedProgram);
 
-        program = device.CreateProgram(programDesc);
+        device.CreateProgram(programDesc, out program, out diag).ThrowIfFailed();
 
         return SlangResult.Ok;
     }
