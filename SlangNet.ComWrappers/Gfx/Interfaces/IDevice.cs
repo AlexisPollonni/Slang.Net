@@ -51,7 +51,7 @@ public partial interface IDevice : IUnknown
                                               out ITextureResource resource);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    unsafe SlangResult CreateBufferResource(BufferResourceDescription desc, void* initData, out IBufferResource resource);
+    unsafe SlangResult CreateBufferResource(BufferResourceDescription desc, in byte initData, out IBufferResource resource);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult CreateBufferFromNativeHandle(Unmanaged.InteropHandle handle,
