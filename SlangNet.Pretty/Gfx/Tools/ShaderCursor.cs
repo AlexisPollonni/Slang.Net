@@ -1,6 +1,12 @@
 using System;
 using System.Runtime.InteropServices;
 using CommunityToolkit.HighPerformance;
+using SlangNet.ComWrappers.Descriptions;
+using SlangNet.ComWrappers.Gfx.Descriptions;
+using SlangNet.ComWrappers.Gfx.Interfaces;
+using Unmanaged = SlangNet.Bindings.Generated;
+using IShaderObject = SlangNet.ComWrappers.Gfx.Interfaces.IShaderObject;
+using TypeLayoutReflection = SlangNet.ComWrappers.Reflection.TypeLayoutReflection;
 
 namespace SlangNet.Gfx.Tools;
 
@@ -24,14 +30,14 @@ namespace SlangNet.Gfx.Tools;
 /// </summary>
 public struct ShaderCursor
 {
-    public ShaderObject? BaseObject { get; private set; }
-    public TypeLayoutReflection TypeLayout { get; private set; }
-    public ShaderObjectContainerType ContainerType { get; private set; }
+    public IShaderObject? BaseObject { get; private set; }
+    public TypeLayoutReflection? TypeLayout { get; private set; }
+    public Unmanaged.ShaderObjectContainerType ContainerType { get; private set; }
     public ShaderOffset Offset { get; private set; }
 
     public readonly bool IsValid => BaseObject is not null;
 
-    public ShaderCursor(ShaderObject obj)
+    public ShaderCursor(IShaderObject obj)
     {
         BaseObject = obj;
         TypeLayout = obj.GetElementTypeLayout();
@@ -39,49 +45,50 @@ public struct ShaderCursor
         Offset = new();
     }
 
-    public readonly unsafe SlangResult SetData(ReadOnlySpan<byte> data)
+    public readonly SlangResult SetData(ReadOnlySpan<byte> data)
     {
-        return BaseObject?.TrySetData(Offset, data) ?? SlangResult.InvalidArg;
+        //TODO: This is really ugly, see if cannot find another way, either by changing the api or marshalling
+        ref var spanRef = ref data.DangerousGetReference();
+        return BaseObject?.SetData(Offset, MemoryMarshal.CreateSpan(ref spanRef, data.Length), (nuint)data.Length) ?? SlangResult.InvalidArg;
     }
 
-    public readonly unsafe SlangResult SetData<T>(ReadOnlySpan<T> data)
-        where T : unmanaged
+    public readonly SlangResult SetData<T>(ReadOnlySpan<T> data) where T : unmanaged
     {
         return SetData(data.AsBytes());
     }
 
-    public readonly unsafe SlangResult SetData<T>(in T data) where T : unmanaged
+    public readonly SlangResult SetData<T>(in T data) where T : unmanaged
     {
         return SetData(MemoryMarshal.CreateReadOnlySpan(in data, 1));
     }
 
-    public readonly SlangResult SetObject(ShaderObject obj)
+    public readonly SlangResult SetObject(IShaderObject obj)
     {
-        return BaseObject?.TrySetObject(Offset, obj) ?? SlangResult.InvalidArg;
+        return BaseObject?.SetObject(Offset, obj) ?? SlangResult.InvalidArg;
     }
 
-    public readonly SlangResult SetSpecializationArgs(ReadOnlySpan<SpecializationArg> args)
+    public readonly SlangResult SetSpecializationArgs(ReadOnlySpan<SpecializationArgument> args)
     {
-        return BaseObject?.TrySetSpecializationArgs(Offset, args) ?? SlangResult.InvalidArg;
+        //TODO: This is really ugly, see if cannot find another way, either by changing the api or marshalling
+        ref var spanRef = ref args.DangerousGetReference();
+        return BaseObject?.SetSpecializationArgs(Offset, MemoryMarshal.CreateSpan(ref spanRef, args.Length), args.Length) ?? SlangResult.InvalidArg;
     }
 
-    public readonly SlangResult SetResource(ResourceView resourceView)
+    public readonly SlangResult SetResource(IResourceView resourceView)
     {
-        return BaseObject?.TrySetResource(Offset, resourceView) ?? SlangResult.InvalidArg;
+        return BaseObject?.SetResource(Offset, resourceView) ?? SlangResult.InvalidArg;
     }
 
-    //TODO: Implement when SamplerState is implemented
-    // public readonly SlangResult SetSampler(SamplerState sampler)
-    // {
-    //     return BaseObject?.TrySetSampler(Offset, sampler) ?? SlangResult.InvalidArg;
-    // }
+    public readonly SlangResult SetSampler(ISamplerState sampler)
+    {
+        return BaseObject?.SetSampler(Offset, sampler) ?? SlangResult.InvalidArg;
+    }
 
-    //TODO: Implement when SamplerState is implemented
-    // public readonly SlangResult SetCombinedTextureSampler(ResourceView textureView, SamplerState sampler)
-    // {
-    //     return BaseObject?.TrySetCombinedTextureSampler(Offset, textureView, sampler) ?? SlangResult.InvalidArg;
-    // }
-    
+    public readonly SlangResult SetCombinedTextureSampler(IResourceView textureView, ISamplerState sampler)
+    {
+        return BaseObject?.SetCombinedTextureSampler(Offset, textureView, sampler) ?? SlangResult.InvalidArg;
+    }
+
     /// <summary>
     /// Produce a cursor to the field with the given `name`.
     ///
@@ -98,12 +105,13 @@ public struct ShaderCursor
 
     public readonly SlangResult GetDereferenced(out ShaderCursor? outCursor)
     {
-        switch (TypeLayout.Kind)
+        switch (TypeLayout?.Kind)
         {
-            case TypeKind.ConstantBuffer:
-            case TypeKind.ParameterBlock:
+            case Unmanaged.TypeKind.ConstantBuffer:
+            case Unmanaged.TypeKind.ParameterBlock:
             {
-                var subObject = BaseObject?.GetObject(Offset);
+                IShaderObject? subObject = null;
+                BaseObject?.GetObject(Offset, out subObject);
                 outCursor = subObject is null ? null : new ShaderCursor(subObject);
 
                 return subObject is null ? SlangResult.InvalidHandle : SlangResult.Ok;
@@ -113,7 +121,7 @@ public struct ShaderCursor
                 outCursor = null;
                 return SlangResult.InvalidArg;
             }
-        }  
+        }
     }
 
     /// <summary>
@@ -129,7 +137,7 @@ public struct ShaderCursor
 
         // The alternative to handling this here would be to augment IResourceView
         // with a `getCounterResourceView()`, and set that also in `setResource`
-        var counterVarLayout = TypeLayout.ExplicitCounter;
+        var counterVarLayout = TypeLayout?.ExplicitCounter;
         if (counterVarLayout is not null)
         {
             var counterCursor = new ShaderCursor
@@ -138,14 +146,14 @@ public struct ShaderCursor
                 BaseObject = BaseObject,
 
                 // The type being pointed to is the type of the field.
-                TypeLayout = counterVarLayout.Value.Type,
+                TypeLayout = counterVarLayout.Value.TypeLayout,
 
 
                 Offset = new(
                     // The byte offset is the current offset plus the relative offset of the counter.
                     // The offset in binding ranges is computed similarly.
                     Offset.UniformOffset + (long)counterVarLayout.Value.GetOffset(),
-                    (int)(Offset.BindingRangeIndex + TypeLayout.ExplicitCounterBindingRangeOffset),
+                    (int)(Offset.BindingRangeIndex + TypeLayout?.ExplicitCounterBindingRangeOffset ?? 0),
 
                     // The index of the counter within any binding ranges will be the same
                     // as the index computed for the parent structure.
@@ -168,13 +176,12 @@ public struct ShaderCursor
                     //
                     // The result is that `g[2].counter` is stored in range #1 at array index 2.
                     //
-                    Offset.BindingArrayIndex
-                )
+                    Offset.BindingArrayIndex)
             };
 
             return counterCursor;
         }
-        
+
         return new();
     }
 
@@ -182,106 +189,105 @@ public struct ShaderCursor
     {
         // If this cursor is invalid, then can't possibly fetch a field.
         //
-        if(!IsValid)
+        if (!IsValid)
         {
             outCursor = null;
             return SlangResult.InvalidArg;
         }
 
-        switch (TypeLayout.Kind)
+        switch (TypeLayout?.Kind)
         {
-            case TypeKind.Struct:
-                var fieldIndex = TypeLayout.FindFieldIndexByName(name);
-                if(fieldIndex == -1)
-                    break;
-                
-                var fieldLayout = TypeLayout.Fields[(int)fieldIndex];
+            case Unmanaged.TypeKind.Struct:
+                if (TypeLayout is null) break;
+                var fieldIndex = TypeLayout.Value.FindFieldIndexByName(name);
+                if (fieldIndex == -1) break;
+
+                var fieldLayout = TypeLayout.Value.Fields[(int)fieldIndex];
 
                 var fieldCursor = new ShaderCursor
                 {
                     BaseObject = BaseObject,
-                    TypeLayout = fieldLayout.Type,
+                    TypeLayout = fieldLayout.TypeLayout,
                     Offset = new(Offset.UniformOffset + (long)fieldLayout.GetOffset(),
-                                 (int)(Offset.BindingRangeIndex + TypeLayout.GetFieldBindingRangeOffset(fieldIndex)),
+                                 (int)(Offset.BindingRangeIndex + TypeLayout.Value.GetFieldBindingRangeOffset(fieldIndex)),
                                  Offset.BindingArrayIndex)
                 };
-                
+
                 outCursor = fieldCursor;
                 return SlangResult.Ok;
-            
-            case TypeKind.ConstantBuffer:
-            case TypeKind.ParameterBlock:
+
+            case Unmanaged.TypeKind.ConstantBuffer:
+            case Unmanaged.TypeKind.ParameterBlock:
                 GetDereferenced(out var d).ThrowIfFailed();
                 return d!.Value.GetField(name, out outCursor);
         }
-        
+
         var entryPointCount = BaseObject!.GetEntryPointCount();
         for (var e = 0; e < entryPointCount; e++)
         {
-            using var entryPoint = BaseObject.GetEntryPoint(e);
-            
+            BaseObject.GetEntryPoint(e, out var entryPoint);
+
             var entryPointCursor = new ShaderCursor(entryPoint);
 
             var result = entryPointCursor.GetField(name, out outCursor);
-            if (result) 
-                return result;
+            if (result) return result;
         }
-        
+
         outCursor = null;
         return SlangResult.InvalidArg;
     }
 
     public readonly ShaderCursor GetElement(int index)
     {
-        if (ContainerType != ShaderObjectContainerType.None)
+        if (ContainerType != Unmanaged.ShaderObjectContainerType.None)
         {
             var elementCursor = this with
             {
-                TypeLayout = TypeLayout.ElementTypeLayout!.Value,
-                Offset = new(index * (int)TypeLayout.GetStride(), 0, index)
+                TypeLayout = TypeLayout?.ElementTypeLayout,
+                Offset = new(index * (int)TypeLayout?.GetStride()!, 0, index)
             };
             return elementCursor;
         }
 
-        switch (TypeLayout.Kind)
+        switch (TypeLayout?.Kind)
         {
-            case TypeKind.Array:
+            case Unmanaged.TypeKind.Array:
                 var elementCursor = new ShaderCursor
                 {
                     BaseObject = BaseObject,
-                    TypeLayout = TypeLayout.ElementTypeLayout!.Value,
-                    Offset = new(Offset.UniformOffset + index * (int)TypeLayout.GetElementStride(ParameterCategory.Uniform),
+                    TypeLayout = TypeLayout?.ElementTypeLayout,
+                    Offset = new(Offset.UniformOffset + index * (int)TypeLayout?.GetElementStride(ParameterCategory.Uniform)!,
                                  Offset.BindingRangeIndex,
-                                 Offset.BindingArrayIndex * (int)TypeLayout.Type.ElementCount)
+                                 Offset.BindingArrayIndex * (int)TypeLayout?.Type.ElementCount!)
                 };
                 return elementCursor;
-            
-            case TypeKind.Struct:
+
+            case Unmanaged.TypeKind.Struct:
             {
-                if (index >= TypeLayout.Fields.Count) return new();
-                
-                var fieldLayout = TypeLayout.Fields[index];
+                if (index >= TypeLayout?.Fields.Count) return new();
+
+                var fieldLayout = TypeLayout?.Fields[index];
 
                 var fieldCursor = new ShaderCursor
                 {
                     BaseObject = BaseObject,
-                    TypeLayout = fieldLayout.Type,
-                    Offset = new(Offset.UniformOffset + (long)fieldLayout.GetOffset(),
-                                 (int)(Offset.BindingRangeIndex + TypeLayout.GetFieldBindingRangeOffset(index)),
+                    TypeLayout = fieldLayout?.TypeLayout,
+                    Offset = new(Offset.UniformOffset + (long)fieldLayout?.GetOffset()!,
+                                 (int)(Offset.BindingRangeIndex + TypeLayout?.GetFieldBindingRangeOffset(index)!),
                                  Offset.BindingArrayIndex)
                 };
 
                 return fieldCursor;
             }
 
-            case TypeKind.Vector:
-            case TypeKind.Matrix:
+            case Unmanaged.TypeKind.Vector:
+            case Unmanaged.TypeKind.Matrix:
             {
                 var fieldCursor = new ShaderCursor
                 {
                     BaseObject = BaseObject,
-                    TypeLayout = TypeLayout.ElementTypeLayout!.Value,
-                    Offset = new(Offset.UniformOffset + index * (int)TypeLayout.GetElementStride(ParameterCategory.Uniform),
+                    TypeLayout = TypeLayout?.ElementTypeLayout,
+                    Offset = new(Offset.UniformOffset + index * (int)TypeLayout?.GetElementStride(ParameterCategory.Uniform)!,
                                  Offset.BindingRangeIndex,
                                  Offset.BindingArrayIndex)
                 };
@@ -316,17 +322,14 @@ public struct ShaderCursor
 
             if (c == '.')
             {
-                if ((state & ALLOW_DOT) == 0)
-                    return SlangResult.InvalidArg;
+                if ((state & ALLOW_DOT) == 0) return SlangResult.InvalidArg;
 
                 rest = rest[1..];
                 state = ALLOW_NAME;
-                continue;
             }
             else if (c == '[')
             {
-                if ((state & ALLOW_SUBSCRIPT) == 0)
-                    return SlangResult.InvalidArg;
+                if ((state & ALLOW_SUBSCRIPT) == 0) return SlangResult.InvalidArg;
 
                 rest = rest[1..];
                 var index = 0;
@@ -341,16 +344,15 @@ public struct ShaderCursor
                     {
                         return SlangResult.InvalidArg;
                     }
+
                     rest = rest[1..];
                 }
 
-                if (rest.Length == 0 || rest[0] != ']')
-                    return SlangResult.InvalidArg;
+                if (rest.Length == 0 || rest[0] != ']') return SlangResult.InvalidArg;
                 rest = rest[1..];
 
                 cursor = cursor.GetElement(index);
                 state = ALLOW_DOT | ALLOW_SUBSCRIPT;
-                continue;
             }
             else
             {
@@ -367,18 +369,18 @@ public struct ShaderCursor
                             continue;
                     }
                 }
+
                 breakNameLoop:
 
                 var nameEnd = rest;
-                var name = nameBegin[..(nameEnd.Length == 0 ? nameBegin.Length : nameBegin.Length - nameEnd.Length)].ToString();
-                
+                var name = nameBegin[..(nameEnd.Length == 0 ? nameBegin.Length : nameBegin.Length - nameEnd.Length)]
+                    .ToString();
+
                 var result = cursor.GetField(name, out var newCursor);
-                if (!result)
-                    return result;
-                
+                if (!result) return result;
+
                 cursor = newCursor!.Value;
                 state = ALLOW_DOT | ALLOW_SUBSCRIPT;
-                continue;
             }
         }
 
