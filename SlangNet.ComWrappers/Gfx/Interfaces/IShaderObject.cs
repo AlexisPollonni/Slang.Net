@@ -2,8 +2,8 @@
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using SlangNet.ComWrappers.Descriptions;
+using SlangNet.ComWrappers.Gfx.Descriptions;
 using SlangNet.ComWrappers.Reflection;
-using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers.Gfx.Interfaces;
 
@@ -26,24 +26,27 @@ public partial interface IShaderObject
     SlangResult GetEntryPoint(int index, out IShaderObject entryPoint);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult SetData(in Unmanaged.ShaderOffset offset, 
+    SlangResult SetData(ShaderOffset offset, 
                         [MarshalUsing(CountElementName = "size")]
                         Span<byte> data, nuint size);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetObject(in Unmanaged.ShaderOffset offset, out IShaderObject obj);
+    SlangResult GetObject(ShaderOffset offset, out IShaderObject obj);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult SetObject(in Unmanaged.ShaderOffset offset, IShaderObject obj);
+    SlangResult SetObject(ShaderOffset offset, IShaderObject obj);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult SetResource(in Unmanaged.ShaderOffset offset, IResourceView resourceView);
+    SlangResult SetResource(ShaderOffset offset, IResourceView resourceView);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult SetSampler(in Unmanaged.ShaderOffset offset, ISamplerState sampler);
+    SlangResult SetSampler(ShaderOffset offset, ISamplerState sampler);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult SetSpecializationArgs(in Unmanaged.ShaderOffset offset, 
+    SlangResult SetCombinedTextureSampler(ShaderOffset offset, IResourceView textureView, ISamplerState sampler);
+    
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult SetSpecializationArgs(ShaderOffset offset, 
                                       [MarshalUsing(CountElementName = "count")]
                                       Span<SpecializationArgument> args, int count);
 
