@@ -40,11 +40,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SlangNet.Bindings\SlangNet.Bindings.csproj" />
+    <ProjectReference Include="..\SlangNet.ComWrappers\SlangNet.ComWrappers.csproj" />
     <ProjectReference Include="..\SlangNet.Pretty.SourceGenerator\SlangNet.Pretty.SourceGenerator.csproj">
       <OutputItemType>Analyzer</OutputItemType>
       <PrivateAssets>all</PrivateAssets>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Gfx\Extensions\" />
   </ItemGroup>
 
   <Import Project="../SetMyRepository.targets" />
