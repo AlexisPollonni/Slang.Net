@@ -18,18 +18,18 @@ var logger = factory.CreateLogger("Gfx");
 Gfx.EnableDebugLayer();
 
 Gfx.SetDebugCallback((type, source, message) =>
-    {
-        var level = type switch
-        {
-            Unmanaged.DebugMessageType.Info => LogLevel.Information,
-            Unmanaged.DebugMessageType.Warning => LogLevel.Warning,
-            Unmanaged.DebugMessageType.Error => LogLevel.Error,
-            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-        };
+   {
+       var level = type switch
+       {
+           Unmanaged.DebugMessageType.Info => LogLevel.Information,
+           Unmanaged.DebugMessageType.Warning => LogLevel.Warning,
+           Unmanaged.DebugMessageType.Error => LogLevel.Error,
+           _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+       };
 
-        logger.Log(level, "{Source}: {Message}", source, message);
-    })
-    .ThrowIfFailed();
+       logger.Log(level, "{Source}: {Message}", source, message);
+   })
+   .ThrowIfFailed();
 #endif
 
 var shaderIncludePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
@@ -62,16 +62,16 @@ ShaderObjectExample.LoadShaderProgram(device, out var program, out var slangRefl
 device.CreateComputePipelineState(new(program), out var pipelineState).ThrowIfFailed();
 
 const int numberCount = 4;
-float[] initialData = [0, 1, 2, 3];
+ReadOnlySpan<float> initialData = [0, 1, 2, 3];
 
 var bufferDesc = new BufferResourceDescription
 {
     Base = new()
     {
         AllowedStates = new(Unmanaged.ResourceState.ShaderResource,
-            Unmanaged.ResourceState.UnorderedAccess,
-            Unmanaged.ResourceState.CopyDestination,
-            Unmanaged.ResourceState.CopySource),
+                            Unmanaged.ResourceState.UnorderedAccess,
+                            Unmanaged.ResourceState.CopyDestination,
+                            Unmanaged.ResourceState.CopySource),
         DefaultState = Unmanaged.ResourceState.UnorderedAccess,
         MemoryType = Unmanaged.MemoryType.DeviceLocal,
     },
@@ -80,15 +80,15 @@ var bufferDesc = new BufferResourceDescription
     SizeInBytes = numberCount * sizeof(float)
 };
     
-device.CreateBufferResource(bufferDesc, in initialData.AsSpan().AsBytes().DangerousGetReference(), out var numbersBuffer).ThrowIfFailed();
+device.CreateBufferResource(bufferDesc, in initialData.AsBytes().DangerousGetReference(), out var numbersBuffer).ThrowIfFailed();
 
 device.CreateBufferView(numbersBuffer,
-    null,
-    new()
-    {
-        Type = Unmanaged.IResourceView.ResourceViewType.UnorderedAccess,
-        Format = Unmanaged.Format.Unknown
-    }, out var bufferView).ThrowIfFailed();
+                        null,
+                        new()
+                        {
+                            Type = Unmanaged.IResourceView.ResourceViewType.UnorderedAccess,
+                            Format = Unmanaged.Format.Unknown
+                        }, out var bufferView).ThrowIfFailed();
 
 device.CreateCommandQueue(new(Unmanaged.ICommandQueue.QueueType.Graphics), out var queue).ThrowIfFailed();
 
@@ -119,7 +119,7 @@ cmdBuffer.Close();
 queue.ExecuteCommandBuffers(1, [cmdBuffer]);
 queue.WaitOnHost();
 
-device.ReadBufferResource(numbersBuffer, 0, (nuint)initialData.AsSpan().AsBytes().Length, out var dataBlob).ThrowIfFailed();
+device.ReadBufferResource(numbersBuffer, 0, (nuint)initialData.AsBytes().Length, out var dataBlob).ThrowIfFailed();
 
 foreach (var item in dataBlob.AsReadOnlySpan().Cast<byte, float>())
 {
