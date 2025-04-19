@@ -9,7 +9,7 @@ using SlangNet.ComWrappers.Tools;
 namespace SlangNet.ComWrappers.Gfx.Interfaces;
 
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
-                       StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller), Options = ComInterfaceOptions.ComObjectWrapper)]
+                       StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("715bdf26-5135-11eb-AE93-0242AC130002")]
 public partial interface IDevice : IUnknown
 {
