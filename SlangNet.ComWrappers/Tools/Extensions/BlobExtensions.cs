@@ -14,5 +14,8 @@ public static class BlobExtensions
     }
 
     public static unsafe ReadOnlySpan<byte> AsReadOnlySpan(this IBlob blob) =>
-        new(blob.GetBufferPointer(), (int)blob.GetBufferSize());
+        new(blob.GetBufferPointer(), checked((int)blob.GetBufferSize()));
+
+    public static unsafe ReadOnlySpan<T> AsReadOnlySpan<T>(this IBlob blob) where T : unmanaged =>
+        new(blob.GetBufferPointer(), checked((int)(blob.GetBufferSize() / (ulong)sizeof(T))));
 }

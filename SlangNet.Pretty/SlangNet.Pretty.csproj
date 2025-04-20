@@ -48,10 +48,6 @@
     </ProjectReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Gfx\Extensions\" />
-  </ItemGroup>
-
   <Import Project="../SetMyRepository.targets" />
 
 </Project>
