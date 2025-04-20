@@ -2,11 +2,12 @@
 using SlangNet.ComWrappers;
 using SlangNet.ComWrappers.Tools.Extensions;
 using Veldrid;
+using static SlangNet.Example.Shared.SharedLogger<SlangNet.Example.HelloWorld.HelloWorld>;
 using IComponentType = SlangNet.ComWrappers.Interfaces.IComponentType;
 
-namespace SlangNet.Example.HelloWorld.Unsafe;
+namespace SlangNet.Example.HelloWorld;
 
-internal unsafe class HelloWorldUnsafe
+class HelloWorld
 {
     private const int ElementCount = 16;
     private const int BufferSize = sizeof(float) * ElementCount;
@@ -19,7 +20,7 @@ internal unsafe class HelloWorldUnsafe
 
     private static ResourceFactory ResourceFactory => graphicsDevice.ResourceFactory;
 
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         try
         {
@@ -57,11 +58,11 @@ internal unsafe class HelloWorldUnsafe
         ]), out var session);
 
         // Once the session has been obtained, we can start loading code into it.
-        Environment.CurrentDirectory = Path.GetDirectoryName(typeof(HelloWorldUnsafe).Assembly.Location)!;
+        Environment.CurrentDirectory = Path.GetDirectoryName(typeof(HelloWorld).Assembly.Location)!;
         var module = session.LoadModule("hello-world", out _);
 
-        Console.WriteLine($"Slang API Version : {globalSession.GetBuildTagString()}");
-        Console.WriteLine(module?.GetFilePath());
+        LogInformation("Slang API Version : {Version}", globalSession.GetBuildTagString());;
+        LogInformation("Module filepath: {Path}", module?.GetFilePath());
 
         for (var i = 0; i < module!.GetDefinedEntryPointCount(); i++)
         {
@@ -69,7 +70,7 @@ internal unsafe class HelloWorldUnsafe
 
             var func = e.GetFunctionReflection();
 
-            Console.WriteLine(func?.Name);
+            LogDebug("Entry point {Index}: {EntryPointName}", i, func?.Name);
         }
         
         // Now that the module is loaded we can look up those entry points by name.
@@ -134,7 +135,7 @@ internal unsafe class HelloWorldUnsafe
             = ResourceFactory.CreateBuffer(description with { Usage = BufferUsage.Staging, StructureByteStride = 0 });
 
         var mapped = graphicsDevice.Map<float>(stagingBuffer, MapMode.Write);
-        for (int i = 0; i < ElementCount; i++) mapped[i] = i;
+        for (var i = 0; i < ElementCount; i++) mapped[i] = i;
         graphicsDevice.Unmap(stagingBuffer);
     }
 
@@ -158,7 +159,7 @@ internal unsafe class HelloWorldUnsafe
     private static void PrintComputeResults()
     {
         var mapped = graphicsDevice.Map<float>(stagingBuffer, MapMode.Write);
-        for (int i = 0; i < ElementCount; i++) Console.WriteLine(mapped[i]);
+        for (var i = 0; i < ElementCount; i++) LogInformation("[{Index}] = {Value}", i, mapped[i]);
         graphicsDevice.Unmap(stagingBuffer);
     }
 }

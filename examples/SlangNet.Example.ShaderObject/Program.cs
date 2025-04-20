@@ -1,37 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using CommunityToolkit.HighPerformance;
-using Microsoft.Extensions.Logging;
 using SlangNet;
 using SlangNet.ComWrappers.Gfx;
 using SlangNet.ComWrappers.Gfx.Descriptions;
 using SlangNet.ComWrappers.Gfx.Interfaces;
 using SlangNet.ComWrappers.Interfaces;
 using SlangNet.ComWrappers.Reflection;
-using SlangNet.ComWrappers.Tools.Extensions;
+using SlangNet.Example.Shared;
 using SlangNet.Gfx.Extensions;
 using SlangNet.Gfx.Tools;
 using Unmanaged = SlangNet.Bindings.Generated;
 
-var factory = LoggerFactory.Create(builder => builder.AddConsole());
-var logger = factory.CreateLogger("Gfx");
-#if DEBUG
-Gfx.EnableDebugLayer();
-
-Gfx.SetDebugCallback((type, source, message) =>
-    {
-        var level = type switch
-        {
-            Unmanaged.DebugMessageType.Info => LogLevel.Information,
-            Unmanaged.DebugMessageType.Warning => LogLevel.Warning,
-            Unmanaged.DebugMessageType.Error => LogLevel.Error,
-            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-        };
-
-        logger.Log(level, "{Source}: {Message}", source, message);
-    })
-    .ThrowIfFailed();
-#endif
+Debug.Layer();
+Debug.EnableLogging();
 
 var shaderIncludePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
 
@@ -58,7 +40,7 @@ Gfx.CreateDevice(devDesc, out var device).ThrowIfFailed();
 
 device.CreateTransientResourceHeap(new(ConstantBufferSize: 4096), out var heap).ThrowIfFailed();
 
-ShaderObjectExample.LoadShaderProgram(device, logger, out var program, out var slangReflection).ThrowIfFailed();
+ShaderObjectExample.LoadShaderProgram(device, out var program, out var slangReflection).ThrowIfFailed();
 
 device.CreateComputePipelineState(new(program), out var pipelineState).ThrowIfFailed();
 
@@ -117,19 +99,19 @@ device.ReadBufferResource(numbersBuffer, Range.All, out BlobMemory<float> data).
 
 foreach (var item in data.AsReadOnlySpan().Enumerate())
 {
-    logger.LogInformation("Data[{Index}] = {Value}", item.Index, item.Value);
+    SharedLogger.LogInformation("Data[{Index}] = {Value}", item.Index, item.Value);
 }
 
 static class ShaderObjectExample
 {
-    internal static SlangResult LoadShaderProgram(IDevice device, ILogger logger,
+    internal static SlangResult LoadShaderProgram(IDevice device,
                                                  out IShaderProgram program,
                                                  out ShaderReflection slangReflection)
     {
         device.GetSlangSession(out var slangSession).ThrowIfFailed();
 
         var module = slangSession.LoadModule("shader-object", out var diag);
-        logger.LogDebug("Load module diagnostics: {Diagnostics}", diag.AsString());
+        SharedLogger<IModule>.LogDiagnostics(diag);
 
         module.FindEntryPointByName("computeMain", out var computeEntryPoint).ThrowIfFailed();
 
@@ -137,15 +119,15 @@ static class ShaderObjectExample
 
         slangSession.CreateCompositeComponentType(componentTypes, 2, out var composedProgram, out diag)
                                           .ThrowIfFailed();
-        logger.LogDebug("Create composite diagnostics: {Diagnostics}", diag.AsString());
+        SharedLogger<IComponentType[]>.LogDiagnostics(diag);
 
         slangReflection = composedProgram.GetLayout(0, out diag).Value!;
-        logger.LogDebug("Get composite layout diagnostics: {Diagnostics}", diag.AsString());
+        SharedLogger<ShaderReflection>.LogDiagnostics(diag);
 
         var programDesc = new ShaderProgramDescription(GlobalScope: composedProgram);
 
         device.CreateProgram(programDesc, out program, out diag).ThrowIfFailed();
-        logger.LogDebug("Create program diagnostics: {Diagnostics}", diag.AsString());
+        SharedLogger<IShaderProgram>.LogDiagnostics(diag);
 
         return SlangResult.Ok;
     }
