@@ -9,6 +9,7 @@ using SlangNet.ComWrappers.Gfx.Interfaces;
 using SlangNet.ComWrappers.Interfaces;
 using SlangNet.ComWrappers.Reflection;
 using SlangNet.ComWrappers.Tools.Extensions;
+using SlangNet.Gfx.Extensions;
 using SlangNet.Gfx.Tools;
 using Unmanaged = SlangNet.Bindings.Generated;
 
@@ -18,18 +19,18 @@ var logger = factory.CreateLogger("Gfx");
 Gfx.EnableDebugLayer();
 
 Gfx.SetDebugCallback((type, source, message) =>
-   {
-       var level = type switch
-       {
-           Unmanaged.DebugMessageType.Info => LogLevel.Information,
-           Unmanaged.DebugMessageType.Warning => LogLevel.Warning,
-           Unmanaged.DebugMessageType.Error => LogLevel.Error,
-           _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-       };
+    {
+        var level = type switch
+        {
+            Unmanaged.DebugMessageType.Info => LogLevel.Information,
+            Unmanaged.DebugMessageType.Warning => LogLevel.Warning,
+            Unmanaged.DebugMessageType.Error => LogLevel.Error,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
 
-       logger.Log(level, "{Source}: {Message}", source, message);
-   })
-   .ThrowIfFailed();
+        logger.Log(level, "{Source}: {Message}", source, message);
+    })
+    .ThrowIfFailed();
 #endif
 
 var shaderIncludePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
@@ -57,38 +58,31 @@ Gfx.CreateDevice(devDesc, out var device).ThrowIfFailed();
 
 device.CreateTransientResourceHeap(new(ConstantBufferSize: 4096), out var heap).ThrowIfFailed();
 
-ShaderObjectExample.LoadShaderProgram(device, out var program, out var slangReflection).ThrowIfFailed();
+ShaderObjectExample.LoadShaderProgram(device, logger, out var program, out var slangReflection).ThrowIfFailed();
 
 device.CreateComputePipelineState(new(program), out var pipelineState).ThrowIfFailed();
 
-const int numberCount = 4;
 ReadOnlySpan<float> initialData = [0, 1, 2, 3];
 
-var bufferDesc = new BufferResourceDescription
-{
-    Base = new()
-    {
-        AllowedStates = new(Unmanaged.ResourceState.ShaderResource,
-                            Unmanaged.ResourceState.UnorderedAccess,
-                            Unmanaged.ResourceState.CopyDestination,
-                            Unmanaged.ResourceState.CopySource),
-        DefaultState = Unmanaged.ResourceState.UnorderedAccess,
-        MemoryType = Unmanaged.MemoryType.DeviceLocal,
-    },
-    Format = Unmanaged.Format.Unknown,
-    ElementSize = sizeof(float),
-    SizeInBytes = numberCount * sizeof(float)
-};
-    
-device.CreateBufferResource(bufferDesc, in initialData.AsBytes().DangerousGetReference(), out var numbersBuffer).ThrowIfFailed();
+device.CreateBufferResource(out var numbersBuffer,
+                            new()
+                            {
+                                AllowedStates = new(Unmanaged.ResourceState.ShaderResource,
+                                                    Unmanaged.ResourceState.UnorderedAccess,
+                                                    Unmanaged.ResourceState.CopyDestination,
+                                                    Unmanaged.ResourceState.CopySource),
+                                DefaultState = Unmanaged.ResourceState.UnorderedAccess,
+                                MemoryType = Unmanaged.MemoryType.DeviceLocal,
+                            },
+                            initialData);
 
 device.CreateBufferView(numbersBuffer,
-                        null,
-                        new()
-                        {
-                            Type = Unmanaged.IResourceView.ResourceViewType.UnorderedAccess,
-                            Format = Unmanaged.Format.Unknown
-                        }, out var bufferView).ThrowIfFailed();
+    null,
+    new()
+    {
+        Type = Unmanaged.IResourceView.ResourceViewType.UnorderedAccess,
+        Format = Unmanaged.Format.Unknown
+    }, out var bufferView).ThrowIfFailed();
 
 device.CreateCommandQueue(new(Unmanaged.ICommandQueue.QueueType.Graphics), out var queue).ThrowIfFailed();
 
@@ -119,22 +113,23 @@ cmdBuffer.Close();
 queue.ExecuteCommandBuffers(1, [cmdBuffer]);
 queue.WaitOnHost();
 
-device.ReadBufferResource(numbersBuffer, 0, (nuint)initialData.AsBytes().Length, out var dataBlob).ThrowIfFailed();
+device.ReadBufferResource(numbersBuffer, Range.All, out BlobMemory<float> data).ThrowIfFailed();
 
-foreach (var item in dataBlob.AsReadOnlySpan().Cast<byte, float>())
+foreach (var item in data.AsReadOnlySpan().Enumerate())
 {
-    Console.WriteLine(item);
+    logger.LogInformation("Data[{Index}] = {Value}", item.Index, item.Value);
 }
 
 static class ShaderObjectExample
 {
-    internal static SlangResult LoadShaderProgram(IDevice device,
+    internal static SlangResult LoadShaderProgram(IDevice device, ILogger logger,
                                                  out IShaderProgram program,
                                                  out ShaderReflection slangReflection)
     {
         device.GetSlangSession(out var slangSession).ThrowIfFailed();
 
         var module = slangSession.LoadModule("shader-object", out var diag);
+        logger.LogDebug("Load module diagnostics: {Diagnostics}", diag.AsString());
 
         module.FindEntryPointByName("computeMain", out var computeEntryPoint).ThrowIfFailed();
 
@@ -142,12 +137,15 @@ static class ShaderObjectExample
 
         slangSession.CreateCompositeComponentType(componentTypes, 2, out var composedProgram, out diag)
                                           .ThrowIfFailed();
+        logger.LogDebug("Create composite diagnostics: {Diagnostics}", diag.AsString());
 
         slangReflection = composedProgram.GetLayout(0, out diag).Value!;
+        logger.LogDebug("Get composite layout diagnostics: {Diagnostics}", diag.AsString());
 
         var programDesc = new ShaderProgramDescription(GlobalScope: composedProgram);
 
         device.CreateProgram(programDesc, out program, out diag).ThrowIfFailed();
+        logger.LogDebug("Create program diagnostics: {Diagnostics}", diag.AsString());
 
         return SlangResult.Ok;
     }
