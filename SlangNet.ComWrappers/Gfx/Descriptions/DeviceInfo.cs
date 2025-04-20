@@ -4,7 +4,7 @@ using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers.Gfx.Descriptions;
 
-[NativeMarshalling(typeof(MarshalableMarshaller.UnmanagedToManaged<DeviceInfo, Unmanaged.DeviceInfo>))]
+[NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<DeviceInfo, Unmanaged.DeviceInfo>))]
 public readonly record struct DeviceInfo(
     Unmanaged.DeviceType DeviceType,
     DeviceLimits Limits,
@@ -13,14 +13,14 @@ public readonly record struct DeviceInfo(
     Matrix4x4 IdentityProjectionMatrix,
     string ApiName,
     string AdapterName,
-    ulong TimestampFrequency) : IMarshalsFromNative<DeviceInfo, Unmanaged.DeviceInfo>
+    ulong TimestampFrequency) : IMarshalsToNative<Unmanaged.DeviceInfo>,
+                                IMarshalsFromNative<DeviceInfo, Unmanaged.DeviceInfo>
 {
-
     public static unsafe DeviceInfo CreateFromNative(Unmanaged.DeviceInfo unmanaged)
     {
         var idSpan = unmanaged.identityProjectionMatrix.AsFloatSpan();
         var limits = DeviceLimits.CreateFromNative(unmanaged.limits);
-        
+
         return new()
         {
             DeviceType = unmanaged.deviceType,
@@ -48,6 +48,9 @@ public readonly record struct DeviceInfo(
             TimestampFrequency = unmanaged.timestampFrequency
         };
     }
+
+    Unmanaged.DeviceInfo IMarshalsToNative<Unmanaged.DeviceInfo>.AsNative(ref GrowingStackBuffer buffer) =>
+        throw new NotImplementedException();
 }
 
 public readonly record struct DeviceLimits(
@@ -87,18 +90,14 @@ public readonly record struct DeviceLimits(
             MaxVertexStreams = unmanaged.maxVertexStreams,
             MaxVertexStreamStride = unmanaged.maxVertexStreamStride,
             MaxComputeThreadsPerGroup = unmanaged.maxComputeThreadsPerGroup,
-            MaxComputeThreadGroupSize = (maxComputeThreadGroupSize[0],
-                                         maxComputeThreadGroupSize[1],
+            MaxComputeThreadGroupSize = (maxComputeThreadGroupSize[0], maxComputeThreadGroupSize[1],
                                          maxComputeThreadGroupSize[2]),
-            MaxComputeDispatchThreadGroups = (maxComputeDispatchThreadGroups[0],
-                                              maxComputeDispatchThreadGroups[1],
+            MaxComputeDispatchThreadGroups = (maxComputeDispatchThreadGroups[0], maxComputeDispatchThreadGroups[1],
                                               maxComputeDispatchThreadGroups[2]),
             MaxViewports = unmanaged.maxViewports,
-            MaxViewportDimensions = (maxViewportDimensions[0],
-                                     maxViewportDimensions[1]),
+            MaxViewportDimensions = (maxViewportDimensions[0], maxViewportDimensions[1]),
             MaxFramebufferDimensions = (maxFramebufferDimensions[0],
-                                        maxFramebufferDimensions[1],
-                                        maxFramebufferDimensions[2]),
+                                        maxFramebufferDimensions[1], maxFramebufferDimensions[2]),
             MaxShaderVisibleSamplers = unmanaged.maxShaderVisibleSamplers
         };
     }
