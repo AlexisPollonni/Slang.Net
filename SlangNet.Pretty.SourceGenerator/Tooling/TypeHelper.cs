@@ -105,6 +105,6 @@ static class TypeHelper
 
     public static string ToFullyQualified(this ITypeSymbol type)
     {
-        return type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+        return type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat.WithMiscellaneousOptions(SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier));
     }
 }

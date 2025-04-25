@@ -92,7 +92,7 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                     writer.AppendLine("diagnostics = diagBlob.AsString();");
                 }
 
-                if (returnVar is not null) writer.AppendLine($"return {returnVar};");
+                if (returnVar is not null) writer.AppendLine($"return {returnVar}!;");
             });
             continue;
 
