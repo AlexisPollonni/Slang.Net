@@ -1,6 +1,8 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -18,6 +20,7 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                                       .AddNamespaceImport("SlangNet")
                                       .Nullable(NullableState.Enable)
                                       .AddClass($"{clazz.Name}ThrowingExtensions")
+                                      .AddGeneratedCodeAttribute<ThrowingMethodGenerator>(new(0, 0, 1))
                                       .MakePublicClass()
                                       .MakeStaticClass();
 
@@ -34,6 +37,8 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                                           .MakePublicMethod()
                                           .MakeStaticMethod()
                                           .AddGenericsFrom(method)
+                                          .AddAggressiveInliningAttribute()
+                                          .AddGeneratedCodeAttribute<ThrowingMethodGenerator>(new(0, 0, 1))
                                           .AddParameter($"this {clazz.ToFullyQualified()}", "instance");
 
             var outParams = method.Parameters.Where(p => p.RefKind is RefKind.Out).ToArray();
@@ -243,6 +248,28 @@ public static class BuilderExtensions
     public static MethodBuilder WithReturnType(this MethodBuilder methodBuilder, ITypeSymbol returnType)
     {
         return methodBuilder.WithReturnType(returnType.ToFullyQualified());
+    }
+
+    public static MethodBuilder AddAggressiveInliningAttribute(this MethodBuilder methodBuilder)
+    {
+        methodBuilder.AddNamespaceImport(typeof(MethodImplAttribute).Namespace!);
+        return methodBuilder.AddAttribute("MethodImpl(MethodImplOptions.AggressiveInlining)");
+    }
+
+    public static MethodBuilder AddGeneratedCodeAttribute<TGenerator>(this MethodBuilder methodBuilder, Version version)
+        where TGenerator : IncrementalGenerator
+    {
+        methodBuilder.AddNamespaceImport(typeof(GeneratedCodeAttribute).Namespace!);
+        return methodBuilder.AddAttribute(
+            $"GeneratedCodeAttribute(\"{typeof(TGenerator).FullName}\", \"{version.ToString(3)}\")");
+    }
+
+    public static ClassBuilder AddGeneratedCodeAttribute<TGenerator>(this ClassBuilder classBuilder, Version version)
+        where TGenerator : IncrementalGenerator
+    {
+        classBuilder.AddNamespaceImport(typeof(GeneratedCodeAttribute).Namespace!);
+        return classBuilder.AddAttribute(
+            $"GeneratedCodeAttribute(\"{typeof(TGenerator).FullName}\", \"{version.ToString(3)}\")");
     }
 }
 
