@@ -26,7 +26,7 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
             if (method.DeclaredAccessibility != Accessibility.Public ||
                 method.ReturnType.ToDisplayString() != "SlangNet.SlangResult" || method.GetAttributes()
                                                                                        .Any(a => a.AttributeClass
-                                                                                                  .ToDisplayString() ==
+                                                                                                  ?.ToDisplayString() ==
                                                                                                  "SlangNet.IgnoreThrowingMethodAttribute"))
                 continue;
 
@@ -35,14 +35,11 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                                           .MakeStaticMethod()
                                           .AddGenericsFrom(method)
                                           .AddParameter($"this {clazz.ToFullyQualified()}", "instance");
-            
-            
-            
-            const string diagParamDefString = "out IBlob? diagnostics";
+
             var outParams = method.Parameters.Where(p => p.RefKind is RefKind.Out).ToArray();
-            var lastOutParam = outParams.LastOrDefault(p => p.ToDisplayString() != diagParamDefString);
-            var diagParam = outParams.LastOrDefault(p => p.ToDisplayString() == diagParamDefString);
-            
+            var lastOutParam = outParams.LastOrDefault(p => !IsDiagParam(p));
+            var diagParam = outParams.LastOrDefault(IsDiagParam);
+
             var invokeParams = method.Parameters;
 
             if (lastOutParam is not null)
@@ -51,13 +48,18 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                 invokeParams = invokeParams.Remove(lastOutParam);
             }
 
-            if (diagParam is not null)
+            foreach (var parameter in invokeParams)
             {
-                mExtBuilder.AddParameterWithRefKind(RefKind.Out, "string?", "diagnostics");
-                invokeParams = invokeParams.Remove(diagParam);
-            }
+                if (ReferenceEquals(parameter, diagParam))
+                {
+                    mExtBuilder.AddParameterWithRefKind(RefKind.Out, "string?", "diagnostics");
+                    mExtBuilder.AddNamespaceImport("SlangNet.ComWrappers.Tools.Extensions");
+                    invokeParams = invokeParams.Remove(diagParam!);
+                    continue;
+                }
 
-            foreach (var parameter in invokeParams) mExtBuilder.AddParameterWithRefKind(parameter.RefKind, parameter.Type, parameter.Name);
+                mExtBuilder.AddParameterWithRefKind(parameter.RefKind, parameter.Type, parameter.Name);
+            }
 
             mExtBuilder.WithBody(writer =>
             {
@@ -79,7 +81,7 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
 
                     invokeBuilder.AddParameter(diagParam, "diagBlob");
                 }
-                
+
                 foreach (var parameter in invokeParams) invokeBuilder.AddParameter(parameter, parameter.Name);
 
                 invokeBuilder.Render();
@@ -92,22 +94,22 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
 
                 if (returnVar is not null) writer.AppendLine($"return {returnVar};");
             });
+            continue;
+
+            bool IsDiagParam(IParameterSymbol parameter) =>
+                parameter.Type.Name == "IBlob" && parameter.Name == "diagnostics";
         }
 
         var sourceText = classBuilder.Build(null!);
         context.AddSource($"{clazz.Name}_throwing.g.cs", sourceText);
     }
 
-
     public override void OnInitialize(SgfInitializationContext context)
     {
-        var classProvider = context.SyntaxProvider.ForAttributeWithMetadataName("SlangNet.GenerateThrowingMethodsAttribute",
-                                                                                (node, _) => node 
-                                                                                    is ClassDeclarationSyntax
-                                                                                    or StructDeclarationSyntax 
-                                                                                    or InterfaceDeclarationSyntax,
-                                                                                (syntaxContext, _) =>
-                                                                                    (ITypeSymbol)syntaxContext.TargetSymbol);
+        var classProvider = context.SyntaxProvider.ForAttributeWithMetadataName(
+            "SlangNet.GenerateThrowingMethodsAttribute",
+            (node, _) => node is ClassDeclarationSyntax or StructDeclarationSyntax or InterfaceDeclarationSyntax,
+            (syntaxContext, _) => (ITypeSymbol)syntaxContext.TargetSymbol);
 
         context.RegisterSourceOutput(classProvider, ProcessClass);
     }
@@ -123,7 +125,7 @@ public static class CodeGenBuilderExtensions
         public InvokeBuilder AddParameter(IParameterSymbol parameter, string valueVar)
         {
             _parameters.Add(parameter.Name, (parameter.RefKind, valueVar));
-            
+
             return this;
         }
 
@@ -135,8 +137,7 @@ public static class CodeGenBuilderExtensions
 
         public void Render()
         {
-            var reqParamNames = method.Parameters.Where(p => !p.HasExplicitDefaultValue)
-                  .Select(p => p.Name).ToArray();
+            var reqParamNames = method.Parameters.Where(p => !p.HasExplicitDefaultValue).Select(p => p.Name).ToArray();
             if (reqParamNames.Any() && !reqParamNames.All(n => _parameters.ContainsKey(n)))
                 throw new InvalidOperationException("Function invoke does not contain all necessary parameters");
 
@@ -149,7 +150,7 @@ public static class CodeGenBuilderExtensions
                 if (_instanceVar is null)
                     throw new InvalidOperationException(
                         "Function invoke targets an instance function but not instance variable is provided");
-                
+
                 writer.Append(_instanceVar);
             }
 
@@ -157,24 +158,32 @@ public static class CodeGenBuilderExtensions
             writer.AppendUnindented(method.Name);
             writer.AppendUnindented("(");
 
-            var invokeParams = _parameters.Select(pair => $"{pair.Key}: {pair.Value.refKind.ToDisplayString()} {pair.Value.value}");
+            var invokeParams
+                = _parameters.Select(pair => $"{pair.Key}: {pair.Value.refKind.ToDisplayString()} {pair.Value.value}");
             var joined = string.Join(", ", invokeParams);
             writer.AppendUnindented(joined);
-            
+
             writer.AppendUnindented(")");
         }
     }
-    
-    public static InvokeBuilder BuildMethodInvoke(this ICodeWriter writer, IMethodSymbol method) => new(writer, method);
 
-    public static ICodeWriter WriteVariableDeclaration(this ICodeWriter writer, string type, string name, string? value = null)
+    public static InvokeBuilder BuildMethodInvoke(this ICodeWriter writer, IMethodSymbol method) =>
+        new(writer, method);
+
+    public static ICodeWriter WriteVariableDeclaration(this ICodeWriter writer,
+                                                       string type,
+                                                       string name,
+                                                       string? value = null)
     {
         writer.Append($"{type} {name}");
         if (value is not null) writer.AppendUnindented($" = {value}");
         return writer;
     }
 
-    public static ICodeWriter WriteVariableDeclaration(this ICodeWriter writer, ITypeSymbol type, string name, string? value = null)
+    public static ICodeWriter WriteVariableDeclaration(this ICodeWriter writer,
+                                                       ITypeSymbol type,
+                                                       string name,
+                                                       string? value = null)
     {
         return writer.WriteVariableDeclaration(type.ToFullyQualified(), name, value);
     }
@@ -247,6 +256,6 @@ public static class EnumStringExtensions
             RefKind.Out => "out",
             RefKind.In => "in",
             RefKind.RefReadOnlyParameter => "ref readonly",
-            _ => throw new ArgumentOutOfRangeException(nameof(refKind), refKind, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(refKind), refKind, null),
         };
 }
