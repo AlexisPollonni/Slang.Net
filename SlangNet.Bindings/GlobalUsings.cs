@@ -14,6 +14,11 @@ global using ResourceViewType = SlangNet.Bindings.Generated.IResourceView.Resour
 
 global using RayTracingPipelineFlagsEnum = SlangNet.Bindings.Generated.RayTracingPipelineFlags.RayTracingPipelineFlagsEnum;
 global using TransientResourceHeapFlagsEnum = SlangNet.Bindings.Generated.ITransientResourceHeap.Flags.TransientResourceHeapFlagsEnum;
+global using AccelerationStructBuildFlags = SlangNet.Bindings.Generated.IAccelerationStructure.BuildFlags.AccelerationStructBuildFlags;
+global using AccelerationStructGeometryFlags = SlangNet.Bindings.Generated.IAccelerationStructure.GeometryFlags.AccelerationStructGeometryFlags;
+global using AccelerationStructGeometryInstanceFlags = SlangNet.Bindings.Generated.IAccelerationStructure.GeometryInstanceFlags.AccelerationStructGeometryInstanceFlags;
+
+
 
 global using ResourceViewDesc = SlangNet.Bindings.Generated.IResourceView.ResourceViewDesc;
 global using DeviceDesc = SlangNet.Bindings.Generated.IDevice.DeviceDesc;

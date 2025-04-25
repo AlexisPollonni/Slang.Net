@@ -60,7 +60,7 @@
         </enumerator>
       </enumeration>
       <struct name="BuildFlags" access="public">
-        <enumeration name="Enum" access="public">
+        <enumeration name="AccelerationStructBuildFlags" access="public">
           <type>int</type>
           <enumerator name="None" access="public">
             <type primitive="False">int</type>
@@ -113,7 +113,7 @@
         </enumerator>
       </enumeration>
       <struct name="GeometryFlags" access="public">
-        <enumeration name="Enum" access="public">
+        <enumeration name="AccelerationStructGeometryFlags" access="public">
           <type>int</type>
           <enumerator name="None" access="public">
             <type primitive="False">int</type>
@@ -194,7 +194,7 @@
           <type native="gfx::IAccelerationStructure::GeometryType">GeometryType</type>
         </field>
         <field name="flags" access="public">
-          <type native="gfx::IAccelerationStructure::GeometryFlags::Enum">Enum</type>
+          <type native="gfx::IAccelerationStructure::GeometryFlags::Enum">AccelerationStructGeometryFlags</type>
         </field>
         <field name="content" access="public">
           <type native="__AnonymousRecord_slang-gfx_L1038_C9">_content_e__Union</type>
@@ -209,7 +209,7 @@
         </struct>
       </struct>
       <struct name="GeometryInstanceFlags" access="public">
-        <enumeration name="Enum" access="public">
+        <enumeration name="AccelerationStructGeometryInstanceFlags" access="public">
           <type>uint</type>
           <enumerator name="None" access="public">
             <type primitive="False">uint</type>
@@ -319,7 +319,7 @@
           <type native="gfx::IAccelerationStructure::Kind">TypeKind</type>
         </field>
         <field name="flags" access="public">
-          <type native="gfx::IAccelerationStructure::BuildFlags::Enum">Enum</type>
+          <type native="gfx::IAccelerationStructure::BuildFlags::Enum">AccelerationStructBuildFlags</type>
         </field>
         <field name="descCount" access="public">
           <type native="gfx::GfxCount">int</type>

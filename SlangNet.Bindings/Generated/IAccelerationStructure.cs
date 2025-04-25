@@ -49,28 +49,28 @@ public unsafe partial struct IAccelerationStructure
     public partial struct BuildFlags
     {
 
-        /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
-        public enum Enum
+        /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags"]/*' />
+        public enum AccelerationStructBuildFlags
         {
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.None"]/*' />
+            /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags.None"]/*' />
             None,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.AllowUpdate"]/*' />
+            /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags.AllowUpdate"]/*' />
             AllowUpdate = 1,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.AllowCompaction"]/*' />
+            /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags.AllowCompaction"]/*' />
             AllowCompaction = 2,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.PreferFastTrace"]/*' />
+            /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags.PreferFastTrace"]/*' />
             PreferFastTrace = 4,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.PreferFastBuild"]/*' />
+            /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags.PreferFastBuild"]/*' />
             PreferFastBuild = 8,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.MinimizeMemory"]/*' />
+            /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags.MinimizeMemory"]/*' />
             MinimizeMemory = 16,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.PerformUpdate"]/*' />
+            /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags.PerformUpdate"]/*' />
             PerformUpdate = 32,
         }
     }
@@ -89,16 +89,16 @@ public unsafe partial struct IAccelerationStructure
     public partial struct GeometryFlags
     {
 
-        /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
-        public enum Enum
+        /// <include file='AccelerationStructGeometryFlags.xml' path='doc/member[@name="AccelerationStructGeometryFlags"]/*' />
+        public enum AccelerationStructGeometryFlags
         {
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.None"]/*' />
+            /// <include file='AccelerationStructGeometryFlags.xml' path='doc/member[@name="AccelerationStructGeometryFlags.None"]/*' />
             None,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.Opaque"]/*' />
+            /// <include file='AccelerationStructGeometryFlags.xml' path='doc/member[@name="AccelerationStructGeometryFlags.Opaque"]/*' />
             Opaque = 1,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.NoDuplicateAnyHitInvocation"]/*' />
+            /// <include file='AccelerationStructGeometryFlags.xml' path='doc/member[@name="AccelerationStructGeometryFlags.NoDuplicateAnyHitInvocation"]/*' />
             NoDuplicateAnyHitInvocation = 2,
         }
     }
@@ -186,7 +186,7 @@ public unsafe partial struct IAccelerationStructure
 
         /// <include file='GeometryDesc.xml' path='doc/member[@name="GeometryDesc.flags"]/*' />
         [NativeTypeName("gfx::IAccelerationStructure::GeometryFlags::Enum")]
-        public Enum flags;
+        public AccelerationStructGeometryFlags flags;
 
         /// <include file='GeometryDesc.xml' path='doc/member[@name="GeometryDesc.content"]/*' />
         [NativeTypeName("__AnonymousRecord_slang-gfx_L1038_C9")]
@@ -212,23 +212,23 @@ public unsafe partial struct IAccelerationStructure
     public partial struct GeometryInstanceFlags
     {
 
-        /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
+        /// <include file='AccelerationStructGeometryInstanceFlags.xml' path='doc/member[@name="AccelerationStructGeometryInstanceFlags"]/*' />
         [NativeTypeName("uint32_t")]
-        public enum Enum : uint
+        public enum AccelerationStructGeometryInstanceFlags : uint
         {
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.None"]/*' />
+            /// <include file='AccelerationStructGeometryInstanceFlags.xml' path='doc/member[@name="AccelerationStructGeometryInstanceFlags.None"]/*' />
             None = 0,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.TriangleFacingCullDisable"]/*' />
+            /// <include file='AccelerationStructGeometryInstanceFlags.xml' path='doc/member[@name="AccelerationStructGeometryInstanceFlags.TriangleFacingCullDisable"]/*' />
             TriangleFacingCullDisable = 0x00000001,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.TriangleFrontCounterClockwise"]/*' />
+            /// <include file='AccelerationStructGeometryInstanceFlags.xml' path='doc/member[@name="AccelerationStructGeometryInstanceFlags.TriangleFrontCounterClockwise"]/*' />
             TriangleFrontCounterClockwise = 0x00000002,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.ForceOpaque"]/*' />
+            /// <include file='AccelerationStructGeometryInstanceFlags.xml' path='doc/member[@name="AccelerationStructGeometryInstanceFlags.ForceOpaque"]/*' />
             ForceOpaque = 0x00000004,
 
-            /// <include file='Enum.xml' path='doc/member[@name="Enum.NoOpaque"]/*' />
+            /// <include file='AccelerationStructGeometryInstanceFlags.xml' path='doc/member[@name="AccelerationStructGeometryInstanceFlags.NoOpaque"]/*' />
             NoOpaque = 0x00000008,
         }
     }
@@ -349,7 +349,7 @@ public unsafe partial struct IAccelerationStructure
 
         /// <include file='BuildInputs.xml' path='doc/member[@name="BuildInputs.flags"]/*' />
         [NativeTypeName("gfx::IAccelerationStructure::BuildFlags::Enum")]
-        public Enum flags;
+        public AccelerationStructBuildFlags flags;
 
         /// <include file='BuildInputs.xml' path='doc/member[@name="BuildInputs.descCount"]/*' />
         [NativeTypeName("gfx::GfxCount")]

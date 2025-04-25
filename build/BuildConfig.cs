@@ -236,6 +236,9 @@ internal record BuildConfig(
 
                 { "gfx::RayTracingPipelineFlags::Enum", "RayTracingPipelineFlagsEnum" },
                 { "gfx::ITransientResourceHeap::Flags::Enum", "TransientResourceHeapFlagsEnum" },
+                { "gfx::IAccelerationStructure::BuildFlags::Enum", "AccelerationStructBuildFlags" },
+                { "gfx::IAccelerationStructure::GeometryFlags::Enum", "AccelerationStructGeometryFlags" },
+                { "gfx::IAccelerationStructure::GeometryInstanceFlags::Enum", "AccelerationStructGeometryInstanceFlags" },
 
                 // Reimplement ResourceStateSet as a ulong since we have a custom implementation
                 { "gfx::ResourceStateSet", "ulong" },
