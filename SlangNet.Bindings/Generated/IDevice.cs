@@ -193,6 +193,10 @@ public unsafe partial struct IDevice
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
+    public delegate int _getCooperativeVectorProperties(IDevice* pThis, [NativeTypeName("gfx::CooperativeVectorProperties *")] CooperativeVectorProperties* properties, [NativeTypeName("uint32_t *")] uint* propertyCount);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("gfx::Result")]
     public delegate int _createShaderObject2(IDevice* pThis, [NativeTypeName("slang::ISession *")] ISession* slangSession, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("gfx::ShaderObjectContainerType")] ShaderObjectContainerType container, IShaderObject** outObject);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -680,6 +684,14 @@ public unsafe partial struct IDevice
         return Marshal.GetDelegateForFunctionPointer<_getTextureRowAlignment>(lpVtbl->getTextureRowAlignment)((IDevice*)Unsafe.AsPointer(ref this), outAlignment);
     }
 
+    /// <include file='IDevice.xml' path='doc/member[@name="IDevice.getCooperativeVectorProperties"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NativeTypeName("gfx::Result")]
+    public int getCooperativeVectorProperties([NativeTypeName("gfx::CooperativeVectorProperties *")] CooperativeVectorProperties* properties, [NativeTypeName("uint32_t *")] uint* propertyCount)
+    {
+        return Marshal.GetDelegateForFunctionPointer<_getCooperativeVectorProperties>(lpVtbl->getCooperativeVectorProperties)((IDevice*)Unsafe.AsPointer(ref this), properties, propertyCount);
+    }
+
     /// <include file='IDevice.xml' path='doc/member[@name="IDevice.createShaderObject2"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
@@ -832,6 +844,9 @@ public unsafe partial struct IDevice
 
         [NativeTypeName("Result (Size *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getTextureRowAlignment;
+
+        [NativeTypeName("Result (CooperativeVectorProperties *, uint32_t *) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr getCooperativeVectorProperties;
 
         [NativeTypeName("Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr createShaderObject2;

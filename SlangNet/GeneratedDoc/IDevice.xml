@@ -596,6 +596,18 @@
           <type>nuint*</type>
         </param>
       </delegate>
+      <delegate name="_getCooperativeVectorProperties" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IDevice*</type>
+        </param>
+        <param name="properties">
+          <type>CooperativeVectorProperties*</type>
+        </param>
+        <param name="propertyCount">
+          <type>uint*</type>
+        </param>
+      </delegate>
       <delegate name="_createShaderObject2" access="public" convention="StdCall" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="pThis">
@@ -1312,6 +1324,18 @@
           <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTextureRowAlignment</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTextureRowAlignment</vtbl>)(<param special="thisPtr">(IDevice*)Unsafe.AsPointer(ref this)</param>, <param name="outAlignment">outAlignment</param>);</code>
         </body>
       </function>
+      <function name="getCooperativeVectorProperties" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="properties">
+          <type>CooperativeVectorProperties*</type>
+        </param>
+        <param name="propertyCount">
+          <type>uint*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCooperativeVectorProperties</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCooperativeVectorProperties</vtbl>)(<param special="thisPtr">(IDevice*)Unsafe.AsPointer(ref this)</param>, <param name="properties">properties</param>, <param name="propertyCount">propertyCount</param>);</code>
+        </body>
+      </function>
       <function name="createShaderObject2" access="public" unsafe="true">
         <type native="gfx::Result">int</type>
         <param name="slangSession">
@@ -1483,6 +1507,9 @@
         </field>
         <field name="getTextureRowAlignment" access="public">
           <type native="Result (Size *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getCooperativeVectorProperties" access="public">
+          <type native="Result (CooperativeVectorProperties *, uint32_t *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createShaderObject2" access="public">
           <type native="Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>

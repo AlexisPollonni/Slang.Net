@@ -169,6 +169,11 @@ public partial interface IDevice : IUnknown
     
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetTextureRowAlignment(out nuint alignment);
+    
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult GetCooperativeVectorProperties(
+        [MarshalUsing(CountElementName = "propertyCount")] 
+        Span<Unmanaged.CooperativeVectorProperties> properties, ref uint propertyCount);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult CreateShaderObject2(ISession slangSession,
