@@ -1,19 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <LangVersion>preview</LangVersion>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
     <IsRoslynComponent>true</IsRoslynComponent>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Generates a package at build -->
+    <IncludeBuildOutput>false</IncludeBuildOutput> <!-- Do not include the generator as a lib dependency -->
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
+    
+    <PackageReference Include="SourceGenerator.Foundations" Version="2.0.13"/>
+    <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
+    <PackageReference Include="AvantiPoint.CodeGenHelpers" Version="2.0.30-pre"/>
   </ItemGroup>
-  
 </Project>

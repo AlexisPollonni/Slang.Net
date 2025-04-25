@@ -1,8 +1,6 @@
-﻿using System;
+﻿namespace SlangNet;
 
-namespace SlangNet;
-
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface)]
 internal sealed class GenerateThrowingMethodsAttribute : Attribute
 {
 }

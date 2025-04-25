@@ -1,133 +1,252 @@
-﻿using System.Linq;
-using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Text;
+using SGF;
+using SlangNet.Pretty.SourceGenerator.Tooling;
 
 namespace SlangNet.Pretty.SourceGenerator;
 
-[Generator]
-public class ThrowingMethodGenerator : IIncrementalGenerator
+[IncrementalGenerator]
+public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMethodGenerator))
 {
-    private static void ProcessClass(SourceProductionContext context, ITypeSymbol clazz)
+    private static void ProcessClass(SgfSourceProductionContext context, ITypeSymbol clazz)
     {
-        var source = new StringBuilder();
-        source.AppendLine("#nullable enable");
-        source.AppendLine($"namespace {clazz.ContainingNamespace.ToDisplayString()};");
-
-        var curContainer = clazz.ContainingType;
-        while (curContainer != null)
-        {
-            source.AppendLine($"partial {(curContainer.TypeKind == TypeKind.Class ? "class" : "struct")} {curContainer.Name}");
-            source.AppendLine("{");
-            curContainer = curContainer.ContainingType;
-        }
-
-        source.AppendLine($"partial {(clazz.TypeKind == TypeKind.Class ? "class" : "struct")} {clazz.Name}");
-        source.AppendLine("{");
+        var classBuilder = CodeBuilder.Create(clazz.ContainingNamespace)
+                                      .AddNamespaceImport("SlangNet")
+                                      .Nullable(NullableState.Enable)
+                                      .AddClass($"{clazz.Name}ThrowingExtensions")
+                                      .MakePublicClass()
+                                      .MakeStaticClass();
 
         foreach (var method in clazz.GetMembers().OfType<IMethodSymbol>())
         {
             if (method.DeclaredAccessibility != Accessibility.Public ||
-                !method.Name.StartsWith("Try") ||
-                method.ReturnType.ToDisplayString() != "SlangNet.SlangResult" ||
-                method.GetAttributes().Any(a => a.AttributeClass.ToDisplayString() == "SlangNet.IgnoreThrowingMethodAttribute"))
+                method.ReturnType.ToDisplayString() != "SlangNet.SlangResult" || method.GetAttributes()
+                                                                                       .Any(a => a.AttributeClass
+                                                                                                  .ToDisplayString() ==
+                                                                                                 "SlangNet.IgnoreThrowingMethodAttribute"))
                 continue;
 
-            var returnType = "void";
-            var hasDiagnosticParam = false;
-            var parameters = method.Parameters.ToList();
-            var outputParam = parameters.LastOrDefault();
-            if (outputParam?.RefKind == RefKind.Out)
+            var mExtBuilder = classBuilder.AddMethod($"{method.Name}Throwing")
+                                          .MakePublicMethod()
+                                          .MakeStaticMethod()
+                                          .AddGenericsFrom(method)
+                                          .AddParameter($"this {clazz.ToFullyQualified()}", "instance");
+            
+            
+            
+            const string diagParamDefString = "out IBlob? diagnostics";
+            var outParams = method.Parameters.Where(p => p.RefKind is RefKind.Out).ToArray();
+            var lastOutParam = outParams.LastOrDefault(p => p.ToDisplayString() != diagParamDefString);
+            var diagParam = outParams.LastOrDefault(p => p.ToDisplayString() == diagParamDefString);
+            
+            var invokeParams = method.Parameters;
+
+            if (lastOutParam is not null)
             {
-                parameters.RemoveAt(parameters.Count - 1);
-                returnType = outputParam.Type.ToDisplayString().TrimEnd('?');
-            }
-            else
-                outputParam = null;
-            if (parameters.LastOrDefault()?.ToDisplayString() == "out string? diagnostics")
-            {
-                parameters.RemoveAt(parameters.Count - 1);
-                hasDiagnosticParam = true;
+                mExtBuilder.WithReturnType(lastOutParam.Type.WithNullableAnnotation(NullableAnnotation.NotAnnotated));
+                invokeParams = invokeParams.Remove(lastOutParam);
             }
 
-            source.Append("    public ");
-            if (method.IsStatic)
-                source.Append("static ");
-            source.Append(returnType);
-            source.Append(' ');
-            source.Append(method.Name.Substring(3));
-            source.Append('(');
-
-            foreach (var param in parameters)
+            if (diagParam is not null)
             {
-                if (!ReferenceEquals(param, parameters.First()))
-                    source.Append(", ");
-                source.Append(param.ToDisplayString());
-            }
-            source.AppendLine(")");
-            source.AppendLine("    {");
-
-            source.Append("        ");
-            source.Append(method.Name);
-            source.Append("(");
-
-            foreach (var param in parameters)
-            {
-                if (!ReferenceEquals(param, parameters.First()))
-                    source.Append(", ");
-                if (param.RefKind == RefKind.Out)
-                    source.Append("out ");
-                if (param.RefKind == RefKind.Ref)
-                    source.Append("ref ");
-                source.Append(param.Name);
-            }
-            if (hasDiagnosticParam)
-            {
-                if (parameters.Any())
-                    source.Append(", ");
-                source.Append("out var diagnostics");
-            }
-            if (outputParam != null)
-            {
-                if (parameters.Any() || hasDiagnosticParam)
-                    source.Append(", ");
-                source.Append("out var ");
-                source.Append(outputParam.Name);
-            }
-            source.Append(").ThrowIfFailed(");
-            if (hasDiagnosticParam)
-                source.Append("diagnostics");
-            source.AppendLine(");");
-
-            if (outputParam != null)
-            {
-                source.Append("        return ");
-                source.Append(outputParam.Name);
-                source.AppendLine("!;");
+                mExtBuilder.AddParameterWithRefKind(RefKind.Out, "string?", "diagnostics");
+                invokeParams = invokeParams.Remove(diagParam);
             }
 
-            source.AppendLine("    }");
+            foreach (var parameter in invokeParams) mExtBuilder.AddParameterWithRefKind(parameter.RefKind, parameter.Type, parameter.Name);
+
+            mExtBuilder.WithBody(writer =>
+            {
+                var invokeBuilder = writer.BuildMethodInvoke(method).WithInstance("instance");
+                string? returnVar = null;
+
+                if (lastOutParam is not null)
+                {
+                    var invokeName = $"__out{lastOutParam.Name}";
+                    writer.WriteVariableDeclaration(lastOutParam.Type, invokeName).EndLine();
+
+                    returnVar = invokeName;
+                    invokeBuilder.AddParameter(lastOutParam, invokeName);
+                }
+
+                if (diagParam is not null)
+                {
+                    writer.WriteVariableDeclaration(diagParam.Type, "diagBlob").EndLine();
+
+                    invokeBuilder.AddParameter(diagParam, "diagBlob");
+                }
+                
+                foreach (var parameter in invokeParams) invokeBuilder.AddParameter(parameter, parameter.Name);
+
+                invokeBuilder.Render();
+                writer.AppendUnindentedLine(".ThrowIfFailed();");
+
+                if (diagParam is not null)
+                {
+                    writer.AppendLine("diagnostics = diagBlob.AsString();");
+                }
+
+                if (returnVar is not null) writer.AppendLine($"return {returnVar};");
+            });
         }
 
-        source.AppendLine("}");
-        curContainer = clazz.ContainingType;
-        while (curContainer != null)
-        {
-            source.AppendLine("}");
-            curContainer = curContainer.ContainingType;
-        }
-
-        context.AddSource($"{clazz.Name}_throwing.g.cs", SourceText.From(source.ToString(), Encoding.UTF8));
+        var sourceText = classBuilder.Build(null!);
+        context.AddSource($"{clazz.Name}_throwing.g.cs", sourceText);
     }
 
-    public void Initialize(IncrementalGeneratorInitializationContext context)
+
+    public override void OnInitialize(SgfInitializationContext context)
     {
         var classProvider = context.SyntaxProvider.ForAttributeWithMetadataName("SlangNet.GenerateThrowingMethodsAttribute",
-                                                            (node, _) => node is ClassDeclarationSyntax
-                                                                or StructDeclarationSyntax,
-                                                            (syntaxContext, _) => (ITypeSymbol)syntaxContext.TargetSymbol);
-        
+                                                                                (node, _) => node 
+                                                                                    is ClassDeclarationSyntax
+                                                                                    or StructDeclarationSyntax 
+                                                                                    or InterfaceDeclarationSyntax,
+                                                                                (syntaxContext, _) =>
+                                                                                    (ITypeSymbol)syntaxContext.TargetSymbol);
+
         context.RegisterSourceOutput(classProvider, ProcessClass);
     }
+}
+
+public static class CodeGenBuilderExtensions
+{
+    public class InvokeBuilder(ICodeWriter writer, IMethodSymbol method)
+    {
+        private string? _instanceVar;
+        private readonly Dictionary<string, (RefKind refKind, string? value)> _parameters = new();
+
+        public InvokeBuilder AddParameter(IParameterSymbol parameter, string valueVar)
+        {
+            _parameters.Add(parameter.Name, (parameter.RefKind, valueVar));
+            
+            return this;
+        }
+
+        public InvokeBuilder WithInstance(string instanceVar)
+        {
+            _instanceVar = instanceVar;
+            return this;
+        }
+
+        public void Render()
+        {
+            var reqParamNames = method.Parameters.Where(p => !p.HasExplicitDefaultValue)
+                  .Select(p => p.Name).ToArray();
+            if (reqParamNames.Any() && !reqParamNames.All(n => _parameters.ContainsKey(n)))
+                throw new InvalidOperationException("Function invoke does not contain all necessary parameters");
+
+            if (method.IsStatic)
+            {
+                writer.Append(method.ContainingType.ToFullyQualified());
+            }
+            else
+            {
+                if (_instanceVar is null)
+                    throw new InvalidOperationException(
+                        "Function invoke targets an instance function but not instance variable is provided");
+                
+                writer.Append(_instanceVar);
+            }
+
+            writer.AppendUnindented(".");
+            writer.AppendUnindented(method.Name);
+            writer.AppendUnindented("(");
+
+            var invokeParams = _parameters.Select(pair => $"{pair.Key}: {pair.Value.refKind.ToDisplayString()} {pair.Value.value}");
+            var joined = string.Join(", ", invokeParams);
+            writer.AppendUnindented(joined);
+            
+            writer.AppendUnindented(")");
+        }
+    }
+    
+    public static InvokeBuilder BuildMethodInvoke(this ICodeWriter writer, IMethodSymbol method) => new(writer, method);
+
+    public static ICodeWriter WriteVariableDeclaration(this ICodeWriter writer, string type, string name, string? value = null)
+    {
+        writer.Append($"{type} {name}");
+        if (value is not null) writer.AppendUnindented($" = {value}");
+        return writer;
+    }
+
+    public static ICodeWriter WriteVariableDeclaration(this ICodeWriter writer, ITypeSymbol type, string name, string? value = null)
+    {
+        return writer.WriteVariableDeclaration(type.ToFullyQualified(), name, value);
+    }
+
+    public static ICodeWriter EndLine(this ICodeWriter writer)
+    {
+        writer.AppendUnindentedLine(";");
+        return writer;
+    }
+}
+
+public static class BuilderExtensions
+{
+    public static MethodBuilder AddGenericsFrom(this MethodBuilder methodBuilder, IMethodSymbol originMethod)
+    {
+        if (originMethod.IsGenericMethod)
+        {
+            foreach (var methodTypeParameter in originMethod.TypeParameters)
+            {
+                methodBuilder.AddGeneric(methodTypeParameter.Name,
+                                         builder =>
+                                         {
+                                             if (methodTypeParameter.HasConstructorConstraint) builder.New();
+                                             if (methodTypeParameter.HasReferenceTypeConstraint) builder.Class();
+                                             if (methodTypeParameter.AllowsRefLikeType)
+                                                 builder.AddConstraint("allows ref struct");
+                                             if (methodTypeParameter.HasNotNullConstraint) builder.AddConstraint("not null");
+                                             if (methodTypeParameter.HasValueTypeConstraint) builder.AddConstraint("struct");
+                                             if (methodTypeParameter.HasUnmanagedTypeConstraint)
+                                                 builder.AddConstraint("unmanaged");
+
+                                             foreach (var constraint in methodTypeParameter.ConstraintTypes)
+                                                 builder.AddConstraint(constraint.ToFullyQualified());
+                                         });
+            }
+        }
+
+        return methodBuilder;
+    }
+
+    public static MethodBuilder AddParameterWithRefKind(this MethodBuilder methodBuilder,
+                                                        RefKind refKind,
+                                                        ITypeSymbol type,
+                                                        string name)
+    {
+        return methodBuilder.AddParameterWithRefKind(refKind, type.ToFullyQualified(), name);
+    }
+
+    public static MethodBuilder AddParameterWithRefKind(this MethodBuilder methodBuilder,
+                                                        RefKind refKind,
+                                                        string type,
+                                                        string name)
+    {
+        return methodBuilder.AddParameter($"{refKind.ToDisplayString()} {type}", name);
+    }
+
+    public static MethodBuilder WithReturnType(this MethodBuilder methodBuilder, ITypeSymbol returnType)
+    {
+        return methodBuilder.WithReturnType(returnType.ToFullyQualified());
+    }
+}
+
+public static class EnumStringExtensions
+{
+    public static string ToDisplayString(this RefKind refKind) =>
+        refKind switch
+        {
+            RefKind.None => "",
+            RefKind.Ref => "ref",
+            RefKind.Out => "out",
+            RefKind.In => "in",
+            RefKind.RefReadOnlyParameter => "ref readonly",
+            _ => throw new ArgumentOutOfRangeException(nameof(refKind), refKind, null)
+        };
 }

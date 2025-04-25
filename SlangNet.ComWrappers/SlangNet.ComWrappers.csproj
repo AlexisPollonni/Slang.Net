@@ -5,15 +5,22 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SlangNet.Bindings\SlangNet.Bindings.csproj" />
+        <ProjectReference Include="..\SlangNet.Bindings\SlangNet.Bindings.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.4.0" />
+        <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.4.0"/>
+
+        <ProjectReference Include="..\SlangNet.Pretty.SourceGenerator\SlangNet.Pretty.SourceGenerator.csproj">
+            <OutputItemType>Analyzer</OutputItemType>
+            <PrivateAssets>all</PrivateAssets>
+            <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+        </ProjectReference>
     </ItemGroup>
-    <Import Project="../SlangNet.Native/HackyRuntimeCopy.targets" />
-    
+    <Import Project="../SlangNet.Native/HackyRuntimeCopy.targets"/>
+
 </Project>
