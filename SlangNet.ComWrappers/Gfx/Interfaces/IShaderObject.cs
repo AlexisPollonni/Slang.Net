@@ -11,6 +11,7 @@ namespace SlangNet.ComWrappers.Gfx.Interfaces;
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
                        StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("c1fa997e-5CA2-45AE-9BCB-C4359E850585")]
+[GenerateThrowingMethods]
 public partial interface IShaderObject
 {
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

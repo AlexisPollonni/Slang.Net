@@ -10,6 +10,7 @@ namespace SlangNet.ComWrappers.Interfaces;
 
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("C140B5FD-0C78-452E-BA7C-1A1E70C7F71C")]
+[GenerateThrowingMethods]
 public partial interface IGlobalSession : IUnknown
 {
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

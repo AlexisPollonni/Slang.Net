@@ -7,6 +7,7 @@ namespace SlangNet.ComWrappers.Interfaces;
 
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("8044A8A3-DDC0-4B7F-AF8E-026E905D7332")]
+[GenerateThrowingMethods]
 public partial interface IMetadata : ICastable
 {
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

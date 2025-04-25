@@ -7,6 +7,7 @@ namespace SlangNet.ComWrappers.Interfaces;
 
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("5FB632D2-979D-4481-9FEE-663C3F1449E1")]
+[GenerateThrowingMethods]
 public partial interface IFileSystemExt : IFileSystem
 {
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

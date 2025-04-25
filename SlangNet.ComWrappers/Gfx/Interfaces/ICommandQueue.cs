@@ -10,6 +10,7 @@ namespace SlangNet.ComWrappers.Gfx.Interfaces;
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
                        StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("14e2bed0-0AD0-4DC8-B341-063FE72DBF0E")]
+[GenerateThrowingMethods]
 public partial interface ICommandQueue : IUnknown
 {
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

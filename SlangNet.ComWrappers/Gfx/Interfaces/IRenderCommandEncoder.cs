@@ -8,6 +8,7 @@ namespace SlangNet.ComWrappers.Gfx.Interfaces;
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
                        StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("7A8D56D0-53E6-4AD6-85F7-D14DC110FDCE")]
+[GenerateThrowingMethods]
 public partial interface IRenderCommandEncoder : IResourceCommandEncoder
 {
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

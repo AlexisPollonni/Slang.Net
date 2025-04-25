@@ -11,6 +11,7 @@ namespace SlangNet.ComWrappers.Gfx.Interfaces;
 [GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
                        StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
 [Guid("715bdf26-5135-11eb-AE93-0242AC130002")]
+[GenerateThrowingMethods]
 public partial interface IDevice : IUnknown
 {
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
@@ -51,7 +52,7 @@ public partial interface IDevice : IUnknown
                                               out ITextureResource resource);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    unsafe SlangResult CreateBufferResource(BufferResourceDescription desc, in byte initData, out IBufferResource resource);
+    SlangResult CreateBufferResource(BufferResourceDescription desc, in byte initData, out IBufferResource resource);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult CreateBufferFromNativeHandle(Unmanaged.InteropHandle handle,
@@ -71,7 +72,7 @@ public partial interface IDevice : IUnknown
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult CreateBufferView(IBufferResource buffer,
-                                 IBufferResource counterBuffer,
+                                 IBufferResource? counterBuffer,
                                  ResourceViewDescription desc,
                                  out IResourceView view);
 
@@ -143,11 +144,12 @@ public partial interface IDevice : IUnknown
     SlangResult CreateQueryPool(QueryPoolDescription desc, out IQueryPool queryPool);
     
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    unsafe SlangResult GetAccelerationStructurePrebuildInfo(Unmanaged.IAccelerationStructure.BuildInputs* buildInputs,
+    SlangResult GetAccelerationStructurePrebuildInfo(
+        in Unmanaged.IAccelerationStructure.BuildInputs buildInputs,
                                                             out Unmanaged.IAccelerationStructure.PrebuildInfo prebuildInfo); //TODO
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    unsafe SlangResult CreateAccelerationStructure(Unmanaged.IAccelerationStructure.CreateDesc* desc,
+    SlangResult CreateAccelerationStructure(in Unmanaged.IAccelerationStructure.CreateDesc desc,
                                                    out IAccelerationStructure view); //TODO
     
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
