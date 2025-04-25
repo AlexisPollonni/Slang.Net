@@ -30,7 +30,7 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                                                                                                  "SlangNet.IgnoreThrowingMethodAttribute"))
                 continue;
 
-            var mExtBuilder = classBuilder.AddMethod($"{method.Name}Throwing")
+            var mExtBuilder = classBuilder.AddMethod($"{method.Name}OrThrow")
                                           .MakePublicMethod()
                                           .MakeStaticMethod()
                                           .AddGenericsFrom(method)
