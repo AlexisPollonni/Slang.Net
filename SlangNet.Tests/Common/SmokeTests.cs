@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
-using SlangNet.Bindings.Generated.Slang;
+using SlangNet.Bindings.Generated;
+using SlangNet.ComWrappers;
+using IGlobalSession = SlangNet.ComWrappers.Interfaces.IGlobalSession;
 
 namespace SlangNet.Tests;
 
@@ -8,11 +10,13 @@ internal unsafe class SmokeTests
     [Test]
     public void CanCreateGlobalSession()
     {
-        IGlobalSession* globalSession = null;
-        var result = SlangApi.slang_createGlobalSession(SlangApi.SLANG_API_VERSION, &globalSession);
-        Assert.That(result, Is.EqualTo(SlangApi.SLANG_OK));
-        Assert.True(globalSession != null, "createGlobalSession returned a null pointer");
-        globalSession->release();
+        IGlobalSession? globalSession = null;
+        var result = Slang.CreateGlobalSession(SlangApi.SLANG_API_VERSION, out globalSession);
+        Assert.Multiple(() =>
+        {
+            Assert.That(result, Is.EqualTo(SlangResult.Ok));
+            Assert.That(globalSession, Is.Not.Null, "createGlobalSession returned a null pointer");
+        });
     }
 
 #if SHOULD_BE_2_0 || SHOULD_BE_2_1
