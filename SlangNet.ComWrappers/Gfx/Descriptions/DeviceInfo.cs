@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Runtime.InteropServices.Marshalling;
+using CommunityToolkit.HighPerformance;
 using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers.Gfx.Descriptions;
@@ -49,8 +50,24 @@ public readonly record struct DeviceInfo(
         };
     }
 
-    Unmanaged.DeviceInfo IMarshalsToNative<Unmanaged.DeviceInfo>.AsNative(ref GrowingStackBuffer buffer) =>
-        throw new NotImplementedException();
+    unsafe Unmanaged.DeviceInfo IMarshalsToNative<Unmanaged.DeviceInfo>.AsNative(ref GrowingStackBuffer buffer)
+    {
+        var res = new Unmanaged.DeviceInfo
+        {
+            adapterName = buffer.GetStringPtr(AdapterName),
+            apiName = buffer.GetStringPtr(ApiName),
+            bindingStyle = BindingStyle,
+            deviceType = DeviceType,
+            identityProjectionMatrix = new(),
+            limits = ((IMarshalsToNative<Unmanaged.DeviceLimits>)Limits).AsNative(ref buffer),
+            projectionStyle = ProjectionStyle,
+            timestampFrequency = TimestampFrequency
+        };
+        var mat = IdentityProjectionMatrix;
+        mat.AsReadOnlySpan().AsBytes().CopyTo(res.identityProjectionMatrix.AsSpan().AsBytes());
+        
+        return res;
+    }
 }
 
 public readonly record struct DeviceLimits(
@@ -69,7 +86,8 @@ public readonly record struct DeviceLimits(
     uint MaxViewports,
     (uint Width, uint Height) MaxViewportDimensions,
     (uint X, uint Y, uint Z) MaxFramebufferDimensions,
-    uint MaxShaderVisibleSamplers) : IMarshalsFromNative<DeviceLimits, Unmanaged.DeviceLimits>
+    uint MaxShaderVisibleSamplers) : IMarshalsFromNative<DeviceLimits, Unmanaged.DeviceLimits>,
+                                     IMarshalsToNative<Unmanaged.DeviceLimits>
 {
     public static DeviceLimits CreateFromNative(Unmanaged.DeviceLimits unmanaged)
     {
@@ -100,5 +118,40 @@ public readonly record struct DeviceLimits(
                                         maxFramebufferDimensions[1], maxFramebufferDimensions[2]),
             MaxShaderVisibleSamplers = unmanaged.maxShaderVisibleSamplers
         };
+    }
+
+    Unmanaged.DeviceLimits IMarshalsToNative<Unmanaged.DeviceLimits>.AsNative(ref GrowingStackBuffer buffer)
+    {
+        var res = new Unmanaged.DeviceLimits()
+        {
+            maxTextureDimension1D = MaxTextureDimension1D,
+            maxTextureDimension2D = MaxTextureDimension2D,
+            maxTextureDimension3D = MaxTextureDimension3D,
+            maxTextureDimensionCube = MaxTextureDimensionCube,
+            maxTextureArrayLayers = MaxTextureArrayLayers,
+            maxVertexInputElements = MaxVertexInputElements,
+            maxVertexInputElementOffset = MaxVertexInputElementOffset,
+            maxVertexStreams = MaxVertexStreams,
+            maxVertexStreamStride = MaxVertexStreamStride,
+            maxComputeThreadsPerGroup = MaxComputeThreadsPerGroup,
+            maxComputeThreadGroupSize = new(),
+            maxComputeDispatchThreadGroups = new(),
+            maxViewports = MaxViewports,
+            maxViewportDimensions = new(),
+            maxFramebufferDimensions = new(),
+            maxShaderVisibleSamplers = MaxShaderVisibleSamplers
+        };
+        
+        var maxComputeThreadGroupSize = MaxComputeThreadGroupSize;
+        var maxComputeDispatchThreadGroups = MaxComputeDispatchThreadGroups;
+        var maxViewportDimensions = MaxViewportDimensions;
+        var maxFramebufferDimensions = MaxFramebufferDimensions;
+        
+        maxComputeThreadGroupSize.AsSpan().AsBytes().CopyTo(res.maxComputeThreadGroupSize.AsSpan().AsBytes());
+        maxComputeDispatchThreadGroups.AsSpan().AsBytes().CopyTo(res.maxComputeDispatchThreadGroups.AsSpan().AsBytes());
+        maxViewportDimensions.AsSpan().AsBytes().CopyTo(res.maxViewportDimensions.AsSpan().AsBytes());
+        maxFramebufferDimensions.AsSpan().AsBytes().CopyTo(res.maxFramebufferDimensions.AsSpan().AsBytes());
+        
+        return res;
     }
 }
