@@ -18,6 +18,9 @@ public readonly record struct DeviceDescription(
                               IMarshalsFromNative<DeviceDescription, Unmanaged.IDevice.DeviceDesc>,
                               IFreeAfterMarshal<Unmanaged.IDevice.DeviceDesc>
 {
+    public DeviceDescription() : this(Unmanaged.DeviceType.Default, new(), Guid.Empty, null, new(), new())
+    { }
+    
     unsafe Unmanaged.IDevice.DeviceDesc IMarshalsToNative<Unmanaged.IDevice.DeviceDesc>.AsNative(
         ref GrowingStackBuffer buffer)
     {

@@ -17,10 +17,8 @@ Debug.EnableLogging();
 
 var shaderIncludePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
 
-var adapters = Gfx.GetAdapters(Unmanaged.DeviceType.Vulkan);
 var devDesc = new DeviceDescription
 {
-    DeviceType = Unmanaged.DeviceType.Vulkan,
     Slang = new()
     {
         TargetFlags = TargetFlags.GenerateSPIRVDirectly,
@@ -33,7 +31,6 @@ var devDesc = new DeviceDescription
     {
         Path = "./ShaderCache"
     },
-    AdapterLuid = adapters[0].Luid
 };
 
 Gfx.CreateDevice(devDesc, out var device).ThrowIfFailed();
