@@ -116,7 +116,7 @@ public partial interface IDevice : IUnknown
     SlangResult CreateProgram(ShaderProgramDescription desc, out IShaderProgram program, out IBlob? diagnostics);
     
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult CreateProgram2(ShaderProgramDescription2 desc, out IShaderProgram program, out IBlob? diagnostics);
+    SlangResult CreateProgram2(ShaderProgramCreateDescription2 desc, out IShaderProgram program, out IBlob? diagnostics);
     
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult CreateGraphicsPipelineState(GraphicsPipelineStateDescription desc, out IPipelineState pipelineState);
@@ -189,23 +189,4 @@ public partial interface IDevice : IUnknown
 }
 
 public readonly record struct RayTracingPipelineStateDescription; //TODO
-public readonly record struct ShaderProgramDescription2; //TODO
 public readonly record struct ShaderTableDescription; //TODO
-
-//TODO
-[NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<SubresourceData, Unmanaged.ITextureResource.SubresourceData>))]
-public readonly record struct SubresourceData(Memory<byte> data, nuint strideY, nuint strideZ)
-    : IMarshalsToNative<Unmanaged.ITextureResource.SubresourceData>,
-      IMarshalsFromNative<SubresourceData, Unmanaged.ITextureResource.SubresourceData>
-{
-    public Memory<byte> Data { get; } = data;
-    public nuint StrideY { get; } = strideY;
-    public nuint StrideZ { get; } = strideZ;
-
-    Unmanaged.ITextureResource.SubresourceData IMarshalsToNative<Unmanaged.ITextureResource.SubresourceData>.AsNative(
-        ref GrowingStackBuffer buffer) =>
-        default;
-
-    public static SubresourceData CreateFromNative(Unmanaged.ITextureResource.SubresourceData unmanaged) =>
-        throw new NotImplementedException();
-}

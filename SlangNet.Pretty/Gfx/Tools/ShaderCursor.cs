@@ -304,8 +304,7 @@ public struct ShaderCursor
         FollowPath(path, ref cursor).ThrowIfFailed();
         return cursor;
     }
-
-    //TODO: Verify this is correct
+    
     public static SlangResult FollowPath(string path, ref ShaderCursor ioCursor)
     {
         var cursor = ioCursor;

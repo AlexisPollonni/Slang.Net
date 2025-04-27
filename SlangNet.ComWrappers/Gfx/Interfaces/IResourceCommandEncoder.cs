@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using SlangNet.ComWrappers.Gfx.Descriptions;
 using SlangNet.ComWrappers.Tools;
 
 namespace SlangNet.ComWrappers.Gfx.Interfaces;
