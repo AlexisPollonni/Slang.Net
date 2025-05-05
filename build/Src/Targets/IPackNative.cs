@@ -9,7 +9,9 @@ using NuGet.Versioning;
 using Nuke.Common;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
+using Nuke.Common.Tooling;
 using Nuke.Common.Tools.NuGet;
+using Nuke.Common.Utilities;
 using Serilog;
 using SlangNet.Build.Tools;
 
@@ -29,16 +31,28 @@ public interface IPackNative : IDownloadSlangBinaries
         d => d
              .OnlyWhenStatic(() => IsLocalBuild)
              .DependsOn<IPackNative>(b => b.PackNative)
+             .Triggers<global::Build>(b => b.Restore)
              .Executes(() =>
              {
                  var localFeedDirectory = PackageOutputDirectory / "localFeed";
 
                  localFeedDirectory.CreateOrCleanDirectory();
-                 
+
                  NuGetTasks.NuGet($"init {PackageOutputDirectory} {localFeedDirectory}");
                  NuGetTasks.NuGetSourcesList();
+
+                 //Delete the Nuget global cache entry, so on the next restore the correct package is chosen
+                 var output = NuGetTasks.NuGet("locals global-packages -list").EnsureOnlyStd().StdToText();
+                 var globalPackagesDir = AbsolutePath.Create(output.TrimStart("global-packages: ")).ExistingDirectory();
+
+                 var cacheToDelete = globalPackagesDir.GlobDirectories($"{GetNativePackageId()}*");
+                 if (cacheToDelete.Count > 0)
+                 {
+                     cacheToDelete.DeleteDirectories();
+                     Log.Information("Deleted NuGet cache directories {CacheDirectories}", cacheToDelete);
+                 }
              });
-    
+
     Target PackNative =>
         d => d
              .Consumes<IDownloadSlangBinaries>(t => t.DownloadSlangBinaries)
@@ -54,16 +68,14 @@ public interface IPackNative : IDownloadSlangBinaries
 
                  var runtimeJson = runtimeInfo.WriteRuntimeJson(TemporaryDirectory);
 
-                 var readmeFile = RootDirectory / GetRuntimePackageId(null) / "NativePackageReadme.md";
+                 var readmeFile = RootDirectory / GetNativePackageId() / "NativePackageReadme.md";
                  var packages = rids.Select(id => new PackageInfo(SlangRepository,
                                                                   id,
                                                                   NativePackageVersion,
                                                                   readmeFile,
                                                                   (OutputBinDirectory / SlangVersion / id.Value).GlobFiles(
                                                                       "*.dll", "*.dylib", "*.so")))
-                                    .ToArray();
-
-                 foreach (var packageInfo in packages) packageInfo.WritePackage(PackageOutputDirectory);
+                                    .ToList();
 
                  var metaPackage = new PackageInfo(SlangRepository,
                                                    null,
@@ -78,26 +90,24 @@ public interface IPackNative : IDownloadSlangBinaries
                                                        }
                                                    ]);
 
-                 metaPackage.WritePackage(PackageOutputDirectory);
+                 packages.Add(metaPackage);
+                 packages.AsParallel()
+                         .WithDegreeOfParallelism(packages.Count)
+                         .ForAll(info => info.WritePackage(PackageOutputDirectory));
              });
 
-    private static string GetRuntimePackageId(DotnetRuntimeId? identifier) =>
-        identifier is null ? "SlangNet.Native" : $"SlangNet.Native.Runtime.{identifier}";
+    private static string GetNativePackageId(DotnetRuntimeId? runtime = null) =>
+        runtime is null ? "SlangNet.Native" : $"SlangNet.Native.Runtime.{runtime}";
 
-    record RuntimeInfo(IEnumerable<DotnetRuntimeId> RuntimeIdentifiers, NuGetVersion NativePackageVersion)
+    private record RuntimeInfo(IEnumerable<DotnetRuntimeId> RuntimeIdentifiers, NuGetVersion NativePackageVersion)
     {
         public AbsolutePath WriteRuntimeJson(AbsolutePath outputDirectory)
         {
             var jsonFilePath = outputDirectory.CreateDirectory() / RuntimeGraph.RuntimeGraphFileName;
 
-            var descriptions = RuntimeIdentifiers.Select(rid =>
-            {
-                var packageDependency
-                    = new RuntimePackageDependency(GetRuntimePackageId(rid),
-                                                   new(minVersion: NativePackageVersion, maxVersion: NativePackageVersion, includeMaxVersion:true));
-                var runtimeDependency = new RuntimeDependencySet("SlangNet.Native", [packageDependency]);
-                return new RuntimeDescription(rid, [runtimeDependency]);
-            });
+            var anyDesc = CreateRuntimeDescription(DotnetRuntimeId.Any, RuntimeIdentifiers);
+            var descriptions = RuntimeIdentifiers.Select(rid => CreateRuntimeDescription(rid))
+                                                 .Append(anyDesc);
 
             var graph = new RuntimeGraph(descriptions);
 
@@ -105,9 +115,22 @@ public interface IPackNative : IDownloadSlangBinaries
 
             return jsonFilePath.ExistingFile().NotNull();
         }
+
+        RuntimeDescription CreateRuntimeDescription(DotnetRuntimeId targetRid,
+                                                    IEnumerable<DotnetRuntimeId>? dependencyRids = null)
+        {
+            var versionRange = new VersionRange(minVersion: NativePackageVersion,
+                                                maxVersion: NativePackageVersion,
+                                                includeMaxVersion: true);
+            var depRids = dependencyRids ?? [targetRid];
+
+            var dependencies = depRids.Select(id => new RuntimePackageDependency(GetNativePackageId(id), versionRange));
+            var dependencySet = new RuntimeDependencySet(GetNativePackageId(), dependencies);
+            return new(targetRid, [dependencySet]);
+        }
     }
 
-    record PackageInfo(
+    private record PackageInfo(
         GitRepository SlangRepo,
         DotnetRuntimeId? RuntimeId,
         NuGetVersion PackageVersion,
@@ -117,7 +140,7 @@ public interface IPackNative : IDownloadSlangBinaries
     {
         public void WritePackage(AbsolutePath outputDirectory)
         {
-            var packageId = GetRuntimePackageId(RuntimeId);
+            var packageId = GetNativePackageId(RuntimeId);
             Log.Information("Creating .nupkg manifest for native package {PackageId}", packageId);
 
             var outFilePath = outputDirectory.CreateDirectory() / $"{packageId}.nupkg";
@@ -159,7 +182,7 @@ public interface IPackNative : IDownloadSlangBinaries
                 Repository = new("git", "https://github.com/shader-slang/slang",
                                  SlangRepo.RemoteBranch,
                                  SlangRepo.Commit),
-                DependencyGroups = { new(FrameworkConstants.CommonFrameworks.NetStandard20, []) }
+                DependencyGroups = { new(FrameworkConstants.CommonFrameworks.NetStandard20, []) },
             };
 
             builder.Authors.AddRange(["Helco", "AlexisPollonni"]);

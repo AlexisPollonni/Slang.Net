@@ -31,7 +31,7 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative
                                               .SetProject(Solution));
              });
 
-    Target Restore =>
+    internal Target Restore =>
         d => d
              .DependsOn<IPackNative>(d => d.PackNative)
              .Executes(() =>

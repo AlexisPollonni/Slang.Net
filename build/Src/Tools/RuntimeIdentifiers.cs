@@ -30,6 +30,8 @@ public partial class SlangRuntimeId
 
 [Intellenum<string>]
 //Rids taken from https://learn.microsoft.com/en-us/dotnet/core/rid-catalog
+[Member("Any", "any")]
+
 [Member("Win64", "win-x64")]
 [Member("Win32", "win-x86")]
 [Member("WinArm64", "win-arm64")]
