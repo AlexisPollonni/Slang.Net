@@ -187,7 +187,7 @@ public interface IPackNative : IDownloadSlangBinaries
 
             builder.Authors.AddRange(["Helco", "AlexisPollonni"]);
             builder.Owners.Add("Helco");
-            builder.Tags.AddRange(["slang", "shader", "C#", "csharp"]);
+            builder.Tags.AddRange(["slang", "shader", "C#", "csharp", "native"]);
 
             builder.PopulateFiles(outputDirectory, manifestFiles);
 
