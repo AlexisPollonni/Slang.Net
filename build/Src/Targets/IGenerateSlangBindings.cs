@@ -43,6 +43,7 @@ public interface IGenerateSlangBindings : INukeBuild
     Target GenerateSlangBindings =>
         _ => _
              .DependsOn(CleanSlangBindings)
+             .Produces(SrcOutputDir / "**/*.cs", TestsOutputDir / "**/*.cs", XmlOutputDir / "**/*.xml")
              .Executes(Build);
 
     private void Build()

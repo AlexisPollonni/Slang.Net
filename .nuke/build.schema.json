@@ -29,6 +29,9 @@
         "Compile",
         "DownloadSlangBinaries",
         "GenerateSlangBindings",
+        "InitLocalFeed",
+        "Pack",
+        "PackNative",
         "Restore"
       ]
     },
@@ -110,7 +113,22 @@
             "Release"
           ]
         },
+        "CurrentRid": {
+          "type": "string"
+        },
+        "NativePackageVersion": {
+          "type": "string"
+        },
+        "OutputBinDirectory": {
+          "type": "string"
+        },
+        "PackageOutputDirectory": {
+          "type": "string"
+        },
         "SlangRepoPath": {
+          "type": "string"
+        },
+        "SlangVersion": {
           "type": "string"
         },
         "Solution": {

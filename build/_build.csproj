@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>SlangNet.Build</RootNamespace>
     <NoWarn>CS0649;CS0169;CA1050;CA1822;CA2211;IDE1006</NoWarn>
     <NukeRootDirectory>..</NukeRootDirectory>
     <NukeScriptDirectory></NukeScriptDirectory>
@@ -16,9 +16,16 @@
   <ItemGroup>
     <PackageReference Include="ClangSharp" Version="18.1.0.4" />
     <PackageReference Include="ClangSharp.PInvokeGenerator" Version="18.1.0.4" />
+    <PackageReference Include="Intellenum" Version="1.0.6" />
     <PackageReference Include="libclang" Version="18.1.3.2" />
     <PackageReference Include="libClangSharp" Version="18.1.3.1" />
+    <PackageReference Include="NuGet.CommandLine" Version="6.13.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Nuke.Common" Version="9.0.4" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.1" />
+    <PackageReference Include="Vogen" Version="7.0.3" />
   </ItemGroup>
 
 </Project>
