@@ -20,7 +20,7 @@ public interface IDownloadSlangBinaries : INukeBuild
     internal Solution? Solution => TryGetValue(() => Solution);
     
     [Parameter]
-    DotnetRuntimeId CurrentRid => TryGetValue(() => CurrentRid) ?? DotnetRuntimeId.Current;
+    DotnetRuntimeId? CurrentRid => TryGetValue(() => CurrentRid) ?? DotnetRuntimeId.Current;
 
     [Parameter]
     public string SlangVersion => TryGetValue(() => SlangVersion) ?? "2025.7.1";
@@ -55,6 +55,8 @@ public interface IDownloadSlangBinaries : INukeBuild
                                                                    .TrimEnd(".zip")),
                                                           asset.BrowserDownloadUrl))
                                         .ToArray();
+
+                 if (IsLocalBuild && CurrentRid is not null) archiveLocations = archiveLocations.Where(tuple => tuple.RuntimeId == CurrentRid.ToSlangRuntimeId()).ToArray();
 
                  archiveLocations.Where(tuple => tuple.ArchivePath.FileExists())
                                  .ForEach(skipped => Log.Information("Slang binary are already saved to {Path}, skipping...",
