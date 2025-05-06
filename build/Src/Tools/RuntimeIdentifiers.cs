@@ -44,7 +44,7 @@ public partial class SlangRuntimeId
 [Member("LinuxBionicArm64", "linux-bionic-arm64")]
 [Member("LinuxLoongArch64", "linux-loongarch64")]
 
-[Member("MacOs64", "osx-64")]
+[Member("MacOs64", "osx-x64")]
 [Member("MacOsArm64", "osx-arm64")]
 
 [Member("IosArm64", "ios-arm64")]
