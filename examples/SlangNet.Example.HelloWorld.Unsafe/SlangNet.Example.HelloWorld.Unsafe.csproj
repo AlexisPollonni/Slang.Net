@@ -20,6 +20,5 @@
     <PackageReference Include="Veldrid" Version="4.9.0" />
   </ItemGroup>
   <Import Project="../../ImportMainProject.targets" />
-  <Import Project="../../SlangNet.Native/HackyRuntimeCopy.targets"/>
 
 </Project>

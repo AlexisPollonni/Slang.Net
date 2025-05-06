@@ -2,10 +2,10 @@
   <PropertyGroup>
     <SlangVersion>2025.7.1</SlangVersion>
     <SlangNativeRepo>https://github.com/shader-slang/slang</SlangNativeRepo>
-    <SlangNativeCommit>b9300bae08a77df6ef2efe2b62de14a13b10b9a4</SlangNativeCommit>
+    <SlangNativeCommit>ba75ae14e714c8bd7558f625ff45fb9cfc2292b3</SlangNativeCommit>
 
-    <Author>Helco</Author>
-    <VersionPrefix>2023.4.3</VersionPrefix> <!-- Do not copy SlangVersion as we might want to increment for our own code -->
+    <Authors>Helco;AlexisPollonni</Authors>
+    <VersionPrefix>2025.0.1</VersionPrefix> <!-- Do not copy SlangVersion as we might want to increment for our own code -->
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>slang;shader;C#;csharp</PackageTags>
   </PropertyGroup>

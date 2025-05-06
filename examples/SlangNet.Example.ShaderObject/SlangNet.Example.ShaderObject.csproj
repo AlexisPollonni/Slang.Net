@@ -21,6 +21,5 @@
     </ItemGroup>
 
     <Import Project="../../ImportMainProject.targets" />
-    <Import Project="../../SlangNet.Native/HackyRuntimeCopy.targets"/>
 
 </Project>
