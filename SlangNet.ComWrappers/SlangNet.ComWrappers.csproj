@@ -21,6 +21,5 @@
             <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
         </ProjectReference>
     </ItemGroup>
-    <Import Project="../SlangNet.Native/HackyRuntimeCopy.targets"/>
 
 </Project>
