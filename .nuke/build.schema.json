@@ -25,6 +25,9 @@
       "type": "string",
       "enum": [
         "Clean",
+        "CleanDownloadDir",
+        "CleanGlobalCache",
+        "CleanPackageCache",
         "CleanSlangBindings",
         "Compile",
         "DownloadSlangBinaries",
@@ -106,20 +109,14 @@
   "allOf": [
     {
       "properties": {
-        "Configuration": {
+        "Config": {
           "type": "string",
-          "enum": [
-            "Debug",
-            "Release"
-          ]
+          "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)"
         },
-        "CurrentRid": {
+        "Configuration": {
           "type": "string"
         },
         "NativePackageVersion": {
-          "type": "string"
-        },
-        "OutputBinDirectory": {
           "type": "string"
         },
         "PackageOutputDirectory": {
@@ -137,6 +134,12 @@
         },
         "SrcOutputDir": {
           "type": "string"
+        },
+        "TargetRids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "TestsOutputDir": {
           "type": "string"

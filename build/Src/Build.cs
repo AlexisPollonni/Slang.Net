@@ -1,11 +1,12 @@
 using Nuke.Common;
-using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
 using SlangNet.Build.Targets;
 
 //[GitHubActions("pack", GitHubActionsImage.WindowsLatest, On = [GitHubActionsTrigger.Push],)]
-class Build : NukeBuild, IGenerateSlangBindings, IPackNative
+namespace SlangNet.Build;
+
+class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProvider
 {
     /// Support plugins are available for:
     ///   - JetBrains ReSharper        https://nuke.build/resharper
@@ -15,29 +16,25 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative
     public static int Main() =>
         Execute<Build>();
 
-    [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
-
     [Solution(GenerateProjects = true)]
     public Solution? Solution { get; set; }
-
-    Target Clean =>
-        d => d
-             .Executes(() =>
-             {
-                 TemporaryDirectory.CreateOrCleanDirectory();
-                 DotNetTasks.DotNetClean(s => s
-                                              .SetConfiguration(Configuration)
-                                              .SetProject(Solution));
-             });
-
+    
     internal Target Restore =>
         d => d
-             .DependsOn<IPackNative>(d => d.PackNative)
+             .DependsOn<IPackNative>(d => d.InitLocalFeed)
              .Executes(() =>
              {
                  DotNetTasks.DotNetRestore(s => s.SetProjectFile(Solution));
              });
+
+    Target Clean =>
+        d => d 
+             // Clean the temp directories after dotnet clean to avoid missing files
+             .Triggers<IPackNative>(n => n.CleanDownloadDir, n => n.CleanGlobalCache, n => n.CleanPackageCache)
+             .Executes(() => DotNetTasks.DotNetClean(s => s
+                                                          .SetConfiguration(((IConfigurationProvider)this).Config)
+                                                          .SetProject(Solution)))
+             .ProceedAfterFailure();
 
     Target Compile =>
         d => d
@@ -46,13 +43,13 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative
              {
                  DotNetTasks.DotNetBuild(s =>
                                              s.SetNoRestore(true)
-                                              .SetConfiguration(Configuration)
+                                              .SetConfiguration(((IConfigurationProvider)this).Config)
                                               .SetProjectFile(Solution));
              });
-    
+
     Target Pack =>
         d => d
-             .DependsOn<IPackNative>(n => n.PackNative)
+             .DependsOn(Clean)
              .Executes(() =>
              {
                  //NuGetTasks.NuGetPack(c => c.SetTargetPath())

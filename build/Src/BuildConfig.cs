@@ -9,6 +9,8 @@ using StrList = System.Collections.Generic.IList<string>;
 using static ClangSharp.PInvokeGeneratorConfigurationOptions;
 using static Nuke.Common.EnvironmentInfo;
 
+namespace SlangNet.Build;
+
 internal record BuildConfig(
     string Language,
     string DefaultClass,
@@ -271,8 +273,8 @@ internal record BuildConfig(
                 { "OSPathKind", "SlangNet" },
             },
             [],
-[]
-    );
+            []
+        );
     
 
     public static BuildConfig SlangConfig => GetBuildConfig("SlangApi", "slang");

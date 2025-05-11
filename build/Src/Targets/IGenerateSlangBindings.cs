@@ -11,7 +11,10 @@ using Nuke.Common.Tooling;
 using Nuke.Common.Utilities;
 using Serilog;
 using Serilog.Events;
+using SlangNet.Build.Tools;
 using static ClangSharp.Interop.CXTranslationUnit_Flags;
+
+namespace SlangNet.Build.Targets;
 
 public interface IGenerateSlangBindings : INukeBuild
 {

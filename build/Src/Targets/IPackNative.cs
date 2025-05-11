@@ -9,15 +9,14 @@ using NuGet.Versioning;
 using Nuke.Common;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
-using Nuke.Common.Tooling;
 using Nuke.Common.Tools.NuGet;
-using Nuke.Common.Utilities;
+using Nuke.Common.Utilities.Collections;
 using Serilog;
 using SlangNet.Build.Tools;
 
 namespace SlangNet.Build.Targets;
 
-public interface IPackNative : IDownloadSlangBinaries
+interface IPackNative : IDownloadSlangBinaries
 {
     [Parameter]
     NuGetVersion NativePackageVersion => TryGetValue(() => NativePackageVersion) ?? new(SlangVersion);
@@ -25,32 +24,54 @@ public interface IPackNative : IDownloadSlangBinaries
     [Parameter]
     AbsolutePath PackageOutputDirectory => TryGetValue(() => PackageOutputDirectory) ?? TemporaryDirectory / "packages";
 
+    AbsolutePath LocalPackageCacheDirectory => TemporaryDirectory / "PackageCache";
+    AbsolutePath LocalFeedDirectory => LocalPackageCacheDirectory / ".localFeed";
+    
     GitRepository SlangRepository => GitRepository.FromLocalDirectory(RootDirectory / "slang");
 
-    Target InitLocalFeed =>
+    Target CleanPackageCache =>
         d => d
-             .OnlyWhenStatic(() => IsLocalBuild)
-             .DependsOn<IPackNative>(b => b.PackNative)
-             .Triggers<global::Build>(b => b.Restore)
+             .Unlisted()
+             .DependsOn(CleanGlobalCache)
              .Executes(() =>
              {
-                 var localFeedDirectory = PackageOutputDirectory / "localFeed";
+                 Log.Information("Cleaning local feed directory {LocalFeedDir}", LocalFeedDirectory);
+                 LocalFeedDirectory.CreateOrCleanDirectory();
 
-                 localFeedDirectory.CreateOrCleanDirectory();
+                 Log.Information("Cleaning NuGet package cache directory in {LocalPackageCacheDir}", LocalPackageCacheDirectory);
+                 LocalPackageCacheDirectory
+                     .GetDirectories()
+                     .Where(path => path != LocalFeedDirectory)
+                     .ForEachLazy(path => Log.Debug("Deleting cache directory {PackageCacheDir}", RootDirectory.GetRelativePathTo(path)))
+                     .DeleteDirectories();
+                 
+                 Log.Information("Cleaning package output directory {PackageDirectory}", PackageOutputDirectory);
+                 PackageOutputDirectory.CreateOrCleanDirectory();
+             });
+    
+    Target CleanGlobalCache =>
+        d => d
+            .Executes(() =>
+            {
+                var cachedPackagesDirectories = LocalPackageCacheDirectory.GlobDirectories($"{GetNativePackageId()}*");
 
-                 NuGetTasks.NuGet($"init {PackageOutputDirectory} {localFeedDirectory}");
+                Log.Information("Deleting Nuget cache directories {CacheDirectories}", cachedPackagesDirectories);
+
+                cachedPackagesDirectories.DeleteDirectories();
+            });
+    
+    Target InitLocalFeed =>
+        d => d
+             .Unlisted()
+             .OnlyWhenStatic(() => IsLocalBuild)
+             .DependsOn<IPackNative>(b => b.PackNative)
+             .Triggers<Build>(b => b.Restore)
+             .Executes(() =>
+             {
+                 LocalFeedDirectory.CreateOrCleanDirectory();
+
+                 NuGetTasks.NuGet($"init {PackageOutputDirectory} {LocalFeedDirectory}");
                  NuGetTasks.NuGetSourcesList();
-
-                 //Delete the Nuget global cache entry, so on the next restore the correct package is chosen
-                 var output = NuGetTasks.NuGet("locals global-packages -list").EnsureOnlyStd().StdToText();
-                 var globalPackagesDir = AbsolutePath.Create(output.TrimStart("global-packages: ")).ExistingDirectory();
-
-                 var cacheToDelete = globalPackagesDir.GlobDirectories($"{GetNativePackageId()}*");
-                 if (cacheToDelete.Count > 0)
-                 {
-                     cacheToDelete.DeleteDirectories();
-                     Log.Information("Deleted NuGet cache directories {CacheDirectories}", cacheToDelete);
-                 }
              });
 
     Target PackNative =>
@@ -60,9 +81,7 @@ public interface IPackNative : IDownloadSlangBinaries
              .Produces(PackageOutputDirectory / "**/*.nupkg")
              .Executes(() =>
              {
-                 var rids = (OutputBinDirectory / SlangVersion).GetDirectories()
-                                                               .Select(path => DotnetRuntimeId.FromValue(path.Name))
-                                                               .ToArray();
+                 var rids = TargetRids.ToArray();
 
                  var runtimeInfo = new RuntimeInfo(rids, NativePackageVersion);
 
@@ -73,8 +92,7 @@ public interface IPackNative : IDownloadSlangBinaries
                                                                   id,
                                                                   NativePackageVersion,
                                                                   readmeFile,
-                                                                  (OutputBinDirectory / SlangVersion / id.Value).GlobFiles(
-                                                                      "*.dll", "*.dylib", "*.so")))
+                                                                  GetBinariesForPlatform(id)))
                                     .ToList();
 
                  var metaPackage = new PackageInfo(SlangRepository,
@@ -92,7 +110,7 @@ public interface IPackNative : IDownloadSlangBinaries
 
                  packages.Add(metaPackage);
                  packages.AsParallel()
-                         .WithDegreeOfParallelism(packages.Count)
+                         .WithExecutionMode(ParallelExecutionMode.ForceParallelism)
                          .ForAll(info => info.WritePackage(PackageOutputDirectory));
              });
 

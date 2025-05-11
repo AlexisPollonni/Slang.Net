@@ -2,6 +2,8 @@
 using System.IO;
 using System.Text;
 
+namespace SlangNet.Build.Tools;
+
 internal class StreamToStringWrapper(Encoding? encoding = null) : Stream
 {
     private readonly StringBuilder _stringBuilder = new();
