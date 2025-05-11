@@ -1,11 +1,14 @@
 using Nuke.Common;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
 using SlangNet.Build.Targets;
 
-//[GitHubActions("pack", GitHubActionsImage.WindowsLatest, On = [GitHubActionsTrigger.Push],)]
 namespace SlangNet.Build;
 
+[GitHubActions("pack", GitHubActionsImage.WindowsLatest, 
+               On = [GitHubActionsTrigger.WorkflowDispatch], 
+               InvokedTargets = ["Pack"])]
 class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProvider
 {
     /// Support plugins are available for:
@@ -18,7 +21,7 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
 
     [Solution(GenerateProjects = true)]
     public Solution? Solution { get; set; }
-    
+
     internal Target Restore =>
         d => d
              .DependsOn<IPackNative>(d => d.InitLocalFeed)
@@ -28,7 +31,7 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
              });
 
     Target Clean =>
-        d => d 
+        d => d
              // Clean the temp directories after dotnet clean to avoid missing files
              .Triggers<IPackNative>(n => n.CleanDownloadDir, n => n.CleanGlobalCache, n => n.CleanPackageCache)
              .Executes(() => DotNetTasks.DotNetClean(s => s
@@ -49,9 +52,12 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
 
     Target Pack =>
         d => d
-             .DependsOn(Clean)
+             .DependsOn<IPackNative>(t => t.PackNative)
+             .Produces(((IPackNative)this).PackageOutputDirectory / "*.nupkg")
              .Executes(() =>
              {
-                 //NuGetTasks.NuGetPack(c => c.SetTargetPath())
+                 DotNetTasks.DotNetPack(c => c
+                                           .SetOutputDirectory(((IPackNative)this).PackageOutputDirectory)
+                                           .SetProject(Solution.NotNull()!.Path.NotNull().Parent));
              });
 }

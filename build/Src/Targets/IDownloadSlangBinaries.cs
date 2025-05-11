@@ -58,7 +58,6 @@ interface IDownloadSlangBinaries : INukeBuild
     
     Target DownloadSlangBinaries =>
         _ => _
-             .Produces(GetBinariesForAllPlatform())
              .Executes(async () =>
              {
                  var client = new GitHubClient(new ProductHeaderValue("SlangNet"));

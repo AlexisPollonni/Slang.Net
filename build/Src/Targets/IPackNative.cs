@@ -76,7 +76,6 @@ interface IPackNative : IDownloadSlangBinaries
 
     Target PackNative =>
         d => d
-             .Consumes<IDownloadSlangBinaries>(t => t.DownloadSlangBinaries)
              .DependsOn<IDownloadSlangBinaries>(t => t.DownloadSlangBinaries)
              .Produces(PackageOutputDirectory / "**/*.nupkg")
              .Executes(() =>
