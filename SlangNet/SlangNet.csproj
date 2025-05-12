@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
 
     <Title>SlangNet</Title>
@@ -13,8 +13,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <Content Include="_._" Pack="true" PackagePath="lib/netstandard2.0/_._" />
-    <Content Include="_._" Pack="true" PackagePath="lib/netstandard2.1/_._" />
     <Content Include="PackageReadme.md" Pack="true" PackagePath="readme.md" />
     
     <PackageReference Include="SlangNet.Native" Version="$(SlangVersion)" />
