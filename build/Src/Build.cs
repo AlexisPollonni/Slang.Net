@@ -60,19 +60,21 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
         d => d
              .DependsOn(Compile)
              .Executes(() => DotNetTasks.DotNetTest(c => c
-                                                         .SetNoBuild(true)
                                                          .SetNoRestore(true)
+                                                         .SetNoBuild(true)
                                                          .SetConfiguration(ConfigProvider.Config)
                                                          .SetProjectFile(Solution)));
 
     Target Pack =>
         d => d
-             .DependsOn<IPackNative>(t => t.PackNative)
+             .DependsOn(Compile)
              .Produces(((IPackNative)this).PackageOutputDirectory / "*.nupkg")
              .Executes(() =>
              {
                  DotNetTasks.DotNetPack(c => c
-                                           .SetOutputDirectory(((IPackNative)this).PackageOutputDirectory)
-                                           .SetProject(Solution.NotNull()!.Path.NotNull().Parent));
+                                             .SetNoRestore(true)
+                                             .SetNoBuild(true)
+                                             .SetOutputDirectory(((IPackNative)this).PackageOutputDirectory)
+                                             .SetProject(Solution.NotNull()!.Path.NotNull().Parent));
              });
 }
