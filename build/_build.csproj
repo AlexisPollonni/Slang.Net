@@ -19,13 +19,13 @@
     <PackageReference Include="Intellenum" Version="1.0.6" />
     <PackageReference Include="libclang" Version="20.1.2" />
     <PackageReference Include="libClangSharp" Version="20.1.2" />
-    <PackageReference Include="NuGet.CommandLine" Version="6.13.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Nuke.Common" Version="9.0.4" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.1" />
     <PackageReference Include="Vogen" Version="7.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageDownload Include="NuGet.CommandLine" Version="[6.13.2]" />
   </ItemGroup>
 
 </Project>
