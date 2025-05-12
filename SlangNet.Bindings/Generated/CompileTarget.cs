@@ -97,6 +97,9 @@ public enum CompileTarget
     /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.WgslSpirv"]/*' />
     WgslSpirv,
 
+    /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.HostVm"]/*' />
+    HostVm,
+
     /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.TargetCountOf"]/*' />
     TargetCountOf,
 }

@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <SlangVersion>2025.7.1</SlangVersion>
+    <SlangVersion>2025.8.1</SlangVersion>
     <SlangNativeRepo>https://github.com/shader-slang/slang</SlangNativeRepo>
     <SlangNativeCommit>ba75ae14e714c8bd7558f625ff45fb9cfc2292b3</SlangNativeCommit>
 

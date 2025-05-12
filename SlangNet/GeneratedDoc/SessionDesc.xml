@@ -44,6 +44,9 @@
       <field name="compilerOptionEntryCount" access="public">
         <type native="uint32_t">uint</type>
       </field>
+      <field name="skipSPIRVValidation" access="public">
+        <type native="bool">Boolean</type>
+      </field>
     </struct>
   </namespace>
 </bindings>

@@ -14,7 +14,8 @@ public readonly record struct SessionDescription(
     IFileSystem? FileSystem = null,
     bool EnableEffectAnnotations = false,
     bool AllowGlslSyntax = false,
-    CompilerOptionEntry[]? CompilerOptions = null) : IMarshalsToNative<Unmanaged.SessionDesc>,
+    CompilerOptionEntry[]? CompilerOptions = null,
+    bool SkipSpirvValidation = false) : IMarshalsToNative<Unmanaged.SessionDesc>,
                                                      IMarshalsFromNative<SessionDescription, Unmanaged.SessionDesc>,
                                                      IFreeAfterMarshal<Unmanaged.SessionDesc>
 {
@@ -40,7 +41,8 @@ public readonly record struct SessionDescription(
                 = buffer.GetCollectionPtr<CompilerOptionEntry, Unmanaged.CompilerOptionEntry>(
                     CompilerOptions,
                     out var compilerOptionCount),
-            compilerOptionEntryCount = compilerOptionCount
+            compilerOptionEntryCount = compilerOptionCount,
+            skipSPIRVValidation = SkipSpirvValidation
         };
 
     public static unsafe SessionDescription CreateFromNative(Unmanaged.SessionDesc unmanaged) =>
@@ -56,7 +58,8 @@ public readonly record struct SessionDescription(
             unmanaged.allowGLSLSyntax,
             InteropUtils.PtrToManagedMarshal<CompilerOptionEntry, Unmanaged.CompilerOptionEntry>(
                 unmanaged.compilerOptionEntries,
-                (int)unmanaged.compilerOptionEntryCount));
+                (int)unmanaged.compilerOptionEntryCount),
+            unmanaged.skipSPIRVValidation);
 
     public unsafe void Free(Unmanaged.SessionDesc* unmanaged) =>
         ComInterfaceMarshaller<IFileSystem>.Free(unmanaged->fileSystem);

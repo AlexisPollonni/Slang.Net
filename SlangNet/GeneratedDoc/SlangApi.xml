@@ -2526,6 +2526,24 @@
       <function name="slang_getLastInternalErrorMessage" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
         <type native="const char *">sbyte*</type>
       </function>
+      <function name="slang_createByteCodeRunner" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="desc">
+          <type>ByteCodeRunnerDesc*</type>
+        </param>
+        <param name="outByteCodeRunner">
+          <type>IByteCodeRunner**</type>
+        </param>
+      </function>
+      <function name="slang_disassembleByteCode" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="moduleBlob">
+          <type>ISlangBlob*</type>
+        </param>
+        <param name="outDisassemblyBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </function>
       <iid name="IID_ISlangUnknown" value="0x00000000, 0x0000, 0x0000, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46" />
       <iid name="IID_ISlangCastable" value="0x87EDE0E1, 0x4852, 0x44B0, 0x8B, 0xF2, 0xCB, 0x31, 0x87, 0x4D, 0xE2, 0x39" />
       <iid name="IID_ISlangClonable" value="0x1EC36168, 0xE9F4, 0x430D, 0xBB, 0x17, 0x04, 0x8A, 0x80, 0x46, 0xB3, 0x1F" />
@@ -2548,6 +2566,7 @@
       <iid name="IID_ITypeConformance" value="0x73EB3147, 0xE544, 0x41B5, 0xB8, 0xF0, 0xA2, 0x44, 0xDF, 0x21, 0x94, 0x0B" />
       <iid name="IID_IModule" value="0x0C720E64, 0x8722, 0x4D31, 0x89, 0x90, 0x63, 0x8A, 0x98, 0xB1, 0xC2, 0x79" />
       <iid name="IID_IModulePrecompileService_Experimental" value="0x8E12E8E3, 0x5FCD, 0x433E, 0xAF, 0xCB, 0x13, 0xA0, 0x88, 0xBC, 0x5E, 0xE5" />
+      <iid name="IID_IByteCodeRunner" value="0xAFDAB195, 0x361F, 0x42CB, 0x95, 0x13, 0x90, 0x06, 0x26, 0x1D, 0xD8, 0xCD" />
     </class>
   </namespace>
 </bindings>

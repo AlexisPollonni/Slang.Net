@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="SlangNet.Bindings.Generated">
+    <struct name="ByteCodeFuncInfo" access="public">
+      <field name="parameterCount" access="public">
+        <type native="uint32_t">uint</type>
+      </field>
+      <field name="returnValueSize" access="public">
+        <type native="uint32_t">uint</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

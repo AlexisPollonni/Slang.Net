@@ -21,7 +21,7 @@ interface IDownloadSlangBinaries : INukeBuild
         ?? (IsLocalBuild ? [DotnetRuntimeId.Current] : SlangRuntimeId.List().Select(id => id.ToDotnetRuntimeId()).ToArray());
 
     [Parameter]
-    Version SlangVersion => TryGetValue(() => SlangVersion) ?? new("2025.7.1");
+    Version SlangVersion => TryGetValue(() => SlangVersion) ?? new("2025.8.1");
 
     AbsolutePath DownloadCacheDirectory => TemporaryDirectory / "DownloadCache";
 

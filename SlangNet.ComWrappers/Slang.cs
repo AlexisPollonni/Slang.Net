@@ -27,6 +27,13 @@ public static partial class Slang
     [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]
     public static partial string? GetLastInternalErrorMessage();
 
+    [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "slang_createByteCodeRunner")]
+    public static partial SlangResult CreateByteCodeRunner(in Unmanaged.ByteCodeRunnerDesc desc,
+                                                           out IByteCodeRunner outByteCodeRunner);
+
+    [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "slang_disassembleByteCode")]
+    public static partial SlangResult DisassembleByteCode(IBlob moduleBlob, out IBlob outDisassemblyBlob);
+
 
     public static IGlobalSession CreateGlobalSession()
     {

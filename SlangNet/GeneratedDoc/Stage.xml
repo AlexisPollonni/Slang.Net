@@ -48,6 +48,9 @@
       <enumerator name="Amplification" access="public">
         <type primitive="False">uint</type>
       </enumerator>
+      <enumerator name="Dispatch" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
       <enumerator name="Count" access="public">
         <type primitive="False">uint</type>
       </enumerator>

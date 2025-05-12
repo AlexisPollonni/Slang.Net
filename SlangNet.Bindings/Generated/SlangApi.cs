@@ -1278,6 +1278,16 @@ public static unsafe partial class SlangApi
     [return: NativeTypeName("const char *")]
     public static extern sbyte* slang_getLastInternalErrorMessage();
 
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_createByteCodeRunner"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int slang_createByteCodeRunner([NativeTypeName("const slang::ByteCodeRunnerDesc *")] ByteCodeRunnerDesc* desc, [NativeTypeName("slang::IByteCodeRunner **")] IByteCodeRunner** outByteCodeRunner);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_disassembleByteCode"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int slang_disassembleByteCode([NativeTypeName("slang::IBlob *")] ISlangBlob* moduleBlob, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDisassemblyBlob);
+
     public static readonly Guid IID_ISlangUnknown = new Guid(0x00000000, 0x0000, 0x0000, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46);
 
     public static readonly Guid IID_ISlangCastable = new Guid(0x87EDE0E1, 0x4852, 0x44B0, 0x8B, 0xF2, 0xCB, 0x31, 0x87, 0x4D, 0xE2, 0x39);
@@ -1321,4 +1331,6 @@ public static unsafe partial class SlangApi
     public static readonly Guid IID_IModule = new Guid(0x0C720E64, 0x8722, 0x4D31, 0x89, 0x90, 0x63, 0x8A, 0x98, 0xB1, 0xC2, 0x79);
 
     public static readonly Guid IID_IModulePrecompileService_Experimental = new Guid(0x8E12E8E3, 0x5FCD, 0x433E, 0xAF, 0xCB, 0x13, 0xA0, 0x88, 0xBC, 0x5E, 0xE5);
+
+    public static readonly Guid IID_IByteCodeRunner = new Guid(0xAFDAB195, 0x361F, 0x42CB, 0x95, 0x13, 0x90, 0x06, 0x26, 0x1D, 0xD8, 0xCD);
 }

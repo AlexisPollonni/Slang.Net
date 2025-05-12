@@ -17,7 +17,7 @@
     <Content Include="_._" Pack="true" PackagePath="lib/netstandard2.1/_._" />
     <Content Include="PackageReadme.md" Pack="true" PackagePath="readme.md" />
     
-    <PackageReference Include="SlangNet.Native" Version="2025.7.1" />
+    <PackageReference Include="SlangNet.Native" Version="$(SlangVersion)" />
     
     <ProjectReference Include="..\SlangNet.Pretty\SlangNet.Pretty.csproj">
       <ReferenceOutputAssembly>True</ReferenceOutputAssembly>

@@ -96,6 +96,9 @@
       <enumerator name="WgslSpirv" access="public">
         <type primitive="False">int</type>
       </enumerator>
+      <enumerator name="HostVm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
       <enumerator name="TargetCountOf" access="public">
         <type primitive="False">int</type>
       </enumerator>

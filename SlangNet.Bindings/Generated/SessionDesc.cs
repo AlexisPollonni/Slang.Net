@@ -57,4 +57,8 @@ public unsafe partial struct SessionDesc
     /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.compilerOptionEntryCount"]/*' />
     [NativeTypeName("uint32_t")]
     public uint compilerOptionEntryCount;
+
+    /// <include file='SessionDesc.xml' path='doc/member[@name="SessionDesc.skipSPIRVValidation"]/*' />
+    [NativeTypeName("bool")]
+    public Boolean skipSPIRVValidation;
 }
