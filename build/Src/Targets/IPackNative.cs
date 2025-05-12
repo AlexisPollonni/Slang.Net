@@ -63,7 +63,6 @@ interface IPackNative : IDownloadSlangBinaries
     Target InitLocalFeed =>
         d => d
              .Unlisted()
-             .OnlyWhenStatic(() => IsLocalBuild)
              .DependsOn<IPackNative>(b => b.PackNative)
              .Triggers<Build>(b => b.Restore)
              .Executes(() =>
