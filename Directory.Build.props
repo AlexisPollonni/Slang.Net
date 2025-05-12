@@ -1,8 +1,6 @@
 <Project>
   <PropertyGroup>
     <SlangVersion>2025.8.1</SlangVersion>
-    <SlangNativeRepo>https://github.com/shader-slang/slang</SlangNativeRepo>
-    <SlangNativeCommit>ba75ae14e714c8bd7558f625ff45fb9cfc2292b3</SlangNativeCommit>
 
     <Authors>Helco;AlexisPollonni</Authors>
     <VersionPrefix>2025.0.1</VersionPrefix> <!-- Do not copy SlangVersion as we might want to increment for our own code -->

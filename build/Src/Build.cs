@@ -1,3 +1,4 @@
+using System;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.ProjectModel;
@@ -30,6 +31,11 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
     public Solution? Solution { get; set; }
 
     private IConfigurationProvider ConfigProvider => this;
+
+    [Parameter]
+    public Version SlangVersion => new(Solution.NotNull("SlangNet solution was not found")!
+                                               .SlangNet.GetProperty(nameof(SlangVersion))
+                                               .NotNullOrWhiteSpace());
 
     internal Target Restore =>
         d => d

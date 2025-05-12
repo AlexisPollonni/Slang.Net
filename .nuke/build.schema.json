@@ -114,9 +114,6 @@
           "type": "string",
           "description": "Configuration to build - Default is 'Debug' (local) or 'Release' (server)"
         },
-        "Configuration": {
-          "type": "string"
-        },
         "NativePackageVersion": {
           "type": "string"
         },

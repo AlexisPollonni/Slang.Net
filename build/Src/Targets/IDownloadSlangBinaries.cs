@@ -12,16 +12,14 @@ namespace SlangNet.Build.Targets;
 
 interface IDownloadSlangBinaries : INukeBuild
 {
-    [Parameter]
-    Configuration Configuration => TryGetValue(() => Configuration) ?? Configuration.Debug;
-
     [Parameter(List = true)]
     DotnetRuntimeId[] TargetRids =>
         TryGetValue(() => TargetRids)
         ?? (IsLocalBuild ? [DotnetRuntimeId.Current] : SlangRuntimeId.List().Select(id => id.ToDotnetRuntimeId()).ToArray());
 
     [Parameter]
-    Version SlangVersion => TryGetValue(() => SlangVersion) ?? new("2025.8.1");
+    [Required]
+    Version? SlangVersion => TryGetValue(() => SlangVersion);
 
     AbsolutePath DownloadCacheDirectory => TemporaryDirectory / "DownloadCache";
 
@@ -58,6 +56,7 @@ interface IDownloadSlangBinaries : INukeBuild
     
     Target DownloadSlangBinaries =>
         _ => _
+             .Requires(() => SlangVersion)
              .Executes(async () =>
              {
                  var client = new GitHubClient(new ProductHeaderValue("SlangNet"));
