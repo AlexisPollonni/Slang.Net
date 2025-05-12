@@ -32,21 +32,22 @@ interface IPackNative : IDownloadSlangBinaries
     Target CleanPackageCache =>
         d => d
              .Unlisted()
+             .ProceedAfterFailure()
              .DependsOn(CleanGlobalCache)
              .Executes(() =>
              {
                  Log.Information("Cleaning local feed directory {LocalFeedDir}", LocalFeedDirectory);
                  LocalFeedDirectory.CreateOrCleanDirectory();
-
-                 Log.Information("Cleaning NuGet package cache directory in {LocalPackageCacheDir}", LocalPackageCacheDirectory);
-                 LocalPackageCacheDirectory
-                     .GetDirectories()
-                     .Where(path => path != LocalFeedDirectory)
-                     .ForEachLazy(path => Log.Debug("Deleting cache directory {PackageCacheDir}", RootDirectory.GetRelativePathTo(path)))
-                     .DeleteDirectories();
                  
                  Log.Information("Cleaning package output directory {PackageDirectory}", PackageOutputDirectory);
                  PackageOutputDirectory.CreateOrCleanDirectory();
+                 
+                 Log.Information("Cleaning NuGet package cache directory in {LocalPackageCacheDir}", LocalPackageCacheDirectory);
+                 LocalPackageCacheDirectory
+                     .GetDirectories("slangnet*")
+                     .Where(path => path != LocalFeedDirectory)
+                     .ForEachLazy(path => Log.Debug("Deleting cache directory {PackageCacheDir}", RootDirectory.GetRelativePathTo(path)))
+                     .DeleteDirectories();
              });
     
     Target CleanGlobalCache =>
