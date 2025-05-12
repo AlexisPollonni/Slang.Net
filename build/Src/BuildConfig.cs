@@ -225,6 +225,9 @@ internal record BuildConfig(
 
                 // Exclude ResourceStateSet we reimplement it fully
                 "gfx::ResourceStateSet",
+                
+                // Generates as an empty struct and fails tests so remove, gets reimplemented anyway
+                "gfx::AdapterList",
             ],
             new()
             {
