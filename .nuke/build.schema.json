@@ -35,7 +35,8 @@
         "InitLocalFeed",
         "Pack",
         "PackNative",
-        "Restore"
+        "Restore",
+        "RunTests"
       ]
     },
     "Verbosity": {

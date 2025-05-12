@@ -9,6 +9,10 @@ namespace SlangNet.Build;
 [GitHubActions("pack", GitHubActionsImage.WindowsLatest, 
                On = [GitHubActionsTrigger.WorkflowDispatch], 
                InvokedTargets = ["Pack"])]
+[GitHubActions("continuous", GitHubActionsImage.WindowsLatest, GitHubActionsImage.MacOsLatest, GitHubActionsImage.UbuntuLatest,
+               On = [GitHubActionsTrigger.Push],
+               InvokedTargets = ["Compile", "RunTests"],
+               PublishArtifacts = false)]
 class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProvider
 {
     /// Support plugins are available for:
@@ -21,6 +25,8 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
 
     [Solution(GenerateProjects = true)]
     public Solution? Solution { get; set; }
+
+    private IConfigurationProvider ConfigProvider => this;
 
     internal Target Restore =>
         d => d
@@ -35,7 +41,7 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
              // Clean the temp directories after dotnet clean to avoid missing files
              .Triggers<IPackNative>(n => n.CleanDownloadDir, n => n.CleanGlobalCache, n => n.CleanPackageCache)
              .Executes(() => DotNetTasks.DotNetClean(s => s
-                                                          .SetConfiguration(((IConfigurationProvider)this).Config)
+                                                          .SetConfiguration(ConfigProvider.Config)
                                                           .SetProject(Solution)))
              .ProceedAfterFailure();
 
@@ -46,9 +52,18 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
              {
                  DotNetTasks.DotNetBuild(s =>
                                              s.SetNoRestore(true)
-                                              .SetConfiguration(((IConfigurationProvider)this).Config)
+                                              .SetConfiguration(ConfigProvider.Config)
                                               .SetProjectFile(Solution));
              });
+
+    Target RunTests =>
+        d => d
+             .DependsOn(Compile)
+             .Executes(() => DotNetTasks.DotNetTest(c => c
+                                                         .SetNoBuild(true)
+                                                         .SetNoRestore(true)
+                                                         .SetConfiguration(ConfigProvider.Config)
+                                                         .SetProjectFile(Solution)));
 
     Target Pack =>
         d => d
