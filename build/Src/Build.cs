@@ -9,14 +9,16 @@ namespace SlangNet.Build;
 
 [GitHubActions("pack", GitHubActionsImage.WindowsLatest,
                On = [GitHubActionsTrigger.WorkflowDispatch],
-               InvokedTargets = ["Pack"])]
+               InvokedTargets = ["Pack"],
+               EnableGitHubToken = true)]
 [GitHubActions("continuous", 
                GitHubActionsImage.WindowsLatest, 
                GitHubActionsImage.MacOsLatest,
                GitHubActionsImage.UbuntuLatest,
                On = [GitHubActionsTrigger.Push],
                InvokedTargets = ["Compile", "RunTests"],
-               PublishArtifacts = false)]
+               PublishArtifacts = false,
+               EnableGitHubToken = true)]
 class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProvider
 {
     /// Support plugins are available for:

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Nuke.Common;
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.IO;
 using Nuke.Common.Utilities;
 using Octokit;
@@ -23,6 +24,8 @@ interface IDownloadSlangBinaries : INukeBuild
 
     AbsolutePath DownloadCacheDirectory => TemporaryDirectory / "DownloadCache";
 
+    private GitHubActions? GitHubActions => GitHubActions.Instance;
+    
     IEnumerable<AbsolutePath> GetBinariesForPlatform(DotnetRuntimeId rid)
     {
         var binDir = GetBinFolderForRid(rid);
@@ -60,6 +63,12 @@ interface IDownloadSlangBinaries : INukeBuild
              .Executes(async () =>
              {
                  var client = new GitHubClient(new ProductHeaderValue("SlangNet"));
+
+                 if (!GitHubActions?.Token.IsNullOrWhiteSpace() ?? false)
+                 {
+                     client.Credentials = new(GitHubActions.Token);
+                     Log.Information("Added github-actions token to octokit client");
+                 }
 
                  var release = await client.Repository.Release.Get(
                      "shader-slang", "slang", "v" + SlangVersion);
