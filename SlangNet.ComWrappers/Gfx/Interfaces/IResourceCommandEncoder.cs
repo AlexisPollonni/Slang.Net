@@ -42,7 +42,8 @@ public partial interface IResourceCommandEncoder : ICommandEncoder
                            Unmanaged.SubresourceRange subresourceRange,
                            Unmanaged.ITextureResource.Offset3D offset,
                            Unmanaged.ITextureResource.Extents extent,
-                           SubresourceData data,
+                           [MarshalUsing(CountElementName = "subResourceDataCount")]
+                           Span<SubresourceData> data,
                            int subResourceDataCount);
     
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
