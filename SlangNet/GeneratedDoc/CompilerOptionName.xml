@@ -318,6 +318,18 @@
       <enumerator name="ParameterBlocksUseRegisterSpaces" access="public">
         <type primitive="False">int</type>
       </enumerator>
+      <enumerator name="LanguageVersion" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="TypeConformance" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="EnableExperimentalDynamicDispatch" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="EmitReflectionJSON" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
       <enumerator name="CountOfParsableOptions" access="public">
         <type primitive="False">int</type>
       </enumerator>
@@ -342,9 +354,6 @@
       <enumerator name="EmitSpirvMethod" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="EmitReflectionJSON" access="public">
-        <type primitive="False">int</type>
-      </enumerator>
       <enumerator name="SaveGLSLModuleBinSource" access="public">
         <type primitive="False">int</type>
       </enumerator>
@@ -352,6 +361,9 @@
         <type primitive="False">int</type>
       </enumerator>
       <enumerator name="DumpModule" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="EmitSeparateDebug" access="public">
         <type primitive="False">int</type>
       </enumerator>
       <enumerator name="CountOf" access="public">
