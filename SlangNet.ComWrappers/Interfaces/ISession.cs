@@ -85,4 +85,11 @@ public partial interface ISession : IUnknown
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     IModule? LoadModuleFromSourceString(string moduleName, string path, string content, out IBlob diagnostics);
+
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult GetDynamicObjectRTTIBytes(TypeReflection type,
+                                          TypeReflection interfaceType,
+                                          [MarshalUsing(CountElementName = "bufferSizeInBytes")]
+                                          Span<byte> outRTTIDataBuffer,
+                                          uint bufferSizeInBytes);
 }
