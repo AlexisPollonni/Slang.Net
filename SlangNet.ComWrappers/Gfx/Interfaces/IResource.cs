@@ -16,10 +16,10 @@ public partial interface IResource : IUnknown
     Unmanaged.IResource.ResourceType GetType();
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetNativeResourceHandle(out Unmanaged.InteropHandle handle);
+    SlangResult GetNativeResourceHandle(out Unmanaged.InteropHandle? handle);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetSharedHandle(out Unmanaged.InteropHandle handle);
+    SlangResult GetSharedHandle(out Unmanaged.InteropHandle? handle);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult SetDebugName(string name);
