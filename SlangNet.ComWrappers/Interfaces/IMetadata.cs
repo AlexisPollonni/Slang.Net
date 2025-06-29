@@ -15,4 +15,7 @@ public partial interface IMetadata : ICastable
                                         nuint spaceIndex,
                                         nuint registerIndex,
                                         [MarshalAs(UnmanagedType.I1)] out bool used);
+
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    string GetDebugBuildIdentifier();
 }

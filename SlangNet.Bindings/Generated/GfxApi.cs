@@ -52,7 +52,7 @@ public static unsafe partial class GfxApi
 
     /// <include file='GfxApi.xml' path='doc/member[@name="GfxApi.gfxEnableDebugLayer"]/*' />
     [DllImport("gfx", CallingConvention = CallingConvention.StdCall, ExactSpelling = true)]
-    public static extern void gfxEnableDebugLayer();
+    public static extern void gfxEnableDebugLayer([NativeTypeName("bool")] Boolean enable);
 
     /// <include file='GfxApi.xml' path='doc/member[@name="GfxApi.gfxGetDeviceTypeName"]/*' />
     [DllImport("gfx", CallingConvention = CallingConvention.StdCall, ExactSpelling = true)]

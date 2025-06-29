@@ -3,10 +3,40 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="SlangLanguageVersion" access="public">
       <type>int</type>
+      <enumerator name="SLANG_LANGUAGE_VERSION_UNKNOWN" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_LANGUAGE_VERSION_LEGACY" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>2018</code>
+        </value>
+      </enumerator>
       <enumerator name="SLANG_LANGUAGE_VERSION_2025" access="public">
         <type primitive="False">int</type>
         <value>
           <code>2025</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_LANGUAGE_VERSION_2026" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>2026</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_LANGAUGE_VERSION_DEFAULT" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>SLANG_LANGUAGE_VERSION_LEGACY</code>
+        </value>
+      </enumerator>
+      <enumerator name="SLANG_LANGUAGE_VERSION_LATEST" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>SLANG_LANGUAGE_VERSION_2026</code>
         </value>
       </enumerator>
     </enumeration>

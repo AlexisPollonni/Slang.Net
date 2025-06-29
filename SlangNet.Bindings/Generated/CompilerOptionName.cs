@@ -318,6 +318,18 @@ public enum CompilerOptionName
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.ParameterBlocksUseRegisterSpaces"]/*' />
     ParameterBlocksUseRegisterSpaces,
 
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.LanguageVersion"]/*' />
+    LanguageVersion,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.TypeConformance"]/*' />
+    TypeConformance,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EnableExperimentalDynamicDispatch"]/*' />
+    EnableExperimentalDynamicDispatch,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EmitReflectionJSON"]/*' />
+    EmitReflectionJSON,
+
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.CountOfParsableOptions"]/*' />
     CountOfParsableOptions,
 
@@ -342,9 +354,6 @@ public enum CompilerOptionName
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EmitSpirvMethod"]/*' />
     EmitSpirvMethod,
 
-    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EmitReflectionJSON"]/*' />
-    EmitReflectionJSON,
-
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.SaveGLSLModuleBinSource"]/*' />
     SaveGLSLModuleBinSource,
 
@@ -353,6 +362,9 @@ public enum CompilerOptionName
 
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.DumpModule"]/*' />
     DumpModule,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EmitSeparateDebug"]/*' />
+    EmitSeparateDebug,
 
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.CountOf"]/*' />
     CountOf,

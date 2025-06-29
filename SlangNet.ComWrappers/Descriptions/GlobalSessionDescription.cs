@@ -16,7 +16,7 @@ public readonly unsafe record struct GlobalSessionDescription(
         {
             structureSize = (uint)sizeof(Unmanaged.SlangGlobalSessionDesc),
             apiVersion = ApiVersion,
-            languageVersion = (uint)LanguageVersion,
+            minLanguageVersion = (uint)LanguageVersion,
             enableGLSL = EnableGlsl
         };
 }

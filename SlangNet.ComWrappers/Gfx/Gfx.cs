@@ -60,7 +60,7 @@ public static partial class Gfx
     public static partial SlangResult ReportLiveObjects();
 
     [LibraryImport("gfx", EntryPoint = "gfxEnableDebugLayer")]
-    public static partial void EnableDebugLayer();
+    public static partial void EnableDebugLayer([MarshalAs(UnmanagedType.I1)] bool enable = true);
 
     [LibraryImport("gfx", EntryPoint = "gfxGetDeviceTypeName")]
     [return: MarshalUsing(typeof(UnownedUTF8StringMarshaller))]

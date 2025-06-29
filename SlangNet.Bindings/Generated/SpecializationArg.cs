@@ -12,7 +12,7 @@ public unsafe partial struct SpecializationArg
     public TypeKind kind;
 
     /// <include file='SpecializationArg.xml' path='doc/member[@name="SpecializationArg.Anonymous"]/*' />
-    [NativeTypeName("__AnonymousRecord_slang_L4485_C5")]
+    [NativeTypeName("__AnonymousRecord_slang_L4574_C5")]
     public _Anonymous_e__Union Anonymous;
 
     /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.type"]/*' />
