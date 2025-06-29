@@ -31,6 +31,10 @@ public unsafe partial struct IMetadata
     [return: NativeTypeName("SlangResult")]
     public delegate int _isParameterLocationUsed(IMetadata* pThis, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] nuint spaceIndex, [NativeTypeName("SlangUInt")] nuint registerIndex, [NativeTypeName("bool &")] Boolean* outUsed);
 
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [return: NativeTypeName("const char *")]
+    public delegate sbyte* _getDebugBuildIdentifier(IMetadata* pThis);
+
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
@@ -70,6 +74,14 @@ public unsafe partial struct IMetadata
         return Marshal.GetDelegateForFunctionPointer<_isParameterLocationUsed>(lpVtbl->isParameterLocationUsed)((IMetadata*)Unsafe.AsPointer(ref this), category, spaceIndex, registerIndex, outUsed);
     }
 
+    /// <include file='IMetadata.xml' path='doc/member[@name="IMetadata.getDebugBuildIdentifier"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NativeTypeName("const char *")]
+    public sbyte* getDebugBuildIdentifier()
+    {
+        return Marshal.GetDelegateForFunctionPointer<_getDebugBuildIdentifier>(lpVtbl->getDebugBuildIdentifier)((IMetadata*)Unsafe.AsPointer(ref this));
+    }
+
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
@@ -86,5 +98,8 @@ public unsafe partial struct IMetadata
 
         [NativeTypeName("SlangResult (SlangParameterCategory, SlangUInt, SlangUInt, bool &)")]
         public IntPtr isParameterLocationUsed;
+
+        [NativeTypeName("const char *()")]
+        public IntPtr getDebugBuildIdentifier;
     }
 }
