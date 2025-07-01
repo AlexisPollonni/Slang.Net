@@ -13,9 +13,9 @@ public partial struct SlangGlobalSessionDesc
     [NativeTypeName("uint32_t")]
     public uint apiVersion;
 
-    /// <include file='SlangGlobalSessionDesc.xml' path='doc/member[@name="SlangGlobalSessionDesc.languageVersion"]/*' />
+    /// <include file='SlangGlobalSessionDesc.xml' path='doc/member[@name="SlangGlobalSessionDesc.minLanguageVersion"]/*' />
     [NativeTypeName("uint32_t")]
-    public uint languageVersion;
+    public uint minLanguageVersion;
 
     /// <include file='SlangGlobalSessionDesc.xml' path='doc/member[@name="SlangGlobalSessionDesc.enableGLSL"]/*' />
     [NativeTypeName("bool")]

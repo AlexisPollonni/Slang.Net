@@ -93,6 +93,10 @@ public unsafe partial struct ISession
     [return: NativeTypeName("slang::IModule *")]
     public delegate IModule* _loadModuleFromSourceString(ISession* pThis, [NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("const char *")] sbyte* @string, [NativeTypeName("slang::IBlob **")] ISlangBlob** outDiagnostics = null);
 
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [return: NativeTypeName("SlangResult")]
+    public delegate int _getDynamicObjectRTTIBytes(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("slang::TypeReflection *")] TypeReflection* interfaceType, [NativeTypeName("uint32_t *")] uint* outRTTIDataBuffer, [NativeTypeName("uint32_t")] uint bufferSizeInBytes);
+
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
@@ -253,6 +257,14 @@ public unsafe partial struct ISession
         return Marshal.GetDelegateForFunctionPointer<_loadModuleFromSourceString>(lpVtbl->loadModuleFromSourceString)((ISession*)Unsafe.AsPointer(ref this), moduleName, path, @string, outDiagnostics);
     }
 
+    /// <include file='ISession.xml' path='doc/member[@name="ISession.getDynamicObjectRTTIBytes"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [return: NativeTypeName("SlangResult")]
+    public int getDynamicObjectRTTIBytes([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("slang::TypeReflection *")] TypeReflection* interfaceType, [NativeTypeName("uint32_t *")] uint* outRTTIDataBuffer, [NativeTypeName("uint32_t")] uint bufferSizeInBytes)
+    {
+        return Marshal.GetDelegateForFunctionPointer<_getDynamicObjectRTTIBytes>(lpVtbl->getDynamicObjectRTTIBytes)((ISession*)Unsafe.AsPointer(ref this), type, interfaceType, outRTTIDataBuffer, bufferSizeInBytes);
+    }
+
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
@@ -314,5 +326,8 @@ public unsafe partial struct ISession
 
         [NativeTypeName("IModule *(const char *, const char *, const char *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr loadModuleFromSourceString;
+
+        [NativeTypeName("SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *, uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr getDynamicObjectRTTIBytes;
     }
 }

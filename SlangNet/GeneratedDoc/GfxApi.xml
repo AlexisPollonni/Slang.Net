@@ -94,6 +94,9 @@
       </function>
       <function name="gfxEnableDebugLayer" access="public" lib="gfx" convention="StdCall" static="true">
         <type>void</type>
+        <param name="enable">
+          <type>Boolean</type>
+        </param>
       </function>
       <function name="gfxGetDeviceTypeName" access="public" lib="gfx" convention="StdCall" static="true" unsafe="true">
         <type native="const char *">sbyte*</type>
