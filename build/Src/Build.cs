@@ -85,6 +85,7 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
                  DotNetTasks.DotNetPack(c => c
                                              .SetNoRestore(true)
                                              .SetNoBuild(true)
+                                             .SetConfiguration(ConfigProvider.Config)
                                              .SetOutputDirectory(((IPackNative)this).PackageOutputDirectory)
                                              .SetProject(Solution.NotNull()!.Path.NotNull().Parent));
              });
