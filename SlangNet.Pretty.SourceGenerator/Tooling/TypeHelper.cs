@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -101,6 +102,43 @@ static class TypeHelper
     {
         return method.DeclaringSyntaxReferences.OfType<MethodDeclarationSyntax>()
                      .Any(syntax => syntax.Modifiers.Any(m => m.IsKind(SyntaxKind.UnsafeKeyword)));
+    }
+
+    public static bool IsSpanType(this ITypeSymbol type)
+    {
+        // Quick check if it's even a ref-like type
+        if (!type.IsRefLikeType)
+            return false;
+        
+        var fullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+        return fullName.StartsWith("System.Span<") || 
+               fullName.StartsWith("System.ReadOnlySpan<");
+    }
+    
+    public static bool IsMarshalUsingAttribute(this AttributeData data)
+        => data.AttributeClass?.ToFullyQualified() ==
+           "System.Runtime.InteropServices.Marshalling.MarshalUsingAttribute";
+
+    public static IEnumerable<(IParameterSymbol, IParameterSymbol)> GetMarshalUsingSpanCountPairs(this IMethodSymbol method)
+    {
+        return method.Parameters
+            .Select(paramSymbol =>
+            {
+                var attribute = paramSymbol.GetAttributes().FirstOrDefault(data => data.IsMarshalUsingAttribute());
+                var countParamName = attribute?.NamedArguments.SingleOrDefault(pair => pair.Key == "CountElementName")
+                    .Value.ToCSharpString();
+
+                var countParam = method.Parameters.SingleOrDefault(p => p.Name == countParamName);
+
+                return (pSymbol: paramSymbol,
+                    Attrib: attribute,
+                    CountParam: countParam);
+            })
+            .Where(tuple =>
+                tuple.Attrib is not null 
+                && tuple.CountParam is not null 
+                && tuple.pSymbol.Type.IsSpanType())
+            .Select(tuple => (tuple.pSymbol!, tuple.CountParam!));
     }
 
     public static string ToFullyQualified(this ITypeSymbol type)
