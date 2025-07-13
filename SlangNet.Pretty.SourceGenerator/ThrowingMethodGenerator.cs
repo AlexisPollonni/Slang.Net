@@ -38,6 +38,7 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                                           .AddParameter($"this {clazz.ToFullyQualified()}", "instance");
 
             var outParams = method.Parameters.Where(p => p.RefKind is RefKind.Out).ToArray();
+            var spanCountPairs = method.GetMarshalUsingSpanCountPairs().ToArray();
             var lastOutParam = outParams.LastOrDefault(p => !IsDiagParam(p));
             var diagParam = outParams.LastOrDefault(IsDiagParam);
 
@@ -56,6 +57,14 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                     mExtBuilder.AddParameterWithRefKind(RefKind.Out, "string?", "diagnostics");
                     mExtBuilder.AddNamespaceImport("SlangNet.ComWrappers.Tools.Extensions");
                     invokeParams = invokeParams.Remove(diagParam!);
+                    continue;
+                }
+                else if (spanCountPairs.Any(tuple => parameter.Name == tuple.Item2.Name))
+                {
+                    var spanPair = spanCountPairs.Any(tuple => parameter.Name == tuple.Item2.Name);
+                    
+                    
+                    
                     continue;
                 }
 
@@ -113,5 +122,11 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
             (syntaxContext, _) => (ITypeSymbol)syntaxContext.TargetSymbol);
 
         context.RegisterSourceOutput(classProvider, ProcessClass);
+    }
+
+    abstract class ExtensionsWriter(ClassBuilder extensionsBuilder, IMethodSymbol method)
+    {
+        public abstract void WriteMethod(MethodBuilder builder);
+        public abstract void WriteBody(ICodeWriter writer, CodeGenBuilderExtensions.InvokeBuilder invoke);
     }
 }
