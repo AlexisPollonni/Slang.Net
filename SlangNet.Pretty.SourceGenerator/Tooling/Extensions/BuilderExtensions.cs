@@ -7,7 +7,7 @@ using SGF;
 
 namespace SlangNet.Pretty.SourceGenerator.Tooling.Extensions;
 
-public static class BuilderExtensions
+static class BuilderExtensions
 {
     public static MethodBuilder AddGenericsFrom(this MethodBuilder methodBuilder, IMethodSymbol originMethod)
     {
@@ -77,5 +77,58 @@ public static class BuilderExtensions
         classBuilder.AddNamespaceImport(typeof(GeneratedCodeAttribute).Namespace!);
         return classBuilder.AddAttribute(
             $"GeneratedCodeAttribute(\"{typeof(TGenerator).FullName}\", \"{version.ToString(3)}\")");
+    }
+
+    public static MethodBuilder AddExtensionMethodOverload(this ClassBuilder classBuilder,
+                                                           string methodName,
+                                                           ITypeSymbol typeToExtendSymbol,
+                                                           IMethodSymbol originalMethodToCall)
+    {
+        var mExtBuilder = classBuilder.AddMethod(methodName)
+                                      .MakePublicMethod()
+                                      .MakeStaticMethod()
+                                      .AddGenericsFrom(originalMethodToCall)
+                                      .AddAggressiveInliningAttribute()
+                                      .AddGeneratedCodeAttribute<ThrowingMethodGenerator>(new(0, 0, 1))
+                                      .AddParameter($"this {typeToExtendSymbol.ToFullyQualified()}", "instance");
+        return mExtBuilder;
+    }
+
+    public static ClassBuilder AddGeneratedExtension(this ClassBuilder classBuilder,
+                                                     InterfaceExtensionData data,
+                                                     IMethodSymbol originalMethod)
+    {
+        var methodBuilder
+            = classBuilder.AddExtensionMethodOverload(data.Signature.Name, originalMethod.ContainingType, originalMethod);
+
+        foreach (var parameterSignature in data.Signature.ParametersSig)
+        {
+            methodBuilder.AddParameterWithRefKind(parameterSignature.RefKind,
+                                                  parameterSignature.Type,
+                                                  parameterSignature.Name);
+        }
+
+        if (data.Signature.ReturnSig.Type.Name != "Void") methodBuilder.WithReturnType(data.Signature.ReturnSig.Type);
+
+        methodBuilder.WithBody(writer =>
+        {
+            data.PreInvokeCode?.Invoke(writer);
+
+            var invokeBuilder = writer.BuildMethodInvoke(originalMethod).WithInstance("instance");
+
+            data.ApiInvokeBuilder?.Invoke(invokeBuilder);
+            foreach (var pSymbol in originalMethod.Parameters) invokeBuilder.TrySetParameter(pSymbol, pSymbol.Name);
+
+            writer.WriteVariableDeclaration(originalMethod.ReturnType, "__result").EndLine();
+            writer.AppendLine("__result = ");
+            invokeBuilder.Render();
+            writer.EndLine();
+
+            data.PostInvokeCode?.Invoke(writer);
+
+            if (data.ReturnVarName is not null) writer.AppendLine($"return {data.ReturnVarName}!;");
+        });
+
+        return classBuilder;
     }
 }

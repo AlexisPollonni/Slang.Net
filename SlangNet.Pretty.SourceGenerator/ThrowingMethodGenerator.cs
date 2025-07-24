@@ -43,52 +43,14 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
 
             if (noThrowData.Signature.ParametersSig != data.Signature.ParametersSig ||
                 noThrowData.Signature.ReturnSig != data.Signature.ReturnSig)
-                AddGeneratedExtension(classBuilder, noThrowData, method);
+                classBuilder.AddGeneratedExtension(noThrowData, method);
         }
 
         var sourceText = classBuilder.Build(null!);
         context.AddSource($"{clazz.Name}_throwing.g.cs", sourceText);
     }
 
-    private static ClassBuilder AddGeneratedExtension(ClassBuilder builder,
-                                                      InterfaceExtensionData data,
-                                                      IMethodSymbol originalMethod)
-    {
-        var methodBuilder
-            = CreateExtensionMethodFor(data.Signature.Name, builder, originalMethod.ContainingType, originalMethod);
 
-        foreach (var parameterSignature in data.Signature.ParametersSig)
-        {
-            methodBuilder.AddParameterWithRefKind(parameterSignature.RefKind,
-                                                  parameterSignature.Type,
-                                                  parameterSignature.Name);
-        }
-
-        if (data.Signature.ReturnSig.Type.Name != "Void")
-            methodBuilder.WithReturnType(data.Signature.ReturnSig.Type);
-
-        methodBuilder.WithBody(writer =>
-        {
-            data.PreInvokeCode?.Invoke(writer);
-
-            var invokeBuilder = writer.BuildMethodInvoke(originalMethod).WithInstance("instance");
-
-            data.ApiInvokeBuilder?.Invoke(invokeBuilder);
-            foreach (var pSymbol in originalMethod.Parameters) 
-                invokeBuilder.TrySetParameter(pSymbol, pSymbol.Name);
-
-            writer.WriteVariableDeclaration(originalMethod.ReturnType, "__result").EndLine();
-            writer.AppendLine("__result = ");
-            invokeBuilder.Render();
-            writer.EndLine();
-
-            data.PostInvokeCode?.Invoke(writer);
-
-            if (data.ReturnVarName is not null) writer.AppendLine($"return {data.ReturnVarName}!;");
-        });
-
-        return builder;
-    }
 
     private static InterfaceExtensionData TransformMethodNoThrow(CommonTypesContext ctx, InterfaceExtensionData data)
     {
@@ -141,21 +103,6 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
     {
         //TODO
         return data;
-    }
-
-    private static MethodBuilder CreateExtensionMethodFor(string methodName,
-                                                          ClassBuilder classBuilder,
-                                                          ITypeSymbol classSymbol,
-                                                          IMethodSymbol apiMethod)
-    {
-        var mExtBuilder = classBuilder.AddMethod(methodName)
-                                      .MakePublicMethod()
-                                      .MakeStaticMethod()
-                                      .AddGenericsFrom(apiMethod)
-                                      .AddAggressiveInliningAttribute()
-                                      .AddGeneratedCodeAttribute<ThrowingMethodGenerator>(new(0, 0, 1))
-                                      .AddParameter($"this {classSymbol.ToFullyQualified()}", "instance");
-        return mExtBuilder;
     }
 
     private static bool IsDiagParam(ParameterSignature parameter) =>
