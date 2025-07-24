@@ -36,78 +36,19 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                                                                                         SymbolEqualityComparer.Default))
                 continue;
 
-            var data = new InterfaceExtensionData(MethodSignature.FromSymbol(method).WithName($"{method.Name}OrThrow"));
+            var originalMethodData = new InterfaceExtensionData(MethodSignature.FromSymbol(method));
 
-            var noThrowData = TransformMethodNoThrow(typeContext, data);
-            noThrowData = TransformMethodDiagBlobToString(typeContext, noThrowData);
+            var noThrowData = originalMethodData.TransformMethodNoThrow(typeContext)
+                                                .TransformMethodDiagBlobToString(typeContext);
 
-            if (noThrowData.Signature.ParametersSig != data.Signature.ParametersSig ||
-                noThrowData.Signature.ReturnSig != data.Signature.ReturnSig)
-                classBuilder.AddGeneratedExtension(noThrowData, method);
+            if (!noThrowData.IsSignatureEquivalent(originalMethodData))
+                classBuilder.AddGeneratedExtension(noThrowData.WithSignature(noThrowData.Signature.WithName($"{method.Name}OrThrow")), method);
         }
 
         var sourceText = classBuilder.Build(null!);
         context.AddSource($"{clazz.Name}_throwing.g.cs", sourceText);
     }
-
-
-
-    private static InterfaceExtensionData TransformMethodNoThrow(CommonTypesContext ctx, InterfaceExtensionData data)
-    {
-        if (!SymbolEqualityComparer.Default.Equals(data.Signature.ReturnSig.Type, ctx.SlangResultType)) return data;
-
-        var lastOutParam = data.Signature.ParametersSig.Where(p => p.RefKind is RefKind.Out)
-                               .LastOrDefault(p => !IsDiagParam(p));
-
-
-        data = data.AddPostInvoke(writer => writer.AppendLine("__result.ThrowIfFailed();"))
-                   .WithSignature(data.Signature.WithReturnSig(
-                                      new(lastOutParam is null
-                                              ? ctx.VoidType
-                                              : lastOutParam.Type.WithNullableAnnotation(NullableAnnotation.NotAnnotated))));
-
-        if (lastOutParam is null) return data;
-
-        var varName = $"__out{lastOutParam.Name}";
-
-        data = data.WithSignature(data.Signature.RemoveParametersSig(lastOutParam))
-                   .WithReturnVarName(varName)
-                   .AddPreInvoke(writer => writer.WriteVariableDeclaration(lastOutParam.Type, varName).EndLine())
-                   .AddInvokeBuilderConfig(builder => builder.SetParameter(lastOutParam, varName));
-
-        return data;
-    }
-
-    private static InterfaceExtensionData TransformMethodDiagBlobToString(CommonTypesContext ctx,
-                                                                          InterfaceExtensionData data)
-    {
-        var diagBlobParam = data.Signature.ParametersSig.Where(p => p.RefKind is RefKind.Out).LastOrDefault(IsDiagParam);
-
-        if (diagBlobParam is null) return data;
-
-        // If a diagnostic blob param is present, convert it to a string
-        // We consider a valid diagnostic out parameter to be an IBlob with the "diagnostics" name 
-        const string varName = "__diagBlob";
-
-        var newType = ctx.StringType.WithNullableAnnotation(NullableAnnotation.Annotated);
-
-        return data
-               .WithSignature(data.Signature.WithParametersSig(
-                                  data.Signature.ParametersSig.Replace(diagBlobParam, diagBlobParam.WithType(newType))))
-               .AddPreInvoke(writer => writer.WriteVariableDeclaration(diagBlobParam.Type, varName).EndLine())
-               .AddInvokeBuilderConfig(builder => builder.SetParameter(diagBlobParam, varName))
-               .AddPostInvoke(writer => writer.AppendLine($"{diagBlobParam.Name} = {varName}.AsString();"));
-    }
-
-    private static InterfaceExtensionData TransformMethodImplicitSpanCount(InterfaceExtensionData data)
-    {
-        //TODO
-        return data;
-    }
-
-    private static bool IsDiagParam(ParameterSignature parameter) =>
-        parameter.Type.Name == "IBlob" && parameter.Name == "diagnostics";
-
+    
     public override void OnInitialize(SgfInitializationContext context)
     {
         var classProvider = context.SyntaxProvider.ForAttributeWithMetadataName(
