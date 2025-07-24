@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis;
 
 namespace SlangNet.Pretty.SourceGenerator.Tooling;
 
-static class CodeGenBuilderExtensions
+static class CodeWriterExtensions
 {
     public static InvokeBuilder BuildMethodInvoke(this ICodeWriter writer, IMethodSymbol method) =>
         new(writer, method);
