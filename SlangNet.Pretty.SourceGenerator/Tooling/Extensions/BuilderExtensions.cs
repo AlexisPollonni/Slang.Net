@@ -5,7 +5,7 @@ using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
 using SGF;
 
-namespace SlangNet.Pretty.SourceGenerator.Tooling;
+namespace SlangNet.Pretty.SourceGenerator.Tooling.Extensions;
 
 public static class BuilderExtensions
 {

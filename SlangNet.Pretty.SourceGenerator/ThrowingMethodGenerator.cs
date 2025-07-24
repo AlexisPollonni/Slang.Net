@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SGF;
 using SlangNet.Pretty.SourceGenerator.Tooling;
+using SlangNet.Pretty.SourceGenerator.Tooling.Extensions;
 
 namespace SlangNet.Pretty.SourceGenerator;
 

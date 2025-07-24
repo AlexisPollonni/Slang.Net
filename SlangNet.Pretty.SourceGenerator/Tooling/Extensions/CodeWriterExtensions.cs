@@ -1,7 +1,7 @@
 using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
 
-namespace SlangNet.Pretty.SourceGenerator.Tooling;
+namespace SlangNet.Pretty.SourceGenerator.Tooling.Extensions;
 
 static class CodeWriterExtensions
 {

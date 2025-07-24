@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CodeGenHelpers;
 using Microsoft.CodeAnalysis;
+using SlangNet.Pretty.SourceGenerator.Tooling.Extensions;
 
 namespace SlangNet.Pretty.SourceGenerator.Tooling;
 
