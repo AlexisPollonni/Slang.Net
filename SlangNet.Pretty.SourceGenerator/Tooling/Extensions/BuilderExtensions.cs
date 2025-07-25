@@ -120,7 +120,7 @@ static class BuilderExtensions
             foreach (var pSymbol in originalMethod.Parameters) invokeBuilder.TrySetParameter(pSymbol, pSymbol.Name);
 
             writer.WriteVariableDeclaration(originalMethod.ReturnType, "__result").EndLine();
-            writer.AppendLine("__result = ");
+            writer.Append("__result = ");
             invokeBuilder.Render();
             writer.EndLine();
 

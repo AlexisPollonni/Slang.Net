@@ -51,7 +51,7 @@ class InvokeBuilder(ICodeWriter writer, IMethodSymbol method)
 
         if (method.IsStatic)
         {
-            writer.Append(method.ContainingType.ToFullyQualified());
+            writer.AppendUnindented(method.ContainingType.ToFullyQualified());
         }
         else
         {
@@ -59,7 +59,7 @@ class InvokeBuilder(ICodeWriter writer, IMethodSymbol method)
                 throw new InvalidOperationException(
                     "Function invoke targets an instance function but not instance variable is provided");
 
-            writer.Append(_instanceVar);
+            writer.AppendUnindented(_instanceVar);
         }
 
         writer.AppendUnindented(".");
