@@ -65,6 +65,8 @@ static class MethodTransformExtensions
                                                                        countParam: ParameterSignature
                                                                            .FromSymbol(tuple.Item2))))
         {
+            if(countParam.RefKind is not RefKind.None) continue;
+            
             modifiedData = modifiedData.WithSignature(modifiedData.Signature.RemoveParametersSig(countParam))
                                        .AddInvokeBuilderConfig(builder => builder.SetParameter(countParam,
                                                                                                $"({countParam.Type.ToFullyQualified()}){spanParam.Name}.Length"));
