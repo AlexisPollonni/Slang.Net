@@ -43,6 +43,12 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
 
             if (!noThrowData.IsSignatureEquivalent(originalMethodData))
                 classBuilder.AddGeneratedExtension(noThrowData.WithSignature(noThrowData.Signature.WithName($"{method.Name}OrThrow")), method);
+
+            var spanCollapsedData = originalMethodData.TransformMethodImplicitSpanCount(method)
+                                                      .TransformMethodDiagBlobToString(typeContext);
+
+            if (!spanCollapsedData.IsSignatureEquivalent(originalMethodData)) 
+                classBuilder.AddGeneratedExtension(spanCollapsedData, method);
         }
 
         var sourceText = classBuilder.Build(null!);

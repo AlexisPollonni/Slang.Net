@@ -111,13 +111,12 @@ static class TypeHelper
             return false;
         
         var fullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-        return fullName.StartsWith("System.Span<") || 
-               fullName.StartsWith("System.ReadOnlySpan<");
+        return fullName.StartsWith("global::System.Span<") || 
+               fullName.StartsWith("global::System.ReadOnlySpan<");
     }
     
     public static bool IsMarshalUsingAttribute(this AttributeData data)
-        => data.AttributeClass?.ToFullyQualified() ==
-           "System.Runtime.InteropServices.Marshalling.MarshalUsingAttribute";
+        => data.AttributeClass?.ToFullyQualified().StartsWith("global::System.Runtime.InteropServices.Marshalling.MarshalUsingAttribute") ?? false;
 
     public static IEnumerable<(IParameterSymbol, IParameterSymbol)> GetMarshalUsingSpanCountPairs(this IMethodSymbol method)
     {
@@ -126,7 +125,7 @@ static class TypeHelper
             {
                 var attribute = paramSymbol.GetAttributes().FirstOrDefault(data => data.IsMarshalUsingAttribute());
                 var countParamName = attribute?.NamedArguments.SingleOrDefault(pair => pair.Key == "CountElementName")
-                    .Value.ToCSharpString();
+                    .Value.ToCSharpString().Trim('\"');
 
                 var countParam = method.Parameters.SingleOrDefault(p => p.Name == countParamName);
 

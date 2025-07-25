@@ -52,10 +52,25 @@ static class MethodTransformExtensions
                .AddPostInvoke(writer => writer.AppendLine($"{diagBlobParam.Name} = {varName}.AsString();"));
     }
 
-    public static InterfaceExtensionData TransformMethodImplicitSpanCount(this InterfaceExtensionData data)
+    public static InterfaceExtensionData TransformMethodImplicitSpanCount(this InterfaceExtensionData data,
+                                                                          IMethodSymbol originalMethod)
     {
-        //TODO
-        return data;
+        var pairs = originalMethod.GetMarshalUsingSpanCountPairs().ToArray();
+
+        if (pairs.Length == 0) return data;
+
+        var modifiedData = data;
+
+        foreach (var (spanParam, countParam) in pairs.Select(tuple => (spanParam: ParameterSignature.FromSymbol(tuple.Item1),
+                                                                       countParam: ParameterSignature
+                                                                           .FromSymbol(tuple.Item2))))
+        {
+            modifiedData = modifiedData.WithSignature(modifiedData.Signature.RemoveParametersSig(countParam))
+                                       .AddInvokeBuilderConfig(builder => builder.SetParameter(countParam,
+                                                                                               $"({countParam.Type.ToFullyQualified()}){spanParam.Name}.Length"));
+        }
+
+        return modifiedData;
     }
 
     public static bool IsSignatureEquivalent(this InterfaceExtensionData data, InterfaceExtensionData other) =>

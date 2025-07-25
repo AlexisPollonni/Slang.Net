@@ -127,6 +127,9 @@ static class BuilderExtensions
             data.PostInvokeCode?.Invoke(writer);
 
             if (data.ReturnVarName is not null) writer.AppendLine($"return {data.ReturnVarName}!;");
+            else if (!originalMethod.ReturnsVoid &&
+                     SymbolEqualityComparer.Default.Equals(originalMethod.ReturnType, data.Signature.ReturnSig.Type))
+                writer.AppendLine("return __result;");
         });
 
         return classBuilder;
