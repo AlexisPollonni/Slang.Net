@@ -43,7 +43,26 @@ class InvokeBuilder(ICodeWriter writer, IMethodSymbol method)
         return this;
     }
 
+    public void RenderLine()
+    {
+        writer.Append("");
+        RenderUnindented();
+        writer.AppendUnindentedLine("");
+    }
+
+    public void RenderLineUnindented()
+    {
+        RenderUnindented();
+        writer.AppendUnindentedLine("");
+    }
+
     public void Render()
+    {
+        writer.Append("");
+        RenderUnindented();
+    }
+
+    public void RenderUnindented()
     {
         var reqParamNames = method.Parameters.Where(p => !p.HasExplicitDefaultValue).Select(p => p.Name).ToArray();
         if (reqParamNames.Any() && !reqParamNames.All(n => _parameters.ContainsKey(n)))

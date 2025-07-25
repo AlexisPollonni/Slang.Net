@@ -42,13 +42,13 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                                                 .TransformMethodDiagBlobToString(typeContext);
 
             if (!noThrowData.IsSignatureEquivalent(originalMethodData))
-                classBuilder.AddGeneratedExtension(noThrowData.WithSignature(noThrowData.Signature.WithName($"{method.Name}OrThrow")), method);
+                classBuilder.AddGeneratedExtension(typeContext, noThrowData.WithSignature(noThrowData.Signature.WithName($"{method.Name}OrThrow")), method);
 
             var spanCollapsedData = originalMethodData.TransformMethodImplicitSpanCount(method)
                                                       .TransformMethodDiagBlobToString(typeContext);
 
             if (!spanCollapsedData.IsSignatureEquivalent(originalMethodData)) 
-                classBuilder.AddGeneratedExtension(spanCollapsedData, method);
+                classBuilder.AddGeneratedExtension(typeContext, spanCollapsedData, method);
         }
 
         var sourceText = classBuilder.Build(null!);

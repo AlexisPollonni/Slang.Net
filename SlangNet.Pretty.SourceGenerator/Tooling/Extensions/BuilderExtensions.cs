@@ -95,6 +95,7 @@ static class BuilderExtensions
     }
 
     public static ClassBuilder AddGeneratedExtension(this ClassBuilder classBuilder,
+                                                     CommonTypesContext ctx,
                                                      InterfaceExtensionData data,
                                                      IMethodSymbol originalMethod)
     {
@@ -108,7 +109,9 @@ static class BuilderExtensions
                                                   parameterSignature.Name);
         }
 
-        if (data.Signature.ReturnSig.Type.Name != "Void") methodBuilder.WithReturnType(data.Signature.ReturnSig.Type);
+        var isVoidReturn = SymbolEqualityComparer.Default.Equals(data.Signature.ReturnSig.Type, ctx.VoidType);
+        if (!isVoidReturn) 
+            methodBuilder.WithReturnType(data.Signature.ReturnSig.Type);
 
         methodBuilder.WithBody(writer =>
         {
@@ -119,9 +122,13 @@ static class BuilderExtensions
             data.ApiInvokeBuilder?.Invoke(invokeBuilder);
             foreach (var pSymbol in originalMethod.Parameters) invokeBuilder.TrySetParameter(pSymbol, pSymbol.Name);
 
-            writer.WriteVariableDeclaration(originalMethod.ReturnType, "__result").EndLine();
-            writer.Append("__result = ");
-            invokeBuilder.Render();
+            if (!originalMethod.ReturnsVoid)
+            {
+                writer.WriteVariableDeclaration(originalMethod.ReturnType, "__result").EndLine();
+                writer.Append("__result = ");
+                invokeBuilder.RenderUnindented();
+            }
+            else invokeBuilder.Render();
             writer.EndLine();
 
             data.PostInvokeCode?.Invoke(writer);
