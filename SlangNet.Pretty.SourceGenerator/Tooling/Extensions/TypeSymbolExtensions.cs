@@ -4,9 +4,9 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace SlangNet.Pretty.SourceGenerator.Tooling;
+namespace SlangNet.Pretty.SourceGenerator.Tooling.Extensions;
 
-static class TypeHelper
+static class TypeSymbolExtensions
 {
     private const string MarshalToNativeTypeName = "IMarshalsToNative";
     private const string ComObjectTypeName = "COMObject";
