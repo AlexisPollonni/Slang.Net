@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using CodeGenHelpers;
 using Immutype;
@@ -103,17 +104,18 @@ record MethodSignature(string Name, EquatableArray<ParameterSignature> Parameter
 {
     public static MethodSignature FromSymbol(IMethodSymbol symbol)
     {
-        return new(symbol.Name, [..symbol.Parameters.Select(ParameterSignature.FromSymbol)], new(symbol.ReturnType));
+        var parameters = symbol.Parameters.Select(ParameterSignature.FromSymbol).ToImmutableArray().AsEquatableArray();
+        return new(symbol.Name, parameters, new(symbol.ReturnType));
     }
 
     public MethodSignature RemoveParametersSig(ParameterSignature paramSig)
     {
-        return this.WithParametersSig(ParametersSig.Remove(paramSig, EqualityComparer<ParameterSignature>.Default));
+        return this.WithParametersSig(ParametersSig.AsImmutableArray().Remove(paramSig));
     }
     
     public MethodSignature ReplaceParametersSig(ParameterSignature oldSig, ParameterSignature newSig)
     {
-        return this.WithParametersSig(ParametersSig.Replace(oldSig, newSig, EqualityComparer<ParameterSignature>.Default));
+        return this.WithParametersSig(ParametersSig.AsImmutableArray().Replace(oldSig, newSig));
     }
 }
 

@@ -32,7 +32,8 @@ public static class EquatableArray
 /// An immutable, equatable array. This is equivalent to <see cref="ImmutableArray{T}"/> but with value equality support.
 /// </summary>
 /// <typeparam name="T">The type of values in the array.</typeparam>
-public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IImmutableList<T> where T : IEquatable<T>
+//[CollectionBuilder()]
+public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnumerable<T> where T : IEquatable<T>
 {
     /// <summary>
     /// The underlying <typeparamref name="T"/> array.
@@ -196,86 +197,4 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IImmut
     {
         return !left.Equals(right);
     }
-
-    T IReadOnlyList<T>.this[int index] => AsImmutableArray()[index];
-
-    public int Count => AsImmutableArray().Length;
-
-    public int IndexOf(T item, int index, int count, IEqualityComparer<T>? equalityComparer) =>
-        AsImmutableArray().IndexOf(item, index, count, equalityComparer);
-
-    public int LastIndexOf(T item, int index, int count, IEqualityComparer<T>? equalityComparer) =>
-        AsImmutableArray().LastIndexOf(item, index, count, equalityComparer);
-
-    public EquatableArray<T> Clear() =>
-        AsImmutableArray().Clear().AsEquatableArray();
-
-    public EquatableArray<T> Add(T value) =>
-        AsImmutableArray().Add(value).AsEquatableArray();
-
-    public EquatableArray<T> AddRange(IEnumerable<T> items) =>
-        AsImmutableArray().AddRange(items).AsEquatableArray();
-
-    public EquatableArray<T> Insert(int index, T element) =>
-        AsImmutableArray().Insert(index, element).AsEquatableArray();
-
-    public EquatableArray<T> InsertRange(int index, IEnumerable<T> items) =>
-        AsImmutableArray().InsertRange(index, items).AsEquatableArray();
-
-    public EquatableArray<T> Remove(T value, IEqualityComparer<T>? equalityComparer) =>
-        AsImmutableArray().Remove(value, equalityComparer).AsEquatableArray();
-
-    public EquatableArray<T> RemoveAll(Predicate<T> match) =>
-        AsImmutableArray().RemoveAll(match).AsEquatableArray();
-
-    public EquatableArray<T> RemoveRange(IEnumerable<T> items, IEqualityComparer<T>? equalityComparer) =>
-        AsImmutableArray().RemoveRange(items, equalityComparer).AsEquatableArray();
-
-    public EquatableArray<T> RemoveRange(int index, int count) =>
-        AsImmutableArray().RemoveRange(index, count).AsEquatableArray();
-
-    public EquatableArray<T> RemoveAt(int index) =>
-        AsImmutableArray().RemoveAt(index).AsEquatableArray();
-
-    public EquatableArray<T> SetItem(int index, T value) =>
-        AsImmutableArray().SetItem(index, value).AsEquatableArray();
-
-    public EquatableArray<T> Replace(T oldValue, T newValue, IEqualityComparer<T>? equalityComparer) =>
-        AsImmutableArray().Replace(oldValue, newValue, equalityComparer).AsEquatableArray();
-
-    IImmutableList<T> IImmutableList<T>.Clear() =>
-        Clear();
-
-    IImmutableList<T> IImmutableList<T>.Add(T value) =>
-        Add(value);
-
-    IImmutableList<T> IImmutableList<T>.AddRange(IEnumerable<T> items) =>
-        AddRange(items);
-
-    IImmutableList<T> IImmutableList<T>.Insert(int index, T element) =>
-        Insert(index, element);
-
-    IImmutableList<T> IImmutableList<T>.InsertRange(int index, IEnumerable<T> items) =>
-        InsertRange(index, items);
-
-    IImmutableList<T> IImmutableList<T>.Remove(T value, IEqualityComparer<T>? equalityComparer) =>
-        Remove(value, equalityComparer);
-
-    IImmutableList<T> IImmutableList<T>.RemoveAll(Predicate<T> match) =>
-        RemoveAll(match);
-
-    IImmutableList<T> IImmutableList<T>.RemoveRange(IEnumerable<T> items, IEqualityComparer<T>? equalityComparer) =>
-        RemoveRange(items, equalityComparer);
-
-    IImmutableList<T> IImmutableList<T>.RemoveRange(int index, int count) =>
-        RemoveRange(index, count);
-
-    IImmutableList<T> IImmutableList<T>.RemoveAt(int index) =>
-        RemoveAt(index);
-
-    IImmutableList<T> IImmutableList<T>.SetItem(int index, T value) =>
-        SetItem(index, value);
-
-    IImmutableList<T> IImmutableList<T>.Replace(T oldValue, T newValue, IEqualityComparer<T>? equalityComparer) =>
-        Replace(oldValue, newValue, equalityComparer);
 }
