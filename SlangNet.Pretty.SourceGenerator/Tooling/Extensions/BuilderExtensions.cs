@@ -89,7 +89,7 @@ static class BuilderExtensions
                                       .MakeStaticMethod()
                                       .AddGenericsFrom(originalMethodToCall)
                                       .AddAggressiveInliningAttribute()
-                                      .AddGeneratedCodeAttribute<ThrowingMethodGenerator>(new(0, 0, 1))
+                                      .AddGeneratedCodeAttribute<GeneratedOverloadsGenerator>(new(0, 0, 1))
                                       .AddParameter($"this {typeToExtendSymbol.ToFullyQualified()}", "instance");
         return mExtBuilder;
     }

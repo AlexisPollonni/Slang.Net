@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Immutable;
+using System.Collections.Generic;
 using System.Linq;
 using CodeGenHelpers;
 using Immutype;
@@ -12,7 +12,7 @@ using SlangNet.Pretty.SourceGenerator.Tooling.Extensions;
 namespace SlangNet.Pretty.SourceGenerator;
 
 [IncrementalGenerator]
-public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMethodGenerator))
+public class GeneratedOverloadsGenerator() : IncrementalGenerator(nameof(GeneratedOverloadsGenerator))
 {
     private static void ProcessClass(SgfSourceProductionContext context, (CommonTypesContext, ITypeSymbol) pair)
     {
@@ -23,8 +23,8 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
                                       .AddNamespaceImport("SlangNet")
                                       .AddNamespaceImport("SlangNet.ComWrappers.Tools.Extensions")
                                       .Nullable(NullableState.Enable)
-                                      .AddClass($"{clazz.Name}ThrowingExtensions")
-                                      .AddGeneratedCodeAttribute<ThrowingMethodGenerator>(new(0, 0, 1))
+                                      .AddClass($"{clazz.Name}OverloadExtensions")
+                                      .AddGeneratedCodeAttribute<GeneratedOverloadsGenerator>(new(0, 0, 2))
                                       .MakePublicClass()
                                       .MakeStaticClass();
 
@@ -38,23 +38,36 @@ public class ThrowingMethodGenerator() : IncrementalGenerator(nameof(ThrowingMet
 
             var originalMethodData = new InterfaceExtensionData(MethodSignature.FromSymbol(method));
 
-            var noThrowData = originalMethodData.TransformMethodNoThrow(typeContext)
+            var noThrowData = originalMethodData.WithMethodName($"{method.Name}OrThrow")
+                                                .TransformMethodNoThrow(typeContext)
                                                 .TransformMethodDiagBlobToString(typeContext);
-
-            if (!noThrowData.IsSignatureEquivalent(originalMethodData))
-                classBuilder.AddGeneratedExtension(typeContext, noThrowData.WithSignature(noThrowData.Signature.WithName($"{method.Name}OrThrow")), method);
 
             var spanCollapsedData = originalMethodData.TransformMethodImplicitSpanCount(method)
                                                       .TransformMethodDiagBlobToString(typeContext);
 
-            if (!spanCollapsedData.IsSignatureEquivalent(originalMethodData)) 
-                classBuilder.AddGeneratedExtension(typeContext, spanCollapsedData, method);
+            var spanCollapsedNoThrow = noThrowData.TransformMethodImplicitSpanCount(method);
+
+            foreach (var data in new[] { noThrowData, spanCollapsedData, spanCollapsedNoThrow }
+                                 .Where(data => !data.IsSignatureEquivalent(originalMethodData))
+                                 .Distinct(SignatureEquivalentComparer.Instance)) 
+                classBuilder.AddGeneratedExtension(typeContext, data, method);
         }
 
         var sourceText = classBuilder.Build(null!);
-        context.AddSource($"{clazz.Name}_throwing.g.cs", sourceText);
+        context.AddSource($"{clazz.Name}_overloads.g.cs", sourceText);
     }
-    
+
+    private class SignatureEquivalentComparer : EqualityComparer<InterfaceExtensionData>
+    {
+        public static readonly SignatureEquivalentComparer Instance = new();
+        
+        public override bool Equals(InterfaceExtensionData x, InterfaceExtensionData y) =>
+            x.IsSignatureEquivalent(y);
+
+        public override int GetHashCode(InterfaceExtensionData obj) =>
+            Default.GetHashCode(obj);
+    }
+
     public override void OnInitialize(SgfInitializationContext context)
     {
         var classProvider = context.SyntaxProvider.ForAttributeWithMetadataName(
@@ -86,11 +99,21 @@ record InterfaceExtensionData(
 }
 
 [Target]
-record MethodSignature(string Name, ImmutableArray<ParameterSignature> ParametersSig, ReturnTypeSignature ReturnSig)
+record MethodSignature(string Name, EquatableArray<ParameterSignature> ParametersSig, ReturnTypeSignature ReturnSig)
 {
     public static MethodSignature FromSymbol(IMethodSymbol symbol)
     {
         return new(symbol.Name, [..symbol.Parameters.Select(ParameterSignature.FromSymbol)], new(symbol.ReturnType));
+    }
+
+    public MethodSignature RemoveParametersSig(ParameterSignature paramSig)
+    {
+        return this.WithParametersSig(ParametersSig.Remove(paramSig, EqualityComparer<ParameterSignature>.Default));
+    }
+    
+    public MethodSignature ReplaceParametersSig(ParameterSignature oldSig, ParameterSignature newSig)
+    {
+        return this.WithParametersSig(ParametersSig.Replace(oldSig, newSig, EqualityComparer<ParameterSignature>.Default));
     }
 }
 

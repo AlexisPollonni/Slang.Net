@@ -45,8 +45,7 @@ static class MethodTransformExtensions
         var newType = ctx.StringType.WithNullableAnnotation(NullableAnnotation.Annotated);
 
         return data
-               .WithSignature(data.Signature.WithParametersSig(
-                                  data.Signature.ParametersSig.Replace(diagBlobParam, diagBlobParam.WithType(newType))))
+               .WithSignature(data.Signature.ReplaceParametersSig(diagBlobParam, diagBlobParam.WithType(newType)))
                .AddPreInvoke(writer => writer.WriteVariableDeclaration(diagBlobParam.Type, varName).EndLine())
                .AddInvokeBuilderConfig(builder => builder.SetParameter(diagBlobParam, varName))
                .AddPostInvoke(writer => writer.AppendLine($"{diagBlobParam.Name} = {varName}.AsString();"));
@@ -65,8 +64,8 @@ static class MethodTransformExtensions
                                                                        countParam: ParameterSignature
                                                                            .FromSymbol(tuple.Item2))))
         {
-            if(countParam.RefKind is not RefKind.None) continue;
-            
+            if (countParam.RefKind is not RefKind.None) continue;
+
             modifiedData = modifiedData.WithSignature(modifiedData.Signature.RemoveParametersSig(countParam))
                                        .AddInvokeBuilderConfig(builder => builder.SetParameter(countParam,
                                                                                                $"({countParam.Type.ToFullyQualified()}){spanParam.Name}.Length"));
@@ -75,10 +74,13 @@ static class MethodTransformExtensions
         return modifiedData;
     }
 
-    public static bool IsSignatureEquivalent(this InterfaceExtensionData data, InterfaceExtensionData other) =>
-        data.Signature.ParametersSig == other.Signature.ParametersSig &&
-        data.Signature.ReturnSig == other.Signature.ReturnSig;
+    public static InterfaceExtensionData WithMethodName(this InterfaceExtensionData data, string newName) =>
+        data.WithSignature(data.Signature.WithName(newName));
 
     private static bool IsDiagParam(ParameterSignature parameter) =>
         parameter.Type.Name == "IBlob" && parameter.Name == "diagnostics";
+
+    public static bool IsSignatureEquivalent(this InterfaceExtensionData data, InterfaceExtensionData other) =>
+        data.Signature.ParametersSig == other.Signature.ParametersSig &&
+        data.Signature.ReturnSig == other.Signature.ReturnSig;
 }
