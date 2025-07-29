@@ -3,7 +3,7 @@
     <SlangVersion>2025.13.1</SlangVersion>
 
     <Authors>Helco;AlexisPollonni</Authors>
-    <VersionPrefix>2025.0.1</VersionPrefix> <!-- Do not copy SlangVersion as we might want to increment for our own code -->
+    <VersionPrefix>2025.1.1</VersionPrefix> <!-- Do not copy SlangVersion as we might want to increment for our own code -->
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>slang;shader;C#;csharp</PackageTags>
   </PropertyGroup>
