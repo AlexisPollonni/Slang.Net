@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <SlangVersion>2025.11</SlangVersion>
+    <SlangVersion>2025.13.1</SlangVersion>
 
     <Authors>Helco;AlexisPollonni</Authors>
     <VersionPrefix>2025.0.1</VersionPrefix> <!-- Do not copy SlangVersion as we might want to increment for our own code -->
