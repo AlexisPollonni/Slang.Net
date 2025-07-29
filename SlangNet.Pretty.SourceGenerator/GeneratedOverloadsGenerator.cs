@@ -39,16 +39,24 @@ public class GeneratedOverloadsGenerator() : IncrementalGenerator(nameof(Generat
 
             var originalMethodData = new InterfaceExtensionData(MethodSignature.FromSymbol(method));
 
-            var noThrowData = originalMethodData.WithMethodName($"{method.Name}OrThrow")
-                                                .TransformMethodNoThrow(typeContext)
-                                                .TransformMethodDiagBlobToString(typeContext);
+            var diagBlobToStringData = originalMethodData.TransformMethodDiagBlobToString(typeContext);
+            var spanCollapsedData = diagBlobToStringData.TransformMethodImplicitSpanCount(method);
 
-            var spanCollapsedData = originalMethodData.TransformMethodImplicitSpanCount(method)
-                                                      .TransformMethodDiagBlobToString(typeContext);
+            var extensionList = new List<InterfaceExtensionData>([diagBlobToStringData, spanCollapsedData]);
+            
+            if (originalMethodData.Signature.ReturnSig.Type.Equals(typeContext.SlangResultType, SymbolEqualityComparer.Default))
+            {
+                var noThrowData = diagBlobToStringData.WithMethodName($"{method.Name}OrThrow")
+                                                      .TransformMethodNoThrow(typeContext);
 
-            var spanCollapsedNoThrow = noThrowData.TransformMethodImplicitSpanCount(method);
 
-            foreach (var data in new[] { noThrowData, spanCollapsedData, spanCollapsedNoThrow }
+                var spanCollapsedNoThrow = noThrowData.TransformMethodImplicitSpanCount(method);
+                
+                extensionList.Add(noThrowData);
+                extensionList.Add(spanCollapsedNoThrow);
+            }
+
+            foreach (var data in extensionList
                                  .Where(data => !data.IsSignatureEquivalent(originalMethodData))
                                  .Distinct(SignatureEquivalentComparer.Instance)) 
                 classBuilder.AddGeneratedExtension(typeContext, data, method);
