@@ -240,7 +240,7 @@
       <enumerator name="ReproFileSystem" access="public">
         <type primitive="False">int</type>
       </enumerator>
-      <enumerator name="SerialIr" access="public">
+      <enumerator name="REMOVED_SerialIR" access="public">
         <type primitive="False">int</type>
       </enumerator>
       <enumerator name="SkipCodeGen" access="public">
@@ -363,7 +363,22 @@
       <enumerator name="DumpModule" access="public">
         <type primitive="False">int</type>
       </enumerator>
+      <enumerator name="GetModuleInfo" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="GetSupportedModuleVersions" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
       <enumerator name="EmitSeparateDebug" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="DenormalModeFp16" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="DenormalModeFp32" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="DenormalModeFp64" access="public">
         <type primitive="False">int</type>
       </enumerator>
       <enumerator name="CountOf" access="public">

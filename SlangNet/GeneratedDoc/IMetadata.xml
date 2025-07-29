@@ -56,7 +56,7 @@
           <type>Boolean*</type>
         </param>
       </delegate>
-      <delegate name="_getDebugBuildIdentifier" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getDebugBuildIdentifier" access="public" convention="StdCall" unsafe="true">
         <type native="const char *">sbyte*</type>
         <param name="pThis">
           <type>IMetadata*</type>
@@ -136,7 +136,7 @@
           <type native="SlangResult (SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;)">IntPtr</type>
         </field>
         <field name="getDebugBuildIdentifier" access="public">
-          <type native="const char *()">IntPtr</type>
+          <type native="const char *() __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>
