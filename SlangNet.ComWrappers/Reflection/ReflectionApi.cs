@@ -62,6 +62,11 @@ internal static partial class ReflectionApi
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionType_GetElementCount")]
     public static partial nuint ReflectionType_GetElementCount(TypeReflection type);
+
+    [LibraryImport("slang",
+                   StringMarshalling = StringMarshalling.Utf8,
+                   EntryPoint = "spReflectionType_GetSpecializedElementCount")]
+    public static partial nuint ReflectionType_GetSpecializedElementCount(TypeReflection type, ShaderReflection reflection);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionType_GetElementType")]
     [return: MarshalUsing(typeof(NullableHandleStructMarshaller<TypeReflection>))]
