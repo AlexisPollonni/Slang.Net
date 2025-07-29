@@ -9,6 +9,7 @@ using NuGet.Versioning;
 using Nuke.Common;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
+using Nuke.Common.Tooling;
 using Nuke.Common.Tools.NuGet;
 using Nuke.Common.Utilities.Collections;
 using Serilog;
@@ -70,6 +71,14 @@ interface IPackNative : IDownloadSlangBinaries
              {
                  LocalFeedDirectory.CreateOrCleanDirectory();
 
+                 if (EnvironmentInfo.IsLinux)
+                 {
+                     var sudo = ToolResolver.GetEnvironmentOrPathTool("sudo");
+                     
+                     // mono-complete package needed to run NuGet init
+                     sudo("apt-get install mono-complete");
+                 }
+                 
                  NuGetTasks.NuGet($"init {PackageOutputDirectory} {LocalFeedDirectory}");
                  NuGetTasks.NuGetSourcesList();
              });
