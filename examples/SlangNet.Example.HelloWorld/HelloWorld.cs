@@ -1,5 +1,6 @@
 ﻿using SlangNet.Bindings.Generated;
 using SlangNet.ComWrappers;
+using SlangNet.ComWrappers.Interfaces;
 using SlangNet.ComWrappers.Tools.Extensions;
 using Veldrid;
 using static SlangNet.Example.Shared.SharedLogger<SlangNet.Example.HelloWorld.HelloWorld>;
@@ -66,7 +67,7 @@ class HelloWorld
 
         for (var i = 0; i < module!.GetDefinedEntryPointCount(); i++)
         {
-            module.GetDefinedEntryPoint(i, out var e).ThrowIfFailed();
+            var e = module.GetDefinedEntryPointOrThrow(i);
 
             var func = e.GetFunctionReflection();
 
@@ -74,7 +75,7 @@ class HelloWorld
         }
         
         // Now that the module is loaded we can look up those entry points by name.
-        module.FindEntryPointByName("computeMain", out var entryPoint).ThrowIfFailed();
+        var entryPoint = module.FindEntryPointByNameOrThrow("computeMain");
 
         // A single Slang module could contain many different entry points (e.g.,
         // four vertex entry points, three fragment entry points, and two compute
@@ -87,13 +88,12 @@ class HelloWorld
         // something about the composite was invalid (e.g., you are trying to
         // combine multiple copies of the same module), so we need to deal
         // with the possibility of diagnostic output.
-        session.CreateCompositeComponentType(componentTypes, componentTypes.Length, out var composedProgram, out _)
-               .ThrowIfFailed();
+        var composedProgram = session.CreateCompositeComponentTypeOrThrow(componentTypes, componentTypes.Length, out _);
 
         // Now we can call `composedProgram->getEntryPointCode()` to retrieve the
         // compiled SPIRV code that we will use to create a vulkan compute pipeline.
         // This will trigger the final Slang compilation and spirv code generation.
-        composedProgram.GetEntryPointCode(0, 0, out var spirvCode, out _);
+        var spirvCode = composedProgram.GetEntryPointCodeOrThrow(0, 0, out _);
 
         CreatePipelineFromSpirv(spirvCode.AsReadOnlySpan());
     }
@@ -118,7 +118,7 @@ class HelloWorld
         pipeline = ResourceFactory.CreateComputePipeline(new()
         {
             ComputeShader = shader,
-            ResourceLayouts = new[] { resourceLayout },
+            ResourceLayouts = [resourceLayout],
             ThreadGroupSizeX = 1,
             ThreadGroupSizeY = 1,
             ThreadGroupSizeZ = 1,
