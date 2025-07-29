@@ -41,7 +41,7 @@ public enum ResourceShape : uint
     TextureSubpass = 0x0A,
 
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.ResourceExtShapeMask"]/*' />
-    ResourceExtShapeMask = 0xF0,
+    ResourceExtShapeMask = 0x1F0,
 
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.TextureFeedbackFlag"]/*' />
     TextureFeedbackFlag = 0x10,
@@ -54,6 +54,9 @@ public enum ResourceShape : uint
 
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.TextureMultisampleFlag"]/*' />
     TextureMultisampleFlag = 0x80,
+
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.TextureCombinedFlag"]/*' />
+    TextureCombinedFlag = 0x100,
 
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture1DArray"]/*' />
     Texture1DArray = Texture1D | TextureArrayFlag,

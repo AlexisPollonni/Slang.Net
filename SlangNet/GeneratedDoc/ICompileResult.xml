@@ -38,13 +38,13 @@
           <type>SlangUUID*</type>
         </param>
       </delegate>
-      <delegate name="_getItemCount" access="public" convention="ThisCall">
+      <delegate name="_getItemCount" access="public" convention="StdCall">
         <type native="uint32_t">uint</type>
         <param name="pThis">
           <type>ICompileResult*</type>
         </param>
       </delegate>
-      <delegate name="_getItemData" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getItemData" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileResult*</type>
@@ -56,7 +56,7 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getMetadata" access="public" convention="ThisCall" unsafe="true">
+      <delegate name="_getMetadata" access="public" convention="StdCall" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ICompileResult*</type>
@@ -139,13 +139,13 @@
           <type native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getItemCount" access="public">
-          <type native="uint32_t ()">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getItemData" access="public">
-          <type native="SlangResult (uint32_t, IBlob **)">IntPtr</type>
+          <type native="SlangResult (uint32_t, IBlob **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getMetadata" access="public">
-          <type native="SlangResult (IMetadata **)">IntPtr</type>
+          <type native="SlangResult (IMetadata **) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

@@ -507,6 +507,11 @@ public static unsafe partial class SlangApi
     [return: NativeTypeName("size_t")]
     public static extern nuint ReflectionType_GetElementCount(SlangReflectionType* type);
 
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionType_GetSpecializedElementCount"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionType_GetSpecializedElementCount", ExactSpelling = true)]
+    [return: NativeTypeName("size_t")]
+    public static extern nuint ReflectionType_GetSpecializedElementCount(SlangReflectionType* type, [NativeTypeName("SlangReflection *")] SlangProgramLayout* reflection);
+
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionType_GetElementType"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionType_GetElementType", ExactSpelling = true)]
     public static extern SlangReflectionType* ReflectionType_GetElementType(SlangReflectionType* type);

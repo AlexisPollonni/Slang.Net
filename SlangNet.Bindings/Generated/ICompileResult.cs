@@ -27,15 +27,15 @@ public unsafe partial struct ICompileResult
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void* _castAs(ICompileResult* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* guid);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
     public delegate uint _getItemCount(ICompileResult* pThis);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _getItemData(ICompileResult* pThis, [NativeTypeName("uint32_t")] uint index, [NativeTypeName("IBlob **")] ISlangBlob** outblob);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
     public delegate int _getMetadata(ICompileResult* pThis, IMetadata** outMetadata);
 
@@ -108,13 +108,13 @@ public unsafe partial struct ICompileResult
         [NativeTypeName("void *(const SlangUUID &) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr castAs;
 
-        [NativeTypeName("uint32_t ()")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr getItemCount;
 
-        [NativeTypeName("SlangResult (uint32_t, IBlob **)")]
+        [NativeTypeName("SlangResult (uint32_t, IBlob **) __attribute__((stdcall))")]
         public IntPtr getItemData;
 
-        [NativeTypeName("SlangResult (IMetadata **)")]
+        [NativeTypeName("SlangResult (IMetadata **) __attribute__((stdcall))")]
         public IntPtr getMetadata;
     }
 }

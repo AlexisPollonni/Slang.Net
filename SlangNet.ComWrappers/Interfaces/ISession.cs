@@ -92,4 +92,10 @@ public partial interface ISession : IUnknown
                                           [MarshalUsing(CountElementName = "bufferSizeInBytes")]
                                           Span<byte> outRTTIDataBuffer,
                                           uint bufferSizeInBytes);
+
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    SlangResult LoadModuleInfoFromIRBlob(IBlob source,
+                                         out nint moduleVersion,
+                                         out string? moduleCompilerVersion,
+                                         out string? moduleName);
 }

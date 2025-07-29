@@ -240,8 +240,8 @@ public enum CompilerOptionName
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.ReproFileSystem"]/*' />
     ReproFileSystem,
 
-    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.SerialIr"]/*' />
-    SerialIr,
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.REMOVED_SerialIR"]/*' />
+    REMOVED_SerialIR,
 
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.SkipCodeGen"]/*' />
     SkipCodeGen,
@@ -363,8 +363,23 @@ public enum CompilerOptionName
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.DumpModule"]/*' />
     DumpModule,
 
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.GetModuleInfo"]/*' />
+    GetModuleInfo,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.GetSupportedModuleVersions"]/*' />
+    GetSupportedModuleVersions,
+
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EmitSeparateDebug"]/*' />
     EmitSeparateDebug,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.DenormalModeFp16"]/*' />
+    DenormalModeFp16,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.DenormalModeFp32"]/*' />
+    DenormalModeFp32,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.DenormalModeFp64"]/*' />
+    DenormalModeFp64,
 
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.CountOf"]/*' />
     CountOf,
