@@ -136,18 +136,22 @@ record CommonTypesContext
         StringType = compilation.GetSpecialType(SpecialType.System_String);
         VoidType = compilation.GetSpecialType(SpecialType.System_Void);
 
-        SlangResultType = compilation.GetTypeByMetadataName("SlangNet.SlangResult") ??
-                          throw new InvalidOperationException("SlangResult enum not found in compilation");
-
-        IgnoreThrowingAttribute = compilation.GetTypeByMetadataName("SlangNet.IgnoreThrowingMethodAttribute") ??
-                                  throw new InvalidOperationException(
-                                      "SlangNet.IgnoreThrowingMethodAttribute not found in compilation");
+        SlangResultType = FindSymbol(compilation, "SlangNet.SlangResult");
+        IBlobType = FindSymbol(compilation, "SlangNet.ComWrappers.Interfaces.IBlob");
+        
+        
+        IgnoreThrowingAttribute = FindSymbol(compilation, "SlangNet.IgnoreThrowingMethodAttribute");
     }
+    
+    private ITypeSymbol FindSymbol(Compilation compilation, string metadataName) =>
+        compilation.GetTypeByMetadataName(metadataName) ??
+        throw new InvalidOperationException($"Type '{metadataName}' not found in compilation");
 
     public ITypeSymbol StringType { get; }
     public ITypeSymbol VoidType { get; }
 
     public ITypeSymbol SlangResultType { get; }
-
+    public ITypeSymbol IBlobType { get; }
+    
     public ITypeSymbol IgnoreThrowingAttribute { get; }
 }

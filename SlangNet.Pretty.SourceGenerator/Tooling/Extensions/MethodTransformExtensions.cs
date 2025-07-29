@@ -10,7 +10,7 @@ static class MethodTransformExtensions
         if (!SymbolEqualityComparer.Default.Equals(data.Signature.ReturnSig.Type, ctx.SlangResultType)) return data;
 
         var lastOutParam = data.Signature.ParametersSig.Where(p => p.RefKind is RefKind.Out)
-                               .LastOrDefault(p => !IsDiagParam(p));
+                               .LastOrDefault(p => !p.IsDiagParam(ctx));
 
 
         data = data.AddPostInvoke(writer => writer.AppendLine("__result.ThrowIfFailed();"))
@@ -34,7 +34,7 @@ static class MethodTransformExtensions
     public static InterfaceExtensionData TransformMethodDiagBlobToString(this InterfaceExtensionData data,
                                                                          CommonTypesContext ctx)
     {
-        var diagBlobParam = data.Signature.ParametersSig.Where(p => p.RefKind is RefKind.Out).LastOrDefault(IsDiagParam);
+        var diagBlobParam = data.Signature.ParametersSig.Where(p => p.RefKind is RefKind.Out).LastOrDefault(p => p.IsDiagParam(ctx));
 
         if (diagBlobParam is null) return data;
 
@@ -77,10 +77,12 @@ static class MethodTransformExtensions
     public static InterfaceExtensionData WithMethodName(this InterfaceExtensionData data, string newName) =>
         data.WithSignature(data.Signature.WithName(newName));
 
-    private static bool IsDiagParam(ParameterSignature parameter) =>
-        parameter.Type.Name == "IBlob" && parameter.Name == "diagnostics";
-
     public static bool IsSignatureEquivalent(this InterfaceExtensionData data, InterfaceExtensionData other) =>
         data.Signature.ParametersSig == other.Signature.ParametersSig &&
         data.Signature.ReturnSig == other.Signature.ReturnSig;
+    
+    
+    private static bool IsDiagParam(this ParameterSignature parameter, CommonTypesContext ctx) =>
+        (parameter.Type.Equals(ctx.IBlobType, SymbolEqualityComparer.Default) ||
+         parameter.Type.Equals(ctx.StringType, SymbolEqualityComparer.Default)) && parameter.Name == "diagnostics";
 }
