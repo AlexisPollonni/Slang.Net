@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class CompilerOptionValueTests
 {
     /// <summary>Validates that the <see cref="CompilerOptionValue" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<CompilerOptionValue>(), Is.EqualTo(sizeof(CompilerOptionValue)));
+        Assert.Equal(sizeof(CompilerOptionValue), Marshal.SizeOf<CompilerOptionValue>());
     }
 
     /// <summary>Validates that the <see cref="CompilerOptionValue" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(CompilerOptionValue).IsLayoutSequential, Is.True);
+        Assert.True(typeof(CompilerOptionValue).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="CompilerOptionValue" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(CompilerOptionValue), Is.EqualTo(32));
+            Assert.Equal(32, sizeof(CompilerOptionValue));
         }
         else
         {
-            Assert.That(sizeof(CompilerOptionValue), Is.EqualTo(20));
+            Assert.Equal(20, sizeof(CompilerOptionValue));
         }
     }
 }

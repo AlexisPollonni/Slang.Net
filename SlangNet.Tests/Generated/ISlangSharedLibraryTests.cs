@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ISlangSharedLibraryTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="ISlangSharedLibrary" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(ISlangSharedLibrary).GUID, Is.EqualTo(IID_ISlangSharedLibrary));
+        Assert.Equal(typeof(ISlangSharedLibrary).GUID, IID_ISlangSharedLibrary);
     }
 
     /// <summary>Validates that the <see cref="ISlangSharedLibrary" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ISlangSharedLibrary>(), Is.EqualTo(sizeof(ISlangSharedLibrary)));
+        Assert.Equal(sizeof(ISlangSharedLibrary), Marshal.SizeOf<ISlangSharedLibrary>());
     }
 
     /// <summary>Validates that the <see cref="ISlangSharedLibrary" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ISlangSharedLibrary).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ISlangSharedLibrary).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ISlangSharedLibrary" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ISlangSharedLibrary), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ISlangSharedLibrary));
         }
         else
         {
-            Assert.That(sizeof(ISlangSharedLibrary), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ISlangSharedLibrary));
         }
     }
 }

@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-using NUnit.Framework;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -8,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IByteCodeRunnerTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="IByteCodeRunner" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(IByteCodeRunner).GUID, Is.EqualTo(IID_IByteCodeRunner));
+        Assert.Equal(typeof(IByteCodeRunner).GUID, IID_IByteCodeRunner);
     }
 
     /// <summary>Validates that the <see cref="IByteCodeRunner" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IByteCodeRunner>(), Is.EqualTo(sizeof(IByteCodeRunner)));
+        Assert.Equal(sizeof(IByteCodeRunner), Marshal.SizeOf<IByteCodeRunner>());
     }
 
     /// <summary>Validates that the <see cref="IByteCodeRunner" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IByteCodeRunner).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IByteCodeRunner).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IByteCodeRunner" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(IByteCodeRunner), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(IByteCodeRunner));
         }
         else
         {
-            Assert.That(sizeof(IByteCodeRunner), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(IByteCodeRunner));
         }
     }
 }

@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IRenderPassLayoutTests
 {
     /// <summary>Validates that the <see cref="IRenderPassLayout" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IRenderPassLayout>(), Is.EqualTo(sizeof(IRenderPassLayout)));
+        Assert.Equal(sizeof(IRenderPassLayout), Marshal.SizeOf<IRenderPassLayout>());
     }
 
     /// <summary>Validates that the <see cref="IRenderPassLayout" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IRenderPassLayout).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IRenderPassLayout).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IRenderPassLayout" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(IRenderPassLayout), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(IRenderPassLayout));
         }
         else
         {
-            Assert.That(sizeof(IRenderPassLayout), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(IRenderPassLayout));
         }
     }
 }

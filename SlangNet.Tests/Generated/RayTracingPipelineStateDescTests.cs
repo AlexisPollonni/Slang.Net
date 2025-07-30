@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class RayTracingPipelineStateDescTests
 {
     /// <summary>Validates that the <see cref="RayTracingPipelineStateDesc" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<RayTracingPipelineStateDesc>(), Is.EqualTo(sizeof(RayTracingPipelineStateDesc)));
+        Assert.Equal(sizeof(RayTracingPipelineStateDesc), Marshal.SizeOf<RayTracingPipelineStateDesc>());
     }
 
     /// <summary>Validates that the <see cref="RayTracingPipelineStateDesc" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(RayTracingPipelineStateDesc).IsLayoutSequential, Is.True);
+        Assert.True(typeof(RayTracingPipelineStateDesc).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="RayTracingPipelineStateDesc" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(RayTracingPipelineStateDesc), Is.EqualTo(56));
+            Assert.Equal(56, sizeof(RayTracingPipelineStateDesc));
         }
         else
         {
-            Assert.That(sizeof(RayTracingPipelineStateDesc), Is.EqualTo(28));
+            Assert.Equal(28, sizeof(RayTracingPipelineStateDesc));
         }
     }
 }

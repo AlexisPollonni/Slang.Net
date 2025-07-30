@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,30 +8,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class SlangTerminatedCharsTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="SlangTerminatedChars" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(SlangTerminatedChars).GUID, Is.EqualTo(IID_SlangTerminatedChars));
+        Assert.Equal(typeof(SlangTerminatedChars).GUID, IID_SlangTerminatedChars);
     }
 
     /// <summary>Validates that the <see cref="SlangTerminatedChars" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<SlangTerminatedChars>(), Is.EqualTo(sizeof(SlangTerminatedChars)));
+        Assert.Equal(sizeof(SlangTerminatedChars), Marshal.SizeOf<SlangTerminatedChars>());
     }
 
     /// <summary>Validates that the <see cref="SlangTerminatedChars" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(SlangTerminatedChars).IsLayoutSequential, Is.True);
+        Assert.True(typeof(SlangTerminatedChars).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="SlangTerminatedChars" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(SlangTerminatedChars), Is.EqualTo(1));
+        Assert.Equal(1, sizeof(SlangTerminatedChars));
     }
 }

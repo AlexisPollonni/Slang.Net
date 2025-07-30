@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class FormatInfoTests
 {
     /// <summary>Validates that the <see cref="FormatInfo" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<FormatInfo>(), Is.EqualTo(sizeof(FormatInfo)));
+        Assert.Equal(sizeof(FormatInfo), Marshal.SizeOf<FormatInfo>());
     }
 
     /// <summary>Validates that the <see cref="FormatInfo" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(FormatInfo).IsLayoutSequential, Is.True);
+        Assert.True(typeof(FormatInfo).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="FormatInfo" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(FormatInfo), Is.EqualTo(32));
+            Assert.Equal(32, sizeof(FormatInfo));
         }
         else
         {
-            Assert.That(sizeof(FormatInfo), Is.EqualTo(24));
+            Assert.Equal(24, sizeof(FormatInfo));
         }
     }
 }

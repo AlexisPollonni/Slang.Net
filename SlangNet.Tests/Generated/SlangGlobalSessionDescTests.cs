@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class SlangGlobalSessionDescTests
 {
     /// <summary>Validates that the <see cref="SlangGlobalSessionDesc" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<SlangGlobalSessionDesc>(), Is.EqualTo(sizeof(SlangGlobalSessionDesc)));
+        Assert.Equal(sizeof(SlangGlobalSessionDesc), Marshal.SizeOf<SlangGlobalSessionDesc>());
     }
 
     /// <summary>Validates that the <see cref="SlangGlobalSessionDesc" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(SlangGlobalSessionDesc).IsLayoutSequential, Is.True);
+        Assert.True(typeof(SlangGlobalSessionDesc).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="SlangGlobalSessionDesc" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(SlangGlobalSessionDesc), Is.EqualTo(80));
+        Assert.Equal(80, sizeof(SlangGlobalSessionDesc));
     }
 }

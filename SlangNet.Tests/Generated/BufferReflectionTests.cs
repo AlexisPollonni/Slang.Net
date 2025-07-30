@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class BufferReflectionTests
 {
     /// <summary>Validates that the <see cref="BufferReflection" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<BufferReflection>(), Is.EqualTo(sizeof(BufferReflection)));
+        Assert.Equal(sizeof(BufferReflection), Marshal.SizeOf<BufferReflection>());
     }
 
     /// <summary>Validates that the <see cref="BufferReflection" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(BufferReflection).IsLayoutSequential, Is.True);
+        Assert.True(typeof(BufferReflection).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="BufferReflection" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(BufferReflection), Is.EqualTo(1));
+        Assert.Equal(1, sizeof(BufferReflection));
     }
 }

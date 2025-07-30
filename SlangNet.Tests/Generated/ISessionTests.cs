@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ISessionTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="ISession" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(ISession).GUID, Is.EqualTo(IID_ISession));
+        Assert.Equal(typeof(ISession).GUID, IID_ISession);
     }
 
     /// <summary>Validates that the <see cref="ISession" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ISession>(), Is.EqualTo(sizeof(ISession)));
+        Assert.Equal(sizeof(ISession), Marshal.SizeOf<ISession>());
     }
 
     /// <summary>Validates that the <see cref="ISession" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ISession).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ISession).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ISession" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ISession), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ISession));
         }
         else
         {
-            Assert.That(sizeof(ISession), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ISession));
         }
     }
 }

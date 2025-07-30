@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-using NUnit.Framework;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class CooperativeVectorPropertiesTests
 {
     /// <summary>Validates that the <see cref="CooperativeVectorProperties" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<CooperativeVectorProperties>(), Is.EqualTo(sizeof(CooperativeVectorProperties)));
+        Assert.Equal(sizeof(CooperativeVectorProperties), Marshal.SizeOf<CooperativeVectorProperties>());
     }
 
     /// <summary>Validates that the <see cref="CooperativeVectorProperties" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(CooperativeVectorProperties).IsLayoutSequential, Is.True);
+        Assert.True(typeof(CooperativeVectorProperties).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="CooperativeVectorProperties" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(CooperativeVectorProperties), Is.EqualTo(24));
+        Assert.Equal(24, sizeof(CooperativeVectorProperties));
     }
 }

@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ClearResourceViewFlagsTests
 {
     /// <summary>Validates that the <see cref="ClearResourceViewFlags" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ClearResourceViewFlags>(), Is.EqualTo(sizeof(ClearResourceViewFlags)));
+        Assert.Equal(sizeof(ClearResourceViewFlags), Marshal.SizeOf<ClearResourceViewFlags>());
     }
 
     /// <summary>Validates that the <see cref="ClearResourceViewFlags" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ClearResourceViewFlags).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ClearResourceViewFlags).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ClearResourceViewFlags" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(ClearResourceViewFlags), Is.EqualTo(1));
+        Assert.Equal(1, sizeof(ClearResourceViewFlags));
     }
 }
