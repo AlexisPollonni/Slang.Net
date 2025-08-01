@@ -11,13 +11,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="../hello-world.slang">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <PackageReference Include="Veldrid" Version="4.9.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Veldrid" Version="4.9.0" />
+    <Content Include="..\..\SlangNet.Tests\Examples\Assets\hello-world.slang" >
+      <Link>hello-world.slang</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="../../ImportMainProject.targets" />
 
