@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IShaderCacheTests
 {
     /// <summary>Validates that the <see cref="IShaderCache" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IShaderCache>(), Is.EqualTo(sizeof(IShaderCache)));
+        Assert.Equal(sizeof(IShaderCache), Marshal.SizeOf<IShaderCache>());
     }
 
     /// <summary>Validates that the <see cref="IShaderCache" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IShaderCache).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IShaderCache).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IShaderCache" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(IShaderCache), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(IShaderCache));
         }
         else
         {
-            Assert.That(sizeof(IShaderCache), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(IShaderCache));
         }
     }
 }

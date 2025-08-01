@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ISlangWriterTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="ISlangWriter" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(ISlangWriter).GUID, Is.EqualTo(IID_ISlangWriter));
+        Assert.Equal(typeof(ISlangWriter).GUID, IID_ISlangWriter);
     }
 
     /// <summary>Validates that the <see cref="ISlangWriter" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ISlangWriter>(), Is.EqualTo(sizeof(ISlangWriter)));
+        Assert.Equal(sizeof(ISlangWriter), Marshal.SizeOf<ISlangWriter>());
     }
 
     /// <summary>Validates that the <see cref="ISlangWriter" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ISlangWriter).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ISlangWriter).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ISlangWriter" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ISlangWriter), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ISlangWriter));
         }
         else
         {
-            Assert.That(sizeof(ISlangWriter), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ISlangWriter));
         }
     }
 }

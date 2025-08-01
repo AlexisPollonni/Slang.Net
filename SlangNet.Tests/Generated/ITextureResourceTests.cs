@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ITextureResourceTests
 {
     /// <summary>Validates that the <see cref="ITextureResource" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ITextureResource>(), Is.EqualTo(sizeof(ITextureResource)));
+        Assert.Equal(sizeof(ITextureResource), Marshal.SizeOf<ITextureResource>());
     }
 
     /// <summary>Validates that the <see cref="ITextureResource" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ITextureResource).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ITextureResource).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ITextureResource" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ITextureResource), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ITextureResource));
         }
         else
         {
-            Assert.That(sizeof(ITextureResource), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ITextureResource));
         }
     }
 }

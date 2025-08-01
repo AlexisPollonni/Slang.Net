@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ITransientResourceHeapTests
 {
     /// <summary>Validates that the <see cref="ITransientResourceHeap" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ITransientResourceHeap>(), Is.EqualTo(sizeof(ITransientResourceHeap)));
+        Assert.Equal(sizeof(ITransientResourceHeap), Marshal.SizeOf<ITransientResourceHeap>());
     }
 
     /// <summary>Validates that the <see cref="ITransientResourceHeap" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ITransientResourceHeap).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ITransientResourceHeap).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ITransientResourceHeap" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ITransientResourceHeap), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ITransientResourceHeap));
         }
         else
         {
-            Assert.That(sizeof(ITransientResourceHeap), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ITransientResourceHeap));
         }
     }
 }

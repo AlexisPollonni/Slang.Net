@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IGlobalSessionTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="IGlobalSession" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(IGlobalSession).GUID, Is.EqualTo(IID_IGlobalSession));
+        Assert.Equal(typeof(IGlobalSession).GUID, IID_IGlobalSession);
     }
 
     /// <summary>Validates that the <see cref="IGlobalSession" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IGlobalSession>(), Is.EqualTo(sizeof(IGlobalSession)));
+        Assert.Equal(sizeof(IGlobalSession), Marshal.SizeOf<IGlobalSession>());
     }
 
     /// <summary>Validates that the <see cref="IGlobalSession" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IGlobalSession).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IGlobalSession).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IGlobalSession" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(IGlobalSession), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(IGlobalSession));
         }
         else
         {
-            Assert.That(sizeof(IGlobalSession), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(IGlobalSession));
         }
     }
 }

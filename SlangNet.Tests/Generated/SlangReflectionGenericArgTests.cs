@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class SlangReflectionGenericArgTests
 {
     /// <summary>Validates that the <see cref="SlangReflectionGenericArg" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<SlangReflectionGenericArg>(), Is.EqualTo(sizeof(SlangReflectionGenericArg)));
+        Assert.Equal(sizeof(SlangReflectionGenericArg), Marshal.SizeOf<SlangReflectionGenericArg>());
     }
 
     /// <summary>Validates that the <see cref="SlangReflectionGenericArg" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutExplicitTest()
     {
-        Assert.That(typeof(SlangReflectionGenericArg).IsExplicitLayout, Is.True);
+        Assert.True(typeof(SlangReflectionGenericArg).IsExplicitLayout);
     }
 
     /// <summary>Validates that the <see cref="SlangReflectionGenericArg" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(SlangReflectionGenericArg), Is.EqualTo(8));
+        Assert.Equal(8, sizeof(SlangReflectionGenericArg));
     }
 }

@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class DepthStencilClearValueTests
 {
     /// <summary>Validates that the <see cref="DepthStencilClearValue" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<DepthStencilClearValue>(), Is.EqualTo(sizeof(DepthStencilClearValue)));
+        Assert.Equal(sizeof(DepthStencilClearValue), Marshal.SizeOf<DepthStencilClearValue>());
     }
 
     /// <summary>Validates that the <see cref="DepthStencilClearValue" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(DepthStencilClearValue).IsLayoutSequential, Is.True);
+        Assert.True(typeof(DepthStencilClearValue).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="DepthStencilClearValue" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(DepthStencilClearValue), Is.EqualTo(8));
+        Assert.Equal(8, sizeof(DepthStencilClearValue));
     }
 }

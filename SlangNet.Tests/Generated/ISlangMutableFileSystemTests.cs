@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ISlangMutableFileSystemTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="ISlangMutableFileSystem" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(ISlangMutableFileSystem).GUID, Is.EqualTo(IID_ISlangMutableFileSystem));
+        Assert.Equal(typeof(ISlangMutableFileSystem).GUID, IID_ISlangMutableFileSystem);
     }
 
     /// <summary>Validates that the <see cref="ISlangMutableFileSystem" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ISlangMutableFileSystem>(), Is.EqualTo(sizeof(ISlangMutableFileSystem)));
+        Assert.Equal(sizeof(ISlangMutableFileSystem), Marshal.SizeOf<ISlangMutableFileSystem>());
     }
 
     /// <summary>Validates that the <see cref="ISlangMutableFileSystem" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ISlangMutableFileSystem).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ISlangMutableFileSystem).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ISlangMutableFileSystem" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ISlangMutableFileSystem), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ISlangMutableFileSystem));
         }
         else
         {
-            Assert.That(sizeof(ISlangMutableFileSystem), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ISlangMutableFileSystem));
         }
     }
 }

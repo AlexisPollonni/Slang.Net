@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class InputElementDescTests
 {
     /// <summary>Validates that the <see cref="InputElementDesc" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<InputElementDesc>(), Is.EqualTo(sizeof(InputElementDesc)));
+        Assert.Equal(sizeof(InputElementDesc), Marshal.SizeOf<InputElementDesc>());
     }
 
     /// <summary>Validates that the <see cref="InputElementDesc" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(InputElementDesc).IsLayoutSequential, Is.True);
+        Assert.True(typeof(InputElementDesc).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="InputElementDesc" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(InputElementDesc), Is.EqualTo(32));
+            Assert.Equal(32, sizeof(InputElementDesc));
         }
         else
         {
-            Assert.That(sizeof(InputElementDesc), Is.EqualTo(20));
+            Assert.Equal(20, sizeof(InputElementDesc));
         }
     }
 }

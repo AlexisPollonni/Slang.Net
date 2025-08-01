@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ViewportTests
 {
     /// <summary>Validates that the <see cref="Viewport" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<Viewport>(), Is.EqualTo(sizeof(Viewport)));
+        Assert.Equal(sizeof(Viewport), Marshal.SizeOf<Viewport>());
     }
 
     /// <summary>Validates that the <see cref="Viewport" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(Viewport).IsLayoutSequential, Is.True);
+        Assert.True(typeof(Viewport).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="Viewport" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(Viewport), Is.EqualTo(24));
+        Assert.Equal(24, sizeof(Viewport));
     }
 }

@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-using NUnit.Framework;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ByteCodeRunnerDescTests
 {
     /// <summary>Validates that the <see cref="ByteCodeRunnerDesc" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ByteCodeRunnerDesc>(), Is.EqualTo(sizeof(ByteCodeRunnerDesc)));
+        Assert.Equal(sizeof(ByteCodeRunnerDesc), Marshal.SizeOf<ByteCodeRunnerDesc>());
     }
 
     /// <summary>Validates that the <see cref="ByteCodeRunnerDesc" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ByteCodeRunnerDesc).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ByteCodeRunnerDesc).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ByteCodeRunnerDesc" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ByteCodeRunnerDesc), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ByteCodeRunnerDesc));
         }
         else
         {
-            Assert.That(sizeof(ByteCodeRunnerDesc), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ByteCodeRunnerDesc));
         }
     }
 }
