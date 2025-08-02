@@ -35,11 +35,11 @@ var devDesc = new DeviceDescription
 
 Gfx.CreateDevice(devDesc, out var device).ThrowIfFailed();
 
-device.CreateTransientResourceHeap(new(ConstantBufferSize: 4096), out var heap).ThrowIfFailed();
+var heap = device.CreateTransientResourceHeapOrThrow(new(ConstantBufferSize: 4096));
 
 ShaderObjectExample.LoadShaderProgram(device, out var program, out var slangReflection).ThrowIfFailed();
 
-device.CreateComputePipelineState(new(program), out var pipelineState).ThrowIfFailed();
+var pipelineState = device.CreateComputePipelineStateOrThrow(new(program));
 
 ReadOnlySpan<float> initialData = [0, 1, 2, 3];
 
@@ -53,37 +53,36 @@ device.CreateBufferResource(out var numbersBuffer,
                                 DefaultState = Unmanaged.ResourceState.UnorderedAccess,
                                 MemoryType = Unmanaged.MemoryType.DeviceLocal,
                             },
-                            initialData);
+                            initialData).ThrowIfFailed();
 
-device.CreateBufferView(numbersBuffer,
+var bufferView = device.CreateBufferViewOrThrow(numbersBuffer,
     null,
     new()
     {
         Type = Unmanaged.IResourceView.ResourceViewType.UnorderedAccess,
         Format = Unmanaged.Format.Unknown
-    }, out var bufferView).ThrowIfFailed();
+    });
 
-device.CreateCommandQueue(new(Unmanaged.ICommandQueue.QueueType.Graphics), out var queue).ThrowIfFailed();
+var queue = device.CreateCommandQueueOrThrow(new(Unmanaged.ICommandQueue.QueueType.Graphics));
 
-heap.CreateCommandBuffer(out var cmdBuffer).ThrowIfFailed();
+var cmdBuffer = heap.CreateCommandBufferOrThrow();
 
 cmdBuffer.EncodeComputeCommands(out var encoder);
 
-encoder.BindPipeline(pipelineState, out var rootObject).ThrowIfFailed();
+var rootObject = encoder.BindPipelineOrThrow(pipelineState);
 
 var addTransformerType = slangReflection.FindTypeByName("AddTransformer")!.Value;
 
-device.CreateShaderObject(addTransformerType, Unmanaged.ShaderObjectContainerType.None, out var transformer).ThrowIfFailed();
+var transformer = device.CreateShaderObjectOrThrow(addTransformerType, Unmanaged.ShaderObjectContainerType.None);
 
 const float c = 1.0f;
 
 new ShaderCursor(transformer).GetPath("c").SetData(c);
 
-rootObject.GetEntryPoint(0, out var entryPoint).ThrowIfFailed();
+var entryPoint = rootObject.GetEntryPointOrThrow(0);
 var entryPointCursor = new ShaderCursor(entryPoint);
 
 entryPointCursor.GetPath("buffer").SetResource(bufferView);
-
 entryPointCursor.GetPath("transformer").SetObject(transformer);
 
 encoder.DispatchCompute(1, 1, 1);
@@ -105,25 +104,24 @@ static class ShaderObjectExample
                                                  out IShaderProgram program,
                                                  out ShaderReflection slangReflection)
     {
-        device.GetSlangSession(out var slangSession).ThrowIfFailed();
+        var slangSession = device.GetSlangSessionOrThrow();
 
-        var module = slangSession.LoadModule("shader-object", out var diag);
+        var module = slangSession.LoadModule("shader-object", out string? diag);
         SharedLogger<IModule>.LogDiagnostics(diag);
 
-        module.FindEntryPointByName("computeMain", out var computeEntryPoint).ThrowIfFailed();
+        var computeEntryPoint = module.FindEntryPointByNameOrThrow("computeMain");
 
         var componentTypes = new IComponentType[] { module, computeEntryPoint };
 
-        slangSession.CreateCompositeComponentType(componentTypes, 2, out var composedProgram, out diag)
-                                          .ThrowIfFailed();
+        var composedProgram = slangSession.CreateCompositeComponentTypeOrThrow(componentTypes, out diag);
         SharedLogger<IComponentType[]>.LogDiagnostics(diag);
 
-        slangReflection = composedProgram.GetLayout(0, out diag).Value!;
+        slangReflection = composedProgram.GetLayout(0, out diag).Value;
         SharedLogger<ShaderReflection>.LogDiagnostics(diag);
 
         var programDesc = new ShaderProgramDescription(GlobalScope: composedProgram);
 
-        device.CreateProgram(programDesc, out program, out diag).ThrowIfFailed();
+        program = device.CreateProgramOrThrow(programDesc, out diag);
         SharedLogger<IShaderProgram>.LogDiagnostics(diag);
 
         return SlangResult.Ok;

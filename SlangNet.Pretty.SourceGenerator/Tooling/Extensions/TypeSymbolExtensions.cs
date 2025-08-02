@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace SlangNet.Pretty.SourceGenerator.Tooling;
+namespace SlangNet.Pretty.SourceGenerator.Tooling.Extensions;
 
-static class TypeHelper
+static class TypeSymbolExtensions
 {
     private const string MarshalToNativeTypeName = "IMarshalsToNative";
     private const string ComObjectTypeName = "COMObject";
@@ -101,6 +102,42 @@ static class TypeHelper
     {
         return method.DeclaringSyntaxReferences.OfType<MethodDeclarationSyntax>()
                      .Any(syntax => syntax.Modifiers.Any(m => m.IsKind(SyntaxKind.UnsafeKeyword)));
+    }
+
+    public static bool IsSpanType(this ITypeSymbol type)
+    {
+        // Quick check if it's even a ref-like type
+        if (!type.IsRefLikeType)
+            return false;
+        
+        var fullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+        return fullName.StartsWith("global::System.Span<") || 
+               fullName.StartsWith("global::System.ReadOnlySpan<");
+    }
+    
+    public static bool IsMarshalUsingAttribute(this AttributeData data)
+        => data.AttributeClass?.ToFullyQualified().StartsWith("global::System.Runtime.InteropServices.Marshalling.MarshalUsingAttribute") ?? false;
+
+    public static IEnumerable<(IParameterSymbol, IParameterSymbol)> GetMarshalUsingSpanCountPairs(this IMethodSymbol method)
+    {
+        return method.Parameters
+            .Select(paramSymbol =>
+            {
+                var attribute = paramSymbol.GetAttributes().FirstOrDefault(data => data.IsMarshalUsingAttribute());
+                var countParamName = attribute?.NamedArguments.SingleOrDefault(pair => pair.Key == "CountElementName")
+                    .Value.ToCSharpString().Trim('\"');
+
+                var countParam = method.Parameters.SingleOrDefault(p => p.Name == countParamName);
+
+                return (pSymbol: paramSymbol,
+                    Attrib: attribute,
+                    CountParam: countParam);
+            })
+            .Where(tuple =>
+                tuple.Attrib is not null 
+                && tuple.CountParam is not null 
+                && tuple.pSymbol.Type.IsSpanType())
+            .Select(tuple => (tuple.pSymbol!, tuple.CountParam!));
     }
 
     public static string ToFullyQualified(this ITypeSymbol type)
