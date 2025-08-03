@@ -59,7 +59,7 @@ internal static class SharedHelpers
                 TargetFlags = TargetFlags.GenerateSPIRVDirectly,
                 OptimizationLevel = OptimizationLevel.None,
                 DefaultMatrixLayoutMode = MatrixLayoutMode.RowMajor,
-                TargetProfile = "glsl440",
+                TargetProfile = "spirv_1_5",
                 SearchPaths = [Path.Combine(runningBinPath, "Examples", "Assets")]
             },
             ShaderCache = new()

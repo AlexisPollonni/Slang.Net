@@ -50,7 +50,7 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
                 new()
                 {
                     Format = CompileTarget.Spirv,
-                    Profile = globalSession.FindProfile("glsl440")
+                    Profile = globalSession.FindProfile("spirv_1_5")
                 }
             ],
         });
