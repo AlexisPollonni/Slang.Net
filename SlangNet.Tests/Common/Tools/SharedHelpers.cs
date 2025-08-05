@@ -37,6 +37,12 @@ internal static class SharedHelpers
         globalSession.SetDownstreamCompilerPath(PassThrough.Llvm, RunningExePath);
         globalSession.CheckPassThroughSupportOrThrow(PassThrough.Llvm);
 
+        if (OperatingSystem.IsWindows())
+        {
+            globalSession.SetDownstreamCompilerPath(PassThrough.Dxc, RunningExePath);
+            globalSession.CheckPassThroughSupportOrThrow(PassThrough.Dxc);
+        }
+
         Assert.NotNull(globalSession);
 
         return globalSession;
