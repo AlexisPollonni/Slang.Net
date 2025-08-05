@@ -39,6 +39,11 @@ public static class SharedLogger<T>
     {
         Logger.LogDiagnostics(blobDiagnostics, logLevel);
     }
+
+    public static void LogDiagnostics(string? diagnostics, LogLevel logLevel = LogLevel.Debug)
+    {
+        Logger.LogDiagnostics(diagnostics, logLevel);
+    }
     
     // ReSharper disable TemplateIsNotCompileTimeConstantProblem
     public static void Log(LogLevel level, [StructuredMessageTemplate] string template, params object?[] args) => Logger.Log(level, template, args);
@@ -53,8 +58,14 @@ public static class SharedLogger<T>
 
 public static class Extensions
 {
+    public static void LogDiagnostics(this ILogger logger, string? diagnostics, LogLevel logLevel = LogLevel.Debug)
+    {
+        logger.Log(logLevel, "Diagnostics: {Diagnostics}",  diagnostics ?? "no diagnostics");
+        
+    }
+    
     public static void LogDiagnostics(this ILogger logger, IBlob? blobDiagnostics, LogLevel logLevel = LogLevel.Debug)
     {
-        logger.Log(logLevel, "Diagnostics: {Diagnostics}", blobDiagnostics?.AsString() ?? "no diagnostics");
+        logger.LogDiagnostics(blobDiagnostics?.AsString(), logLevel);
     }
 }

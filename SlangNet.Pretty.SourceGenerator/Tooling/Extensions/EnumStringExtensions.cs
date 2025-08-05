@@ -1,7 +1,7 @@
 using System;
 using Microsoft.CodeAnalysis;
 
-namespace SlangNet.Pretty.SourceGenerator.Tooling;
+namespace SlangNet.Pretty.SourceGenerator.Tooling.Extensions;
 
 public static class EnumStringExtensions
 {
