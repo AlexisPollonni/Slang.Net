@@ -9,6 +9,7 @@ using IDevice = SlangNet.ComWrappers.Gfx.Interfaces.IDevice;
 using IGlobalSession = SlangNet.ComWrappers.Interfaces.IGlobalSession;
 using static SlangNet.ComWrappers.Gfx.Gfx;
 using static SlangNet.ComWrappers.Slang;
+using AdapterInfo = SlangNet.ComWrappers.Gfx.Descriptions.AdapterInfo;
 using IComponentType = SlangNet.ComWrappers.Interfaces.IComponentType;
 using IShaderProgram = SlangNet.ComWrappers.Gfx.Interfaces.IShaderProgram;
 using ShaderReflection = SlangNet.ComWrappers.Reflection.ShaderReflection;
@@ -49,11 +50,18 @@ internal static class SharedHelpers
     }
 
     public static IDevice CreateTestDevice(IGlobalSession globalSession,
-                                           DeviceType deviceType = DeviceType.CPU,
+                                           bool allowCpuDevice = true,
+                                           DeviceType deviceType = DeviceType.Default,
                                            ILogger? logger = null)
     {
         Debug.Layer();
         if (logger is not null) Debug.EnableLogging(logger);
+
+        if (!allowCpuDevice) SkipWithoutGpu(deviceType);
+        
+        deviceType = deviceType is DeviceType.Default
+            ? FindFirstAvailable(includeCpu: allowCpuDevice)
+            : deviceType;
 
         var runningBinPath = RunningExePath;
         var devDesc = new DeviceDescription
@@ -65,7 +73,6 @@ internal static class SharedHelpers
                 TargetFlags = TargetFlags.GenerateSPIRVDirectly,
                 OptimizationLevel = OptimizationLevel.None,
                 DefaultMatrixLayoutMode = MatrixLayoutMode.RowMajor,
-                TargetProfile = "spirv_1_5",
                 SearchPaths = [Path.Combine(runningBinPath, "Examples", "Assets")]
             },
             ShaderCache = new()
@@ -78,8 +85,11 @@ internal static class SharedHelpers
 
         return device;
     }
-    
-    public static (IShaderProgram program, ShaderReflection programLayout) LoadShaderProgram(IDevice device, string moduleName, ILogger? logger = null)
+
+    public static (IShaderProgram program, ShaderReflection programLayout) LoadShaderProgram(
+        IDevice device,
+        string moduleName,
+        ILogger? logger = null)
     {
         var session = device.GetSlangSessionOrThrow();
 
@@ -96,15 +106,59 @@ internal static class SharedHelpers
 
         var slangReflection = composedProgram.GetLayout(0, out diag);
         logger?.LogDiagnostics(diag);
-        
+
         Assert.NotNull(slangReflection);
 
         var programDesc = new ShaderProgramDescription(GlobalScope: composedProgram);
         var program = device.CreateProgramOrThrow(programDesc, out diagStr);
         logger?.LogDiagnostics(diagStr);
-        
+
         Assert.NotNull(program);
 
         return (program, slangReflection.Value);
+    }
+
+    public static void SkipWithoutGpu(DeviceType type = DeviceType.Default)
+    {
+        if (type is DeviceType.Default or DeviceType.Unknown) type = FindFirstAvailable();
+        else
+        {
+            GetAdapters(type, out IReadOnlyList<AdapterInfo> adapters);
+
+            if (adapters.Count == 0)
+            {
+                Assert.Skip($"Skipping test because GPU adapter for {type} is not available.");
+            }
+        }
+
+        if (type is DeviceType.CPU or DeviceType.Unknown)
+        {
+            Assert.Skip("Skipping test because no GPU is available. Cannot use CPU shaders for this test");
+        }
+    }
+    
+    
+    
+
+    private static DeviceType FindFirstAvailable(bool includeCpu = false)
+    {
+        var deviceTypes = new List<DeviceType> { DeviceType.DirectX12, DeviceType.Metal, DeviceType.Vulkan };
+
+        if (includeCpu) deviceTypes.Add(DeviceType.CPU);
+
+        var adapters = deviceTypes.SelectMany(type =>
+        {
+            var res = GetAdapters(type, out IReadOnlyList<AdapterInfo> adapters);
+
+            if (res.Succeeded) return adapters.Select(info => (type, info));
+            
+            TestContext.Current.SendDiagnosticMessage($"Failed to get adapters for {type}: {res}");
+            return [];
+
+        }).ToArray();
+        
+        var firstAvailable = adapters.FirstOrDefault();
+
+        return firstAvailable != default ? firstAvailable.type : DeviceType.Unknown;
     }
 }

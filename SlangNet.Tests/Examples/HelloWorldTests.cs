@@ -24,19 +24,22 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
     private const int ElementCount = 16;
     private const int BufferSize = sizeof(float) * ElementCount;
 
-    [Fact]
-    public void HelloWorld()
+    [Theory]
+    // TODO: Blocked by https://github.com/shader-slang/slang-rhi/issues/289 and similar
+    //[InlineData(DeviceType.DirectX12)]
+    [InlineData(DeviceType.Metal)]
+    [InlineData(DeviceType.Vulkan)]
+    public void HelloWorld(DeviceType type)
     {
-        var (device, program) = LoadModuleAndCreateDevice();
+        var (device, program) = LoadModuleAndCreateDevice(type);
         var pipeline = CreatePipelineFromProgram(device, program);
         CreateBuffers(device, out var inputBuffer0, out var inputBuffer1, out var outputBuffer);
-        ;
+        
         DispatchCompute(device, pipeline, inputBuffer0, inputBuffer1, outputBuffer);
         PrintComputeResults(device, outputBuffer);
-        ;
     }
 
-    private (IDevice device, IShaderProgram program) LoadModuleAndCreateDevice()
+    private (IDevice device, IShaderProgram program) LoadModuleAndCreateDevice(DeviceType type)
     {
         // First a global session is necessary
         var globalSession = SharedHelpers.CreateTestGlobalSession();
@@ -102,7 +105,9 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
         logger.LogDiagnostics(diagString);
         Assert.NotNull(spirvCode);
 
-        var device = SharedHelpers.CreateTestDevice(globalSession, logger: logger);
+        var device = SharedHelpers.CreateTestDevice(globalSession, logger: logger, 
+                                                    deviceType: type,
+                                                    allowCpuDevice: false); // Choosing a CPU device for this test with this shader will not work. Slang segfaults on pipeline bind with that shader program. TODO: Report this.
 
         var program = device.CreateProgramOrThrow(new(GlobalScope: composedProgram), out diagString);
         logger.LogDiagnostics(diagString);
@@ -191,19 +196,6 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
             var bufferView = device.CreateBufferViewOrThrow(buffer, null, bufferViewDesc);
             cursor.SetResource(bufferView).ThrowIfFailed();
         }
-        // using var commandList = ResourceFactory.CreateCommandList();
-        // using var resourceSet
-        //     = ResourceFactory.CreateResourceSet(new(resourceLayout, inputBuffer0, inputBuffer1, outputBuffer));
-        // commandList.Begin();
-        // commandList.CopyBuffer(stagingBuffer, 0, inputBuffer0, 0, BufferSize);
-        // commandList.CopyBuffer(stagingBuffer, 0, inputBuffer1, 0, BufferSize);
-        // commandList.SetPipeline(pipeline);
-        // commandList.SetComputeResourceSet(0, resourceSet);
-        // commandList.Dispatch(ElementCount, 1, 1);
-        // commandList.CopyBuffer(outputBuffer, 0, stagingBuffer, 0, BufferSize);
-        // commandList.End();
-        // graphicsDevice.SubmitCommands(commandList);
-        // graphicsDevice.WaitForIdle();
     }
 
     private void PrintComputeResults(IDevice device, IBufferResource outputBuffer)
