@@ -78,7 +78,7 @@
       <enumerator name="ResourceExtShapeMask" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>0xF0</code>
+          <code>0x1F0</code>
         </value>
       </enumerator>
       <enumerator name="TextureFeedbackFlag" access="public">
@@ -103,6 +103,12 @@
         <type primitive="False">uint</type>
         <value>
           <code>0x80</code>
+        </value>
+      </enumerator>
+      <enumerator name="TextureCombinedFlag" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x100</code>
         </value>
       </enumerator>
       <enumerator name="Texture1DArray" access="public">

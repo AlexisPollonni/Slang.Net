@@ -1191,6 +1191,15 @@
           <type>SlangReflectionType*</type>
         </param>
       </function>
+      <function name="ReflectionType_GetSpecializedElementCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionType_GetSpecializedElementCount" static="true" unsafe="true">
+        <type native="size_t">nuint</type>
+        <param name="type">
+          <type>SlangReflectionType*</type>
+        </param>
+        <param name="reflection">
+          <type>SlangProgramLayout*</type>
+        </param>
+      </function>
       <function name="ReflectionType_GetElementType" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionType_GetElementType" static="true" unsafe="true">
         <type>SlangReflectionType*</type>
         <param name="type">

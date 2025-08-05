@@ -6,7 +6,7 @@
         <type native="slang::SpecializationArg::Kind">TypeKind</type>
       </field>
       <field name="Anonymous" access="public">
-        <type native="__AnonymousRecord_slang_L4574_C5">_Anonymous_e__Union</type>
+        <type native="__AnonymousRecord_slang_L4608_C5">_Anonymous_e__Union</type>
       </field>
       <field name="type" access="public">
         <type>ref TypeReflection*</type>

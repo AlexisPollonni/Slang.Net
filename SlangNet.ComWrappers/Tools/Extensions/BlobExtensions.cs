@@ -10,7 +10,7 @@ public static class BlobExtensions
         var ptr = blob.GetBufferPointer();
         if (ptr is null) return null;
         
-        return new((char*)ptr, 0, (int)blob.GetBufferSize());
+        return new((sbyte*)ptr, 0, (int)blob.GetBufferSize());
     }
 
     public static unsafe ReadOnlySpan<byte> AsReadOnlySpan(this IBlob blob) =>

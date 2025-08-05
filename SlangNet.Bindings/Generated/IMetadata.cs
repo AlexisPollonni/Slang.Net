@@ -31,7 +31,7 @@ public unsafe partial struct IMetadata
     [return: NativeTypeName("SlangResult")]
     public delegate int _isParameterLocationUsed(IMetadata* pThis, [NativeTypeName("SlangParameterCategory")] ParameterCategory category, [NativeTypeName("SlangUInt")] nuint spaceIndex, [NativeTypeName("SlangUInt")] nuint registerIndex, [NativeTypeName("bool &")] Boolean* outUsed);
 
-    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("const char *")]
     public delegate sbyte* _getDebugBuildIdentifier(IMetadata* pThis);
 
@@ -99,7 +99,7 @@ public unsafe partial struct IMetadata
         [NativeTypeName("SlangResult (SlangParameterCategory, SlangUInt, SlangUInt, bool &)")]
         public IntPtr isParameterLocationUsed;
 
-        [NativeTypeName("const char *()")]
+        [NativeTypeName("const char *() __attribute__((stdcall))")]
         public IntPtr getDebugBuildIdentifier;
     }
 }
