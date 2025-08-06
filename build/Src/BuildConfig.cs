@@ -69,7 +69,7 @@ internal record BuildConfig(
         var opts = Options;
         if (testsOutputDir?.DirectoryExists() ?? false)
         {
-            opts |= GenerateTestsNUnit;
+            opts |= GenerateTestsXUnit;
         }
 
         if (IsUnix) opts |= GenerateUnixTypes;

@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.GfxApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ICommandEncoderTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="ICommandEncoder" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(ICommandEncoder).GUID, Is.EqualTo(IID_ICommandEncoder));
+        Assert.Equal(typeof(ICommandEncoder).GUID, IID_ICommandEncoder);
     }
 
     /// <summary>Validates that the <see cref="ICommandEncoder" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ICommandEncoder>(), Is.EqualTo(sizeof(ICommandEncoder)));
+        Assert.Equal(sizeof(ICommandEncoder), Marshal.SizeOf<ICommandEncoder>());
     }
 
     /// <summary>Validates that the <see cref="ICommandEncoder" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ICommandEncoder).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ICommandEncoder).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ICommandEncoder" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ICommandEncoder), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ICommandEncoder));
         }
         else
         {
-            Assert.That(sizeof(ICommandEncoder), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ICommandEncoder));
         }
     }
 }

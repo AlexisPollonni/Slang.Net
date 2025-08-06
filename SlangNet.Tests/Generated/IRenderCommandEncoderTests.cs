@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.GfxApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IRenderCommandEncoderTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="IRenderCommandEncoder" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(IRenderCommandEncoder).GUID, Is.EqualTo(IID_IRenderCommandEncoder));
+        Assert.Equal(typeof(IRenderCommandEncoder).GUID, IID_IRenderCommandEncoder);
     }
 
     /// <summary>Validates that the <see cref="IRenderCommandEncoder" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IRenderCommandEncoder>(), Is.EqualTo(sizeof(IRenderCommandEncoder)));
+        Assert.Equal(sizeof(IRenderCommandEncoder), Marshal.SizeOf<IRenderCommandEncoder>());
     }
 
     /// <summary>Validates that the <see cref="IRenderCommandEncoder" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IRenderCommandEncoder).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IRenderCommandEncoder).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IRenderCommandEncoder" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(IRenderCommandEncoder), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(IRenderCommandEncoder));
         }
         else
         {
-            Assert.That(sizeof(IRenderCommandEncoder), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(IRenderCommandEncoder));
         }
     }
 }

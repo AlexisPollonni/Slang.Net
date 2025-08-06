@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ISlangFileSystemTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="ISlangFileSystem" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(ISlangFileSystem).GUID, Is.EqualTo(IID_ISlangFileSystem));
+        Assert.Equal(typeof(ISlangFileSystem).GUID, IID_ISlangFileSystem);
     }
 
     /// <summary>Validates that the <see cref="ISlangFileSystem" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ISlangFileSystem>(), Is.EqualTo(sizeof(ISlangFileSystem)));
+        Assert.Equal(sizeof(ISlangFileSystem), Marshal.SizeOf<ISlangFileSystem>());
     }
 
     /// <summary>Validates that the <see cref="ISlangFileSystem" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ISlangFileSystem).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ISlangFileSystem).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ISlangFileSystem" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ISlangFileSystem), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ISlangFileSystem));
         }
         else
         {
-            Assert.That(sizeof(ISlangFileSystem), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ISlangFileSystem));
         }
     }
 }

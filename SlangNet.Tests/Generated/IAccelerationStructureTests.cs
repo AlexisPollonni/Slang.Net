@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IAccelerationStructureTests
 {
     /// <summary>Validates that the <see cref="IAccelerationStructure" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IAccelerationStructure>(), Is.EqualTo(sizeof(IAccelerationStructure)));
+        Assert.Equal(sizeof(IAccelerationStructure), Marshal.SizeOf<IAccelerationStructure>());
     }
 
     /// <summary>Validates that the <see cref="IAccelerationStructure" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IAccelerationStructure).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IAccelerationStructure).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IAccelerationStructure" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(IAccelerationStructure), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(IAccelerationStructure));
         }
         else
         {
-            Assert.That(sizeof(IAccelerationStructure), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(IAccelerationStructure));
         }
     }
 }

@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IndirectDrawArgumentsTests
 {
     /// <summary>Validates that the <see cref="IndirectDrawArguments" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IndirectDrawArguments>(), Is.EqualTo(sizeof(IndirectDrawArguments)));
+        Assert.Equal(sizeof(IndirectDrawArguments), Marshal.SizeOf<IndirectDrawArguments>());
     }
 
     /// <summary>Validates that the <see cref="IndirectDrawArguments" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IndirectDrawArguments).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IndirectDrawArguments).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IndirectDrawArguments" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(IndirectDrawArguments), Is.EqualTo(16));
+        Assert.Equal(16, sizeof(IndirectDrawArguments));
     }
 }
