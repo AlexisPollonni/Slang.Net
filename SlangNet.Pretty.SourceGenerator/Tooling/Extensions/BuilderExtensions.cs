@@ -102,11 +102,18 @@ static class BuilderExtensions
         var methodBuilder
             = classBuilder.AddExtensionMethodOverload(data.Signature.Name, originalMethod.ContainingType, originalMethod);
 
-        foreach (var parameterSignature in data.Signature.ParametersSig)
+        foreach (var pmSig in data.Signature.ParametersSig)
         {
-            methodBuilder.AddParameterWithRefKind(parameterSignature.RefKind,
-                                                  parameterSignature.Type,
-                                                  parameterSignature.Name);
+            if(pmSig.DefaultValue is not null)
+                if (pmSig.DefaultValue.IsNull)
+                    methodBuilder.AddParameterWithNullValue(pmSig.Type, pmSig.Name);
+                else
+                    methodBuilder.AddParameterWithDefaultValue(pmSig.Type,
+                                                               pmSig.Name,
+                                                               pmSig.DefaultValue.ExplicitType);
+            else methodBuilder.AddParameterWithRefKind(pmSig.RefKind,
+                                                       pmSig.Type,
+                                                       pmSig.Name);
         }
 
         var isVoidReturn = SymbolEqualityComparer.Default.Equals(data.Signature.ReturnSig.Type, ctx.VoidType);
