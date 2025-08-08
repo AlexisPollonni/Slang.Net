@@ -128,14 +128,21 @@ record MethodSignature(string Name, EquatableArray<ParameterSignature> Parameter
 }
 
 [Target]
-record ParameterSignature(string Name, ITypeSymbol Type, RefKind RefKind = RefKind.None)
+record ParameterSignature(string Name, ITypeSymbol Type, RefKind RefKind = RefKind.None, TypeDefaultValue? DefaultValue = null)
 {
     public static ParameterSignature FromSymbol(IParameterSymbol symbol) =>
-        new(symbol.Name, symbol.Type, symbol.RefKind);
+        new(symbol.Name, symbol.Type, symbol.RefKind, TypeDefaultValue.FromSymbol(symbol));
 }
 
 [Target]
 record ReturnTypeSignature(ITypeSymbol Type);
+
+record TypeDefaultValue(object? ExplicitType = null)
+{
+    public bool IsNull => ExplicitType is null;
+    public static TypeDefaultValue? FromSymbol(IParameterSymbol symbol) =>
+        symbol.HasExplicitDefaultValue ? new(symbol.ExplicitDefaultValue) : null;
+}
 
 record CommonTypesContext
 {
