@@ -15,7 +15,6 @@
     <File Path="nuget.config" />
     <File Path=".github\dependabot.yml" />
     <File Path=".github\workflows\continuous.yml" />
-    <File Path=".github\workflows\pack.yml" />
     <File Path="global.json" />
     <File Path="Directory.Packages.props" />
     <File Path=".editorconfig" />
