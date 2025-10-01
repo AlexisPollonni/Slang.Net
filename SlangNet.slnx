@@ -1,4 +1,4 @@
-<Solution>
+﻿<Solution>
   <Folder Name="/Examples/">
     <Project Path="examples\SlangNet.Example.HelloWorld.Unsafe\SlangNet.Example.HelloWorld.Unsafe.csproj" />
     <Project Path="examples\SlangNet.Example.HelloWorld\SlangNet.Example.HelloWorld.csproj" />
@@ -18,9 +18,7 @@
     <File Path=".github\workflows\pack.yml" />
     <File Path="global.json" />
     <File Path="Directory.Packages.props" />
-  </Folder>
-  <Folder Name="/Tests/">
-    <Project Path="SlangNet.Tests\SlangNet.Tests.csproj" />
+    <File Path=".editorconfig" />
   </Folder>
   <Project Path="build\_build.csproj">
     <Configuration Solution="Debug|Any CPU" Project="Debug|Any CPU|NoBuild" />
@@ -30,5 +28,6 @@
   <Project Path="SlangNet.ComWrappers\SlangNet.ComWrappers.csproj" Type="Classic C#" />
   <Project Path="SlangNet.Pretty.SourceGenerator\SlangNet.Pretty.SourceGenerator.csproj" />
   <Project Path="SlangNet.Pretty\SlangNet.Pretty.csproj" />
+  <Project Path="SlangNet.Tests\SlangNet.Tests.csproj" />
   <Project Path="SlangNet\SlangNet.csproj" />
 </Solution>
