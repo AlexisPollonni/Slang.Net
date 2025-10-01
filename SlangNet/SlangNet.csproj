@@ -9,7 +9,6 @@
     </Description>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageId>SlangNet</PackageId>
-    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
   
   <ItemGroup>
