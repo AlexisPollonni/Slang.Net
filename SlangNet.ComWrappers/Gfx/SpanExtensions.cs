@@ -5,38 +5,36 @@ namespace SlangNet.ComWrappers.Gfx;
 
 public static class SpanExtensions
 {
-    public static Span<T> AsSpan<T>(ref this T inline) where T : unmanaged
+    extension<T>(ref T inline) where T : unmanaged
     {
-        return MemoryMarshal.CreateSpan(ref inline, 1);
-    }
+        public Span<T> AsSpan()
+        {
+            return MemoryMarshal.CreateSpan(ref inline, 1);
+        }
 
-    public static Span<TCast> AsSpan<T, TCast>(ref this T inline)
-        where T : unmanaged
-        where TCast : unmanaged
-    {
-        return inline.AsSpan().Cast<T, TCast>();
-    }
+        public Span<TCast> AsSpan<TCast>() where TCast : unmanaged
+        {
+            return inline.AsSpan().Cast<T, TCast>();
+        }
 
-    public static ReadOnlySpan<T> AsReadOnlySpan<T>(ref this T inline) where T : unmanaged
-    {
-        return MemoryMarshal.CreateReadOnlySpan(in inline, 1);
-    }
+        public ReadOnlySpan<T> AsReadOnlySpan()
+        {
+            return MemoryMarshal.CreateReadOnlySpan(in inline, 1);
+        }
 
-    public static ReadOnlySpan<TCast> AsReadOnlySpan<T, TCast>(ref this T inline) 
-        where T : unmanaged 
-        where TCast : unmanaged
-    {
-        return inline.AsReadOnlySpan().Cast<T, TCast>();
-    }
+        public ReadOnlySpan<TCast> AsReadOnlySpan<TCast>() where TCast : unmanaged
+        {
+            return inline.AsReadOnlySpan().Cast<T, TCast>();
+        }
 
-    public static Span<uint> AsUintSpan<T>(ref this T inline) 
-        where T : unmanaged 
-    {
-        return inline.AsSpan<T, uint>();
-    }
-    public static Span<float> AsFloatSpan<T>(ref this T inline) 
-        where T : unmanaged 
-    {
-        return inline.AsSpan<T, float>();
+        public Span<uint> AsUintSpan()
+        {
+            return inline.AsSpan<T, uint>();
+        }
+
+        public Span<float> AsFloatSpan()
+        {
+            return inline.AsSpan<T, float>();
+        }
     }
 }
