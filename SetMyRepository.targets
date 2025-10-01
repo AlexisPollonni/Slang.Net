@@ -4,16 +4,13 @@
     <RepositoryUrl>https://github.com/Helco/SlangNet</RepositoryUrl>
     <GitVersion>false</GitVersion>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="GitInfo" Version="3.3.3" PrivateAssets="all"/>
+    <PackageReference Include="GitInfo" PrivateAssets="all" />
   </ItemGroup>
-
   <Target Name="PopulateRepositoryInfo" DependsOnTargets="GitVersion" BeforeTargets="GetAssemblyVersion;GenerateNuspec;GetPackageContents">
     <PropertyGroup>
       <RepositoryBranch>$(GitBranch)</RepositoryBranch>
       <RepositoryCommit>$(GitCommit)</RepositoryCommit>
     </PropertyGroup>
   </Target>
-
 </Project>

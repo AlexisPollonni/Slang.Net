@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <RootNamespace>SlangNet.Build</RootNamespace>
@@ -10,20 +9,17 @@
     <IsPackable>false</IsPackable>
     <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == '' AND '$(PackAsTool)' != 'true'">$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="ClangSharp" Version="20.1.2" />
-    <PackageReference Include="ClangSharp.PInvokeGenerator" Version="20.1.2" />
-    <PackageReference Include="Intellenum" Version="1.0.6" />
-    <PackageReference Include="libclang" Version="20.1.2" />
-    <PackageReference Include="libClangSharp" Version="20.1.2" />
-    <PackageReference Include="Nuke.Common" Version="9.0.4" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.1" />
-    <PackageReference Include="Vogen" Version="7.0.3" />
+    <PackageReference Include="ClangSharp" />
+    <PackageReference Include="ClangSharp.PInvokeGenerator" />
+    <PackageReference Include="Intellenum" />
+    <PackageReference Include="libclang" />
+    <PackageReference Include="libClangSharp" />
+    <PackageReference Include="Nuke.Common" />
+    <PackageReference Include="Serilog.Extensions.Logging" />
+    <PackageReference Include="Vogen" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageDownload Include="NuGet.CommandLine" Version="[6.13.2]" />
   </ItemGroup>
-
 </Project>

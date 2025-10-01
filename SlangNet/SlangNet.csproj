@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-
     <Title>SlangNet</Title>
     <Description>
       These are the full bindings of shader-slang for the SlangNet packages, a .NET bindings library.
@@ -10,12 +9,9 @@
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <PackageId>SlangNet</PackageId>
   </PropertyGroup>
-  
   <ItemGroup>
     <Content Include="PackageReadme.md" Pack="true" PackagePath="readme.md" />
-    
-    <PackageReference Include="SlangNet.Native" Version="$(SlangVersion)" />
-    
+    <PackageReference Include="SlangNet.Native" />
     <ProjectReference Include="..\SlangNet.Pretty\SlangNet.Pretty.csproj">
       <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
     </ProjectReference>
@@ -23,6 +19,5 @@
       <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
-
   <Import Project="../SetMyRepository.targets" />
 </Project>

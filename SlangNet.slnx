@@ -17,6 +17,7 @@
     <File Path=".github\workflows\continuous.yml" />
     <File Path=".github\workflows\pack.yml" />
     <File Path="global.json" />
+    <File Path="Directory.Packages.props" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="SlangNet.Tests\SlangNet.Tests.csproj" />

@@ -1,26 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <ItemGroup>
     <Content Include="../hello-world.slang">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Remove="shader-object.slang" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Veldrid" Version="4.9.0" />
+    <PackageReference Include="Veldrid" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\SlangNet.Example.Shared\SlangNet.Example.Shared.csproj" />
   </ItemGroup>
-
   <Import Project="../../ImportMainProject.targets" />
-
 </Project>
