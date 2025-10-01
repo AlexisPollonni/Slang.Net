@@ -1,4 +1,4 @@
-using System;
+using Microsoft.Build.Evaluation;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.ProjectModel;
@@ -29,15 +29,22 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
     public static int Main() =>
         Execute<Build>();
 
-    [Solution(GenerateProjects = true)]
+    //TODO: Change when Nuke supports .snlx : https://github.com/nuke-build/nuke/issues/1520
+    [Solution("SlangNet.slnx", GenerateProjects = true)]
     public Solution? Solution { get; set; }
 
     private IConfigurationProvider ConfigProvider => this;
 
+    Version GetRootProjectAndParseVersion()
+    {
+        
+        var props = ProjectCollection.GlobalProjectCollection.LoadProject(RootDirectory / "Directory.Build.props");
+
+        return new(props.GetPropertyValue(nameof(SlangVersion)).NotNullOrWhiteSpace());
+    }
+    
     [Parameter]
-    public Version SlangVersion => new(Solution.NotNull("SlangNet solution was not found")!
-                                               .SlangNet.GetProperty(nameof(SlangVersion))
-                                               .NotNullOrWhiteSpace());
+    public Version SlangVersion => GetRootProjectAndParseVersion();
 
     internal Target Restore =>
         d => d
