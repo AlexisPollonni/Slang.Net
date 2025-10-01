@@ -1,24 +1,11 @@
 using Microsoft.Build.Evaluation;
 using Nuke.Common;
-using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
 using SlangNet.Build.Targets;
 
 namespace SlangNet.Build;
 
-[GitHubActions("pack", GitHubActionsImage.WindowsLatest,
-               On = [GitHubActionsTrigger.WorkflowDispatch],
-               InvokedTargets = ["Pack"],
-               EnableGitHubToken = true)]
-[GitHubActions("continuous", 
-               GitHubActionsImage.WindowsLatest, 
-               GitHubActionsImage.MacOsLatest,
-               GitHubActionsImage.UbuntuLatest,
-               On = [GitHubActionsTrigger.Push],
-               InvokedTargets = ["Compile", "RunTests"],
-               PublishArtifacts = false,
-               EnableGitHubToken = true)]
 class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProvider
 {
     /// Support plugins are available for:
