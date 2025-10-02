@@ -29,6 +29,7 @@
                 NUKE_OUTPUT_NATIVE_DIRECTORY=$(_OutBinariesDir);
                 NUKE_SLANG_VERSION=$(SlangVersion);
                 NUKE_INTERNAL_INTERCEPTOR=1;
+                NUKE_TARGET_RIDS=$(SlangRuntimeIdentifier);
             </_NukeAdditionalEnvVars>
         </PropertyGroup>
         
