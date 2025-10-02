@@ -41,9 +41,7 @@
         <Message Text="Found native binaries: @(_NativeBinaries)" Importance="high" />
         <Error Condition="@(_NativeBinaries->Count()) == 0" Text="No native binaries were found in $(_OutBinariesDir). Something went wrong." />
         <ItemGroup>
-            <Content Include="@(_NativeBinaries)" Pack="false" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always">
-                <Link>runtimes\$(SlangRuntimeIdentifier)\native\%(Filename)%(Extension)</Link>
-            </Content>
+            <Content Include="@(_NativeBinaries)" Pack="false" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always"/>
         </ItemGroup>
     </Target>
     
