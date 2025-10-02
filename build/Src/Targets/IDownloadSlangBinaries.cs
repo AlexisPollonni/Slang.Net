@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.IO;
@@ -13,23 +10,25 @@ namespace SlangNet.Build.Targets;
 
 interface IDownloadSlangBinaries : INukeBuild
 {
-    [Parameter(List = true)]
+    [Parameter(List = true, Separator = ";")]
     DotnetRuntimeId[] TargetRids =>
         TryGetValue(() => TargetRids)
         ?? (IsLocalBuild ? [DotnetRuntimeId.Current] : SlangRuntimeId.List().Select(id => id.ToDotnetRuntimeId()).ToArray());
 
     [Parameter]
-    [Required]
     Version? SlangVersion => TryGetValue(() => SlangVersion);
+
+    [Parameter]
+    AbsolutePath? OutputNativeDirectory => TryGetValue(() => OutputNativeDirectory);
 
     AbsolutePath DownloadCacheDirectory => TemporaryDirectory / "DownloadCache";
 
     private GitHubActions? GitHubActions => GitHubActions.Instance;
-    
+
     IEnumerable<AbsolutePath> GetBinariesForPlatform(DotnetRuntimeId rid)
     {
         var binDir = GetBinFolderForRid(rid);
-        
+
         return binDir.ExistingDirectory()
                      .NotNull()
                      .GlobFiles("*.dll", "*.dylib", "*.so");
@@ -43,11 +42,6 @@ interface IDownloadSlangBinaries : INukeBuild
             ? "bin"
             : "lib");
 
-    private string[] GetBinariesForAllPlatform() =>
-        TargetRids.Select(GetBinFolderForRid)
-                  .SelectMany<AbsolutePath, string>(p => [p / "*.dll", p / "*.dylib", p / "*.so"])
-                  .ToArray();
-
     Target CleanDownloadDir =>
         d => d
              .Unlisted()
@@ -56,7 +50,7 @@ interface IDownloadSlangBinaries : INukeBuild
                  Log.Information("Cleaning download cache {CacheDir}", DownloadCacheDirectory);
                  DownloadCacheDirectory.CreateOrCleanDirectory();
              });
-    
+
     Target DownloadSlangBinaries =>
         _ => _
              .Requires(() => SlangVersion)
@@ -136,6 +130,18 @@ interface IDownloadSlangBinaries : INukeBuild
                                                             .ToArray();
 
                          Assert.Empty(filesMissing, $"Missing slang binaries: {filesMissing} in release");
+
+
+                         if (OutputNativeDirectory is null) return;
+
+                         OutputNativeDirectory.CreateOrCleanDirectory();
+
+                         foreach (var file in libFiles)
+                         {
+                             Log.Debug("Copying {File} to output directory {OutputDir}", file, OutputNativeDirectory);
+                             
+                             file.CopyToDirectory(OutputNativeDirectory);
+                         }
                      });
              });
 }

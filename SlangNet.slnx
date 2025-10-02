@@ -6,12 +6,8 @@
     <Project Path="examples\SlangNet.Example.Shared\SlangNet.Example.Shared.csproj" Type="Classic C#" />
     <File Path="examples\README.md" />
   </Folder>
-  <Folder Name="/Native/">
-    <File Path="SlangNet.Native\NativePackageReadme.md" />
-  </Folder>
   <Folder Name="/Solution Items/">
     <File Path="Directory.Build.props" />
-    <File Path="ImportMainProject.targets" />
     <File Path="nuget.config" />
     <File Path=".github\dependabot.yml" />
     <File Path=".github\workflows\continuous.yml" />
@@ -25,6 +21,7 @@
   </Project>
   <Project Path="SlangNet.Bindings\SlangNet.Bindings.csproj" />
   <Project Path="SlangNet.ComWrappers\SlangNet.ComWrappers.csproj" Type="Classic C#" />
+  <Project Path="SlangNet.Native\SlangNet.Native.csproj" Type="Classic C#" />
   <Project Path="SlangNet.Pretty.SourceGenerator\SlangNet.Pretty.SourceGenerator.csproj" />
   <Project Path="SlangNet.Pretty\SlangNet.Pretty.csproj" />
   <Project Path="SlangNet.Tests\SlangNet.Tests.csproj" />

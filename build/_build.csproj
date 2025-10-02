@@ -15,6 +15,7 @@
     <PackageReference Include="Intellenum" />
     <PackageReference Include="libclang" />
     <PackageReference Include="libClangSharp" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" />
     <PackageReference Include="Nuke.Common" />
     <PackageReference Include="Serilog.Extensions.Logging" />
     <PackageReference Include="Vogen" />

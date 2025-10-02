@@ -30,5 +30,4 @@
     <ProjectReference Include="..\SlangNet.Bindings\SlangNet.Bindings.csproj" />
     <ProjectReference Include="..\SlangNet.ComWrappers\SlangNet.ComWrappers.csproj" />
   </ItemGroup>
-  <Import Project="../SetMyRepository.targets" />
 </Project>

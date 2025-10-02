@@ -1,4 +1,3 @@
-using Microsoft.Build.Evaluation;
 using Nuke.Common;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
@@ -14,7 +13,7 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
     public static int Main() =>
-        Execute<Build>();
+        Execute<Build>(b => b.Pack);
 
     //TODO: Change when Nuke supports .snlx : https://github.com/nuke-build/nuke/issues/1520
     [Solution("SlangNet.slnx", GenerateProjects = true)]
@@ -22,20 +21,10 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
 
     private IConfigurationProvider ConfigProvider => this;
 
-    Version GetRootProjectAndParseVersion()
-    {
-        
-        var props = ProjectCollection.GlobalProjectCollection.LoadProject(RootDirectory / "Directory.Build.props");
-
-        return new(props.GetPropertyValue(nameof(SlangVersion)).NotNullOrWhiteSpace());
-    }
     
-    [Parameter]
-    public Version SlangVersion => GetRootProjectAndParseVersion();
-
-    internal Target Restore =>
+    
+    Target Restore =>
         d => d
-             .DependsOn<IPackNative>(d => d.InitLocalFeed)
              .Executes(() =>
              {
                  DotNetTasks.DotNetRestore(s => s.SetProjectFile(Solution));
@@ -44,7 +33,7 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
     Target Clean =>
         d => d
              // Clean the temp directories after dotnet clean to avoid missing files
-             .Triggers<IPackNative>(n => n.CleanDownloadDir, n => n.CleanGlobalCache, n => n.CleanPackageCache)
+             .Triggers<IPackNative>(n => n.CleanDownloadDir)
              .Executes(() => DotNetTasks.DotNetClean(s => s
                                                           .SetConfiguration(ConfigProvider.Config)
                                                           .SetProject(Solution)))
@@ -73,7 +62,6 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
     Target Pack =>
         d => d
              .DependsOn(Compile)
-             .Produces(((IPackNative)this).PackageOutputDirectory / "*.nupkg")
              .Executes(() =>
              {
                  DotNetTasks.DotNetPack(c => c

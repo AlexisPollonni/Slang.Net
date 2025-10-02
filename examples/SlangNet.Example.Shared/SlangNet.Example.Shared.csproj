@@ -7,6 +7,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SlangNet.ComWrappers\SlangNet.ComWrappers.csproj" />
+    <ProjectReference Include="..\..\SlangNet\SlangNet.csproj" IncludeAssets="all" PrivateAssets="analyzers;build"/>
   </ItemGroup>
 </Project>

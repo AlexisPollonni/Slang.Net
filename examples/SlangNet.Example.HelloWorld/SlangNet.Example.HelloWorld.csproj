@@ -14,7 +14,6 @@
     <PackageReference Include="Veldrid" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SlangNet.Example.Shared\SlangNet.Example.Shared.csproj" />
+    <ProjectReference Include="..\SlangNet.Example.Shared\SlangNet.Example.Shared.csproj" IncludeAssets="all"  />
   </ItemGroup>
-  <Import Project="../../ImportMainProject.targets" />
 </Project>
