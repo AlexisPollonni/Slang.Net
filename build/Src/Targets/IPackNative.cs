@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using NuGet.Frameworks;
+﻿using NuGet.Frameworks;
 using NuGet.Packaging;
 using NuGet.Packaging.Licenses;
 using NuGet.RuntimeModel;
@@ -10,7 +7,7 @@ using Nuke.Common;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.Tooling;
-using Nuke.Common.Tools.NuGet;
+using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Utilities.Collections;
 using Serilog;
 using SlangNet.Build.Tools;
@@ -27,7 +24,7 @@ interface IPackNative : IDownloadSlangBinaries
 
     AbsolutePath LocalPackageCacheDirectory => TemporaryDirectory / "PackageCache";
     AbsolutePath LocalFeedDirectory => LocalPackageCacheDirectory / ".localFeed";
-    
+
     GitRepository SlangRepository => GitRepository.FromLocalDirectory(RootDirectory / "slang");
 
     Target CleanPackageCache =>
@@ -39,18 +36,20 @@ interface IPackNative : IDownloadSlangBinaries
              {
                  Log.Information("Cleaning local feed directory {LocalFeedDir}", LocalFeedDirectory);
                  LocalFeedDirectory.CreateOrCleanDirectory();
-                 
+
                  Log.Information("Cleaning package output directory {PackageDirectory}", PackageOutputDirectory);
                  PackageOutputDirectory.CreateOrCleanDirectory();
-                 
-                 Log.Information("Cleaning NuGet package cache directory in {LocalPackageCacheDir}", LocalPackageCacheDirectory);
+
+                 Log.Information("Cleaning NuGet package cache directory in {LocalPackageCacheDir}",
+                                 LocalPackageCacheDirectory);
                  LocalPackageCacheDirectory
                      .GetDirectories("slangnet*")
                      .Where(path => path != LocalFeedDirectory)
-                     .ForEachLazy(path => Log.Debug("Deleting cache directory {PackageCacheDir}", RootDirectory.GetRelativePathTo(path)))
+                     .ForEachLazy(path => Log.Debug("Deleting cache directory {PackageCacheDir}",
+                                                    RootDirectory.GetRelativePathTo(path)))
                      .DeleteDirectories();
              });
-    
+
     Target CleanGlobalCache =>
         d => d
             .Executes(() =>
@@ -61,7 +60,7 @@ interface IPackNative : IDownloadSlangBinaries
 
                 cachedPackagesDirectories.DeleteDirectories();
             });
-    
+
     Target InitLocalFeed =>
         d => d
              .Unlisted()
@@ -71,16 +70,17 @@ interface IPackNative : IDownloadSlangBinaries
              {
                  LocalFeedDirectory.CreateOrCleanDirectory();
 
-                 if (EnvironmentInfo.IsLinux)
-                 {
-                     var sudo = ToolResolver.GetEnvironmentOrPathTool("sudo");
-                     
-                     // mono-complete package needed to run NuGet init
-                     sudo("apt-get install mono-complete");
-                 }
-                 
-                 NuGetTasks.NuGet($"init {PackageOutputDirectory} {LocalFeedDirectory}");
-                 NuGetTasks.NuGetSourcesList();
+                 // Copy packages to the feed directory
+                 PackageOutputDirectory.GlobFiles("*.nupkg")
+                                       .ForEach(pkg => pkg.Copy(LocalFeedDirectory / pkg.Name));
+
+                 Log.Information("Adding local feed {LocalFeedDir} to nuget sources", LocalFeedDirectory);
+
+
+                 DotNetTasks.DotNetNuGetAddSource(opts => opts.SetSource(LocalFeedDirectory)
+                                                              .SetName("LocalFeed")
+                                                              .DisableProcessExitHandling());
+                 DotNetTasks.DotNet("nuget list source");
              });
 
     Target PackNative =>
