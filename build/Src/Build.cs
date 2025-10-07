@@ -1,25 +1,13 @@
-using System;
 using Nuke.Common;
 using Nuke.Common.CI.GitHubActions;
+using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
 using SlangNet.Build.Targets;
 
 namespace SlangNet.Build;
 
-[GitHubActions("pack", GitHubActionsImage.WindowsLatest,
-               On = [GitHubActionsTrigger.WorkflowDispatch],
-               InvokedTargets = ["Pack"],
-               EnableGitHubToken = true)]
-[GitHubActions("continuous", 
-               GitHubActionsImage.WindowsLatest, 
-               GitHubActionsImage.MacOsLatest,
-               GitHubActionsImage.UbuntuLatest,
-               On = [GitHubActionsTrigger.Push],
-               InvokedTargets = ["Compile", "RunTests"],
-               PublishArtifacts = false,
-               EnableGitHubToken = true)]
-class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProvider
+class Build : NukeBuild, IGenerateSlangBindings, IGenerateRuntimeJson, IConfigurationProvider
 {
     /// Support plugins are available for:
     ///   - JetBrains ReSharper        https://nuke.build/resharper
@@ -27,30 +15,28 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
     public static int Main() =>
-        Execute<Build>();
+        Execute<Build>(b => b.Pack);
 
-    [Solution(GenerateProjects = true)]
+    //TODO: Change when Nuke supports .snlx : https://github.com/nuke-build/nuke/issues/1520
+    [Solution("SlangNet.slnx", GenerateProjects = true)]
     public Solution? Solution { get; set; }
+
+    [Parameter]
+    bool IsNightly { get; }
 
     private IConfigurationProvider ConfigProvider => this;
 
-    [Parameter]
-    public Version SlangVersion => new(Solution.NotNull("SlangNet solution was not found")!
-                                               .SlangNet.GetProperty(nameof(SlangVersion))
-                                               .NotNullOrWhiteSpace());
-
-    internal Target Restore =>
+    Target Restore =>
         d => d
-             .DependsOn<IPackNative>(d => d.InitLocalFeed)
-             .Executes(() =>
-             {
-                 DotNetTasks.DotNetRestore(s => s.SetProjectFile(Solution));
-             });
+            .Executes(() =>
+            {
+                DotNetTasks.DotNetRestore(s => s.SetProjectFile(Solution));
+            });
 
     Target Clean =>
         d => d
              // Clean the temp directories after dotnet clean to avoid missing files
-             .Triggers<IPackNative>(n => n.CleanDownloadDir, n => n.CleanGlobalCache, n => n.CleanPackageCache)
+             .Triggers<IDownloadSlangBinaries>(n => n.CleanDownloadDir)
              .Executes(() => DotNetTasks.DotNetClean(s => s
                                                           .SetConfiguration(ConfigProvider.Config)
                                                           .SetProject(Solution)))
@@ -75,18 +61,38 @@ class Build : NukeBuild, IGenerateSlangBindings, IPackNative, IConfigurationProv
                                                          .SetNoBuild(true)
                                                          .SetConfiguration(ConfigProvider.Config)
                                                          .SetProjectFile(Solution)));
-
+    
     Target Pack =>
         d => d
              .DependsOn(Compile)
-             .Produces(((IPackNative)this).PackageOutputDirectory / "*.nupkg")
              .Executes(() =>
              {
                  DotNetTasks.DotNetPack(c => c
                                              .SetNoRestore(true)
                                              .SetNoBuild(true)
                                              .SetConfiguration(ConfigProvider.Config)
-                                             .SetOutputDirectory(((IPackNative)this).PackageOutputDirectory)
-                                             .SetProject(Solution.NotNull()!.Path.NotNull().Parent));
+                                             .SetProject(Solution.NotNull()!.Path.NotNull().Parent)
+                                             .SetDeterministic(true)
+                                             .SetContinuousIntegrationBuild(true));
+             });
+    
+    Target PublishToGithub =>
+        d => d
+             .OnlyWhenDynamic(() => IsNightly && IsServerBuild)
+             .DependsOn(Pack)
+             .Executes(() =>
+             {
+                 var packageFiles = (RootDirectory / "artifacts" / "package" / ConfigProvider.Config.ToString())
+                     .GlobFiles("*.nupkg");
+                 
+                 Assert.NotEmpty(packageFiles);
+                
+                 foreach (var package in packageFiles)
+                 {
+                     DotNetTasks.DotNetNuGetPush(s => s.SetTargetPath(package)
+                                                       .SetSource("https://nuget.pkg.github.com/AlexisPollonni/index.json")
+                                                       .SetApiKey(GitHubActions.Instance.Token)
+                                                       .SetSkipDuplicate(true));
+                 }
              });
 }

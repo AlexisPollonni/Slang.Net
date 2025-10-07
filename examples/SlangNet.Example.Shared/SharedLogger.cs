@@ -58,14 +58,17 @@ public static class SharedLogger<T>
 
 public static class Extensions
 {
-    public static void LogDiagnostics(this ILogger logger, string? diagnostics, LogLevel logLevel = LogLevel.Debug)
+    extension(ILogger logger)
     {
-        logger.Log(logLevel, "Diagnostics: {Diagnostics}",  diagnostics ?? "no diagnostics");
+        public void LogDiagnostics(string? diagnostics, LogLevel logLevel = LogLevel.Debug)
+        {
+            logger.Log(logLevel, "Diagnostics: {Diagnostics}",  diagnostics ?? "no diagnostics");
         
-    }
-    
-    public static void LogDiagnostics(this ILogger logger, IBlob? blobDiagnostics, LogLevel logLevel = LogLevel.Debug)
-    {
-        logger.LogDiagnostics(blobDiagnostics?.AsString(), logLevel);
+        }
+
+        public void LogDiagnostics(IBlob? blobDiagnostics, LogLevel logLevel = LogLevel.Debug)
+        {
+            logger.LogDiagnostics(blobDiagnostics?.AsString(), logLevel);
+        }
     }
 }

@@ -41,8 +41,9 @@ public partial interface IByteCodeRunner : IUnknown
     unsafe void SetExtInstHandlerUserData(void* userData);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult RegisterExtCall(string name, Action<IByteCodeRunner, nint, nint> function);
+    //TODO: Finish marshalling code for callbacks
+    unsafe SlangResult RegisterExtCall(string name, delegate* unmanaged<nint, nint, nint> function);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult SetPrintCallback(Action<string, nint> callback, nint userData);
+    unsafe SlangResult SetPrintCallback(delegate* unmanaged<byte*, nint> callback, nint userData);
 }
