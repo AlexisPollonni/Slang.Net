@@ -4,7 +4,6 @@
         <RuntimeIdentifiers>win-x64;win-arm64;linux-x64;linux-arm64;osx-x64;osx-arm64</RuntimeIdentifiers>
 
         <!-- Set all package properties shared by packages -->
-        <PackageVersion>$(SlangVersion)</PackageVersion>
         <PackageTags>slang;shader;C#;csharp;native</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryType>git</RepositoryType>

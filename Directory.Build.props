@@ -22,10 +22,8 @@
     <PropertyGroup Condition="$(ArtifactsPath) == ''">
         <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="GitVersion.MsBuild" PrivateAssets="all"/>
     </ItemGroup>
-    
-    <Target Name="GitVersion"/>
 </Project>
