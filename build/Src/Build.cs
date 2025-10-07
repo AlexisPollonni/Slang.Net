@@ -80,7 +80,7 @@ class Build : NukeBuild, IGenerateSlangBindings, IGenerateRuntimeJson, IConfigur
              .DependsOn(Pack)
              .Executes(() =>
              {
-                 var packageFiles = (RootDirectory / "artifacts" / "release")
+                 var packageFiles = (RootDirectory / "artifacts" / "package" / ConfigProvider.Config.ToString())
                      .GlobFiles("*.nupkg");
                  
                  Assert.NotEmpty(packageFiles);
