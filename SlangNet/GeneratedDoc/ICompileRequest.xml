@@ -887,6 +887,18 @@
           <type>Boolean</type>
         </param>
       </delegate>
+      <delegate name="_setTargetForceCLayout" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICompileRequest*</type>
+        </param>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>Boolean</type>
+        </param>
+      </delegate>
       <function name="queryInterface" access="public" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="uuid">
@@ -1769,6 +1781,18 @@
           <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetEmbedDownstreamIR</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetEmbedDownstreamIR</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>
         </body>
       </function>
+      <function name="setTargetForceCLayout" access="public" unsafe="true">
+        <type>void</type>
+        <param name="targetIndex">
+          <type>int</type>
+        </param>
+        <param name="value">
+          <type>Boolean</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setTargetForceCLayout</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setTargetForceCLayout</vtbl>)(<param special="thisPtr">(ICompileRequest*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="value">value</param>);</code>
+        </body>
+      </function>
       <vtbl>
         <field name="queryInterface" access="public">
           <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
@@ -2017,6 +2041,9 @@
           <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetEmbedDownstreamIR" access="public">
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setTargetForceCLayout" access="public">
           <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>

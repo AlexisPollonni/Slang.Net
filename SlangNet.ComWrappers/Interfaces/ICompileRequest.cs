@@ -270,4 +270,7 @@ public partial interface ICompileRequest : IUnknown
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetEmbedDownstreamIr(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
+    
+    [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
+    void SetTargetForceCLayout(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
 }

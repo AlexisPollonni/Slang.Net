@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using Intellenum;
 
 namespace SlangNet.Build.Tools;
@@ -11,6 +10,7 @@ namespace SlangNet.Build.Tools;
 [Member("MacOs64", "macos-x86_64")]
 [Member("WinArm64", "windows-aarch64")]
 [Member("Win64", "windows-x86_64")]
+[Member("Wasm", "wasm")]
 public partial class SlangRuntimeId
 {
     public DotnetRuntimeId ToDotnetRuntimeId()
@@ -23,6 +23,7 @@ public partial class SlangRuntimeId
             MacOs64Value => DotnetRuntimeId.MacOs64,
             WinArm64Value => DotnetRuntimeId.WinArm64,
             Win64Value => DotnetRuntimeId.Win64,
+            WasmValue => DotnetRuntimeId.BrowserWasm,
             _ => throw new ArgumentOutOfRangeException(nameof(Value), "Unexpected Slang Rid value")
         };
     }
@@ -55,6 +56,8 @@ public partial class SlangRuntimeId
 [Member("AndroidArm", "android-arm")]
 [Member("Android64", "android-x64")]
 [Member("Android32", "android-x86")]
+
+[Member("BrowserWasm", "browser-wasm")]
 public partial class DotnetRuntimeId
 {
     public static DotnetRuntimeId Current => FromValue(RuntimeInformation.RuntimeIdentifier);
@@ -69,6 +72,7 @@ public partial class DotnetRuntimeId
             LinuxArm64Value => SlangRuntimeId.LinuxArm64,
             MacOs64Value => SlangRuntimeId.MacOs64,
             MacOsArm64Value => SlangRuntimeId.MacOsArm64,
+            BrowserWasmValue => SlangRuntimeId.Wasm,
             _ => throw new ArgumentOutOfRangeException(nameof(Value),
                                                        "Dotnet runtime identifier value is not convertible to SlangRuntimeId"),
         };

@@ -473,6 +473,11 @@ internal static partial class ReflectionApi
     [return: MarshalUsing(typeof(NullableHandleStructMarshaller<DeclReflection>))]
     public static partial DeclReflection? ReflectionDecl_getParent(DeclReflection decl);
 
+    [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflectionDecl_findModifier")]
+    [return: MarshalUsing(typeof(NullableHandleStructMarshaller<ModifierReflection>))]
+    public static partial ModifierReflection? ReflectionDecl_findModifier(DeclReflection decl,
+                                                                          Unmanaged.ModifierID modifierId);
+    
     #endregion
 
 
@@ -651,6 +656,14 @@ internal static partial class ReflectionApi
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflection_FindVarByNameInType")]
     [return: MarshalUsing(typeof(NullableHandleStructMarshaller<VariableReflection>))]
     public static partial VariableReflection? Reflection_FindVarByNameInType(ShaderReflection reflection, TypeReflection reflType, string name);
+
+    [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflection_TryResolveOverloadedFunction")]
+    [return: MarshalUsing(typeof(NullableHandleStructMarshaller<FunctionReflection>))]
+    public static partial FunctionReflection? Reflection_TryResolveOverloadedFunction(
+        ShaderReflection reflection,
+        uint candidateCount,
+        [MarshalUsing(CountElementName = "candidateCount")]
+        ReadOnlySpan<FunctionReflection> candidates);
     
     [LibraryImport("slang", StringMarshalling = StringMarshalling.Utf8, EntryPoint = "spReflection_getEntryPointCount")]
     public static partial ulong Reflection_getEntryPointCount(ShaderReflection reflection);

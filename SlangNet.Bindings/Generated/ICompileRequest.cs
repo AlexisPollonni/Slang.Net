@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -294,6 +293,9 @@ public unsafe partial struct ICompileRequest
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     public delegate void _setTargetEmbedDownstreamIR(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] Boolean value);
+
+    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    public delegate void _setTargetForceCLayout(ICompileRequest* pThis, int targetIndex, [NativeTypeName("bool")] Boolean value);
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -910,6 +912,13 @@ public unsafe partial struct ICompileRequest
         Marshal.GetDelegateForFunctionPointer<_setTargetEmbedDownstreamIR>(lpVtbl->setTargetEmbedDownstreamIR)((ICompileRequest*)Unsafe.AsPointer(ref this), targetIndex, value);
     }
 
+    /// <include file='ICompileRequest.xml' path='doc/member[@name="ICompileRequest.setTargetForceCLayout"]/*' />
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void setTargetForceCLayout(int targetIndex, [NativeTypeName("bool")] Boolean value)
+    {
+        Marshal.GetDelegateForFunctionPointer<_setTargetForceCLayout>(lpVtbl->setTargetForceCLayout)((ICompileRequest*)Unsafe.AsPointer(ref this), targetIndex, value);
+    }
+
     public partial struct Vtbl
     {
         [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
@@ -1160,5 +1169,8 @@ public unsafe partial struct ICompileRequest
 
         [NativeTypeName("void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setTargetEmbedDownstreamIR;
+
+        [NativeTypeName("void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))")]
+        public IntPtr setTargetForceCLayout;
     }
 }

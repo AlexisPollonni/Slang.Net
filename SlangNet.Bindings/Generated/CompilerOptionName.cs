@@ -381,6 +381,12 @@ public enum CompilerOptionName
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.DenormalModeFp64"]/*' />
     DenormalModeFp64,
 
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.UseMSVCStyleBitfieldPacking"]/*' />
+    UseMSVCStyleBitfieldPacking,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.ForceCLayout"]/*' />
+    ForceCLayout,
+
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.CountOf"]/*' />
     CountOf,
 }

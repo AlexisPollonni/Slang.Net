@@ -71,6 +71,12 @@
       <function name="GetBuildTagString" access="public" lib="slang" convention="Cdecl" entrypoint="spGetBuildTagString" static="true" unsafe="true">
         <type native="const char *">sbyte*</type>
       </function>
+      <constant name="SLANG_HAS_BACKTRACE" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </constant>
       <constant name="SLANG_FACILITY_WIN_GENERAL" access="public">
         <type primitive="True">int</type>
         <value>
@@ -1929,6 +1935,15 @@
           <type>SlangReflectionDecl*</type>
         </param>
       </function>
+      <function name="ReflectionDecl_findModifier" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionDecl_findModifier" static="true" unsafe="true">
+        <type>SlangReflectionModifier*</type>
+        <param name="decl">
+          <type>SlangReflectionDecl*</type>
+        </param>
+        <param name="modifierID">
+          <type>ModifierID</type>
+        </param>
+      </function>
       <function name="ReflectionGeneric_asDecl" access="public" lib="slang" convention="Cdecl" entrypoint="spReflectionGeneric_asDecl" static="true" unsafe="true">
         <type>SlangReflectionDecl*</type>
         <param name="generic">
@@ -2301,6 +2316,18 @@
           <type>sbyte*</type>
         </param>
       </function>
+      <function name="Reflection_TryResolveOverloadedFunction" access="public" lib="slang" convention="Cdecl" entrypoint="spReflection_TryResolveOverloadedFunction" static="true" unsafe="true">
+        <type>SlangReflectionFunction*</type>
+        <param name="reflection">
+          <type>SlangProgramLayout*</type>
+        </param>
+        <param name="candidateCount">
+          <type>uint</type>
+        </param>
+        <param name="candidates">
+          <type>SlangReflectionFunction**</type>
+        </param>
+      </function>
       <function name="Reflection_getEntryPointCount" access="public" lib="slang" convention="Cdecl" entrypoint="spReflection_getEntryPointCount" static="true" unsafe="true">
         <type native="SlangUInt">nuint</type>
         <param name="reflection">
@@ -2499,6 +2526,84 @@
           <code>0</code>
         </value>
       </constant>
+      <function name="slang_createBlob" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type>ISlangBlob*</type>
+        <param name="data">
+          <type>void*</type>
+        </param>
+        <param name="size">
+          <type>nuint</type>
+        </param>
+      </function>
+      <function name="slang_loadModuleFromSource" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="slang::IModule *">IModule*</type>
+        <param name="session">
+          <type>ISession*</type>
+        </param>
+        <param name="moduleName">
+          <type>sbyte*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="source">
+          <type>sbyte*</type>
+        </param>
+        <param name="sourceSize">
+          <type>nuint</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </function>
+      <function name="slang_loadModuleFromIRBlob" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="slang::IModule *">IModule*</type>
+        <param name="session">
+          <type>ISession*</type>
+        </param>
+        <param name="moduleName">
+          <type>sbyte*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="source">
+          <type>void*</type>
+        </param>
+        <param name="sourceSize">
+          <type>nuint</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </function>
+      <function name="slang_loadModuleInfoFromIRBlob" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="session">
+          <type>ISession*</type>
+        </param>
+        <param name="source">
+          <type>void*</type>
+        </param>
+        <param name="sourceSize">
+          <type>nuint</type>
+        </param>
+        <param name="outModuleVersion">
+          <type>nint*</type>
+        </param>
+        <param name="outModuleCompilerVersion">
+          <type>sbyte**</type>
+        </param>
+        <param name="outModuleName">
+          <type>sbyte**</type>
+        </param>
+      </function>
       <function name="slang_createGlobalSession" access="public" lib="slang" convention="Cdecl" static="true" unsafe="true">
         <type native="SlangResult">int</type>
         <param name="apiVersion">
