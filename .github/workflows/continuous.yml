@@ -29,7 +29,12 @@ jobs:
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
 
-      - name: 'Run tests, Pack and Push package to nightly feed'
+      - name: 'Run tests'
+        run: dotnet run --project ./build/_build.csproj -- run-tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'Pack and Push package to nightly feed'
+        if: os == 'windows-latest'
         run: dotnet run --project ./build/_build.csproj -- publish-to-github --is-nightly
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
