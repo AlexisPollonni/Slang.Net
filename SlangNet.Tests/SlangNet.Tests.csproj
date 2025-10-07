@@ -1,11 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <LangVersion>preview</LangVersion>
     <IsPackable>false</IsPackable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IsTestProject>true</IsTestProject>
@@ -17,25 +12,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Direct3D.DXC" Version="1.8.2505.32" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-    <PackageReference Include="Xunit.DependencyInjection.Logging" Version="10.0.0" />
-    <PackageReference Include="xunit.v3" Version="" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.3" />
-    <PackageReference Include="xunit.analyzers" Version="1.23.0">
+    <PackageReference Include="Microsoft.Direct3D.DXC"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+    <PackageReference Include="Xunit.DependencyInjection.Logging"/>
+    <PackageReference Include="xunit.v3" Version=""/>
+    <PackageReference Include="xunit.runner.visualstudio"/>
+    <PackageReference Include="xunit.analyzers">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="coverlet.collector" Version="6.0.4">
+    <PackageReference Include="coverlet.collector">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
 
-    <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.4" />
+    <PackageReference Include="JetBrains.Annotations"/>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console"/>
   </ItemGroup>
 
   <ItemGroup>
+      <ProjectReference Include="..\SlangNet\SlangNet.csproj" IncludeAssets="all"/>
     <Content Include="Examples\Assets\hello-world.slang">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -43,8 +39,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-  <Import Project="../ImportMainProject.targets" />
+    
   <Import Project="$(NuGetPackageRoot)\microsoft.direct3d.dxc\*\build\native\Microsoft.Direct3D.DXC.targets" Condition="'$(OS)' == 'Windows_NT'" />
 
 </Project>
