@@ -71,7 +71,9 @@ class Build : NukeBuild, IGenerateSlangBindings, IGenerateRuntimeJson, IConfigur
                                              .SetNoRestore(true)
                                              .SetNoBuild(true)
                                              .SetConfiguration(ConfigProvider.Config)
-                                             .SetProject(Solution.NotNull()!.Path.NotNull().Parent));
+                                             .SetProject(Solution.NotNull()!.Path.NotNull().Parent)
+                                             .SetDeterministic(true)
+                                             .SetContinuousIntegrationBuild(true));
              });
     
     Target PublishToGithub =>
