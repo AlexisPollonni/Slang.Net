@@ -26,10 +26,10 @@ public sealed class HelloWorldTests(ITestOutputHelper testOutputHelper, DefaultT
     private const int BufferSize = sizeof(float) * ElementCount;
 
     [Theory]
-    // TODO: Blocked by https://github.com/shader-slang/slang-rhi/issues/289 and similar
-    //[InlineData(DeviceType.DirectX12)]
+    [InlineData(DeviceType.DirectX12)]
     [InlineData(DeviceType.Metal)]
     [InlineData(DeviceType.Vulkan)]
+    [InlineData(DeviceType.CPU)]
     public void HelloWorld(DeviceType type)
     {
         var (device, program) = LoadModuleAndCreateDevice(type);
@@ -45,19 +45,14 @@ public sealed class HelloWorldTests(ITestOutputHelper testOutputHelper, DefaultT
         // First a global session is necessary
         var globalSession = SharedHelpers.CreateTestGlobalSession();
 
+        var device = SharedHelpers.CreateTestDevice(globalSession,
+                                                    logger: Logger,
+                                                    deviceType: type,
+                                                    allowCpuDevice: true);
+        
+        
         // Next a session to generate SPIRV code is created
-        var session = globalSession.CreateSessionOrThrow(new()
-        {
-            SearchPaths = [Path.Combine(SharedHelpers.RunningExePath, "Examples", "Assets")],
-            Targets =
-            [
-                new()
-                {
-                    Format = CompileTarget.Spirv,
-                    Profile = globalSession.FindProfile("spirv_1_5")
-                }
-            ],
-        });
+        var session = device.GetSlangSessionOrThrow();
 
 
         // Once the session has been obtained, we can start loading code into it.
@@ -97,20 +92,6 @@ public sealed class HelloWorldTests(ITestOutputHelper testOutputHelper, DefaultT
 
         Logger.LogDiagnostics(diagString);
         Assert.NotNull(composedProgram);
-
-        // Now we can call `composedProgram->getEntryPointCode()` to retrieve the
-        // compiled SPIRV code that we will use to create a vulkan compute pipeline.
-        // This will trigger the final Slang compilation and spirv code generation.
-        var spirvCode = composedProgram.GetEntryPointCodeOrThrow(0, 0, out diagString);
-
-        Logger.LogDiagnostics(diagString);
-        Assert.NotNull(spirvCode);
-
-        var device = SharedHelpers.CreateTestDevice(globalSession,
-                                                    logger: Logger,
-                                                    deviceType: type,
-                                                    allowCpuDevice:
-                                                    false); // Choosing a CPU device for this test with this shader will not work. Slang segfaults on pipeline bind with that shader program. TODO: Report this.
 
         var program = device.CreateProgramOrThrow(new(GlobalScope: composedProgram), out diagString);
         Logger.LogDiagnostics(diagString);

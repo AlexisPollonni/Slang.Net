@@ -57,11 +57,14 @@ internal static class SharedHelpers
         Debug.Layer();
         if (logger is not null) Debug.EnableLogging(logger);
 
-        if (!allowCpuDevice) SkipWithoutGpu(deviceType);
-        
-        deviceType = deviceType is DeviceType.Default
-            ? FindFirstAvailable(includeCpu: allowCpuDevice)
-            : deviceType;
+        if (deviceType is DeviceType.Default or DeviceType.Unknown)
+        {
+            deviceType = FindFirstAvailable(allowCpuDevice);
+        }
+        else if(deviceType is not DeviceType.CPU)
+        {
+            SkipIfNotAvailable(deviceType);
+        }
 
         var runningBinPath = RunningExePath;
         var devDesc = new DeviceDescription
@@ -117,27 +120,16 @@ internal static class SharedHelpers
 
         return (program, slangReflection.Value);
     }
-
-    public static void SkipWithoutGpu(DeviceType type = DeviceType.Default)
+    
+    public static void SkipIfNotAvailable(DeviceType type)
     {
-        if (type is DeviceType.Default or DeviceType.Unknown) type = FindFirstAvailable();
-        else
-        {
-            GetAdapters(type, out IReadOnlyList<AdapterInfo> adapters);
+        GetAdapters(type, out IReadOnlyList<AdapterInfo> adapters);
 
-            if (adapters.Count == 0)
-            {
-                Assert.Skip($"Skipping test because GPU adapter for {type} is not available.");
-            }
-        }
-
-        if (type is DeviceType.CPU or DeviceType.Unknown)
+        if (adapters.Count == 0)
         {
-            Assert.Skip("Skipping test because no GPU is available. Cannot use CPU shaders for this test");
+            Assert.Skip($"Skipping test because GPU adapter for {type} is not available.");
         }
     }
-    
-    
     
 
     private static DeviceType FindFirstAvailable(bool includeCpu = false)
