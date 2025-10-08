@@ -13,9 +13,8 @@ public class DefaultTestFixture : TestBedFixture
 {
     protected override void AddServices(IServiceCollection services, IConfiguration? configuration)
     {
-        services.AddLogging(builder => builder.ClearProviders()
-                                              .SetMinimumLevel(LogLevel.Debug)
-                                              .AddOpenTelemetry(options => options.AddOtlpExporter().AddConsoleExporter()));
+        services.AddLogging(builder => builder.SetMinimumLevel(LogLevel.Debug)
+                                              .AddOpenTelemetry(options => options.AddOtlpExporter()));
     }
 
     protected override IEnumerable<TestAppSettings> GetTestAppSettings() =>
