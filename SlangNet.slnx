@@ -1,11 +1,4 @@
 ﻿<Solution>
-  <Folder Name="/Examples/">
-    <Project Path="examples\SlangNet.Example.HelloWorld.Unsafe\SlangNet.Example.HelloWorld.Unsafe.csproj" />
-    <Project Path="examples\SlangNet.Example.HelloWorld\SlangNet.Example.HelloWorld.csproj" />
-    <Project Path="examples\SlangNet.Example.ShaderObject\SlangNet.Example.ShaderObject.csproj" Type="Classic C#" />
-    <Project Path="examples\SlangNet.Example.Shared\SlangNet.Example.Shared.csproj" Type="Classic C#" />
-    <File Path="examples\README.md" />
-  </Folder>
   <Folder Name="/Solution Items/">
     <File Path="Directory.Build.props" />
     <File Path="nuget.config" />
@@ -14,6 +7,7 @@
     <File Path="global.json" />
     <File Path="Directory.Packages.props" />
     <File Path=".editorconfig" />
+    <File Path="Directory.Build.targets" />
   </Folder>
   <Project Path="build\_build.csproj">
     <Configuration Solution="Debug|Any CPU" Project="Debug|Any CPU|NoBuild" />

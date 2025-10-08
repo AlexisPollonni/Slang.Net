@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class SlangUUIDTests
 {
     /// <summary>Validates that the <see cref="SlangUUID" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<SlangUUID>(), Is.EqualTo(sizeof(SlangUUID)));
+        Assert.Equal(sizeof(SlangUUID), Marshal.SizeOf<SlangUUID>());
     }
 
     /// <summary>Validates that the <see cref="SlangUUID" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(SlangUUID).IsLayoutSequential, Is.True);
+        Assert.True(typeof(SlangUUID).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="SlangUUID" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(SlangUUID), Is.EqualTo(16));
+        Assert.Equal(16, sizeof(SlangUUID));
     }
 }

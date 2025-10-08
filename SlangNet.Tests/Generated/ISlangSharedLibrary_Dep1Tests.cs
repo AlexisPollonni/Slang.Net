@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ISlangSharedLibrary_Dep1Tests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="ISlangSharedLibrary_Dep1" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(ISlangSharedLibrary_Dep1).GUID, Is.EqualTo(IID_ISlangSharedLibrary_Dep1));
+        Assert.Equal(typeof(ISlangSharedLibrary_Dep1).GUID, IID_ISlangSharedLibrary_Dep1);
     }
 
     /// <summary>Validates that the <see cref="ISlangSharedLibrary_Dep1" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ISlangSharedLibrary_Dep1>(), Is.EqualTo(sizeof(ISlangSharedLibrary_Dep1)));
+        Assert.Equal(sizeof(ISlangSharedLibrary_Dep1), Marshal.SizeOf<ISlangSharedLibrary_Dep1>());
     }
 
     /// <summary>Validates that the <see cref="ISlangSharedLibrary_Dep1" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ISlangSharedLibrary_Dep1).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ISlangSharedLibrary_Dep1).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ISlangSharedLibrary_Dep1" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ISlangSharedLibrary_Dep1), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ISlangSharedLibrary_Dep1));
         }
         else
         {
-            Assert.That(sizeof(ISlangSharedLibrary_Dep1), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ISlangSharedLibrary_Dep1));
         }
     }
 }

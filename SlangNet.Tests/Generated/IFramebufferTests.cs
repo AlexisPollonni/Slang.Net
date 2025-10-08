@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IFramebufferTests
 {
     /// <summary>Validates that the <see cref="IFramebuffer" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IFramebuffer>(), Is.EqualTo(sizeof(IFramebuffer)));
+        Assert.Equal(sizeof(IFramebuffer), Marshal.SizeOf<IFramebuffer>());
     }
 
     /// <summary>Validates that the <see cref="IFramebuffer" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IFramebuffer).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IFramebuffer).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IFramebuffer" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(IFramebuffer), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(IFramebuffer));
         }
         else
         {
-            Assert.That(sizeof(IFramebuffer), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(IFramebuffer));
         }
     }
 }

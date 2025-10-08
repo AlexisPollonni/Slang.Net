@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class GraphicsPipelineStateDescTests
 {
     /// <summary>Validates that the <see cref="GraphicsPipelineStateDesc" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<GraphicsPipelineStateDesc>(), Is.EqualTo(sizeof(GraphicsPipelineStateDesc)));
+        Assert.Equal(sizeof(GraphicsPipelineStateDesc), Marshal.SizeOf<GraphicsPipelineStateDesc>());
     }
 
     /// <summary>Validates that the <see cref="GraphicsPipelineStateDesc" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(GraphicsPipelineStateDesc).IsLayoutSequential, Is.True);
+        Assert.True(typeof(GraphicsPipelineStateDesc).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="GraphicsPipelineStateDesc" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(GraphicsPipelineStateDesc), Is.EqualTo(376));
+            Assert.Equal(376, sizeof(GraphicsPipelineStateDesc));
         }
         else
         {
-            Assert.That(sizeof(GraphicsPipelineStateDesc), Is.EqualTo(364));
+            Assert.Equal(364, sizeof(GraphicsPipelineStateDesc));
         }
     }
 }

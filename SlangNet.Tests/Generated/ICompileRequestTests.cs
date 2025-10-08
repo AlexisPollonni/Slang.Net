@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
@@ -9,37 +8,37 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ICompileRequestTests
 {
     /// <summary>Validates that the <see cref="Guid" /> of the <see cref="ICompileRequest" /> struct is correct.</summary>
-    [Test]
+    [Fact]
     public static void GuidOfTest()
     {
-        Assert.That(typeof(ICompileRequest).GUID, Is.EqualTo(IID_ICompileRequest));
+        Assert.Equal(typeof(ICompileRequest).GUID, IID_ICompileRequest);
     }
 
     /// <summary>Validates that the <see cref="ICompileRequest" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ICompileRequest>(), Is.EqualTo(sizeof(ICompileRequest)));
+        Assert.Equal(sizeof(ICompileRequest), Marshal.SizeOf<ICompileRequest>());
     }
 
     /// <summary>Validates that the <see cref="ICompileRequest" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ICompileRequest).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ICompileRequest).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ICompileRequest" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ICompileRequest), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ICompileRequest));
         }
         else
         {
-            Assert.That(sizeof(ICompileRequest), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ICompileRequest));
         }
     }
 }

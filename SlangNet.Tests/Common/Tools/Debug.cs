@@ -1,11 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using SlangNet.Bindings.Generated;
-using IDevice = SlangNet.ComWrappers.Gfx.Interfaces.IDevice;
-
 using static SlangNet.ComWrappers.Gfx.Gfx;
 
-namespace SlangNet.Example.Shared;
+namespace SlangNet.Tests.Common.Tools;
 
 public static class Debug
 {
@@ -15,7 +13,7 @@ public static class Debug
     public static void Layer() =>
         EnableDebugLayer();
 
-    public static void EnableLogging()
+    public static void EnableLogging(ILogger logger)
     {
         SetDebugCallback((type, source, message) =>
             {
@@ -27,7 +25,7 @@ public static class Debug
                     _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
                 };
 
-                lock (LoggingLock) SharedLogger<IDevice>.Log(level, "{Source}: {Message}", source, message);
+                lock (LoggingLock) logger.Log(level, "{Source}: {Message}", source, message);
             })
             .ThrowIfFailed();
     }

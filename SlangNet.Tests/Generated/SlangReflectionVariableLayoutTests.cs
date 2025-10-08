@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class SlangReflectionVariableLayoutTests
 {
     /// <summary>Validates that the <see cref="SlangReflectionVariableLayout" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<SlangReflectionVariableLayout>(), Is.EqualTo(sizeof(SlangReflectionVariableLayout)));
+        Assert.Equal(sizeof(SlangReflectionVariableLayout), Marshal.SizeOf<SlangReflectionVariableLayout>());
     }
 
     /// <summary>Validates that the <see cref="SlangReflectionVariableLayout" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(SlangReflectionVariableLayout).IsLayoutSequential, Is.True);
+        Assert.True(typeof(SlangReflectionVariableLayout).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="SlangReflectionVariableLayout" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(SlangReflectionVariableLayout), Is.EqualTo(1));
+        Assert.Equal(1, sizeof(SlangReflectionVariableLayout));
     }
 }

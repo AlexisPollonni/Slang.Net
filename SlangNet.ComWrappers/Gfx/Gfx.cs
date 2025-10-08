@@ -28,9 +28,21 @@ public static partial class Gfx
 
     public static IReadOnlyList<AdapterInfo> GetAdapters(DeviceType type)
     {
-        GetAdapters(type, out var blob).ThrowIfFailed();
+        GetAdapters(type, out IBlob blob).ThrowIfFailed();
 
         return new AdaptersList(blob);
+    }
+    
+    public static SlangResult GetAdapters(DeviceType type, out IReadOnlyList<AdapterInfo> adapters)
+    {
+        var result = GetAdapters(type, out IBlob blob);
+        if (result != SlangResult.Ok)
+        {
+            adapters = [];
+            return result;
+        }
+        adapters = new AdaptersList(blob);
+        return SlangResult.Ok;
     }
 
     private class AdaptersList(IBlob adaptersBlob) : NativeResultReadOnlyList<AdapterInfo>

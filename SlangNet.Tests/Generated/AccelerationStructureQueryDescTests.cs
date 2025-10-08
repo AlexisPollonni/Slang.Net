@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class AccelerationStructureQueryDescTests
 {
     /// <summary>Validates that the <see cref="AccelerationStructureQueryDesc" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<AccelerationStructureQueryDesc>(), Is.EqualTo(sizeof(AccelerationStructureQueryDesc)));
+        Assert.Equal(sizeof(AccelerationStructureQueryDesc), Marshal.SizeOf<AccelerationStructureQueryDesc>());
     }
 
     /// <summary>Validates that the <see cref="AccelerationStructureQueryDesc" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(AccelerationStructureQueryDesc).IsLayoutSequential, Is.True);
+        Assert.True(typeof(AccelerationStructureQueryDesc).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="AccelerationStructureQueryDesc" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(AccelerationStructureQueryDesc), Is.EqualTo(24));
+            Assert.Equal(24, sizeof(AccelerationStructureQueryDesc));
         }
         else
         {
-            Assert.That(sizeof(AccelerationStructureQueryDesc), Is.EqualTo(12));
+            Assert.Equal(12, sizeof(AccelerationStructureQueryDesc));
         }
     }
 }

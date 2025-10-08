@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class CompileCoreModuleFlagTests
 {
     /// <summary>Validates that the <see cref="CompileCoreModuleFlag" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<CompileCoreModuleFlag>(), Is.EqualTo(sizeof(CompileCoreModuleFlag)));
+        Assert.Equal(sizeof(CompileCoreModuleFlag), Marshal.SizeOf<CompileCoreModuleFlag>());
     }
 
     /// <summary>Validates that the <see cref="CompileCoreModuleFlag" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(CompileCoreModuleFlag).IsLayoutSequential, Is.True);
+        Assert.True(typeof(CompileCoreModuleFlag).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="CompileCoreModuleFlag" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(CompileCoreModuleFlag), Is.EqualTo(1));
+        Assert.Equal(1, sizeof(CompileCoreModuleFlag));
     }
 }

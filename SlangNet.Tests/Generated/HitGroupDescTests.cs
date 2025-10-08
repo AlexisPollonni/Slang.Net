@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class HitGroupDescTests
 {
     /// <summary>Validates that the <see cref="HitGroupDesc" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<HitGroupDesc>(), Is.EqualTo(sizeof(HitGroupDesc)));
+        Assert.Equal(sizeof(HitGroupDesc), Marshal.SizeOf<HitGroupDesc>());
     }
 
     /// <summary>Validates that the <see cref="HitGroupDesc" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(HitGroupDesc).IsLayoutSequential, Is.True);
+        Assert.True(typeof(HitGroupDesc).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="HitGroupDesc" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(HitGroupDesc), Is.EqualTo(32));
+            Assert.Equal(32, sizeof(HitGroupDesc));
         }
         else
         {
-            Assert.That(sizeof(HitGroupDesc), Is.EqualTo(16));
+            Assert.Equal(16, sizeof(HitGroupDesc));
         }
     }
 }
