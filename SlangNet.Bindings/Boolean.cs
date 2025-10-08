@@ -1,5 +1,5 @@
 #nullable enable
-using System;
+
 
 // ReSharper disable once CheckNamespace
 namespace SlangNet.Bindings.Generated;

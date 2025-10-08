@@ -1,4 +1,3 @@
-using System;
 using SlangNet.Bindings.Generated;
 
 namespace SlangNet;

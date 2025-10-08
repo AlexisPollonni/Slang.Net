@@ -1,6 +1,4 @@
-﻿using System;
-
-using static SlangNet.Bindings.Generated.SlangApi;
+﻿using static SlangNet.Bindings.Generated.SlangApi;
 
 namespace SlangNet;
 

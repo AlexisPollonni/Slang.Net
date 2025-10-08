@@ -1,5 +1,3 @@
-using System;
-
 namespace SlangNet.Bindings.Generated;
 
 /// <include file='VMExecInstHeader.xml' path='doc/member[@name="VMExecInstHeader"]/*' />
