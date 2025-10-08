@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ITransientResourceHeapD3D12Tests
 {
     /// <summary>Validates that the <see cref="ITransientResourceHeapD3D12" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ITransientResourceHeapD3D12>(), Is.EqualTo(sizeof(ITransientResourceHeapD3D12)));
+        Assert.Equal(sizeof(ITransientResourceHeapD3D12), Marshal.SizeOf<ITransientResourceHeapD3D12>());
     }
 
     /// <summary>Validates that the <see cref="ITransientResourceHeapD3D12" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ITransientResourceHeapD3D12).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ITransientResourceHeapD3D12).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ITransientResourceHeapD3D12" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ITransientResourceHeapD3D12), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(ITransientResourceHeapD3D12));
         }
         else
         {
-            Assert.That(sizeof(ITransientResourceHeapD3D12), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(ITransientResourceHeapD3D12));
         }
     }
 }

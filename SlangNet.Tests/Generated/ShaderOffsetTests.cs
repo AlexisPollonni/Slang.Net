@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-using NUnit.Framework;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ShaderOffsetTests
 {
     /// <summary>Validates that the <see cref="ShaderOffset" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ShaderOffset>(), Is.EqualTo(sizeof(ShaderOffset)));
+        Assert.Equal(sizeof(ShaderOffset), Marshal.SizeOf<ShaderOffset>());
     }
 
     /// <summary>Validates that the <see cref="ShaderOffset" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ShaderOffset).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ShaderOffset).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ShaderOffset" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(ShaderOffset), Is.EqualTo(16));
+            Assert.Equal(16, sizeof(ShaderOffset));
         }
         else
         {
-            Assert.That(sizeof(ShaderOffset), Is.EqualTo(12));
+            Assert.Equal(12, sizeof(ShaderOffset));
         }
     }
 }

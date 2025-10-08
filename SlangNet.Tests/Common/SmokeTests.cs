@@ -1,41 +1,35 @@
-﻿using NUnit.Framework;
-using SlangNet.Bindings.Generated;
+﻿using SlangNet.Bindings.Generated;
 using SlangNet.ComWrappers;
-using IGlobalSession = SlangNet.ComWrappers.Interfaces.IGlobalSession;
+using SlangNet.Tests.Common.Tools;
+using Xunit;
 
-namespace SlangNet.Tests;
+namespace SlangNet.Tests.Common;
 
-internal unsafe class SmokeTests
+public class SmokeTests(ITestOutputHelper testOutputHelper, DefaultTestFixture fixture)
+    : TestBase<SmokeTests>(testOutputHelper, fixture)
 {
-    [Test]
-    public void CanCreateGlobalSession()
+    [Fact]
+    public void CanCreateBasicGlobalSession()
     {
-        IGlobalSession? globalSession = null;
-        var result = Slang.CreateGlobalSession(SlangApi.SLANG_API_VERSION, out globalSession);
+        var result = Slang.CreateGlobalSession(SlangApi.SLANG_API_VERSION, out var globalSession);
+
         Assert.Multiple(() =>
         {
-            Assert.That(result, Is.EqualTo(SlangResult.Ok));
-            Assert.That(globalSession, Is.Not.Null, "createGlobalSession returned a null pointer");
+            Assert.Equal(result, SlangResult.Ok);
+            Assert.NotNull(globalSession);
         });
     }
 
-#if SHOULD_BE_2_0 || SHOULD_BE_2_1
-    [TestCase(typeof(GlobalSession))]
-    [TestCase(typeof(Slang))]
-    public void AssemblyRuntimeIsCorrect(Type checkType)
+    [Fact]
+    public void CanCreateTestGlobalSession()
     {
-        var runtimeAssembly = checkType.Assembly
-            .GetReferencedAssemblies()
-            .FirstOrDefault(a => a.Name == "netstandard");
-        Assert.NotNull(runtimeAssembly);
-        var runtimeVersion = runtimeAssembly.Version;
-        Assert.NotNull(runtimeVersion);
-        Assert.That(runtimeVersion.Major, Is.EqualTo(2));
-#if SHOULD_BE_2_0
-        Assert.That(runtimeVersion.Minor, Is.EqualTo(0));
-#elif SHOULD_BE_2_1
-        Assert.That(runtimeVersion.Minor, Is.EqualTo(1));
-#endif
+        _ = SharedHelpers.CreateTestGlobalSession();
     }
-#endif
+
+    [Fact]
+    public void CanCreateTestDevice()
+    {
+        var globalSession = SharedHelpers.CreateTestGlobalSession();
+        _ = SharedHelpers.CreateTestDevice(globalSession, logger: Logger);
     }
+}

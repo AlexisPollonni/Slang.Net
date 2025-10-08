@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IDebugCallbackTests
 {
     /// <summary>Validates that the <see cref="IDebugCallback" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IDebugCallback>(), Is.EqualTo(sizeof(IDebugCallback)));
+        Assert.Equal(sizeof(IDebugCallback), Marshal.SizeOf<IDebugCallback>());
     }
 
     /// <summary>Validates that the <see cref="IDebugCallback" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IDebugCallback).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IDebugCallback).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IDebugCallback" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(IDebugCallback), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(IDebugCallback));
         }
         else
         {
-            Assert.That(sizeof(IDebugCallback), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(IDebugCallback));
         }
     }
 }

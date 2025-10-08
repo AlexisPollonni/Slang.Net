@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class SubresourceRangeTests
 {
     /// <summary>Validates that the <see cref="SubresourceRange" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<SubresourceRange>(), Is.EqualTo(sizeof(SubresourceRange)));
+        Assert.Equal(sizeof(SubresourceRange), Marshal.SizeOf<SubresourceRange>());
     }
 
     /// <summary>Validates that the <see cref="SubresourceRange" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(SubresourceRange).IsLayoutSequential, Is.True);
+        Assert.True(typeof(SubresourceRange).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="SubresourceRange" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(SubresourceRange), Is.EqualTo(20));
+        Assert.Equal(20, sizeof(SubresourceRange));
     }
 }

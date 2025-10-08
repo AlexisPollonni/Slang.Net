@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-using NUnit.Framework;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,23 +7,23 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class ByteCodeFuncInfoTests
 {
     /// <summary>Validates that the <see cref="ByteCodeFuncInfo" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<ByteCodeFuncInfo>(), Is.EqualTo(sizeof(ByteCodeFuncInfo)));
+        Assert.Equal(sizeof(ByteCodeFuncInfo), Marshal.SizeOf<ByteCodeFuncInfo>());
     }
 
     /// <summary>Validates that the <see cref="ByteCodeFuncInfo" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(ByteCodeFuncInfo).IsLayoutSequential, Is.True);
+        Assert.True(typeof(ByteCodeFuncInfo).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="ByteCodeFuncInfo" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
-        Assert.That(sizeof(ByteCodeFuncInfo), Is.EqualTo(8));
+        Assert.Equal(8, sizeof(ByteCodeFuncInfo));
     }
 }

@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-using NUnit.Framework;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -7,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class VMExecInstHeaderTests
 {
     /// <summary>Validates that the <see cref="VMExecInstHeader" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<VMExecInstHeader>(), Is.EqualTo(sizeof(VMExecInstHeader)));
+        Assert.Equal(sizeof(VMExecInstHeader), Marshal.SizeOf<VMExecInstHeader>());
     }
 
     /// <summary>Validates that the <see cref="VMExecInstHeader" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(VMExecInstHeader).IsLayoutSequential, Is.True);
+        Assert.True(typeof(VMExecInstHeader).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="VMExecInstHeader" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(VMExecInstHeader), Is.EqualTo(16));
+            Assert.Equal(16, sizeof(VMExecInstHeader));
         }
         else
         {
-            Assert.That(sizeof(VMExecInstHeader), Is.EqualTo(12));
+            Assert.Equal(12, sizeof(VMExecInstHeader));
         }
     }
 }

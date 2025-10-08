@@ -1,6 +1,5 @@
-using NUnit.Framework;
-using System;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace SlangNet.Bindings.Generated.UnitTests;
 
@@ -8,30 +7,30 @@ namespace SlangNet.Bindings.Generated.UnitTests;
 public static unsafe partial class IPipelineCreationAPIDispatcherTests
 {
     /// <summary>Validates that the <see cref="IPipelineCreationAPIDispatcher" /> struct is blittable.</summary>
-    [Test]
+    [Fact]
     public static void IsBlittableTest()
     {
-        Assert.That(Marshal.SizeOf<IPipelineCreationAPIDispatcher>(), Is.EqualTo(sizeof(IPipelineCreationAPIDispatcher)));
+        Assert.Equal(sizeof(IPipelineCreationAPIDispatcher), Marshal.SizeOf<IPipelineCreationAPIDispatcher>());
     }
 
     /// <summary>Validates that the <see cref="IPipelineCreationAPIDispatcher" /> struct has the right <see cref="LayoutKind" />.</summary>
-    [Test]
+    [Fact]
     public static void IsLayoutSequentialTest()
     {
-        Assert.That(typeof(IPipelineCreationAPIDispatcher).IsLayoutSequential, Is.True);
+        Assert.True(typeof(IPipelineCreationAPIDispatcher).IsLayoutSequential);
     }
 
     /// <summary>Validates that the <see cref="IPipelineCreationAPIDispatcher" /> struct has the correct size.</summary>
-    [Test]
+    [Fact]
     public static void SizeOfTest()
     {
         if (Environment.Is64BitProcess)
         {
-            Assert.That(sizeof(IPipelineCreationAPIDispatcher), Is.EqualTo(8));
+            Assert.Equal(8, sizeof(IPipelineCreationAPIDispatcher));
         }
         else
         {
-            Assert.That(sizeof(IPipelineCreationAPIDispatcher), Is.EqualTo(4));
+            Assert.Equal(4, sizeof(IPipelineCreationAPIDispatcher));
         }
     }
 }
