@@ -30,6 +30,8 @@ internal static class SharedHelpers
             return p;
         }
     }
+    
+    public static bool IsCi => Environment.GetEnvironmentVariable("CI") is "true";
 
     public static IGlobalSession CreateTestGlobalSession()
     {
@@ -56,14 +58,20 @@ internal static class SharedHelpers
     {
         Debug.Layer();
         if (logger is not null) Debug.EnableLogging(logger);
-
+            
         if (deviceType is DeviceType.Default or DeviceType.Unknown)
         {
-            deviceType = FindFirstAvailable(allowCpuDevice);
+            // For now we only allow CPU devices in CI
+            deviceType = IsCi ? DeviceType.CPU : FindFirstAvailable(allowCpuDevice);
         }
         else if(deviceType is not DeviceType.CPU)
         {
             SkipIfNotAvailable(deviceType);
+        }
+
+        if (IsCi && deviceType is not DeviceType.CPU)
+        {
+            Assert.Skip("Skipping test because non-CPU device types are not available in CI.");
         }
 
         var runningBinPath = RunningExePath;
