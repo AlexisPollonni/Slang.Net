@@ -1,17 +1,33 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using OpenTelemetry.Logs;
+using Xunit;
+using Xunit.Microsoft.DependencyInjection;
+using Xunit.Microsoft.DependencyInjection.Abstracts;
+using Xunit.Microsoft.DependencyInjection.Attributes;
 
 namespace SlangNet.Tests;
 
-public class Startup
+public class DefaultTestFixture : TestBedFixture
 {
-    public void ConfigureServices(IServiceCollection services)
+    protected override void AddServices(IServiceCollection services, IConfiguration? configuration)
     {
-        services.AddLogging(builder => builder.AddConsole()
-#if DEBUG
-                                              .AddDebug()
+        services.AddLogging(builder => builder.ClearProviders()
                                               .SetMinimumLevel(LogLevel.Debug)
-#endif
-                                              );
+                                              .AddOpenTelemetry(options => options.AddOtlpExporter().AddConsoleExporter()));
     }
+
+    protected override IEnumerable<TestAppSettings> GetTestAppSettings() =>
+        [];
+
+    protected override ValueTask DisposeAsyncCore() =>
+        ValueTask.CompletedTask;
+}
+
+public class TestBase<TTest>(ITestOutputHelper testOutputHelper, DefaultTestFixture fixture)
+    : TestBedWithDI<DefaultTestFixture>(testOutputHelper, fixture)
+{
+    [Inject]
+    public required ILogger<TTest> Logger { get; set; } 
 }

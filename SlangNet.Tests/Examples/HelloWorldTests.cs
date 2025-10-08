@@ -19,7 +19,8 @@ using IShaderProgram = SlangNet.ComWrappers.Gfx.Interfaces.IShaderProgram;
 
 namespace SlangNet.Tests.Examples;
 
-public class HelloWorldTests(ILogger<HelloWorldTests> logger)
+public sealed class HelloWorldTests(ITestOutputHelper testOutputHelper, DefaultTestFixture fixture)
+    : TestBase<HelloWorldTests>(testOutputHelper, fixture)
 {
     private const int ElementCount = 16;
     private const int BufferSize = sizeof(float) * ElementCount;
@@ -34,7 +35,7 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
         var (device, program) = LoadModuleAndCreateDevice(type);
         var pipeline = CreatePipelineFromProgram(device, program);
         CreateBuffers(device, out var inputBuffer0, out var inputBuffer1, out var outputBuffer);
-        
+
         DispatchCompute(device, pipeline, inputBuffer0, inputBuffer1, outputBuffer);
         PrintComputeResults(device, outputBuffer);
     }
@@ -62,11 +63,11 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
         // Once the session has been obtained, we can start loading code into it.
         var module = session.LoadModule("hello-world", out var diag);
 
-        logger.LogDiagnostics(diag);
+        Logger.LogDiagnostics(diag);
         Assert.NotNull(module);
 
-        logger.LogInformation("Slang API Version : {Version}", globalSession.GetBuildTagString());
-        logger.LogInformation("Module filepath: {Path}", module.GetFilePath());
+        Logger.LogInformation("Slang API Version : {Version}", globalSession.GetBuildTagString());
+        Logger.LogInformation("Module filepath: {Path}", module.GetFilePath());
 
         for (var i = 0; i < module.GetDefinedEntryPointCount(); i++)
         {
@@ -74,7 +75,7 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
 
             var func = e.GetFunctionReflection();
 
-            logger.LogDebug("Entry point {Index}: {EntryPointName}", i, func?.Name);
+            Logger.LogDebug("Entry point {Index}: {EntryPointName}", i, func?.Name);
         }
 
         // Now that the module is loaded we can look up those entry points by name.
@@ -94,7 +95,7 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
         var composedProgram
             = session.CreateCompositeComponentTypeOrThrow(componentTypes, componentTypes.Length, out var diagString);
 
-        logger.LogDiagnostics(diagString);
+        Logger.LogDiagnostics(diagString);
         Assert.NotNull(composedProgram);
 
         // Now we can call `composedProgram->getEntryPointCode()` to retrieve the
@@ -102,15 +103,17 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
         // This will trigger the final Slang compilation and spirv code generation.
         var spirvCode = composedProgram.GetEntryPointCodeOrThrow(0, 0, out diagString);
 
-        logger.LogDiagnostics(diagString);
+        Logger.LogDiagnostics(diagString);
         Assert.NotNull(spirvCode);
 
-        var device = SharedHelpers.CreateTestDevice(globalSession, logger: logger, 
+        var device = SharedHelpers.CreateTestDevice(globalSession,
+                                                    logger: Logger,
                                                     deviceType: type,
-                                                    allowCpuDevice: false); // Choosing a CPU device for this test with this shader will not work. Slang segfaults on pipeline bind with that shader program. TODO: Report this.
+                                                    allowCpuDevice:
+                                                    false); // Choosing a CPU device for this test with this shader will not work. Slang segfaults on pipeline bind with that shader program. TODO: Report this.
 
         var program = device.CreateProgramOrThrow(new(GlobalScope: composedProgram), out diagString);
-        logger.LogDiagnostics(diagString);
+        Logger.LogDiagnostics(diagString);
         Assert.NotNull(program);
 
         return (device, program);
@@ -174,17 +177,17 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
 
         var rootObject = encoder.BindPipelineOrThrow(pipeline);
         var rootCursor = new ShaderCursor(rootObject);
-        
+
         SetBuffer(rootCursor.GetPath("buffer0"), inputBuffer0);
         SetBuffer(rootCursor.GetPath("buffer1"), inputBuffer1);
         SetBuffer(rootCursor.GetPath("result"), outputBuffer);
-        
+
         encoder.DispatchComputeOrThrow(ElementCount, 1, 1);
         encoder.EndEncoding();
         cmdBuffer.Close();
         queue.ExecuteCommandBuffers(1, [cmdBuffer]);
         queue.WaitOnHost();
-        
+
         void SetBuffer(ShaderCursor cursor, IBufferResource buffer)
         {
             var bufferViewDesc = new ResourceViewDescription
@@ -192,7 +195,7 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
                 Type = IResourceView.ResourceViewType.UnorderedAccess,
                 Format = Format.Unknown
             };
-            
+
             var bufferView = device.CreateBufferViewOrThrow(buffer, null, bufferViewDesc);
             cursor.SetResource(bufferView).ThrowIfFailed();
         }
@@ -202,6 +205,6 @@ public class HelloWorldTests(ILogger<HelloWorldTests> logger)
     {
         device.ReadBufferResource(outputBuffer, Range.All, out BlobMemory<float> data).ThrowIfFailed();
 
-        for (var i = 0; i < ElementCount; i++) logger.LogInformation("[{Index}] = {Value}", i, data.AsReadOnlySpan()[i]);
+        for (var i = 0; i < ElementCount; i++) Logger.LogInformation("[{Index}] = {Value}", i, data.AsReadOnlySpan()[i]);
     }
 }

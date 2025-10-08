@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
-using SlangNet.Bindings.Generated;
+﻿using SlangNet.Bindings.Generated;
 using SlangNet.ComWrappers;
 using SlangNet.Tests.Common.Tools;
 using Xunit;
 
-namespace SlangNet.Tests;
+namespace SlangNet.Tests.Common;
 
-public class SmokeTests(ILogger<SmokeTests> logger)
+public class SmokeTests(ITestOutputHelper testOutputHelper, DefaultTestFixture fixture)
+    : TestBase<SmokeTests>(testOutputHelper, fixture)
 {
     [Fact]
     public void CanCreateBasicGlobalSession()
@@ -30,6 +30,6 @@ public class SmokeTests(ILogger<SmokeTests> logger)
     public void CanCreateTestDevice()
     {
         var globalSession = SharedHelpers.CreateTestGlobalSession();
-        _ = SharedHelpers.CreateTestDevice(globalSession, logger: logger);
+        _ = SharedHelpers.CreateTestDevice(globalSession, logger: Logger);
     }
 }

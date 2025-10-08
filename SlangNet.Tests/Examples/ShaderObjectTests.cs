@@ -12,17 +12,18 @@ using IResourceView = SlangNet.Bindings.Generated.IResourceView;
 
 namespace SlangNet.Tests.Examples;
 
-public class ShaderObjectTests(ILogger<ShaderObjectTests> logger)
+public class ShaderObjectTests(ITestOutputHelper testOutputHelper, DefaultTestFixture fixture)
+    : TestBase<ShaderObjectTests>(testOutputHelper, fixture)
 {
     [Fact]
     public void ShaderObject()
     {
         var globalSession = SharedHelpers.CreateTestGlobalSession();
-        var device = SharedHelpers.CreateTestDevice(globalSession, logger: logger);
+        var device = SharedHelpers.CreateTestDevice(globalSession, logger: Logger);
 
         var heap = device.CreateTransientResourceHeapOrThrow(new(ConstantBufferSize: 4096));
 
-        var shaderPair = SharedHelpers.LoadShaderProgram(device, "shader-object", logger);
+        var shaderPair = SharedHelpers.LoadShaderProgram(device, "shader-object", Logger);
 
         var pipelineState = device.CreateComputePipelineStateOrThrow(new(shaderPair.program));
 
@@ -38,15 +39,16 @@ public class ShaderObjectTests(ILogger<ShaderObjectTests> logger)
                                         DefaultState = ResourceState.UnorderedAccess,
                                         MemoryType = MemoryType.DeviceLocal,
                                     },
-                                    initialData).ThrowIfFailed();
+                                    initialData)
+              .ThrowIfFailed();
 
         var bufferView = device.CreateBufferViewOrThrow(numbersBuffer,
-                                null,
-                                new()
-                                {
-                                    Type = IResourceView.ResourceViewType.UnorderedAccess,
-                                    Format = Format.Unknown
-                                });
+                                                        null,
+                                                        new()
+                                                        {
+                                                            Type = IResourceView.ResourceViewType.UnorderedAccess,
+                                                            Format = Format.Unknown
+                                                        });
 
         var queue = device.CreateCommandQueueOrThrow(new(ICommandQueue.QueueType.Graphics));
 
@@ -59,7 +61,7 @@ public class ShaderObjectTests(ILogger<ShaderObjectTests> logger)
         var addTransformerType = shaderPair.programLayout.FindTypeByName("AddTransformer");
 
         Assert.NotNull(addTransformerType);
-        
+
         var transformer = device.CreateShaderObjectOrThrow(addTransformerType.Value, ShaderObjectContainerType.None);
 
         const float c = 1.0f;
@@ -80,9 +82,8 @@ public class ShaderObjectTests(ILogger<ShaderObjectTests> logger)
 
         device.ReadBufferResource(numbersBuffer, Range.All, out BlobMemory<float> data).ThrowIfFailed();
 
-        foreach (var item in data.AsReadOnlySpan())
-            logger.LogInformation("Data[{Index}] = {Value}", item, item);
-        
+        foreach (var item in data.AsReadOnlySpan()) Logger.LogInformation("Data[{Index}] = {Value}", item, item);
+
         Assert.Equal([11, 12, 13, 14], data.AsReadOnlySpan());
     }
 }

@@ -1,28 +1,35 @@
 ﻿using System.Runtime.InteropServices;
+using Microsoft.Extensions.Logging;
 using SlangNet.Bindings.Generated;
+using SlangNet.Tests.Common.Tools;
 using Veldrid;
+using Xunit;
 using static SlangNet.Bindings.Generated.SlangApi;
 
-namespace SlangNet.Example.HelloWorld.Unsafe;
+namespace SlangNet.Tests.Examples;
 
-internal unsafe class HelloWorldUnsafe
+public sealed unsafe class HelloWorldUnsafeTests(ITestOutputHelper testOutputHelper, DefaultTestFixture fixture)
+    : TestBase<HelloWorldUnsafeTests>(testOutputHelper, fixture)
 {
     private const int ElementCount = 16;
     private const int BufferSize = sizeof(float) * ElementCount;
 
-    private static GraphicsDevice graphicsDevice;
-    private static Shader shader;
-    private static ResourceLayout resourceLayout;
-    private static Pipeline pipeline;
-    private static DeviceBuffer inputBuffer0, inputBuffer1, outputBuffer, stagingBuffer;
+    private GraphicsDevice? _graphicsDevice;
+    private Shader? _shader;
+    private ResourceLayout? _resourceLayout;
+    private Pipeline? _pipeline;
+    private DeviceBuffer? _inputBuffer0;
+    private DeviceBuffer? _inputBuffer1;
+    private DeviceBuffer? _outputBuffer;
+    private DeviceBuffer? _stagingBuffer;
 
-    private static ResourceFactory ResourceFactory => graphicsDevice.ResourceFactory;
-
-    static void Main(string[] args)
+    [Fact]
+    public void HelloWorldUnsafe()
     {
+        Assert.SkipWhen(!GraphicsDevice.IsBackendSupported(GraphicsBackend.Vulkan), "Vulkan is not supported on this device");
         try
         {
-            graphicsDevice = GraphicsDevice.CreateVulkan(new()
+            _graphicsDevice = GraphicsDevice.CreateVulkan(new()
             {
                 Debug = false,
                 HasMainSwapchain = false
@@ -32,34 +39,33 @@ internal unsafe class HelloWorldUnsafe
             CreateBuffers();
             DispatchCompute();
             PrintComputeResults();
-
         }
         finally
         {
-            inputBuffer0?.Dispose();
-            inputBuffer1?.Dispose();
-            outputBuffer?.Dispose();
-            shader?.Dispose();
-            resourceLayout?.Dispose();
-            pipeline?.Dispose();
-            graphicsDevice?.Dispose();
+            _inputBuffer0?.Dispose();
+            _inputBuffer1?.Dispose();
+            _outputBuffer?.Dispose();
+            _shader?.Dispose();
+            _resourceLayout?.Dispose();
+            _pipeline?.Dispose();
+            _graphicsDevice?.Dispose();
         }
     }
 
-    private static void ThrowOnFail(int error)
+    private ResourceFactory ResourceFactory => _graphicsDevice.ResourceFactory;
+
+    private  void ThrowOnFail(int error)
     {
-        if (error != SLANG_OK)
-            throw new Exception($"Slang error: {error}");
+        if (error != SLANG_OK) throw new Exception($"Slang error: {error}");
     }
 
-    private static void DiagnoseIfNeeded(ISlangBlob* diagnosticBlob)
+    private void DiagnoseIfNeeded(ISlangBlob* diagnosticBlob)
     {
-        if (diagnosticBlob == null)
-            return;
-        Console.Error.WriteLine(Marshal.PtrToStringUTF8(new(diagnosticBlob->getBufferPointer())));
+        if (diagnosticBlob == null) return;
+        Logger.LogError("Slang diagnostics: {Diagnostics}", Marshal.PtrToStringUTF8(new(diagnosticBlob->getBufferPointer())));
     }
 
-    private static void LoadModuleAndCreatePipeline()
+    private void LoadModuleAndCreatePipeline()
     {
         IGlobalSession* globalSession = null;
         ISession* session = null;
@@ -76,8 +82,7 @@ internal unsafe class HelloWorldUnsafe
 
             // Next a session to generate SPIRV code is created
             ProfileID profile;
-            fixed (byte* profileName = "glsl440"u8)
-                profile = globalSession->findProfile((sbyte*)profileName);
+            fixed (byte* profileName = "glsl440"u8) profile = globalSession->findProfile((sbyte*)profileName);
             TargetDesc targetDesc = new()
             {
                 structureSize = (nuint)sizeof(TargetDesc),
@@ -95,12 +100,10 @@ internal unsafe class HelloWorldUnsafe
             globalSession->createSession(&sessionDesc, &session);
 
             // Once the session has been obtained, we can start loading code into it.
-            Environment.CurrentDirectory = Path.GetDirectoryName(typeof(HelloWorldUnsafe).Assembly.Location);
-            fixed (byte* moduleName = "hello-world"u8)
-                module = session->loadModule((sbyte*)moduleName, &diagnosticsBlob);
+            Environment.CurrentDirectory = Path.Combine(SharedHelpers.RunningExePath, "Examples", "Assets");
+            fixed (byte* moduleName = "hello-world"u8) module = session->loadModule((sbyte*)moduleName, &diagnosticsBlob);
             DiagnoseIfNeeded(diagnosticsBlob);
-            if (module == null)
-                throw new Exception("Module was not loaded");
+            if (module == null) throw new("Module was not loaded");
 
             // Now that the module is loaded we can look up those entry points by name.
             fixed (byte* entryPointName = "computeMain"u8)
@@ -145,10 +148,10 @@ internal unsafe class HelloWorldUnsafe
         }
     }
 
-    private static void CreatePipelineFromSpirv(ISlangBlob* spirvCode)
+    private void CreatePipelineFromSpirv(ISlangBlob* spirvCode)
     {
         ReadOnlySpan<byte> spirvSpan = new(spirvCode->getBufferPointer(), checked((int)spirvCode->getBufferSize()));
-        shader = ResourceFactory.CreateShader(new()
+        _shader = ResourceFactory.CreateShader(new()
         {
             Debug = true,
             EntryPoint = "main",
@@ -156,56 +159,58 @@ internal unsafe class HelloWorldUnsafe
             ShaderBytes = spirvSpan.ToArray()
         });
 
-        resourceLayout = ResourceFactory.CreateResourceLayout(new(
-            new ResourceLayoutElementDescription("buffer0", ResourceKind.StructuredBufferReadOnly, ShaderStages.Compute),
-            new ResourceLayoutElementDescription("buffer1", ResourceKind.StructuredBufferReadOnly, ShaderStages.Compute),
-            new ResourceLayoutElementDescription("result", ResourceKind.StructuredBufferReadOnly, ShaderStages.Compute)));
+        _resourceLayout = ResourceFactory.CreateResourceLayout(
+            new(new ResourceLayoutElementDescription("buffer0", ResourceKind.StructuredBufferReadOnly, ShaderStages.Compute),
+                new ResourceLayoutElementDescription("buffer1", ResourceKind.StructuredBufferReadOnly, ShaderStages.Compute),
+                new ResourceLayoutElementDescription("result",
+                                                     ResourceKind.StructuredBufferReadOnly,
+                                                     ShaderStages.Compute)));
 
-        pipeline = ResourceFactory.CreateComputePipeline(new()
+        _pipeline = ResourceFactory.CreateComputePipeline(new()
         {
-            ComputeShader = shader,
-            ResourceLayouts = new[] { resourceLayout },
+            ComputeShader = _shader,
+            ResourceLayouts = [_resourceLayout],
             ThreadGroupSizeX = 1,
             ThreadGroupSizeY = 1,
             ThreadGroupSizeZ = 1,
         });
     }
 
-    private static void CreateBuffers()
+    private void CreateBuffers()
     {
         var description = new BufferDescription(BufferSize, BufferUsage.StructuredBufferReadOnly, sizeof(float));
-        inputBuffer0 = ResourceFactory.CreateBuffer(description);
-        inputBuffer1 = ResourceFactory.CreateBuffer(description);
-        outputBuffer = ResourceFactory.CreateBuffer(description with { Usage = BufferUsage.StructuredBufferReadWrite });
-        stagingBuffer = ResourceFactory.CreateBuffer(description with { Usage = BufferUsage.Staging, StructureByteStride = 0 });
+        _inputBuffer0 = ResourceFactory.CreateBuffer(description);
+        _inputBuffer1 = ResourceFactory.CreateBuffer(description);
+        _outputBuffer = ResourceFactory.CreateBuffer(description with { Usage = BufferUsage.StructuredBufferReadWrite });
+        _stagingBuffer
+            = ResourceFactory.CreateBuffer(description with { Usage = BufferUsage.Staging, StructureByteStride = 0 });
 
-        var mapped = graphicsDevice.Map<float>(stagingBuffer, MapMode.Write);
-        for (int i = 0; i < ElementCount; i++)
-            mapped[i] = i;
-        graphicsDevice.Unmap(stagingBuffer);
+        var mapped = _graphicsDevice.Map<float>(_stagingBuffer, MapMode.Write);
+        for (int i = 0; i < ElementCount; i++) mapped[i] = i;
+        _graphicsDevice.Unmap(_stagingBuffer);
     }
 
-    private static void DispatchCompute()
+    private void DispatchCompute()
     {
         using var commandList = ResourceFactory.CreateCommandList();
-        using var resourceSet = ResourceFactory.CreateResourceSet(new(resourceLayout, inputBuffer0, inputBuffer1, outputBuffer));
+        using var resourceSet
+            = ResourceFactory.CreateResourceSet(new(_resourceLayout, _inputBuffer0, _inputBuffer1, _outputBuffer));
         commandList.Begin();
-        commandList.CopyBuffer(stagingBuffer, 0, inputBuffer0, 0, BufferSize);
-        commandList.CopyBuffer(stagingBuffer, 0, inputBuffer1, 0, BufferSize);
-        commandList.SetPipeline(pipeline);
+        commandList.CopyBuffer(_stagingBuffer, 0, _inputBuffer0, 0, BufferSize);
+        commandList.CopyBuffer(_stagingBuffer, 0, _inputBuffer1, 0, BufferSize);
+        commandList.SetPipeline(_pipeline);
         commandList.SetComputeResourceSet(0, resourceSet);
         commandList.Dispatch(ElementCount, 1, 1);
-        commandList.CopyBuffer(outputBuffer, 0, stagingBuffer, 0, BufferSize);
+        commandList.CopyBuffer(_outputBuffer, 0, _stagingBuffer, 0, BufferSize);
         commandList.End();
-        graphicsDevice.SubmitCommands(commandList);
-        graphicsDevice.WaitForIdle();
+        _graphicsDevice.SubmitCommands(commandList);
+        _graphicsDevice.WaitForIdle();
     }
 
-    private static void PrintComputeResults()
+    private void PrintComputeResults()
     {
-        var mapped = graphicsDevice.Map<float>(stagingBuffer, MapMode.Write);
-        for (int i = 0; i < ElementCount; i++)
-            Console.WriteLine(mapped[i]);
-        graphicsDevice.Unmap(stagingBuffer);
+        var mapped = _graphicsDevice.Map<float>(_stagingBuffer, MapMode.Write);
+        for (int i = 0; i < ElementCount; i++) Logger.LogInformation("[{Index}] = {Value}", i, mapped[i]);
+        _graphicsDevice.Unmap(_stagingBuffer);
     }
 }

@@ -1,7 +1,7 @@
 using SlangNet.Bindings.Generated;
 using Xunit;
 
-namespace SlangNet.Tests;
+namespace SlangNet.Tests.Common;
 
 public class UUIDTests
 {
