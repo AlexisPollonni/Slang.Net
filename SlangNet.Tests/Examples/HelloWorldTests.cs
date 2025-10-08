@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using SlangNet.Bindings.Generated;
 using SlangNet.ComWrappers.Gfx.Descriptions;
 using SlangNet.ComWrappers.Gfx.Interfaces;
@@ -23,7 +22,6 @@ public sealed class HelloWorldTests(ITestOutputHelper testOutputHelper, DefaultT
     : TestBase<HelloWorldTests>(testOutputHelper, fixture)
 {
     private const int ElementCount = 16;
-    private const int BufferSize = sizeof(float) * ElementCount;
 
     [Theory]
     [InlineData(DeviceType.DirectX12)]
@@ -34,10 +32,18 @@ public sealed class HelloWorldTests(ITestOutputHelper testOutputHelper, DefaultT
     {
         var (device, program) = LoadModuleAndCreateDevice(type);
         var pipeline = CreatePipelineFromProgram(device, program);
-        CreateBuffers(device, out var inputBuffer0, out var inputBuffer1, out var outputBuffer);
+
+        var inputData = Enumerable.Range(0, ElementCount).Select(i => (float)i).ToArray();
+        var expected = inputData.Select(i => i + i).ToArray();
+
+        CreateBuffers(device, inputData, out var inputBuffer0, out var inputBuffer1, out var outputBuffer);
 
         DispatchCompute(device, pipeline, inputBuffer0, inputBuffer1, outputBuffer);
         PrintComputeResults(device, outputBuffer);
+
+        device.ReadBufferResource<float>(outputBuffer, Range.All, out var outputData).ThrowIfFailed();
+
+        Assert.Equal(expected, outputData.AsReadOnlySpan());
     }
 
     private (IDevice device, IShaderProgram program) LoadModuleAndCreateDevice(DeviceType type)
@@ -45,12 +51,9 @@ public sealed class HelloWorldTests(ITestOutputHelper testOutputHelper, DefaultT
         // First a global session is necessary
         var globalSession = SharedHelpers.CreateTestGlobalSession();
 
-        var device = SharedHelpers.CreateTestDevice(globalSession,
-                                                    logger: Logger,
-                                                    deviceType: type,
-                                                    allowCpuDevice: true);
-        
-        
+        var device = SharedHelpers.CreateTestDevice(globalSession, logger: Logger, deviceType: type, allowCpuDevice: true);
+
+
         // Next a session to generate SPIRV code is created
         var session = device.GetSlangSessionOrThrow();
 
@@ -106,40 +109,32 @@ public sealed class HelloWorldTests(ITestOutputHelper testOutputHelper, DefaultT
     }
 
     private static void CreateBuffers(IDevice device,
+                                      IEnumerable<float> inputData,
                                       out IBufferResource inputBuffer0,
                                       out IBufferResource inputBuffer1,
                                       out IBufferResource outputBuffer)
     {
-        var description = new BufferResourceDescription
+        var initData = inputData.ToArray();
+
+        var description = new ResourceDescriptionBase
         {
-            Base = new()
-            {
-                Type = IResource.ResourceType.Buffer,
-                AllowedStates = new(ResourceState.ShaderResource,
-                                    ResourceState.UnorderedAccess,
-                                    ResourceState.CopyDestination),
-                DefaultState = ResourceState.UnorderedAccess,
-                MemoryType = MemoryType.DeviceLocal,
-            },
-            SizeInBytes = BufferSize,
-            ElementSize = sizeof(float),
+            Type = IResource.ResourceType.Buffer,
+            AllowedStates = new(ResourceState.ShaderResource, ResourceState.UnorderedAccess, ResourceState.CopyDestination),
+            DefaultState = ResourceState.UnorderedAccess,
+            MemoryType = MemoryType.DeviceLocal,
         };
 
-        ref var nullData = ref Unsafe.NullRef<byte>();
-        var initData = Enumerable.Range(0, ElementCount).Select(i => (float)i).ToArray();
-        device.CreateBufferResource(out inputBuffer0, description.Base, initData).ThrowIfFailed();
-        device.CreateBufferResource(out inputBuffer1, description.Base, initData).ThrowIfFailed();
+        device.CreateBufferResource(out inputBuffer0, description, initData).ThrowIfFailed();
+        device.CreateBufferResource(out inputBuffer1, description, initData).ThrowIfFailed();
 
-        outputBuffer = device.CreateBufferResourceOrThrow(description with
-                                                          {
-                                                              Base = description.Base with
-                                                              {
-                                                                  AllowedStates = new(ResourceState.ShaderResource,
-                                                                                      ResourceState.UnorderedAccess,
-                                                                                      ResourceState.CopySource)
-                                                              }
-                                                          },
-                                                          nullData);
+        device.CreateBufferResource(out outputBuffer,
+                                    description with
+                                    {
+                                        AllowedStates = new(ResourceState.ShaderResource,
+                                                            ResourceState.UnorderedAccess,
+                                                            ResourceState.CopySource)
+                                    },
+                                    GC.AllocateUninitializedArray<float>(initData.Length));
     }
 
     private static void DispatchCompute(IDevice device,
