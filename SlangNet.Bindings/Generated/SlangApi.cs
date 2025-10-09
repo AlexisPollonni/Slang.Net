@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 
 namespace SlangNet.Bindings.Generated;
@@ -23,6 +22,9 @@ public static unsafe partial class SlangApi
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spGetBuildTagString", ExactSpelling = true)]
     [return: NativeTypeName("const char *")]
     public static extern sbyte* GetBuildTagString();
+
+    [NativeTypeName("#define SLANG_HAS_BACKTRACE 0")]
+    public const int SLANG_HAS_BACKTRACE = 0;
 
     [NativeTypeName("#define SLANG_FACILITY_WIN_GENERAL 0")]
     public const int SLANG_FACILITY_WIN_GENERAL = 0;
@@ -952,6 +954,10 @@ public static unsafe partial class SlangApi
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionDecl_getParent", ExactSpelling = true)]
     public static extern SlangReflectionDecl* ReflectionDecl_getParent(SlangReflectionDecl* decl);
 
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionDecl_findModifier"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionDecl_findModifier", ExactSpelling = true)]
+    public static extern SlangReflectionModifier* ReflectionDecl_findModifier(SlangReflectionDecl* decl, [NativeTypeName("SlangModifierID")] ModifierID modifierID);
+
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionGeneric_asDecl"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflectionGeneric_asDecl", ExactSpelling = true)]
     public static extern SlangReflectionDecl* ReflectionGeneric_asDecl(SlangReflectionGeneric* generic);
@@ -1157,6 +1163,10 @@ public static unsafe partial class SlangApi
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflection_FindVarByNameInType", ExactSpelling = true)]
     public static extern SlangReflectionVariable* Reflection_FindVarByNameInType([NativeTypeName("SlangReflection *")] SlangProgramLayout* reflection, SlangReflectionType* reflType, [NativeTypeName("const char *")] sbyte* name);
 
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.Reflection_TryResolveOverloadedFunction"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflection_TryResolveOverloadedFunction", ExactSpelling = true)]
+    public static extern SlangReflectionFunction* Reflection_TryResolveOverloadedFunction([NativeTypeName("SlangReflection *")] SlangProgramLayout* reflection, [NativeTypeName("uint32_t")] uint candidateCount, SlangReflectionFunction** candidates);
+
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.Reflection_getEntryPointCount"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, EntryPoint = "spReflection_getEntryPointCount", ExactSpelling = true)]
     [return: NativeTypeName("SlangUInt")]
@@ -1254,6 +1264,25 @@ public static unsafe partial class SlangApi
     public static extern int CompileRequest_getSession([NativeTypeName("SlangCompileRequest *")] ICompileRequest* request, [NativeTypeName("slang::ISession **")] ISession** outSession);
 
     public const int kSessionFlags_None = 0;
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_createBlob"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern ISlangBlob* slang_createBlob([NativeTypeName("const void *")] void* data, [NativeTypeName("size_t")] nuint size);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_loadModuleFromSource"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("slang::IModule *")]
+    public static extern IModule* slang_loadModuleFromSource([NativeTypeName("slang::ISession *")] ISession* session, [NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("const char *")] sbyte* source, [NativeTypeName("size_t")] nuint sourceSize, ISlangBlob** outDiagnostics = null);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_loadModuleFromIRBlob"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("slang::IModule *")]
+    public static extern IModule* slang_loadModuleFromIRBlob([NativeTypeName("slang::ISession *")] ISession* session, [NativeTypeName("const char *")] sbyte* moduleName, [NativeTypeName("const char *")] sbyte* path, [NativeTypeName("const void *")] void* source, [NativeTypeName("size_t")] nuint sourceSize, ISlangBlob** outDiagnostics = null);
+
+    /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_loadModuleInfoFromIRBlob"]/*' />
+    [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    [return: NativeTypeName("SlangResult")]
+    public static extern int slang_loadModuleInfoFromIRBlob([NativeTypeName("slang::ISession *")] ISession* session, [NativeTypeName("const void *")] void* source, [NativeTypeName("size_t")] nuint sourceSize, [NativeTypeName("SlangInt &")] nint* outModuleVersion, [NativeTypeName("const char *&")] sbyte** outModuleCompilerVersion, [NativeTypeName("const char *&")] sbyte** outModuleName);
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_createGlobalSession"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]

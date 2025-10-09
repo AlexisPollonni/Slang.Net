@@ -381,6 +381,12 @@
       <enumerator name="DenormalModeFp64" access="public">
         <type primitive="False">int</type>
       </enumerator>
+      <enumerator name="UseMSVCStyleBitfieldPacking" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ForceCLayout" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
       <enumerator name="CountOf" access="public">
         <type primitive="False">int</type>
       </enumerator>
