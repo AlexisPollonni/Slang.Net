@@ -1,4 +1,4 @@
-﻿<Solution>
+<Solution>
   <Folder Name="/Solution Items/">
     <File Path="Directory.Build.props" />
     <File Path="nuget.config" />
@@ -9,13 +9,18 @@
     <File Path=".editorconfig" />
     <File Path="Directory.Build.targets" />
   </Folder>
+  <Folder Name="/Solution Items/Scripts/">
+    <File Path="Scripts/DownloadSlangBinaries.cs" />
+    <File Path="Scripts/GenerateRuntimeJson.cs" />
+    <Project Path="Scripts/Shared/Slang.Net.Scripts.Shared.csproj" />
+  </Folder>
   <Project Path="build\_build.csproj">
     <Configuration Solution="Debug|Any CPU" Project="Debug|Any CPU|NoBuild" />
     <Configuration Solution="Release|Any CPU" Project="Release|Any CPU|NoBuild" />
   </Project>
   <Project Path="SlangNet.Bindings\SlangNet.Bindings.csproj" />
-  <Project Path="SlangNet.ComWrappers\SlangNet.ComWrappers.csproj" Type="Classic C#" />
-  <Project Path="SlangNet.Native\SlangNet.Native.csproj" Type="Classic C#" />
+  <Project Path="SlangNet.ComWrappers\SlangNet.ComWrappers.csproj" />
+  <Project Path="SlangNet.Native\SlangNet.Native.csproj" />
   <Project Path="SlangNet.Pretty.SourceGenerator\SlangNet.Pretty.SourceGenerator.csproj" />
   <Project Path="SlangNet.Pretty\SlangNet.Pretty.csproj" />
   <Project Path="SlangNet.Tests\SlangNet.Tests.csproj" />

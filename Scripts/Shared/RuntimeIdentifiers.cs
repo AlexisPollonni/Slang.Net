@@ -1,0 +1,111 @@
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
+using Intellenum;
+
+namespace Slang.Net.Scripts.Shared;
+
+[Intellenum<string>()]
+[Member("LinuxArm64", "linux-aarch64")]
+[Member("Linux64", "linux-x86_64")]
+[Member("MacOsArm64", "macos-aarch64")]
+[Member("MacOs64", "macos-x86_64")]
+[Member("WinArm64", "windows-aarch64")]
+[Member("Win64", "windows-x86_64")]
+[Member("Wasm", "wasm")]
+public partial class SlangRuntimeId : IParsable<SlangRuntimeId>
+{
+    public static SlangRuntimeId Parse(string s, IFormatProvider? provider)
+    {
+        return FromValue(s);
+    }
+
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out SlangRuntimeId result)
+    {
+        return TryFromValue(s, out result);
+    }
+
+    public DotnetRuntimeId ToDotnetRuntimeId()
+    {
+        return Value switch
+        {
+            LinuxArm64Value => DotnetRuntimeId.LinuxArm64,
+            Linux64Value => DotnetRuntimeId.Linux64,
+            MacOsArm64Value => DotnetRuntimeId.MacOsArm64,
+            MacOs64Value => DotnetRuntimeId.MacOs64,
+            WinArm64Value => DotnetRuntimeId.WinArm64,
+            Win64Value => DotnetRuntimeId.Win64,
+            WasmValue => DotnetRuntimeId.BrowserWasm,
+            _ => throw new ArgumentOutOfRangeException(nameof(Value), "Unexpected Slang Rid value")
+        };
+    }
+}
+
+[Intellenum<string>(conversions:Conversions.Default | Conversions.SystemTextJson)]
+//Rids taken from https://learn.microsoft.com/en-us/dotnet/core/rid-catalog
+[Member("Any", "any")]
+
+[Member("Win64", "win-x64")]
+[Member("Win32", "win-x86")]
+[Member("WinArm64", "win-arm64")]
+
+[Member("Linux64", "linux-x64")]
+[Member("LinuxMusl64", "linux-musl-x64")]
+[Member("LinuxMuslArm64", "linux-musl-arm64")]
+[Member("LinuxArm", "linux-arm")]
+[Member("LinuxArm64", "linux-arm64")]
+[Member("LinuxBionicArm64", "linux-bionic-arm64")]
+[Member("LinuxLoongArch64", "linux-loongarch64")]
+
+[Member("MacOs64", "osx-x64")]
+[Member("MacOsArm64", "osx-arm64")]
+
+[Member("IosArm64", "ios-arm64")]
+[Member("IosSimulatorArm64", "iossimulator-arm64")]
+[Member("IosSimulator64", "iossimulator-x64")]
+
+[Member("AndroidArm64", "android-arm64")]
+[Member("AndroidArm", "android-arm")]
+[Member("Android64", "android-x64")]
+[Member("Android32", "android-x86")]
+
+[Member("BrowserWasm", "browser-wasm")]
+public partial class DotnetRuntimeId : ISpanParsable<DotnetRuntimeId>
+{
+    public static DotnetRuntimeId Parse(string s, IFormatProvider? provider)
+    {
+        return FromValue(s);
+    }
+
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out DotnetRuntimeId result)
+    {
+        return TryFromValue(s, out result);
+    }
+
+    public static DotnetRuntimeId Current => FromValue(RuntimeInformation.RuntimeIdentifier);
+    
+    public SlangRuntimeId ToSlangRuntimeId()
+    {
+        return Value switch
+        {
+            Win64Value => SlangRuntimeId.Win64,
+            WinArm64Value => SlangRuntimeId.WinArm64,
+            Linux64Value => SlangRuntimeId.Linux64,
+            LinuxArm64Value => SlangRuntimeId.LinuxArm64,
+            MacOs64Value => SlangRuntimeId.MacOs64,
+            MacOsArm64Value => SlangRuntimeId.MacOsArm64,
+            BrowserWasmValue => SlangRuntimeId.Wasm,
+            _ => throw new ArgumentOutOfRangeException(nameof(Value),
+                                                       "Dotnet runtime identifier value is not convertible to SlangRuntimeId"),
+        };
+    }
+
+    public static DotnetRuntimeId Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
+    {
+        return FromValue(s.ToString());
+    }
+
+    public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, [MaybeNullWhen(false)] out DotnetRuntimeId result)
+    {
+        return TryFromValue(s.ToString(), out result);
+    }
+}

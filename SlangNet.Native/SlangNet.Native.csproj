@@ -13,7 +13,7 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 
-        <_NukeProjectFile>$(MSBuildThisFileDirectory)..\build\_build.csproj</_NukeProjectFile>
+        <ScriptsFolder>$(MSBuildThisFileDirectory)..\Scripts</ScriptsFolder>
     </PropertyGroup>
     
     <PropertyGroup Condition="'$(BeforePack)' == ''">
@@ -36,17 +36,9 @@
 
         <PropertyGroup>
             <_OutBinariesDir>$(IntermediateOutputPath)\runtimes\$(SlangRuntimeIdentifier)\native</_OutBinariesDir>
-
-            <_NukeAdditionalEnvVars>
-                NUKE_NO_LOGO=true;
-                NUKE_OUTPUT_NATIVE_DIRECTORY=$(_OutBinariesDir);
-                NUKE_SLANG_VERSION=$(SlangVersion);
-                NUKE_TARGET_RIDS=$(SlangRuntimeIdentifier);
-                NUKE_INTERNAL_INTERCEPTOR=1;
-            </_NukeAdditionalEnvVars>
         </PropertyGroup>
 
-        <Exec Command="dotnet run --project $(_NukeProjectFile) -- download-slang-binaries" EnvironmentVariables="$(_NukeAdditionalEnvVars)"/>
+        <Exec Command="dotnet $(ScriptsFolder)\DownloadSlangBinaries.cs -- -o $(_OutBinariesDir) --slang-version $(SlangVersion) --target-rids $(SlangRuntimeIdentifier)"/>
 
         <ItemGroup>
             <_NativeBinaries Include="$(_OutBinariesDir)\*.dll;$(_OutBinariesDir)\*.so;$(_OutBinariesDir)\*.dylib"/>
@@ -118,21 +110,16 @@
         </PropertyGroup>
 
         <!-- Prepare the parameters and calls the script to generate the runtime json to include in the package for dependency resolution. Uses NUKE internally for convenience -->
+
         <PropertyGroup>
-            <_NukeRuntimeJsonEnvVars>
-                NUKE_NO_LOGO=true;
-                NUKE_VERSION_PREFIX=$(VersionPrefix);
-                NUKE_VERSION_SUFFIX=$(VersionSuffix);
-                NUKE_BASE_PACKAGE_NAME=$(MSBuildProjectName);
-                NUKE_TARGET_RIDS=$([MSBuild]::Escape('$(RuntimeIdentifiers)'));
-                NUKE_RUNTIME_JSON_OUTPUT_DIRECTORY=$(_RuntimeJsonDir);
-                NUKE_SLANG_VERSION=$(SlangVersion);
-                NUKE_INTERNAL_INTERCEPTOR=1;
-            </_NukeRuntimeJsonEnvVars>
+            <_RuntimeIdentifiersComma>$(RuntimeIdentifiers.Replace(';', ','))</_RuntimeIdentifiersComma>
         </PropertyGroup>
 
-        <Exec Command="dotnet run --project $(_NukeProjectFile) -- generate-runtime-json"
-              EnvironmentVariables="$(_NukeRuntimeJsonEnvVars)"/>
+        <PropertyGroup>
+            <VersionSuffixArg Condition="'$(VersionSuffix)' != ''">--version-suffix $(VersionSuffix)</VersionSuffixArg>
+        </PropertyGroup>
+
+        <Exec Command="dotnet $(ScriptsFolder)\GenerateRuntimeJson.cs -- -o $(_RuntimeJsonDir) --version-prefix $(VersionPrefix) $(VersionSuffixArg) --base-package-name $(MSBuildProjectName) --target-rids $(_RuntimeIdentifiersComma)"/>
 
         <ItemGroup>
             <None Include="README.md" Pack="true" PackagePath="readme.md" Condition="Exists('README.md')"/>
