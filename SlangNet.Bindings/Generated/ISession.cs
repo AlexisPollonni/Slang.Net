@@ -1,6 +1,5 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using static SlangNet.LayoutRules;
 
 namespace SlangNet.Bindings.Generated;
 
@@ -46,7 +45,7 @@ public unsafe partial struct ISession
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("slang::TypeLayoutReflection *")]
-    public delegate TypeLayoutReflection* _getTypeLayout(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("SlangInt")] nint targetIndex = 0, [NativeTypeName("slang::LayoutRules")] LayoutRules rules = Default, ISlangBlob** outDiagnostics = null);
+    public delegate TypeLayoutReflection* _getTypeLayout(ISession* pThis, [NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("SlangInt")] nint targetIndex = 0, [NativeTypeName("slang::LayoutRules")] LayoutRules rules = LayoutRules.Default, ISlangBlob** outDiagnostics = null);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("slang::TypeReflection *")]
@@ -167,7 +166,7 @@ public unsafe partial struct ISession
     /// <include file='ISession.xml' path='doc/member[@name="ISession.getTypeLayout"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("slang::TypeLayoutReflection *")]
-    public TypeLayoutReflection* getTypeLayout([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("SlangInt")] nint targetIndex = 0, [NativeTypeName("slang::LayoutRules")] LayoutRules rules = Default, ISlangBlob** outDiagnostics = null)
+    public TypeLayoutReflection* getTypeLayout([NativeTypeName("slang::TypeReflection *")] TypeReflection* type, [NativeTypeName("SlangInt")] nint targetIndex = 0, [NativeTypeName("slang::LayoutRules")] LayoutRules rules = LayoutRules.Default, ISlangBlob** outDiagnostics = null)
     {
         return Marshal.GetDelegateForFunctionPointer<_getTypeLayout>(lpVtbl->getTypeLayout)((ISession*)Unsafe.AsPointer(ref this), type, targetIndex, rules, outDiagnostics);
     }

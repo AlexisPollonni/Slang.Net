@@ -1,5 +1,3 @@
-using static SlangNet.Bindings.Generated.ModifierID;
-
 namespace SlangNet.Bindings.Generated;
 
 /// <include file='Modifier.xml' path='doc/member[@name="Modifier"]/*' />
@@ -11,36 +9,36 @@ public partial struct Modifier
     public enum ID : uint
     {
         /// <include file='ID.xml' path='doc/member[@name="ID.Shared"]/*' />
-        Shared = ModifierShared,
+        Shared = ModifierID.Shared,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.NoDiff"]/*' />
-        NoDiff = ModifierNoDiff,
+        NoDiff = ModifierID.NoDiff,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Static"]/*' />
-        Static = ModifierStatic,
+        Static = ModifierID.Static,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Const"]/*' />
-        Const = ModifierConst,
+        Const = ModifierID.Const,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Export"]/*' />
-        Export = ModifierExport,
+        Export = ModifierID.Export,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Extern"]/*' />
-        Extern = ModifierExtern,
+        Extern = ModifierID.Extern,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Differentiable"]/*' />
-        Differentiable = ModifierDifferentiable,
+        Differentiable = ModifierID.Differentiable,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Mutating"]/*' />
-        Mutating = ModifierMutating,
+        Mutating = ModifierID.Mutating,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.In"]/*' />
-        In = ModifierIn,
+        In = ModifierID.In,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.Out"]/*' />
-        Out = ModifierOut,
+        Out = ModifierID.Out,
 
         /// <include file='ID.xml' path='doc/member[@name="ID.InOut"]/*' />
-        InOut = ModifierInout,
+        InOut = ModifierID.Inout,
     }
 }
