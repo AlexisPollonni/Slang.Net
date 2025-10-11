@@ -16,7 +16,7 @@ using Slang.Net.Scripts.Shared;
 
 var builder = ConsoleHost.Create(args);
 
-builder.Services.AddTransient(p => new GitHubClient(new ProductHeaderValue("SlangNet")));
+builder.Services.AddScoped(p => new GitHubClient(new ProductHeaderValue("SlangNet")));
 
 var app = builder.ToConsoleAppBuilder();
 
@@ -44,7 +44,11 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
 
         if (GitHubActions.IsRunningOnGitHubActions)
         {
-            client.Credentials = new(GitHubActions.Environment.Runtime.Token);
+            var token = GitHubActions.Environment.Runtime.Token;
+            token.ShouldNotBeNullOrWhiteSpace(
+                "GITHUB_TOKEN environment variable is required to download Slang binaries from GitHub releases"
+            );
+            client.Credentials = new(token);
             logger.LogInformation("Added github-actions token to octokit client");
 
             cache = GitHubActions.Environment.Home;
