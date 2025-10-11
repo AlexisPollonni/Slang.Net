@@ -39,8 +39,6 @@ jobs:
         with:
           file-path: ./Scripts/CI.EntryPoint.cs
           arguments: --target="Test"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 'Pack and Push package to nightly feed'
         if: matrix.os == 'windows-latest'
@@ -48,5 +46,3 @@ jobs:
         with:
           file-path: ./Scripts/CI.EntryPoint.cs
           arguments: --target="PublishToGithub" --is-nightly
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
