@@ -44,7 +44,7 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
 
         if (GitHubActions.IsRunningOnGitHubActions)
         {
-            var token = GitHubActions.Environment.Runtime.Token;
+            var token = EnvironmentVariable("GITHUB_TOKEN");
             token.ShouldNotBeNullOrWhiteSpace(
                 "GITHUB_TOKEN environment variable is required to download Slang binaries from GitHub releases"
             );
