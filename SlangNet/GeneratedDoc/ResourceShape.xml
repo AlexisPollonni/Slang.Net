@@ -3,31 +3,31 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="ResourceShape" access="public">
       <type>uint</type>
-      <enumerator name="ResourceBaseShapeMask" access="public">
+      <enumerator name="BaseShapeMask" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x0F</code>
         </value>
       </enumerator>
-      <enumerator name="ResourceNone" access="public">
+      <enumerator name="None" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x00</code>
         </value>
       </enumerator>
-      <enumerator name="Texture1D" access="public">
+      <enumerator name="Texture1d" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x01</code>
         </value>
       </enumerator>
-      <enumerator name="Texture2D" access="public">
+      <enumerator name="Texture2d" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x02</code>
         </value>
       </enumerator>
-      <enumerator name="Texture3D" access="public">
+      <enumerator name="Texture3d" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x03</code>
@@ -57,7 +57,7 @@
           <code>0x07</code>
         </value>
       </enumerator>
-      <enumerator name="ResourceUnknown" access="public">
+      <enumerator name="Unknown" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x08</code>
@@ -75,7 +75,7 @@
           <code>0x0A</code>
         </value>
       </enumerator>
-      <enumerator name="ResourceExtShapeMask" access="public">
+      <enumerator name="ExtShapeMask" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0x1F0</code>
@@ -111,16 +111,16 @@
           <code>0x100</code>
         </value>
       </enumerator>
-      <enumerator name="Texture1DArray" access="public">
+      <enumerator name="Texture1dArray" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>Texture1D | TextureArrayFlag</code>
+          <code>Texture1d | TextureArrayFlag</code>
         </value>
       </enumerator>
-      <enumerator name="Texture2DArray" access="public">
+      <enumerator name="Texture2dArray" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>Texture2D | TextureArrayFlag</code>
+          <code>Texture2d | TextureArrayFlag</code>
         </value>
       </enumerator>
       <enumerator name="TextureCubeArray" access="public">
@@ -129,16 +129,16 @@
           <code>TextureCube | TextureArrayFlag</code>
         </value>
       </enumerator>
-      <enumerator name="Texture2DMultisample" access="public">
+      <enumerator name="Texture2dMultisample" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>Texture2D | TextureMultisampleFlag</code>
+          <code>Texture2d | TextureMultisampleFlag</code>
         </value>
       </enumerator>
-      <enumerator name="Texture2DMultisampleArray" access="public">
+      <enumerator name="Texture2dMultisampleArray" access="public">
         <type primitive="False">uint</type>
         <value>
-          <code>Texture2D | TextureMultisampleFlag | TextureArrayFlag</code>
+          <code>Texture2d | TextureMultisampleFlag | TextureArrayFlag</code>
         </value>
       </enumerator>
       <enumerator name="TextureSubpassMultisample" access="public">

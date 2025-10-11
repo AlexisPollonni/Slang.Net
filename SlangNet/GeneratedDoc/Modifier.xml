@@ -7,67 +7,67 @@
         <enumerator name="Shared" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierShared</code>
+            <code>ModifierID.Shared</code>
           </value>
         </enumerator>
         <enumerator name="NoDiff" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierNoDiff</code>
+            <code>ModifierID.NoDiff</code>
           </value>
         </enumerator>
         <enumerator name="Static" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierStatic</code>
+            <code>ModifierID.Static</code>
           </value>
         </enumerator>
         <enumerator name="Const" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierConst</code>
+            <code>ModifierID.Const</code>
           </value>
         </enumerator>
         <enumerator name="Export" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierExport</code>
+            <code>ModifierID.Export</code>
           </value>
         </enumerator>
         <enumerator name="Extern" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierExtern</code>
+            <code>ModifierID.Extern</code>
           </value>
         </enumerator>
         <enumerator name="Differentiable" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierDifferentiable</code>
+            <code>ModifierID.Differentiable</code>
           </value>
         </enumerator>
         <enumerator name="Mutating" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierMutating</code>
+            <code>ModifierID.Mutating</code>
           </value>
         </enumerator>
         <enumerator name="In" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierIn</code>
+            <code>ModifierID.In</code>
           </value>
         </enumerator>
         <enumerator name="Out" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierOut</code>
+            <code>ModifierID.Out</code>
           </value>
         </enumerator>
         <enumerator name="InOut" access="public">
           <type primitive="False">uint</type>
           <value>
-            <code>ModifierInout</code>
+            <code>ModifierID.Inout</code>
           </value>
         </enumerator>
       </enumeration>

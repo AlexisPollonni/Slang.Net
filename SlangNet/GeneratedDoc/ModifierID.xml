@@ -3,37 +3,37 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="ModifierID" access="public">
       <type>uint</type>
-      <enumerator name="ModifierShared" access="public">
+      <enumerator name="Shared" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierNoDiff" access="public">
+      <enumerator name="NoDiff" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierStatic" access="public">
+      <enumerator name="Static" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierConst" access="public">
+      <enumerator name="Const" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierExport" access="public">
+      <enumerator name="Export" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierExtern" access="public">
+      <enumerator name="Extern" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierDifferentiable" access="public">
+      <enumerator name="Differentiable" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierMutating" access="public">
+      <enumerator name="Mutating" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierIn" access="public">
+      <enumerator name="In" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierOut" access="public">
+      <enumerator name="Out" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="ModifierInout" access="public">
+      <enumerator name="Inout" access="public">
         <type primitive="False">uint</type>
       </enumerator>
     </enumeration>
