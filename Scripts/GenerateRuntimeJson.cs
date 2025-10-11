@@ -9,7 +9,6 @@
 
 #:project ./Shared/Slang.Net.Scripts.Shared.csproj
 
-
 using ConsoleAppFramework;
 using Microsoft.Extensions.Logging;
 using NuGet.RuntimeModel;
@@ -22,7 +21,6 @@ var app = ConsoleHost.Create(args).ToConsoleAppBuilder();
 app.UseFilter<CommandTracingFilter>();
 
 await app.RunAsync(args);
-
 
 [RegisterCommands]
 class RootCommand(ILogger<RootCommand> logger)
@@ -41,7 +39,8 @@ class RootCommand(ILogger<RootCommand> logger)
         Version versionPrefix,
         string basePackageName,
         DotnetRuntimeId[] targetRids,
-        string? versionSuffix = null)
+        string? versionSuffix = null
+    )
     {
         var packageVersion = new NuGetVersion(versionPrefix, versionSuffix);
 
@@ -49,37 +48,49 @@ class RootCommand(ILogger<RootCommand> logger)
 
         var anyDesc = CreateRuntimeDescription(DotnetRuntimeId.Any, rids, packageVersion);
         var descriptions = rids.Select(rid => CreateRuntimeDescription(rid, [rid], packageVersion))
-                               .Append(anyDesc);
+            .Append(anyDesc);
 
         var runtimeJsonPath = WriteRuntimeJson(outputJsonDirectory, descriptions);
 
         logger.LogInformation("Generated runtime.json at {Path}", runtimeJsonPath);
 
-
-        static FilePath WriteRuntimeJson(DirectoryPath outputDirectory, IEnumerable<RuntimeDescription> descriptions)
+        static FilePath WriteRuntimeJson(
+            DirectoryPath outputDirectory,
+            IEnumerable<RuntimeDescription> descriptions
+        )
         {
             EnsureDirectoryExists(outputDirectory);
-            var jsonFilePath = MakeAbsolute(outputDirectory.CombineWithFilePath(RuntimeGraph.RuntimeGraphFileName));
+            var jsonFilePath = MakeAbsolute(
+                outputDirectory.CombineWithFilePath(RuntimeGraph.RuntimeGraphFileName)
+            );
 
             var graph = new RuntimeGraph(descriptions);
 
             JsonRuntimeFormat.WriteRuntimeGraph(jsonFilePath.FullPath, graph);
 
-            FileExists(jsonFilePath).ShouldBeTrue($"Expected runtime.json to be created at {jsonFilePath}");
+            FileExists(jsonFilePath)
+                .ShouldBeTrue($"Expected runtime.json to be created at {jsonFilePath}");
             return jsonFilePath;
         }
 
-        RuntimeDescription CreateRuntimeDescription(DotnetRuntimeId targetRid,
-                                                    IEnumerable<DotnetRuntimeId> dependencyRids,
-                                                    NuGetVersion packageVersion)
+        RuntimeDescription CreateRuntimeDescription(
+            DotnetRuntimeId targetRid,
+            IEnumerable<DotnetRuntimeId> dependencyRids,
+            NuGetVersion packageVersion
+        )
         {
-            var versionRange = new VersionRange(minVersion: packageVersion,
-                                                maxVersion: packageVersion,
-                                                includeMaxVersion: true);
+            var versionRange = new VersionRange(
+                minVersion: packageVersion,
+                maxVersion: packageVersion,
+                includeMaxVersion: true
+            );
 
             var dependencyIds = dependencyRids.Select(GetNativePackageIdName);
 
-            var dependencies = dependencyIds.Select(id => new RuntimePackageDependency(id, versionRange));
+            var dependencies = dependencyIds.Select(id => new RuntimePackageDependency(
+                id,
+                versionRange
+            ));
 
             var dependencySet = new RuntimeDependencySet(GetNativePackageIdName(), dependencies);
             return new(targetRid.Value, [dependencySet]);

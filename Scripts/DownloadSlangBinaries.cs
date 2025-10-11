@@ -8,7 +8,6 @@
 
 #:project ./Shared/Slang.Net.Scripts.Shared.csproj
 
-
 using ConsoleAppFramework;
 using Microsoft.Extensions.Logging;
 using Octokit;
@@ -25,7 +24,6 @@ app.UseFilter<CommandTracingFilter>();
 
 await app.RunAsync(args);
 
-
 [RegisterCommands]
 class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
 {
@@ -39,7 +37,8 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
     public async Task Download(
         DotnetRuntimeId[] targetRids,
         Version slangVersion,
-        [Dir] DirectoryPath? outputDir = null)
+        [Dir] DirectoryPath? outputDir = null
+    )
     {
         DirectoryPath? cache = null;
 
@@ -51,32 +50,40 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
             cache = GitHubActions.Environment.Home;
         }
 
-
-
-        var release = await client.Repository.Release.Get("shader-slang", "slang", "v" + slangVersion);
+        var release = await client.Repository.Release.Get(
+            "shader-slang",
+            "slang",
+            "v" + slangVersion
+        );
 
         var assetNameStart = $"slang-{slangVersion}-";
-        var platformReleases = release.Assets.Where(asset => asset.Name.StartsWith(assetNameStart) &&
-                                            asset.Name.EndsWith(".zip") &&
-                                            !asset.Name.Contains("debug-info") &&
-                                            !asset.Name.Contains("glibc"));
-
-
+        var platformReleases = release.Assets.Where(asset =>
+            asset.Name.StartsWith(assetNameStart)
+            && asset.Name.EndsWith(".zip")
+            && !asset.Name.Contains("debug-info")
+            && !asset.Name.Contains("glibc")
+        );
 
         static SlangRuntimeId GetRidFromAssetName(string assetName)
         {
             assetName.ShouldNotBeNullOrWhiteSpace();
 
-            return SlangRuntimeId.List().FirstOrDefault(id => assetName.Contains(id.Value))
+            return SlangRuntimeId
+                .List()
+                .FirstOrDefault(id => assetName.Contains(id.Value))
                 .ShouldNotBeNull($"Could not determine SlangRuntimeId from asset name {assetName}");
         }
 
         platformReleases
             .AsParallel()
             .WithExecutionMode(ParallelExecutionMode.ForceParallelism)
-            .Select(asset => (ArchivePath: GetDownloadCacheDirectory().CombineWithFilePath(asset.Name),
-                                RuntimeId: GetRidFromAssetName(asset.Name).ToDotnetRuntimeId(),
-                                asset.BrowserDownloadUrl))
+            .Select(asset =>
+                (
+                    ArchivePath: GetDownloadCacheDirectory().CombineWithFilePath(asset.Name),
+                    RuntimeId: GetRidFromAssetName(asset.Name).ToDotnetRuntimeId(),
+                    asset.BrowserDownloadUrl
+                )
+            )
             .Where(tuple => targetRids.Contains(tuple.RuntimeId))
             .ForAll(tuple =>
             {
@@ -84,12 +91,16 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
                 {
                     logger.LogInformation(
                         "Slang binary are already saved to {Path}, skipping download...",
-                        tuple.ArchivePath);
+                        tuple.ArchivePath
+                    );
                 }
                 else
                 {
-                    logger.LogInformation("Downloading archive from {Url} and saving to {ArchivePath}",
-                                    tuple.BrowserDownloadUrl, tuple.ArchivePath);
+                    logger.LogInformation(
+                        "Downloading archive from {Url} and saving to {ArchivePath}",
+                        tuple.BrowserDownloadUrl,
+                        tuple.ArchivePath
+                    );
 
                     EnsureDirectoryExists(tuple.ArchivePath.GetDirectory());
                     DownloadFile(tuple.BrowserDownloadUrl, tuple.ArchivePath);
@@ -99,12 +110,17 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
                 var assetFolderPath = GetReleaseFolderForRid(runtimeId);
 
                 if (DirectoryExists(assetFolderPath))
-                    logger.LogInformation("{AssetPath} already exists, skipping archive unzipping...", assetFolderPath);
+                    logger.LogInformation(
+                        "{AssetPath} already exists, skipping archive unzipping...",
+                        assetFolderPath
+                    );
                 else
                 {
-                    logger.LogInformation("Unzipping {ArchivePath} to directory {AssetPath}",
-                                    tuple.ArchivePath,
-                                    assetFolderPath);
+                    logger.LogInformation(
+                        "Unzipping {ArchivePath} to directory {AssetPath}",
+                        tuple.ArchivePath,
+                        assetFolderPath
+                    );
                     Unzip(tuple.ArchivePath, assetFolderPath);
                 }
 
@@ -114,24 +130,34 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
                     "Found in slang release {Version}-{RuntimeId} shared library file {Files}",
                     slangVersion,
                     tuple.RuntimeId,
-                    libFiles.Select(p => p.GetFilename()));
+                    libFiles.Select(p => p.GetFilename())
+                );
 
                 string[] reqSlangBinNames = ["slang", "gfx"];
 
-                var filesMissing = reqSlangBinNames.Except(libFiles.Select(path =>
-                {
-                    var filename = path.GetFilenameWithoutExtension().FullPath;
-                    return filename.StartsWith("lib") ? filename[3..] : filename;
-                }))
-                .ToArray();
+                var filesMissing = reqSlangBinNames
+                    .Except(
+                        libFiles.Select(path =>
+                        {
+                            var filename = path.GetFilenameWithoutExtension().FullPath;
+                            return filename.StartsWith("lib") ? filename[3..] : filename;
+                        })
+                    )
+                    .ToArray();
 
-                filesMissing.ShouldBeEmpty($"Missing slang binaries: {filesMissing} in release {slangVersion}");
+                filesMissing.ShouldBeEmpty(
+                    $"Missing slang binaries: {filesMissing} in release {slangVersion}"
+                );
 
-                if (outputDir is null) return;
+                if (outputDir is null)
+                    return;
 
                 EnsureDirectoryExists(outputDir);
 
-                logger.LogInformation("Copying binaries to output directory {OutputDir}", outputDir);
+                logger.LogInformation(
+                    "Copying binaries to output directory {OutputDir}",
+                    outputDir
+                );
                 CopyFiles(libFiles, outputDir);
             });
 
@@ -139,8 +165,8 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
         {
             var binDir = GetBinFolderForRid(rid);
 
-            DirectoryExists(binDir).ShouldBeTrue($"Expected bin directory {binDir} to exist for RID {rid}");
-
+            DirectoryExists(binDir)
+                .ShouldBeTrue($"Expected bin directory {binDir} to exist for RID {rid}");
 
             return GetFiles($"{binDir}/*")
                 .Where(f => f.GetExtension() is ".dll" or ".so" or ".dylib");
@@ -150,9 +176,10 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
             GetDownloadCacheDirectory().Combine($"slang-{slangVersion}-{rid.Value}");
 
         DirectoryPath GetBinFolderForRid(DotnetRuntimeId rid) =>
-            GetReleaseFolderForRid(rid).Combine(rid == DotnetRuntimeId.Win64 || rid == DotnetRuntimeId.WinArm64
-                ? "bin"
-                : "lib");
+            GetReleaseFolderForRid(rid)
+                .Combine(
+                    rid == DotnetRuntimeId.Win64 || rid == DotnetRuntimeId.WinArm64 ? "bin" : "lib"
+                );
     }
 
     public void Clean()
@@ -172,5 +199,4 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
 
         return cache.Combine(".slangdlcache");
     }
-
 }
