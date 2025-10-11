@@ -195,11 +195,9 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
 
     private static DirectoryPath GetDownloadCacheDirectory()
     {
-        DirectoryPath cache;
-        if (GitHubActions.IsRunningOnGitHubActions)
-            cache = GitHubActions.Environment.Home;
-        else
-            cache = Context.Environment.GetSpecialPath(SpecialPath.LocalTemp);
+        DirectoryPath? cache = GitHubActions?.Environment?.Home;
+
+        cache ??= Context.Environment.GetSpecialPath(SpecialPath.LocalTemp).ShouldNotBeNull();
 
         return cache.Combine(".slangdlcache");
     }
