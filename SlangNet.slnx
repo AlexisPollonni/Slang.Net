@@ -12,6 +12,7 @@
   <Folder Name="/Solution Items/Scripts/">
     <File Path="Scripts/DownloadSlangBinaries.cs" />
     <File Path="Scripts/GenerateRuntimeJson.cs" />
+    <File Path="Scripts/GenerateSlang.cs" />
     <Project Path="Scripts/Shared/Slang.Net.Scripts.Shared.csproj" />
   </Folder>
   <Project Path="build\_build.csproj">
