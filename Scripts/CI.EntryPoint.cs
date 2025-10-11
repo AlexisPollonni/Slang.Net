@@ -1,0 +1,117 @@
+#!/usr/local/share/dotnet/dotnet run
+
+#:sdk Cake.Sdk
+
+#:package Cake.FileHelpers
+
+#:project ./Shared/Slang.Net.Scripts.Shared.csproj
+
+using Shouldly;
+using Slang.Net.Scripts.Shared;
+
+var target = Argument("target", "Pack");
+var configuration = Argument("configuration", "Release");
+var IsNightly = Argument("is-nightly", false);
+
+var findRes = Context
+    .FileSystem.GetDirectory(Context.Environment.WorkingDirectory)
+    .GetFiles("*.slnx", SearchScope.Recursive);
+
+var slnFile = findRes.Single();
+
+Task("Restore")
+    .Does(() =>
+    {
+        DotNetRestore(slnFile.Path.FullPath);
+    });
+
+Task("Clean")
+    .IsDependentOn("Restore")
+    .Does(() =>
+    {
+        DotNetClean(slnFile.Path.FullPath, new() { Configuration = configuration });
+    })
+    .ContinueOnError();
+
+Task("Build")
+    .IsDependentOn("Restore")
+    .Does(() =>
+    {
+        DotNetBuild(
+            slnFile.Path.FullPath,
+            new()
+            {
+                Configuration = configuration,
+                NoRestore = true,
+                MSBuildSettings = new() { ContinuousIntegrationBuild = true },
+            }
+        );
+    });
+
+Task("Test")
+    .IsDependentOn("Build")
+    .Does(() =>
+    {
+        DotNetTest(
+            slnFile.Path.FullPath,
+            new()
+            {
+                Configuration = configuration,
+                NoRestore = true,
+                NoBuild = true,
+            }
+        );
+    });
+
+Task("Pack")
+    .IsDependentOn("Build")
+    .Does(() =>
+    {
+        DotNetPack(
+            slnFile.Path.FullPath,
+            new()
+            {
+                Configuration = configuration,
+                NoRestore = true,
+                NoBuild = true,
+            }
+        );
+    });
+
+Task("PublishToGithub")
+    .IsDependentOn("Pack")
+    .WithCriteria(() => IsNightly && GitHubActions.IsRunningOnGitHubActions)
+    .Does(() =>
+    {
+        var artifacts = Context
+            .FileSystem.GetDirectory(Context.Environment.WorkingDirectory)
+            .GetFiles("*.nupkg", SearchScope.Recursive)
+            .ToList();
+
+        artifacts.ShouldNotBeEmpty("No artifacts found to publish");
+
+        foreach (var artifact in artifacts)
+        {
+            Information("Publishing {0}", artifact.Path);
+            DotNetNuGetPush(
+                artifact.Path,
+                new()
+                {
+                    Source = "https://nuget.pkg.github.com/AlexisPollonni/index.json",
+                    ApiKey = GitHubActions.Environment.Runtime.Token,
+                    SkipDuplicate = true,
+                }
+            );
+        }
+    });
+
+RunTarget(target);
+
+// Register services with script host integration
+static partial class Program
+{
+    static partial void RegisterServices(IServiceCollection services)
+    {
+        services.AddSharedScriptServices();
+    }
+}
