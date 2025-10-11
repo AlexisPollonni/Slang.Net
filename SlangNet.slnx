@@ -16,10 +16,6 @@
     <File Path="Scripts/GenerateSlang.cs" />
     <File Path="Scripts\CI.EntryPoint.cs" />
   </Folder>
-  <Project Path="build\_build.csproj">
-    <Configuration Solution="Debug|Any CPU" Project="Debug|Any CPU|NoBuild" />
-    <Configuration Solution="Release|Any CPU" Project="Release|Any CPU|NoBuild" />
-  </Project>
   <Project Path="SlangNet.Bindings\SlangNet.Bindings.csproj" />
   <Project Path="SlangNet.ComWrappers\SlangNet.ComWrappers.csproj" />
   <Project Path="SlangNet.Native\SlangNet.Native.csproj" />
