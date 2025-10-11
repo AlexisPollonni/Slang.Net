@@ -1,6 +1,6 @@
 #!/usr/local/share/dotnet/dotnet run
 
-#:sdk Cake.Sdk@5.1.25277.88-beta
+#:sdk Cake.Sdk
 
 #:package Cake.FileHelpers
 #:package Cake.APT.Module
