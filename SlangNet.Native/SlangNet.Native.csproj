@@ -12,7 +12,9 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-    <ScriptsFolder>$(MSBuildThisFileDirectory)..\Scripts</ScriptsFolder>
+    <ScriptsFolder>$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)', '..', 'Scripts'))</ScriptsFolder>
+    <DownloadSlangScript>$([MSBuild]::NormalizePath('$(ScriptsFolder)', 'DownloadSlangBinaries.cs'))</DownloadSlangScript>
+    <GenerateRuntimeJsonScript>$([MSBuild]::NormalizePath('$(ScriptsFolder)', 'GenerateRuntimeJson.cs'))</GenerateRuntimeJsonScript>
   </PropertyGroup>
   <PropertyGroup Condition="'$(BeforePack)' == ''">
     <BeforePack>PackNativePerRuntime</BeforePack>
@@ -31,9 +33,9 @@
       Text="RuntimeIdentifier is not set and could not be inferred."
     />
     <PropertyGroup>
-      <_OutBinariesDir>$(IntermediateOutputPath)\runtimes\$(SlangRuntimeIdentifier)\native</_OutBinariesDir>
+      <_OutBinariesDir>$([MSBuild]::NormalizePath('$(IntermediateOutputPath)', 'runtimes', '$(SlangRuntimeIdentifier)', 'native'))</_OutBinariesDir>
     </PropertyGroup>
-    <Exec Command="dotnet $(ScriptsFolder)\DownloadSlangBinaries.cs -- -o $(_OutBinariesDir) --slang-version $(SlangVersion) --target-rids $(SlangRuntimeIdentifier)" />
+    <Exec Command="dotnet $([MSBuild]::Escape('$(DownloadSlangScript)')) -- -o $([MSBuild]::Escape('$(_OutBinariesDir)')) --slang-version $(SlangVersion) --target-rids $(SlangRuntimeIdentifier)" />
     <ItemGroup>
       <_NativeBinaries Include="$(_OutBinariesDir)\*.dll;$(_OutBinariesDir)\*.so;$(_OutBinariesDir)\*.dylib" />
     </ItemGroup>
@@ -94,7 +96,7 @@
       <None
         Include="@(_NativeBinaries)"
         Pack="true"
-        PackagePath="runtimes\$(RuntimeIdentifier)\native\%(Filename)%(Extension)"
+        PackagePath="runtimes/$(RuntimeIdentifier)/native/%(Filename)%(Extension)"
       />
       <None
         Include="README.md"
@@ -114,7 +116,8 @@
                 For SlangNet see https://github.com/AlexisPollonni/SlangNet
                 For shader-slang see https://github.com/shader-slang/slang
             </PackageDescription>
-      <_RuntimeJsonDir>$(IntermediateOutputPath)</_RuntimeJsonDir>
+      <_RuntimeJsonDir>$([MSBuild]::NormalizePath('$(IntermediateOutputPath)'))</_RuntimeJsonDir>
+      <_RuntimeJsonFile>$([MSBuild]::NormalizePath('$(_RuntimeJsonDir)', 'runtime.json'))</_RuntimeJsonFile>
     </PropertyGroup>
     <!-- Prepare the parameters and calls the script to generate the runtime json to include in the package for dependency resolution. Uses NUKE internally for convenience -->
     <PropertyGroup>
@@ -125,7 +128,7 @@
         >--version-suffix $(VersionSuffix)</VersionSuffixArg
       >
     </PropertyGroup>
-    <Exec Command="dotnet $(ScriptsFolder)\GenerateRuntimeJson.cs -- -o $(_RuntimeJsonDir) --version-prefix $(VersionPrefix) $(VersionSuffixArg) --base-package-name $(MSBuildProjectName) --target-rids $(_RuntimeIdentifiersComma)" />
+    <Exec Command="dotnet $([MSBuild]::Escape('$(GenerateRuntimeJsonScript)')) -- -o $([MSBuild]::Escape('$(_RuntimeJsonDir)')) --version-prefix $(VersionPrefix) $(VersionSuffixArg) --base-package-name $(MSBuildProjectName) --target-rids $(_RuntimeIdentifiersComma)" />
     <ItemGroup>
       <None
         Include="README.md"
@@ -133,7 +136,7 @@
         PackagePath="readme.md"
         Condition="Exists('README.md')"
       />
-      <None Include="$(_RuntimeJsonDir)\runtime.json" Pack="true" PackagePath="runtime.json" />
+      <None Include="$(_RuntimeJsonFile)" Pack="true" PackagePath="runtime.json" />
     </ItemGroup>
   </Target>
 </Project>
