@@ -1,142 +1,142 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RuntimeIdentifiers>win-x64;win-arm64;linux-x64;linux-arm64;osx-x64;osx-arm64</RuntimeIdentifiers>
+    <!-- Set all package properties shared by packages -->
+    <PackageTags>slang;shader;C#;csharp;native</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/shader-slang/slang</RepositoryUrl>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <IncludeSymbols>false</IncludeSymbols>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <ScriptsFolder>$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)', '..', 'Scripts'))</ScriptsFolder>
+    <DownloadSlangScript>$([MSBuild]::NormalizePath('$(ScriptsFolder)', 'DownloadSlangBinaries.cs'))</DownloadSlangScript>
+    <GenerateRuntimeJsonScript>$([MSBuild]::NormalizePath('$(ScriptsFolder)', 'GenerateRuntimeJson.cs'))</GenerateRuntimeJsonScript>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(BeforePack)' == ''">
+    <BeforePack>PackNativePerRuntime</BeforePack>
+  </PropertyGroup>
+  <Target Name="DownloadSlangBinaries" BeforeTargets="BeforeBuild">
+    <Error Condition="'$(IntermediateOutputPath)' == ''" Text="OutDir is not set." />
+    <Error Condition="'$(SlangVersion)' == ''" Text="Slang version is not set." />
+    <PropertyGroup Condition="'$(RuntimeIdentifier)' != 'any'">
+      <SlangRuntimeIdentifier>$(RuntimeIdentifier)</SlangRuntimeIdentifier>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(RuntimeIdentifier)' == '' or '$(RuntimeIdentifier)' == 'any'">
+      <SlangRuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</SlangRuntimeIdentifier>
+    </PropertyGroup>
+    <Error
+      Condition="'$(SlangRuntimeIdentifier)' == ''"
+      Text="RuntimeIdentifier is not set and could not be inferred."
+    />
     <PropertyGroup>
-        <RuntimeIdentifiers>win-x64;win-arm64;linux-x64;linux-arm64;osx-x64;osx-arm64</RuntimeIdentifiers>
-
-        <!-- Set all package properties shared by packages -->
-        <PackageTags>slang;shader;C#;csharp;native</PackageTags>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/shader-slang/slang</RepositoryUrl>
-        <IncludeBuildOutput>false</IncludeBuildOutput>
-        <IncludeSymbols>false</IncludeSymbols>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-
-        <_NukeProjectFile>$(MSBuildThisFileDirectory)..\build\_build.csproj</_NukeProjectFile>
+      <_OutBinariesDir>$([MSBuild]::NormalizePath('$(IntermediateOutputPath)', 'runtimes', '$(SlangRuntimeIdentifier)', 'native'))</_OutBinariesDir>
     </PropertyGroup>
-    
-    <PropertyGroup Condition="'$(BeforePack)' == ''">
-        <BeforePack>PackNativePerRuntime</BeforePack>
-    </PropertyGroup>
-
-    <Target Name="DownloadSlangBinaries" BeforeTargets="BeforeBuild">
-        <Error Condition="'$(IntermediateOutputPath)' == ''" Text="OutDir is not set."/>
-        <Error Condition="'$(SlangVersion)' == ''" Text="Slang version is not set."/>
-
-        <PropertyGroup Condition="'$(RuntimeIdentifier)' != 'any'">
-            <SlangRuntimeIdentifier>$(RuntimeIdentifier)</SlangRuntimeIdentifier>
-        </PropertyGroup>
-
-        <PropertyGroup Condition="'$(RuntimeIdentifier)' == '' or '$(RuntimeIdentifier)' == 'any'">
-            <SlangRuntimeIdentifier>$(NETCoreSdkRuntimeIdentifier)</SlangRuntimeIdentifier>
-        </PropertyGroup>
-        
-        <Error Condition="'$(SlangRuntimeIdentifier)' == ''" Text="RuntimeIdentifier is not set and could not be inferred."/>
-
-        <PropertyGroup>
-            <_OutBinariesDir>$(IntermediateOutputPath)\runtimes\$(SlangRuntimeIdentifier)\native</_OutBinariesDir>
-
-            <_NukeAdditionalEnvVars>
-                NUKE_NO_LOGO=true;
-                NUKE_OUTPUT_NATIVE_DIRECTORY=$(_OutBinariesDir);
-                NUKE_SLANG_VERSION=$(SlangVersion);
-                NUKE_TARGET_RIDS=$(SlangRuntimeIdentifier);
-                NUKE_INTERNAL_INTERCEPTOR=1;
-            </_NukeAdditionalEnvVars>
-        </PropertyGroup>
-
-        <Exec Command="dotnet run --project $(_NukeProjectFile) -- download-slang-binaries" EnvironmentVariables="$(_NukeAdditionalEnvVars)"/>
-
-        <ItemGroup>
-            <_NativeBinaries Include="$(_OutBinariesDir)\*.dll;$(_OutBinariesDir)\*.so;$(_OutBinariesDir)\*.dylib"/>
-        </ItemGroup>
-
-        <Message Text="Found native binaries: @(_NativeBinaries)" Importance="high"/>
-        <Error Condition="@(_NativeBinaries->Count()) == 0" Text="No native binaries were found in $(_OutBinariesDir). Something went wrong."/>
-        <ItemGroup>
-            <Content Include="@(_NativeBinaries)" Pack="false" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always"/>
-        </ItemGroup>
-    </Target>
-
-    <!-- New target that uses MSBuild batching to pack each RID separately -->
-    <Target Name="PackNativePerRuntime" Condition="'$(_RecurseGuard)' == ''">
-        <!-- Create items for each RuntimeIdentifier -->
-        <ItemGroup>
-            <RuntimeIdentifiersToPack Include="$(RuntimeIdentifiers)"/>
-        </ItemGroup>
-
-        <!-- Pack each runtime identifier separately using batching -->
-        <MSBuild Projects="$(MSBuildProjectFile)"
-                 Targets="PackSingleRuntime;Pack"
-                 Properties="
+    <Exec Command="dotnet $([MSBuild]::Escape('$(DownloadSlangScript)')) -- -o $([MSBuild]::Escape('$(_OutBinariesDir)')) --slang-version $(SlangVersion) --target-rids $(SlangRuntimeIdentifier)" />
+    <ItemGroup>
+      <_NativeBinaries Include="$(_OutBinariesDir)\*.dll;$(_OutBinariesDir)\*.so;$(_OutBinariesDir)\*.dylib" />
+    </ItemGroup>
+    <Message Text="Found native binaries: @(_NativeBinaries)" Importance="high" />
+    <Error
+      Condition="@(_NativeBinaries-&gt;Count()) == 0"
+      Text="No native binaries were found in $(_OutBinariesDir). Something went wrong."
+    />
+    <ItemGroup>
+      <Content
+        Include="@(_NativeBinaries)"
+        Pack="false"
+        CopyToOutputDirectory="PreserveNewest"
+        CopyToPublishDirectory="Always"
+      />
+    </ItemGroup>
+  </Target>
+  <!-- New target that uses MSBuild batching to pack each RID separately -->
+  <Target Name="PackNativePerRuntime" Condition="'$(_RecurseGuard)' == ''">
+    <!-- Create items for each RuntimeIdentifier -->
+    <ItemGroup>
+      <RuntimeIdentifiersToPack Include="$(RuntimeIdentifiers)" />
+    </ItemGroup>
+    <!-- Pack each runtime identifier separately using batching -->
+    <MSBuild
+      Projects="$(MSBuildProjectFile)"
+      Targets="PackSingleRuntime;Pack"
+      Properties="
                      RuntimeIdentifier=%(RuntimeIdentifiersToPack.Identity);
                      PackageOutputPath=$(PackageOutputPath);
                      VersionPrefix=$(VersionPrefix);
                      VersionSuffix=$(VersionSuffix);
                      BeforePack=PackSingleRuntime;"
-                 BuildInParallel="false"/>
-
-        <CallTarget Targets="PackMetaPackage"/>
-    </Target>
-
-    <!-- Target to pack a single platform dependent runtime package -->
-    <Target Name="PackSingleRuntime" DependsOnTargets="DownloadSlangBinaries">
-        <Error Condition="'$(RuntimeIdentifier)' == ''" Text="PackMetaPackage should be called with a RuntimeIdentifier."/>
-        <PropertyGroup>
-            <PackageTitle>SlangNet - Native binaries for $(RuntimeIdentifier) platform</PackageTitle>
-            <PackageId>$(MSBuildProjectName).Runtime.$(RuntimeIdentifier)</PackageId>
-            <PackageDescription>
+      BuildInParallel="false"
+    />
+    <CallTarget Targets="PackMetaPackage" />
+  </Target>
+  <!-- Target to pack a single platform dependent runtime package -->
+  <Target Name="PackSingleRuntime" DependsOnTargets="DownloadSlangBinaries">
+    <Error
+      Condition="'$(RuntimeIdentifier)' == ''"
+      Text="PackMetaPackage should be called with a RuntimeIdentifier."
+    />
+    <PropertyGroup>
+      <PackageTitle>SlangNet - Native binaries for $(RuntimeIdentifier) platform</PackageTitle>
+      <PackageId>$(MSBuildProjectName).Runtime.$(RuntimeIdentifier)</PackageId>
+      <PackageDescription>
                 These are the native binaries of a single platform ($(RuntimeIdentifier)) for the SlangNet package, a .NET bindings library for shader-slang.
                 For SlangNet see https://github.com/AlexisPollonni/SlangNet
                 For shader-slang see https://github.com/shader-slang/slang
             </PackageDescription>
-        </PropertyGroup>
-        
-        <ItemGroup>
-            <!-- Remove any previously added native binaries to reapply pack attribute -->
-            <Content Remove="@(_NativeBinaries)"/>
-        </ItemGroup>
-
-        <ItemGroup>
-            <None Include="@(_NativeBinaries)" Pack="true" PackagePath="runtimes\$(RuntimeIdentifier)\native\%(Filename)%(Extension)"/>
-            <None Include="README.md" Pack="true" PackagePath="readme.md" Condition="Exists('README.md')"/>
-        </ItemGroup>
-    </Target>
-
-    <!-- Target to create meta package -->
-    <Target Name="PackMetaPackage">
-        <PropertyGroup>
-            <PackageTitle>SlangNet - Native binaries meta package</PackageTitle>
-            <PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+      <!-- Remove any previously added native binaries to reapply pack attribute -->
+      <Content Remove="@(_NativeBinaries)" />
+    </ItemGroup>
+    <ItemGroup>
+      <None
+        Include="@(_NativeBinaries)"
+        Pack="true"
+        PackagePath="runtimes/$(RuntimeIdentifier)/native/%(Filename)%(Extension)"
+      />
+      <None
+        Include="README.md"
+        Pack="true"
+        PackagePath="readme.md"
+        Condition="Exists('README.md')"
+      />
+    </ItemGroup>
+  </Target>
+  <!-- Target to create meta package -->
+  <Target Name="PackMetaPackage">
+    <PropertyGroup>
+      <PackageTitle>SlangNet - Native binaries meta package</PackageTitle>
+      <PackageDescription>
                 This is a meta-package containing native binaries for the SlangNet package, a .NET bindings library for shader-slang.
                 Dotnet should resolve the correct specific binaries for your platform, in case of issues make sure to specify a runtime identifier in your project file.
                 For SlangNet see https://github.com/AlexisPollonni/SlangNet
                 For shader-slang see https://github.com/shader-slang/slang
             </PackageDescription>
-            <_RuntimeJsonDir>$(IntermediateOutputPath)</_RuntimeJsonDir>
-        </PropertyGroup>
-
-        <!-- Prepare the parameters and calls the script to generate the runtime json to include in the package for dependency resolution. Uses NUKE internally for convenience -->
-        <PropertyGroup>
-            <_NukeRuntimeJsonEnvVars>
-                NUKE_NO_LOGO=true;
-                NUKE_VERSION_PREFIX=$(VersionPrefix);
-                NUKE_VERSION_SUFFIX=$(VersionSuffix);
-                NUKE_BASE_PACKAGE_NAME=$(MSBuildProjectName);
-                NUKE_TARGET_RIDS=$([MSBuild]::Escape('$(RuntimeIdentifiers)'));
-                NUKE_RUNTIME_JSON_OUTPUT_DIRECTORY=$(_RuntimeJsonDir);
-                NUKE_SLANG_VERSION=$(SlangVersion);
-                NUKE_INTERNAL_INTERCEPTOR=1;
-            </_NukeRuntimeJsonEnvVars>
-        </PropertyGroup>
-
-        <Exec Command="dotnet run --project $(_NukeProjectFile) -- generate-runtime-json"
-              EnvironmentVariables="$(_NukeRuntimeJsonEnvVars)"/>
-
-        <ItemGroup>
-            <None Include="README.md" Pack="true" PackagePath="readme.md" Condition="Exists('README.md')"/>
-            <None Include="$(_RuntimeJsonDir)\runtime.json" Pack="true" PackagePath="runtime.json"/>
-        </ItemGroup>
-    </Target>
+      <_RuntimeJsonDir>$([MSBuild]::NormalizePath('$(IntermediateOutputPath)'))</_RuntimeJsonDir>
+      <_RuntimeJsonFile>$([MSBuild]::NormalizePath('$(_RuntimeJsonDir)', 'runtime.json'))</_RuntimeJsonFile>
+    </PropertyGroup>
+    <!-- Prepare the parameters and calls the script to generate the runtime json to include in the package for dependency resolution. Uses NUKE internally for convenience -->
+    <PropertyGroup>
+      <_RuntimeIdentifiersComma>$(RuntimeIdentifiers.Replace(';', ','))</_RuntimeIdentifiersComma>
+    </PropertyGroup>
+    <PropertyGroup>
+      <VersionSuffixArg Condition="'$(VersionSuffix)' != ''"
+        >--version-suffix $(VersionSuffix)</VersionSuffixArg
+      >
+    </PropertyGroup>
+    <Exec Command="dotnet $([MSBuild]::Escape('$(GenerateRuntimeJsonScript)')) -- -o $([MSBuild]::Escape('$(_RuntimeJsonDir)')) --version-prefix $(VersionPrefix) $(VersionSuffixArg) --base-package-name $(MSBuildProjectName) --target-rids $(_RuntimeIdentifiersComma)" />
+    <ItemGroup>
+      <None
+        Include="README.md"
+        Pack="true"
+        PackagePath="readme.md"
+        Condition="Exists('README.md')"
+      />
+      <None Include="$(_RuntimeJsonFile)" Pack="true" PackagePath="runtime.json" />
+    </ItemGroup>
+  </Target>
 </Project>

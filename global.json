@@ -3,5 +3,8 @@
     "version": "10.x",
     "rollForward": "latestMajor",
     "allowPrerelease": true
+  },  
+  "msbuild-sdks": {
+    "Cake.Sdk": "5.1.25277.88-beta"
   }
 }

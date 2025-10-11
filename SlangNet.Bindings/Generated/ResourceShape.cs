@@ -4,20 +4,20 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("SlangResourceShapeIntegral")]
 public enum ResourceShape : uint
 {
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.ResourceBaseShapeMask"]/*' />
-    ResourceBaseShapeMask = 0x0F,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.BaseShapeMask"]/*' />
+    BaseShapeMask = 0x0F,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.ResourceNone"]/*' />
-    ResourceNone = 0x00,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.None"]/*' />
+    None = 0x00,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture1D"]/*' />
-    Texture1D = 0x01,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture1d"]/*' />
+    Texture1d = 0x01,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture2D"]/*' />
-    Texture2D = 0x02,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture2d"]/*' />
+    Texture2d = 0x02,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture3D"]/*' />
-    Texture3D = 0x03,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture3d"]/*' />
+    Texture3d = 0x03,
 
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.TextureCube"]/*' />
     TextureCube = 0x04,
@@ -31,8 +31,8 @@ public enum ResourceShape : uint
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.ByteAddressBuffer"]/*' />
     ByteAddressBuffer = 0x07,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.ResourceUnknown"]/*' />
-    ResourceUnknown = 0x08,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Unknown"]/*' />
+    Unknown = 0x08,
 
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.AccelerationStructure"]/*' />
     AccelerationStructure = 0x09,
@@ -40,8 +40,8 @@ public enum ResourceShape : uint
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.TextureSubpass"]/*' />
     TextureSubpass = 0x0A,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.ResourceExtShapeMask"]/*' />
-    ResourceExtShapeMask = 0x1F0,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.ExtShapeMask"]/*' />
+    ExtShapeMask = 0x1F0,
 
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.TextureFeedbackFlag"]/*' />
     TextureFeedbackFlag = 0x10,
@@ -58,20 +58,20 @@ public enum ResourceShape : uint
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.TextureCombinedFlag"]/*' />
     TextureCombinedFlag = 0x100,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture1DArray"]/*' />
-    Texture1DArray = Texture1D | TextureArrayFlag,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture1dArray"]/*' />
+    Texture1dArray = Texture1d | TextureArrayFlag,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture2DArray"]/*' />
-    Texture2DArray = Texture2D | TextureArrayFlag,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture2dArray"]/*' />
+    Texture2dArray = Texture2d | TextureArrayFlag,
 
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.TextureCubeArray"]/*' />
     TextureCubeArray = TextureCube | TextureArrayFlag,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture2DMultisample"]/*' />
-    Texture2DMultisample = Texture2D | TextureMultisampleFlag,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture2dMultisample"]/*' />
+    Texture2dMultisample = Texture2d | TextureMultisampleFlag,
 
-    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture2DMultisampleArray"]/*' />
-    Texture2DMultisampleArray = Texture2D | TextureMultisampleFlag | TextureArrayFlag,
+    /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.Texture2dMultisampleArray"]/*' />
+    Texture2dMultisampleArray = Texture2d | TextureMultisampleFlag | TextureArrayFlag,
 
     /// <include file='ResourceShape.xml' path='doc/member[@name="ResourceShape.TextureSubpassMultisample"]/*' />
     TextureSubpassMultisample = TextureSubpass | TextureMultisampleFlag,

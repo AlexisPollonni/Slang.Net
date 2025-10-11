@@ -1,9 +1,10 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using Intellenum;
 
-namespace SlangNet.Build.Tools;
+namespace Slang.Net.Scripts.Shared;
 
-[Intellenum<string>]
+[Intellenum<string>()]
 [Member("LinuxArm64", "linux-aarch64")]
 [Member("Linux64", "linux-x86_64")]
 [Member("MacOsArm64", "macos-aarch64")]
@@ -11,8 +12,18 @@ namespace SlangNet.Build.Tools;
 [Member("WinArm64", "windows-aarch64")]
 [Member("Win64", "windows-x86_64")]
 [Member("Wasm", "wasm")]
-public partial class SlangRuntimeId
+public partial class SlangRuntimeId : IParsable<SlangRuntimeId>
 {
+    public static SlangRuntimeId Parse(string s, IFormatProvider? provider)
+    {
+        return FromValue(s);
+    }
+
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out SlangRuntimeId result)
+    {
+        return TryFromValue(s, out result);
+    }
+
     public DotnetRuntimeId ToDotnetRuntimeId()
     {
         return Value switch
@@ -29,7 +40,7 @@ public partial class SlangRuntimeId
     }
 }
 
-[Intellenum<string>]
+[Intellenum<string>(conversions:Conversions.Default | Conversions.SystemTextJson)]
 //Rids taken from https://learn.microsoft.com/en-us/dotnet/core/rid-catalog
 [Member("Any", "any")]
 
@@ -58,8 +69,18 @@ public partial class SlangRuntimeId
 [Member("Android32", "android-x86")]
 
 [Member("BrowserWasm", "browser-wasm")]
-public partial class DotnetRuntimeId
+public partial class DotnetRuntimeId : ISpanParsable<DotnetRuntimeId>
 {
+    public static DotnetRuntimeId Parse(string s, IFormatProvider? provider)
+    {
+        return FromValue(s);
+    }
+
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out DotnetRuntimeId result)
+    {
+        return TryFromValue(s, out result);
+    }
+
     public static DotnetRuntimeId Current => FromValue(RuntimeInformation.RuntimeIdentifier);
     
     public SlangRuntimeId ToSlangRuntimeId()
@@ -76,5 +97,15 @@ public partial class DotnetRuntimeId
             _ => throw new ArgumentOutOfRangeException(nameof(Value),
                                                        "Dotnet runtime identifier value is not convertible to SlangRuntimeId"),
         };
+    }
+
+    public static DotnetRuntimeId Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
+    {
+        return FromValue(s.ToString());
+    }
+
+    public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, [MaybeNullWhen(false)] out DotnetRuntimeId result)
+    {
+        return TryFromValue(s.ToString(), out result);
     }
 }

@@ -4,36 +4,36 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("SlangModifierIDIntegral")]
 public enum ModifierID : uint
 {
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierShared"]/*' />
-    ModifierShared,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.Shared"]/*' />
+    Shared,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierNoDiff"]/*' />
-    ModifierNoDiff,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.NoDiff"]/*' />
+    NoDiff,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierStatic"]/*' />
-    ModifierStatic,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.Static"]/*' />
+    Static,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierConst"]/*' />
-    ModifierConst,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.Const"]/*' />
+    Const,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierExport"]/*' />
-    ModifierExport,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.Export"]/*' />
+    Export,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierExtern"]/*' />
-    ModifierExtern,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.Extern"]/*' />
+    Extern,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierDifferentiable"]/*' />
-    ModifierDifferentiable,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.Differentiable"]/*' />
+    Differentiable,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierMutating"]/*' />
-    ModifierMutating,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.Mutating"]/*' />
+    Mutating,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierIn"]/*' />
-    ModifierIn,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.In"]/*' />
+    In,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierOut"]/*' />
-    ModifierOut,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.Out"]/*' />
+    Out,
 
-    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.ModifierInout"]/*' />
-    ModifierInout,
+    /// <include file='ModifierID.xml' path='doc/member[@name="ModifierID.Inout"]/*' />
+    Inout,
 }

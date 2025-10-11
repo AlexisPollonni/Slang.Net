@@ -1,10 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 
-namespace SlangNet.Build.Tools;
+namespace Slang.Net.Scripts.Shared;
 
-internal class StreamToStringWrapper(Encoding? encoding = null) : Stream
+public class StreamToStringWrapper(Encoding? encoding = null) : Stream
 {
     private readonly StringBuilder _stringBuilder = new();
     private readonly Encoding _encoding = encoding ?? Encoding.Default;

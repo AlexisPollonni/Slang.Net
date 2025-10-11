@@ -3,16 +3,16 @@
   <namespace name="SlangNet.Bindings.Generated">
     <enumeration name="FpDenormalMode" access="public">
       <type>uint</type>
-      <enumerator name="FpDenormModeAny" access="public">
+      <enumerator name="DenormAny" access="public">
         <type primitive="False">uint</type>
         <value>
           <code>0</code>
         </value>
       </enumerator>
-      <enumerator name="FpDenormModePreserve" access="public">
+      <enumerator name="DenormPreserve" access="public">
         <type primitive="False">uint</type>
       </enumerator>
-      <enumerator name="FpDenormModeFtz" access="public">
+      <enumerator name="DenormFtz" access="public">
         <type primitive="False">uint</type>
       </enumerator>
     </enumeration>

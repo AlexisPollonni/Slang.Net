@@ -4,6 +4,6 @@ namespace SlangNet.Bindings.Generated;
 [NativeTypeName("SlangProfileIDIntegral")]
 public enum ProfileID : uint
 {
-    /// <include file='ProfileID.xml' path='doc/member[@name="ProfileID.ProfileUnknown"]/*' />
-    ProfileUnknown,
+    /// <include file='ProfileID.xml' path='doc/member[@name="ProfileID.Unknown"]/*' />
+    Unknown,
 }

@@ -4,7 +4,7 @@ namespace SlangNet.ComWrappers.Descriptions;
 
 public readonly record struct TargetDescription(
     Unmanaged.CompileTarget Format = Unmanaged.CompileTarget.TargetUnknown,
-    Unmanaged.ProfileID Profile = Unmanaged.ProfileID.ProfileUnknown,
+    Unmanaged.ProfileID Profile = Unmanaged.ProfileID.Unknown,
     TargetFlags Flags = 0,
     Unmanaged.FloatingPointMode FloatingPointMode = Unmanaged.FloatingPointMode.Default,
     Unmanaged.LineDirectiveMode LineDirectiveMode = Unmanaged.LineDirectiveMode.Default,
