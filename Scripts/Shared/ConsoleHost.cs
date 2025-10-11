@@ -14,14 +14,23 @@ public static class ConsoleHost
     {
         var builder = Host.CreateApplicationBuilder(args);
 
+        builder.Services.AddSharedScriptServices();
 
-        builder.Logging.AddOpenTelemetry(logging =>
-        {
-            logging.IncludeFormattedMessage = true;
-            logging.IncludeScopes = true;
-        });
+        return builder;
+    }
 
-        builder.Services.AddOpenTelemetry()
+    public static IServiceCollection AddSharedScriptServices(this IServiceCollection services)
+    {
+        return services
+            .AddLogging(logging =>
+            {
+                logging.AddOpenTelemetry(op =>
+                {
+                    op.IncludeFormattedMessage = true;
+                    op.IncludeScopes = true;
+                });
+            })
+            .AddOpenTelemetry()
             .ConfigureResource(resource =>
             {
                 resource.AddService("ConsoleAppFramework Telemetry");
@@ -34,15 +43,15 @@ public static class ConsoleHost
             .WithTracing(tracing =>
             {
                 // configure for tracing
-                tracing.SetSampler(new AlwaysOnSampler())
+                tracing
+                    .SetSampler(new AlwaysOnSampler())
                     .AddHttpClientInstrumentation()
                     .AddSource(ConsoleAppFrameworkActivitySource.Name);
             })
             .WithLogging(logging =>
             {
                 logging.AddOtlpExporter();
-            });
-
-        return builder;
+            })
+            .Services;
     }
 }
