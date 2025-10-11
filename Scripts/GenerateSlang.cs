@@ -26,18 +26,20 @@ using LogLevel = Cake.Core.Diagnostics.LogLevel;
 using StrDic = System.Collections.Generic.Dictionary<string, string>;
 using StrList = System.Collections.Generic.IList<string>;
 
-var target = Argument("target", "Bindings");
+var target = Argument("target", "");
 
 var slangRepo = Argument<DirectoryPath>("slang-repo");
-var bindingsOutput = Argument<DirectoryPath>("bindings-output");
+var bindingsOutput = Argument<DirectoryPath?>("bindings-output", null);
 
 var testsOutput = Argument<DirectoryPath?>("tests-output", null);
 var docsOutput = Argument<DirectoryPath?>("docs-output", null);
 
 Task("Bindings")
     .Description("Generate C# P/Invoke bindings for the Slang API")
+    .WithCriteria(() => bindingsOutput is not null)
     .Does(() =>
     {
+        bindingsOutput.ShouldNotBeNull();
         InstallDependencies();
 
         DirectoryExists(slangRepo)
@@ -101,7 +103,14 @@ Task("Docs")
         WriteFilesToDisk(genFiles);
     });
 
-RunTarget(target);
+if (target.IsWhiteSpace())
+{
+    Information("No target specified, running full generation.");
+    RunTarget("Bindings");
+    RunTarget("Docs");
+}
+else
+    RunTarget(target);
 
 static BuildConfig GetSlangConfig(DirectoryPath slangRepo) =>
     BuildConfig.GetBuildConfig("SlangApi", "slang") with
