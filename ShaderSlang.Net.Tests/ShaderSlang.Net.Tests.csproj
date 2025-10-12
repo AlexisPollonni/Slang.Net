@@ -38,7 +38,8 @@
     </Content>
   </ItemGroup>
   <PropertyGroup Condition="$([System.OperatingSystem]::IsWindows())">
-    <PlatformTarget Condition=" '$(PlatformTarget)' == '' "
+    <PlatformTarget
+      Condition=" '$(PlatformTarget)' == '' And '$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString())' != '' "
       >$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLower())</PlatformTarget
     >
   </PropertyGroup>
