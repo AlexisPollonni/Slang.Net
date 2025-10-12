@@ -4,22 +4,30 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<TransientResourceHeapDescription,
-        Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc>))]
+    typeof(MarshalableMarshaller.Bidirectional<
+        TransientResourceHeapDescription,
+        Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc
+    >)
+)]
 public readonly record struct TransientResourceHeapDescription(
-    Unmanaged.ITransientResourceHeap.Flags.TransientResourceHeapFlagsEnum Flags
-        = Unmanaged.ITransientResourceHeap.Flags.TransientResourceHeapFlagsEnum.None,
+    Unmanaged.ITransientResourceHeap.Flags.TransientResourceHeapFlagsEnum Flags =
+        Unmanaged.ITransientResourceHeap.Flags.TransientResourceHeapFlagsEnum.None,
     nuint ConstantBufferSize = 0,
     int SamplerDescriptorCount = 0,
     int UavDescriptorCount = 0,
     int SrvDescriptorCount = 0,
     int ConstantBufferDescriptorCount = 0,
-    int AccelerationStructureDescriptorCount = 0) : IMarshalsToNative<Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc>,
-                                                    IMarshalsFromNative<TransientResourceHeapDescription,
-                                                        Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc>
+    int AccelerationStructureDescriptorCount = 0
+)
+    : IMarshalsToNative<Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc>,
+        IMarshalsFromNative<
+            TransientResourceHeapDescription,
+            Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc
+        >
 {
-    Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc IMarshalsToNative<Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc>.
-        AsNative(ref GrowingStackBuffer buffer) =>
+    Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc IMarshalsToNative<Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc>.AsNative(
+        ref GrowingStackBuffer buffer
+    ) =>
         new()
         {
             flags = Flags,
@@ -28,16 +36,19 @@ public readonly record struct TransientResourceHeapDescription(
             uavDescriptorCount = UavDescriptorCount,
             srvDescriptorCount = SrvDescriptorCount,
             constantBufferDescriptorCount = ConstantBufferDescriptorCount,
-            accelerationStructureDescriptorCount = AccelerationStructureDescriptorCount
+            accelerationStructureDescriptorCount = AccelerationStructureDescriptorCount,
         };
 
     public static TransientResourceHeapDescription CreateFromNative(
-        Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc unmanaged) =>
-        new(unmanaged.flags,
+        Unmanaged.ITransientResourceHeap.TransientResourceHeapDesc unmanaged
+    ) =>
+        new(
+            unmanaged.flags,
             unmanaged.constantBufferSize,
             unmanaged.samplerDescriptorCount,
             unmanaged.uavDescriptorCount,
             unmanaged.srvDescriptorCount,
             unmanaged.constantBufferDescriptorCount,
-            unmanaged.accelerationStructureDescriptorCount);
+            unmanaged.accelerationStructureDescriptorCount
+        );
 }

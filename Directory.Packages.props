@@ -15,6 +15,7 @@
     <PackageVersion Include="ConsoleAppFramework" Version="5.6.1" />
     <PackageVersion Include="ConsoleAppFramework.Abstractions" Version="5.6.1" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="CSharpier.MsBuild" Version="1.1.2" />
     <PackageVersion Include="GitInfo" Version="3.3.3" />
     <PackageVersion Include="GitVersion.MsBuild" Version="6.4.0" />
     <PackageVersion Include="Humanizer" Version="2.14.1" />

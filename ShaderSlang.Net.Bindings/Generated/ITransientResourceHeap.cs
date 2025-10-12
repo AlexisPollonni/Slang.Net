@@ -13,7 +13,11 @@ public unsafe partial struct ITransientResourceHeap
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(ITransientResourceHeap* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        ITransientResourceHeap* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -33,12 +37,14 @@ public unsafe partial struct ITransientResourceHeap
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _createCommandBuffer(ITransientResourceHeap* pThis, ICommandBuffer** outCommandBuffer);
+    public delegate int _createCommandBuffer(
+        ITransientResourceHeap* pThis,
+        ICommandBuffer** outCommandBuffer
+    );
 
     /// <include file='Flags.xml' path='doc/member[@name="Flags"]/*' />
     public partial struct Flags
     {
-
         /// <include file='TransientResourceHeapFlagsEnum.xml' path='doc/member[@name="TransientResourceHeapFlagsEnum"]/*' />
         public enum TransientResourceHeapFlagsEnum
         {
@@ -85,9 +91,16 @@ public unsafe partial struct ITransientResourceHeap
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ITransientResourceHeap*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (ITransientResourceHeap*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -95,7 +108,9 @@ public unsafe partial struct ITransientResourceHeap
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ITransientResourceHeap*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (ITransientResourceHeap*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -103,7 +118,9 @@ public unsafe partial struct ITransientResourceHeap
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ITransientResourceHeap*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (ITransientResourceHeap*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='ITransientResourceHeap.xml' path='doc/member[@name="ITransientResourceHeap.synchronizeAndReset"]/*' />
@@ -111,7 +128,9 @@ public unsafe partial struct ITransientResourceHeap
     [return: NativeTypeName("gfx::Result")]
     public int synchronizeAndReset()
     {
-        return Marshal.GetDelegateForFunctionPointer<_synchronizeAndReset>(lpVtbl->synchronizeAndReset)((ITransientResourceHeap*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_synchronizeAndReset>(
+            lpVtbl->synchronizeAndReset
+        )((ITransientResourceHeap*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ITransientResourceHeap.xml' path='doc/member[@name="ITransientResourceHeap.finish"]/*' />
@@ -119,7 +138,9 @@ public unsafe partial struct ITransientResourceHeap
     [return: NativeTypeName("gfx::Result")]
     public int finish()
     {
-        return Marshal.GetDelegateForFunctionPointer<_finish>(lpVtbl->finish)((ITransientResourceHeap*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_finish>(lpVtbl->finish)(
+            (ITransientResourceHeap*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='ITransientResourceHeap.xml' path='doc/member[@name="ITransientResourceHeap.createCommandBuffer"]/*' />
@@ -127,12 +148,16 @@ public unsafe partial struct ITransientResourceHeap
     [return: NativeTypeName("gfx::Result")]
     public int createCommandBuffer(ICommandBuffer** outCommandBuffer)
     {
-        return Marshal.GetDelegateForFunctionPointer<_createCommandBuffer>(lpVtbl->createCommandBuffer)((ITransientResourceHeap*)Unsafe.AsPointer(ref this), outCommandBuffer);
+        return Marshal.GetDelegateForFunctionPointer<_createCommandBuffer>(
+            lpVtbl->createCommandBuffer
+        )((ITransientResourceHeap*)Unsafe.AsPointer(ref this), outCommandBuffer);
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
@@ -147,7 +172,9 @@ public unsafe partial struct ITransientResourceHeap
         [NativeTypeName("Result () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr finish;
 
-        [NativeTypeName("Result (ICommandBuffer **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (ICommandBuffer **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr createCommandBuffer;
     }
 }

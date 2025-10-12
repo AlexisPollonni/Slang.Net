@@ -9,7 +9,10 @@ using ShaderSlang.Net.ComWrappers.Tools.Internal;
 
 namespace ShaderSlang.Net.ComWrappers.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
+[GeneratedComInterface(
+    StringMarshalling = StringMarshalling.Custom,
+    StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller)
+)]
 [Guid("67618701-D116-468F-AB3B-474BEDCE0E3D")]
 [GenerateThrowingMethods]
 public partial interface ISession : IUnknown
@@ -21,33 +24,47 @@ public partial interface ISession : IUnknown
     IModule? LoadModule(string moduleName, out IBlob diagnostics);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    IModule? LoadModuleFromSource(string moduleName, string path, IBlob source, out IBlob diagnostics);
+    IModule? LoadModuleFromSource(
+        string moduleName,
+        string path,
+        IBlob source,
+        out IBlob diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult CreateCompositeComponentType(
-        [MarshalUsing(CountElementName = "componentTypeCount")]
-        Span<IComponentType> componentTypes, nint componentTypeCount,
+        [MarshalUsing(CountElementName = "componentTypeCount")] Span<IComponentType> componentTypes,
+        nint componentTypeCount,
         out IComponentType compositeComponentType,
-        out IBlob diagnostics);
+        out IBlob diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     [return: MarshalUsing(typeof(NullableHandleStructMarshaller<TypeReflection>))]
-    TypeReflection? SpecializeType(TypeReflection type,
-                                   [MarshalUsing(CountElementName = "specializationArgCount")]
-                                   Span<SpecializationArgument> specializationArgs,
-                                   nint specializationArgCount,
-                                   out IBlob diagnostics);
+    TypeReflection? SpecializeType(
+        TypeReflection type,
+        [MarshalUsing(CountElementName = "specializationArgCount")]
+            Span<SpecializationArgument> specializationArgs,
+        nint specializationArgCount,
+        out IBlob diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     [return: MarshalUsing(typeof(NullableHandleStructMarshaller<TypeLayoutReflection>))]
-    TypeLayoutReflection? GetTypeLayout(TypeReflection type,
-                                        nint targetIndex,
-                                        LayoutRules rules,
-                                        out IBlob diagnostics);
+    TypeLayoutReflection? GetTypeLayout(
+        TypeReflection type,
+        nint targetIndex,
+        LayoutRules rules,
+        out IBlob diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     [return: MarshalUsing(typeof(NullableHandleStructMarshaller<TypeReflection>))]
-    TypeReflection? GetContainerType(TypeReflection elementType, ContainerType containerType, out IBlob diagnostics);
+    TypeReflection? GetContainerType(
+        TypeReflection elementType,
+        ContainerType containerType,
+        out IBlob diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     [return: MarshalUsing(typeof(NullableHandleStructMarshaller<TypeReflection>))]
@@ -57,23 +74,38 @@ public partial interface ISession : IUnknown
     SlangResult GetTypeRTTIMangledName(TypeReflection type, out IBlob nameBlob);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetTypeConformanceWitnessMangledName(TypeReflection type, TypeReflection interfaceType, out IBlob nameBlob);
+    SlangResult GetTypeConformanceWitnessMangledName(
+        TypeReflection type,
+        TypeReflection interfaceType,
+        out IBlob nameBlob
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetTypeConformanceWitnessSequentialId(TypeReflection type, TypeReflection interfaceType, out uint id);
+    SlangResult GetTypeConformanceWitnessSequentialId(
+        TypeReflection type,
+        TypeReflection interfaceType,
+        out uint id
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult CreateCompileRequest(out ICompileRequest compileRequest);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult CreateTypeConformanceComponentType(TypeReflection type,
-                                                   TypeReflection interfaceType,
-                                                   out ITypeConformance conformance,
-                                                   nint conformanceIdOverride,
-                                                   out IBlob diagnostics);
+    SlangResult CreateTypeConformanceComponentType(
+        TypeReflection type,
+        TypeReflection interfaceType,
+        out ITypeConformance conformance,
+        nint conformanceIdOverride,
+        out IBlob diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    IModule? LoadModuleFromIRBlob(string moduleName, string path, IBlob source, out IBlob diagnostics);
+    IModule? LoadModuleFromIRBlob(
+        string moduleName,
+        string path,
+        IBlob source,
+        out IBlob diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     nint GetLoadedModuleCount();
@@ -86,18 +118,26 @@ public partial interface ISession : IUnknown
     bool IsBinaryModuleUpToDate(string modulePath, IBlob binaryModule);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    IModule? LoadModuleFromSourceString(string moduleName, string path, string content, out IBlob diagnostics);
+    IModule? LoadModuleFromSourceString(
+        string moduleName,
+        string path,
+        string content,
+        out IBlob diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetDynamicObjectRTTIBytes(TypeReflection type,
-                                          TypeReflection interfaceType,
-                                          [MarshalUsing(CountElementName = "bufferSizeInBytes")]
-                                          Span<byte> outRTTIDataBuffer,
-                                          uint bufferSizeInBytes);
+    SlangResult GetDynamicObjectRTTIBytes(
+        TypeReflection type,
+        TypeReflection interfaceType,
+        [MarshalUsing(CountElementName = "bufferSizeInBytes")] Span<byte> outRTTIDataBuffer,
+        uint bufferSizeInBytes
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult LoadModuleInfoFromIRBlob(IBlob source,
-                                         out nint moduleVersion,
-                                         out string? moduleCompilerVersion,
-                                         out string? moduleName);
+    SlangResult LoadModuleInfoFromIRBlob(
+        IBlob source,
+        out nint moduleVersion,
+        out string? moduleCompilerVersion,
+        out string? moduleName
+    );
 }

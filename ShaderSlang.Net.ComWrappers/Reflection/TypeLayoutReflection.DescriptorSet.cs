@@ -18,15 +18,27 @@ partial struct TypeLayoutReflection
             {
                 Container = TypeLayout,
                 Argument = (nint)Index,
-                GetCount = (container, arg) => checked((nint)ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount(container, arg)),
-                TryGetAt = (layout, setIndex, rangeIndex) => new DescriptorRange(layout, setIndex, rangeIndex)
+                GetCount = (container, arg) =>
+                    checked(
+                        (nint)ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount(
+                            container,
+                            arg
+                        )
+                    ),
+                TryGetAt = (layout, setIndex, rangeIndex) =>
+                    new DescriptorRange(layout, setIndex, rangeIndex),
             };
         }
-        
-        public bool Equals(DescriptorSet other) => TypeLayout == other.TypeLayout && Index == other.Index;
+
+        public bool Equals(DescriptorSet other) =>
+            TypeLayout == other.TypeLayout && Index == other.Index;
+
         public override bool Equals(object? obj) => obj is DescriptorSet other && Equals(other);
+
         public static bool operator ==(DescriptorSet a, DescriptorSet b) => a.Equals(b);
+
         public static bool operator !=(DescriptorSet a, DescriptorSet b) => !a.Equals(b);
+
         public override int GetHashCode() => HashCode.Combine(TypeLayout, Index);
 
         public long SpaceOffset =>

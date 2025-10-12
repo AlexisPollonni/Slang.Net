@@ -3,29 +3,39 @@ using ShaderSlang.Net.ComWrappers.Tools;
 
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
-[NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<InputElementDescription, Unmanaged.InputElementDesc>))]
+[NativeMarshalling(
+    typeof(MarshalableMarshaller.Bidirectional<InputElementDescription, Unmanaged.InputElementDesc>)
+)]
 public readonly record struct InputElementDescription(
     string SemanticName,
     int SemanticIndex,
     Unmanaged.Format Format,
     nuint Offset,
-    int BufferSlotIndex) : IMarshalsToNative<Unmanaged.InputElementDesc>,
-                           IMarshalsFromNative<InputElementDescription, Unmanaged.InputElementDesc>
+    int BufferSlotIndex
+)
+    : IMarshalsToNative<Unmanaged.InputElementDesc>,
+        IMarshalsFromNative<InputElementDescription, Unmanaged.InputElementDesc>
 {
-    unsafe Unmanaged.InputElementDesc IMarshalsToNative<Unmanaged.InputElementDesc>.AsNative(ref GrowingStackBuffer buffer) =>
+    unsafe Unmanaged.InputElementDesc IMarshalsToNative<Unmanaged.InputElementDesc>.AsNative(
+        ref GrowingStackBuffer buffer
+    ) =>
         new()
         {
             semanticName = buffer.GetStringPtr(SemanticName),
             semanticIndex = SemanticIndex,
             format = Format,
             offset = Offset,
-            bufferSlotIndex = BufferSlotIndex
+            bufferSlotIndex = BufferSlotIndex,
         };
 
-    public static unsafe InputElementDescription CreateFromNative(Unmanaged.InputElementDesc unmanaged) =>
-        new(InteropUtils.PtrToStringUtf8(unmanaged.semanticName) ?? "",
+    public static unsafe InputElementDescription CreateFromNative(
+        Unmanaged.InputElementDesc unmanaged
+    ) =>
+        new(
+            InteropUtils.PtrToStringUtf8(unmanaged.semanticName) ?? "",
             unmanaged.semanticIndex,
             unmanaged.format,
             unmanaged.offset,
-            unmanaged.bufferSlotIndex);
+            unmanaged.bufferSlotIndex
+        );
 }

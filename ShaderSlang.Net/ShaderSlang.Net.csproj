@@ -10,7 +10,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="PackageReadme.md" Pack="true" PackagePath="readme.md" />
-    <ProjectReference Include="..\ShaderSlang.Net.Native\ShaderSlang.Net.Native.csproj" IncludeAssets="all" PrivateAssets="analyzers;build" />
+    <ProjectReference
+      Include="..\ShaderSlang.Net.Native\ShaderSlang.Net.Native.csproj"
+      IncludeAssets="all"
+      PrivateAssets="analyzers;build"
+    />
     <ProjectReference Include="..\ShaderSlang.Net.Pretty\ShaderSlang.Net.Pretty.csproj">
       <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
     </ProjectReference>

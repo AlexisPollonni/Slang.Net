@@ -13,8 +13,8 @@ using ConsoleAppFramework;
 using Microsoft.Extensions.Logging;
 using NuGet.RuntimeModel;
 using NuGet.Versioning;
-using Shouldly;
 using ShaderSlang.Net.Scripts.Shared;
+using Shouldly;
 
 var app = ConsoleHost.Create(args).ToConsoleAppBuilder();
 

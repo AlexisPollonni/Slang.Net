@@ -1,7 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="ITransientResourceHeap" access="public" native="struct ITransientResourceHeap : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+    <struct
+      name="ITransientResourceHeap"
+      access="public"
+      native="struct ITransientResourceHeap : ISlangUnknown"
+      parent="ISlangUnknown"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -69,7 +76,9 @@
       </struct>
       <struct name="TransientResourceHeapDesc" access="public">
         <field name="flags" access="public">
-          <type native="gfx::ITransientResourceHeap::Flags::Enum">TransientResourceHeapFlagsEnum</type>
+          <type native="gfx::ITransientResourceHeap::Flags::Enum"
+            >TransientResourceHeapFlagsEnum</type
+          >
         </field>
         <field name="constantBufferSize" access="public">
           <type native="gfx::Size">nuint</type>
@@ -99,31 +108,66 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr"
+              >(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param
+            >, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr"
+              >(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param
+            >);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr"
+              >(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param
+            >);</code
+          >
         </body>
       </function>
       <function name="synchronizeAndReset" access="public" unsafe="true">
         <type native="gfx::Result">int</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_synchronizeAndReset</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">synchronizeAndReset</vtbl>)(<param special="thisPtr">(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_synchronizeAndReset</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >synchronizeAndReset</vtbl
+            >)(<param special="thisPtr"
+              >(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param
+            >);</code
+          >
         </body>
       </function>
       <function name="finish" access="public" unsafe="true">
         <type native="gfx::Result">int</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_finish</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">finish</vtbl>)(<param special="thisPtr">(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_finish</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >finish</vtbl
+            >)(<param special="thisPtr"
+              >(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param
+            >);</code
+          >
         </body>
       </function>
       <function name="createCommandBuffer" access="public" unsafe="true">
@@ -132,12 +176,22 @@
           <type>ICommandBuffer**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createCommandBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">createCommandBuffer</vtbl>)(<param special="thisPtr">(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param>, <param name="outCommandBuffer">outCommandBuffer</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createCommandBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >createCommandBuffer</vtbl
+            >)(<param special="thisPtr"
+              >(ITransientResourceHeap*)Unsafe.AsPointer(ref this)</param
+            >, <param name="outCommandBuffer">outCommandBuffer</param>);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="addRef" access="public">
           <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
@@ -152,7 +206,10 @@
           <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createCommandBuffer" access="public">
-          <type native="Result (ICommandBuffer **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (ICommandBuffer **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
       </vtbl>
     </struct>

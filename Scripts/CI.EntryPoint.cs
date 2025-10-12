@@ -6,8 +6,8 @@
 
 #:project ./Shared/ShaderSlang.Net.Scripts.Shared.csproj
 
-using Shouldly;
 using ShaderSlang.Net.Scripts.Shared;
+using Shouldly;
 
 var target = Argument("target", "Pack");
 var configuration = Argument("configuration", "Release");

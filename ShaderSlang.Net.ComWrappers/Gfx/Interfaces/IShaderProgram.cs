@@ -7,8 +7,10 @@ using ShaderSlang.Net.ComWrappers.Tools;
 
 namespace ShaderSlang.Net.ComWrappers.Gfx.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
-                       StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
+[GeneratedComInterface(
+    StringMarshalling = StringMarshalling.Custom,
+    StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller)
+)]
 [Guid("9d32d0ad-915c-4ffd-91e2-508554a04a76")]
 public partial interface IShaderProgram : IUnknown
 {

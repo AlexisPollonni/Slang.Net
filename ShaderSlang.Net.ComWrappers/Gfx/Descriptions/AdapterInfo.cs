@@ -13,6 +13,7 @@ public readonly record struct AdapterInfo(string Name, uint VendorId, uint Devic
             InteropUtils.PtrToStringUtf8(namePtr) ?? "Error: Could not get device name",
             unmanaged.vendorID,
             unmanaged.deviceID,
-            new(unmanaged.luid.AsReadOnlySpan().AsBytes()));
+            new(unmanaged.luid.AsReadOnlySpan().AsBytes())
+        );
     }
 }

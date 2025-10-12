@@ -14,8 +14,8 @@ public readonly record struct DeviceInfo(
     Matrix4x4 IdentityProjectionMatrix,
     string ApiName,
     string AdapterName,
-    ulong TimestampFrequency) : IMarshalsToNative<Unmanaged.DeviceInfo>,
-                                IMarshalsFromNative<DeviceInfo, Unmanaged.DeviceInfo>
+    ulong TimestampFrequency
+) : IMarshalsToNative<Unmanaged.DeviceInfo>, IMarshalsFromNative<DeviceInfo, Unmanaged.DeviceInfo>
 {
     public static unsafe DeviceInfo CreateFromNative(Unmanaged.DeviceInfo unmanaged)
     {
@@ -28,29 +28,34 @@ public readonly record struct DeviceInfo(
             Limits = limits,
             BindingStyle = unmanaged.bindingStyle,
             ProjectionStyle = unmanaged.projectionStyle,
-            IdentityProjectionMatrix = new(idSpan[0],
-                                           idSpan[1],
-                                           idSpan[2],
-                                           idSpan[3],
-                                           idSpan[4],
-                                           idSpan[5],
-                                           idSpan[6],
-                                           idSpan[7],
-                                           idSpan[8],
-                                           idSpan[9],
-                                           idSpan[10],
-                                           idSpan[11],
-                                           idSpan[12],
-                                           idSpan[13],
-                                           idSpan[14],
-                                           idSpan[15]),
+            IdentityProjectionMatrix = new(
+                idSpan[0],
+                idSpan[1],
+                idSpan[2],
+                idSpan[3],
+                idSpan[4],
+                idSpan[5],
+                idSpan[6],
+                idSpan[7],
+                idSpan[8],
+                idSpan[9],
+                idSpan[10],
+                idSpan[11],
+                idSpan[12],
+                idSpan[13],
+                idSpan[14],
+                idSpan[15]
+            ),
             ApiName = InteropUtils.PtrToStringUtf8(unmanaged.apiName) ?? "Api name unavailable",
-            AdapterName = InteropUtils.PtrToStringUtf8(unmanaged.adapterName) ?? "Adapter name unavailable",
-            TimestampFrequency = unmanaged.timestampFrequency
+            AdapterName =
+                InteropUtils.PtrToStringUtf8(unmanaged.adapterName) ?? "Adapter name unavailable",
+            TimestampFrequency = unmanaged.timestampFrequency,
         };
     }
 
-    unsafe Unmanaged.DeviceInfo IMarshalsToNative<Unmanaged.DeviceInfo>.AsNative(ref GrowingStackBuffer buffer)
+    unsafe Unmanaged.DeviceInfo IMarshalsToNative<Unmanaged.DeviceInfo>.AsNative(
+        ref GrowingStackBuffer buffer
+    )
     {
         var res = new Unmanaged.DeviceInfo
         {
@@ -61,11 +66,11 @@ public readonly record struct DeviceInfo(
             identityProjectionMatrix = new(),
             limits = ((IMarshalsToNative<Unmanaged.DeviceLimits>)Limits).AsNative(ref buffer),
             projectionStyle = ProjectionStyle,
-            timestampFrequency = TimestampFrequency
+            timestampFrequency = TimestampFrequency,
         };
         var mat = IdentityProjectionMatrix;
         mat.AsReadOnlySpan().AsBytes().CopyTo(res.identityProjectionMatrix.AsSpan().AsBytes());
-        
+
         return res;
     }
 }
@@ -86,8 +91,10 @@ public readonly record struct DeviceLimits(
     uint MaxViewports,
     (uint Width, uint Height) MaxViewportDimensions,
     (uint X, uint Y, uint Z) MaxFramebufferDimensions,
-    uint MaxShaderVisibleSamplers) : IMarshalsFromNative<DeviceLimits, Unmanaged.DeviceLimits>,
-                                     IMarshalsToNative<Unmanaged.DeviceLimits>
+    uint MaxShaderVisibleSamplers
+)
+    : IMarshalsFromNative<DeviceLimits, Unmanaged.DeviceLimits>,
+        IMarshalsToNative<Unmanaged.DeviceLimits>
 {
     public static DeviceLimits CreateFromNative(Unmanaged.DeviceLimits unmanaged)
     {
@@ -108,19 +115,30 @@ public readonly record struct DeviceLimits(
             MaxVertexStreams = unmanaged.maxVertexStreams,
             MaxVertexStreamStride = unmanaged.maxVertexStreamStride,
             MaxComputeThreadsPerGroup = unmanaged.maxComputeThreadsPerGroup,
-            MaxComputeThreadGroupSize = (maxComputeThreadGroupSize[0], maxComputeThreadGroupSize[1],
-                                         maxComputeThreadGroupSize[2]),
-            MaxComputeDispatchThreadGroups = (maxComputeDispatchThreadGroups[0], maxComputeDispatchThreadGroups[1],
-                                              maxComputeDispatchThreadGroups[2]),
+            MaxComputeThreadGroupSize = (
+                maxComputeThreadGroupSize[0],
+                maxComputeThreadGroupSize[1],
+                maxComputeThreadGroupSize[2]
+            ),
+            MaxComputeDispatchThreadGroups = (
+                maxComputeDispatchThreadGroups[0],
+                maxComputeDispatchThreadGroups[1],
+                maxComputeDispatchThreadGroups[2]
+            ),
             MaxViewports = unmanaged.maxViewports,
             MaxViewportDimensions = (maxViewportDimensions[0], maxViewportDimensions[1]),
-            MaxFramebufferDimensions = (maxFramebufferDimensions[0],
-                                        maxFramebufferDimensions[1], maxFramebufferDimensions[2]),
-            MaxShaderVisibleSamplers = unmanaged.maxShaderVisibleSamplers
+            MaxFramebufferDimensions = (
+                maxFramebufferDimensions[0],
+                maxFramebufferDimensions[1],
+                maxFramebufferDimensions[2]
+            ),
+            MaxShaderVisibleSamplers = unmanaged.maxShaderVisibleSamplers,
         };
     }
 
-    Unmanaged.DeviceLimits IMarshalsToNative<Unmanaged.DeviceLimits>.AsNative(ref GrowingStackBuffer buffer)
+    Unmanaged.DeviceLimits IMarshalsToNative<Unmanaged.DeviceLimits>.AsNative(
+        ref GrowingStackBuffer buffer
+    )
     {
         var res = new Unmanaged.DeviceLimits()
         {
@@ -139,19 +157,31 @@ public readonly record struct DeviceLimits(
             maxViewports = MaxViewports,
             maxViewportDimensions = new(),
             maxFramebufferDimensions = new(),
-            maxShaderVisibleSamplers = MaxShaderVisibleSamplers
+            maxShaderVisibleSamplers = MaxShaderVisibleSamplers,
         };
-        
+
         var maxComputeThreadGroupSize = MaxComputeThreadGroupSize;
         var maxComputeDispatchThreadGroups = MaxComputeDispatchThreadGroups;
         var maxViewportDimensions = MaxViewportDimensions;
         var maxFramebufferDimensions = MaxFramebufferDimensions;
-        
-        maxComputeThreadGroupSize.AsSpan().AsBytes().CopyTo(res.maxComputeThreadGroupSize.AsSpan().AsBytes());
-        maxComputeDispatchThreadGroups.AsSpan().AsBytes().CopyTo(res.maxComputeDispatchThreadGroups.AsSpan().AsBytes());
-        maxViewportDimensions.AsSpan().AsBytes().CopyTo(res.maxViewportDimensions.AsSpan().AsBytes());
-        maxFramebufferDimensions.AsSpan().AsBytes().CopyTo(res.maxFramebufferDimensions.AsSpan().AsBytes());
-        
+
+        maxComputeThreadGroupSize
+            .AsSpan()
+            .AsBytes()
+            .CopyTo(res.maxComputeThreadGroupSize.AsSpan().AsBytes());
+        maxComputeDispatchThreadGroups
+            .AsSpan()
+            .AsBytes()
+            .CopyTo(res.maxComputeDispatchThreadGroups.AsSpan().AsBytes());
+        maxViewportDimensions
+            .AsSpan()
+            .AsBytes()
+            .CopyTo(res.maxViewportDimensions.AsSpan().AsBytes());
+        maxFramebufferDimensions
+            .AsSpan()
+            .AsBytes()
+            .CopyTo(res.maxFramebufferDimensions.AsSpan().AsBytes());
+
         return res;
     }
 }

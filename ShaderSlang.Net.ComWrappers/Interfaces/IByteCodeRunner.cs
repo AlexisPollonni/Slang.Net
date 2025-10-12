@@ -6,8 +6,10 @@ using ShaderSlang.Net.ComWrappers.Tools;
 
 namespace ShaderSlang.Net.ComWrappers.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
-                       StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
+[GeneratedComInterface(
+    StringMarshalling = StringMarshalling.Custom,
+    StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller)
+)]
 [Guid("AFDAB195-361F-42CB-9513-9006261DD8CD")]
 //TODO: Finish marshalling code for callbacks
 public partial interface IByteCodeRunner : IUnknown
@@ -28,8 +30,10 @@ public partial interface IByteCodeRunner : IUnknown
     unsafe void* GetCurrentWorkingSet();
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult Execute([MarshalUsing(CountElementName = "argumentSize")] Span<byte> argumentData,
-                        nuint argumentSize);
+    SlangResult Execute(
+        [MarshalUsing(CountElementName = "argumentSize")] Span<byte> argumentData,
+        nuint argumentSize
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void GetErrorString(out IBlob outBlob);

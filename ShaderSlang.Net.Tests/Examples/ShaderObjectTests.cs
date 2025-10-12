@@ -1,11 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Microsoft.Extensions.Logging;
-using ShaderSlang.Net.Tests.Common.Tools;
 using ShaderSlang.Net.Bindings.Generated;
 using ShaderSlang.Net.ComWrappers.Gfx.Interfaces;
 using ShaderSlang.Net.Pretty.Gfx.Extensions;
 using ShaderSlang.Net.Pretty.Gfx.Tools;
+using ShaderSlang.Net.Tests.Common.Tools;
 using Xunit;
 using ICommandQueue = ShaderSlang.Net.Bindings.Generated.ICommandQueue;
 using IResourceView = ShaderSlang.Net.Bindings.Generated.IResourceView;
@@ -29,26 +29,29 @@ public class ShaderObjectTests(ITestOutputHelper testOutputHelper, DefaultTestFi
 
         ReadOnlySpan<float> initialData = [0, 1, 2, 3];
 
-        device.CreateBufferResource(out var numbersBuffer,
-                                    new()
-                                    {
-                                        AllowedStates = new(ResourceState.ShaderResource,
-                                                            ResourceState.UnorderedAccess,
-                                                            ResourceState.CopyDestination,
-                                                            ResourceState.CopySource),
-                                        DefaultState = ResourceState.UnorderedAccess,
-                                        MemoryType = MemoryType.DeviceLocal,
-                                    },
-                                    initialData)
-              .ThrowIfFailed();
+        device
+            .CreateBufferResource(
+                out var numbersBuffer,
+                new()
+                {
+                    AllowedStates = new(
+                        ResourceState.ShaderResource,
+                        ResourceState.UnorderedAccess,
+                        ResourceState.CopyDestination,
+                        ResourceState.CopySource
+                    ),
+                    DefaultState = ResourceState.UnorderedAccess,
+                    MemoryType = MemoryType.DeviceLocal,
+                },
+                initialData
+            )
+            .ThrowIfFailed();
 
-        var bufferView = device.CreateBufferViewOrThrow(numbersBuffer,
-                                                        null,
-                                                        new()
-                                                        {
-                                                            Type = IResourceView.ResourceViewType.UnorderedAccess,
-                                                            Format = Format.Unknown
-                                                        });
+        var bufferView = device.CreateBufferViewOrThrow(
+            numbersBuffer,
+            null,
+            new() { Type = IResourceView.ResourceViewType.UnorderedAccess, Format = Format.Unknown }
+        );
 
         var queue = device.CreateCommandQueueOrThrow(new(ICommandQueue.QueueType.Graphics));
 
@@ -62,7 +65,10 @@ public class ShaderObjectTests(ITestOutputHelper testOutputHelper, DefaultTestFi
 
         Assert.NotNull(addTransformerType);
 
-        var transformer = device.CreateShaderObjectOrThrow(addTransformerType.Value, ShaderObjectContainerType.None);
+        var transformer = device.CreateShaderObjectOrThrow(
+            addTransformerType.Value,
+            ShaderObjectContainerType.None
+        );
 
         const float c = 1.0f;
 
@@ -80,9 +86,12 @@ public class ShaderObjectTests(ITestOutputHelper testOutputHelper, DefaultTestFi
         queue.ExecuteCommandBuffers(1, [cmdBuffer]);
         queue.WaitOnHost();
 
-        device.ReadBufferResource(numbersBuffer, Range.All, out BlobMemory<float> data).ThrowIfFailed();
+        device
+            .ReadBufferResource(numbersBuffer, Range.All, out BlobMemory<float> data)
+            .ThrowIfFailed();
 
-        foreach (var item in data.AsReadOnlySpan()) Logger.LogInformation("Data[{Index}] = {Value}", item, item);
+        foreach (var item in data.AsReadOnlySpan())
+            Logger.LogInformation("Data[{Index}] = {Value}", item, item);
 
         Assert.Equal([11, 12, 13, 14], data.AsReadOnlySpan());
     }

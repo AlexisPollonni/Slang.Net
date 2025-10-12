@@ -13,20 +13,21 @@ public class DefaultTestFixture : TestBedFixture
 {
     protected override void AddServices(IServiceCollection services, IConfiguration? configuration)
     {
-        services.AddLogging(builder => builder.SetMinimumLevel(LogLevel.Debug)
-                                              .AddOpenTelemetry(options => options.AddOtlpExporter()));
+        services.AddLogging(builder =>
+            builder
+                .SetMinimumLevel(LogLevel.Debug)
+                .AddOpenTelemetry(options => options.AddOtlpExporter())
+        );
     }
 
-    protected override IEnumerable<TestAppSettings> GetTestAppSettings() =>
-        [];
+    protected override IEnumerable<TestAppSettings> GetTestAppSettings() => [];
 
-    protected override ValueTask DisposeAsyncCore() =>
-        ValueTask.CompletedTask;
+    protected override ValueTask DisposeAsyncCore() => ValueTask.CompletedTask;
 }
 
 public class TestBase<TTest>(ITestOutputHelper testOutputHelper, DefaultTestFixture fixture)
     : TestBedWithDI<DefaultTestFixture>(testOutputHelper, fixture)
 {
     [Inject]
-    public required ILogger<TTest> Logger { get; set; } 
+    public required ILogger<TTest> Logger { get; set; }
 }

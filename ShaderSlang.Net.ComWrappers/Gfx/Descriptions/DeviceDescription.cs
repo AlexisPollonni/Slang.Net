@@ -5,7 +5,9 @@ using ShaderSlang.Net.ComWrappers.Tools;
 
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
-[NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<DeviceDescription, Unmanaged.IDevice.DeviceDesc>))]
+[NativeMarshalling(
+    typeof(MarshalableMarshaller.Bidirectional<DeviceDescription, Unmanaged.IDevice.DeviceDesc>)
+)]
 public readonly record struct DeviceDescription(
     Unmanaged.DeviceType DeviceType,
     Unmanaged.IDevice.InteropHandles ExistingDeviceHandles,
@@ -14,19 +16,26 @@ public readonly record struct DeviceDescription(
     SlangDescription Slang,
     ShaderCacheDescription ShaderCache,
     IUnknown? ApiDispatcher = null,
-    int NvApiExtnSlot = -1) : IMarshalsToNative<Unmanaged.IDevice.DeviceDesc>,
-                              IMarshalsFromNative<DeviceDescription, Unmanaged.IDevice.DeviceDesc>,
-                              IFreeAfterMarshal<Unmanaged.IDevice.DeviceDesc>
+    int NvApiExtnSlot = -1
+)
+    : IMarshalsToNative<Unmanaged.IDevice.DeviceDesc>,
+        IMarshalsFromNative<DeviceDescription, Unmanaged.IDevice.DeviceDesc>,
+        IFreeAfterMarshal<Unmanaged.IDevice.DeviceDesc>
 {
-    public DeviceDescription() : this(Unmanaged.DeviceType.Default, new(), Guid.Empty, null, new(), new())
-    { }
-    
+    public DeviceDescription()
+        : this(Unmanaged.DeviceType.Default, new(), Guid.Empty, null, new(), new()) { }
+
     unsafe Unmanaged.IDevice.DeviceDesc IMarshalsToNative<Unmanaged.IDevice.DeviceDesc>.AsNative(
-        ref GrowingStackBuffer buffer)
+        ref GrowingStackBuffer buffer
+    )
     {
-        var slangDesc = ((IMarshalsToNative<Unmanaged.IDevice.SlangDesc>)Slang).AsNative(ref buffer);
-        var shaderCacheDesc = ((IMarshalsToNative<Unmanaged.IDevice.ShaderCacheDesc>)ShaderCache).AsNative(ref buffer);
-        
+        var slangDesc = ((IMarshalsToNative<Unmanaged.IDevice.SlangDesc>)Slang).AsNative(
+            ref buffer
+        );
+        var shaderCacheDesc = (
+            (IMarshalsToNative<Unmanaged.IDevice.ShaderCacheDesc>)ShaderCache
+        ).AsNative(ref buffer);
+
         var desc = new Unmanaged.IDevice.DeviceDesc
         {
             deviceType = DeviceType,
@@ -37,9 +46,9 @@ public readonly record struct DeviceDescription(
             shaderCache = shaderCacheDesc,
             slang = slangDesc,
             extendedDescCount = 0,
-            extendedDescs = null
+            extendedDescs = null,
         };
-        
+
         // Check if the LUID is not empty (all zeros)
         if (AdapterLuid != Guid.Empty)
         {
@@ -48,22 +57,34 @@ public readonly record struct DeviceDescription(
             desc.adapterLUID = buffer.GetStructPtr(in adapterLuid);
         }
 
-        if (ApiDispatcher is not null 
-            && System.Runtime.InteropServices.ComWrappers.TryGetComInstance(ApiDispatcher, out var apiDispatcherPtr)) 
+        if (
+            ApiDispatcher is not null
+            && System.Runtime.InteropServices.ComWrappers.TryGetComInstance(
+                ApiDispatcher,
+                out var apiDispatcherPtr
+            )
+        )
             desc.apiCommandDispatcher = (Unmanaged.ISlangUnknown*)apiDispatcherPtr;
 
         return desc;
     }
 
-    public static unsafe DeviceDescription CreateFromNative(Unmanaged.IDevice.DeviceDesc unmanaged) =>
-        new(unmanaged.deviceType,
+    public static unsafe DeviceDescription CreateFromNative(
+        Unmanaged.IDevice.DeviceDesc unmanaged
+    ) =>
+        new(
+            unmanaged.deviceType,
             unmanaged.existingDeviceHandles,
             new(unmanaged.adapterLUID->AsReadOnlySpan().AsBytes()),
-            InteropUtils.PtrToStringArray(unmanaged.requiredFeatures, unmanaged.requiredFeatureCount),
+            InteropUtils.PtrToStringArray(
+                unmanaged.requiredFeatures,
+                unmanaged.requiredFeatureCount
+            ),
             SlangDescription.CreateFromNative(unmanaged.slang),
             ShaderCacheDescription.CreateFromNative(unmanaged.shaderCache),
             ComInterfaceMarshaller<IUnknown>.ConvertToManaged(unmanaged.apiCommandDispatcher), //TODO: See if there isnt a better way to do this
-            unmanaged.nvapiExtnSlot);
+            unmanaged.nvapiExtnSlot
+        );
 
     public unsafe void Free(Unmanaged.IDevice.DeviceDesc* unmanaged)
     {

@@ -12,7 +12,7 @@
 //     public DiagnosticsList Diagnostics { get; } = new();
 //
 //     private readonly CSharpSourceBuilder _builder = new();
-//     
+//
 //     public string GenerateCode(IMethodSymbol method, IMethodSymbol nativeMethod)
 //     {
 //         WriteUsings();
@@ -61,12 +61,12 @@
 //
 //         var mappings = method.Parameters.Zip(nativeMethod.Parameters, (a, b) => (a,b))
 //               .Select(tuple => GetMappingForParameter(tuple.a, tuple.b)).ToArray();
-//         
+//
 //         _builder.AppendLine($"var {byteSizeVarName} = 0;");
-//         
+//
 //         //Mapping alloc
 //         foreach (var map in mappings.Where(b => !b.IsOutParameter)) map.WriteByteCountAllocVar(byteSizeVarName);
-//         
+//
 //         _builder.AppendLine();
 //         _builder.AppendLine($"var _span = {byteSizeVarName} > 1024 ? GC.AllocateUninitializedArray<byte>({byteSizeVarName}, true) : stackalloc byte[{byteSizeVarName}];");
 //         _builder.AppendLine("var _buffer = new MarshallingAllocBuffer(_span);");
@@ -78,11 +78,11 @@
 //         foreach (var map in mappings) map.WriteBeforeMarshal("_buffer");
 //
 //         _builder.AppendLine();
-//         
+//
 //         _builder.Append("_native_res = Pointer->");
 //         _builder.Append(nativeMethod.Name);
 //         _builder.Append("(");
-//         
+//
 //         for (var i = 0; i < mappings.Length; i++)
 //         {
 //             if (i > 0)
@@ -95,7 +95,7 @@
 //
 //         //marshal after
 //         foreach (var map in mappings) map.WriteAfterMarshal();
-//         
+//
 //         //TODO: handle marshalling other return types
 //         _builder.AppendLine(method.ReturnType.Name == "SlangResult"
 //                                 ? "return _native_res.ToSlangResult();"
@@ -107,7 +107,7 @@
 //                                                                           IParameterSymbol native)
 //     {
 //         var outType = managed.Type.GetNativeTypeFromComObject();
-//         
+//
 //         if (outType is not null)
 //         {
 //             return new ComObjectToNative(_builder, managed, native);

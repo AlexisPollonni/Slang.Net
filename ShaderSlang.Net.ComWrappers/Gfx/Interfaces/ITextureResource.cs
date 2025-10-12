@@ -6,8 +6,10 @@ using ShaderSlang.Net.ComWrappers.Tools;
 
 namespace ShaderSlang.Net.ComWrappers.Gfx.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
-                       StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
+[GeneratedComInterface(
+    StringMarshalling = StringMarshalling.Custom,
+    StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller)
+)]
 [Guid("cf88a31c-6187-46C5-A4B7-EB58C7334017")]
 public partial interface ITextureResource : IResource
 {

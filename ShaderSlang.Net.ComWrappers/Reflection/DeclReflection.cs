@@ -8,6 +8,7 @@ public readonly struct DeclReflection : INativeHandleMarshallable<DeclReflection
 {
     internal unsafe Unmanaged.SlangReflectionDecl* Pointer { get; }
     unsafe nint INativeHandleMarshallable<DeclReflection>.Handle => (nint)Pointer;
+
     public static unsafe DeclReflection CreateFromHandle(nint handle) =>
         new((Unmanaged.SlangReflectionDecl*)handle);
 
@@ -19,7 +20,7 @@ public readonly struct DeclReflection : INativeHandleMarshallable<DeclReflection
         {
             Container = this,
             GetCount = @this => (nint)ReflectionApi.ReflectionDecl_getChildrenCount(@this),
-            TryGetAt = (@this, index) => ReflectionApi.ReflectionDecl_getChild(@this, (uint)index)
+            TryGetAt = (@this, index) => ReflectionApi.ReflectionDecl_getChild(@this, (uint)index),
         };
     }
 
@@ -35,5 +36,4 @@ public readonly struct DeclReflection : INativeHandleMarshallable<DeclReflection
     public GenericReflection? AsGeneric => ReflectionApi.ReflectionDecl_castToGeneric(this);
 
     public DeclReflection? Parent => ReflectionApi.ReflectionDecl_getParent(this);
-    
 }

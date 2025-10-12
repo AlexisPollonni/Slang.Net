@@ -17,8 +17,8 @@
 using ClangSharp;
 using ClangSharp.Interop;
 using Humanizer;
-using Shouldly;
 using ShaderSlang.Net.Scripts.Shared;
+using Shouldly;
 using static ClangAstExtensions;
 using static ClangSharp.Interop.CXTranslationUnit_Flags;
 using static ClangSharp.PInvokeGeneratorConfigurationOptions;

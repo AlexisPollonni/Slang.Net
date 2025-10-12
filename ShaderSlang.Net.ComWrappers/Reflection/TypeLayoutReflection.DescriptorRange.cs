@@ -17,20 +17,43 @@ partial struct TypeLayoutReflection
             RangeIndex = rangeIndex;
         }
 
-        public bool Equals(DescriptorRange other) => TypeLayout == other.TypeLayout && SetIndex == other.SetIndex;
+        public bool Equals(DescriptorRange other) =>
+            TypeLayout == other.TypeLayout && SetIndex == other.SetIndex;
+
         public override bool Equals(object? obj) => obj is DescriptorRange other && Equals(other);
+
         public static bool operator ==(DescriptorRange a, DescriptorRange b) => a.Equals(b);
+
         public static bool operator !=(DescriptorRange a, DescriptorRange b) => !a.Equals(b);
+
         public override int GetHashCode() => HashCode.Combine(TypeLayout, SetIndex);
 
-        public long IndexOffset => ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset(TypeLayout, (nint)SetIndex, (nint)RangeIndex);
+        public long IndexOffset =>
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset(
+                TypeLayout,
+                (nint)SetIndex,
+                (nint)RangeIndex
+            );
 
-        public long DescriptorCount => ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount(TypeLayout, (nint)SetIndex, (nint)RangeIndex);
+        public long DescriptorCount =>
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount(
+                TypeLayout,
+                (nint)SetIndex,
+                (nint)RangeIndex
+            );
 
         public BindingType Type =>
-            ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(TypeLayout, (nint)SetIndex, (nint)RangeIndex);
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(
+                TypeLayout,
+                (nint)SetIndex,
+                (nint)RangeIndex
+            );
 
         public ParameterCategory Category =>
-            ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(TypeLayout, (nint)SetIndex, (nint)RangeIndex);
+            ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(
+                TypeLayout,
+                (nint)SetIndex,
+                (nint)RangeIndex
+            );
     }
 }

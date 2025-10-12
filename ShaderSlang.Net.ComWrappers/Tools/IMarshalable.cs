@@ -3,7 +3,8 @@ using System.Runtime.InteropServices.Marshalling;
 
 namespace ShaderSlang.Net.ComWrappers.Tools;
 
-internal interface IMarshalsToNative<out TNative> where TNative : unmanaged
+internal interface IMarshalsToNative<out TNative>
+    where TNative : unmanaged
 {
     /// <summary>
     /// Marshals the object to its native representation.
@@ -12,24 +13,27 @@ internal interface IMarshalsToNative<out TNative> where TNative : unmanaged
     public TNative AsNative(ref GrowingStackBuffer buffer);
 }
 
-internal interface IMarshalsFromNative<out TManaged, in TUnmanaged> where TUnmanaged : unmanaged
-                                                                    where TManaged : IMarshalsFromNative<TManaged,
-                                                                        TUnmanaged>
+internal interface IMarshalsFromNative<out TManaged, in TUnmanaged>
+    where TUnmanaged : unmanaged
+    where TManaged : IMarshalsFromNative<TManaged, TUnmanaged>
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static abstract TManaged CreateFromNative(TUnmanaged unmanaged);
 }
 
-internal interface IFreeAfterMarshal<TUnmanaged> where TUnmanaged : unmanaged
+internal interface IFreeAfterMarshal<TUnmanaged>
+    where TUnmanaged : unmanaged
 {
     internal unsafe void Free(TUnmanaged* unmanaged);
 }
 
-
-
 internal static class MarshalableMarshaller
 {
-    [CustomMarshaller(typeof(CustomMarshallerAttribute.GenericPlaceholder), MarshalMode.Default, typeof(Bidirectional<,>))]
+    [CustomMarshaller(
+        typeof(CustomMarshallerAttribute.GenericPlaceholder),
+        MarshalMode.Default,
+        typeof(Bidirectional<,>)
+    )]
     internal unsafe ref struct Bidirectional<TManaged, TUnmanaged>
         where TManaged : IMarshalsToNative<TUnmanaged>, IMarshalsFromNative<TManaged, TUnmanaged>
         where TUnmanaged : unmanaged
@@ -39,8 +43,7 @@ internal static class MarshalableMarshaller
 
         public static int BufferSize => ManagedToUnmanaged<TManaged, TUnmanaged>.BufferSize;
 
-        public void Free() =>
-            _inMarshaller.Free();
+        public void Free() => _inMarshaller.Free();
 
         public void FromManaged(TManaged managed, Span<byte> unmanaged) =>
             _inMarshaller.FromManaged(managed, unmanaged);
@@ -59,14 +62,19 @@ internal static class MarshalableMarshaller
         }
     }
 
-    [CustomMarshaller(typeof(CustomMarshallerAttribute.GenericPlaceholder),
-                      MarshalMode.ManagedToUnmanagedIn,
-                      typeof(ManagedToUnmanaged<,>))]
-    [CustomMarshaller(typeof(CustomMarshallerAttribute.GenericPlaceholder),
-                      MarshalMode.UnmanagedToManagedOut,
-                      typeof(ManagedToUnmanaged<,>))]
+    [CustomMarshaller(
+        typeof(CustomMarshallerAttribute.GenericPlaceholder),
+        MarshalMode.ManagedToUnmanagedIn,
+        typeof(ManagedToUnmanaged<,>)
+    )]
+    [CustomMarshaller(
+        typeof(CustomMarshallerAttribute.GenericPlaceholder),
+        MarshalMode.UnmanagedToManagedOut,
+        typeof(ManagedToUnmanaged<,>)
+    )]
     internal ref struct ManagedToUnmanaged<TManaged, TUnmanaged>
-        where TManaged : IMarshalsToNative<TUnmanaged> where TUnmanaged : unmanaged
+        where TManaged : IMarshalsToNative<TUnmanaged>
+        where TUnmanaged : unmanaged
     {
         private GrowingStackBuffer _alloc;
         private TManaged _managed;
@@ -83,24 +91,29 @@ internal static class MarshalableMarshaller
             Native = _alloc.GetStructPtr(in native);
         }
 
-        public unsafe TUnmanaged* ToUnmanaged() =>
-            Native;
+        public unsafe TUnmanaged* ToUnmanaged() => Native;
 
         public unsafe void Free()
         {
-            if (_managed is IFreeAfterMarshal<TUnmanaged> freeable) freeable.Free(Native);
+            if (_managed is IFreeAfterMarshal<TUnmanaged> freeable)
+                freeable.Free(Native);
             _alloc.Free();
         }
     }
 
-    [CustomMarshaller(typeof(CustomMarshallerAttribute.GenericPlaceholder),
-                      MarshalMode.ManagedToUnmanagedOut,
-                      typeof(UnmanagedToManaged<,>))]
-    [CustomMarshaller(typeof(CustomMarshallerAttribute.GenericPlaceholder),
-                      MarshalMode.UnmanagedToManagedIn,
-                      typeof(UnmanagedToManaged<,>))]
-    internal static class UnmanagedToManaged<TManaged, TUnmanaged> where TManaged : IMarshalsFromNative<TManaged, TUnmanaged>
-                                                                   where TUnmanaged : unmanaged
+    [CustomMarshaller(
+        typeof(CustomMarshallerAttribute.GenericPlaceholder),
+        MarshalMode.ManagedToUnmanagedOut,
+        typeof(UnmanagedToManaged<,>)
+    )]
+    [CustomMarshaller(
+        typeof(CustomMarshallerAttribute.GenericPlaceholder),
+        MarshalMode.UnmanagedToManagedIn,
+        typeof(UnmanagedToManaged<,>)
+    )]
+    internal static class UnmanagedToManaged<TManaged, TUnmanaged>
+        where TManaged : IMarshalsFromNative<TManaged, TUnmanaged>
+        where TUnmanaged : unmanaged
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe TManaged ConvertToManaged(TUnmanaged* unmanaged)

@@ -11,8 +11,8 @@
 using ConsoleAppFramework;
 using Microsoft.Extensions.Logging;
 using Octokit;
-using Shouldly;
 using ShaderSlang.Net.Scripts.Shared;
+using Shouldly;
 
 var builder = ConsoleHost.Create(args);
 

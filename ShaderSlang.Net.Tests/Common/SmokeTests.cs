@@ -1,7 +1,7 @@
 ﻿using ShaderSlang.Net.Bindings;
-using ShaderSlang.Net.Tests.Common.Tools;
 using ShaderSlang.Net.Bindings.Generated;
 using ShaderSlang.Net.ComWrappers;
+using ShaderSlang.Net.Tests.Common.Tools;
 using Xunit;
 
 namespace ShaderSlang.Net.Tests.Common;

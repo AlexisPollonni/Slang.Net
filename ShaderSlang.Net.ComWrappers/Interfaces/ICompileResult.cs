@@ -7,8 +7,10 @@ using ShaderSlang.Net.ComWrappers.Tools.Internal;
 
 namespace ShaderSlang.Net.ComWrappers.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
-                       StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
+[GeneratedComInterface(
+    StringMarshalling = StringMarshalling.Custom,
+    StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller)
+)]
 [Guid("5fa9380e-b62f-41e5-9F12-4BAD4D9EAAE4")]
 [GenerateThrowingMethods]
 public partial interface ICompileResult : ICastable

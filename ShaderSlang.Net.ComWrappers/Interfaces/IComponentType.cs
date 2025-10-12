@@ -9,7 +9,10 @@ using ShaderSlang.Net.ComWrappers.Tools.Internal;
 
 namespace ShaderSlang.Net.ComWrappers.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
+[GeneratedComInterface(
+    StringMarshalling = StringMarshalling.Custom,
+    StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller)
+)]
 [Guid("5BC42BE8-5C50-4929-9E5E-D15E7C24015F")]
 [GenerateThrowingMethods]
 public partial interface IComponentType : IUnknown
@@ -25,46 +28,71 @@ public partial interface IComponentType : IUnknown
     nint GetSpecializationParamCount();
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetEntryPointCode(nint entryPointIndex, nint targetIndex, out IBlob code, out IBlob? diagnostics);
+    SlangResult GetEntryPointCode(
+        nint entryPointIndex,
+        nint targetIndex,
+        out IBlob code,
+        out IBlob? diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetResultAsFileSystem(nint entryPointIndex, nint targetIndex, out IMutableFileSystem fileSystem);
+    SlangResult GetResultAsFileSystem(
+        nint entryPointIndex,
+        nint targetIndex,
+        out IMutableFileSystem fileSystem
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void GetEntryPointHash(nint entryPointIndex, nint targetIndex, out IBlob hash);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult Specialize(
-        [MarshalUsing(CountElementName = "specializationArgCount")] Span<SpecializationArgument> specializationArgs,
+        [MarshalUsing(CountElementName = "specializationArgCount")]
+            Span<SpecializationArgument> specializationArgs,
         nint specializationArgCount,
         out IComponentType specializeComponentType,
-        out IBlob? diagnostics);
+        out IBlob? diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult Link(out IComponentType linkedComponentType, out IBlob? diagnostics);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetEntryPointHostCallable(nint entryPointIndex,
-                                          nint targetIndex,
-                                          out ISlangSharedLibrary sharedLibrary,
-                                          out IBlob? diagnostics);
+    SlangResult GetEntryPointHostCallable(
+        nint entryPointIndex,
+        nint targetIndex,
+        out ISlangSharedLibrary sharedLibrary,
+        out IBlob? diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult RenameEntryPoint(string newName, out IComponentType entryPoint);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult LinkWithOptions(out IComponentType linkedComponentType,
-                                uint compilerOptionEntryCount,
-                                [MarshalUsing(CountElementName = "compilerOptionEntryCount")]
-                                Span<CompilerOptionEntry> entries,
-                                out IBlob? diagnostics);
+    SlangResult LinkWithOptions(
+        out IComponentType linkedComponentType,
+        uint compilerOptionEntryCount,
+        [MarshalUsing(CountElementName = "compilerOptionEntryCount")]
+            Span<CompilerOptionEntry> entries,
+        out IBlob? diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetTargetCode(nint targetIndex, out IBlob code, out IBlob? diagnostics);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetTargetMetadata(nint entryPointIndex, nint targetIndex, out IMetadata metadata, out IBlob? diagnostics);
+    SlangResult GetTargetMetadata(
+        nint entryPointIndex,
+        nint targetIndex,
+        out IMetadata metadata,
+        out IBlob? diagnostics
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetEntryPointMetadata(nint entryPointIndex, nint targetIndex, out IMetadata metadata, out IBlob? diagnostics);
+    SlangResult GetEntryPointMetadata(
+        nint entryPointIndex,
+        nint targetIndex,
+        out IMetadata metadata,
+        out IBlob? diagnostics
+    );
 }

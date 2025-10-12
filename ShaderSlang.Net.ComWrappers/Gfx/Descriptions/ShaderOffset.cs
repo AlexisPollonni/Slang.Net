@@ -3,10 +3,14 @@ using ShaderSlang.Net.ComWrappers.Tools;
 
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
-[NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<ShaderOffset, Unmanaged.ShaderOffset>))]
-public readonly struct ShaderOffset : IComparable<ShaderOffset>, IEquatable<ShaderOffset>,
-                                      IMarshalsToNative<Unmanaged.ShaderOffset>,
-                                      IMarshalsFromNative<ShaderOffset, Unmanaged.ShaderOffset>
+[NativeMarshalling(
+    typeof(MarshalableMarshaller.Bidirectional<ShaderOffset, Unmanaged.ShaderOffset>)
+)]
+public readonly struct ShaderOffset
+    : IComparable<ShaderOffset>,
+        IEquatable<ShaderOffset>,
+        IMarshalsToNative<Unmanaged.ShaderOffset>,
+        IMarshalsFromNative<ShaderOffset, Unmanaged.ShaderOffset>
 {
     private readonly Unmanaged.ShaderOffset _offset;
 
@@ -16,7 +20,7 @@ public readonly struct ShaderOffset : IComparable<ShaderOffset>, IEquatable<Shad
         {
             uniformOffset = (nint)uniformOffset,
             bindingRangeIndex = bindingRangeIndex,
-            bindingArrayIndex = bindingArrayIndex
+            bindingArrayIndex = bindingArrayIndex,
         };
     }
 
@@ -41,14 +45,20 @@ public readonly struct ShaderOffset : IComparable<ShaderOffset>, IEquatable<Shad
 
     public int CompareTo(ShaderOffset other)
     {
-        if (BindingRangeIndex < other.BindingRangeIndex) return -1;
-        if (BindingRangeIndex > other.BindingRangeIndex) return 1;
+        if (BindingRangeIndex < other.BindingRangeIndex)
+            return -1;
+        if (BindingRangeIndex > other.BindingRangeIndex)
+            return 1;
 
-        if (BindingArrayIndex < other.BindingArrayIndex) return -1;
-        if (BindingArrayIndex > other.BindingArrayIndex) return 1;
+        if (BindingArrayIndex < other.BindingArrayIndex)
+            return -1;
+        if (BindingArrayIndex > other.BindingArrayIndex)
+            return 1;
 
-        if (UniformOffset < other.UniformOffset) return -1;
-        if (UniformOffset > other.UniformOffset) return 1;
+        if (UniformOffset < other.UniformOffset)
+            return -1;
+        if (UniformOffset > other.UniformOffset)
+            return 1;
 
         return 0;
     }
@@ -66,27 +76,25 @@ public readonly struct ShaderOffset : IComparable<ShaderOffset>, IEquatable<Shad
         left.CompareTo(right) >= 0;
 
     public bool Equals(ShaderOffset other) =>
-        UniformOffset == other.UniformOffset 
-        && BindingRangeIndex == other.BindingRangeIndex 
+        UniformOffset == other.UniformOffset
+        && BindingRangeIndex == other.BindingRangeIndex
         && BindingArrayIndex == other.BindingArrayIndex;
 
-    public override bool Equals(object? obj) =>
-        obj is ShaderOffset other && Equals(other);
+    public override bool Equals(object? obj) => obj is ShaderOffset other && Equals(other);
 
-    public static bool operator ==(ShaderOffset left, ShaderOffset right) =>
-        left.Equals(right);
+    public static bool operator ==(ShaderOffset left, ShaderOffset right) => left.Equals(right);
 
-    public static bool operator !=(ShaderOffset left, ShaderOffset right) =>
-        !left.Equals(right);
+    public static bool operator !=(ShaderOffset left, ShaderOffset right) => !left.Equals(right);
 
-    Unmanaged.ShaderOffset IMarshalsToNative<Unmanaged.ShaderOffset>.AsNative(ref GrowingStackBuffer buffer) =>
+    Unmanaged.ShaderOffset IMarshalsToNative<Unmanaged.ShaderOffset>.AsNative(
+        ref GrowingStackBuffer buffer
+    ) =>
         new()
         {
             uniformOffset = (nint)UniformOffset,
             bindingRangeIndex = BindingRangeIndex,
-            bindingArrayIndex = BindingArrayIndex
+            bindingArrayIndex = BindingArrayIndex,
         };
 
-    public static ShaderOffset CreateFromNative(Unmanaged.ShaderOffset unmanaged) =>
-        new(unmanaged);
+    public static ShaderOffset CreateFromNative(Unmanaged.ShaderOffset unmanaged) => new(unmanaged);
 }

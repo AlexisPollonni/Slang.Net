@@ -10,7 +10,10 @@ public static unsafe partial class IndirectDispatchArgumentsTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(sizeof(IndirectDispatchArguments), Marshal.SizeOf<IndirectDispatchArguments>());
+        Assert.Equal(
+            sizeof(IndirectDispatchArguments),
+            Marshal.SizeOf<IndirectDispatchArguments>()
+        );
     }
 
     /// <summary>Validates that the <see cref="IndirectDispatchArguments" /> struct has the right <see cref="LayoutKind" />.</summary>

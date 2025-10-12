@@ -1,7 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="ICommandEncoder" access="public" native="struct ICommandEncoder : ISlangUnknown" parent="ISlangUnknown" uuid="77ea6383-be3d-40aa-8b45-fdf0d75bfa34" vtbl="true" unsafe="true">
+    <struct
+      name="ICommandEncoder"
+      access="public"
+      native="struct ICommandEncoder : ISlangUnknown"
+      parent="ISlangUnknown"
+      uuid="77ea6383-be3d-40aa-8b45-fdf0d75bfa34"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -56,25 +64,48 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="endEncoding" access="public" unsafe="true">
         <type>void</type>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endEncoding</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">endEncoding</vtbl>)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endEncoding</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >endEncoding</vtbl
+            >)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="writeTimestamp" access="public" unsafe="true">
@@ -86,12 +117,23 @@
           <type>int</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_writeTimestamp</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">writeTimestamp</vtbl>)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="queryPool">queryPool</param>, <param name="queryIndex">queryIndex</param>);</code>
+          <code
+            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_writeTimestamp</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >writeTimestamp</vtbl
+            >)(<param special="thisPtr">(ICommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param
+              name="queryPool"
+              >queryPool</param
+            >, <param name="queryIndex">queryIndex</param>);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="addRef" access="public">
           <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
@@ -103,7 +145,10 @@
           <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="writeTimestamp" access="public">
-          <type native="void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
       </vtbl>
     </struct>

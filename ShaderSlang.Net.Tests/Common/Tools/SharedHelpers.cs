@@ -6,12 +6,12 @@ using ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 using ShaderSlang.Net.ComWrappers.Gfx.Interfaces;
 using ShaderSlang.Net.ComWrappers.Interfaces;
 using Xunit;
-using IDevice = ShaderSlang.Net.ComWrappers.Gfx.Interfaces.IDevice;
-using IGlobalSession = ShaderSlang.Net.ComWrappers.Interfaces.IGlobalSession;
 using static ShaderSlang.Net.ComWrappers.Gfx.Gfx;
 using static ShaderSlang.Net.ComWrappers.Slang;
 using AdapterInfo = ShaderSlang.Net.ComWrappers.Gfx.Descriptions.AdapterInfo;
 using IComponentType = ShaderSlang.Net.ComWrappers.Interfaces.IComponentType;
+using IDevice = ShaderSlang.Net.ComWrappers.Gfx.Interfaces.IDevice;
+using IGlobalSession = ShaderSlang.Net.ComWrappers.Interfaces.IGlobalSession;
 using IShaderProgram = ShaderSlang.Net.ComWrappers.Gfx.Interfaces.IShaderProgram;
 using ShaderReflection = ShaderSlang.Net.ComWrappers.Reflection.ShaderReflection;
 
@@ -31,7 +31,7 @@ internal static class SharedHelpers
             return p;
         }
     }
-    
+
     public static bool IsCi => Environment.GetEnvironmentVariable("CI") is "true";
 
     public static IGlobalSession CreateTestGlobalSession()
@@ -52,20 +52,23 @@ internal static class SharedHelpers
         return globalSession;
     }
 
-    public static IDevice CreateTestDevice(IGlobalSession globalSession,
-                                           bool allowCpuDevice = true,
-                                           DeviceType deviceType = DeviceType.Default,
-                                           ILogger? logger = null)
+    public static IDevice CreateTestDevice(
+        IGlobalSession globalSession,
+        bool allowCpuDevice = true,
+        DeviceType deviceType = DeviceType.Default,
+        ILogger? logger = null
+    )
     {
         Debug.Layer();
-        if (logger is not null) Debug.EnableLogging(logger);
-            
+        if (logger is not null)
+            Debug.EnableLogging(logger);
+
         if (deviceType is DeviceType.Default or DeviceType.Unknown)
         {
             // For now we only allow CPU devices in CI
             deviceType = IsCi ? DeviceType.CPU : FindFirstAvailable(allowCpuDevice);
         }
-        else if(deviceType is not DeviceType.CPU)
+        else if (deviceType is not DeviceType.CPU)
         {
             SkipIfNotAvailable(deviceType);
         }
@@ -85,12 +88,9 @@ internal static class SharedHelpers
                 TargetFlags = TargetFlags.GenerateSPIRVDirectly,
                 OptimizationLevel = OptimizationLevel.None,
                 DefaultMatrixLayoutMode = MatrixLayoutMode.RowMajor,
-                SearchPaths = [Path.Combine(runningBinPath, "Examples", "Assets")]
+                SearchPaths = [Path.Combine(runningBinPath, "Examples", "Assets")],
             },
-            ShaderCache = new()
-            {
-                Path = Path.Combine(runningBinPath, "ShaderCache")
-            },
+            ShaderCache = new() { Path = Path.Combine(runningBinPath, "ShaderCache") },
         };
 
         CreateDevice(devDesc, out var device).ThrowIfFailed();
@@ -101,7 +101,8 @@ internal static class SharedHelpers
     public static (IShaderProgram program, ShaderReflection programLayout) LoadShaderProgram(
         IDevice device,
         string moduleName,
-        ILogger? logger = null)
+        ILogger? logger = null
+    )
     {
         var session = device.GetSlangSessionOrThrow();
 
@@ -113,7 +114,11 @@ internal static class SharedHelpers
         var computeEntryPoint = module.FindEntryPointByNameOrThrow("computeMain");
 
         var componentTypes = new IComponentType[] { module, computeEntryPoint };
-        var composedProgram = session.CreateCompositeComponentTypeOrThrow(componentTypes, 2, out var diagStr);
+        var composedProgram = session.CreateCompositeComponentTypeOrThrow(
+            componentTypes,
+            2,
+            out var diagStr
+        );
         logger?.LogDiagnostics(diagStr);
 
         var slangReflection = composedProgram.GetLayout(0, out diag);
@@ -129,7 +134,7 @@ internal static class SharedHelpers
 
         return (program, slangReflection.Value);
     }
-    
+
     public static void SkipIfNotAvailable(DeviceType type)
     {
         GetAdapters(type, out IReadOnlyList<AdapterInfo> adapters);
@@ -139,25 +144,34 @@ internal static class SharedHelpers
             Assert.Skip($"Skipping test because GPU adapter for {type} is not available.");
         }
     }
-    
 
     private static DeviceType FindFirstAvailable(bool includeCpu = false)
     {
-        var deviceTypes = new List<DeviceType> { DeviceType.DirectX12, DeviceType.Metal, DeviceType.Vulkan };
-
-        if (includeCpu) deviceTypes.Add(DeviceType.CPU);
-
-        var adapters = deviceTypes.SelectMany(type =>
+        var deviceTypes = new List<DeviceType>
         {
-            var res = GetAdapters(type, out IReadOnlyList<AdapterInfo> adapters);
+            DeviceType.DirectX12,
+            DeviceType.Metal,
+            DeviceType.Vulkan,
+        };
 
-            if (res.Succeeded) return adapters.Select(info => (type, info));
-            
-            TestContext.Current.SendDiagnosticMessage($"Failed to get adapters for {type}: {res}");
-            return [];
+        if (includeCpu)
+            deviceTypes.Add(DeviceType.CPU);
 
-        }).ToArray();
-        
+        var adapters = deviceTypes
+            .SelectMany(type =>
+            {
+                var res = GetAdapters(type, out IReadOnlyList<AdapterInfo> adapters);
+
+                if (res.Succeeded)
+                    return adapters.Select(info => (type, info));
+
+                TestContext.Current.SendDiagnosticMessage(
+                    $"Failed to get adapters for {type}: {res}"
+                );
+                return [];
+            })
+            .ToArray();
+
         var firstAvailable = adapters.FirstOrDefault();
 
         return firstAvailable != default ? firstAvailable.type : DeviceType.Unknown;

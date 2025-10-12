@@ -1,29 +1,25 @@
 <Project>
-    <PropertyGroup>
-        <SlangVersion>2025.18.1</SlangVersion>
-
-        <Authors>Helco;AlexisPollonni</Authors>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageTags>slang;shader;C#;csharp</PackageTags>
-
-        <TargetFramework>net10.0</TargetFramework>
-        <LangVersion>preview</LangVersion>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <UseArtifactsOutput>true</UseArtifactsOutput>
-
-        <!-- Ensures project references copy native binaries after build. Not necessary after MSBuild 17.0 but kept for backwards compatibility
+  <PropertyGroup>
+    <SlangVersion>2025.18.1</SlangVersion>
+    <Authors>Helco;AlexisPollonni</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>slang;shader;C#;csharp</PackageTags>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <!-- Ensures project references copy native binaries after build. Not necessary after MSBuild 17.0 but kept for backwards compatibility
         https://github.com/dotnet/msbuild/issues/1054#issuecomment-847959047 
         NOTE: Make sure to use IncludeAssets="all" or at least IncludeAssets="native"; With project refs, native assets are not included by default
         -->
-        <MSBuildCopyContentTransitively>true</MSBuildCopyContentTransitively>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="$(ArtifactsPath) == ''">
-        <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="GitVersion.MsBuild" PrivateAssets="all"/>
-    </ItemGroup>
+    <MSBuildCopyContentTransitively>true</MSBuildCopyContentTransitively>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(ArtifactsPath) == ''">
+    <ArtifactsPath>$(MSBuildThisFileDirectory)artifacts</ArtifactsPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="GitVersion.MsBuild" PrivateAssets="all" />
+    <PackageReference Include="CSharpier.MsBuild" PrivateAssets="all" />
+  </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ namespace ShaderSlang.Net.Bindings.Generated;
 partial struct SlangUUID
 {
     public static implicit operator Guid(SlangUUID uuid) => uuid.ToGuid();
+
     public static implicit operator SlangUUID(Guid g) => FromGuid(g);
 
     public static SlangUUID FromGuid(Guid g)
@@ -13,7 +14,7 @@ partial struct SlangUUID
         var uuid = new SlangUUID();
 
         g.TryWriteBytes(MemoryMarshal.AsBytes(MemoryMarshal.CreateSpan(ref uuid, 1)));
-        
+
         return uuid;
     }
 

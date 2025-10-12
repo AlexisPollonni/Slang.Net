@@ -22,7 +22,8 @@ public static class EquatableArray
     /// <typeparam name="T">The type of items in the input array.</typeparam>
     /// <param name="array">The input <see cref="ImmutableArray{T}"/> instance.</param>
     /// <returns>An <see cref="EquatableArray{T}"/> instance from a given <see cref="ImmutableArray{T}"/>.</returns>
-    public static EquatableArray<T> AsEquatableArray<T>(this ImmutableArray<T> array) where T : IEquatable<T>
+    public static EquatableArray<T> AsEquatableArray<T>(this ImmutableArray<T> array)
+        where T : IEquatable<T>
     {
         return new(array);
     }
@@ -33,7 +34,8 @@ public static class EquatableArray
 /// </summary>
 /// <typeparam name="T">The type of values in the array.</typeparam>
 //[CollectionBuilder()]
-public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnumerable<T> where T : IEquatable<T>
+public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnumerable<T>
+    where T : IEquatable<T>
 {
     /// <summary>
     /// The underlying <typeparamref name="T"/> array.

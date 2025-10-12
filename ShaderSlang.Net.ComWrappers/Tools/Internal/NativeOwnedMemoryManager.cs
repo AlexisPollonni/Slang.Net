@@ -8,6 +8,7 @@ internal unsafe class NativeOwnedMemoryManager(byte* data, int size) : MemoryMan
     {
         //noop
     }
+
     public override Span<byte> GetSpan() => new(data, size);
 
     public override MemoryHandle Pin(int elementIndex = 0) => new(data + elementIndex);

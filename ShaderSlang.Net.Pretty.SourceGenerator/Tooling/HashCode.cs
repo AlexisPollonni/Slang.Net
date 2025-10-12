@@ -25,8 +25,13 @@ internal struct HashCode
 
     private static readonly uint seed = GenerateGlobalSeed();
 
-    private uint v1, v2, v3, v4;
-    private uint queue1, queue2, queue3;
+    private uint v1,
+        v2,
+        v3,
+        v4;
+    private uint queue1,
+        queue2,
+        queue3;
     private uint length;
 
     /// <summary>
@@ -165,12 +170,18 @@ internal struct HashCode
     }
 
     /// <inheritdoc/>
-    [Obsolete("HashCode is a mutable struct and should not be compared with other HashCodes. Use ToHashCode to retrieve the computed hash code.", error: true)]
+    [Obsolete(
+        "HashCode is a mutable struct and should not be compared with other HashCodes. Use ToHashCode to retrieve the computed hash code.",
+        error: true
+    )]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public override int GetHashCode() => throw new NotSupportedException();
 
     /// <inheritdoc/>
-    [Obsolete("HashCode is a mutable struct and should not be compared with other HashCodes.", error: true)]
+    [Obsolete(
+        "HashCode is a mutable struct and should not be compared with other HashCodes.",
+        error: true
+    )]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public override bool Equals(object? obj) => throw new NotSupportedException();
 

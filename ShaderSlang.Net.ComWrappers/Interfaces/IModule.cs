@@ -8,7 +8,10 @@ using ShaderSlang.Net.ComWrappers.Tools.Internal;
 
 namespace ShaderSlang.Net.ComWrappers.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
+[GeneratedComInterface(
+    StringMarshalling = StringMarshalling.Custom,
+    StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller)
+)]
 [Guid("0C720E64-8722-4D31-8990-638A98B1C279")]
 [GenerateThrowingMethods]
 public partial interface IModule : IComponentType
@@ -48,10 +51,12 @@ public partial interface IModule : IComponentType
 
     [PreserveSig]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult FindAndCheckEntryPoint(string name,
-                                       Unmanaged.Stage stage,
-                                       out IEntryPoint entryPoint,
-                                       out IBlob diagnostics);
+    SlangResult FindAndCheckEntryPoint(
+        string name,
+        Unmanaged.Stage stage,
+        out IEntryPoint entryPoint,
+        out IBlob diagnostics
+    );
 
     [PreserveSig]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
@@ -60,7 +65,6 @@ public partial interface IModule : IComponentType
     [PreserveSig]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     string? GetDependencyFilePath(int index);
-
 
     [PreserveSig]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]

@@ -13,7 +13,11 @@ public unsafe partial struct IResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(IResource* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        IResource* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -29,15 +33,24 @@ public unsafe partial struct IResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getNativeResourceHandle(IResource* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
+    public delegate int _getNativeResourceHandle(
+        IResource* pThis,
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getSharedHandle(IResource* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
+    public delegate int _getSharedHandle(
+        IResource* pThis,
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _setDebugName(IResource* pThis, [NativeTypeName("const char *")] sbyte* name);
+    public delegate int _setDebugName(
+        IResource* pThis,
+        [NativeTypeName("const char *")] sbyte* name
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("const char *")]
@@ -99,9 +112,16 @@ public unsafe partial struct IResource
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IResource*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (IResource*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -109,7 +129,9 @@ public unsafe partial struct IResource
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (IResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -117,7 +139,9 @@ public unsafe partial struct IResource
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (IResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='IResource.xml' path='doc/member[@name="IResource.getType"]/*' />
@@ -125,15 +149,21 @@ public unsafe partial struct IResource
     [return: NativeTypeName("gfx::IResource::Type")]
     public ResourceType getType()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getType>(lpVtbl->getType)((IResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getType>(lpVtbl->getType)(
+            (IResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='IResource.xml' path='doc/member[@name="IResource.getNativeResourceHandle"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getNativeResourceHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle)
+    public int getNativeResourceHandle(
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_getNativeResourceHandle>(lpVtbl->getNativeResourceHandle)((IResource*)Unsafe.AsPointer(ref this), outHandle);
+        return Marshal.GetDelegateForFunctionPointer<_getNativeResourceHandle>(
+            lpVtbl->getNativeResourceHandle
+        )((IResource*)Unsafe.AsPointer(ref this), outHandle);
     }
 
     /// <include file='IResource.xml' path='doc/member[@name="IResource.getSharedHandle"]/*' />
@@ -141,7 +171,10 @@ public unsafe partial struct IResource
     [return: NativeTypeName("gfx::Result")]
     public int getSharedHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getSharedHandle>(lpVtbl->getSharedHandle)((IResource*)Unsafe.AsPointer(ref this), outHandle);
+        return Marshal.GetDelegateForFunctionPointer<_getSharedHandle>(lpVtbl->getSharedHandle)(
+            (IResource*)Unsafe.AsPointer(ref this),
+            outHandle
+        );
     }
 
     /// <include file='IResource.xml' path='doc/member[@name="IResource.setDebugName"]/*' />
@@ -149,7 +182,10 @@ public unsafe partial struct IResource
     [return: NativeTypeName("gfx::Result")]
     public int setDebugName([NativeTypeName("const char *")] sbyte* name)
     {
-        return Marshal.GetDelegateForFunctionPointer<_setDebugName>(lpVtbl->setDebugName)((IResource*)Unsafe.AsPointer(ref this), name);
+        return Marshal.GetDelegateForFunctionPointer<_setDebugName>(lpVtbl->setDebugName)(
+            (IResource*)Unsafe.AsPointer(ref this),
+            name
+        );
     }
 
     /// <include file='IResource.xml' path='doc/member[@name="IResource.getDebugName"]/*' />
@@ -157,12 +193,16 @@ public unsafe partial struct IResource
     [return: NativeTypeName("const char *")]
     public sbyte* getDebugName()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDebugName>(lpVtbl->getDebugName)((IResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getDebugName>(lpVtbl->getDebugName)(
+            (IResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
@@ -174,10 +214,14 @@ public unsafe partial struct IResource
         [NativeTypeName("Type () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getType;
 
-        [NativeTypeName("Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getNativeResourceHandle;
 
-        [NativeTypeName("Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getSharedHandle;
 
         [NativeTypeName("Result (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]

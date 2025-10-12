@@ -1,7 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="IModule" access="public" native="struct IModule : slang::IComponentType" parent="IComponentType" uuid="0c720e64-8722-4d31-8990-638a98b1c279" vtbl="true" unsafe="true">
+    <struct
+      name="IModule"
+      access="public"
+      native="struct IModule : slang::IComponentType"
+      parent="IComponentType"
+      uuid="0c720e64-8722-4d31-8990-638a98b1c279"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -146,7 +154,12 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getEntryPointHostCallable" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_getEntryPointHostCallable"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>IModule*</type>
@@ -380,25 +393,48 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getSession" access="public" unsafe="true">
         <type native="slang::ISession *">ISession*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSession</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSession</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSession</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getSession</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getLayout" access="public" unsafe="true">
@@ -416,13 +452,26 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLayout</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getLayout</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLayout</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getLayout</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="targetIndex"
+              >targetIndex</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="getSpecializationParamCount" access="public" unsafe="true">
         <type native="SlangInt">nint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSpecializationParamCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSpecializationParamCount</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSpecializationParamCount</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getSpecializationParamCount</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getEntryPointCode" access="public" unsafe="true">
@@ -443,7 +492,17 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointCode</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCode</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryPointCode</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="entryPointIndex"
+              >entryPointIndex</param
+            >, <param name="targetIndex">targetIndex</param>, <param name="outCode"
+              >outCode</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="getResultAsFileSystem" access="public" unsafe="true">
@@ -458,7 +517,17 @@
           <type>ISlangMutableFileSystem**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getResultAsFileSystem</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getResultAsFileSystem</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outFileSystem">outFileSystem</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getResultAsFileSystem</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getResultAsFileSystem</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="entryPointIndex"
+              >entryPointIndex</param
+            >, <param name="targetIndex">targetIndex</param>, <param name="outFileSystem"
+              >outFileSystem</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getEntryPointHash" access="public" unsafe="true">
@@ -473,7 +542,17 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHash</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointHash</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outHash">outHash</param>);</code>
+          <code
+            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHash</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryPointHash</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="entryPointIndex"
+              >entryPointIndex</param
+            >, <param name="targetIndex">targetIndex</param>, <param name="outHash"
+              >outHash</param
+            >);</code
+          >
         </body>
       </function>
       <function name="specialize" access="public" unsafe="true">
@@ -494,7 +573,18 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_specialize</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">specialize</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="specializationArgs">specializationArgs</param>, <param name="specializationArgCount">specializationArgCount</param>, <param name="outSpecializedComponentType">outSpecializedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_specialize</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >specialize</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="specializationArgs"
+              >specializationArgs</param
+            >, <param name="specializationArgCount">specializationArgCount</param>, <param
+              name="outSpecializedComponentType"
+              >outSpecializedComponentType</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="link" access="public" unsafe="true">
@@ -509,7 +599,15 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_link</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">link</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_link</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >link</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outLinkedComponentType"
+              >outLinkedComponentType</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="getEntryPointHostCallable" access="public" unsafe="true">
@@ -530,7 +628,17 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHostCallable</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointHostCallable</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outSharedLibrary">outSharedLibrary</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointHostCallable</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryPointHostCallable</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="entryPointIndex"
+              >entryPointIndex</param
+            >, <param name="targetIndex">targetIndex</param>, <param name="outSharedLibrary"
+              >outSharedLibrary</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="renameEntryPoint" access="public" unsafe="true">
@@ -542,7 +650,15 @@
           <type>IComponentType**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_renameEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">renameEntryPoint</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="newName">newName</param>, <param name="outEntryPoint">outEntryPoint</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_renameEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >renameEntryPoint</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="newName"
+              >newName</param
+            >, <param name="outEntryPoint">outEntryPoint</param>);</code
+          >
         </body>
       </function>
       <function name="linkWithOptions" access="public" unsafe="true">
@@ -563,7 +679,18 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_linkWithOptions</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">linkWithOptions</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="outLinkedComponentType">outLinkedComponentType</param>, <param name="compilerOptionEntryCount">compilerOptionEntryCount</param>, <param name="compilerOptionEntries">compilerOptionEntries</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_linkWithOptions</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >linkWithOptions</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outLinkedComponentType"
+              >outLinkedComponentType</param
+            >, <param name="compilerOptionEntryCount">compilerOptionEntryCount</param>, <param
+              name="compilerOptionEntries"
+              >compilerOptionEntries</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="getTargetCode" access="public" unsafe="true">
@@ -581,7 +708,17 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetCode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTargetCode</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outCode">outCode</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetCode</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getTargetCode</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="targetIndex"
+              >targetIndex</param
+            >, <param name="outCode">outCode</param>, <param name="outDiagnostics"
+              >outDiagnostics</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getTargetMetadata" access="public" unsafe="true">
@@ -599,7 +736,17 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetMetadata</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTargetMetadata</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetMetadata</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getTargetMetadata</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="targetIndex"
+              >targetIndex</param
+            >, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics"
+              >outDiagnostics</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getEntryPointMetadata" access="public" unsafe="true">
@@ -620,7 +767,17 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointMetadata</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointMetadata</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outMetadata">outMetadata</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointMetadata</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryPointMetadata</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="entryPointIndex"
+              >entryPointIndex</param
+            >, <param name="targetIndex">targetIndex</param>, <param name="outMetadata"
+              >outMetadata</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="findEntryPointByName" access="public" unsafe="true">
@@ -632,13 +789,26 @@
           <type>IEntryPoint**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findEntryPointByName</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">findEntryPointByName</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>, <param name="outEntryPoint">outEntryPoint</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findEntryPointByName</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >findEntryPointByName</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="name"
+              >name</param
+            >, <param name="outEntryPoint">outEntryPoint</param>);</code
+          >
         </body>
       </function>
       <function name="getDefinedEntryPointCount" access="public" unsafe="true">
         <type native="SlangInt32">int</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDefinedEntryPointCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDefinedEntryPointCount</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDefinedEntryPointCount</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDefinedEntryPointCount</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getDefinedEntryPoint" access="public" unsafe="true">
@@ -650,7 +820,15 @@
           <type>IEntryPoint**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDefinedEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDefinedEntryPoint</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>, <param name="outEntryPoint">outEntryPoint</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDefinedEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDefinedEntryPoint</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="index"
+              >index</param
+            >, <param name="outEntryPoint">outEntryPoint</param>);</code
+          >
         </body>
       </function>
       <function name="serialize" access="public" unsafe="true">
@@ -659,7 +837,15 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_serialize</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">serialize</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="outSerializedBlob">outSerializedBlob</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_serialize</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >serialize</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outSerializedBlob"
+              >outSerializedBlob</param
+            >);</code
+          >
         </body>
       </function>
       <function name="writeToFile" access="public" unsafe="true">
@@ -668,25 +854,48 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_writeToFile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">writeToFile</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="fileName">fileName</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_writeToFile</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >writeToFile</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="fileName"
+              >fileName</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getName" access="public" unsafe="true">
         <type native="const char *">sbyte*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getName</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getName</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getName</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getName</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getFilePath" access="public" unsafe="true">
         <type native="const char *">sbyte*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getFilePath</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getFilePath</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getFilePath</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getFilePath</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getUniqueIdentity" access="public" unsafe="true">
         <type native="const char *">sbyte*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getUniqueIdentity</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getUniqueIdentity</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getUniqueIdentity</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getUniqueIdentity</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="findAndCheckEntryPoint" access="public" unsafe="true">
@@ -704,13 +913,28 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findAndCheckEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">findAndCheckEntryPoint</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>, <param name="stage">stage</param>, <param name="outEntryPoint">outEntryPoint</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findAndCheckEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >findAndCheckEntryPoint</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="name"
+              >name</param
+            >, <param name="stage">stage</param>, <param name="outEntryPoint"
+              >outEntryPoint</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="getDependencyFileCount" access="public" unsafe="true">
         <type native="SlangInt32">int</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDependencyFileCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDependencyFileCount</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDependencyFileCount</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDependencyFileCount</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getDependencyFilePath" access="public" unsafe="true">
@@ -719,13 +943,26 @@
           <type>int</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDependencyFilePath</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDependencyFilePath</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDependencyFilePath</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDependencyFilePath</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="index"
+              >index</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getModuleReflection" access="public" unsafe="true">
         <type native="slang::DeclReflection *">DeclReflection*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModuleReflection</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getModuleReflection</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getModuleReflection</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getModuleReflection</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="disassemble" access="public" unsafe="true">
@@ -734,12 +971,23 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_disassemble</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">disassemble</vtbl>)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param name="outDisassembledBlob">outDisassembledBlob</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_disassemble</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >disassemble</vtbl
+            >)(<param special="thisPtr">(IModule*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outDisassembledBlob"
+              >outDisassembledBlob</param
+            >);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="addRef" access="public">
           <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
@@ -748,85 +996,155 @@
           <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getSession" access="public">
-          <type native="ISession *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="ISession *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getLayout" access="public">
-          <type native="ProgramLayout *(SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="ProgramLayout *(SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getSpecializationParamCount" access="public">
           <type native="SlangInt () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointCode" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getResultAsFileSystem" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getEntryPointHash" access="public">
-          <type native="void (SlangInt, SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangInt, SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="specialize" access="public">
-          <type native="SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="link" access="public">
-          <type native="SlangResult (IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getEntryPointHostCallable" access="public">
-          <type native="SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="renameEntryPoint" access="public">
-          <type native="SlangResult (const char *, IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const char *, IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="linkWithOptions" access="public">
-          <type native="SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getTargetCode" access="public">
-          <type native="SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getTargetMetadata" access="public">
-          <type native="SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getEntryPointMetadata" access="public">
-          <type native="SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="findEntryPointByName" access="public">
-          <type native="SlangResult (const char *, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const char *, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getDefinedEntryPointCount" access="public">
-          <type native="SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getDefinedEntryPoint" access="public">
-          <type native="SlangResult (SlangInt32, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (SlangInt32, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="serialize" access="public">
-          <type native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="writeToFile" access="public">
-          <type native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getName" access="public">
-          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getFilePath" access="public">
-          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getUniqueIdentity" access="public">
-          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="findAndCheckEntryPoint" access="public">
-          <type native="SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getDependencyFileCount" access="public">
-          <type native="SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getDependencyFilePath" access="public">
-          <type native="const char *(SlangInt32) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *(SlangInt32) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getModuleReflection" access="public">
-          <type native="DeclReflection *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="DeclReflection *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="disassemble" access="public">
-          <type native="SlangResult (slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
       </vtbl>
     </struct>

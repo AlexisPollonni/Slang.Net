@@ -14,7 +14,11 @@ public unsafe partial struct ICompileResult
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(ICompileResult* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        ICompileResult* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -25,7 +29,10 @@ public unsafe partial struct ICompileResult
     public delegate uint _release(ICompileResult* pThis);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void* _castAs(ICompileResult* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* guid);
+    public delegate void* _castAs(
+        ICompileResult* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* guid
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -33,7 +40,11 @@ public unsafe partial struct ICompileResult
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _getItemData(ICompileResult* pThis, [NativeTypeName("uint32_t")] uint index, [NativeTypeName("IBlob **")] ISlangBlob** outblob);
+    public delegate int _getItemData(
+        ICompileResult* pThis,
+        [NativeTypeName("uint32_t")] uint index,
+        [NativeTypeName("IBlob **")] ISlangBlob** outblob
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
@@ -42,9 +53,16 @@ public unsafe partial struct ICompileResult
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ICompileResult*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (ICompileResult*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -52,7 +70,9 @@ public unsafe partial struct ICompileResult
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ICompileResult*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (ICompileResult*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -60,14 +80,19 @@ public unsafe partial struct ICompileResult
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ICompileResult*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (ICompileResult*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangCastable.castAs" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* castAs([NativeTypeName("const SlangUUID &")] SlangUUID* guid)
     {
-        return Marshal.GetDelegateForFunctionPointer<_castAs>(lpVtbl->castAs)((ICompileResult*)Unsafe.AsPointer(ref this), guid);
+        return Marshal.GetDelegateForFunctionPointer<_castAs>(lpVtbl->castAs)(
+            (ICompileResult*)Unsafe.AsPointer(ref this),
+            guid
+        );
     }
 
     /// <include file='ICompileResult.xml' path='doc/member[@name="ICompileResult.getItemCount"]/*' />
@@ -75,15 +100,24 @@ public unsafe partial struct ICompileResult
     [return: NativeTypeName("uint32_t")]
     public uint getItemCount()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getItemCount>(lpVtbl->getItemCount)((ICompileResult*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getItemCount>(lpVtbl->getItemCount)(
+            (ICompileResult*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='ICompileResult.xml' path='doc/member[@name="ICompileResult.getItemData"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int getItemData([NativeTypeName("uint32_t")] uint index, [NativeTypeName("IBlob **")] ISlangBlob** outblob)
+    public int getItemData(
+        [NativeTypeName("uint32_t")] uint index,
+        [NativeTypeName("IBlob **")] ISlangBlob** outblob
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_getItemData>(lpVtbl->getItemData)((ICompileResult*)Unsafe.AsPointer(ref this), index, outblob);
+        return Marshal.GetDelegateForFunctionPointer<_getItemData>(lpVtbl->getItemData)(
+            (ICompileResult*)Unsafe.AsPointer(ref this),
+            index,
+            outblob
+        );
     }
 
     /// <include file='ICompileResult.xml' path='doc/member[@name="ICompileResult.getMetadata"]/*' />
@@ -91,12 +125,17 @@ public unsafe partial struct ICompileResult
     [return: NativeTypeName("SlangResult")]
     public int getMetadata(IMetadata** outMetadata)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getMetadata>(lpVtbl->getMetadata)((ICompileResult*)Unsafe.AsPointer(ref this), outMetadata);
+        return Marshal.GetDelegateForFunctionPointer<_getMetadata>(lpVtbl->getMetadata)(
+            (ICompileResult*)Unsafe.AsPointer(ref this),
+            outMetadata
+        );
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
@@ -105,7 +144,9 @@ public unsafe partial struct ICompileResult
         [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void *(const SlangUUID &) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void *(const SlangUUID &) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr castAs;
 
         [NativeTypeName("uint32_t () __attribute__((stdcall))")]

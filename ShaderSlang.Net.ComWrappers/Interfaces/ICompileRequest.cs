@@ -9,7 +9,10 @@ using ShaderSlang.Net.ComWrappers.Tools.Internal;
 
 namespace ShaderSlang.Net.ComWrappers.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom, StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
+[GeneratedComInterface(
+    StringMarshalling = StringMarshalling.Custom,
+    StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller)
+)]
 [Guid("96D33993-317C-4DB5-AFD8-666EE77248E2")]
 [GenerateThrowingMethods]
 public partial interface ICompileRequest : IUnknown
@@ -81,8 +84,11 @@ public partial interface ICompileRequest : IUnknown
     void AddPreprocessorDefine(string key, string value);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult ProcessCommandLineArguments([MarshalUsing(CountElementName = "argCount")] Span<string> args, int argCount);
-    
+    SlangResult ProcessCommandLineArguments(
+        [MarshalUsing(CountElementName = "argCount")] Span<string> args,
+        int argCount
+    );
+
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     int AddTranslationUnit(Unmanaged.SourceLanguage language, string name);
 
@@ -99,12 +105,19 @@ public partial interface ICompileRequest : IUnknown
     void AddTranslationUnitSourceString(int translationUnitIndex, string path, string source);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult AddLibraryReference(string basePath,
-                                    [MarshalUsing(CountElementName = "libDataSize")] Span<byte> libData,
-                                    nuint libDataSize);
+    SlangResult AddLibraryReference(
+        string basePath,
+        [MarshalUsing(CountElementName = "libDataSize")] Span<byte> libData,
+        nuint libDataSize
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    void AddTranslationUnitSourceStringSpan(int translationUnitIndex, string path, string source, nint unused = 0);
+    void AddTranslationUnitSourceStringSpan(
+        int translationUnitIndex,
+        string path,
+        string source,
+        nint unused = 0
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void AddTranslationUnitSourceBlob(int translationUnitIndex, string path, IBlob sourceBlob);
@@ -113,21 +126,29 @@ public partial interface ICompileRequest : IUnknown
     int AddEntryPoint(int translationUnitIndex, string name, Unmanaged.Stage stage);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    int AddEntryPointEx(int translationUnitIndex,
-                        string name,
-                        Unmanaged.Stage stage,
-                        int genericArgCount,
-                        [MarshalUsing(CountElementName = "genericArgCount")] Span<string> genericArgs);
+    int AddEntryPointEx(
+        int translationUnitIndex,
+        string name,
+        Unmanaged.Stage stage,
+        int genericArgCount,
+        [MarshalUsing(CountElementName = "genericArgCount")] Span<string> genericArgs
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult SetGlobalGenericArgs(int genericArgCount,
-                                     [MarshalUsing(CountElementName = "genericArgCount")] Span<string> genericArgs);
+    SlangResult SetGlobalGenericArgs(
+        int genericArgCount,
+        [MarshalUsing(CountElementName = "genericArgCount")] Span<string> genericArgs
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult SetTypeNameForGlobalExistentialTypeParam(int slotIndex, string typeName);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult SetTypeNameForEntryPointExistentialTypeParam(int entryPointIndex, int slotIndex, string typeName);
+    SlangResult SetTypeNameForEntryPointExistentialTypeParam(
+        int entryPointIndex,
+        int slotIndex,
+        string typeName
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetAllowGlslInput([MarshalAs(UnmanagedType.I1)] bool value);
@@ -163,7 +184,11 @@ public partial interface ICompileRequest : IUnknown
     SlangResult GetEntryPointCodeBlob(int entryPointIndex, int targetIndex, out IBlob outBlob);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetEntryPointHostCallable(int entryPointIndex, int targetIndex, out ISlangSharedLibrary outSharedLibrary);
+    SlangResult GetEntryPointHostCallable(
+        int entryPointIndex,
+        int targetIndex,
+        out ISlangSharedLibrary outSharedLibrary
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetTargetCodeBlob(int targetIndex, out IBlob outBlob);
@@ -182,9 +207,11 @@ public partial interface ICompileRequest : IUnknown
     SlangResult GetContainerCode(out IBlob outBlob);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult LoadRepro(IFileSystem fileSystem,
-                          [MarshalUsing(CountElementName = "size")] Span<byte> data,
-                          nuint size);
+    SlangResult LoadRepro(
+        IFileSystem fileSystem,
+        [MarshalUsing(CountElementName = "size")] Span<byte> data,
+        nuint size
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult SaveRepro(out IBlob outBlob);
@@ -218,18 +245,23 @@ public partial interface ICompileRequest : IUnknown
     SlangResult GetProgramWithEntryPoints(out IComponentType outProgram);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult IsParameterLocationUsed(nint entryPointIndex,
-                                        nint targetIndex,
-                                        ParameterCategory category,
-                                        nuint spaceIndex,
-                                        nuint registerIndex,
-                                        [MarshalAs(UnmanagedType.I1)] out bool outUsed);
+    SlangResult IsParameterLocationUsed(
+        nint entryPointIndex,
+        nint targetIndex,
+        ParameterCategory category,
+        nuint spaceIndex,
+        nuint registerIndex,
+        [MarshalAs(UnmanagedType.I1)] out bool outUsed
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetLineDirectiveMode(nint targetIndex, Unmanaged.LineDirectiveMode mode);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    void SetTargetForceGlslScalarBufferLayout(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool forceScalarLayout);
+    void SetTargetForceGlslScalarBufferLayout(
+        int targetIndex,
+        [MarshalAs(UnmanagedType.I1)] bool forceScalarLayout
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void OverrideDiagnosticSeverity(nint messageId, Unmanaged.Severity overrideSeverity);
@@ -256,13 +288,19 @@ public partial interface ICompileRequest : IUnknown
     void SetSkipSpirvValidation([MarshalAs(UnmanagedType.I1)] bool value);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    void SetTargetUseMinimumSlangOptimization(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
+    void SetTargetUseMinimumSlangOptimization(
+        int targetIndex,
+        [MarshalAs(UnmanagedType.I1)] bool value
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetIgnoreCapabilityCheck([MarshalAs(UnmanagedType.I1)] bool value);
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult GetCompileTimeProfile(out IProfiler compileTimeProfile, [MarshalAs(UnmanagedType.I1)] bool shouldClear);
+    SlangResult GetCompileTimeProfile(
+        out IProfiler compileTimeProfile,
+        [MarshalAs(UnmanagedType.I1)] bool shouldClear
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetGenerateWholeProgram(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
@@ -272,7 +310,7 @@ public partial interface ICompileRequest : IUnknown
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetEmbedDownstreamIr(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
-    
+
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     void SetTargetForceCLayout(int targetIndex, [MarshalAs(UnmanagedType.I1)] bool value);
 }

@@ -22,7 +22,8 @@ internal readonly struct NativeBoundedReadOnlyList<TContainer, TElement> : IRead
     {
         get
         {
-            if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (index < 0 || index >= Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
             var element = TryGetAt(Container, index);
             return element ?? throw new SlangException("Slang list returned a null pointer");
         }
@@ -34,7 +35,8 @@ internal readonly struct NativeBoundedReadOnlyList<TContainer, TElement> : IRead
 }
 
 //TODO: clean this up
-internal readonly struct NativeClassBoundedReadOnlyList<TContainer, TElement> : IReadOnlyList<TElement>
+internal readonly struct NativeClassBoundedReadOnlyList<TContainer, TElement>
+    : IReadOnlyList<TElement>
     where TElement : class
 {
     public TContainer Container { get; init; }
@@ -50,7 +52,8 @@ internal readonly struct NativeClassBoundedReadOnlyList<TContainer, TElement> : 
     {
         get
         {
-            if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
+            if (index < 0 || index >= Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
             var element = TryGetAt(Container, index);
             return element ?? throw new SlangException("Slang list returned a null pointer");
         }
@@ -62,7 +65,8 @@ internal readonly struct NativeClassBoundedReadOnlyList<TContainer, TElement> : 
 }
 
 // and there is one two-dimensional list (TypeLayoutReflection.DescriptorSetDescriptorRange)
-internal readonly struct NativeBoundedReadOnlyList<TContainer, TArgument, TElement> : IReadOnlyList<TElement>
+internal readonly struct NativeBoundedReadOnlyList<TContainer, TArgument, TElement>
+    : IReadOnlyList<TElement>
     where TElement : struct
 {
     public TContainer Container { get; init; }
@@ -79,15 +83,14 @@ internal readonly struct NativeBoundedReadOnlyList<TContainer, TArgument, TEleme
     {
         get
         {
-            if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
-            return TryGetAt(Container, Argument, index) 
-                   ?? throw new SlangException("Slang list returned a null pointer");
+            if (index < 0 || index >= Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
+            return TryGetAt(Container, Argument, index)
+                ?? throw new SlangException("Slang list returned a null pointer");
         }
     }
 
-    public IEnumerator<TElement> GetEnumerator() =>
-        new IndexEnumerator<TElement>(this);
+    public IEnumerator<TElement> GetEnumerator() => new IndexEnumerator<TElement>(this);
 
-    IEnumerator IEnumerable.GetEnumerator() =>
-        GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

@@ -28,12 +28,15 @@ class InvokeBuilder(ICodeWriter writer, IMethodSymbol method)
 
     public InvokeBuilder TrySetParameter(ParameterSignature signature, string valueVar)
     {
-        if (!_parameters.ContainsKey(signature.Name)) SetParameter(signature, valueVar);
+        if (!_parameters.ContainsKey(signature.Name))
+            SetParameter(signature, valueVar);
         return this;
     }
+
     public InvokeBuilder TrySetParameter(IParameterSymbol symbol, string valueVar)
     {
-        if (!_parameters.ContainsKey(symbol.Name)) SetParameter(symbol, valueVar);
+        if (!_parameters.ContainsKey(symbol.Name))
+            SetParameter(symbol, valueVar);
         return this;
     }
 
@@ -64,9 +67,14 @@ class InvokeBuilder(ICodeWriter writer, IMethodSymbol method)
 
     public void RenderUnindented()
     {
-        var reqParamNames = method.Parameters.Where(p => !p.HasExplicitDefaultValue).Select(p => p.Name).ToArray();
+        var reqParamNames = method
+            .Parameters.Where(p => !p.HasExplicitDefaultValue)
+            .Select(p => p.Name)
+            .ToArray();
         if (reqParamNames.Any() && !reqParamNames.All(n => _parameters.ContainsKey(n)))
-            throw new InvalidOperationException("Function invoke does not contain all necessary parameters");
+            throw new InvalidOperationException(
+                "Function invoke does not contain all necessary parameters"
+            );
 
         if (method.IsStatic)
         {
@@ -76,7 +84,8 @@ class InvokeBuilder(ICodeWriter writer, IMethodSymbol method)
         {
             if (_instanceVar is null)
                 throw new InvalidOperationException(
-                    "Function invoke targets an instance function but not instance variable is provided");
+                    "Function invoke targets an instance function but not instance variable is provided"
+                );
 
             writer.AppendUnindented(_instanceVar);
         }
@@ -85,8 +94,9 @@ class InvokeBuilder(ICodeWriter writer, IMethodSymbol method)
         writer.AppendUnindented(method.Name);
         writer.AppendUnindented("(");
 
-        var invokeParams
-            = _parameters.Select(pair => $"{pair.Key}: {pair.Value.refKind.ToDisplayString()} {pair.Value.value}");
+        var invokeParams = _parameters.Select(pair =>
+            $"{pair.Key}: {pair.Value.refKind.ToDisplayString()} {pair.Value.value}"
+        );
         var joined = string.Join(", ", invokeParams);
         writer.AppendUnindented(joined);
 

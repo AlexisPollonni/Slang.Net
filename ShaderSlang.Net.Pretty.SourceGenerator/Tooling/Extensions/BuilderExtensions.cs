@@ -16,37 +16,39 @@ static class BuilderExtensions
             {
                 foreach (var methodTypeParameter in originMethod.TypeParameters)
                 {
-                    methodBuilder.AddGeneric(methodTypeParameter.Name,
-                                             builder =>
-                                             {
-                                                 if (methodTypeParameter.HasConstructorConstraint) builder.New();
-                                                 if (methodTypeParameter.HasReferenceTypeConstraint) builder.Class();
-                                                 if (methodTypeParameter.AllowsRefLikeType)
-                                                     builder.AddConstraint("allows ref struct");
-                                                 if (methodTypeParameter.HasNotNullConstraint) builder.AddConstraint("not null");
-                                                 if (methodTypeParameter.HasValueTypeConstraint) builder.AddConstraint("struct");
-                                                 if (methodTypeParameter.HasUnmanagedTypeConstraint)
-                                                     builder.AddConstraint("unmanaged");
+                    methodBuilder.AddGeneric(
+                        methodTypeParameter.Name,
+                        builder =>
+                        {
+                            if (methodTypeParameter.HasConstructorConstraint)
+                                builder.New();
+                            if (methodTypeParameter.HasReferenceTypeConstraint)
+                                builder.Class();
+                            if (methodTypeParameter.AllowsRefLikeType)
+                                builder.AddConstraint("allows ref struct");
+                            if (methodTypeParameter.HasNotNullConstraint)
+                                builder.AddConstraint("not null");
+                            if (methodTypeParameter.HasValueTypeConstraint)
+                                builder.AddConstraint("struct");
+                            if (methodTypeParameter.HasUnmanagedTypeConstraint)
+                                builder.AddConstraint("unmanaged");
 
-                                                 foreach (var constraint in methodTypeParameter.ConstraintTypes)
-                                                     builder.AddConstraint(constraint.ToFullyQualified());
-                                             });
+                            foreach (var constraint in methodTypeParameter.ConstraintTypes)
+                                builder.AddConstraint(constraint.ToFullyQualified());
+                        }
+                    );
                 }
             }
 
             return methodBuilder;
         }
 
-        public MethodBuilder AddParameterWithRefKind(RefKind refKind,
-                                                     ITypeSymbol type,
-                                                     string name)
+        public MethodBuilder AddParameterWithRefKind(RefKind refKind, ITypeSymbol type, string name)
         {
             return methodBuilder.AddParameterWithRefKind(refKind, type.ToFullyQualified(), name);
         }
 
-        public MethodBuilder AddParameterWithRefKind(RefKind refKind,
-                                                     string type,
-                                                     string name)
+        public MethodBuilder AddParameterWithRefKind(RefKind refKind, string type, string name)
         {
             return methodBuilder.AddParameter($"{refKind.ToDisplayString()} {type}", name);
         }
@@ -67,7 +69,8 @@ static class BuilderExtensions
         {
             methodBuilder.AddNamespaceImport(typeof(GeneratedCodeAttribute).Namespace!);
             return methodBuilder.AddAttribute(
-                $"GeneratedCodeAttribute(\"{typeof(TGenerator).FullName}\", \"{version.ToString(3)}\")");
+                $"GeneratedCodeAttribute(\"{typeof(TGenerator).FullName}\", \"{version.ToString(3)}\")"
+            );
         }
     }
 
@@ -78,71 +81,96 @@ static class BuilderExtensions
         {
             classBuilder.AddNamespaceImport(typeof(GeneratedCodeAttribute).Namespace!);
             return classBuilder.AddAttribute(
-                $"GeneratedCodeAttribute(\"{typeof(TGenerator).FullName}\", \"{version.ToString(3)}\")");
+                $"GeneratedCodeAttribute(\"{typeof(TGenerator).FullName}\", \"{version.ToString(3)}\")"
+            );
         }
 
-        public MethodBuilder AddExtensionMethodOverload(string methodName,
-                                                        ITypeSymbol typeToExtendSymbol,
-                                                        IMethodSymbol originalMethodToCall)
+        public MethodBuilder AddExtensionMethodOverload(
+            string methodName,
+            ITypeSymbol typeToExtendSymbol,
+            IMethodSymbol originalMethodToCall
+        )
         {
-            var mExtBuilder = classBuilder.AddMethod(methodName)
-                                          .MakePublicMethod()
-                                          .MakeStaticMethod()
-                                          .AddGenericsFrom(originalMethodToCall)
-                                          .AddAggressiveInliningAttribute()
-                                          .AddGeneratedCodeAttribute<GeneratedOverloadsGenerator>(new(0, 0, 1))
-                                          .AddParameter($"this {typeToExtendSymbol.ToFullyQualified()}", "instance");
+            var mExtBuilder = classBuilder
+                .AddMethod(methodName)
+                .MakePublicMethod()
+                .MakeStaticMethod()
+                .AddGenericsFrom(originalMethodToCall)
+                .AddAggressiveInliningAttribute()
+                .AddGeneratedCodeAttribute<GeneratedOverloadsGenerator>(new(0, 0, 1))
+                .AddParameter($"this {typeToExtendSymbol.ToFullyQualified()}", "instance");
             return mExtBuilder;
         }
 
-        public ClassBuilder AddGeneratedExtension(CommonTypesContext ctx,
-                                                  InterfaceExtensionData data,
-                                                  IMethodSymbol originalMethod)
+        public ClassBuilder AddGeneratedExtension(
+            CommonTypesContext ctx,
+            InterfaceExtensionData data,
+            IMethodSymbol originalMethod
+        )
         {
-            var methodBuilder
-                = classBuilder.AddExtensionMethodOverload(data.Signature.Name, originalMethod.ContainingType, originalMethod);
+            var methodBuilder = classBuilder.AddExtensionMethodOverload(
+                data.Signature.Name,
+                originalMethod.ContainingType,
+                originalMethod
+            );
 
             foreach (var pmSig in data.Signature.ParametersSig)
             {
-                if(pmSig.DefaultValue is not null)
+                if (pmSig.DefaultValue is not null)
                     if (pmSig.DefaultValue.IsNull)
                         methodBuilder.AddParameterWithNullValue(pmSig.Type, pmSig.Name);
                     else
-                        methodBuilder.AddParameterWithDefaultValue(pmSig.Type,
-                                                                   pmSig.Name,
-                                                                   pmSig.DefaultValue.ExplicitType);
-                else methodBuilder.AddParameterWithRefKind(pmSig.RefKind,
-                                                           pmSig.Type,
-                                                           pmSig.Name);
+                        methodBuilder.AddParameterWithDefaultValue(
+                            pmSig.Type,
+                            pmSig.Name,
+                            pmSig.DefaultValue.ExplicitType
+                        );
+                else
+                    methodBuilder.AddParameterWithRefKind(pmSig.RefKind, pmSig.Type, pmSig.Name);
             }
 
-            var isVoidReturn = SymbolEqualityComparer.Default.Equals(data.Signature.ReturnSig.Type, ctx.VoidType);
-            if (!isVoidReturn) 
+            var isVoidReturn = SymbolEqualityComparer.Default.Equals(
+                data.Signature.ReturnSig.Type,
+                ctx.VoidType
+            );
+            if (!isVoidReturn)
                 methodBuilder.WithReturnType(data.Signature.ReturnSig.Type);
 
             methodBuilder.WithBody(writer =>
             {
                 data.PreInvokeCode?.Invoke(writer);
 
-                var invokeBuilder = writer.BuildMethodInvoke(originalMethod).WithInstance("instance");
+                var invokeBuilder = writer
+                    .BuildMethodInvoke(originalMethod)
+                    .WithInstance("instance");
 
                 data.ApiInvokeBuilder?.Invoke(invokeBuilder);
-                foreach (var pSymbol in originalMethod.Parameters) invokeBuilder.TrySetParameter(pSymbol, pSymbol.Name);
+                foreach (var pSymbol in originalMethod.Parameters)
+                    invokeBuilder.TrySetParameter(pSymbol, pSymbol.Name);
 
                 if (!originalMethod.ReturnsVoid)
                 {
-                    writer.WriteVariableDeclaration(originalMethod.ReturnType, "__result").EndLine();
+                    writer
+                        .WriteVariableDeclaration(originalMethod.ReturnType, "__result")
+                        .EndLine();
                     writer.Append("__result = ");
                     invokeBuilder.RenderUnindented();
                 }
-                else invokeBuilder.Render();
+                else
+                    invokeBuilder.Render();
                 writer.EndLine();
 
                 data.PostInvokeCode?.Invoke(writer);
 
-                if (data.ReturnVarName is not null) writer.AppendLine($"return {data.ReturnVarName}!;");
-                else if (!originalMethod.ReturnsVoid &&
-                         SymbolEqualityComparer.Default.Equals(originalMethod.ReturnType, data.Signature.ReturnSig.Type))
+                if (data.ReturnVarName is not null)
+                    writer.AppendLine($"return {data.ReturnVarName}!;");
+                else if (
+                    !originalMethod.ReturnsVoid
+                    && SymbolEqualityComparer.Default.Equals(
+                        originalMethod.ReturnType,
+                        data.Signature.ReturnSig.Type
+                    )
+                )
                     writer.AppendLine("return __result;");
             });
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
     <struct name="DeviceInfo" access="public" unsafe="true">
@@ -15,7 +15,9 @@
         <type native="gfx::ProjectionStyle">ProjectionStyle</type>
       </field>
       <field name="identityProjectionMatrix" access="public">
-        <type native="float[16]" count="16" fixed="_identityProjectionMatrix_e__FixedBuffer">float</type>
+        <type native="float[16]" count="16" fixed="_identityProjectionMatrix_e__FixedBuffer"
+          >float</type
+        >
       </field>
       <field name="apiName" access="public">
         <type native="const char *">sbyte*</type>

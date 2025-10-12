@@ -1,7 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="IByteCodeRunner" access="public" native="struct IByteCodeRunner : ISlangUnknown" parent="ISlangUnknown" uuid="afdab195-361f-42cb-9513-9006261dd8cd" vtbl="true" unsafe="true">
+    <struct
+      name="IByteCodeRunner"
+      access="public"
+      native="struct IByteCodeRunner : ISlangUnknown"
+      parent="ISlangUnknown"
+      uuid="afdab195-361f-42cb-9513-9006261dd8cd"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -104,7 +112,12 @@
           <type>nuint*</type>
         </param>
       </delegate>
-      <delegate name="_setExtInstHandlerUserData" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_setExtInstHandlerUserData"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type>void</type>
         <param name="pThis">
           <type>IByteCodeRunner*</type>
@@ -146,19 +159,37 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="loadModule" access="public" unsafe="true">
@@ -167,7 +198,15 @@
           <type>ISlangBlob*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadModule</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="moduleBlob">moduleBlob</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModule</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >loadModule</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="moduleBlob"
+              >moduleBlob</param
+            >);</code
+          >
         </body>
       </function>
       <function name="selectFunctionByIndex" access="public" unsafe="true">
@@ -176,7 +215,15 @@
           <type>uint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_selectFunctionByIndex</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">selectFunctionByIndex</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="functionIndex">functionIndex</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_selectFunctionByIndex</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >selectFunctionByIndex</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="functionIndex"
+              >functionIndex</param
+            >);</code
+          >
         </body>
       </function>
       <function name="findFunctionByName" access="public" unsafe="true">
@@ -185,7 +232,15 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findFunctionByName</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">findFunctionByName</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findFunctionByName</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >findFunctionByName</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="name"
+              >name</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getFunctionInfo" access="public" unsafe="true">
@@ -197,13 +252,26 @@
           <type>ByteCodeFuncInfo*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getFunctionInfo</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getFunctionInfo</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>, <param name="outInfo">outInfo</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getFunctionInfo</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getFunctionInfo</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="index"
+              >index</param
+            >, <param name="outInfo">outInfo</param>);</code
+          >
         </body>
       </function>
       <function name="getCurrentWorkingSet" access="public" unsafe="true">
         <type>void*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCurrentWorkingSet</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCurrentWorkingSet</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCurrentWorkingSet</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getCurrentWorkingSet</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="execute" access="public" unsafe="true">
@@ -215,7 +283,15 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_execute</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">execute</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="argumentData">argumentData</param>, <param name="argumentSize">argumentSize</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_execute</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >execute</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="argumentData"
+              >argumentData</param
+            >, <param name="argumentSize">argumentSize</param>);</code
+          >
         </body>
       </function>
       <function name="getErrorString" access="public" unsafe="true">
@@ -224,7 +300,15 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getErrorString</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getErrorString</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="outBlob">outBlob</param>);</code>
+          <code
+            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getErrorString</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getErrorString</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outBlob"
+              >outBlob</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getReturnValue" access="public" unsafe="true">
@@ -233,7 +317,15 @@
           <type>nuint*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getReturnValue</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getReturnValue</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="outValueSize">outValueSize</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getReturnValue</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getReturnValue</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outValueSize"
+              >outValueSize</param
+            >);</code
+          >
         </body>
       </function>
       <function name="setExtInstHandlerUserData" access="public" unsafe="true">
@@ -242,7 +334,15 @@
           <type>void*</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setExtInstHandlerUserData</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setExtInstHandlerUserData</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="userData">userData</param>);</code>
+          <code
+            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setExtInstHandlerUserData</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setExtInstHandlerUserData</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="userData"
+              >userData</param
+            >);</code
+          >
         </body>
       </function>
       <function name="registerExtCall" access="public" unsafe="true">
@@ -254,7 +354,15 @@
           <type>IntPtr</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_registerExtCall</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">registerExtCall</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>, <param name="functionPtr">functionPtr</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_registerExtCall</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >registerExtCall</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="name"
+              >name</param
+            >, <param name="functionPtr">functionPtr</param>);</code
+          >
         </body>
       </function>
       <function name="setPrintCallback" access="public" unsafe="true">
@@ -266,12 +374,23 @@
           <type>void*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setPrintCallback</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setPrintCallback</vtbl>)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param name="callback">callback</param>, <param name="userData">userData</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setPrintCallback</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setPrintCallback</vtbl
+            >)(<param special="thisPtr">(IByteCodeRunner*)Unsafe.AsPointer(ref this)</param>, <param
+              name="callback"
+              >callback</param
+            >, <param name="userData">userData</param>);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="addRef" access="public">
           <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
@@ -280,37 +399,61 @@
           <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="loadModule" access="public">
-          <type native="SlangResult (IBlob *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (IBlob *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="selectFunctionByIndex" access="public">
-          <type native="SlangResult (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="findFunctionByName" access="public">
-          <type native="int (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="int (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getFunctionInfo" access="public">
-          <type native="SlangResult (uint32_t, ByteCodeFuncInfo *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (uint32_t, ByteCodeFuncInfo *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getCurrentWorkingSet" access="public">
           <type native="void *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="execute" access="public">
-          <type native="SlangResult (void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getErrorString" access="public">
-          <type native="void (IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getReturnValue" access="public">
-          <type native="void *(size_t *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void *(size_t *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="setExtInstHandlerUserData" access="public">
-          <type native="void (void *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (void *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="registerExtCall" access="public">
-          <type native="SlangResult (const char *, VMExtFunction) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const char *, VMExtFunction) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="setPrintCallback" access="public">
-          <type native="SlangResult (VMPrintFunc, void *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (VMPrintFunc, void *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
       </vtbl>
     </struct>

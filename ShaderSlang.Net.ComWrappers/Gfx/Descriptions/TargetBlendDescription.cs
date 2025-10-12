@@ -8,9 +8,10 @@ public readonly record struct TargetBlendDescription(
     Unmanaged.AspectBlendDesc Alpha,
     bool EnableBlend = false,
     Unmanaged.LogicOp LogicOp = Unmanaged.LogicOp.NoOp,
-    RenderTargetWriteMaskT WriteMask = RenderTargetWriteMaskT.EnableAll)
+    RenderTargetWriteMaskT WriteMask = RenderTargetWriteMaskT.EnableAll
+)
     : IMarshalsToNative<Unmanaged.TargetBlendDesc>,
-      IMarshalsFromNative<TargetBlendDescription, Unmanaged.TargetBlendDesc> 
+        IMarshalsFromNative<TargetBlendDescription, Unmanaged.TargetBlendDesc>
 {
     private readonly Unmanaged.TargetBlendDesc _unmanaged = new()
     {
@@ -21,24 +22,31 @@ public readonly record struct TargetBlendDescription(
         writeMask = (byte)WriteMask,
     };
 
-    Unmanaged.TargetBlendDesc IMarshalsToNative<Unmanaged.TargetBlendDesc>.AsNative(ref GrowingStackBuffer buffer) =>
-        _unmanaged;
+    Unmanaged.TargetBlendDesc IMarshalsToNative<Unmanaged.TargetBlendDesc>.AsNative(
+        ref GrowingStackBuffer buffer
+    ) => _unmanaged;
 
     public static TargetBlendDescription CreateFromNative(Unmanaged.TargetBlendDesc unmanaged) =>
-        new(unmanaged.color, unmanaged.alpha, unmanaged.enableBlend, unmanaged.logicOp, (RenderTargetWriteMaskT)unmanaged.writeMask);
+        new(
+            unmanaged.color,
+            unmanaged.alpha,
+            unmanaged.enableBlend,
+            unmanaged.logicOp,
+            (RenderTargetWriteMaskT)unmanaged.writeMask
+        );
 
     public Unmanaged.AspectBlendDesc Color
     {
         get => _unmanaged.color;
         init => _unmanaged.color = value;
     }
-    
+
     public Unmanaged.AspectBlendDesc Alpha
     {
         get => _unmanaged.alpha;
         init => _unmanaged.alpha = value;
     }
-    
+
     public bool EnableBlend
     {
         get => _unmanaged.enableBlend;
@@ -50,7 +58,7 @@ public readonly record struct TargetBlendDescription(
         get => _unmanaged.logicOp;
         init => _unmanaged.logicOp = value;
     }
-    
+
     public RenderTargetWriteMaskT WriteMask
     {
         get => (RenderTargetWriteMaskT)_unmanaged.writeMask;

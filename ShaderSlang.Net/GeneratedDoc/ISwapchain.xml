@@ -1,7 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="ISwapchain" access="public" native="struct ISwapchain : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+    <struct
+      name="ISwapchain"
+      access="public"
+      native="struct ISwapchain : ISlangUnknown"
+      parent="ISlangUnknown"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -115,25 +122,48 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getDesc" access="public" unsafe="true">
         <type native="const Desc &amp;">SwapchainDesc*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDesc</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDesc</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDesc</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDesc</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getImage" access="public" unsafe="true">
@@ -145,19 +175,37 @@
           <type>ITextureResource**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getImage</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getImage</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>, <param name="outResource">outResource</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getImage</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getImage</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param
+              name="index"
+              >index</param
+            >, <param name="outResource">outResource</param>);</code
+          >
         </body>
       </function>
       <function name="present" access="public" unsafe="true">
         <type native="gfx::Result">int</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_present</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">present</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_present</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >present</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="acquireNextImage" access="public" unsafe="true">
         <type>int</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_acquireNextImage</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">acquireNextImage</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_acquireNextImage</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >acquireNextImage</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="resize" access="public" unsafe="true">
@@ -169,13 +217,26 @@
           <type>int</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resize</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">resize</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param name="width">width</param>, <param name="height">height</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resize</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >resize</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param
+              name="width"
+              >width</param
+            >, <param name="height">height</param>);</code
+          >
         </body>
       </function>
       <function name="isOccluded" access="public" unsafe="true">
         <type native="bool">Boolean</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isOccluded</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isOccluded</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isOccluded</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >isOccluded</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="setFullScreenMode" access="public" unsafe="true">
@@ -184,12 +245,23 @@
           <type>Boolean</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setFullScreenMode</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setFullScreenMode</vtbl>)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param name="mode">mode</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setFullScreenMode</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setFullScreenMode</vtbl
+            >)(<param special="thisPtr">(ISwapchain*)Unsafe.AsPointer(ref this)</param>, <param
+              name="mode"
+              >mode</param
+            >);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="addRef" access="public">
           <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
@@ -198,10 +270,15 @@
           <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDesc" access="public">
-          <type native="const Desc &amp;() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="const Desc &amp;() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="getImage" access="public">
-          <type native="Result (GfxIndex, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (GfxIndex, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="present" access="public">
           <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
@@ -210,13 +287,18 @@
           <type native="int () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="resize" access="public">
-          <type native="Result (GfxCount, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (GfxCount, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
         <field name="isOccluded" access="public">
           <type native="bool () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setFullScreenMode" access="public">
-          <type native="Result (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (bool) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
         </field>
       </vtbl>
     </struct>

@@ -9,5 +9,5 @@ public enum CompileFlags : uint
     NoCodegen = SLANG_COMPILE_FLAG_NO_CODEGEN,
     Obfuscate = SLANG_COMPILE_FLAG_OBFUSCATE,
     NoChecking = SLANG_COMPILE_FLAG_NO_CHECKING,
-    SplitMixedTypes = SLANG_COMPILE_FLAG_SPLIT_MIXED_TYPES
+    SplitMixedTypes = SLANG_COMPILE_FLAG_SPLIT_MIXED_TYPES,
 }

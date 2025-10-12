@@ -33,7 +33,7 @@ public static partial class Gfx
 
         return new AdaptersList(blob);
     }
-    
+
     public static SlangResult GetAdapters(DeviceType type, out IReadOnlyList<AdapterInfo> adapters)
     {
         var result = GetAdapters(type, out IBlob blob);
@@ -48,7 +48,8 @@ public static partial class Gfx
 
     private class AdaptersList(IBlob adaptersBlob) : NativeResultReadOnlyList<AdapterInfo>
     {
-        public override unsafe int Count => (int)(adaptersBlob.GetBufferSize() / (ulong)sizeof(Unmanaged.AdapterInfo));
+        public override unsafe int Count =>
+            (int)(adaptersBlob.GetBufferSize() / (ulong)sizeof(Unmanaged.AdapterInfo));
 
         public override unsafe SlangResult TryGetAt(int index, out AdapterInfo value)
         {
@@ -59,7 +60,10 @@ public static partial class Gfx
                 return SlangResult.InvalidParameter;
             }
 
-            var span = new ReadOnlySpan<Unmanaged.AdapterInfo>(adaptersBlob.GetBufferPointer(), count);
+            var span = new ReadOnlySpan<Unmanaged.AdapterInfo>(
+                adaptersBlob.GetBufferPointer(),
+                count
+            );
 
             value = AdapterInfo.CreateFromNative(span[index]);
             return SlangResult.Ok;
@@ -84,7 +88,8 @@ public static partial class Gfx
     private static DebugCallbackImpl? _debugCallbackInstance;
 
     public static unsafe SlangResult SetDebugCallback(
-        Action<Unmanaged.DebugMessageType, Unmanaged.DebugMessageSource, string>? callback)
+        Action<Unmanaged.DebugMessageType, Unmanaged.DebugMessageSource, string>? callback
+    )
     {
         // If null, remove the callback
         if (callback == null)
@@ -93,7 +98,6 @@ public static partial class Gfx
             _debugCallbackInstance = null;
             return Unmanaged.GfxApi.gfxSetDebugCallback(null).ToSlangResult();
         }
-
 
         // Create our implementation
         _debugCallbackInstance = new(callback);
@@ -109,7 +113,11 @@ public static partial class Gfx
     private sealed unsafe class DebugCallbackImpl : IDisposable
     {
         // The managed callback to invoke
-        private readonly Action<Unmanaged.DebugMessageType, Unmanaged.DebugMessageSource, string> _callback;
+        private readonly Action<
+            Unmanaged.DebugMessageType,
+            Unmanaged.DebugMessageSource,
+            string
+        > _callback;
 
         // The vtable for our implementation
         private readonly Unmanaged.IDebugCallback.Vtbl _vtbl;
@@ -123,7 +131,9 @@ public static partial class Gfx
         // GCHandle to prevent our instance from being collected
         private GCHandle _gcHandle;
 
-        public DebugCallbackImpl(Action<Unmanaged.DebugMessageType, Unmanaged.DebugMessageSource, string> callback)
+        public DebugCallbackImpl(
+            Action<Unmanaged.DebugMessageType, Unmanaged.DebugMessageSource, string> callback
+        )
         {
             _callback = callback;
 
@@ -133,15 +143,16 @@ public static partial class Gfx
             // Create the vtable
             _vtbl = new()
             {
-                handleMessage = Marshal.GetFunctionPointerForDelegate(_handleMessageDelegate)
+                handleMessage = Marshal.GetFunctionPointerForDelegate(_handleMessageDelegate),
             };
 
             // Allocate memory for the native structure
-            _nativePtr = (Unmanaged.IDebugCallback*)NativeMemory.Alloc((nuint)sizeof(Unmanaged.IDebugCallback));
+            _nativePtr = (Unmanaged.IDebugCallback*)
+                NativeMemory.Alloc((nuint)sizeof(Unmanaged.IDebugCallback));
 
             // Set the vtable pointer
-            _nativePtr->lpVtbl
-                = (Unmanaged.IDebugCallback.Vtbl*)NativeMemory.Alloc((nuint)sizeof(Unmanaged.IDebugCallback.Vtbl));
+            _nativePtr->lpVtbl = (Unmanaged.IDebugCallback.Vtbl*)
+                NativeMemory.Alloc((nuint)sizeof(Unmanaged.IDebugCallback.Vtbl));
             *_nativePtr->lpVtbl = _vtbl;
 
             // Keep a GCHandle to prevent our instance from being collected
@@ -149,16 +160,20 @@ public static partial class Gfx
         }
 
         // The implementation of the handleMessage function
-        private void HandleMessage(Unmanaged.IDebugCallback* pThis,
-                                   Unmanaged.DebugMessageType type,
-                                   Unmanaged.DebugMessageSource source,
-                                   sbyte* message)
+        private void HandleMessage(
+            Unmanaged.IDebugCallback* pThis,
+            Unmanaged.DebugMessageType type,
+            Unmanaged.DebugMessageSource source,
+            sbyte* message
+        )
         {
             try
             {
                 // Convert the message to a managed string
-                string managedMessage
-                    = message != null ? InteropUtils.PtrToStringUtf8(message) ?? string.Empty : string.Empty;
+                string managedMessage =
+                    message != null
+                        ? InteropUtils.PtrToStringUtf8(message) ?? string.Empty
+                        : string.Empty;
 
                 // Invoke the callback
                 _callback(type, source, managedMessage);

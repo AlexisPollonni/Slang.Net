@@ -1,10 +1,13 @@
 #nullable enable
 
-
 // ReSharper disable once CheckNamespace
 namespace ShaderSlang.Net.Bindings.Generated;
 
-public readonly struct Boolean(byte value) : IComparable, IComparable<Boolean>, IEquatable<Boolean>, IFormattable
+public readonly struct Boolean(byte value)
+    : IComparable,
+        IComparable<Boolean>,
+        IEquatable<Boolean>,
+        IFormattable
 {
     private readonly byte _value = value;
 
@@ -74,12 +77,14 @@ public readonly struct Boolean(byte value) : IComparable, IComparable<Boolean>, 
 
     public int CompareTo(object? obj)
     {
-            if (obj is Boolean other)
-            {
-                return CompareTo(other);
-            }
+        if (obj is Boolean other)
+        {
+            return CompareTo(other);
+        }
 
-            return (obj is null) ? 1 : throw new ArgumentException("obj is not an instance of Boolean.");
+        return (obj is null)
+            ? 1
+            : throw new ArgumentException("obj is not an instance of Boolean.");
     }
 
     public int CompareTo(Boolean other) => _value.CompareTo(other._value);
@@ -92,5 +97,6 @@ public readonly struct Boolean(byte value) : IComparable, IComparable<Boolean>, 
 
     public override string ToString() => _value.ToString();
 
-    public string ToString(string? format, IFormatProvider? formatProvider) => _value.ToString(format, formatProvider);
+    public string ToString(string? format, IFormatProvider? formatProvider) =>
+        _value.ToString(format, formatProvider);
 }

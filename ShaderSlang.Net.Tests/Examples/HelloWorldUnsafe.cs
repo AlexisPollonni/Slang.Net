@@ -1,15 +1,17 @@
 ﻿using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
-using ShaderSlang.Net.Tests.Common.Tools;
 using ShaderSlang.Net.Bindings.Generated;
+using ShaderSlang.Net.Tests.Common.Tools;
 using Veldrid;
 using Xunit;
 using static ShaderSlang.Net.Bindings.Generated.SlangApi;
 
 namespace ShaderSlang.Net.Tests.Examples;
 
-public sealed unsafe class HelloWorldUnsafeTests(ITestOutputHelper testOutputHelper, DefaultTestFixture fixture)
-    : TestBase<HelloWorldUnsafeTests>(testOutputHelper, fixture)
+public sealed unsafe class HelloWorldUnsafeTests(
+    ITestOutputHelper testOutputHelper,
+    DefaultTestFixture fixture
+) : TestBase<HelloWorldUnsafeTests>(testOutputHelper, fixture)
 {
     private const int ElementCount = 16;
     private const int BufferSize = sizeof(float) * ElementCount;
@@ -26,14 +28,15 @@ public sealed unsafe class HelloWorldUnsafeTests(ITestOutputHelper testOutputHel
     [Fact]
     public void HelloWorldUnsafe()
     {
-        Assert.SkipWhen(!GraphicsDevice.IsBackendSupported(GraphicsBackend.Vulkan), "Vulkan is not supported on this device");
+        Assert.SkipWhen(
+            !GraphicsDevice.IsBackendSupported(GraphicsBackend.Vulkan),
+            "Vulkan is not supported on this device"
+        );
         try
         {
-            _graphicsDevice = GraphicsDevice.CreateVulkan(new()
-            {
-                Debug = false,
-                HasMainSwapchain = false
-            });
+            _graphicsDevice = GraphicsDevice.CreateVulkan(
+                new() { Debug = false, HasMainSwapchain = false }
+            );
 
             LoadModuleAndCreatePipeline();
             CreateBuffers();
@@ -54,15 +57,20 @@ public sealed unsafe class HelloWorldUnsafeTests(ITestOutputHelper testOutputHel
 
     private ResourceFactory ResourceFactory => _graphicsDevice.ResourceFactory;
 
-    private  void ThrowOnFail(int error)
+    private void ThrowOnFail(int error)
     {
-        if (error != SLANG_OK) throw new Exception($"Slang error: {error}");
+        if (error != SLANG_OK)
+            throw new Exception($"Slang error: {error}");
     }
 
     private void DiagnoseIfNeeded(ISlangBlob* diagnosticBlob)
     {
-        if (diagnosticBlob == null) return;
-        Logger.LogError("Slang diagnostics: {Diagnostics}", Marshal.PtrToStringUTF8(new(diagnosticBlob->getBufferPointer())));
+        if (diagnosticBlob == null)
+            return;
+        Logger.LogError(
+            "Slang diagnostics: {Diagnostics}",
+            Marshal.PtrToStringUTF8(new(diagnosticBlob->getBufferPointer()))
+        );
     }
 
     private void LoadModuleAndCreatePipeline()
@@ -82,28 +90,35 @@ public sealed unsafe class HelloWorldUnsafeTests(ITestOutputHelper testOutputHel
 
             // Next a session to generate SPIRV code is created
             ProfileID profile;
-            fixed (byte* profileName = "glsl440"u8) profile = globalSession->findProfile((sbyte*)profileName);
+            fixed (byte* profileName = "glsl440"u8)
+                profile = globalSession->findProfile((sbyte*)profileName);
             TargetDesc targetDesc = new()
             {
                 structureSize = (nuint)sizeof(TargetDesc),
                 format = CompileTarget.Spirv,
                 profile = profile,
-                flags = SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY
+                flags = SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY,
             };
             SessionDesc sessionDesc = new()
             {
                 structureSize = (nuint)sizeof(SessionDesc),
                 defaultMatrixLayoutMode = MatrixLayoutMode.RowMajor,
                 targetCount = 1,
-                targets = &targetDesc
+                targets = &targetDesc,
             };
             globalSession->createSession(&sessionDesc, &session);
 
             // Once the session has been obtained, we can start loading code into it.
-            Environment.CurrentDirectory = Path.Combine(SharedHelpers.RunningExePath, "Examples", "Assets");
-            fixed (byte* moduleName = "hello-world"u8) module = session->loadModule((sbyte*)moduleName, &diagnosticsBlob);
+            Environment.CurrentDirectory = Path.Combine(
+                SharedHelpers.RunningExePath,
+                "Examples",
+                "Assets"
+            );
+            fixed (byte* moduleName = "hello-world"u8)
+                module = session->loadModule((sbyte*)moduleName, &diagnosticsBlob);
             DiagnoseIfNeeded(diagnosticsBlob);
-            if (module == null) throw new("Module was not loaded");
+            if (module == null)
+                throw new("Module was not loaded");
 
             // Now that the module is loaded we can look up those entry points by name.
             fixed (byte* entryPointName = "computeMain"u8)
@@ -122,8 +137,14 @@ public sealed unsafe class HelloWorldUnsafeTests(ITestOutputHelper testOutputHel
             // something about the composite was invalid (e.g., you are trying to
             // combine multiple copies of the same module), so we need to deal
             // with the possibility of diagnostic output.
-            if (diagnosticsBlob != null) diagnosticsBlob->release();
-            var result = session->createCompositeComponentType(componentTypes, 2, &composedProgram, &diagnosticsBlob);
+            if (diagnosticsBlob != null)
+                diagnosticsBlob->release();
+            var result = session->createCompositeComponentType(
+                componentTypes,
+                2,
+                &composedProgram,
+                &diagnosticsBlob
+            );
             DiagnoseIfNeeded(diagnosticsBlob);
             ThrowOnFail(result);
 
@@ -138,63 +159,106 @@ public sealed unsafe class HelloWorldUnsafeTests(ITestOutputHelper testOutputHel
         }
         finally
         {
-            if (spirvCode != null) spirvCode->release();
-            if (composedProgram != null) composedProgram->release();
-            if (entryPoint != null) entryPoint->release();
-            if (diagnosticsBlob != null) diagnosticsBlob->release();
-            if (module != null) module->release();
-            if (session != null) session->release();
-            if (globalSession != null) globalSession->release();
+            if (spirvCode != null)
+                spirvCode->release();
+            if (composedProgram != null)
+                composedProgram->release();
+            if (entryPoint != null)
+                entryPoint->release();
+            if (diagnosticsBlob != null)
+                diagnosticsBlob->release();
+            if (module != null)
+                module->release();
+            if (session != null)
+                session->release();
+            if (globalSession != null)
+                globalSession->release();
         }
     }
 
     private void CreatePipelineFromSpirv(ISlangBlob* spirvCode)
     {
-        ReadOnlySpan<byte> spirvSpan = new(spirvCode->getBufferPointer(), checked((int)spirvCode->getBufferSize()));
-        _shader = ResourceFactory.CreateShader(new()
-        {
-            Debug = true,
-            EntryPoint = "main",
-            Stage = ShaderStages.Compute,
-            ShaderBytes = spirvSpan.ToArray()
-        });
+        ReadOnlySpan<byte> spirvSpan = new(
+            spirvCode->getBufferPointer(),
+            checked((int)spirvCode->getBufferSize())
+        );
+        _shader = ResourceFactory.CreateShader(
+            new()
+            {
+                Debug = true,
+                EntryPoint = "main",
+                Stage = ShaderStages.Compute,
+                ShaderBytes = spirvSpan.ToArray(),
+            }
+        );
 
         _resourceLayout = ResourceFactory.CreateResourceLayout(
-            new(new ResourceLayoutElementDescription("buffer0", ResourceKind.StructuredBufferReadOnly, ShaderStages.Compute),
-                new ResourceLayoutElementDescription("buffer1", ResourceKind.StructuredBufferReadOnly, ShaderStages.Compute),
-                new ResourceLayoutElementDescription("result",
-                                                     ResourceKind.StructuredBufferReadOnly,
-                                                     ShaderStages.Compute)));
+            new(
+                new ResourceLayoutElementDescription(
+                    "buffer0",
+                    ResourceKind.StructuredBufferReadOnly,
+                    ShaderStages.Compute
+                ),
+                new ResourceLayoutElementDescription(
+                    "buffer1",
+                    ResourceKind.StructuredBufferReadOnly,
+                    ShaderStages.Compute
+                ),
+                new ResourceLayoutElementDescription(
+                    "result",
+                    ResourceKind.StructuredBufferReadOnly,
+                    ShaderStages.Compute
+                )
+            )
+        );
 
-        _pipeline = ResourceFactory.CreateComputePipeline(new()
-        {
-            ComputeShader = _shader,
-            ResourceLayouts = [_resourceLayout],
-            ThreadGroupSizeX = 1,
-            ThreadGroupSizeY = 1,
-            ThreadGroupSizeZ = 1,
-        });
+        _pipeline = ResourceFactory.CreateComputePipeline(
+            new()
+            {
+                ComputeShader = _shader,
+                ResourceLayouts = [_resourceLayout],
+                ThreadGroupSizeX = 1,
+                ThreadGroupSizeY = 1,
+                ThreadGroupSizeZ = 1,
+            }
+        );
     }
 
     private void CreateBuffers()
     {
-        var description = new BufferDescription(BufferSize, BufferUsage.StructuredBufferReadOnly, sizeof(float));
+        var description = new BufferDescription(
+            BufferSize,
+            BufferUsage.StructuredBufferReadOnly,
+            sizeof(float)
+        );
         _inputBuffer0 = ResourceFactory.CreateBuffer(description);
         _inputBuffer1 = ResourceFactory.CreateBuffer(description);
-        _outputBuffer = ResourceFactory.CreateBuffer(description with { Usage = BufferUsage.StructuredBufferReadWrite });
-        _stagingBuffer
-            = ResourceFactory.CreateBuffer(description with { Usage = BufferUsage.Staging, StructureByteStride = 0 });
+        _outputBuffer = ResourceFactory.CreateBuffer(
+            description with
+            {
+                Usage = BufferUsage.StructuredBufferReadWrite,
+            }
+        );
+        _stagingBuffer = ResourceFactory.CreateBuffer(
+            description with
+            {
+                Usage = BufferUsage.Staging,
+                StructureByteStride = 0,
+            }
+        );
 
         var mapped = _graphicsDevice.Map<float>(_stagingBuffer, MapMode.Write);
-        for (int i = 0; i < ElementCount; i++) mapped[i] = i;
+        for (int i = 0; i < ElementCount; i++)
+            mapped[i] = i;
         _graphicsDevice.Unmap(_stagingBuffer);
     }
 
     private void DispatchCompute()
     {
         using var commandList = ResourceFactory.CreateCommandList();
-        using var resourceSet
-            = ResourceFactory.CreateResourceSet(new(_resourceLayout, _inputBuffer0, _inputBuffer1, _outputBuffer));
+        using var resourceSet = ResourceFactory.CreateResourceSet(
+            new(_resourceLayout, _inputBuffer0, _inputBuffer1, _outputBuffer)
+        );
         commandList.Begin();
         commandList.CopyBuffer(_stagingBuffer, 0, _inputBuffer0, 0, BufferSize);
         commandList.CopyBuffer(_stagingBuffer, 0, _inputBuffer1, 0, BufferSize);
@@ -210,7 +274,8 @@ public sealed unsafe class HelloWorldUnsafeTests(ITestOutputHelper testOutputHel
     private void PrintComputeResults()
     {
         var mapped = _graphicsDevice.Map<float>(_stagingBuffer, MapMode.Write);
-        for (int i = 0; i < ElementCount; i++) Logger.LogInformation("[{Index}] = {Value}", i, mapped[i]);
+        for (int i = 0; i < ElementCount; i++)
+            Logger.LogInformation("[{Index}] = {Value}", i, mapped[i]);
         _graphicsDevice.Unmap(_stagingBuffer);
     }
 }

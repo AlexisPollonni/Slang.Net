@@ -10,5 +10,5 @@ public enum RenderTargetWriteMaskT : byte
     EnableGreen = GfxApi.EnableGreen,
     EnableBlue = GfxApi.EnableBlue,
     EnableAlpha = GfxApi.EnableAlpha,
-    EnableAll = GfxApi.EnableAll
+    EnableAll = GfxApi.EnableAll,
 }

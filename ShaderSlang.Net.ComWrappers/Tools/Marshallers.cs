@@ -14,10 +14,10 @@ internal ref struct UnownedUTF8StringMarshaller
     private bool _allocated;
 
     public static int BufferSize => Utf8StringMarshaller.ManagedToUnmanagedIn.BufferSize;
-    
+
     public unsafe void Free()
     {
-        if(_allocated)
+        if (_allocated)
             NativeMemory.Free(_unmanagedValue);
     }
 
@@ -69,21 +69,27 @@ internal ref struct UnownedUTF8StringMarshaller
     }
 }
 
-
-[CustomMarshaller(typeof(Action<Unmanaged.PathType, string, nint>), MarshalMode.Default, typeof(FileSystemContentsCallBackMarshaller))]
+[CustomMarshaller(
+    typeof(Action<Unmanaged.PathType, string, nint>),
+    MarshalMode.Default,
+    typeof(FileSystemContentsCallBackMarshaller)
+)]
 internal static unsafe class FileSystemContentsCallBackMarshaller
 {
     public static nint ConvertToUnmanaged(Action<Unmanaged.PathType, string, nint> managed)
     {
-        return Marshal.GetFunctionPointerForDelegate<Unmanaged.FileSystemContentsCallBack>((type, name, dataPtr) =>
-        {
-            managed(type, new(name), (nint)dataPtr);
-        });
+        return Marshal.GetFunctionPointerForDelegate<Unmanaged.FileSystemContentsCallBack>(
+            (type, name, dataPtr) =>
+            {
+                managed(type, new(name), (nint)dataPtr);
+            }
+        );
     }
 
     public static Action<Unmanaged.PathType, string, nint> ConvertToManaged(nint unmanaged)
     {
-        var managedDelegate = Marshal.GetDelegateForFunctionPointer<Unmanaged.FileSystemContentsCallBack>(unmanaged);
+        var managedDelegate =
+            Marshal.GetDelegateForFunctionPointer<Unmanaged.FileSystemContentsCallBack>(unmanaged);
 
         return (type, str, data) =>
         {
@@ -108,15 +114,19 @@ internal static class TimeSpanMillisecondsMarshaller
     }
 }
 
-
 internal interface INativeHandleMarshallable<out TManaged>
 {
     internal nint Handle { get; }
     internal static abstract TManaged CreateFromHandle(nint handle);
 }
 
-[CustomMarshaller(typeof(CustomMarshallerAttribute.GenericPlaceholder), MarshalMode.Default, typeof(HandleStructMarshaller<>))]
-internal static class HandleStructMarshaller<T> where T : struct, INativeHandleMarshallable<T>
+[CustomMarshaller(
+    typeof(CustomMarshallerAttribute.GenericPlaceholder),
+    MarshalMode.Default,
+    typeof(HandleStructMarshaller<>)
+)]
+internal static class HandleStructMarshaller<T>
+    where T : struct, INativeHandleMarshallable<T>
 {
     public static nint ConvertToUnmanaged(T managed)
     {
@@ -126,21 +136,30 @@ internal static class HandleStructMarshaller<T> where T : struct, INativeHandleM
     public static T ConvertToManaged(nint unmanaged)
     {
         if (unmanaged == nint.Zero)
-            throw new NullReferenceException($"Native handle was null when marshalling to managed type {typeof(T)}.");
+            throw new NullReferenceException(
+                $"Native handle was null when marshalling to managed type {typeof(T)}."
+            );
         return T.CreateFromHandle(unmanaged);
     }
 }
 
-[CustomMarshaller(typeof(Nullable<>), MarshalMode.Default, typeof(NullableHandleStructMarshaller<>))]
-internal static class NullableHandleStructMarshaller<T> where T : struct, INativeHandleMarshallable<T>
+[CustomMarshaller(
+    typeof(Nullable<>),
+    MarshalMode.Default,
+    typeof(NullableHandleStructMarshaller<>)
+)]
+internal static class NullableHandleStructMarshaller<T>
+    where T : struct, INativeHandleMarshallable<T>
 {
     public static nint ConvertToUnmanaged(T? managed)
     {
         return managed?.Handle ?? nint.Zero;
     }
+
     public static T? ConvertToManaged(nint unmanaged)
     {
-        if (unmanaged == nint.Zero) return null;
+        if (unmanaged == nint.Zero)
+            return null;
         return T.CreateFromHandle(unmanaged);
     }
 }

@@ -9,8 +9,10 @@ using ShaderSlang.Net.ComWrappers.Tools.Internal;
 
 namespace ShaderSlang.Net.ComWrappers.Gfx.Interfaces;
 
-[GeneratedComInterface(StringMarshalling = StringMarshalling.Custom,
-                       StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller))]
+[GeneratedComInterface(
+    StringMarshalling = StringMarshalling.Custom,
+    StringMarshallingCustomType = typeof(UnownedUTF8StringMarshaller)
+)]
 [Guid("14e2bed0-0AD0-4DC8-B341-063FE72DBF0E")]
 [GenerateThrowingMethods]
 public partial interface ICommandQueue : IUnknown
@@ -19,11 +21,12 @@ public partial interface ICommandQueue : IUnknown
     CommandQueueDescription GetDesc();
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    void ExecuteCommandBuffers(int count,
-                               [MarshalUsing(CountElementName = "count")]
-                               Span<ICommandBuffer> commandBuffers,
-                               IFence? fenceToSignal = null,
-                               ulong newFenceValue = 0);
+    void ExecuteCommandBuffers(
+        int count,
+        [MarshalUsing(CountElementName = "count")] Span<ICommandBuffer> commandBuffers,
+        IFence? fenceToSignal = null,
+        ulong newFenceValue = 0
+    );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult GetNativeHandle(out Unmanaged.InteropHandle handle);
@@ -32,9 +35,9 @@ public partial interface ICommandQueue : IUnknown
     void WaitOnHost();
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
-    SlangResult WaitForFenceValuesOnDevice(int fenceCount, 
-                                           [MarshalUsing(CountElementName = "fenceCount")]
-                                           Span<IFence> fences, 
-                                           [MarshalUsing(CountElementName = "fenceCount")]
-                                           Span<ulong> waitValues);
+    SlangResult WaitForFenceValuesOnDevice(
+        int fenceCount,
+        [MarshalUsing(CountElementName = "fenceCount")] Span<IFence> fences,
+        [MarshalUsing(CountElementName = "fenceCount")] Span<ulong> waitValues
+    );
 }
