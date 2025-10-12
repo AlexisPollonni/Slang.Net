@@ -69,7 +69,11 @@ internal static unsafe class InteropUtils
         for (var i = 0; i < count; i++)
         {
             var managed = ComInterfaceMarshaller<TManaged>.ConvertToManaged(native[i]);
-            res[i] = managed;
+            res[i] =
+                managed
+                ?? throw new InvalidOperationException(
+                    $"Failed to marshal COM interface pointer to {typeof(TManaged).FullName}"
+                );
         }
 
         return res;

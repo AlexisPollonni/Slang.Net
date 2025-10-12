@@ -78,8 +78,8 @@ public readonly unsafe struct TypeReflection
                 if (!type?.IsArray ?? true)
                     return result;
 
-                result *= type.Value.ElementCount;
-                type = type.Value.ElementType;
+                result *= type!.Value.ElementCount;
+                type = type!.Value.ElementType;
             }
         }
     }

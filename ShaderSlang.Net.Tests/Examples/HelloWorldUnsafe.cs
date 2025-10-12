@@ -55,7 +55,7 @@ public sealed unsafe class HelloWorldUnsafeTests(
         }
     }
 
-    private ResourceFactory ResourceFactory => _graphicsDevice.ResourceFactory;
+    private ResourceFactory ResourceFactory => _graphicsDevice!.ResourceFactory;
 
     private void ThrowOnFail(int error)
     {
@@ -247,8 +247,8 @@ public sealed unsafe class HelloWorldUnsafeTests(
             }
         );
 
-        var mapped = _graphicsDevice.Map<float>(_stagingBuffer, MapMode.Write);
-        for (int i = 0; i < ElementCount; i++)
+        var mapped = _graphicsDevice!.Map<float>(_stagingBuffer, MapMode.Write);
+        for (var i = 0; i < ElementCount; i++)
             mapped[i] = i;
         _graphicsDevice.Unmap(_stagingBuffer);
     }
@@ -267,13 +267,13 @@ public sealed unsafe class HelloWorldUnsafeTests(
         commandList.Dispatch(ElementCount, 1, 1);
         commandList.CopyBuffer(_outputBuffer, 0, _stagingBuffer, 0, BufferSize);
         commandList.End();
-        _graphicsDevice.SubmitCommands(commandList);
+        _graphicsDevice!.SubmitCommands(commandList);
         _graphicsDevice.WaitForIdle();
     }
 
     private void PrintComputeResults()
     {
-        var mapped = _graphicsDevice.Map<float>(_stagingBuffer, MapMode.Write);
+        var mapped = _graphicsDevice!.Map<float>(_stagingBuffer, MapMode.Write);
         for (int i = 0; i < ElementCount; i++)
             Logger.LogInformation("[{Index}] = {Value}", i, mapped[i]);
         _graphicsDevice.Unmap(_stagingBuffer);
