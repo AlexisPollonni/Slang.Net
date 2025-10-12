@@ -22,6 +22,7 @@ var slnFile = findRes.Single();
 Task("Restore")
     .Does(() =>
     {
+        InstallTool("dotnet:?package=CSharpier");
         DotNetRestore(slnFile.Path.FullPath);
     });
 
