@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="CullMode" access="public">
+      <type>byte</type>
+      <enumerator name="None" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="Front" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="Back" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

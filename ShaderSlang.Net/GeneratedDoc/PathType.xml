@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="PathType" access="public">
+      <type>uint</type>
+      <enumerator name="Directory" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="File" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

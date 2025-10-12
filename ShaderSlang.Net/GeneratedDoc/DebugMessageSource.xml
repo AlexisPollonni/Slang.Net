@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="DebugMessageSource" access="public">
+      <type>int</type>
+      <enumerator name="Layer" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Driver" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Slang" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

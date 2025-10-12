@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="ImageFormat" access="public">
+      <type>uint</type>
+      <enumerator name="Unknown" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba32f" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba16f" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg32f" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg16f" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R11fG11fB10f" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R32f" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R16f" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba16" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgb10A2" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba8" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg16" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg8" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R16" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R8" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba16Snorm" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba8Snorm" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg16Snorm" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg8Snorm" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R16Snorm" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R8Snorm" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba32i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba16i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba8i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg32i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg16i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg8i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R32i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R16i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R8i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba32ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba16ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgb10A2ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rgba8ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg32ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg16ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Rg8ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R32ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R16ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R8ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R64ui" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="R64i" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Bgra8" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

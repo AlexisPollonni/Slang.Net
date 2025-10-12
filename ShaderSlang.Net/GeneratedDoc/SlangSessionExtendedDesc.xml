@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="SlangSessionExtendedDesc" access="public" unsafe="true">
+      <field name="structType" access="public">
+        <type native="gfx::StructType">StructType</type>
+      </field>
+      <field name="compilerOptionEntryCount" access="public">
+        <type native="uint32_t">uint</type>
+      </field>
+      <field name="compilerOptionEntries" access="public">
+        <type native="slang::CompilerOptionEntry *">CompilerOptionEntry*</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

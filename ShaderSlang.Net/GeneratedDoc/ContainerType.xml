@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net">
+    <enumeration name="ContainerType" access="public">
+      <type>int</type>
+      <enumerator name="None" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="UnsizedArray" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="StructuredBuffer" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ConstantBuffer" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ParameterBlock" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

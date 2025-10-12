@@ -1,0 +1,1242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="IRenderCommandEncoder" access="public" native="struct IRenderCommandEncoder : gfx::IResourceCommandEncoder" parent="IResourceCommandEncoder" uuid="7a8d56d0-53e6-4ad6-85f7-d14dc110fdce" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+      </delegate>
+      <delegate name="_endEncoding" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+      </delegate>
+      <delegate name="_writeTimestamp" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="queryPool">
+          <type>IQueryPool*</type>
+        </param>
+        <param name="queryIndex">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_copyBuffer" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="dst">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="dstOffset">
+          <type>nuint</type>
+        </param>
+        <param name="src">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="srcOffset">
+          <type>nuint</type>
+        </param>
+        <param name="size">
+          <type>nuint</type>
+        </param>
+      </delegate>
+      <delegate name="_copyTexture" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="dst">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="dstState">
+          <type>ResourceState</type>
+        </param>
+        <param name="dstSubresource">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="dstOffset">
+          <type>Offset3D</type>
+        </param>
+        <param name="src">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="srcState">
+          <type>ResourceState</type>
+        </param>
+        <param name="srcSubresource">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="srcOffset">
+          <type>Offset3D</type>
+        </param>
+        <param name="extent">
+          <type>Extents</type>
+        </param>
+      </delegate>
+      <delegate name="_copyTextureToBuffer" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="dst">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="dstOffset">
+          <type>nuint</type>
+        </param>
+        <param name="dstSize">
+          <type>nuint</type>
+        </param>
+        <param name="dstRowStride">
+          <type>nuint</type>
+        </param>
+        <param name="src">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="srcState">
+          <type>ResourceState</type>
+        </param>
+        <param name="srcSubresource">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="srcOffset">
+          <type>Offset3D</type>
+        </param>
+        <param name="extent">
+          <type>Extents</type>
+        </param>
+      </delegate>
+      <delegate name="_uploadTextureData" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="dst">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="subResourceRange">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="offset">
+          <type>Offset3D</type>
+        </param>
+        <param name="extent">
+          <type>Extents</type>
+        </param>
+        <param name="subResourceData">
+          <type>SubresourceData*</type>
+        </param>
+        <param name="subResourceDataCount">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_uploadBufferData" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="dst">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="offset">
+          <type>nuint</type>
+        </param>
+        <param name="size">
+          <type>nuint</type>
+        </param>
+        <param name="data">
+          <type>void*</type>
+        </param>
+      </delegate>
+      <delegate name="_textureBarrier" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="textures">
+          <type>ITextureResource**</type>
+        </param>
+        <param name="src">
+          <type>ResourceState</type>
+        </param>
+        <param name="dst">
+          <type>ResourceState</type>
+        </param>
+      </delegate>
+      <delegate name="_textureSubresourceBarrier" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="texture">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="subresourceRange">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="src">
+          <type>ResourceState</type>
+        </param>
+        <param name="dst">
+          <type>ResourceState</type>
+        </param>
+      </delegate>
+      <delegate name="_bufferBarrier" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="buffers">
+          <type>IBufferResource**</type>
+        </param>
+        <param name="src">
+          <type>ResourceState</type>
+        </param>
+        <param name="dst">
+          <type>ResourceState</type>
+        </param>
+      </delegate>
+      <delegate name="_clearResourceView" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="view">
+          <type>IResourceView*</type>
+        </param>
+        <param name="clearValue">
+          <type>ClearValue*</type>
+        </param>
+        <param name="flags">
+          <type>Enum</type>
+        </param>
+      </delegate>
+      <delegate name="_resolveResource" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="source">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="sourceState">
+          <type>ResourceState</type>
+        </param>
+        <param name="sourceRange">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="dest">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="destState">
+          <type>ResourceState</type>
+        </param>
+        <param name="destRange">
+          <type>SubresourceRange</type>
+        </param>
+      </delegate>
+      <delegate name="_resolveQuery" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="queryPool">
+          <type>IQueryPool*</type>
+        </param>
+        <param name="index">
+          <type>int</type>
+        </param>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="buffer">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="offset">
+          <type>nuint</type>
+        </param>
+      </delegate>
+      <delegate name="_beginDebugEvent" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <param name="rgbColor">
+          <type>float*</type>
+        </param>
+      </delegate>
+      <delegate name="_endDebugEvent" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+      </delegate>
+      <delegate name="_bindPipeline" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="state">
+          <type>IPipelineState*</type>
+        </param>
+        <param name="outRootShaderObject">
+          <type>IShaderObject**</type>
+        </param>
+      </delegate>
+      <delegate name="_bindPipelineWithRootObject" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="state">
+          <type>IPipelineState*</type>
+        </param>
+        <param name="rootObject">
+          <type>IShaderObject*</type>
+        </param>
+      </delegate>
+      <delegate name="_setViewports" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="viewports">
+          <type>Viewport*</type>
+        </param>
+      </delegate>
+      <delegate name="_setScissorRects" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="scissors">
+          <type>ScissorRect*</type>
+        </param>
+      </delegate>
+      <delegate name="_setPrimitiveTopology" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="topology">
+          <type>PrimitiveTopology</type>
+        </param>
+      </delegate>
+      <delegate name="_setVertexBuffers" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="startSlot">
+          <type>int</type>
+        </param>
+        <param name="slotCount">
+          <type>int</type>
+        </param>
+        <param name="buffers">
+          <type>IBufferResource**</type>
+        </param>
+        <param name="offsets">
+          <type>nuint*</type>
+        </param>
+      </delegate>
+      <delegate name="_setIndexBuffer" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="buffer">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="indexFormat">
+          <type>Format</type>
+        </param>
+        <param name="offset">
+          <type>nuint</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_draw" access="public" convention="StdCall">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="vertexCount">
+          <type>int</type>
+        </param>
+        <param name="startVertex">
+          <type>int</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_drawIndexed" access="public" convention="StdCall">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="indexCount">
+          <type>int</type>
+        </param>
+        <param name="startIndex">
+          <type>int</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+        <param name="baseVertex">
+          <type>int</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_drawIndirect" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="maxDrawCount">
+          <type>int</type>
+        </param>
+        <param name="argBuffer">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="argOffset">
+          <type>nuint</type>
+        </param>
+        <param name="countBuffer">
+          <type>IBufferResource*</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+        <param name="countOffset">
+          <type>nuint</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_drawIndexedIndirect" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="maxDrawCount">
+          <type>int</type>
+        </param>
+        <param name="argBuffer">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="argOffset">
+          <type>nuint</type>
+        </param>
+        <param name="countBuffer">
+          <type>IBufferResource*</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+        <param name="countOffset">
+          <type>nuint</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_setStencilReference" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="referenceValue">
+          <type>uint</type>
+        </param>
+      </delegate>
+      <delegate name="_setSamplePositions" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="samplesPerPixel">
+          <type>int</type>
+        </param>
+        <param name="pixelCount">
+          <type>int</type>
+        </param>
+        <param name="samplePositions">
+          <type>SamplePosition*</type>
+        </param>
+      </delegate>
+      <delegate name="_drawInstanced" access="public" convention="StdCall">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="vertexCount">
+          <type>int</type>
+        </param>
+        <param name="instanceCount">
+          <type>int</type>
+        </param>
+        <param name="startVertex">
+          <type>int</type>
+        </param>
+        <param name="startInstanceLocation">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_drawIndexedInstanced" access="public" convention="StdCall">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="indexCount">
+          <type>int</type>
+        </param>
+        <param name="instanceCount">
+          <type>int</type>
+        </param>
+        <param name="startIndexLocation">
+          <type>int</type>
+        </param>
+        <param name="baseVertexLocation">
+          <type>int</type>
+        </param>
+        <param name="startInstanceLocation">
+          <type>int</type>
+        </param>
+      </delegate>
+      <delegate name="_drawMeshTasks" access="public" convention="StdCall">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IRenderCommandEncoder*</type>
+        </param>
+        <param name="x">
+          <type>int</type>
+        </param>
+        <param name="y">
+          <type>int</type>
+        </param>
+        <param name="z">
+          <type>int</type>
+        </param>
+      </delegate>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="endEncoding" access="public" unsafe="true">
+        <type>void</type>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endEncoding</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">endEncoding</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="writeTimestamp" access="public" unsafe="true">
+        <type>void</type>
+        <param name="queryPool">
+          <type>IQueryPool*</type>
+        </param>
+        <param name="queryIndex">
+          <type>int</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_writeTimestamp</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">writeTimestamp</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="queryPool">queryPool</param>, <param name="queryIndex">queryIndex</param>);</code>
+        </body>
+      </function>
+      <function name="copyBuffer" access="public" unsafe="true">
+        <type>void</type>
+        <param name="dst">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="dstOffset">
+          <type>nuint</type>
+        </param>
+        <param name="src">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="srcOffset">
+          <type>nuint</type>
+        </param>
+        <param name="size">
+          <type>nuint</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_copyBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">copyBuffer</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="dstOffset">dstOffset</param>, <param name="src">src</param>, <param name="srcOffset">srcOffset</param>, <param name="size">size</param>);</code>
+        </body>
+      </function>
+      <function name="copyTexture" access="public" unsafe="true">
+        <type>void</type>
+        <param name="dst">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="dstState">
+          <type>ResourceState</type>
+        </param>
+        <param name="dstSubresource">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="dstOffset">
+          <type>Offset3D</type>
+        </param>
+        <param name="src">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="srcState">
+          <type>ResourceState</type>
+        </param>
+        <param name="srcSubresource">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="srcOffset">
+          <type>Offset3D</type>
+        </param>
+        <param name="extent">
+          <type>Extents</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_copyTexture</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">copyTexture</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="dstState">dstState</param>, <param name="dstSubresource">dstSubresource</param>, <param name="dstOffset">dstOffset</param>, <param name="src">src</param>, <param name="srcState">srcState</param>, <param name="srcSubresource">srcSubresource</param>, <param name="srcOffset">srcOffset</param>, <param name="extent">extent</param>);</code>
+        </body>
+      </function>
+      <function name="copyTextureToBuffer" access="public" unsafe="true">
+        <type>void</type>
+        <param name="dst">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="dstOffset">
+          <type>nuint</type>
+        </param>
+        <param name="dstSize">
+          <type>nuint</type>
+        </param>
+        <param name="dstRowStride">
+          <type>nuint</type>
+        </param>
+        <param name="src">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="srcState">
+          <type>ResourceState</type>
+        </param>
+        <param name="srcSubresource">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="srcOffset">
+          <type>Offset3D</type>
+        </param>
+        <param name="extent">
+          <type>Extents</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_copyTextureToBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">copyTextureToBuffer</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="dstOffset">dstOffset</param>, <param name="dstSize">dstSize</param>, <param name="dstRowStride">dstRowStride</param>, <param name="src">src</param>, <param name="srcState">srcState</param>, <param name="srcSubresource">srcSubresource</param>, <param name="srcOffset">srcOffset</param>, <param name="extent">extent</param>);</code>
+        </body>
+      </function>
+      <function name="uploadTextureData" access="public" unsafe="true">
+        <type>void</type>
+        <param name="dst">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="subResourceRange">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="offset">
+          <type>Offset3D</type>
+        </param>
+        <param name="extent">
+          <type>Extents</type>
+        </param>
+        <param name="subResourceData">
+          <type>SubresourceData*</type>
+        </param>
+        <param name="subResourceDataCount">
+          <type>int</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_uploadTextureData</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">uploadTextureData</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="subResourceRange">subResourceRange</param>, <param name="offset">offset</param>, <param name="extent">extent</param>, <param name="subResourceData">subResourceData</param>, <param name="subResourceDataCount">subResourceDataCount</param>);</code>
+        </body>
+      </function>
+      <function name="uploadBufferData" access="public" unsafe="true">
+        <type>void</type>
+        <param name="dst">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="offset">
+          <type>nuint</type>
+        </param>
+        <param name="size">
+          <type>nuint</type>
+        </param>
+        <param name="data">
+          <type>void*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_uploadBufferData</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">uploadBufferData</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="offset">offset</param>, <param name="size">size</param>, <param name="data">data</param>);</code>
+        </body>
+      </function>
+      <function name="textureBarrier" access="public" unsafe="true">
+        <type>void</type>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="textures">
+          <type>ITextureResource**</type>
+        </param>
+        <param name="src">
+          <type>ResourceState</type>
+        </param>
+        <param name="dst">
+          <type>ResourceState</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_textureBarrier</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">textureBarrier</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="count">count</param>, <param name="textures">textures</param>, <param name="src">src</param>, <param name="dst">dst</param>);</code>
+        </body>
+      </function>
+      <function name="textureSubresourceBarrier" access="public" unsafe="true">
+        <type>void</type>
+        <param name="texture">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="subresourceRange">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="src">
+          <type>ResourceState</type>
+        </param>
+        <param name="dst">
+          <type>ResourceState</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_textureSubresourceBarrier</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">textureSubresourceBarrier</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="texture">texture</param>, <param name="subresourceRange">subresourceRange</param>, <param name="src">src</param>, <param name="dst">dst</param>);</code>
+        </body>
+      </function>
+      <function name="bufferBarrier" access="public" unsafe="true">
+        <type>void</type>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="buffers">
+          <type>IBufferResource**</type>
+        </param>
+        <param name="src">
+          <type>ResourceState</type>
+        </param>
+        <param name="dst">
+          <type>ResourceState</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_bufferBarrier</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">bufferBarrier</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="count">count</param>, <param name="buffers">buffers</param>, <param name="src">src</param>, <param name="dst">dst</param>);</code>
+        </body>
+      </function>
+      <function name="clearResourceView" access="public" unsafe="true">
+        <type>void</type>
+        <param name="view">
+          <type>IResourceView*</type>
+        </param>
+        <param name="clearValue">
+          <type>ClearValue*</type>
+        </param>
+        <param name="flags">
+          <type>Enum</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_clearResourceView</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">clearResourceView</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="view">view</param>, <param name="clearValue">clearValue</param>, <param name="flags">flags</param>);</code>
+        </body>
+      </function>
+      <function name="resolveResource" access="public" unsafe="true">
+        <type>void</type>
+        <param name="source">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="sourceState">
+          <type>ResourceState</type>
+        </param>
+        <param name="sourceRange">
+          <type>SubresourceRange</type>
+        </param>
+        <param name="dest">
+          <type>ITextureResource*</type>
+        </param>
+        <param name="destState">
+          <type>ResourceState</type>
+        </param>
+        <param name="destRange">
+          <type>SubresourceRange</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resolveResource</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">resolveResource</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="source">source</param>, <param name="sourceState">sourceState</param>, <param name="sourceRange">sourceRange</param>, <param name="dest">dest</param>, <param name="destState">destState</param>, <param name="destRange">destRange</param>);</code>
+        </body>
+      </function>
+      <function name="resolveQuery" access="public" unsafe="true">
+        <type>void</type>
+        <param name="queryPool">
+          <type>IQueryPool*</type>
+        </param>
+        <param name="index">
+          <type>int</type>
+        </param>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="buffer">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="offset">
+          <type>nuint</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resolveQuery</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">resolveQuery</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="queryPool">queryPool</param>, <param name="index">index</param>, <param name="count">count</param>, <param name="buffer">buffer</param>, <param name="offset">offset</param>);</code>
+        </body>
+      </function>
+      <function name="beginDebugEvent" access="public" unsafe="true">
+        <type>void</type>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <param name="rgbColor">
+          <type>float*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_beginDebugEvent</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">beginDebugEvent</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>, <param name="rgbColor">rgbColor</param>);</code>
+        </body>
+      </function>
+      <function name="endDebugEvent" access="public" unsafe="true">
+        <type>void</type>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endDebugEvent</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">endDebugEvent</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="bindPipeline" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="state">
+          <type>IPipelineState*</type>
+        </param>
+        <param name="outRootShaderObject">
+          <type>IShaderObject**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_bindPipeline</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">bindPipeline</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="state">state</param>, <param name="outRootShaderObject">outRootShaderObject</param>);</code>
+        </body>
+      </function>
+      <function name="bindPipelineWithRootObject" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="state">
+          <type>IPipelineState*</type>
+        </param>
+        <param name="rootObject">
+          <type>IShaderObject*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_bindPipelineWithRootObject</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">bindPipelineWithRootObject</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="state">state</param>, <param name="rootObject">rootObject</param>);</code>
+        </body>
+      </function>
+      <function name="setViewports" access="public" unsafe="true">
+        <type>void</type>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="viewports">
+          <type>Viewport*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setViewports</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setViewports</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="count">count</param>, <param name="viewports">viewports</param>);</code>
+        </body>
+      </function>
+      <function name="setScissorRects" access="public" unsafe="true">
+        <type>void</type>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="scissors">
+          <type>ScissorRect*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setScissorRects</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setScissorRects</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="count">count</param>, <param name="scissors">scissors</param>);</code>
+        </body>
+      </function>
+      <function name="setPrimitiveTopology" access="public" unsafe="true">
+        <type>void</type>
+        <param name="topology">
+          <type>PrimitiveTopology</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setPrimitiveTopology</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setPrimitiveTopology</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="topology">topology</param>);</code>
+        </body>
+      </function>
+      <function name="setVertexBuffers" access="public" unsafe="true">
+        <type>void</type>
+        <param name="startSlot">
+          <type>int</type>
+        </param>
+        <param name="slotCount">
+          <type>int</type>
+        </param>
+        <param name="buffers">
+          <type>IBufferResource**</type>
+        </param>
+        <param name="offsets">
+          <type>nuint*</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setVertexBuffers</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setVertexBuffers</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="startSlot">startSlot</param>, <param name="slotCount">slotCount</param>, <param name="buffers">buffers</param>, <param name="offsets">offsets</param>);</code>
+        </body>
+      </function>
+      <function name="setIndexBuffer" access="public" unsafe="true">
+        <type>void</type>
+        <param name="buffer">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="indexFormat">
+          <type>Format</type>
+        </param>
+        <param name="offset">
+          <type>nuint</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setIndexBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setIndexBuffer</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="buffer">buffer</param>, <param name="indexFormat">indexFormat</param>, <param name="offset">offset</param>);</code>
+        </body>
+      </function>
+      <function name="draw" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="vertexCount">
+          <type>int</type>
+        </param>
+        <param name="startVertex">
+          <type>int</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_draw</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">draw</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="vertexCount">vertexCount</param>, <param name="startVertex">startVertex</param>);</code>
+        </body>
+      </function>
+      <function name="drawIndexed" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="indexCount">
+          <type>int</type>
+        </param>
+        <param name="startIndex">
+          <type>int</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+        <param name="baseVertex">
+          <type>int</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_drawIndexed</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">drawIndexed</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="indexCount">indexCount</param>, <param name="startIndex">startIndex</param>, <param name="baseVertex">baseVertex</param>);</code>
+        </body>
+      </function>
+      <function name="drawIndirect" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="maxDrawCount">
+          <type>int</type>
+        </param>
+        <param name="argBuffer">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="argOffset">
+          <type>nuint</type>
+        </param>
+        <param name="countBuffer">
+          <type>IBufferResource*</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+        <param name="countOffset">
+          <type>nuint</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_drawIndirect</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">drawIndirect</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="maxDrawCount">maxDrawCount</param>, <param name="argBuffer">argBuffer</param>, <param name="argOffset">argOffset</param>, <param name="countBuffer">countBuffer</param>, <param name="countOffset">countOffset</param>);</code>
+        </body>
+      </function>
+      <function name="drawIndexedIndirect" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="maxDrawCount">
+          <type>int</type>
+        </param>
+        <param name="argBuffer">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="argOffset">
+          <type>nuint</type>
+        </param>
+        <param name="countBuffer">
+          <type>IBufferResource*</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+        <param name="countOffset">
+          <type>nuint</type>
+          <init>
+            <code>0</code>
+          </init>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_drawIndexedIndirect</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">drawIndexedIndirect</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="maxDrawCount">maxDrawCount</param>, <param name="argBuffer">argBuffer</param>, <param name="argOffset">argOffset</param>, <param name="countBuffer">countBuffer</param>, <param name="countOffset">countOffset</param>);</code>
+        </body>
+      </function>
+      <function name="setStencilReference" access="public" unsafe="true">
+        <type>void</type>
+        <param name="referenceValue">
+          <type>uint</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setStencilReference</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setStencilReference</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="referenceValue">referenceValue</param>);</code>
+        </body>
+      </function>
+      <function name="setSamplePositions" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="samplesPerPixel">
+          <type>int</type>
+        </param>
+        <param name="pixelCount">
+          <type>int</type>
+        </param>
+        <param name="samplePositions">
+          <type>SamplePosition*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSamplePositions</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setSamplePositions</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="samplesPerPixel">samplesPerPixel</param>, <param name="pixelCount">pixelCount</param>, <param name="samplePositions">samplePositions</param>);</code>
+        </body>
+      </function>
+      <function name="drawInstanced" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="vertexCount">
+          <type>int</type>
+        </param>
+        <param name="instanceCount">
+          <type>int</type>
+        </param>
+        <param name="startVertex">
+          <type>int</type>
+        </param>
+        <param name="startInstanceLocation">
+          <type>int</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_drawInstanced</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">drawInstanced</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="vertexCount">vertexCount</param>, <param name="instanceCount">instanceCount</param>, <param name="startVertex">startVertex</param>, <param name="startInstanceLocation">startInstanceLocation</param>);</code>
+        </body>
+      </function>
+      <function name="drawIndexedInstanced" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="indexCount">
+          <type>int</type>
+        </param>
+        <param name="instanceCount">
+          <type>int</type>
+        </param>
+        <param name="startIndexLocation">
+          <type>int</type>
+        </param>
+        <param name="baseVertexLocation">
+          <type>int</type>
+        </param>
+        <param name="startInstanceLocation">
+          <type>int</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_drawIndexedInstanced</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">drawIndexedInstanced</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="indexCount">indexCount</param>, <param name="instanceCount">instanceCount</param>, <param name="startIndexLocation">startIndexLocation</param>, <param name="baseVertexLocation">baseVertexLocation</param>, <param name="startInstanceLocation">startInstanceLocation</param>);</code>
+        </body>
+      </function>
+      <function name="drawMeshTasks" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="x">
+          <type>int</type>
+        </param>
+        <param name="y">
+          <type>int</type>
+        </param>
+        <param name="z">
+          <type>int</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_drawMeshTasks</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">drawMeshTasks</vtbl>)(<param special="thisPtr">(IRenderCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="x">x</param>, <param name="y">y</param>, <param name="z">z</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="endEncoding" access="public">
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="writeTimestamp" access="public">
+          <type native="void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="copyBuffer" access="public">
+          <type native="void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="copyTexture" access="public">
+          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="copyTextureToBuffer" access="public">
+          <type native="void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="uploadTextureData" access="public">
+          <type native="void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="uploadBufferData" access="public">
+          <type native="void (IBufferResource *, Offset, Size, void *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="textureBarrier" access="public">
+          <type native="void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="textureSubresourceBarrier" access="public">
+          <type native="void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="bufferBarrier" access="public">
+          <type native="void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="clearResourceView" access="public">
+          <type native="void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="resolveResource" access="public">
+          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="resolveQuery" access="public">
+          <type native="void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="beginDebugEvent" access="public">
+          <type native="void (const char *, float *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="endDebugEvent" access="public">
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="bindPipeline" access="public">
+          <type native="Result (IPipelineState *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="bindPipelineWithRootObject" access="public">
+          <type native="Result (IPipelineState *, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setViewports" access="public">
+          <type native="void (GfxCount, const Viewport *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setScissorRects" access="public">
+          <type native="void (GfxCount, const ScissorRect *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setPrimitiveTopology" access="public">
+          <type native="void (PrimitiveTopology) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setVertexBuffers" access="public">
+          <type native="void (GfxIndex, GfxCount, IBufferResource *const *, const Offset *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setIndexBuffer" access="public">
+          <type native="void (IBufferResource *, Format, Offset) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="draw" access="public">
+          <type native="Result (GfxCount, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="drawIndexed" access="public">
+          <type native="Result (GfxCount, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="drawIndirect" access="public">
+          <type native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="drawIndexedIndirect" access="public">
+          <type native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setStencilReference" access="public">
+          <type native="void (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="setSamplePositions" access="public">
+          <type native="Result (GfxCount, GfxCount, const SamplePosition *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="drawInstanced" access="public">
+          <type native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="drawIndexedInstanced" access="public">
+          <type native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="drawMeshTasks" access="public">
+          <type native="Result (int, int, int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="TargetDesc" access="public" unsafe="true">
+      <field name="structureSize" access="public">
+        <type native="size_t">nuint</type>
+      </field>
+      <field name="format" access="public">
+        <type native="SlangCompileTarget">CompileTarget</type>
+      </field>
+      <field name="profile" access="public">
+        <type native="SlangProfileID">ProfileID</type>
+      </field>
+      <field name="flags" access="public">
+        <type native="SlangTargetFlags">uint</type>
+      </field>
+      <field name="floatingPointMode" access="public">
+        <type native="SlangFloatingPointMode">FloatingPointMode</type>
+      </field>
+      <field name="lineDirectiveMode" access="public">
+        <type native="SlangLineDirectiveMode">LineDirectiveMode</type>
+      </field>
+      <field name="forceGLSLScalarBufferLayout" access="public">
+        <type native="bool">Boolean</type>
+      </field>
+      <field name="compilerOptionEntries" access="public">
+        <type native="slang::CompilerOptionEntry *">CompilerOptionEntry*</type>
+      </field>
+      <field name="compilerOptionEntryCount" access="public">
+        <type native="uint32_t">uint</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

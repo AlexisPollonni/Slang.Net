@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="StructType" access="public">
+      <type>int</type>
+      <enumerator name="D3D12DeviceExtendedDesc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="D3D12ExperimentalFeaturesDesc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SlangSessionExtendedDesc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="RayTracingValidationDesc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="ICommandQueue" access="public" native="struct ICommandQueue : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ICommandQueue*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ICommandQueue*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ICommandQueue*</type>
+        </param>
+      </delegate>
+      <delegate name="_getDesc" access="public" convention="StdCall" unsafe="true">
+        <type native="const Desc &amp;">CommandQueueDesc*</type>
+        <param name="pThis">
+          <type>ICommandQueue*</type>
+        </param>
+      </delegate>
+      <delegate name="_executeCommandBuffers" access="public" convention="StdCall" unsafe="true">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICommandQueue*</type>
+        </param>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="commandBuffers">
+          <type>ICommandBuffer**</type>
+        </param>
+        <param name="fenceToSignal">
+          <type>IFence*</type>
+        </param>
+        <param name="newFenceValue">
+          <type>ulong</type>
+        </param>
+      </delegate>
+      <delegate name="_getNativeHandle" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>ICommandQueue*</type>
+        </param>
+        <param name="outHandle">
+          <type>InteropHandle*</type>
+        </param>
+      </delegate>
+      <delegate name="_waitOnHost" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ICommandQueue*</type>
+        </param>
+      </delegate>
+      <delegate name="_waitForFenceValuesOnDevice" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>ICommandQueue*</type>
+        </param>
+        <param name="fenceCount">
+          <type>int</type>
+        </param>
+        <param name="fences">
+          <type>IFence**</type>
+        </param>
+        <param name="waitValues">
+          <type>ulong*</type>
+        </param>
+      </delegate>
+      <enumeration name="QueueType" access="public">
+        <type>int</type>
+        <enumerator name="Graphics" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+      </enumeration>
+      <struct name="CommandQueueDesc" access="public">
+        <field name="type" access="public">
+          <type native="gfx::ICommandQueue::QueueType">QueueType</type>
+        </field>
+      </struct>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ICommandQueue*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ICommandQueue*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ICommandQueue*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getDesc" access="public" unsafe="true">
+        <type native="const Desc &amp;">CommandQueueDesc*</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDesc</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDesc</vtbl>)(<param special="thisPtr">(ICommandQueue*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="executeCommandBuffers" access="public" unsafe="true">
+        <type>void</type>
+        <param name="count">
+          <type>int</type>
+        </param>
+        <param name="commandBuffers">
+          <type>ICommandBuffer**</type>
+        </param>
+        <param name="fenceToSignal">
+          <type>IFence*</type>
+        </param>
+        <param name="newFenceValue">
+          <type>ulong</type>
+        </param>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_executeCommandBuffers</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">executeCommandBuffers</vtbl>)(<param special="thisPtr">(ICommandQueue*)Unsafe.AsPointer(ref this)</param>, <param name="count">count</param>, <param name="commandBuffers">commandBuffers</param>, <param name="fenceToSignal">fenceToSignal</param>, <param name="newFenceValue">newFenceValue</param>);</code>
+        </body>
+      </function>
+      <function name="getNativeHandle" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="outHandle">
+          <type>InteropHandle*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getNativeHandle</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getNativeHandle</vtbl>)(<param special="thisPtr">(ICommandQueue*)Unsafe.AsPointer(ref this)</param>, <param name="outHandle">outHandle</param>);</code>
+        </body>
+      </function>
+      <function name="waitOnHost" access="public" unsafe="true">
+        <type>void</type>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_waitOnHost</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">waitOnHost</vtbl>)(<param special="thisPtr">(ICommandQueue*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="waitForFenceValuesOnDevice" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="fenceCount">
+          <type>int</type>
+        </param>
+        <param name="fences">
+          <type>IFence**</type>
+        </param>
+        <param name="waitValues">
+          <type>ulong*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_waitForFenceValuesOnDevice</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">waitForFenceValuesOnDevice</vtbl>)(<param special="thisPtr">(ICommandQueue*)Unsafe.AsPointer(ref this)</param>, <param name="fenceCount">fenceCount</param>, <param name="fences">fences</param>, <param name="waitValues">waitValues</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getDesc" access="public">
+          <type native="const Desc &amp;() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="executeCommandBuffers" access="public">
+          <type native="void (GfxCount, ICommandBuffer *const *, IFence *, uint64_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getNativeHandle" access="public">
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="waitOnHost" access="public">
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="waitForFenceValuesOnDevice" access="public">
+          <type native="Result (GfxCount, IFence **, uint64_t *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

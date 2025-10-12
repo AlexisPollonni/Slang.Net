@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="MatrixLayoutMode" access="public">
+      <type>uint</type>
+      <enumerator name="Unknown" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+      <enumerator name="RowMajor" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="ColumnMajor" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

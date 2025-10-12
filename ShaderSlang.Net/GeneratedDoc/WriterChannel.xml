@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="WriterChannel" access="public">
+      <type>uint</type>
+      <enumerator name="Diagnostic" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="StdOutput" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="StdError" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="CountOf" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

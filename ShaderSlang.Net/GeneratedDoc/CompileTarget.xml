@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="CompileTarget" access="public">
+      <type>int</type>
+      <enumerator name="TargetUnknown" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="TargetNone" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Glsl" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="GlslVulkanDeprecated" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="GlslVulkanOneDescDeprecated" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Hlsl" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Spirv" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="SpirvAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Dxbc" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="DxbcAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Dxil" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="DxilAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CSource" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CppSource" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="HostExecutable" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ShaderSharedLibrary" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ShaderHostCallable" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CudaSource" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Ptx" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CudaObjectCode" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ObjectCode" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="HostCppSource" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="HostHostCallable" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CppPytorchBinding" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Metal" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="MetalLib" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="MetalLibAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="HostSharedLibrary" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Wgsl" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="WgslSpirvAsm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="WgslSpirv" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="HostVm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="TargetCountOf" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

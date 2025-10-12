@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="CompilerOptionValue" access="public" unsafe="true">
+      <field name="kind" access="public">
+        <type native="slang::CompilerOptionValueKind">CompilerOptionValueKind</type>
+      </field>
+      <field name="intValue0" access="public">
+        <type native="int32_t">int</type>
+      </field>
+      <field name="intValue1" access="public">
+        <type native="int32_t">int</type>
+      </field>
+      <field name="stringValue0" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+      <field name="stringValue1" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

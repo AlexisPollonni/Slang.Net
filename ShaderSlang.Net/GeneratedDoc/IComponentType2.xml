@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="IComponentType2" access="public" native="struct IComponentType2 : ISlangUnknown" parent="ISlangUnknown" uuid="9c2a4b3d-7f68-4e91-a52c-8b193e457a9f" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType2*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IComponentType2*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IComponentType2*</type>
+        </param>
+      </delegate>
+      <delegate name="_getTargetCompileResult" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType2*</type>
+        </param>
+        <param name="targetIndex">
+          <type>nint</type>
+        </param>
+        <param name="outCompileResult">
+          <type>ICompileResult**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <delegate name="_getEntryPointCompileResult" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IComponentType2*</type>
+        </param>
+        <param name="entryPointIndex">
+          <type>nint</type>
+        </param>
+        <param name="targetIndex">
+          <type>nint</type>
+        </param>
+        <param name="outCompileResult">
+          <type>ICompileResult**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+      </delegate>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IComponentType2*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IComponentType2*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IComponentType2*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getTargetCompileResult" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="targetIndex">
+          <type>nint</type>
+        </param>
+        <param name="outCompileResult">
+          <type>ICompileResult**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTargetCompileResult</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTargetCompileResult</vtbl>)(<param special="thisPtr">(IComponentType2*)Unsafe.AsPointer(ref this)</param>, <param name="targetIndex">targetIndex</param>, <param name="outCompileResult">outCompileResult</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+        </body>
+      </function>
+      <function name="getEntryPointCompileResult" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="entryPointIndex">
+          <type>nint</type>
+        </param>
+        <param name="targetIndex">
+          <type>nint</type>
+        </param>
+        <param name="outCompileResult">
+          <type>ICompileResult**</type>
+        </param>
+        <param name="outDiagnostics">
+          <type>ISlangBlob**</type>
+          <init>
+            <code>null</code>
+          </init>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCompileResult</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointCompileResult</vtbl>)(<param special="thisPtr">(IComponentType2*)Unsafe.AsPointer(ref this)</param>, <param name="entryPointIndex">entryPointIndex</param>, <param name="targetIndex">targetIndex</param>, <param name="outCompileResult">outCompileResult</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getTargetCompileResult" access="public">
+          <type native="SlangResult (SlangInt, ICompileResult **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getEntryPointCompileResult" access="public">
+          <type native="SlangResult (SlangInt, SlangInt, ICompileResult **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using ConsoleAppFramework;
 
-namespace Slang.Net.Scripts.Shared;
+namespace ShaderSlang.Net.Scripts.Shared;
 
 public static class ConsoleAppFrameworkActivitySource
 {

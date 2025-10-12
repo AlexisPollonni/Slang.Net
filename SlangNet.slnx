@@ -10,17 +10,17 @@
     <File Path="Directory.Build.targets" />
   </Folder>
   <Folder Name="/Solution Items/Scripts/">
-    <Project Path="Scripts/Shared/Slang.Net.Scripts.Shared.csproj" />
+    <Project Path="Scripts\Shared\ShaderSlang.Net.Scripts.Shared.csproj" />
     <File Path="Scripts/DownloadSlangBinaries.cs" />
     <File Path="Scripts/GenerateRuntimeJson.cs" />
     <File Path="Scripts/GenerateSlang.cs" />
     <File Path="Scripts\CI.EntryPoint.cs" />
   </Folder>
-  <Project Path="SlangNet.Bindings\SlangNet.Bindings.csproj" />
-  <Project Path="SlangNet.ComWrappers\SlangNet.ComWrappers.csproj" />
-  <Project Path="SlangNet.Native\SlangNet.Native.csproj" />
-  <Project Path="SlangNet.Pretty.SourceGenerator\SlangNet.Pretty.SourceGenerator.csproj" />
-  <Project Path="SlangNet.Pretty\SlangNet.Pretty.csproj" />
-  <Project Path="SlangNet.Tests\SlangNet.Tests.csproj" />
-  <Project Path="SlangNet\SlangNet.csproj" />
+  <Project Path="ShaderSlang.Net.Bindings\ShaderSlang.Net.Bindings.csproj" />
+  <Project Path="ShaderSlang.Net.ComWrappers\ShaderSlang.Net.ComWrappers.csproj" />
+  <Project Path="ShaderSlang.Net.Native\ShaderSlang.Net.Native.csproj" />
+  <Project Path="ShaderSlang.Net.Pretty.SourceGenerator\ShaderSlang.Net.Pretty.SourceGenerator.csproj" />
+  <Project Path="ShaderSlang.Net.Pretty\ShaderSlang.Net.Pretty.csproj" />
+  <Project Path="ShaderSlang.Net.Tests\ShaderSlang.Net.Tests.csproj" />
+  <Project Path="ShaderSlang.Net\ShaderSlang.Net.csproj" />
 </Solution>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="EmitSpirvMethod" access="public">
+      <type>int</type>
+      <enumerator name="Default" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+      <enumerator name="ViaGlsl" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Directly" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

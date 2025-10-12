@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="ISlangMutableFileSystem" access="public" native="struct ISlangMutableFileSystem : ISlangFileSystemExt" parent="ISlangFileSystemExt" uuid="a058675c-1d65-452a-8458-ccded1427105" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+      </delegate>
+      <delegate name="_castAs" access="public" convention="StdCall" unsafe="true">
+        <type>void*</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="guid">
+          <type>SlangUUID*</type>
+        </param>
+      </delegate>
+      <delegate name="_loadFile" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_getFileUniqueIdentity" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="outUniqueIdentity">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_calcCombinedPath" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="fromPathType">
+          <type>PathType</type>
+        </param>
+        <param name="fromPath">
+          <type>sbyte*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="pathOut">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_getPathType" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="pathTypeOut">
+          <type>PathType*</type>
+        </param>
+      </delegate>
+      <delegate name="_getPath" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="kind">
+          <type>PathKind</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="outPath">
+          <type>ISlangBlob**</type>
+        </param>
+      </delegate>
+      <delegate name="_clearCache" access="public" convention="StdCall">
+        <type>void</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+      </delegate>
+      <delegate name="_enumeratePathContents" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="callback">
+          <type>IntPtr</type>
+        </param>
+        <param name="userData">
+          <type>void*</type>
+        </param>
+      </delegate>
+      <delegate name="_getOSPathKind" access="public" convention="StdCall">
+        <type>OSPathKind</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+      </delegate>
+      <delegate name="_saveFile" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="data">
+          <type>void*</type>
+        </param>
+        <param name="size">
+          <type>nuint</type>
+        </param>
+      </delegate>
+      <delegate name="_saveFileBlob" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="dataBlob">
+          <type>ISlangBlob*</type>
+        </param>
+      </delegate>
+      <delegate name="_remove" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_createDirectory" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISlangMutableFileSystem*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="castAs" access="public" unsafe="true">
+        <type>void*</type>
+        <param name="guid">
+          <type>SlangUUID*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">castAs</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="guid">guid</param>);</code>
+        </body>
+      </function>
+      <function name="loadFile" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="outBlob">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadFile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadFile</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="outBlob">outBlob</param>);</code>
+        </body>
+      </function>
+      <function name="getFileUniqueIdentity" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="outUniqueIdentity">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getFileUniqueIdentity</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getFileUniqueIdentity</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="outUniqueIdentity">outUniqueIdentity</param>);</code>
+        </body>
+      </function>
+      <function name="calcCombinedPath" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="fromPathType">
+          <type>PathType</type>
+        </param>
+        <param name="fromPath">
+          <type>sbyte*</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="pathOut">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_calcCombinedPath</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">calcCombinedPath</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="fromPathType">fromPathType</param>, <param name="fromPath">fromPath</param>, <param name="path">path</param>, <param name="pathOut">pathOut</param>);</code>
+        </body>
+      </function>
+      <function name="getPathType" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="pathTypeOut">
+          <type>PathType*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getPathType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getPathType</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="pathTypeOut">pathTypeOut</param>);</code>
+        </body>
+      </function>
+      <function name="getPath" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="kind">
+          <type>PathKind</type>
+        </param>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="outPath">
+          <type>ISlangBlob**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getPath</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getPath</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="kind">kind</param>, <param name="path">path</param>, <param name="outPath">outPath</param>);</code>
+        </body>
+      </function>
+      <function name="clearCache" access="public" unsafe="true">
+        <type>void</type>
+        <body>
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_clearCache</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">clearCache</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="enumeratePathContents" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="callback">
+          <type>IntPtr</type>
+        </param>
+        <param name="userData">
+          <type>void*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_enumeratePathContents</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">enumeratePathContents</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="callback">callback</param>, <param name="userData">userData</param>);</code>
+        </body>
+      </function>
+      <function name="getOSPathKind" access="public" unsafe="true">
+        <type>OSPathKind</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getOSPathKind</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getOSPathKind</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="saveFile" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="data">
+          <type>void*</type>
+        </param>
+        <param name="size">
+          <type>nuint</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveFile</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">saveFile</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="data">data</param>, <param name="size">size</param>);</code>
+        </body>
+      </function>
+      <function name="saveFileBlob" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <param name="dataBlob">
+          <type>ISlangBlob*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_saveFileBlob</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">saveFileBlob</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>, <param name="dataBlob">dataBlob</param>);</code>
+        </body>
+      </function>
+      <function name="remove" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_remove</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">remove</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>);</code>
+        </body>
+      </function>
+      <function name="createDirectory" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="path">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createDirectory</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">createDirectory</vtbl>)(<param special="thisPtr">(ISlangMutableFileSystem*)Unsafe.AsPointer(ref this)</param>, <param name="path">path</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="castAs" access="public">
+          <type native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="loadFile" access="public">
+          <type native="SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getFileUniqueIdentity" access="public">
+          <type native="SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="calcCombinedPath" access="public">
+          <type native="SlangResult (SlangPathType, const char *, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getPathType" access="public">
+          <type native="SlangResult (const char *, SlangPathType *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getPath" access="public">
+          <type native="SlangResult (PathKind, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="clearCache" access="public">
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="enumeratePathContents" access="public">
+          <type native="SlangResult (const char *, FileSystemContentsCallBack, void *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getOSPathKind" access="public">
+          <type native="OSPathKind () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="saveFile" access="public">
+          <type native="SlangResult (const char *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="saveFileBlob" access="public">
+          <type native="SlangResult (const char *, ISlangBlob *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="remove" access="public">
+          <type native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="createDirectory" access="public">
+          <type native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

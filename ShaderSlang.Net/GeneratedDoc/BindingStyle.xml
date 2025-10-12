@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="BindingStyle" access="public">
+      <type>int</type>
+      <enumerator name="Unknown" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="DirectX" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="OpenGl" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Vulkan" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="Metal" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CPU" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CUDA" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CountOf" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

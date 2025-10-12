@@ -7,14 +7,14 @@
 #:package NuGet.Packaging
 #:package NuGet.Versioning
 
-#:project ./Shared/Slang.Net.Scripts.Shared.csproj
+#:project ./Shared/ShaderSlang.Net.Scripts.Shared.csproj
 
 using ConsoleAppFramework;
 using Microsoft.Extensions.Logging;
 using NuGet.RuntimeModel;
 using NuGet.Versioning;
 using Shouldly;
-using Slang.Net.Scripts.Shared;
+using ShaderSlang.Net.Scripts.Shared;
 
 var app = ConsoleHost.Create(args).ToConsoleAppBuilder();
 

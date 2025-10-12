@@ -4,10 +4,10 @@
 
 #:package Cake.FileHelpers
 
-#:project ./Shared/Slang.Net.Scripts.Shared.csproj
+#:project ./Shared/ShaderSlang.Net.Scripts.Shared.csproj
 
 using Shouldly;
-using Slang.Net.Scripts.Shared;
+using ShaderSlang.Net.Scripts.Shared;
 
 var target = Argument("target", "Pack");
 var configuration = Argument("configuration", "Release");

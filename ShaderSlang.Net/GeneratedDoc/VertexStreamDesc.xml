@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="VertexStreamDesc" access="public">
+      <field name="stride" access="public">
+        <type native="gfx::Size">nuint</type>
+      </field>
+      <field name="slotClass" access="public">
+        <type native="gfx::InputSlotClass">InputSlotClass</type>
+      </field>
+      <field name="instanceDataStepRate" access="public">
+        <type native="gfx::GfxCount">int</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

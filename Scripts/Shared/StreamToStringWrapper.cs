@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Slang.Net.Scripts.Shared;
+namespace ShaderSlang.Net.Scripts.Shared;
 
 public class StreamToStringWrapper(Encoding? encoding = null) : Stream
 {

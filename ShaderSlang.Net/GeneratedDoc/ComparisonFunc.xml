@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="ComparisonFunc" access="public">
+      <type>byte</type>
+      <enumerator name="Never" access="public">
+        <type primitive="False">byte</type>
+        <value>
+          <code>0x0</code>
+        </value>
+      </enumerator>
+      <enumerator name="Less" access="public">
+        <type primitive="False">byte</type>
+        <value>
+          <code>0x1</code>
+        </value>
+      </enumerator>
+      <enumerator name="Equal" access="public">
+        <type primitive="False">byte</type>
+        <value>
+          <code>0x2</code>
+        </value>
+      </enumerator>
+      <enumerator name="LessEqual" access="public">
+        <type primitive="False">byte</type>
+        <value>
+          <code>0x3</code>
+        </value>
+      </enumerator>
+      <enumerator name="Greater" access="public">
+        <type primitive="False">byte</type>
+        <value>
+          <code>0x4</code>
+        </value>
+      </enumerator>
+      <enumerator name="NotEqual" access="public">
+        <type primitive="False">byte</type>
+        <value>
+          <code>0x5</code>
+        </value>
+      </enumerator>
+      <enumerator name="GreaterEqual" access="public">
+        <type primitive="False">byte</type>
+        <value>
+          <code>0x6</code>
+        </value>
+      </enumerator>
+      <enumerator name="Always" access="public">
+        <type primitive="False">byte</type>
+        <value>
+          <code>0x7</code>
+        </value>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

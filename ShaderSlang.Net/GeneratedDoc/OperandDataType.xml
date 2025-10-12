@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="OperandDataType" access="public">
+      <type>int</type>
+      <enumerator name="General" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+      <enumerator name="Int32" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>1</code>
+        </value>
+      </enumerator>
+      <enumerator name="Int64" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>2</code>
+        </value>
+      </enumerator>
+      <enumerator name="Float32" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>3</code>
+        </value>
+      </enumerator>
+      <enumerator name="Float64" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>4</code>
+        </value>
+      </enumerator>
+      <enumerator name="String" access="public">
+        <type primitive="False">int</type>
+        <value>
+          <code>5</code>
+        </value>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

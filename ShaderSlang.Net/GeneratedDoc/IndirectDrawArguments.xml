@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="IndirectDrawArguments" access="public">
+      <field name="VertexCountPerInstance" access="public">
+        <type native="gfx::GfxCount">int</type>
+      </field>
+      <field name="InstanceCount" access="public">
+        <type native="gfx::GfxCount">int</type>
+      </field>
+      <field name="StartVertexLocation" access="public">
+        <type native="gfx::GfxIndex">int</type>
+      </field>
+      <field name="StartInstanceLocation" access="public">
+        <type native="gfx::GfxIndex">int</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

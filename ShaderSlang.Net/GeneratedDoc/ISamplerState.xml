@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="ISamplerState" access="public" native="struct ISamplerState : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>ISamplerState*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISamplerState*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>ISamplerState*</type>
+        </param>
+      </delegate>
+      <delegate name="_getNativeHandle" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>ISamplerState*</type>
+        </param>
+        <param name="outNativeHandle">
+          <type>InteropHandle*</type>
+        </param>
+      </delegate>
+      <struct name="SamplerStateDesc" access="public">
+        <field name="minFilter" access="public">
+          <type native="gfx::TextureFilteringMode">TextureFilteringMode</type>
+        </field>
+        <field name="magFilter" access="public">
+          <type native="gfx::TextureFilteringMode">TextureFilteringMode</type>
+        </field>
+        <field name="mipFilter" access="public">
+          <type native="gfx::TextureFilteringMode">TextureFilteringMode</type>
+        </field>
+        <field name="reductionOp" access="public">
+          <type native="gfx::TextureReductionOp">TextureReductionOp</type>
+        </field>
+        <field name="addressU" access="public">
+          <type native="gfx::TextureAddressingMode">TextureAddressingMode</type>
+        </field>
+        <field name="addressV" access="public">
+          <type native="gfx::TextureAddressingMode">TextureAddressingMode</type>
+        </field>
+        <field name="addressW" access="public">
+          <type native="gfx::TextureAddressingMode">TextureAddressingMode</type>
+        </field>
+        <field name="mipLODBias" access="public">
+          <type>float</type>
+        </field>
+        <field name="maxAnisotropy" access="public">
+          <type native="uint32_t">uint</type>
+        </field>
+        <field name="comparisonFunc" access="public">
+          <type native="gfx::ComparisonFunc">ComparisonFunc</type>
+        </field>
+        <field name="borderColor" access="public">
+          <type native="float[4]" count="4" fixed="_borderColor_e__FixedBuffer">float</type>
+        </field>
+        <field name="minLOD" access="public">
+          <type>float</type>
+        </field>
+        <field name="maxLOD" access="public">
+          <type>float</type>
+        </field>
+        <struct name="_borderColor_e__FixedBuffer" access="public">
+          <attribute>InlineArray(4)</attribute>
+          <field name="e0" access="public">
+            <type>float</type>
+          </field>
+        </struct>
+      </struct>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ISamplerState*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ISamplerState*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ISamplerState*)Unsafe.AsPointer(ref this)</param>);</code>
+        </body>
+      </function>
+      <function name="getNativeHandle" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="outNativeHandle">
+          <type>InteropHandle*</type>
+        </param>
+        <body>
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getNativeHandle</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getNativeHandle</vtbl>)(<param special="thisPtr">(ISamplerState*)Unsafe.AsPointer(ref this)</param>, <param name="outNativeHandle">outNativeHandle</param>);</code>
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getNativeHandle" access="public">
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

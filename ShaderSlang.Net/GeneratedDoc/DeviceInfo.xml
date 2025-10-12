@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="DeviceInfo" access="public" unsafe="true">
+      <field name="deviceType" access="public">
+        <type native="gfx::DeviceType">DeviceType</type>
+      </field>
+      <field name="limits" access="public">
+        <type native="gfx::DeviceLimits">DeviceLimits</type>
+      </field>
+      <field name="bindingStyle" access="public">
+        <type native="gfx::BindingStyle">BindingStyle</type>
+      </field>
+      <field name="projectionStyle" access="public">
+        <type native="gfx::ProjectionStyle">ProjectionStyle</type>
+      </field>
+      <field name="identityProjectionMatrix" access="public">
+        <type native="float[16]" count="16" fixed="_identityProjectionMatrix_e__FixedBuffer">float</type>
+      </field>
+      <field name="apiName" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+      <field name="adapterName" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+      <field name="timestampFrequency" access="public">
+        <type native="uint64_t">ulong</type>
+      </field>
+      <struct name="_identityProjectionMatrix_e__FixedBuffer" access="public">
+        <attribute>InlineArray(16)</attribute>
+        <field name="e0" access="public">
+          <type>float</type>
+        </field>
+      </struct>
+    </struct>
+  </namespace>
+</bindings>

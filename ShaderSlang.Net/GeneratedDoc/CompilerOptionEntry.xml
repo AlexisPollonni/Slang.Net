@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="CompilerOptionEntry" access="public">
+      <field name="name" access="public">
+        <type native="slang::CompilerOptionName">CompilerOptionName</type>
+      </field>
+      <field name="value" access="public">
+        <type native="slang::CompilerOptionValue">CompilerOptionValue</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

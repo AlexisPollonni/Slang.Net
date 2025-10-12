@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using Intellenum;
 
-namespace Slang.Net.Scripts.Shared;
+namespace ShaderSlang.Net.Scripts.Shared;
 
 [Intellenum<string>()]
 [Member("LinuxArm64", "linux-aarch64")]
