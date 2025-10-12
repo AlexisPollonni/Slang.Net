@@ -2,7 +2,6 @@
   <PropertyGroup>
     <WarningsAsErrors>nullable</WarningsAsErrors>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <Title>ShaderSlang.Net - Idiomatic bindings of shader-slang</Title>
     <Description>
       These are the idiomatic bindings of shader-slang for the ShaderSlang.Net packages, a .NET bindings library.
@@ -13,16 +12,12 @@
     <DebugType>embedded</DebugType>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-  </PropertyGroup>
   <ItemGroup>
     <Content Include="PrettyPackageReadme.md" Pack="true" PackagePath="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.HighPerformance" />
     <PackageReference Include="Nito.Disposables" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShaderSlang.Net.Bindings\ShaderSlang.Net.Bindings.csproj" />
