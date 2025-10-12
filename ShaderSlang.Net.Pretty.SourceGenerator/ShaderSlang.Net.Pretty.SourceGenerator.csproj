@@ -1,21 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <IsPackable>false</IsPackable>
-        <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-        <IsRoslynComponent>true</IsRoslynComponent>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <CSharpier_FrameworkVersion>$(TargetFramework)</CSharpier_FrameworkVersion>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="Immutype">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all"/>
-        <PackageReference Include="SourceGenerator.Foundations"/>
-        <PackageReference Include="JetBrains.Annotations"/>
-        <PackageReference Include="AvantiPoint.CodeGenHelpers"/>
-        <PackageReference Include="System.Memory"/>
-    </ItemGroup>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Immutype">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="SourceGenerator.Foundations" />
+    <PackageReference Include="JetBrains.Annotations" />
+    <PackageReference Include="AvantiPoint.CodeGenHelpers" />
+    <PackageReference Include="System.Memory" />
+  </ItemGroup>
 </Project>
