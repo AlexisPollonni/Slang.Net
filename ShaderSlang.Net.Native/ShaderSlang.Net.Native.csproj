@@ -35,7 +35,7 @@
     <PropertyGroup>
       <_OutBinariesDir>$([MSBuild]::NormalizePath('$(IntermediateOutputPath)', 'runtimes', '$(SlangRuntimeIdentifier)', 'native'))</_OutBinariesDir>
     </PropertyGroup>
-    <Exec Command="dotnet $([MSBuild]::Escape('$(DownloadSlangScript)')) -- -o $([MSBuild]::Escape('$(_OutBinariesDir)')) --slang-version $(SlangVersion) --target-rids $(SlangRuntimeIdentifier)" />
+    <Exec Command="dotnet run $([MSBuild]::Escape('$(DownloadSlangScript)')) --no-launch-profile -- -o $([MSBuild]::Escape('$(_OutBinariesDir)')) --slang-version $(SlangVersion) --target-rids $(SlangRuntimeIdentifier)" />
     <ItemGroup>
       <_NativeBinaries Include="$(_OutBinariesDir)\*.dll;$(_OutBinariesDir)\*.so;$(_OutBinariesDir)\*.dylib" />
     </ItemGroup>
@@ -128,7 +128,7 @@
         >--version-suffix $(VersionSuffix)</VersionSuffixArg
       >
     </PropertyGroup>
-    <Exec Command="dotnet $([MSBuild]::Escape('$(GenerateRuntimeJsonScript)')) -- -o $([MSBuild]::Escape('$(_RuntimeJsonDir)')) --version-prefix $(VersionPrefix) $(VersionSuffixArg) --base-package-name $(MSBuildProjectName) --target-rids $(_RuntimeIdentifiersComma)" />
+    <Exec Command="dotnet run $([MSBuild]::Escape('$(GenerateRuntimeJsonScript)')) --no-launch-profile -- -o $([MSBuild]::Escape('$(_RuntimeJsonDir)')) --version-prefix $(VersionPrefix) $(VersionSuffixArg) --base-package-name $(MSBuildProjectName) --target-rids $(_RuntimeIdentifiersComma)" />
     <ItemGroup>
       <None
         Include="README.md"
