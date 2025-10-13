@@ -9,8 +9,8 @@
     <PackageVersion Include="Cake.APT.Module" Version="0.2.0" />
     <PackageVersion Include="Cake.Core" Version="5.1.0" />
     <PackageVersion Include="Cake.FileHelpers" Version="7.0.0" />
-    <PackageVersion Include="ClangSharp" Version="20.1.2" />
-    <PackageVersion Include="ClangSharp.PInvokeGenerator" Version="20.1.2" />
+    <PackageVersion Include="ClangSharp" Version="20.1.2.3" />
+    <PackageVersion Include="ClangSharp.PInvokeGenerator" Version="20.1.2.3" />
     <PackageVersion Include="CommunityToolkit.HighPerformance" Version="8.4.0" />
     <PackageVersion Include="ConsoleAppFramework" Version="5.6.1" />
     <PackageVersion Include="ConsoleAppFramework.Abstractions" Version="5.6.1" />

@@ -1059,10 +1059,10 @@ public unsafe partial struct IDevice
     /// <include file='IDevice.xml' path='doc/member[@name="IDevice.getDeviceInfo"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("const DeviceInfo &")]
-    public DeviceInfo* getDeviceInfo()
+    public readonly DeviceInfo* getDeviceInfo()
     {
         return Marshal.GetDelegateForFunctionPointer<_getDeviceInfo>(lpVtbl->getDeviceInfo)(
-            (IDevice*)Unsafe.AsPointer(ref this)
+            (IDevice*)Unsafe.AsPointer(in this)
         );
     }
 

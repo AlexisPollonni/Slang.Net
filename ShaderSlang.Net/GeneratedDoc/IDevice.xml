@@ -569,7 +569,13 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getDeviceInfo" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_getDeviceInfo"
+        access="public"
+        convention="StdCall"
+        readonly="true"
+        unsafe="true"
+      >
         <type native="const DeviceInfo &amp;">DeviceInfo*</type>
         <param name="pThis">
           <type>IDevice*</type>
@@ -1642,14 +1648,14 @@
           >
         </body>
       </function>
-      <function name="getDeviceInfo" access="public" unsafe="true">
+      <function name="getDeviceInfo" access="public" readonly="true" unsafe="true">
         <type native="const DeviceInfo &amp;">DeviceInfo*</type>
         <body>
           <code
             >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDeviceInfo</delegate>&gt;(lpVtbl-&gt;<vtbl
               explicit="True"
               >getDeviceInfo</vtbl
-            >)(<param special="thisPtr">(IDevice*)Unsafe.AsPointer(ref this)</param>);</code
+            >)(<param special="thisPtr">(IDevice*)Unsafe.AsPointer(in this)</param>);</code
           >
         </body>
       </function>

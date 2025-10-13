@@ -213,13 +213,13 @@ Dictionary<FilePath, string> Generate(
 
             var additionalRemapped = GetAdditionalRemappedNames(translationUnit);
 
-            var remapDict = (SortedDictionary<string, string>)generator.Config.RemappedNames;
+            var remapDict = (StrDic)generator.Config.RemappedNames;
             foreach (var (before, after) in additionalRemapped)
                 remapDict.TryAdd(before, after);
 
             var additionalGuids = GetComStyleClassUuids(translationUnit);
 
-            var withGuidsDict = (SortedDictionary<string, Guid>)generator.Config.WithGuids;
+            var withGuidsDict = (Dictionary<string, Guid>)generator.Config.WithGuids;
             foreach (var (typeName, guid) in additionalGuids)
                 withGuidsDict.TryAdd(typeName, guid);
 
