@@ -37,13 +37,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <PropertyGroup Condition="$([System.OperatingSystem]::IsWindows())">
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <PlatformTarget
       Condition=" '$(PlatformTarget)' == '' And '$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString())' != '' "
       >$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLower())</PlatformTarget
     >
   </PropertyGroup>
-  <ImportGroup Condition="$([System.OperatingSystem]::IsWindows())">
+  <ImportGroup Condition="'$(OS)' == 'Windows_NT'">
     <Import
       Project="$(PkgMicrosoft_Direct3D_DXC)\build\native\Microsoft.Direct3D.DXC.props"
       Condition="Exists('$(PkgMicrosoft_Direct3D_DXC)\build\native\Microsoft.Direct3D.DXC.props')"
