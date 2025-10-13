@@ -8,6 +8,7 @@
     <File Path="Directory.Packages.props" />
     <File Path=".editorconfig" />
     <File Path="Directory.Build.targets" />
+    <File Path="README.md" />
   </Folder>
   <Folder Name="/Solution Items/Scripts/">
     <Project Path="Scripts\Shared\ShaderSlang.Net.Scripts.Shared.csproj" />
