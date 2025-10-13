@@ -1,4 +1,4 @@
 ﻿<Project>
-    <!-- TODO: Prevents cleaning of the downloaded native binaries, remove when https://github.com/dotnet/msbuild/issues/9709 is fixed -->
-    <Target Name="IncrementalClean" />
+  <!-- TODO: Prevents cleaning of the downloaded native binaries, remove when https://github.com/dotnet/msbuild/issues/9709 is fixed -->
+  <Target Name="IncrementalClean" />
 </Project>

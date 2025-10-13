@@ -22,8 +22,23 @@ var slnFile = findRes.Single();
 Task("Restore")
     .Does(() =>
     {
-        InstallTool("dotnet:?package=CSharpier");
         DotNetRestore(slnFile.Path.FullPath);
+    });
+
+Task("Format")
+    .IsDependentOn("Restore")
+    .ContinueOnError()
+    .Does(() =>
+    {
+        DotNetTool("restore");
+        DotNetTool(
+            "csharpier",
+            new()
+            {
+                DiagnosticOutput = true,
+                ArgumentCustomization = args => args.Append("check").Append("."),
+            }
+        );
     });
 
 Task("Clean")
@@ -44,7 +59,11 @@ Task("Build")
             {
                 Configuration = configuration,
                 NoRestore = true,
-                MSBuildSettings = new() { ContinuousIntegrationBuild = true },
+                MSBuildSettings = new()
+                {
+                    ContinuousIntegrationBuild = true,
+                    Properties = { { "CSharpier_Bypass", ["true"] } },
+                },
             }
         );
     });
