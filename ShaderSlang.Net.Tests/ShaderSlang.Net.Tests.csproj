@@ -4,12 +4,17 @@
     <IsPackable>false</IsPackable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <Microsoft_Direct3D_DXC_CopyLocation>$(OutDir)</Microsoft_Direct3D_DXC_CopyLocation>
     <Microsoft_Direct3D_DXC_SkipLibraryCopy>false</Microsoft_Direct3D_DXC_SkipLibraryCopy>
     <Microsoft_Direct3D_DXC_SkipIncludeDir>true</Microsoft_Direct3D_DXC_SkipIncludeDir>
+    <PlatformTarget
+      Condition=" '$(PlatformTarget)' == '' And '$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString())' != '' "
+      >$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLower())</PlatformTarget
+    >
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Direct3D.DXC" GeneratePathProperty="True" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
@@ -28,6 +33,9 @@
     <PackageReference Include="JetBrains.Annotations" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" />
   </ItemGroup>
+  <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+    <PackageReference Include="Microsoft.Direct3D.DXC" GeneratePathProperty="True" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShaderSlang.Net\ShaderSlang.Net.csproj" IncludeAssets="all" />
     <Content Include="Examples\Assets\hello-world.slang">
@@ -37,12 +45,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-    <PlatformTarget
-      Condition=" '$(PlatformTarget)' == '' And '$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString())' != '' "
-      >$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLower())</PlatformTarget
-    >
-  </PropertyGroup>
   <ImportGroup Condition="'$(OS)' == 'Windows_NT'">
     <Import
       Project="$(PkgMicrosoft_Direct3D_DXC)\build\native\Microsoft.Direct3D.DXC.props"
