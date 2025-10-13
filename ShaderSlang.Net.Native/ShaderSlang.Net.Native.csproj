@@ -19,6 +19,12 @@
   <PropertyGroup Condition="'$(BeforePack)' == ''">
     <BeforePack>PackNativePerRuntime</BeforePack>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CSharpier.MsBuild">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
   <Target Name="DownloadSlangBinaries" BeforeTargets="BeforeBuild">
     <Error Condition="'$(IntermediateOutputPath)' == ''" Text="OutDir is not set." />
     <Error Condition="'$(SlangVersion)' == ''" Text="Slang version is not set." />
