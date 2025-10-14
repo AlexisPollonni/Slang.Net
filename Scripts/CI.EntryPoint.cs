@@ -51,23 +51,45 @@ Task("Clean")
 
 Task("Build")
     .IsDependentOn("Restore")
-    .Does(() =>
+    .Does(async () =>
     {
+        var isGitHubDebug =
+            GitHubActions.IsRunningOnGitHubActions
+            && (
+                EnvironmentVariable("ACTIONS_RUNNER_DEBUG", false)
+                || EnvironmentVariable("ACTIONS_STEP_DEBUG", false)
+            );
+
+        var isDebugMode = Context.Log.Verbosity >= Verbosity.Diagnostic || isGitHubDebug;
+
+        var binlogPath = Context.Environment.WorkingDirectory.Combine("artifacts/build.binlog");
+
+        var msbuildSettings = new DotNetMSBuildSettings { ContinuousIntegrationBuild = true };
+        msbuildSettings.Properties.Add("CSharpier_Bypass", ["true"]);
+
+        if (isDebugMode)
+        {
+            msbuildSettings.BinaryLogger = new MSBuildBinaryLoggerSettings
+            {
+                Enabled = true,
+                FileName = binlogPath.FullPath,
+            };
+        }
+
         DotNetBuild(
             slnFile.Path.FullPath,
             new()
             {
                 Configuration = configuration,
                 NoRestore = true,
-                Verbosity = DotNetVerbosity.Diagnostic,
-                MSBuildSettings = new()
-                {
-                    ContinuousIntegrationBuild = true,
-                    Properties = { { "CSharpier_Bypass", ["true"] } },
-                    Verbosity = DotNetVerbosity.Diagnostic,
-                },
+                MSBuildSettings = msbuildSettings,
             }
         );
+
+        if (isDebugMode && GitHubActions.IsRunningOnGitHubActions)
+        {
+            await GitHubActions.Commands.UploadArtifact(binlogPath, "build-binlog");
+        }
     });
 
 Task("Test")
