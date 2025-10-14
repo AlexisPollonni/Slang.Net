@@ -36,6 +36,7 @@ DotNetMSBuildSettings CreateMSBuildSettings(string? binlogName = null)
         {
             Enabled = true,
             FileName = binlogPath.FullPath,
+            Imports = MSBuildBinaryLoggerImports.Embed,
         };
     }
 
@@ -52,7 +53,10 @@ async Task UploadBinlogIfExists(string binlogName)
 
         if (FileExists(binlogPath))
         {
-            await GitHubActions.Commands.UploadArtifact(binlogPath, binlogName);
+            await GitHubActions.Commands.UploadArtifact(
+                binlogPath,
+                $"{Context.Environment.Platform}-msbuild-failed-{binlogName}"
+            );
             return;
         }
 
