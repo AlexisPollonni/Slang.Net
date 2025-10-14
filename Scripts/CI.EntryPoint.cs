@@ -19,23 +19,19 @@ var findRes = Context
 
 var slnFile = findRes.Single();
 
-var isGitHubDebug =
-    GitHubActions.IsRunningOnGitHubActions
-    && (
-        EnvironmentVariable("ACTIONS_RUNNER_DEBUG", false)
-        || EnvironmentVariable("ACTIONS_STEP_DEBUG", false)
-    );
-
-var isDebugMode = Context.Log.Verbosity >= Verbosity.Diagnostic || isGitHubDebug;
-
 DotNetMSBuildSettings CreateMSBuildSettings(string? binlogName = null)
 {
     var settings = new DotNetMSBuildSettings { ContinuousIntegrationBuild = true };
     settings.Properties.Add("CSharpier_Bypass", ["true"]);
 
-    if (isDebugMode && !string.IsNullOrEmpty(binlogName))
+    if (
+        (GitHubActions.IsRunningOnGitHubActions || Context.Log.Verbosity >= Verbosity.Diagnostic)
+        && !string.IsNullOrEmpty(binlogName)
+    )
     {
-        var binlogPath = Context.Environment.WorkingDirectory.Combine($"artifacts/{binlogName}.binlog");
+        var binlogPath = Context.Environment.WorkingDirectory.Combine(
+            $"artifacts/{binlogName}.binlog"
+        );
         settings.BinaryLogger = new MSBuildBinaryLoggerSettings
         {
             Enabled = true,
@@ -48,33 +44,48 @@ DotNetMSBuildSettings CreateMSBuildSettings(string? binlogName = null)
 
 async Task UploadBinlogIfExists(string binlogName)
 {
-    if (isDebugMode && GitHubActions.IsRunningOnGitHubActions)
+    if (GitHubActions.IsRunningOnGitHubActions)
     {
         var binlogPath = new FilePath(
             Context.Environment.WorkingDirectory.Combine($"artifacts/{binlogName}.binlog").FullPath
         );
-        var binlogFile = Context.FileSystem.GetFile(binlogPath);
-        if (binlogFile.Exists)
+
+        if (FileExists(binlogPath))
         {
             await GitHubActions.Commands.UploadArtifact(binlogPath, binlogName);
+            return;
         }
+
+        Information("No binlog found at {0}", binlogPath.FullPath);
+    }
+}
+
+async Task RunAndUploadBinlogOnException(Action action, string binlogName)
+{
+    try
+    {
+        action();
+    }
+    catch
+    {
+        await UploadBinlogIfExists(binlogName);
+        throw;
     }
 }
 
 Task("Restore")
     .Does(async () =>
     {
-        try
-        {
-            DotNetRestore(
-                slnFile.Path.FullPath,
-                new() { MSBuildSettings = CreateMSBuildSettings("restore") }
-            );
-        }
-        finally
-        {
-            await UploadBinlogIfExists("restore");
-        }
+        await RunAndUploadBinlogOnException(
+            () =>
+            {
+                DotNetRestore(
+                    slnFile.Path.FullPath,
+                    new() { MSBuildSettings = CreateMSBuildSettings("restore") }
+                );
+            },
+            "restore"
+        );
     });
 
 Task("Format")
@@ -97,21 +108,20 @@ Task("Clean")
     .IsDependentOn("Restore")
     .Does(async () =>
     {
-        try
-        {
-            DotNetClean(
-                slnFile.Path.FullPath,
-                new()
-                {
-                    Configuration = configuration,
-                    MSBuildSettings = CreateMSBuildSettings("clean"),
-                }
-            );
-        }
-        finally
-        {
-            await UploadBinlogIfExists("clean");
-        }
+        await RunAndUploadBinlogOnException(
+            () =>
+            {
+                DotNetClean(
+                    slnFile.Path.FullPath,
+                    new()
+                    {
+                        Configuration = configuration,
+                        MSBuildSettings = CreateMSBuildSettings("clean"),
+                    }
+                );
+            },
+            "clean"
+        );
     })
     .ContinueOnError();
 
@@ -119,68 +129,65 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(async () =>
     {
-        try
-        {
-            DotNetBuild(
-                slnFile.Path.FullPath,
-                new()
-                {
-                    Configuration = configuration,
-                    NoRestore = true,
-                    MSBuildSettings = CreateMSBuildSettings("build"),
-                }
-            );
-        }
-        finally
-        {
-            await UploadBinlogIfExists("build");
-        }
+        await RunAndUploadBinlogOnException(
+            () =>
+            {
+                DotNetBuild(
+                    slnFile.Path.FullPath,
+                    new()
+                    {
+                        Configuration = configuration,
+                        NoRestore = true,
+                        MSBuildSettings = CreateMSBuildSettings("build"),
+                    }
+                );
+            },
+            "build"
+        );
     });
 
 Task("Test")
     .IsDependentOn("Build")
     .Does(async () =>
     {
-        try
-        {
-            DotNetTest(
-                slnFile.Path.FullPath,
-                new()
-                {
-                    Configuration = configuration,
-                    NoRestore = true,
-                    NoBuild = true,
-                    MSBuildSettings = CreateMSBuildSettings("test"),
-                }
-            );
-        }
-        finally
-        {
-            await UploadBinlogIfExists("test");
-        }
+        await RunAndUploadBinlogOnException(
+            () =>
+            {
+                DotNetTest(
+                    slnFile.Path.FullPath,
+                    new()
+                    {
+                        Configuration = configuration,
+                        NoRestore = true,
+                        NoBuild = true,
+                        MSBuildSettings = CreateMSBuildSettings("test"),
+                    }
+                );
+            },
+            "test"
+        );
     });
 
 Task("Pack")
     .IsDependentOn("Build")
     .Does(async () =>
     {
-        try
-        {
-            DotNetPack(
-                slnFile.Path.FullPath,
-                new()
-                {
-                    Configuration = configuration,
-                    NoRestore = true,
-                    NoBuild = true,
-                    MSBuildSettings = CreateMSBuildSettings("pack"),
-                }
-            );
-        }
-        finally
-        {
-            await UploadBinlogIfExists("pack");
-        }
+        await RunAndUploadBinlogOnException(
+            () =>
+            {
+                DotNetPack(
+                    slnFile.Path.FullPath,
+                    new()
+                    {
+                        Configuration = configuration,
+                        NoRestore = true,
+                        NoBuild = true,
+                        MSBuildSettings = CreateMSBuildSettings("pack"),
+                    }
+                );
+            },
+            "pack"
+        );
     });
 
 Task("PublishToGithub")
