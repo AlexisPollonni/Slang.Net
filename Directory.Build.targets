@@ -1,4 +1,10 @@
 ﻿<Project>
+  <!-- Workaround for .NET SDK 10 RC1 bug on macOS ARM64: MSB4184 at RuntimeIdentifierInference.targets line 210 -->
+  <!-- The SDK tries to evaluate VersionLessThan with empty _TargetFrameworkVersionWithoutV during property evaluation -->
+  <!-- This PropertyGroup runs early enough (in Directory.Build.targets) to set it before the problematic condition -->
+  <PropertyGroup Condition="'$(_TargetFrameworkVersionWithoutV)' == ''">
+    <_TargetFrameworkVersionWithoutV>10.0</_TargetFrameworkVersionWithoutV>
+  </PropertyGroup>
   <!-- TODO: Prevents cleaning of the downloaded native binaries, remove when https://github.com/dotnet/msbuild/issues/9709 is fixed -->
   <Target Name="IncrementalClean" />
 </Project>
