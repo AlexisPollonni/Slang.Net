@@ -19,10 +19,62 @@ var findRes = Context
 
 var slnFile = findRes.Single();
 
-Task("Restore")
-    .Does(() =>
+var isGitHubDebug =
+    GitHubActions.IsRunningOnGitHubActions
+    && (
+        EnvironmentVariable("ACTIONS_RUNNER_DEBUG", false)
+        || EnvironmentVariable("ACTIONS_STEP_DEBUG", false)
+    );
+
+var isDebugMode = Context.Log.Verbosity >= Verbosity.Diagnostic || isGitHubDebug;
+
+DotNetMSBuildSettings CreateMSBuildSettings(string? binlogName = null)
+{
+    var settings = new DotNetMSBuildSettings { ContinuousIntegrationBuild = true };
+    settings.Properties.Add("CSharpier_Bypass", ["true"]);
+
+    if (isDebugMode && !string.IsNullOrEmpty(binlogName))
     {
-        DotNetRestore(slnFile.Path.FullPath);
+        var binlogPath = Context.Environment.WorkingDirectory.Combine($"artifacts/{binlogName}.binlog");
+        settings.BinaryLogger = new MSBuildBinaryLoggerSettings
+        {
+            Enabled = true,
+            FileName = binlogPath.FullPath,
+        };
+    }
+
+    return settings;
+}
+
+async Task UploadBinlogIfExists(string binlogName)
+{
+    if (isDebugMode && GitHubActions.IsRunningOnGitHubActions)
+    {
+        var binlogPath = new FilePath(
+            Context.Environment.WorkingDirectory.Combine($"artifacts/{binlogName}.binlog").FullPath
+        );
+        var binlogFile = Context.FileSystem.GetFile(binlogPath);
+        if (binlogFile.Exists)
+        {
+            await GitHubActions.Commands.UploadArtifact(binlogPath, binlogName);
+        }
+    }
+}
+
+Task("Restore")
+    .Does(async () =>
+    {
+        try
+        {
+            DotNetRestore(
+                slnFile.Path.FullPath,
+                new() { MSBuildSettings = CreateMSBuildSettings("restore") }
+            );
+        }
+        finally
+        {
+            await UploadBinlogIfExists("restore");
+        }
     });
 
 Task("Format")
@@ -43,9 +95,23 @@ Task("Format")
 
 Task("Clean")
     .IsDependentOn("Restore")
-    .Does(() =>
+    .Does(async () =>
     {
-        DotNetClean(slnFile.Path.FullPath, new() { Configuration = configuration });
+        try
+        {
+            DotNetClean(
+                slnFile.Path.FullPath,
+                new()
+                {
+                    Configuration = configuration,
+                    MSBuildSettings = CreateMSBuildSettings("clean"),
+                }
+            );
+        }
+        finally
+        {
+            await UploadBinlogIfExists("clean");
+        }
     })
     .ContinueOnError();
 
@@ -53,73 +119,68 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(async () =>
     {
-        var isGitHubDebug =
-            GitHubActions.IsRunningOnGitHubActions
-            && (
-                EnvironmentVariable("ACTIONS_RUNNER_DEBUG", false)
-                || EnvironmentVariable("ACTIONS_STEP_DEBUG", false)
+        try
+        {
+            DotNetBuild(
+                slnFile.Path.FullPath,
+                new()
+                {
+                    Configuration = configuration,
+                    NoRestore = true,
+                    MSBuildSettings = CreateMSBuildSettings("build"),
+                }
             );
-
-        var isDebugMode = Context.Log.Verbosity >= Verbosity.Diagnostic || isGitHubDebug;
-
-        var binlogPath = Context.Environment.WorkingDirectory.Combine("artifacts/build.binlog");
-
-        var msbuildSettings = new DotNetMSBuildSettings { ContinuousIntegrationBuild = true };
-        msbuildSettings.Properties.Add("CSharpier_Bypass", ["true"]);
-
-        if (isDebugMode)
-        {
-            msbuildSettings.BinaryLogger = new MSBuildBinaryLoggerSettings
-            {
-                Enabled = true,
-                FileName = binlogPath.FullPath,
-            };
         }
-
-        DotNetBuild(
-            slnFile.Path.FullPath,
-            new()
-            {
-                Configuration = configuration,
-                NoRestore = true,
-                MSBuildSettings = msbuildSettings,
-            }
-        );
-
-        if (isDebugMode && GitHubActions.IsRunningOnGitHubActions)
+        finally
         {
-            await GitHubActions.Commands.UploadArtifact(binlogPath, "build-binlog");
+            await UploadBinlogIfExists("build");
         }
     });
 
 Task("Test")
     .IsDependentOn("Build")
-    .Does(() =>
+    .Does(async () =>
     {
-        DotNetTest(
-            slnFile.Path.FullPath,
-            new()
-            {
-                Configuration = configuration,
-                NoRestore = true,
-                NoBuild = true,
-            }
-        );
+        try
+        {
+            DotNetTest(
+                slnFile.Path.FullPath,
+                new()
+                {
+                    Configuration = configuration,
+                    NoRestore = true,
+                    NoBuild = true,
+                    MSBuildSettings = CreateMSBuildSettings("test"),
+                }
+            );
+        }
+        finally
+        {
+            await UploadBinlogIfExists("test");
+        }
     });
 
 Task("Pack")
     .IsDependentOn("Build")
-    .Does(() =>
+    .Does(async () =>
     {
-        DotNetPack(
-            slnFile.Path.FullPath,
-            new()
-            {
-                Configuration = configuration,
-                NoRestore = true,
-                NoBuild = true,
-            }
-        );
+        try
+        {
+            DotNetPack(
+                slnFile.Path.FullPath,
+                new()
+                {
+                    Configuration = configuration,
+                    NoRestore = true,
+                    NoBuild = true,
+                    MSBuildSettings = CreateMSBuildSettings("pack"),
+                }
+            );
+        }
+        finally
+        {
+            await UploadBinlogIfExists("pack");
+        }
     });
 
 Task("PublishToGithub")
