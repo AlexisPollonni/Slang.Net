@@ -59,10 +59,12 @@ Task("Build")
             {
                 Configuration = configuration,
                 NoRestore = true,
+                Verbosity = DotNetVerbosity.Diagnostic,
                 MSBuildSettings = new()
                 {
                     ContinuousIntegrationBuild = true,
                     Properties = { { "CSharpier_Bypass", ["true"] } },
+                    Verbosity = DotNetVerbosity.Diagnostic,
                 },
             }
         );
