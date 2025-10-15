@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "Generate All": {
+      "commandName": "Project",
+      "targetProject": "../GenerateSlang.cs",
+      "commandLineArgs": "--slang-repo \".\\slang\" --bindings-output \".\\ShaderSlang.Net.Bindings\\Generated\" --tests-output \".\\ShaderSlang.Net.Tests\\Generated\" --docs-output \".\\ShaderSlang.Net.Bindings\\Generated\\doc\"",
+      "workingDirectory": "$(ProjectDir)",
+      "launchBrowser": false,
+      "environmentVariables": {}
+    },
+    "Generate Bindings": {
+      "commandName": "Project",
+      "targetProject": "../GenerateSlang.cs",
+      "commandLineArgs": "--slang-repo \".\\slang\" --bindings-output \".\\ShaderSlang.Net.Bindings\\Generated\" --tests-output \".\\ShaderSlang.Net.Tests\\Generated\"",
+      "workingDirectory": "$(ProjectDir)",
+      "launchBrowser": false,
+      "environmentVariables": {}
+    },
+    "Generate Bindings (No Tests)": {
+      "commandName": "Project",
+      "targetProject": "../GenerateSlang.cs",
+      "commandLineArgs": "--slang-repo \".\\slang\" --bindings-output \".\\ShaderSlang.Net.Bindings\\Generated\"",
+      "workingDirectory": "$(ProjectDir)",
+      "launchBrowser": false,
+      "environmentVariables": {}
+    },
+    "Generate Docs": {
+      "commandName": "Project",
+      "targetProject": "../GenerateSlang.cs",
+      "commandLineArgs": "--slang-repo \".\\slang\" --docs-output \".\\ShaderSlang.Net\\Bindings\\Generated\\doc\"",
+      "workingDirectory": "$(ProjectDir)",
+      "launchBrowser": false,
+      "environmentVariables": {}
+    }
+  }
+}
