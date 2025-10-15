@@ -81,7 +81,10 @@ async Task RunAndUploadBinlogOnException(Action action, string binlogName)
 Task("Restore")
     .Does(async () =>
     {
-        DotNetTool("restore");
+        Command(
+            ["dotnet", "dotnet.exe"],
+            new ProcessArgumentBuilder().Append("tool").Append("restore")
+        );
 
         await RunAndUploadBinlogOnException(
             () =>
