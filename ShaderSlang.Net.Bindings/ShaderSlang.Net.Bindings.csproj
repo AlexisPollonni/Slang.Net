@@ -14,10 +14,4 @@
   <ItemGroup>
     <Content Include="BindingsPackageReadme.md" Pack="true" PackagePath="readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="CSharpier.MsBuild">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
 </Project>
