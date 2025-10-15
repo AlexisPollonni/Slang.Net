@@ -170,26 +170,11 @@ The bindings are auto-generated using [ClangSharp](https://github.com/dotnet/Cla
 
 ### Generation Command
 
-To regenerate bindings, run the generation script with the appropriate parameters:
+To regenerate bindings, run the generation script:
 
 ```bash
 # Generate bindings
-dotnet run Scripts/GenerateSlang.cs -- \
-  --target Bindings \
-  --slang-repo <path-to-slang-repo> \
-  --bindings-output ./ShaderSlang.Net.Bindings/Generated
-
-# Generate tests
-dotnet run Scripts/GenerateSlang.cs -- \
-  --target Tests \
-  --slang-repo <path-to-slang-repo> \
-  --tests-output ./ShaderSlang.Net.Tests/Generated
-
-# Generate documentation
-dotnet run Scripts/GenerateSlang.cs -- \
-  --target Docs \
-  --slang-repo <path-to-slang-repo> \
-  --docs-output ./ShaderSlang.Net/GeneratedDoc
+dotnet run Scripts/GenerateSlang.cs
 ```
 
 The generation process:
