@@ -6,6 +6,7 @@
 
 #:project ./Shared/ShaderSlang.Net.Scripts.Shared.csproj
 
+using System.Runtime.InteropServices;
 using ShaderSlang.Net.Scripts.Shared;
 using Shouldly;
 
@@ -55,7 +56,7 @@ async Task UploadBinlogIfExists(string binlogName)
         {
             await GitHubActions.Commands.UploadArtifact(
                 binlogPath,
-                $"{Context.Environment.Platform}-msbuild-failed-{binlogName}"
+                $"{RuntimeInformation.RuntimeIdentifier}-msbuild-failed-{binlogName}"
             );
             return;
         }
