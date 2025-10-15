@@ -12,6 +12,7 @@ using Shouldly;
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
+var githubToken = EnvironmentVariable("GITHUB_TOKEN", "");
 
 var findRes = Context
     .FileSystem.GetDirectory(Context.Environment.WorkingDirectory)
@@ -231,7 +232,7 @@ Task("PublishToGithub")
                 new()
                 {
                     Source = "https://nuget.pkg.github.com/AlexisPollonni/index.json",
-                    ApiKey = GitHubActions.Environment.Runtime.Token,
+                    ApiKey = githubToken,
                     SkipDuplicate = true,
                 }
             );
