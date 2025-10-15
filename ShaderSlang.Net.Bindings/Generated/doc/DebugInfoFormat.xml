@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="DebugInfoFormat" access="public">
+      <type>uint</type>
+      <enumerator name="Default" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="C7" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Pdb" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Stabs" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Coff" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Dwarf" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="CountOf" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net">
+    <enumeration name="BindingType" access="public">
+      <type>uint</type>
+      <enumerator name="Unknown" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0</code>
+        </value>
+      </enumerator>
+      <enumerator name="Sampler" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Texture" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="ConstantBuffer" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="ParameterBlock" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="TypedBuffer" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="RawBuffer" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="CombinedTextureSampler" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="InputRenderTarget" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="InlineUniformData" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="RayTracingAccelerationStructure" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="VaryingInput" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="VaryingOutput" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="ExistentialValue" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="PushConstant" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="MutableFlag" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x100</code>
+        </value>
+      </enumerator>
+      <enumerator name="MutableTeture" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>Texture | MutableFlag</code>
+        </value>
+      </enumerator>
+      <enumerator name="MutableTypedBuffer" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>TypedBuffer | MutableFlag</code>
+        </value>
+      </enumerator>
+      <enumerator name="MutableRawBuffer" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>RawBuffer | MutableFlag</code>
+        </value>
+      </enumerator>
+      <enumerator name="BaseMask" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0x00FF</code>
+        </value>
+      </enumerator>
+      <enumerator name="ExtMask" access="public">
+        <type primitive="False">uint</type>
+        <value>
+          <code>0xFF00</code>
+        </value>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

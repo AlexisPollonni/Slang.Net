@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="FrontFaceMode" access="public">
+      <type>byte</type>
+      <enumerator name="CounterClockwise" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+      <enumerator name="Clockwise" access="public">
+        <type primitive="False">byte</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

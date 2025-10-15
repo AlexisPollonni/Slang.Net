@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Slang.Net.Scripts.Shared;
+namespace ShaderSlang.Net.Scripts.Shared;
 
 public class StreamToStringWrapper(Encoding? encoding = null) : Stream
 {
@@ -8,8 +8,7 @@ public class StreamToStringWrapper(Encoding? encoding = null) : Stream
     private readonly Encoding _encoding = encoding ?? Encoding.Default;
     private long _position;
 
-    public override string ToString() =>
-        _stringBuilder.ToString();
+    public override string ToString() => _stringBuilder.ToString();
 
     public override void Flush()
     {
@@ -26,24 +25,27 @@ public class StreamToStringWrapper(Encoding? encoding = null) : Stream
             SeekOrigin.Begin => offset,
             SeekOrigin.Current => _position + offset,
             SeekOrigin.End => Length + offset,
-            _ => throw new ArgumentOutOfRangeException(nameof(origin), origin, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(origin), origin, null),
         };
 
-        if (newPosition < 0 || newPosition > Length) throw new ArgumentOutOfRangeException(nameof(offset), offset, null);
+        if (newPosition < 0 || newPosition > Length)
+            throw new ArgumentOutOfRangeException(nameof(offset), offset, null);
 
         _position = newPosition;
         return _position;
     }
 
-    public override void SetLength(long value) =>
-        throw new NotSupportedException();
+    public override void SetLength(long value) => throw new NotSupportedException();
 
     public override void Write(byte[] buffer, int offset, int count)
     {
         ArgumentNullException.ThrowIfNull(buffer);
-        if (offset < 0) throw new ArgumentOutOfRangeException(nameof(offset), offset, null);
-        if (count < 0) throw new ArgumentOutOfRangeException(nameof(count), count, null);
-        if (buffer.Length - offset < count) throw new ArgumentException("Invalid offset length");
+        if (offset < 0)
+            throw new ArgumentOutOfRangeException(nameof(offset), offset, null);
+        if (count < 0)
+            throw new ArgumentOutOfRangeException(nameof(count), count, null);
+        if (buffer.Length - offset < count)
+            throw new ArgumentException("Invalid offset length");
 
         var str = _encoding.GetString(buffer, offset, count);
         _stringBuilder.Append(str);
@@ -60,7 +62,8 @@ public class StreamToStringWrapper(Encoding? encoding = null) : Stream
         get => _position;
         set
         {
-            if (value < 0 || value > Length) throw new ArgumentOutOfRangeException(nameof(value));
+            if (value < 0 || value > Length)
+                throw new ArgumentOutOfRangeException(nameof(value));
             _position = value;
         }
     }

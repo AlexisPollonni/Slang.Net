@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct
+      name="IRenderPassLayout"
+      access="public"
+      native="struct IRenderPassLayout : ISlangUnknown"
+      parent="ISlangUnknown"
+      vtbl="true"
+      unsafe="true"
+    >
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IRenderPassLayout*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IRenderPassLayout*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IRenderPassLayout*</type>
+        </param>
+      </delegate>
+      <enumeration name="TargetLoadOp" access="public">
+        <type>int</type>
+        <enumerator name="Load" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="Clear" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="DontCare" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+      </enumeration>
+      <enumeration name="TargetStoreOp" access="public">
+        <type>int</type>
+        <enumerator name="Store" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="DontCare" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+      </enumeration>
+      <struct name="TargetAccessDesc" access="public">
+        <field name="loadOp" access="public">
+          <type native="gfx::IRenderPassLayout::TargetLoadOp">TargetLoadOp</type>
+        </field>
+        <field name="stencilLoadOp" access="public">
+          <type native="gfx::IRenderPassLayout::TargetLoadOp">TargetLoadOp</type>
+        </field>
+        <field name="storeOp" access="public">
+          <type native="gfx::IRenderPassLayout::TargetStoreOp">TargetStoreOp</type>
+        </field>
+        <field name="stencilStoreOp" access="public">
+          <type native="gfx::IRenderPassLayout::TargetStoreOp">TargetStoreOp</type>
+        </field>
+        <field name="initialState" access="public">
+          <type native="gfx::ResourceState">ResourceState</type>
+        </field>
+        <field name="finalState" access="public">
+          <type native="gfx::ResourceState">ResourceState</type>
+        </field>
+      </struct>
+      <struct name="RenderPassLayoutDesc" access="public" unsafe="true">
+        <field name="framebufferLayout" access="public">
+          <type native="gfx::IFramebufferLayout *">IFramebufferLayout*</type>
+        </field>
+        <field name="renderTargetCount" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="renderTargetAccess" access="public">
+          <type native="gfx::IRenderPassLayout::TargetAccessDesc *">TargetAccessDesc*</type>
+        </field>
+        <field name="depthStencilAccess" access="public">
+          <type native="gfx::IRenderPassLayout::TargetAccessDesc *">TargetAccessDesc*</type>
+        </field>
+      </struct>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr"
+              >(IRenderPassLayout*)Unsafe.AsPointer(ref this)</param
+            >, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code
+          >
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr"
+              >(IRenderPassLayout*)Unsafe.AsPointer(ref this)</param
+            >);</code
+          >
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr"
+              >(IRenderPassLayout*)Unsafe.AsPointer(ref this)</param
+            >);</code
+          >
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

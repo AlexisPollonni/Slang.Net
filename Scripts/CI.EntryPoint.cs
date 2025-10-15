@@ -4,10 +4,11 @@
 
 #:package Cake.FileHelpers
 
-#:project ./Shared/Slang.Net.Scripts.Shared.csproj
+#:project ./Shared/ShaderSlang.Net.Scripts.Shared.csproj
 
+using System.Runtime.InteropServices;
+using ShaderSlang.Net.Scripts.Shared;
 using Shouldly;
-using Slang.Net.Scripts.Shared;
 
 var target = Argument("target", "Pack");
 var configuration = Argument("configuration", "Release");
@@ -19,62 +20,188 @@ var findRes = Context
 
 var slnFile = findRes.Single();
 
+DotNetMSBuildSettings CreateMSBuildSettings(string? binlogName = null)
+{
+    var settings = new DotNetMSBuildSettings { ContinuousIntegrationBuild = true };
+    settings.Properties.Add("CSharpier_Bypass", ["true"]);
+
+    if (
+        (GitHubActions.IsRunningOnGitHubActions || Context.Log.Verbosity >= Verbosity.Diagnostic)
+        && !string.IsNullOrEmpty(binlogName)
+    )
+    {
+        var binlogPath = Context.Environment.WorkingDirectory.Combine(
+            $"artifacts/{binlogName}.binlog"
+        );
+        settings.BinaryLogger = new MSBuildBinaryLoggerSettings
+        {
+            Enabled = true,
+            FileName = binlogPath.FullPath,
+            Imports = MSBuildBinaryLoggerImports.Embed,
+        };
+    }
+
+    return settings;
+}
+
+async Task UploadBinlogIfExists(string binlogName)
+{
+    if (GitHubActions.IsRunningOnGitHubActions)
+    {
+        var binlogPath = new FilePath(
+            Context.Environment.WorkingDirectory.Combine($"artifacts/{binlogName}.binlog").FullPath
+        );
+
+        if (FileExists(binlogPath))
+        {
+            await GitHubActions.Commands.UploadArtifact(
+                binlogPath,
+                $"{RuntimeInformation.RuntimeIdentifier}-msbuild-failed-{binlogName}"
+            );
+            return;
+        }
+
+        Information("No binlog found at {0}", binlogPath.FullPath);
+    }
+}
+
+async Task RunAndUploadBinlogOnException(Action action, string binlogName)
+{
+    try
+    {
+        action();
+    }
+    catch
+    {
+        await UploadBinlogIfExists(binlogName);
+        throw;
+    }
+}
+
 Task("Restore")
+    .Does(async () =>
+    {
+        Command(
+            ["dotnet", "dotnet.exe"],
+            new ProcessArgumentBuilder().Append("tool").Append("restore")
+        );
+
+        await RunAndUploadBinlogOnException(
+            () =>
+            {
+                DotNetRestore(
+                    slnFile.Path.FullPath,
+                    new() { MSBuildSettings = CreateMSBuildSettings("restore") }
+                );
+            },
+            "restore"
+        );
+    });
+
+Task("Format")
+    .IsDependentOn("Restore")
+    .ContinueOnError()
     .Does(() =>
     {
-        DotNetRestore(slnFile.Path.FullPath);
+        ProcessArgumentBuilder ArgsCustom(ProcessArgumentBuilder args)
+        {
+            if (GitHubActions.IsRunningOnGitHubActions)
+            {
+                return args.Append("check").Append(".");
+            }
+            else
+            {
+                return args.Append("format").Append(".");
+            }
+        }
+
+        DotNetTool("csharpier", new() { ArgumentCustomization = ArgsCustom });
     });
 
 Task("Clean")
     .IsDependentOn("Restore")
-    .Does(() =>
+    .Does(async () =>
     {
-        DotNetClean(slnFile.Path.FullPath, new() { Configuration = configuration });
+        await RunAndUploadBinlogOnException(
+            () =>
+            {
+                DotNetClean(
+                    slnFile.Path.FullPath,
+                    new()
+                    {
+                        Configuration = configuration,
+                        MSBuildSettings = CreateMSBuildSettings("clean"),
+                    }
+                );
+            },
+            "clean"
+        );
     })
     .ContinueOnError();
 
 Task("Build")
+    .IsDependentOn("Format")
     .IsDependentOn("Restore")
-    .Does(() =>
+    .Does(async () =>
     {
-        DotNetBuild(
-            slnFile.Path.FullPath,
-            new()
+        await RunAndUploadBinlogOnException(
+            () =>
             {
-                Configuration = configuration,
-                NoRestore = true,
-                MSBuildSettings = new() { ContinuousIntegrationBuild = true },
-            }
+                DotNetBuild(
+                    slnFile.Path.FullPath,
+                    new()
+                    {
+                        Configuration = configuration,
+                        NoRestore = true,
+                        MSBuildSettings = CreateMSBuildSettings("build"),
+                    }
+                );
+            },
+            "build"
         );
     });
 
 Task("Test")
     .IsDependentOn("Build")
-    .Does(() =>
+    .Does(async () =>
     {
-        DotNetTest(
-            slnFile.Path.FullPath,
-            new()
+        await RunAndUploadBinlogOnException(
+            () =>
             {
-                Configuration = configuration,
-                NoRestore = true,
-                NoBuild = true,
-            }
+                DotNetTest(
+                    slnFile.Path.FullPath,
+                    new()
+                    {
+                        Configuration = configuration,
+                        NoRestore = true,
+                        NoBuild = true,
+                        MSBuildSettings = CreateMSBuildSettings("test"),
+                    }
+                );
+            },
+            "test"
         );
     });
 
 Task("Pack")
     .IsDependentOn("Build")
-    .Does(() =>
+    .Does(async () =>
     {
-        DotNetPack(
-            slnFile.Path.FullPath,
-            new()
+        await RunAndUploadBinlogOnException(
+            () =>
             {
-                Configuration = configuration,
-                NoRestore = true,
-                NoBuild = true,
-            }
+                DotNetPack(
+                    slnFile.Path.FullPath,
+                    new()
+                    {
+                        Configuration = configuration,
+                        NoRestore = true,
+                        NoBuild = true,
+                        MSBuildSettings = CreateMSBuildSettings("pack"),
+                    }
+                );
+            },
+            "pack"
         );
     });
 

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct
+      name="IResourceView"
+      access="public"
+      native="struct IResourceView : ISlangUnknown"
+      parent="ISlangUnknown"
+      vtbl="true"
+      unsafe="true"
+    >
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IResourceView*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IResourceView*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IResourceView*</type>
+        </param>
+      </delegate>
+      <delegate name="_getViewDesc" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::IResourceView::Desc *">ResourceViewDesc*</type>
+        <param name="pThis">
+          <type>IResourceView*</type>
+        </param>
+      </delegate>
+      <delegate name="_getNativeHandle" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IResourceView*</type>
+        </param>
+        <param name="outNativeHandle">
+          <type>InteropHandle*</type>
+        </param>
+      </delegate>
+      <enumeration name="ResourceViewType" access="public">
+        <type>int</type>
+        <enumerator name="Unknown" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="RenderTarget" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="DepthStencil" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="ShaderResource" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="UnorderedAccess" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="AccelerationStructure" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="CountOf_" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+      </enumeration>
+      <struct name="RenderTargetDesc" access="public">
+        <field name="shape" access="public">
+          <type native="gfx::IResource::Type">ResourceType</type>
+        </field>
+      </struct>
+      <struct name="ResourceViewDesc" access="public">
+        <field name="type" access="public">
+          <type native="gfx::IResourceView::Type">ResourceViewType</type>
+        </field>
+        <field name="format" access="public">
+          <type native="gfx::Format">Format</type>
+        </field>
+        <field name="renderTarget" access="public">
+          <type native="gfx::IResourceView::RenderTargetDesc">RenderTargetDesc</type>
+        </field>
+        <field name="subresourceRange" access="public">
+          <type native="gfx::SubresourceRange">SubresourceRange</type>
+        </field>
+        <field name="bufferRange" access="public">
+          <type native="gfx::BufferRange">BufferRange</type>
+        </field>
+      </struct>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(IResourceView*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(IResourceView*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(IResourceView*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="getViewDesc" access="public" unsafe="true">
+        <type native="gfx::IResourceView::Desc *">ResourceViewDesc*</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getViewDesc</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getViewDesc</vtbl
+            >)(<param special="thisPtr">(IResourceView*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="getNativeHandle" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="outNativeHandle">
+          <type>InteropHandle*</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getNativeHandle</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getNativeHandle</vtbl
+            >)(<param special="thisPtr">(IResourceView*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outNativeHandle"
+              >outNativeHandle</param
+            >);</code
+          >
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getViewDesc" access="public">
+          <type native="Desc *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getNativeHandle" access="public">
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <delegate
+      name="SlangDiagnosticCallback"
+      access="public"
+      convention="Cdecl"
+      static="true"
+      unsafe="true"
+    >
+      <type>void</type>
+      <param name="message">
+        <type>sbyte*</type>
+      </param>
+      <param name="userData">
+        <type>void*</type>
+      </param>
+    </delegate>
+  </namespace>
+</bindings>

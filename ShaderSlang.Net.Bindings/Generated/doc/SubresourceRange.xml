@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="SubresourceRange" access="public">
+      <field name="aspectMask" access="public">
+        <type native="gfx::TextureAspect">TextureAspect</type>
+      </field>
+      <field name="mipLevel" access="public">
+        <type native="gfx::GfxIndex">int</type>
+      </field>
+      <field name="mipLevelCount" access="public">
+        <type native="gfx::GfxCount">int</type>
+      </field>
+      <field name="baseArrayLayer" access="public">
+        <type native="gfx::GfxIndex">int</type>
+      </field>
+      <field name="layerCount" access="public">
+        <type native="gfx::GfxCount">int</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

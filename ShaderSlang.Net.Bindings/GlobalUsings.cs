@@ -1,0 +1,34 @@
+// Global using directives
+
+global using AccelerationStructBuildFlags = ShaderSlang.Net.Bindings.Generated.IAccelerationStructure.BuildFlags.AccelerationStructBuildFlags;
+global using AccelerationStructGeometryFlags = ShaderSlang.Net.Bindings.Generated.IAccelerationStructure.GeometryFlags.AccelerationStructGeometryFlags;
+global using AccelerationStructGeometryInstanceFlags = ShaderSlang.Net.Bindings.Generated.IAccelerationStructure.GeometryInstanceFlags.AccelerationStructGeometryInstanceFlags;
+global using BufferResourceDesc = ShaderSlang.Net.Bindings.Generated.IBufferResource.BufferResourceDesc;
+global using BuildDesc = ShaderSlang.Net.Bindings.Generated.IAccelerationStructure.BuildDesc;
+global using BuildInputs = ShaderSlang.Net.Bindings.Generated.IAccelerationStructure.BuildInputs;
+global using CommandQueueDesc = ShaderSlang.Net.Bindings.Generated.ICommandQueue.CommandQueueDesc;
+global using CreateDesc = ShaderSlang.Net.Bindings.Generated.IAccelerationStructure.CreateDesc;
+global using CreateDesc2 = ShaderSlang.Net.Bindings.Generated.IShaderProgram.CreateDesc2;
+global using DescBase = ShaderSlang.Net.Bindings.Generated.IResource.DescBase;
+global using DeviceDesc = ShaderSlang.Net.Bindings.Generated.IDevice.DeviceDesc;
+global using Extents = ShaderSlang.Net.Bindings.Generated.ITextureResource.Extents;
+global using FenceDesc = ShaderSlang.Net.Bindings.Generated.IFence.FenceDesc;
+global using FramebufferDesc = ShaderSlang.Net.Bindings.Generated.IFramebuffer.FramebufferDesc;
+global using FramebufferLayoutDesc = ShaderSlang.Net.Bindings.Generated.IFramebufferLayout.FramebufferLayoutDesc;
+global using InputLayoutDesc = ShaderSlang.Net.Bindings.Generated.IInputLayout.InputLayoutDesc;
+global using Offset3D = ShaderSlang.Net.Bindings.Generated.ITextureResource.Offset3D;
+global using PrebuildInfo = ShaderSlang.Net.Bindings.Generated.IAccelerationStructure.PrebuildInfo;
+global using QueryPoolDesc = ShaderSlang.Net.Bindings.Generated.IQueryPool.QueryPoolDesc;
+global using RayTracingPipelineFlagsEnum = ShaderSlang.Net.Bindings.Generated.RayTracingPipelineFlags.RayTracingPipelineFlagsEnum;
+global using RenderPassLayoutDesc = ShaderSlang.Net.Bindings.Generated.IRenderPassLayout.RenderPassLayoutDesc;
+global using ResourceType = ShaderSlang.Net.Bindings.Generated.IResource.ResourceType;
+global using ResourceViewDesc = ShaderSlang.Net.Bindings.Generated.IResourceView.ResourceViewDesc;
+global using ResourceViewType = ShaderSlang.Net.Bindings.Generated.IResourceView.ResourceViewType;
+global using SamplerStateDesc = ShaderSlang.Net.Bindings.Generated.ISamplerState.SamplerStateDesc;
+global using ShaderProgramDesc = ShaderSlang.Net.Bindings.Generated.IShaderProgram.ShaderProgramDesc;
+global using ShaderTableDesc = ShaderSlang.Net.Bindings.Generated.IShaderTable.ShaderTableDesc;
+global using SubresourceData = ShaderSlang.Net.Bindings.Generated.ITextureResource.SubresourceData;
+global using SwapchainDesc = ShaderSlang.Net.Bindings.Generated.ISwapchain.SwapchainDesc;
+global using TextureResourceDesc = ShaderSlang.Net.Bindings.Generated.ITextureResource.TextureResourceDesc;
+global using TransientResourceHeapDesc = ShaderSlang.Net.Bindings.Generated.ITransientResourceHeap.TransientResourceHeapDesc;
+global using TransientResourceHeapFlagsEnum = ShaderSlang.Net.Bindings.Generated.ITransientResourceHeap.Flags.TransientResourceHeapFlagsEnum;

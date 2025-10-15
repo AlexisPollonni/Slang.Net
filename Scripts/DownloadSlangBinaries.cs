@@ -6,17 +6,17 @@
 #:package ConsoleAppFramework.Abstractions
 #:package Octokit
 
-#:project ./Shared/Slang.Net.Scripts.Shared.csproj
+#:project ./Shared/ShaderSlang.Net.Scripts.Shared.csproj
 
 using ConsoleAppFramework;
 using Microsoft.Extensions.Logging;
 using Octokit;
+using ShaderSlang.Net.Scripts.Shared;
 using Shouldly;
-using Slang.Net.Scripts.Shared;
 
 var builder = ConsoleHost.Create(args);
 
-builder.Services.AddScoped(p => new GitHubClient(new ProductHeaderValue("SlangNet")));
+builder.Services.AddScoped(p => new GitHubClient(new ProductHeaderValue("ShaderSlang.Net")));
 
 var app = builder.ToConsoleAppBuilder();
 

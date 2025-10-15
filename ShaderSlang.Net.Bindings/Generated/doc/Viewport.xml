@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="Viewport" access="public">
+      <field name="originX" access="public">
+        <type>float</type>
+      </field>
+      <field name="originY" access="public">
+        <type>float</type>
+      </field>
+      <field name="extentX" access="public">
+        <type>float</type>
+      </field>
+      <field name="extentY" access="public">
+        <type>float</type>
+      </field>
+      <field name="minZ" access="public">
+        <type>float</type>
+      </field>
+      <field name="maxZ" access="public">
+        <type>float</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Title>ShaderSlang.Net - Idiomatic bindings of shader-slang</Title>
+    <Description>
+      These are the idiomatic bindings of shader-slang for the ShaderSlang.Net packages, a .NET bindings library.
+      For ShaderSlang.Net see https://github.com/AlexisPollonni/ShaderSlang.Net
+      For shader-slang see https://github.com/shader-slang/slang
+    </Description>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="PrettyPackageReadme.md" Pack="true" PackagePath="readme.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.HighPerformance" />
+    <PackageReference Include="Nito.Disposables" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShaderSlang.Net.Bindings\ShaderSlang.Net.Bindings.csproj" />
+    <ProjectReference Include="..\ShaderSlang.Net.ComWrappers\ShaderSlang.Net.ComWrappers.csproj" />
+  </ItemGroup>
+</Project>

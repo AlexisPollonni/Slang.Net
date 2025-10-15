@@ -1,7 +1,7 @@
 using Cake.Core.IO;
 using ConsoleAppFramework;
 
-namespace Slang.Net.Scripts.Shared;
+namespace ShaderSlang.Net.Scripts.Shared;
 
 [AttributeUsage(AttributeTargets.Parameter)]
 public class FileAttribute : Attribute, IArgumentParser<FilePath>

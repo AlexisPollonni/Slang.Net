@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using ConsoleAppFramework;
 
-namespace Slang.Net.Scripts.Shared;
+namespace ShaderSlang.Net.Scripts.Shared;
 
 public static class ConsoleAppFrameworkActivitySource
 {
@@ -12,9 +12,14 @@ public static class ConsoleAppFrameworkActivitySource
 
 public class CommandTracingFilter(ConsoleAppFilter next) : ConsoleAppFilter(next)
 {
-    public override async Task InvokeAsync(ConsoleAppContext context, CancellationToken cancellationToken)
+    public override async Task InvokeAsync(
+        ConsoleAppContext context,
+        CancellationToken cancellationToken
+    )
     {
-        using var activity = ConsoleAppFrameworkActivitySource.Instance.StartActivity("CommandStart");
+        using var activity = ConsoleAppFrameworkActivitySource.Instance.StartActivity(
+            "CommandStart"
+        );
 
         if (activity == null) // Telemetry is not listened
         {

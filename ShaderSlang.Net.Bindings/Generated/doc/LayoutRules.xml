@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net">
+    <enumeration name="LayoutRules" access="public">
+      <type>uint</type>
+      <enumerator name="Default" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="MetalArgumentBufferTier2" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="AspectBlendDesc" access="public">
+      <field name="srcFactor" access="public">
+        <type native="gfx::BlendFactor">BlendFactor</type>
+      </field>
+      <field name="dstFactor" access="public">
+        <type native="gfx::BlendFactor">BlendFactor</type>
+      </field>
+      <field name="op" access="public">
+        <type native="gfx::BlendOp">BlendOp</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

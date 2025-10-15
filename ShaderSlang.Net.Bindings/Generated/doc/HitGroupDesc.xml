@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="HitGroupDesc" access="public" unsafe="true">
+      <field name="hitGroupName" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+      <field name="closestHitEntryPoint" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+      <field name="anyHitEntryPoint" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+      <field name="intersectionEntryPoint" access="public">
+        <type native="const char *">sbyte*</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

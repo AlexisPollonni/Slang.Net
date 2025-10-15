@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="ClearResourceViewFlags" access="public">
+      <enumeration name="Enum" access="public">
+        <type>uint</type>
+        <enumerator name="None" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>0</code>
+          </value>
+        </enumerator>
+        <enumerator name="ClearDepth" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>1</code>
+          </value>
+        </enumerator>
+        <enumerator name="ClearStencil" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>2</code>
+          </value>
+        </enumerator>
+        <enumerator name="FloatClearValues" access="public">
+          <type primitive="False">uint</type>
+          <value>
+            <code>4</code>
+          </value>
+        </enumerator>
+      </enumeration>
+    </struct>
+  </namespace>
+</bindings>

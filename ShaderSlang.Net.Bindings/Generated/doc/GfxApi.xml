@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <class name="GfxApi" access="public" static="true">
+      <constant name="kMaxRenderTargetCount" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>8</code>
+        </value>
+      </constant>
+      <constant name="EnableNone" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </constant>
+      <constant name="EnableRed" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0x01</code>
+        </value>
+      </constant>
+      <constant name="EnableGreen" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0x02</code>
+        </value>
+      </constant>
+      <constant name="EnableBlue" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0x04</code>
+        </value>
+      </constant>
+      <constant name="EnableAlpha" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0x08</code>
+        </value>
+      </constant>
+      <constant name="EnableAll" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0x0F</code>
+        </value>
+      </constant>
+      <function
+        name="gfxIsCompressedFormat"
+        access="public"
+        lib="gfx"
+        convention="StdCall"
+        static="true"
+      >
+        <type native="bool">Boolean</type>
+        <param name="format">
+          <type>Format</type>
+        </param>
+      </function>
+      <function
+        name="gfxIsTypelessFormat"
+        access="public"
+        lib="gfx"
+        convention="StdCall"
+        static="true"
+      >
+        <type native="bool">Boolean</type>
+        <param name="format">
+          <type>Format</type>
+        </param>
+      </function>
+      <function
+        name="gfxGetFormatInfo"
+        access="public"
+        lib="gfx"
+        convention="StdCall"
+        static="true"
+        unsafe="true"
+      >
+        <type native="SlangResult">int</type>
+        <param name="format">
+          <type>Format</type>
+        </param>
+        <param name="outInfo">
+          <type>FormatInfo*</type>
+        </param>
+      </function>
+      <function
+        name="gfxGetAdapters"
+        access="public"
+        lib="gfx"
+        convention="StdCall"
+        static="true"
+        unsafe="true"
+      >
+        <type native="SlangResult">int</type>
+        <param name="type">
+          <type>DeviceType</type>
+        </param>
+        <param name="outAdaptersBlob">
+          <type>ISlangBlob**</type>
+        </param>
+      </function>
+      <function
+        name="gfxCreateDevice"
+        access="public"
+        lib="gfx"
+        convention="StdCall"
+        static="true"
+        unsafe="true"
+      >
+        <type native="SlangResult">int</type>
+        <param name="desc">
+          <type>DeviceDesc*</type>
+        </param>
+        <param name="outDevice">
+          <type>IDevice**</type>
+        </param>
+      </function>
+      <function
+        name="gfxReportLiveObjects"
+        access="public"
+        lib="gfx"
+        convention="StdCall"
+        static="true"
+      >
+        <type native="SlangResult">int</type>
+      </function>
+      <function
+        name="gfxSetDebugCallback"
+        access="public"
+        lib="gfx"
+        convention="StdCall"
+        static="true"
+        unsafe="true"
+      >
+        <type native="SlangResult">int</type>
+        <param name="callback">
+          <type>IDebugCallback*</type>
+        </param>
+      </function>
+      <function
+        name="gfxEnableDebugLayer"
+        access="public"
+        lib="gfx"
+        convention="StdCall"
+        static="true"
+      >
+        <type>void</type>
+        <param name="enable">
+          <type>Boolean</type>
+        </param>
+      </function>
+      <function
+        name="gfxGetDeviceTypeName"
+        access="public"
+        lib="gfx"
+        convention="StdCall"
+        static="true"
+        unsafe="true"
+      >
+        <type native="const char *">sbyte*</type>
+        <param name="type">
+          <type>DeviceType</type>
+        </param>
+      </function>
+      <iid
+        name="IID_ICommandEncoder"
+        value="0x77EA6383, 0xBE3D, 0x40AA, 0x8B, 0x45, 0xFD, 0xF0, 0xD7, 0x5B, 0xFA, 0x34"
+      />
+      <iid
+        name="IID_IResourceCommandEncoder"
+        value="0xF99A00E9, 0xED50, 0x4088, 0x8A, 0x0E, 0x3B, 0x26, 0x75, 0x50, 0x31, 0xEA"
+      />
+      <iid
+        name="IID_IRenderCommandEncoder"
+        value="0x7A8D56D0, 0x53E6, 0x4AD6, 0x85, 0xF7, 0xD1, 0x4D, 0xC1, 0x10, 0xFD, 0xCE"
+      />
+      <iid
+        name="IID_IComputeCommandEncoder"
+        value="0x88AA9322, 0x82F7, 0x4FE6, 0xA6, 0x8A, 0x29, 0xC7, 0xFE, 0x79, 0x87, 0x37"
+      />
+      <iid
+        name="IID_IRayTracingCommandEncoder"
+        value="0x9A672B87, 0x5035, 0x45E3, 0x96, 0x7C, 0x1F, 0x85, 0xCD, 0xB3, 0x63, 0x4F"
+      />
+    </class>
+  </namespace>
+</bindings>

@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct
+      name="IBufferResource"
+      access="public"
+      native="struct IBufferResource : gfx::IResource"
+      parent="IResource"
+      vtbl="true"
+      unsafe="true"
+    >
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+      </delegate>
+      <delegate name="_getType" access="public" convention="StdCall">
+        <type native="gfx::IResource::Type">ResourceType</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+      </delegate>
+      <delegate name="_getNativeResourceHandle" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="outHandle">
+          <type>InteropHandle*</type>
+        </param>
+      </delegate>
+      <delegate name="_getSharedHandle" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="outHandle">
+          <type>InteropHandle*</type>
+        </param>
+      </delegate>
+      <delegate name="_setDebugName" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <delegate name="_getDebugName" access="public" convention="StdCall" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+      </delegate>
+      <delegate name="_getDesc" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::IBufferResource::Desc *">BufferResourceDesc*</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+      </delegate>
+      <delegate name="_getDeviceAddress" access="public" convention="StdCall">
+        <type native="gfx::DeviceAddress">ulong</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+      </delegate>
+      <delegate name="_map" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="rangeToRead">
+          <type>MemoryRange*</type>
+        </param>
+        <param name="outPointer">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_unmap" access="public" convention="StdCall" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="pThis">
+          <type>IBufferResource*</type>
+        </param>
+        <param name="writtenRange">
+          <type>MemoryRange*</type>
+        </param>
+      </delegate>
+      <struct
+        name="BufferResourceDesc"
+        access="public"
+        native="struct Desc : gfx::IResource::DescBase"
+        parent="DescBase"
+      >
+        <field name="Base" access="public" inherited="DescBase">
+          <type>DescBase</type>
+        </field>
+        <field name="sizeInBytes" access="public">
+          <type native="gfx::Size">nuint</type>
+        </field>
+        <field name="elementSize" access="public">
+          <type native="gfx::Size">nuint</type>
+        </field>
+        <field name="format" access="public">
+          <type native="gfx::Format">Format</type>
+        </field>
+      </struct>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="getType" access="public" unsafe="true">
+        <type native="gfx::IResource::Type">ResourceType</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getType</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getType</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="getNativeResourceHandle" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="outHandle">
+          <type>InteropHandle*</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getNativeResourceHandle</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getNativeResourceHandle</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outHandle"
+              >outHandle</param
+            >);</code
+          >
+        </body>
+      </function>
+      <function name="getSharedHandle" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="outHandle">
+          <type>InteropHandle*</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSharedHandle</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getSharedHandle</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outHandle"
+              >outHandle</param
+            >);</code
+          >
+        </body>
+      </function>
+      <function name="setDebugName" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setDebugName</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setDebugName</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>, <param
+              name="name"
+              >name</param
+            >);</code
+          >
+        </body>
+      </function>
+      <function name="getDebugName" access="public" unsafe="true">
+        <type native="const char *">sbyte*</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDebugName</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDebugName</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="getDesc" access="public" unsafe="true">
+        <type native="gfx::IBufferResource::Desc *">BufferResourceDesc*</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDesc</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDesc</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="getDeviceAddress" access="public" unsafe="true">
+        <type native="gfx::DeviceAddress">ulong</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDeviceAddress</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDeviceAddress</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="map" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="rangeToRead">
+          <type>MemoryRange*</type>
+        </param>
+        <param name="outPointer">
+          <type>void**</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_map</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >map</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>, <param
+              name="rangeToRead"
+              >rangeToRead</param
+            >, <param name="outPointer">outPointer</param>);</code
+          >
+        </body>
+      </function>
+      <function name="unmap" access="public" unsafe="true">
+        <type native="gfx::Result">int</type>
+        <param name="writtenRange">
+          <type>MemoryRange*</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_unmap</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >unmap</vtbl
+            >)(<param special="thisPtr">(IBufferResource*)Unsafe.AsPointer(ref this)</param>, <param
+              name="writtenRange"
+              >writtenRange</param
+            >);</code
+          >
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getType" access="public">
+          <type native="Type () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getNativeResourceHandle" access="public">
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="getSharedHandle" access="public">
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="setDebugName" access="public">
+          <type native="Result (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="getDebugName" access="public">
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="getDesc" access="public">
+          <type native="Desc *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="getDeviceAddress" access="public">
+          <type native="DeviceAddress () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="map" access="public">
+          <type
+            native="Result (MemoryRange *, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="unmap" access="public">
+          <type native="Result (MemoryRange *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>

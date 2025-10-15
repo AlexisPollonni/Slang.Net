@@ -10,15 +10,15 @@
 #:package libClangSharp
 #:package Humanizer
 
-#:project ./Shared/Slang.Net.Scripts.Shared.csproj
+#:project ./Shared/ShaderSlang.Net.Scripts.Shared.csproj
 
 #:property UseCurrentRuntimeIdentifier=true
 
 using ClangSharp;
 using ClangSharp.Interop;
 using Humanizer;
+using ShaderSlang.Net.Scripts.Shared;
 using Shouldly;
-using Slang.Net.Scripts.Shared;
 using static ClangAstExtensions;
 using static ClangSharp.Interop.CXTranslationUnit_Flags;
 using static ClangSharp.PInvokeGeneratorConfigurationOptions;
@@ -213,13 +213,13 @@ Dictionary<FilePath, string> Generate(
 
             var additionalRemapped = GetAdditionalRemappedNames(translationUnit);
 
-            var remapDict = (SortedDictionary<string, string>)generator.Config.RemappedNames;
+            var remapDict = (StrDic)generator.Config.RemappedNames;
             foreach (var (before, after) in additionalRemapped)
                 remapDict.TryAdd(before, after);
 
             var additionalGuids = GetComStyleClassUuids(translationUnit);
 
-            var withGuidsDict = (SortedDictionary<string, Guid>)generator.Config.WithGuids;
+            var withGuidsDict = (Dictionary<string, Guid>)generator.Config.WithGuids;
             foreach (var (typeName, guid) in additionalGuids)
                 withGuidsDict.TryAdd(typeName, guid);
 
@@ -629,7 +629,7 @@ internal record BuildConfig(
             "c++",
             defClass,
             libPath,
-            "SlangNet.Bindings.Generated",
+            "ShaderSlang.Net.Bindings.Generated",
             "sp", // Remove the function prefixes, also fix over-removing of prefixes
             GeneratePreviewCode
                 | GenerateMultipleFiles
@@ -773,12 +773,12 @@ internal record BuildConfig(
             new()
             {
                 // For the pretty bindings we rewrite everything but some of the enums and PODs
-                { "BindingType", "SlangNet" },
-                { "ContainerType", "SlangNet" },
-                { "LayoutRules", "SlangNet" },
-                { "ParameterCategory", "SlangNet" },
-                { "PathKind", "SlangNet" },
-                { "OSPathKind", "SlangNet" },
+                { "BindingType", "ShaderSlang.Net" },
+                { "ContainerType", "ShaderSlang.Net" },
+                { "LayoutRules", "ShaderSlang.Net" },
+                { "ParameterCategory", "ShaderSlang.Net" },
+                { "PathKind", "ShaderSlang.Net" },
+                { "OSPathKind", "ShaderSlang.Net" },
             },
             [],
             []

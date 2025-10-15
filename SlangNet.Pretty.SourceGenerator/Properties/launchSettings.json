@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "SourceGen": {
-      "commandName": "DebugRoslynComponent",
-      "targetProject": "..\\SlangNet.ComWrappers\\SlangNet.ComWrappers.csproj"
-    }
-  },
-  "$schema": "http://json.schemastore.org/launchsettings.json"
-}

@@ -6,7 +6,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Slang.Net.Scripts.Shared;
+namespace ShaderSlang.Net.Scripts.Shared;
 
 public static class ConsoleHost
 {

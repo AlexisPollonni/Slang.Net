@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using Intellenum;
 
-namespace Slang.Net.Scripts.Shared;
+namespace ShaderSlang.Net.Scripts.Shared;
 
 [Intellenum<string>()]
 [Member("LinuxArm64", "linux-aarch64")]
@@ -19,7 +19,11 @@ public partial class SlangRuntimeId : IParsable<SlangRuntimeId>
         return FromValue(s);
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out SlangRuntimeId result)
+    public static bool TryParse(
+        [NotNullWhen(true)] string? s,
+        IFormatProvider? provider,
+        [MaybeNullWhen(false)] out SlangRuntimeId result
+    )
     {
         return TryFromValue(s, out result);
     }
@@ -35,19 +39,17 @@ public partial class SlangRuntimeId : IParsable<SlangRuntimeId>
             WinArm64Value => DotnetRuntimeId.WinArm64,
             Win64Value => DotnetRuntimeId.Win64,
             WasmValue => DotnetRuntimeId.BrowserWasm,
-            _ => throw new ArgumentOutOfRangeException(nameof(Value), "Unexpected Slang Rid value")
+            _ => throw new ArgumentOutOfRangeException(nameof(Value), "Unexpected Slang Rid value"),
         };
     }
 }
 
-[Intellenum<string>(conversions:Conversions.Default | Conversions.SystemTextJson)]
+[Intellenum<string>(conversions: Conversions.Default | Conversions.SystemTextJson)]
 //Rids taken from https://learn.microsoft.com/en-us/dotnet/core/rid-catalog
 [Member("Any", "any")]
-
 [Member("Win64", "win-x64")]
 [Member("Win32", "win-x86")]
 [Member("WinArm64", "win-arm64")]
-
 [Member("Linux64", "linux-x64")]
 [Member("LinuxMusl64", "linux-musl-x64")]
 [Member("LinuxMuslArm64", "linux-musl-arm64")]
@@ -55,19 +57,15 @@ public partial class SlangRuntimeId : IParsable<SlangRuntimeId>
 [Member("LinuxArm64", "linux-arm64")]
 [Member("LinuxBionicArm64", "linux-bionic-arm64")]
 [Member("LinuxLoongArch64", "linux-loongarch64")]
-
 [Member("MacOs64", "osx-x64")]
 [Member("MacOsArm64", "osx-arm64")]
-
 [Member("IosArm64", "ios-arm64")]
 [Member("IosSimulatorArm64", "iossimulator-arm64")]
 [Member("IosSimulator64", "iossimulator-x64")]
-
 [Member("AndroidArm64", "android-arm64")]
 [Member("AndroidArm", "android-arm")]
 [Member("Android64", "android-x64")]
 [Member("Android32", "android-x86")]
-
 [Member("BrowserWasm", "browser-wasm")]
 public partial class DotnetRuntimeId : ISpanParsable<DotnetRuntimeId>
 {
@@ -76,13 +74,17 @@ public partial class DotnetRuntimeId : ISpanParsable<DotnetRuntimeId>
         return FromValue(s);
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out DotnetRuntimeId result)
+    public static bool TryParse(
+        [NotNullWhen(true)] string? s,
+        IFormatProvider? provider,
+        [MaybeNullWhen(false)] out DotnetRuntimeId result
+    )
     {
         return TryFromValue(s, out result);
     }
 
     public static DotnetRuntimeId Current => FromValue(RuntimeInformation.RuntimeIdentifier);
-    
+
     public SlangRuntimeId ToSlangRuntimeId()
     {
         return Value switch
@@ -94,8 +96,10 @@ public partial class DotnetRuntimeId : ISpanParsable<DotnetRuntimeId>
             MacOs64Value => SlangRuntimeId.MacOs64,
             MacOsArm64Value => SlangRuntimeId.MacOsArm64,
             BrowserWasmValue => SlangRuntimeId.Wasm,
-            _ => throw new ArgumentOutOfRangeException(nameof(Value),
-                                                       "Dotnet runtime identifier value is not convertible to SlangRuntimeId"),
+            _ => throw new ArgumentOutOfRangeException(
+                nameof(Value),
+                "Dotnet runtime identifier value is not convertible to SlangRuntimeId"
+            ),
         };
     }
 
@@ -104,7 +108,11 @@ public partial class DotnetRuntimeId : ISpanParsable<DotnetRuntimeId>
         return FromValue(s.ToString());
     }
 
-    public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, [MaybeNullWhen(false)] out DotnetRuntimeId result)
+    public static bool TryParse(
+        ReadOnlySpan<char> s,
+        IFormatProvider? provider,
+        [MaybeNullWhen(false)] out DotnetRuntimeId result
+    )
     {
         return TryFromValue(s.ToString(), out result);
     }

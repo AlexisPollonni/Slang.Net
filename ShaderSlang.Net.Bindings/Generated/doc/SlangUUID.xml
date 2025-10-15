@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="SlangUUID" access="public">
+      <field name="data1" access="public">
+        <type native="uint32_t">uint</type>
+      </field>
+      <field name="data2" access="public">
+        <type native="uint16_t">ushort</type>
+      </field>
+      <field name="data3" access="public">
+        <type native="uint16_t">ushort</type>
+      </field>
+      <field name="data4" access="public">
+        <type native="uint8_t[8]" count="8" fixed="_data4_e__FixedBuffer">byte</type>
+      </field>
+      <struct name="_data4_e__FixedBuffer" access="public">
+        <attribute>InlineArray(8)</attribute>
+        <field name="e0" access="public">
+          <type>byte</type>
+        </field>
+      </struct>
+    </struct>
+  </namespace>
+</bindings>

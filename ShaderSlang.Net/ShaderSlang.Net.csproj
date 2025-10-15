@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Title>ShaderSlang.Net</Title>
+    <Description>
+      These are the full bindings of shader-slang for the ShaderSlang.Net packages, a .NET bindings library.
+      For ShaderSlang.Net see https://github.com/AlexisPollonni/ShaderSlang.Net
+      For shader-slang see https://github.com/shader-slang/slang
+    </Description>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="PackageReadme.md" Pack="true" PackagePath="readme.md" />
+    <ProjectReference
+      Include="..\ShaderSlang.Net.Native\ShaderSlang.Net.Native.csproj"
+      IncludeAssets="all"
+      PrivateAssets="analyzers;build"
+    />
+    <ProjectReference Include="..\ShaderSlang.Net.Pretty\ShaderSlang.Net.Pretty.csproj">
+      <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ShaderSlang.Net.Bindings\ShaderSlang.Net.Bindings.csproj">
+      <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

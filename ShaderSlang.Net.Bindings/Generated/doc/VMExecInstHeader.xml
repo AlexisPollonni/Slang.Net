@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="VMExecInstHeader" access="public">
+      <field name="functionPtr" access="public">
+        <type native="slang::VMExtFunction">IntPtr</type>
+      </field>
+      <field name="opcodeExtension" access="public">
+        <type native="uint32_t">uint</type>
+      </field>
+      <field name="operandCount" access="public">
+        <type native="uint32_t">uint</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

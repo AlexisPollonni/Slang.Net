@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct name="BufferRange" access="public">
+      <field name="offset" access="public">
+        <type native="gfx::Offset">nuint</type>
+      </field>
+      <field name="size" access="public">
+        <type native="gfx::Size">nuint</type>
+      </field>
+    </struct>
+  </namespace>
+</bindings>

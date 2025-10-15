@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <enumeration name="ScalarType" access="public">
+      <type>uint</type>
+      <enumerator name="None" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Void" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Bool" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Int32" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Uint32" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Int64" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Uint64" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Float16" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Float32" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Float64" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Int8" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Uint8" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Int16" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Uint16" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Intptr" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+      <enumerator name="Uintptr" access="public">
+        <type primitive="False">uint</type>
+      </enumerator>
+    </enumeration>
+  </namespace>
+</bindings>

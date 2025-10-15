@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings>
+  <namespace name="ShaderSlang.Net.Bindings.Generated">
+    <struct
+      name="IShaderProgram"
+      access="public"
+      native="struct IShaderProgram : ISlangUnknown"
+      parent="ISlangUnknown"
+      vtbl="true"
+      unsafe="true"
+    >
+      <field name="lpVtbl" access="public">
+        <type>Vtbl*</type>
+      </field>
+      <delegate name="_queryInterface" access="public" convention="StdCall" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="pThis">
+          <type>IShaderProgram*</type>
+        </param>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+      </delegate>
+      <delegate name="_addRef" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IShaderProgram*</type>
+        </param>
+      </delegate>
+      <delegate name="_release" access="public" convention="StdCall">
+        <type native="uint32_t">uint</type>
+        <param name="pThis">
+          <type>IShaderProgram*</type>
+        </param>
+      </delegate>
+      <delegate name="_findTypeByName" access="public" convention="StdCall" unsafe="true">
+        <type native="slang::TypeReflection *">TypeReflection*</type>
+        <param name="pThis">
+          <type>IShaderProgram*</type>
+        </param>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+      </delegate>
+      <enumeration name="LinkingStyle" access="public">
+        <type>int</type>
+        <enumerator name="SingleProgram" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="SeparateEntryPointCompilation" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+      </enumeration>
+      <enumeration name="DownstreamLinkMode" access="public">
+        <type>int</type>
+        <enumerator name="None" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+        <enumerator name="Deferred" access="public">
+          <type primitive="False">int</type>
+        </enumerator>
+      </enumeration>
+      <struct name="ShaderProgramDesc" access="public" unsafe="true">
+        <field name="linkingStyle" access="public">
+          <type native="gfx::IShaderProgram::LinkingStyle">LinkingStyle</type>
+        </field>
+        <field name="slangGlobalScope" access="public">
+          <type native="slang::IComponentType *">IComponentType*</type>
+        </field>
+        <field name="entryPointCount" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="slangEntryPoints" access="public">
+          <type native="slang::IComponentType **">IComponentType**</type>
+        </field>
+        <field name="downstreamLinkMode" access="public">
+          <type native="gfx::IShaderProgram::DownstreamLinkMode">DownstreamLinkMode</type>
+        </field>
+      </struct>
+      <struct name="CreateDesc2" access="public" unsafe="true">
+        <field name="sourceType" access="public">
+          <type native="gfx::ShaderModuleSourceType">ShaderModuleSourceType</type>
+        </field>
+        <field name="sourceData" access="public">
+          <type>void*</type>
+        </field>
+        <field name="sourceDataSize" access="public">
+          <type native="gfx::Size">nuint</type>
+        </field>
+        <field name="entryPointCount" access="public">
+          <type native="gfx::GfxCount">int</type>
+        </field>
+        <field name="entryPointNames" access="public">
+          <type native="const char **">sbyte**</type>
+        </field>
+      </struct>
+      <function name="queryInterface" access="public" unsafe="true">
+        <type native="SlangResult">int</type>
+        <param name="uuid">
+          <type>SlangUUID*</type>
+        </param>
+        <param name="outObject">
+          <type>void**</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(IShaderProgram*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
+        </body>
+      </function>
+      <function name="addRef" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(IShaderProgram*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="release" access="public" unsafe="true">
+        <type native="uint32_t">uint</type>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(IShaderProgram*)Unsafe.AsPointer(ref this)</param>);</code
+          >
+        </body>
+      </function>
+      <function name="findTypeByName" access="public" unsafe="true">
+        <type native="slang::TypeReflection *">TypeReflection*</type>
+        <param name="name">
+          <type>sbyte*</type>
+        </param>
+        <body>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findTypeByName</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >findTypeByName</vtbl
+            >)(<param special="thisPtr">(IShaderProgram*)Unsafe.AsPointer(ref this)</param>, <param
+              name="name"
+              >name</param
+            >);</code
+          >
+        </body>
+      </function>
+      <vtbl>
+        <field name="queryInterface" access="public">
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+        <field name="addRef" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="release" access="public">
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+        </field>
+        <field name="findTypeByName" access="public">
+          <type
+            native="slang::TypeReflection *(const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type
+          >
+        </field>
+      </vtbl>
+    </struct>
+  </namespace>
+</bindings>
