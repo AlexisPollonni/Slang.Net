@@ -81,6 +81,8 @@ async Task RunAndUploadBinlogOnException(Action action, string binlogName)
 Task("Restore")
     .Does(async () =>
     {
+        DotNetTool("restore");
+
         await RunAndUploadBinlogOnException(
             () =>
             {
@@ -98,8 +100,6 @@ Task("Format")
     .ContinueOnError()
     .Does(() =>
     {
-        DotNetTool("restore");
-
         ProcessArgumentBuilder ArgsCustom(ProcessArgumentBuilder args)
         {
             if (GitHubActions.IsRunningOnGitHubActions)
@@ -112,10 +112,7 @@ Task("Format")
             }
         }
 
-        DotNetTool(
-            "csharpier",
-            new() { ArgumentCustomization = ArgsCustom }
-        );
+        DotNetTool("csharpier", new() { ArgumentCustomization = ArgsCustom });
     });
 
 Task("Clean")
