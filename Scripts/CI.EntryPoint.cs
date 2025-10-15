@@ -10,9 +10,8 @@ using System.Runtime.InteropServices;
 using ShaderSlang.Net.Scripts.Shared;
 using Shouldly;
 
-var target = Argument("target", "Pack");
+var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var IsNightly = Argument("is-nightly", false);
 
 var findRes = Context
     .FileSystem.GetDirectory(Context.Environment.WorkingDirectory)
@@ -77,6 +76,8 @@ async Task RunAndUploadBinlogOnException(Action action, string binlogName)
         throw;
     }
 }
+
+Task("Default").IsDependentOn("PublishToGithub");
 
 Task("Restore")
     .Does(async () =>
@@ -207,7 +208,12 @@ Task("Pack")
 
 Task("PublishToGithub")
     .IsDependentOn("Pack")
-    .WithCriteria(() => IsNightly && GitHubActions.IsRunningOnGitHubActions)
+    .ContinueOnError()
+    .WithCriteria(() =>
+        GitHubActions.IsRunningOnGitHubActions
+        && GitHubActions.Environment.Workflow.RefName == "master"
+        && DotnetRuntimeId.Current == DotnetRuntimeId.Win64
+    )
     .Does(() =>
     {
         var artifacts = Context

@@ -34,19 +34,9 @@ jobs:
             ~/.slangdlcache
           key: ${{ runner.os }}-${{ hashFiles('*/Directory.Build.props') }}
 
-      - name: 'Run tests'
+      - name: 'Run tests and Push package to nightly feed'
         uses: cake-build/cake-action@master
         with:
           file-path: ./Scripts/CI.EntryPoint.cs
-          arguments: --target="Test"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 'Pack and Push package to nightly feed'
-        if: ${{ (matrix.os == 'windows-latest') && (github.ref == 'refs/heads/master') }}
-        uses: cake-build/cake-action@master
-        with:
-          file-path: ./Scripts/CI.EntryPoint.cs
-          arguments: --target="PublishToGithub" --is-nightly
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
