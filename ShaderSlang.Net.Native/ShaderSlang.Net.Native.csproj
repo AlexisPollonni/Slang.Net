@@ -2,8 +2,8 @@
   <PropertyGroup>
     <RuntimeIdentifiers>win-x64;win-arm64;linux-x64;linux-arm64;osx-x64;osx-arm64</RuntimeIdentifiers>
     <!-- Set all package properties shared by packages -->
+    <VersionPrefix>$(SlangVersion)</VersionPrefix>
     <PackageTags>slang;shader;C#;csharp;native</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/shader-slang/slang</RepositoryUrl>
     <IncludeSymbols>false</IncludeSymbols>
@@ -15,6 +15,9 @@
   <PropertyGroup Condition="'$(BeforePack)' == ''">
     <BeforePack>PackNativePerRuntime</BeforePack>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Remove="GitVersion.MsBuild" />
+  </ItemGroup>
   <Target Name="DownloadSlangBinaries" BeforeTargets="BeforeBuild">
     <Error Condition="'$(IntermediateOutputPath)' == ''" Text="OutDir is not set." />
     <Error Condition="'$(SlangVersion)' == ''" Text="Slang version is not set." />

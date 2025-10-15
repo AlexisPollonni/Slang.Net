@@ -10,6 +10,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseArtifactsOutput>true</UseArtifactsOutput>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/AlexisPollonni/Slang.Net</RepositoryUrl>
     <!-- Ensures project references copy native binaries after build. Not necessary after MSBuild 17.0 but kept for backwards compatibility
         https://github.com/dotnet/msbuild/issues/1054#issuecomment-847959047 
         NOTE: Make sure to use IncludeAssets="all" or at least IncludeAssets="native"; With project refs, native assets are not included by default
