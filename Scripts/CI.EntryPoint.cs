@@ -99,13 +99,22 @@ Task("Format")
     .Does(() =>
     {
         DotNetTool("restore");
+
+        ProcessArgumentBuilder ArgsCustom(ProcessArgumentBuilder args)
+        {
+            if (GitHubActions.IsRunningOnGitHubActions)
+            {
+                return args.Append("check").Append(".");
+            }
+            else
+            {
+                return args.Append("format").Append(".");
+            }
+        }
+
         DotNetTool(
             "csharpier",
-            new()
-            {
-                DiagnosticOutput = true,
-                ArgumentCustomization = args => args.Append("check").Append("."),
-            }
+            new() { ArgumentCustomization = ArgsCustom }
         );
     });
 
@@ -131,6 +140,7 @@ Task("Clean")
     .ContinueOnError();
 
 Task("Build")
+    .IsDependentOn("Format")
     .IsDependentOn("Restore")
     .Does(async () =>
     {
