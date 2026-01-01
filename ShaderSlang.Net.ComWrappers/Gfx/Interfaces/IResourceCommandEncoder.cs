@@ -95,7 +95,7 @@ public partial interface IResourceCommandEncoder : ICommandEncoder
     void ClearResourceView(
         IResourceView view,
         Unmanaged.ClearValue clearValue,
-        Unmanaged.ClearResourceViewFlags flags
+        Unmanaged.ClearResourceViewFlags.Enum flags
     );
 
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
