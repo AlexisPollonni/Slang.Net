@@ -562,7 +562,7 @@ internal record BuildConfig(
             "-Wno-deprecated-declarations",
             .. DefineMacros
                 .Concat(["SLANG_PLATFORM", GetSlangPlatformDefine()])
-                .Select(s => $"--define-macro={s}"),
+                .Select(s => $"-D {s}"),
             .. includeDirectories.Select(s => $"--include-directory={s}"),
         ];
     }
@@ -659,6 +659,8 @@ internal record BuildConfig(
                 "SLANG_COMPILER",
                 "__clang__",
                 "SLANG_CLANG",
+                "SLANG_STDCALL=__stdcall", // we force stdcall conv for now
+                                           // TODO: change later when implemented conditionnal call conv
             ],
             [
                 // Remove the rest of the platform-specific macros
