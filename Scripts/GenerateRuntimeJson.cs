@@ -97,6 +97,6 @@ class RootCommand(ILogger<RootCommand> logger)
         }
 
         string GetNativePackageIdName(DotnetRuntimeId? runtime = null) =>
-            runtime is null ? basePackageName : $"{basePackageName}.{runtime.Value}";
+            runtime is null ? basePackageName : $"{basePackageName}.Runtime.{runtime.Value}";
     }
 }
