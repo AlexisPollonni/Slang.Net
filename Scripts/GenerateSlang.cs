@@ -142,9 +142,16 @@ static void InstallDependencies()
 {
     if (IsRunningOnLinux())
     {
-        InstallTools("apt:?package=libc++-dev", "apt:?package=libc++abi-dev")
-            .ShouldNotBeNull()
-            .Length.ShouldBe(2);
+        try
+        {
+            InstallTools("apt:?package=libc++-dev", "apt:?package=libc++abi-dev")
+                .ShouldNotBeNull()
+                .Length.ShouldBe(2);
+        }
+        catch (Exception e)
+        {
+            Warning("Failed to install libc++-dev or libc++abi-dev generation might fail: {0}", e);
+        }
     }
 }
 
