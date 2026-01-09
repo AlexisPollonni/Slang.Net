@@ -16,9 +16,16 @@ public unsafe partial struct VMExecOperand
     public uint type
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        readonly get { return _bitfield & 0xFFu; }
+        readonly get
+        {
+            return _bitfield & 0xFFu;
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        set { _bitfield = (_bitfield & ~0xFFu) | (value & 0xFFu); }
+        set
+        {
+            _bitfield = (_bitfield & ~0xFFu) | (value & 0xFFu);
+        }
     }
 
     /// <include file='VMExecOperand.xml' path='doc/member[@name="VMExecOperand.size"]/*' />
@@ -26,9 +33,16 @@ public unsafe partial struct VMExecOperand
     public uint size
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        readonly get { return (_bitfield >> 8) & 0xFFFFFFu; }
+        readonly get
+        {
+            return (_bitfield >> 8) & 0xFFFFFFu;
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        set { _bitfield = (_bitfield & ~(0xFFFFFFu << 8)) | ((value & 0xFFFFFFu) << 8); }
+        set
+        {
+            _bitfield = (_bitfield & ~(0xFFFFFFu << 8)) | ((value & 0xFFFFFFu) << 8);
+        }
     }
 
     /// <include file='VMExecOperand.xml' path='doc/member[@name="VMExecOperand.offset"]/*' />

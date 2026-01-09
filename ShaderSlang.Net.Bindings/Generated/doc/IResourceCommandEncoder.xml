@@ -1,15 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct
-      name="IResourceCommandEncoder"
-      access="public"
-      native="struct IResourceCommandEncoder : gfx::ICommandEncoder"
-      parent="ICommandEncoder"
-      uuid="f99a00e9-ed50-4088-8a0e-3b26755031ea"
-      vtbl="true"
-      unsafe="true"
-    >
+    <struct name="IResourceCommandEncoder" access="public" native="struct IResourceCommandEncoder : gfx::ICommandEncoder" parent="ICommandEncoder" uuid="f99a00e9-ed50-4088-8a0e-3b26755031ea" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -202,12 +194,7 @@
           <type>ResourceState</type>
         </param>
       </delegate>
-      <delegate
-        name="_textureSubresourceBarrier"
-        access="public"
-        convention="StdCall"
-        unsafe="true"
-      >
+      <delegate name="_textureSubresourceBarrier" access="public" convention="StdCall" unsafe="true">
         <type>void</type>
         <param name="pThis">
           <type>IResourceCommandEncoder*</type>
@@ -330,53 +317,25 @@
           <type>void**</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >queryInterface</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >addRef</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >release</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="endEncoding" access="public" unsafe="true">
         <type>void</type>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endEncoding</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >endEncoding</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endEncoding</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">endEncoding</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="writeTimestamp" access="public" unsafe="true">
@@ -388,16 +347,7 @@
           <type>int</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_writeTimestamp</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >writeTimestamp</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="queryPool">queryPool</param>, <param name="queryIndex"
-              >queryIndex</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_writeTimestamp</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">writeTimestamp</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="queryPool">queryPool</param>, <param name="queryIndex">queryIndex</param>);</code>
         </body>
       </function>
       <function name="copyBuffer" access="public" unsafe="true">
@@ -418,17 +368,7 @@
           <type>nuint</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_copyBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >copyBuffer</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="dst">dst</param>, <param name="dstOffset">dstOffset</param>, <param
-              name="src"
-              >src</param
-            >, <param name="srcOffset">srcOffset</param>, <param name="size">size</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_copyBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">copyBuffer</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="dstOffset">dstOffset</param>, <param name="src">src</param>, <param name="srcOffset">srcOffset</param>, <param name="size">size</param>);</code>
         </body>
       </function>
       <function name="copyTexture" access="public" unsafe="true">
@@ -461,22 +401,7 @@
           <type>Extents</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_copyTexture</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >copyTexture</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="dst">dst</param>, <param name="dstState">dstState</param>, <param
-              name="dstSubresource"
-              >dstSubresource</param
-            >, <param name="dstOffset">dstOffset</param>, <param name="src">src</param>, <param
-              name="srcState"
-              >srcState</param
-            >, <param name="srcSubresource">srcSubresource</param>, <param name="srcOffset"
-              >srcOffset</param
-            >, <param name="extent">extent</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_copyTexture</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">copyTexture</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="dstState">dstState</param>, <param name="dstSubresource">dstSubresource</param>, <param name="dstOffset">dstOffset</param>, <param name="src">src</param>, <param name="srcState">srcState</param>, <param name="srcSubresource">srcSubresource</param>, <param name="srcOffset">srcOffset</param>, <param name="extent">extent</param>);</code>
         </body>
       </function>
       <function name="copyTextureToBuffer" access="public" unsafe="true">
@@ -509,23 +434,7 @@
           <type>Extents</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_copyTextureToBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >copyTextureToBuffer</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="dst">dst</param>, <param name="dstOffset">dstOffset</param>, <param
-              name="dstSize"
-              >dstSize</param
-            >, <param name="dstRowStride">dstRowStride</param>, <param name="src"
-              >src</param
-            >, <param name="srcState">srcState</param>, <param name="srcSubresource"
-              >srcSubresource</param
-            >, <param name="srcOffset">srcOffset</param>, <param name="extent"
-              >extent</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_copyTextureToBuffer</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">copyTextureToBuffer</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="dstOffset">dstOffset</param>, <param name="dstSize">dstSize</param>, <param name="dstRowStride">dstRowStride</param>, <param name="src">src</param>, <param name="srcState">srcState</param>, <param name="srcSubresource">srcSubresource</param>, <param name="srcOffset">srcOffset</param>, <param name="extent">extent</param>);</code>
         </body>
       </function>
       <function name="uploadTextureData" access="public" unsafe="true">
@@ -549,19 +458,7 @@
           <type>int</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_uploadTextureData</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >uploadTextureData</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="dst">dst</param>, <param name="subResourceRange"
-              >subResourceRange</param
-            >, <param name="offset">offset</param>, <param name="extent">extent</param>, <param
-              name="subResourceData"
-              >subResourceData</param
-            >, <param name="subResourceDataCount">subResourceDataCount</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_uploadTextureData</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">uploadTextureData</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="subResourceRange">subResourceRange</param>, <param name="offset">offset</param>, <param name="extent">extent</param>, <param name="subResourceData">subResourceData</param>, <param name="subResourceDataCount">subResourceDataCount</param>);</code>
         </body>
       </function>
       <function name="uploadBufferData" access="public" unsafe="true">
@@ -579,17 +476,7 @@
           <type>void*</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_uploadBufferData</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >uploadBufferData</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="dst">dst</param>, <param name="offset">offset</param>, <param
-              name="size"
-              >size</param
-            >, <param name="data">data</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_uploadBufferData</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">uploadBufferData</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="dst">dst</param>, <param name="offset">offset</param>, <param name="size">size</param>, <param name="data">data</param>);</code>
         </body>
       </function>
       <function name="textureBarrier" access="public" unsafe="true">
@@ -607,17 +494,7 @@
           <type>ResourceState</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_textureBarrier</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >textureBarrier</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="count">count</param>, <param name="textures">textures</param>, <param
-              name="src"
-              >src</param
-            >, <param name="dst">dst</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_textureBarrier</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">textureBarrier</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="count">count</param>, <param name="textures">textures</param>, <param name="src">src</param>, <param name="dst">dst</param>);</code>
         </body>
       </function>
       <function name="textureSubresourceBarrier" access="public" unsafe="true">
@@ -635,16 +512,7 @@
           <type>ResourceState</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_textureSubresourceBarrier</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >textureSubresourceBarrier</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="texture">texture</param>, <param name="subresourceRange"
-              >subresourceRange</param
-            >, <param name="src">src</param>, <param name="dst">dst</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_textureSubresourceBarrier</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">textureSubresourceBarrier</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="texture">texture</param>, <param name="subresourceRange">subresourceRange</param>, <param name="src">src</param>, <param name="dst">dst</param>);</code>
         </body>
       </function>
       <function name="bufferBarrier" access="public" unsafe="true">
@@ -662,17 +530,7 @@
           <type>ResourceState</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_bufferBarrier</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >bufferBarrier</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="count">count</param>, <param name="buffers">buffers</param>, <param
-              name="src"
-              >src</param
-            >, <param name="dst">dst</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_bufferBarrier</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">bufferBarrier</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="count">count</param>, <param name="buffers">buffers</param>, <param name="src">src</param>, <param name="dst">dst</param>);</code>
         </body>
       </function>
       <function name="clearResourceView" access="public" unsafe="true">
@@ -687,17 +545,7 @@
           <type>Enum</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_clearResourceView</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >clearResourceView</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="view">view</param>, <param name="clearValue">clearValue</param>, <param
-              name="flags"
-              >flags</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_clearResourceView</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">clearResourceView</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="view">view</param>, <param name="clearValue">clearValue</param>, <param name="flags">flags</param>);</code>
         </body>
       </function>
       <function name="resolveResource" access="public" unsafe="true">
@@ -721,20 +569,7 @@
           <type>SubresourceRange</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resolveResource</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >resolveResource</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="source">source</param>, <param name="sourceState"
-              >sourceState</param
-            >, <param name="sourceRange">sourceRange</param>, <param name="dest"
-              >dest</param
-            >, <param name="destState">destState</param>, <param name="destRange"
-              >destRange</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resolveResource</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">resolveResource</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="source">source</param>, <param name="sourceState">sourceState</param>, <param name="sourceRange">sourceRange</param>, <param name="dest">dest</param>, <param name="destState">destState</param>, <param name="destRange">destRange</param>);</code>
         </body>
       </function>
       <function name="resolveQuery" access="public" unsafe="true">
@@ -755,17 +590,7 @@
           <type>nuint</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resolveQuery</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >resolveQuery</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="queryPool">queryPool</param>, <param name="index">index</param>, <param
-              name="count"
-              >count</param
-            >, <param name="buffer">buffer</param>, <param name="offset">offset</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resolveQuery</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">resolveQuery</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="queryPool">queryPool</param>, <param name="index">index</param>, <param name="count">count</param>, <param name="buffer">buffer</param>, <param name="offset">offset</param>);</code>
         </body>
       </function>
       <function name="beginDebugEvent" access="public" unsafe="true">
@@ -777,125 +602,69 @@
           <type>float*</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_beginDebugEvent</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >beginDebugEvent</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >, <param name="name">name</param>, <param name="rgbColor">rgbColor</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_beginDebugEvent</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">beginDebugEvent</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>, <param name="rgbColor">rgbColor</param>);</code>
         </body>
       </function>
       <function name="endDebugEvent" access="public" unsafe="true">
         <type>void</type>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endDebugEvent</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >endDebugEvent</vtbl
-            >)(<param special="thisPtr"
-              >(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_endDebugEvent</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">endDebugEvent</vtbl>)(<param special="thisPtr">(IResourceCommandEncoder*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type
-            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="endEncoding" access="public">
-          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="writeTimestamp" access="public">
-          <type
-            native="void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IQueryPool *, GfxIndex) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyBuffer" access="public">
-          <type
-            native="void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyTexture" access="public">
-          <type
-            native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="copyTextureToBuffer" access="public">
-          <type
-            native="void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="uploadTextureData" access="public">
-          <type
-            native="void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="uploadBufferData" access="public">
-          <type
-            native="void (IBufferResource *, Offset, Size, void *) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IBufferResource *, Offset, Size, void *) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="textureBarrier" access="public">
-          <type
-            native="void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="textureSubresourceBarrier" access="public">
-          <type
-            native="void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="bufferBarrier" access="public">
-          <type
-            native="void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="clearResourceView" access="public">
-          <type
-            native="void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="resolveResource" access="public">
-          <type
-            native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="resolveQuery" access="public">
-          <type
-            native="void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="beginDebugEvent" access="public">
-          <type
-            native="void (const char *, float *) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (const char *, float *) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="endDebugEvent" access="public">
-          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void () __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

@@ -3,8 +3,10 @@ namespace ShaderSlang.Net.Bindings.Generated;
 /// <include file='FaceMask.xml' path='doc/member[@name="FaceMask"]/*' />
 public partial struct FaceMask
 {
+
     /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
-    public enum Enum
+    [NativeTypeName("unsigned int")]
+    public enum Enum : uint
     {
         /// <include file='Enum.xml' path='doc/member[@name="Enum.Front"]/*' />
         Front = 1,

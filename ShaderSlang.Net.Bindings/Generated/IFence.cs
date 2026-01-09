@@ -13,11 +13,7 @@ public unsafe partial struct IFence
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(
-        IFence* pThis,
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    );
+    public delegate int _queryInterface(IFence* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -29,10 +25,7 @@ public unsafe partial struct IFence
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getCurrentValue(
-        IFence* pThis,
-        [NativeTypeName("uint64_t *")] ulong* outValue
-    );
+    public delegate int _getCurrentValue(IFence* pThis, [NativeTypeName("uint64_t *")] ulong* outValue);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
@@ -40,17 +33,11 @@ public unsafe partial struct IFence
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getSharedHandle(
-        IFence* pThis,
-        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
-    );
+    public delegate int _getSharedHandle(IFence* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getNativeHandle(
-        IFence* pThis,
-        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle
-    );
+    public delegate int _getNativeHandle(IFence* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle);
 
     /// <include file='FenceDesc.xml' path='doc/member[@name="FenceDesc"]/*' />
     public partial struct FenceDesc
@@ -67,16 +54,9 @@ public unsafe partial struct IFence
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface(
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    )
+    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
-            (IFence*)Unsafe.AsPointer(ref this),
-            uuid,
-            outObject
-        );
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IFence*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -84,9 +64,7 @@ public unsafe partial struct IFence
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
-            (IFence*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IFence*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -94,9 +72,7 @@ public unsafe partial struct IFence
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
-            (IFence*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IFence*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IFence.xml' path='doc/member[@name="IFence.getCurrentValue"]/*' />
@@ -104,10 +80,7 @@ public unsafe partial struct IFence
     [return: NativeTypeName("gfx::Result")]
     public int getCurrentValue([NativeTypeName("uint64_t *")] ulong* outValue)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getCurrentValue>(lpVtbl->getCurrentValue)(
-            (IFence*)Unsafe.AsPointer(ref this),
-            outValue
-        );
+        return Marshal.GetDelegateForFunctionPointer<_getCurrentValue>(lpVtbl->getCurrentValue)((IFence*)Unsafe.AsPointer(ref this), outValue);
     }
 
     /// <include file='IFence.xml' path='doc/member[@name="IFence.setCurrentValue"]/*' />
@@ -115,10 +88,7 @@ public unsafe partial struct IFence
     [return: NativeTypeName("gfx::Result")]
     public int setCurrentValue([NativeTypeName("uint64_t")] ulong value)
     {
-        return Marshal.GetDelegateForFunctionPointer<_setCurrentValue>(lpVtbl->setCurrentValue)(
-            (IFence*)Unsafe.AsPointer(ref this),
-            value
-        );
+        return Marshal.GetDelegateForFunctionPointer<_setCurrentValue>(lpVtbl->setCurrentValue)((IFence*)Unsafe.AsPointer(ref this), value);
     }
 
     /// <include file='IFence.xml' path='doc/member[@name="IFence.getSharedHandle"]/*' />
@@ -126,52 +96,38 @@ public unsafe partial struct IFence
     [return: NativeTypeName("gfx::Result")]
     public int getSharedHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getSharedHandle>(lpVtbl->getSharedHandle)(
-            (IFence*)Unsafe.AsPointer(ref this),
-            outHandle
-        );
+        return Marshal.GetDelegateForFunctionPointer<_getSharedHandle>(lpVtbl->getSharedHandle)((IFence*)Unsafe.AsPointer(ref this), outHandle);
     }
 
     /// <include file='IFence.xml' path='doc/member[@name="IFence.getNativeHandle"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getNativeHandle(
-        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle
-    )
+    public int getNativeHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getNativeHandle>(lpVtbl->getNativeHandle)(
-            (IFence*)Unsafe.AsPointer(ref this),
-            outNativeHandle
-        );
+        return Marshal.GetDelegateForFunctionPointer<_getNativeHandle>(lpVtbl->getNativeHandle)((IFence*)Unsafe.AsPointer(ref this), outNativeHandle);
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName(
-            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Result (uint64_t *) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("Result (uint64_t *) __attribute__((stdcall))")]
         public IntPtr getCurrentValue;
 
-        [NativeTypeName("Result (uint64_t) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("Result (uint64_t) __attribute__((stdcall))")]
         public IntPtr setCurrentValue;
 
-        [NativeTypeName(
-            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
         public IntPtr getSharedHandle;
 
-        [NativeTypeName(
-            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
         public IntPtr getNativeHandle;
     }
 }

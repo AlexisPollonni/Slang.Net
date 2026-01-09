@@ -13,11 +13,7 @@ public unsafe partial struct ITextureResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(
-        ITextureResource* pThis,
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    );
+    public delegate int _queryInterface(ITextureResource* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -33,24 +29,15 @@ public unsafe partial struct ITextureResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getNativeResourceHandle(
-        ITextureResource* pThis,
-        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
-    );
+    public delegate int _getNativeResourceHandle(ITextureResource* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getSharedHandle(
-        ITextureResource* pThis,
-        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
-    );
+    public delegate int _getSharedHandle(ITextureResource* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _setDebugName(
-        ITextureResource* pThis,
-        [NativeTypeName("const char *")] sbyte* name
-    );
+    public delegate int _setDebugName(ITextureResource* pThis, [NativeTypeName("const char *")] sbyte* name);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("const char *")]
@@ -154,16 +141,9 @@ public unsafe partial struct ITextureResource
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface(
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    )
+    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
-            (ITextureResource*)Unsafe.AsPointer(ref this),
-            uuid,
-            outObject
-        );
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ITextureResource*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -171,9 +151,7 @@ public unsafe partial struct ITextureResource
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
-            (ITextureResource*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ITextureResource*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -181,9 +159,7 @@ public unsafe partial struct ITextureResource
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
-            (ITextureResource*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ITextureResource*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IResource.getType" />
@@ -191,21 +167,15 @@ public unsafe partial struct ITextureResource
     [return: NativeTypeName("gfx::IResource::Type")]
     public ResourceType getType()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getType>(lpVtbl->getType)(
-            (ITextureResource*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_getType>(lpVtbl->getType)((ITextureResource*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="IResource.getNativeResourceHandle" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getNativeResourceHandle(
-        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
-    )
+    public int getNativeResourceHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getNativeResourceHandle>(
-            lpVtbl->getNativeResourceHandle
-        )((ITextureResource*)Unsafe.AsPointer(ref this), outHandle);
+        return Marshal.GetDelegateForFunctionPointer<_getNativeResourceHandle>(lpVtbl->getNativeResourceHandle)((ITextureResource*)Unsafe.AsPointer(ref this), outHandle);
     }
 
     /// <inheritdoc cref="IResource.getSharedHandle" />
@@ -213,10 +183,7 @@ public unsafe partial struct ITextureResource
     [return: NativeTypeName("gfx::Result")]
     public int getSharedHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getSharedHandle>(lpVtbl->getSharedHandle)(
-            (ITextureResource*)Unsafe.AsPointer(ref this),
-            outHandle
-        );
+        return Marshal.GetDelegateForFunctionPointer<_getSharedHandle>(lpVtbl->getSharedHandle)((ITextureResource*)Unsafe.AsPointer(ref this), outHandle);
     }
 
     /// <inheritdoc cref="IResource.setDebugName" />
@@ -224,10 +191,7 @@ public unsafe partial struct ITextureResource
     [return: NativeTypeName("gfx::Result")]
     public int setDebugName([NativeTypeName("const char *")] sbyte* name)
     {
-        return Marshal.GetDelegateForFunctionPointer<_setDebugName>(lpVtbl->setDebugName)(
-            (ITextureResource*)Unsafe.AsPointer(ref this),
-            name
-        );
+        return Marshal.GetDelegateForFunctionPointer<_setDebugName>(lpVtbl->setDebugName)((ITextureResource*)Unsafe.AsPointer(ref this), name);
     }
 
     /// <inheritdoc cref="IResource.getDebugName" />
@@ -235,9 +199,7 @@ public unsafe partial struct ITextureResource
     [return: NativeTypeName("const char *")]
     public sbyte* getDebugName()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDebugName>(lpVtbl->getDebugName)(
-            (ITextureResource*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_getDebugName>(lpVtbl->getDebugName)((ITextureResource*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ITextureResource.xml' path='doc/member[@name="ITextureResource.getDesc"]/*' />
@@ -245,44 +207,36 @@ public unsafe partial struct ITextureResource
     [return: NativeTypeName("gfx::ITextureResource::Desc *")]
     public TextureResourceDesc* getDesc()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDesc>(lpVtbl->getDesc)(
-            (ITextureResource*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_getDesc>(lpVtbl->getDesc)((ITextureResource*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName(
-            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Type () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("Type () __attribute__((stdcall))")]
         public IntPtr getType;
 
-        [NativeTypeName(
-            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
         public IntPtr getNativeResourceHandle;
 
-        [NativeTypeName(
-            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
         public IntPtr getSharedHandle;
 
-        [NativeTypeName("Result (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("Result (const char *) __attribute__((stdcall))")]
         public IntPtr setDebugName;
 
-        [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("const char *() __attribute__((stdcall))")]
         public IntPtr getDebugName;
 
-        [NativeTypeName("Desc *() __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("Desc *() __attribute__((stdcall))")]
         public IntPtr getDesc;
     }
 }

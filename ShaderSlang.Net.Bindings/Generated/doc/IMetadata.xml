@@ -1,15 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct
-      name="IMetadata"
-      access="public"
-      native="struct IMetadata : ISlangCastable"
-      parent="ISlangCastable"
-      uuid="8044a8a3-ddc0-4b7f-af8e-026e905d7332"
-      vtbl="true"
-      unsafe="true"
-    >
+    <struct name="IMetadata" access="public" native="struct IMetadata : ISlangCastable" parent="ISlangCastable" uuid="8044a8a3-ddc0-4b7f-af8e-026e905d7332" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -79,37 +71,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >queryInterface</vtbl
-            >)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param
-              name="uuid"
-              >uuid</param
-            >, <param name="outObject">outObject</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >addRef</vtbl
-            >)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >release</vtbl
-            >)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="castAs" access="public" unsafe="true">
@@ -118,15 +92,7 @@
           <type>SlangUUID*</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >castAs</vtbl
-            >)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param
-              name="guid"
-              >guid</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">castAs</vtbl>)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param name="guid">guid</param>);</code>
         </body>
       </function>
       <function name="isParameterLocationUsed" access="public" unsafe="true">
@@ -144,53 +110,30 @@
           <type>Boolean*</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isParameterLocationUsed</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >isParameterLocationUsed</vtbl
-            >)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param
-              name="category"
-              >category</param
-            >, <param name="spaceIndex">spaceIndex</param>, <param name="registerIndex"
-              >registerIndex</param
-            >, <param name="outUsed">outUsed</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isParameterLocationUsed</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isParameterLocationUsed</vtbl>)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>, <param name="category">category</param>, <param name="spaceIndex">spaceIndex</param>, <param name="registerIndex">registerIndex</param>, <param name="outUsed">outUsed</param>);</code>
         </body>
       </function>
       <function name="getDebugBuildIdentifier" access="public" unsafe="true">
         <type native="const char *">sbyte*</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDebugBuildIdentifier</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >getDebugBuildIdentifier</vtbl
-            >)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDebugBuildIdentifier</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDebugBuildIdentifier</vtbl>)(<param special="thisPtr">(IMetadata*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type
-            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="castAs" access="public">
-          <type
-            native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void *(const SlangUUID &amp;) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="isParameterLocationUsed" access="public">
-          <type native="SlangResult (SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;)"
-            >IntPtr</type
-          >
+          <type native="SlangResult (SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;)">IntPtr</type>
         </field>
         <field name="getDebugBuildIdentifier" access="public">
           <type native="const char *() __attribute__((stdcall))">IntPtr</type>

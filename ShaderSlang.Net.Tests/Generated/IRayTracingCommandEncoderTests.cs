@@ -19,10 +19,7 @@ public static unsafe partial class IRayTracingCommandEncoderTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(
-            sizeof(IRayTracingCommandEncoder),
-            Marshal.SizeOf<IRayTracingCommandEncoder>()
-        );
+        Assert.Equal(sizeof(IRayTracingCommandEncoder), Marshal.SizeOf<IRayTracingCommandEncoder>());
     }
 
     /// <summary>Validates that the <see cref="IRayTracingCommandEncoder" /> struct has the right <see cref="LayoutKind" />.</summary>

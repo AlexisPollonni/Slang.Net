@@ -14,11 +14,7 @@ public unsafe partial struct ISlangSharedLibraryLoader
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(
-        ISlangSharedLibraryLoader* pThis,
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    );
+    public delegate int _queryInterface(ISlangSharedLibraryLoader* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -30,25 +26,14 @@ public unsafe partial struct ISlangSharedLibraryLoader
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _loadSharedLibrary(
-        ISlangSharedLibraryLoader* pThis,
-        [NativeTypeName("const char *")] sbyte* path,
-        ISlangSharedLibrary** sharedLibraryOut
-    );
+    public delegate int _loadSharedLibrary(ISlangSharedLibraryLoader* pThis, [NativeTypeName("const char *")] sbyte* path, ISlangSharedLibrary** sharedLibraryOut);
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface(
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    )
+    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
-            (ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this),
-            uuid,
-            outObject
-        );
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -56,9 +41,7 @@ public unsafe partial struct ISlangSharedLibraryLoader
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
-            (ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -66,42 +49,29 @@ public unsafe partial struct ISlangSharedLibraryLoader
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
-            (ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ISlangSharedLibraryLoader.xml' path='doc/member[@name="ISlangSharedLibraryLoader.loadSharedLibrary"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int loadSharedLibrary(
-        [NativeTypeName("const char *")] sbyte* path,
-        ISlangSharedLibrary** sharedLibraryOut
-    )
+    public int loadSharedLibrary([NativeTypeName("const char *")] sbyte* path, ISlangSharedLibrary** sharedLibraryOut)
     {
-        return Marshal.GetDelegateForFunctionPointer<_loadSharedLibrary>(lpVtbl->loadSharedLibrary)(
-            (ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this),
-            path,
-            sharedLibraryOut
-        );
+        return Marshal.GetDelegateForFunctionPointer<_loadSharedLibrary>(lpVtbl->loadSharedLibrary)((ISlangSharedLibraryLoader*)Unsafe.AsPointer(ref this), path, sharedLibraryOut);
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName(
-            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName(
-            "SlangResult (const char *, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("SlangResult (const char *, ISlangSharedLibrary **) __attribute__((stdcall))")]
         public IntPtr loadSharedLibrary;
     }
 }

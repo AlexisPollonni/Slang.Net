@@ -10,10 +10,7 @@ public static unsafe partial class IndirectDrawIndexedArgumentsTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(
-            sizeof(IndirectDrawIndexedArguments),
-            Marshal.SizeOf<IndirectDrawIndexedArguments>()
-        );
+        Assert.Equal(sizeof(IndirectDrawIndexedArguments), Marshal.SizeOf<IndirectDrawIndexedArguments>());
     }
 
     /// <summary>Validates that the <see cref="IndirectDrawIndexedArguments" /> struct has the right <see cref="LayoutKind" />.</summary>

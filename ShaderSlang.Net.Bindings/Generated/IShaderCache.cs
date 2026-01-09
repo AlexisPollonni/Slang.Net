@@ -13,11 +13,7 @@ public unsafe partial struct IShaderCache
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(
-        IShaderCache* pThis,
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    );
+    public delegate int _queryInterface(IShaderCache* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -33,10 +29,7 @@ public unsafe partial struct IShaderCache
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getShaderCacheStats(
-        IShaderCache* pThis,
-        [NativeTypeName("gfx::ShaderCacheStats *")] ShaderCacheStats* outStats
-    );
+    public delegate int _getShaderCacheStats(IShaderCache* pThis, [NativeTypeName("gfx::ShaderCacheStats *")] ShaderCacheStats* outStats);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
@@ -45,16 +38,9 @@ public unsafe partial struct IShaderCache
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface(
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    )
+    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
-            (IShaderCache*)Unsafe.AsPointer(ref this),
-            uuid,
-            outObject
-        );
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IShaderCache*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -62,9 +48,7 @@ public unsafe partial struct IShaderCache
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
-            (IShaderCache*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IShaderCache*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -72,9 +56,7 @@ public unsafe partial struct IShaderCache
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
-            (IShaderCache*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IShaderCache*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IShaderCache.xml' path='doc/member[@name="IShaderCache.clearShaderCache"]/*' />
@@ -82,21 +64,15 @@ public unsafe partial struct IShaderCache
     [return: NativeTypeName("gfx::Result")]
     public int clearShaderCache()
     {
-        return Marshal.GetDelegateForFunctionPointer<_clearShaderCache>(lpVtbl->clearShaderCache)(
-            (IShaderCache*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_clearShaderCache>(lpVtbl->clearShaderCache)((IShaderCache*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IShaderCache.xml' path='doc/member[@name="IShaderCache.getShaderCacheStats"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getShaderCacheStats(
-        [NativeTypeName("gfx::ShaderCacheStats *")] ShaderCacheStats* outStats
-    )
+    public int getShaderCacheStats([NativeTypeName("gfx::ShaderCacheStats *")] ShaderCacheStats* outStats)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getShaderCacheStats>(
-            lpVtbl->getShaderCacheStats
-        )((IShaderCache*)Unsafe.AsPointer(ref this), outStats);
+        return Marshal.GetDelegateForFunctionPointer<_getShaderCacheStats>(lpVtbl->getShaderCacheStats)((IShaderCache*)Unsafe.AsPointer(ref this), outStats);
     }
 
     /// <include file='IShaderCache.xml' path='doc/member[@name="IShaderCache.resetShaderCacheStats"]/*' />
@@ -104,33 +80,27 @@ public unsafe partial struct IShaderCache
     [return: NativeTypeName("gfx::Result")]
     public int resetShaderCacheStats()
     {
-        return Marshal.GetDelegateForFunctionPointer<_resetShaderCacheStats>(
-            lpVtbl->resetShaderCacheStats
-        )((IShaderCache*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_resetShaderCacheStats>(lpVtbl->resetShaderCacheStats)((IShaderCache*)Unsafe.AsPointer(ref this));
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName(
-            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Result () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("Result () __attribute__((stdcall))")]
         public IntPtr clearShaderCache;
 
-        [NativeTypeName(
-            "Result (ShaderCacheStats *) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("Result (ShaderCacheStats *) __attribute__((stdcall))")]
         public IntPtr getShaderCacheStats;
 
-        [NativeTypeName("Result () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("Result () __attribute__((stdcall))")]
         public IntPtr resetShaderCacheStats;
     }
 }

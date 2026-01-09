@@ -3,6 +3,7 @@ namespace ShaderSlang.Net.Bindings.Generated;
 /// <include file='DeclReflection.xml' path='doc/member[@name="DeclReflection"]/*' />
 public partial struct DeclReflection
 {
+
     /// <include file='IteratedList.xml' path='doc/member[@name="IteratedList"]/*' />
     public unsafe partial struct IteratedList
     {

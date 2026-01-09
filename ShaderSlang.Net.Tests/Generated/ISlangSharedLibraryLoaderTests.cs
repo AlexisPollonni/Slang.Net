@@ -19,10 +19,7 @@ public static unsafe partial class ISlangSharedLibraryLoaderTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(
-            sizeof(ISlangSharedLibraryLoader),
-            Marshal.SizeOf<ISlangSharedLibraryLoader>()
-        );
+        Assert.Equal(sizeof(ISlangSharedLibraryLoader), Marshal.SizeOf<ISlangSharedLibraryLoader>());
     }
 
     /// <summary>Validates that the <see cref="ISlangSharedLibraryLoader" /> struct has the right <see cref="LayoutKind" />.</summary>

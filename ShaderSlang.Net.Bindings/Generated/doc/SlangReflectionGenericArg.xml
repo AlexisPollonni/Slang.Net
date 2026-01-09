@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
     <struct name="SlangReflectionGenericArg" access="public" unsafe="true" layout="Explicit">
@@ -6,7 +6,7 @@
         <type>SlangReflectionType*</type>
       </field>
       <field name="intVal" access="public" offset="0">
-        <type native="int64_t">long</type>
+        <type native="int64_t">nint</type>
       </field>
       <field name="boolVal" access="public" offset="0">
         <type native="bool">Boolean</type>

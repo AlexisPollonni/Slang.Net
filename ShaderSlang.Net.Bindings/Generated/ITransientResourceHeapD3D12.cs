@@ -13,11 +13,7 @@ public unsafe partial struct ITransientResourceHeapD3D12
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(
-        ITransientResourceHeapD3D12* pThis,
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    );
+    public delegate int _queryInterface(ITransientResourceHeapD3D12* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -29,13 +25,7 @@ public unsafe partial struct ITransientResourceHeapD3D12
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _allocateTransientDescriptorTable(
-        ITransientResourceHeapD3D12* pThis,
-        [NativeTypeName("gfx::ITransientResourceHeapD3D12::DescriptorType")] DescriptorType type,
-        [NativeTypeName("gfx::GfxCount")] int count,
-        [NativeTypeName("gfx::Offset &")] nuint* outDescriptorOffset,
-        void** outD3DDescriptorHeapHandle
-    );
+    public delegate int _allocateTransientDescriptorTable(ITransientResourceHeapD3D12* pThis, [NativeTypeName("gfx::ITransientResourceHeapD3D12::DescriptorType")] DescriptorType type, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("gfx::Offset &")] nuint* outDescriptorOffset, void** outD3DDescriptorHeapHandle);
 
     /// <include file='DescriptorType.xml' path='doc/member[@name="DescriptorType"]/*' />
     public enum DescriptorType
@@ -50,16 +40,9 @@ public unsafe partial struct ITransientResourceHeapD3D12
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface(
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    )
+    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
-            (ITransientResourceHeapD3D12*)Unsafe.AsPointer(ref this),
-            uuid,
-            outObject
-        );
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ITransientResourceHeapD3D12*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -67,9 +50,7 @@ public unsafe partial struct ITransientResourceHeapD3D12
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
-            (ITransientResourceHeapD3D12*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ITransientResourceHeapD3D12*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -77,48 +58,29 @@ public unsafe partial struct ITransientResourceHeapD3D12
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
-            (ITransientResourceHeapD3D12*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ITransientResourceHeapD3D12*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='ITransientResourceHeapD3D12.xml' path='doc/member[@name="ITransientResourceHeapD3D12.allocateTransientDescriptorTable"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int allocateTransientDescriptorTable(
-        [NativeTypeName("gfx::ITransientResourceHeapD3D12::DescriptorType")] DescriptorType type,
-        [NativeTypeName("gfx::GfxCount")] int count,
-        [NativeTypeName("gfx::Offset &")] nuint* outDescriptorOffset,
-        void** outD3DDescriptorHeapHandle
-    )
+    public int allocateTransientDescriptorTable([NativeTypeName("gfx::ITransientResourceHeapD3D12::DescriptorType")] DescriptorType type, [NativeTypeName("gfx::GfxCount")] int count, [NativeTypeName("gfx::Offset &")] nuint* outDescriptorOffset, void** outD3DDescriptorHeapHandle)
     {
-        return Marshal.GetDelegateForFunctionPointer<_allocateTransientDescriptorTable>(
-            lpVtbl->allocateTransientDescriptorTable
-        )(
-            (ITransientResourceHeapD3D12*)Unsafe.AsPointer(ref this),
-            type,
-            count,
-            outDescriptorOffset,
-            outD3DDescriptorHeapHandle
-        );
+        return Marshal.GetDelegateForFunctionPointer<_allocateTransientDescriptorTable>(lpVtbl->allocateTransientDescriptorTable)((ITransientResourceHeapD3D12*)Unsafe.AsPointer(ref this), type, count, outDescriptorOffset, outD3DDescriptorHeapHandle);
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName(
-            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName(
-            "Result (DescriptorType, GfxCount, Offset &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("Result (DescriptorType, GfxCount, Offset &, void **) __attribute__((stdcall))")]
         public IntPtr allocateTransientDescriptorTable;
     }
 }

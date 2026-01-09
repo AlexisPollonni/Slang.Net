@@ -12,20 +12,14 @@ public static unsafe partial class IModulePrecompileService_ExperimentalTests
     [Fact]
     public static void GuidOfTest()
     {
-        Assert.Equal(
-            typeof(IModulePrecompileService_Experimental).GUID,
-            IID_IModulePrecompileService_Experimental
-        );
+        Assert.Equal(typeof(IModulePrecompileService_Experimental).GUID, IID_IModulePrecompileService_Experimental);
     }
 
     /// <summary>Validates that the <see cref="IModulePrecompileService_Experimental" /> struct is blittable.</summary>
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(
-            sizeof(IModulePrecompileService_Experimental),
-            Marshal.SizeOf<IModulePrecompileService_Experimental>()
-        );
+        Assert.Equal(sizeof(IModulePrecompileService_Experimental), Marshal.SizeOf<IModulePrecompileService_Experimental>());
     }
 
     /// <summary>Validates that the <see cref="IModulePrecompileService_Experimental" /> struct has the right <see cref="LayoutKind" />.</summary>

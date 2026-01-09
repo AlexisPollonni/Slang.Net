@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
     <struct name="DeviceLimits" access="public">
@@ -33,27 +33,19 @@
         <type native="uint32_t">uint</type>
       </field>
       <field name="maxComputeThreadGroupSize" access="public">
-        <type native="uint32_t[3]" count="3" fixed="_maxComputeThreadGroupSize_e__FixedBuffer"
-          >uint</type
-        >
+        <type native="uint32_t[3]" count="3" fixed="_maxComputeThreadGroupSize_e__FixedBuffer">uint</type>
       </field>
       <field name="maxComputeDispatchThreadGroups" access="public">
-        <type native="uint32_t[3]" count="3" fixed="_maxComputeDispatchThreadGroups_e__FixedBuffer"
-          >uint</type
-        >
+        <type native="uint32_t[3]" count="3" fixed="_maxComputeDispatchThreadGroups_e__FixedBuffer">uint</type>
       </field>
       <field name="maxViewports" access="public">
         <type native="uint32_t">uint</type>
       </field>
       <field name="maxViewportDimensions" access="public">
-        <type native="uint32_t[2]" count="2" fixed="_maxViewportDimensions_e__FixedBuffer"
-          >uint</type
-        >
+        <type native="uint32_t[2]" count="2" fixed="_maxViewportDimensions_e__FixedBuffer">uint</type>
       </field>
       <field name="maxFramebufferDimensions" access="public">
-        <type native="uint32_t[3]" count="3" fixed="_maxFramebufferDimensions_e__FixedBuffer"
-          >uint</type
-        >
+        <type native="uint32_t[3]" count="3" fixed="_maxFramebufferDimensions_e__FixedBuffer">uint</type>
       </field>
       <field name="maxShaderVisibleSamplers" access="public">
         <type native="uint32_t">uint</type>

@@ -11,10 +11,7 @@ public static unsafe partial class ITransientResourceHeapD3D12Tests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(
-            sizeof(ITransientResourceHeapD3D12),
-            Marshal.SizeOf<ITransientResourceHeapD3D12>()
-        );
+        Assert.Equal(sizeof(ITransientResourceHeapD3D12), Marshal.SizeOf<ITransientResourceHeapD3D12>());
     }
 
     /// <summary>Validates that the <see cref="ITransientResourceHeapD3D12" /> struct has the right <see cref="LayoutKind" />.</summary>

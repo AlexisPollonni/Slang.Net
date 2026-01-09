@@ -13,11 +13,7 @@ public unsafe partial struct IShaderProgram
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(
-        IShaderProgram* pThis,
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    );
+    public delegate int _queryInterface(IShaderProgram* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -29,10 +25,7 @@ public unsafe partial struct IShaderProgram
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("slang::TypeReflection *")]
-    public delegate TypeReflection* _findTypeByName(
-        IShaderProgram* pThis,
-        [NativeTypeName("const char *")] sbyte* name
-    );
+    public delegate TypeReflection* _findTypeByName(IShaderProgram* pThis, [NativeTypeName("const char *")] sbyte* name);
 
     /// <include file='LinkingStyle.xml' path='doc/member[@name="LinkingStyle"]/*' />
     public enum LinkingStyle
@@ -104,16 +97,9 @@ public unsafe partial struct IShaderProgram
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface(
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    )
+    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
-            (IShaderProgram*)Unsafe.AsPointer(ref this),
-            uuid,
-            outObject
-        );
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IShaderProgram*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -121,9 +107,7 @@ public unsafe partial struct IShaderProgram
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
-            (IShaderProgram*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IShaderProgram*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -131,9 +115,7 @@ public unsafe partial struct IShaderProgram
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
-            (IShaderProgram*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IShaderProgram*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IShaderProgram.xml' path='doc/member[@name="IShaderProgram.findTypeByName"]/*' />
@@ -141,28 +123,21 @@ public unsafe partial struct IShaderProgram
     [return: NativeTypeName("slang::TypeReflection *")]
     public TypeReflection* findTypeByName([NativeTypeName("const char *")] sbyte* name)
     {
-        return Marshal.GetDelegateForFunctionPointer<_findTypeByName>(lpVtbl->findTypeByName)(
-            (IShaderProgram*)Unsafe.AsPointer(ref this),
-            name
-        );
+        return Marshal.GetDelegateForFunctionPointer<_findTypeByName>(lpVtbl->findTypeByName)((IShaderProgram*)Unsafe.AsPointer(ref this), name);
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName(
-            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName(
-            "slang::TypeReflection *(const char *) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("slang::TypeReflection *(const char *) __attribute__((stdcall))")]
         public IntPtr findTypeByName;
     }
 }

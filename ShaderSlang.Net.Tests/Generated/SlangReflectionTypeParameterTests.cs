@@ -10,10 +10,7 @@ public static unsafe partial class SlangReflectionTypeParameterTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(
-            sizeof(SlangReflectionTypeParameter),
-            Marshal.SizeOf<SlangReflectionTypeParameter>()
-        );
+        Assert.Equal(sizeof(SlangReflectionTypeParameter), Marshal.SizeOf<SlangReflectionTypeParameter>());
     }
 
     /// <summary>Validates that the <see cref="SlangReflectionTypeParameter" /> struct has the right <see cref="LayoutKind" />.</summary>

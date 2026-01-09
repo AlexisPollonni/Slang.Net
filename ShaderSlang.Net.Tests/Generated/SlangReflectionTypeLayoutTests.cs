@@ -10,10 +10,7 @@ public static unsafe partial class SlangReflectionTypeLayoutTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(
-            sizeof(SlangReflectionTypeLayout),
-            Marshal.SizeOf<SlangReflectionTypeLayout>()
-        );
+        Assert.Equal(sizeof(SlangReflectionTypeLayout), Marshal.SizeOf<SlangReflectionTypeLayout>());
     }
 
     /// <summary>Validates that the <see cref="SlangReflectionTypeLayout" /> struct has the right <see cref="LayoutKind" />.</summary>

@@ -1,15 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct
-      name="ISlangSharedLibrary"
-      access="public"
-      native="struct ISlangSharedLibrary : ISlangCastable"
-      parent="ISlangCastable"
-      uuid="70dbc7c4-dc3b-4a07-ae7e-752af6a81555"
-      vtbl="true"
-      unsafe="true"
-    >
+    <struct name="ISlangSharedLibrary" access="public" native="struct ISlangSharedLibrary : ISlangCastable" parent="ISlangCastable" uuid="70dbc7c4-dc3b-4a07-ae7e-752af6a81555" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -64,40 +56,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >queryInterface</vtbl
-            >)(<param special="thisPtr"
-              >(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param
-            >, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >addRef</vtbl
-            >)(<param special="thisPtr"
-              >(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >release</vtbl
-            >)(<param special="thisPtr"
-              >(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="castAs" access="public" unsafe="true">
@@ -106,14 +77,7 @@
           <type>SlangUUID*</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >castAs</vtbl
-            >)(<param special="thisPtr"
-              >(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param
-            >, <param name="guid">guid</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">castAs</vtbl>)(<param special="thisPtr">(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param>, <param name="guid">guid</param>);</code>
         </body>
       </function>
       <function name="findSymbolAddressByName" access="public" unsafe="true">
@@ -122,39 +86,24 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findSymbolAddressByName</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >findSymbolAddressByName</vtbl
-            >)(<param special="thisPtr"
-              >(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param
-            >, <param name="name">name</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_findSymbolAddressByName</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">findSymbolAddressByName</vtbl>)(<param special="thisPtr">(ISlangSharedLibrary*)Unsafe.AsPointer(ref this)</param>, <param name="name">name</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type
-            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="castAs" access="public">
-          <type
-            native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void *(const SlangUUID &amp;) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="findSymbolAddressByName" access="public">
-          <type native="void *(const char *) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void *(const char *) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

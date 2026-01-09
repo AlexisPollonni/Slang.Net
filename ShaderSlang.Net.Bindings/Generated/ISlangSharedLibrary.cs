@@ -14,11 +14,7 @@ public unsafe partial struct ISlangSharedLibrary
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(
-        ISlangSharedLibrary* pThis,
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    );
+    public delegate int _queryInterface(ISlangSharedLibrary* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -29,30 +25,17 @@ public unsafe partial struct ISlangSharedLibrary
     public delegate uint _release(ISlangSharedLibrary* pThis);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void* _castAs(
-        ISlangSharedLibrary* pThis,
-        [NativeTypeName("const SlangUUID &")] SlangUUID* guid
-    );
+    public delegate void* _castAs(ISlangSharedLibrary* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* guid);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void* _findSymbolAddressByName(
-        ISlangSharedLibrary* pThis,
-        [NativeTypeName("const char *")] sbyte* name
-    );
+    public delegate void* _findSymbolAddressByName(ISlangSharedLibrary* pThis, [NativeTypeName("const char *")] sbyte* name);
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface(
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    )
+    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
-            (ISlangSharedLibrary*)Unsafe.AsPointer(ref this),
-            uuid,
-            outObject
-        );
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ISlangSharedLibrary*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -60,9 +43,7 @@ public unsafe partial struct ISlangSharedLibrary
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
-            (ISlangSharedLibrary*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ISlangSharedLibrary*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -70,49 +51,38 @@ public unsafe partial struct ISlangSharedLibrary
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
-            (ISlangSharedLibrary*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ISlangSharedLibrary*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangCastable.castAs" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* castAs([NativeTypeName("const SlangUUID &")] SlangUUID* guid)
     {
-        return Marshal.GetDelegateForFunctionPointer<_castAs>(lpVtbl->castAs)(
-            (ISlangSharedLibrary*)Unsafe.AsPointer(ref this),
-            guid
-        );
+        return Marshal.GetDelegateForFunctionPointer<_castAs>(lpVtbl->castAs)((ISlangSharedLibrary*)Unsafe.AsPointer(ref this), guid);
     }
 
     /// <include file='ISlangSharedLibrary.xml' path='doc/member[@name="ISlangSharedLibrary.findSymbolAddressByName"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* findSymbolAddressByName([NativeTypeName("const char *")] sbyte* name)
     {
-        return Marshal.GetDelegateForFunctionPointer<_findSymbolAddressByName>(
-            lpVtbl->findSymbolAddressByName
-        )((ISlangSharedLibrary*)Unsafe.AsPointer(ref this), name);
+        return Marshal.GetDelegateForFunctionPointer<_findSymbolAddressByName>(lpVtbl->findSymbolAddressByName)((ISlangSharedLibrary*)Unsafe.AsPointer(ref this), name);
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName(
-            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName(
-            "void *(const SlangUUID &) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("void *(const SlangUUID &) __attribute__((stdcall))")]
         public IntPtr castAs;
 
-        [NativeTypeName("void *(const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("void *(const char *) __attribute__((stdcall))")]
         public IntPtr findSymbolAddressByName;
     }
 }

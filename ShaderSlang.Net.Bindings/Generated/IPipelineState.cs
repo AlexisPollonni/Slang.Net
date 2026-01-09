@@ -13,11 +13,7 @@ public unsafe partial struct IPipelineState
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(
-        IPipelineState* pThis,
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    );
+    public delegate int _queryInterface(IPipelineState* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -29,24 +25,14 @@ public unsafe partial struct IPipelineState
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getNativeHandle(
-        IPipelineState* pThis,
-        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
-    );
+    public delegate int _getNativeHandle(IPipelineState* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface(
-        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
-        void** outObject
-    )
+    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
-            (IPipelineState*)Unsafe.AsPointer(ref this),
-            uuid,
-            outObject
-        );
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IPipelineState*)Unsafe.AsPointer(ref this), uuid, outObject);
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -54,9 +40,7 @@ public unsafe partial struct IPipelineState
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
-            (IPipelineState*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IPipelineState*)Unsafe.AsPointer(ref this));
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -64,9 +48,7 @@ public unsafe partial struct IPipelineState
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
-            (IPipelineState*)Unsafe.AsPointer(ref this)
-        );
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IPipelineState*)Unsafe.AsPointer(ref this));
     }
 
     /// <include file='IPipelineState.xml' path='doc/member[@name="IPipelineState.getNativeHandle"]/*' />
@@ -74,28 +56,21 @@ public unsafe partial struct IPipelineState
     [return: NativeTypeName("gfx::Result")]
     public int getNativeHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getNativeHandle>(lpVtbl->getNativeHandle)(
-            (IPipelineState*)Unsafe.AsPointer(ref this),
-            outHandle
-        );
+        return Marshal.GetDelegateForFunctionPointer<_getNativeHandle>(lpVtbl->getNativeHandle)((IPipelineState*)Unsafe.AsPointer(ref this), outHandle);
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName(
-            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName(
-            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
-        )]
+        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
         public IntPtr getNativeHandle;
     }
 }

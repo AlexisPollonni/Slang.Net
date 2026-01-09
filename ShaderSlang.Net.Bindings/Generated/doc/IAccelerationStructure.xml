@@ -1,14 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct
-      name="IAccelerationStructure"
-      access="public"
-      native="struct IAccelerationStructure : gfx::IResourceView"
-      parent="IResourceView"
-      vtbl="true"
-      unsafe="true"
-    >
+    <struct name="IAccelerationStructure" access="public" native="struct IAccelerationStructure : gfx::IResourceView" parent="IResourceView" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -68,42 +61,42 @@
       </enumeration>
       <struct name="BuildFlags" access="public">
         <enumeration name="AccelerationStructBuildFlags" access="public">
-          <type>int</type>
+          <type>uint</type>
           <enumerator name="None" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
           </enumerator>
           <enumerator name="AllowUpdate" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
             <value>
               <code>1</code>
             </value>
           </enumerator>
           <enumerator name="AllowCompaction" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
             <value>
               <code>2</code>
             </value>
           </enumerator>
           <enumerator name="PreferFastTrace" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
             <value>
               <code>4</code>
             </value>
           </enumerator>
           <enumerator name="PreferFastBuild" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
             <value>
               <code>8</code>
             </value>
           </enumerator>
           <enumerator name="MinimizeMemory" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
             <value>
               <code>16</code>
             </value>
           </enumerator>
           <enumerator name="PerformUpdate" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
             <value>
               <code>32</code>
             </value>
@@ -121,18 +114,18 @@
       </enumeration>
       <struct name="GeometryFlags" access="public">
         <enumeration name="AccelerationStructGeometryFlags" access="public">
-          <type>int</type>
+          <type>uint</type>
           <enumerator name="None" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
           </enumerator>
           <enumerator name="Opaque" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
             <value>
               <code>1</code>
             </value>
           </enumerator>
           <enumerator name="NoDuplicateAnyHitInvocation" access="public">
-            <type primitive="False">int</type>
+            <type primitive="False">uint</type>
             <value>
               <code>2</code>
             </value>
@@ -201,9 +194,7 @@
           <type native="gfx::IAccelerationStructure::GeometryType">GeometryType</type>
         </field>
         <field name="flags" access="public">
-          <type native="gfx::IAccelerationStructure::GeometryFlags::Enum"
-            >AccelerationStructGeometryFlags</type
-          >
+          <type native="gfx::IAccelerationStructure::GeometryFlags::Enum">AccelerationStructGeometryFlags</type>
         </field>
         <field name="content" access="public">
           <type native="__AnonymousRecord_slang-gfx_L1038_C9">_content_e__Union</type>
@@ -262,27 +253,21 @@
         <field name="instanceID" access="public">
           <type native="uint32_t : 24">uint</type>
           <get inlining="aggressive">
-            <code
-              >return <bitfieldName>_bitfield1</bitfieldName> &amp; 0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>;</code
-            >
+            <code>return <bitfieldName>_bitfield1</bitfieldName> &amp; 0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>;</code>
           </get>
           <set inlining="aggressive">
             <code>
-              <bitfieldName>_bitfield1</bitfieldName> = (_bitfield1 &amp; ~0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>) | (value &amp; 0x<bitwidthHexString>FFFFFFu</bitwidthHexString>);</code
-            >
+              <bitfieldName>_bitfield1</bitfieldName> = (_bitfield1 &amp; ~0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>) | (value &amp; 0x<bitwidthHexString>FFFFFFu</bitwidthHexString>);</code>
           </set>
         </field>
         <field name="instanceMask" access="public">
           <type native="uint32_t : 8">uint</type>
           <get inlining="aggressive">
-            <code
-              >return (<bitfieldName>_bitfield1</bitfieldName> &gt;&gt; <bitfieldOffset>24</bitfieldOffset>) &amp; 0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking>;</code
-            >
+            <code>return (<bitfieldName>_bitfield1</bitfieldName> &gt;&gt; <bitfieldOffset>24</bitfieldOffset>) &amp; 0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking>;</code>
           </get>
           <set inlining="aggressive">
             <code>
-              <bitfieldName>_bitfield1</bitfieldName> = (_bitfield1 &amp; ~(0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking> &lt;&lt; <bitfieldOffset>24</bitfieldOffset>)) | ((value &amp; 0x<bitwidthHexString>FFu</bitwidthHexString>) &lt;&lt; 24);</code
-            >
+              <bitfieldName>_bitfield1</bitfieldName> = (_bitfield1 &amp; ~(0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking> &lt;&lt; <bitfieldOffset>24</bitfieldOffset>)) | ((value &amp; 0x<bitwidthHexString>FFu</bitwidthHexString>) &lt;&lt; 24);</code>
           </set>
         </field>
         <field name="_bitfield2" access="public">
@@ -291,27 +276,21 @@
         <field name="instanceContributionToHitGroupIndex" access="public">
           <type native="uint32_t : 24">uint</type>
           <get inlining="aggressive">
-            <code
-              >return <bitfieldName>_bitfield2</bitfieldName> &amp; 0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>;</code
-            >
+            <code>return <bitfieldName>_bitfield2</bitfieldName> &amp; 0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>;</code>
           </get>
           <set inlining="aggressive">
             <code>
-              <bitfieldName>_bitfield2</bitfieldName> = (_bitfield2 &amp; ~0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>) | (value &amp; 0x<bitwidthHexString>FFFFFFu</bitwidthHexString>);</code
-            >
+              <bitfieldName>_bitfield2</bitfieldName> = (_bitfield2 &amp; ~0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>) | (value &amp; 0x<bitwidthHexString>FFFFFFu</bitwidthHexString>);</code>
           </set>
         </field>
         <field name="flags" access="public">
           <type native="uint32_t : 8">uint</type>
           <get inlining="aggressive">
-            <code
-              >return (<bitfieldName>_bitfield2</bitfieldName> &gt;&gt; <bitfieldOffset>24</bitfieldOffset>) &amp; 0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking>;</code
-            >
+            <code>return (<bitfieldName>_bitfield2</bitfieldName> &gt;&gt; <bitfieldOffset>24</bitfieldOffset>) &amp; 0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking>;</code>
           </get>
           <set inlining="aggressive">
             <code>
-              <bitfieldName>_bitfield2</bitfieldName> = (_bitfield2 &amp; ~(0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking> &lt;&lt; <bitfieldOffset>24</bitfieldOffset>)) | ((value &amp; 0x<bitwidthHexString>FFu</bitwidthHexString>) &lt;&lt; 24);</code
-            >
+              <bitfieldName>_bitfield2</bitfieldName> = (_bitfield2 &amp; ~(0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking> &lt;&lt; <bitfieldOffset>24</bitfieldOffset>)) | ((value &amp; 0x<bitwidthHexString>FFu</bitwidthHexString>) &lt;&lt; 24);</code>
           </set>
         </field>
         <field name="accelerationStructure" access="public">
@@ -340,9 +319,7 @@
           <type native="gfx::IAccelerationStructure::Kind">TypeKind</type>
         </field>
         <field name="flags" access="public">
-          <type native="gfx::IAccelerationStructure::BuildFlags::Enum"
-            >AccelerationStructBuildFlags</type
-          >
+          <type native="gfx::IAccelerationStructure::BuildFlags::Enum">AccelerationStructBuildFlags</type>
         </field>
         <field name="descCount" access="public">
           <type native="gfx::GfxCount">int</type>
@@ -391,53 +368,25 @@
           <type>void**</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >queryInterface</vtbl
-            >)(<param special="thisPtr"
-              >(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param
-            >, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >addRef</vtbl
-            >)(<param special="thisPtr"
-              >(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >release</vtbl
-            >)(<param special="thisPtr"
-              >(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getViewDesc" access="public" unsafe="true">
         <type native="gfx::IResourceView::Desc *">ResourceViewDesc*</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getViewDesc</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >getViewDesc</vtbl
-            >)(<param special="thisPtr"
-              >(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getViewDesc</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getViewDesc</vtbl>)(<param special="thisPtr">(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getNativeHandle" access="public" unsafe="true">
@@ -446,54 +395,33 @@
           <type>InteropHandle*</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getNativeHandle</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >getNativeHandle</vtbl
-            >)(<param special="thisPtr"
-              >(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param
-            >, <param name="outNativeHandle">outNativeHandle</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getNativeHandle</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getNativeHandle</vtbl>)(<param special="thisPtr">(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param>, <param name="outNativeHandle">outNativeHandle</param>);</code>
         </body>
       </function>
       <function name="getDeviceAddress" access="public" unsafe="true">
         <type native="gfx::DeviceAddress">ulong</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDeviceAddress</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >getDeviceAddress</vtbl
-            >)(<param special="thisPtr"
-              >(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDeviceAddress</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDeviceAddress</vtbl>)(<param special="thisPtr">(IAccelerationStructure*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type
-            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getViewDesc" access="public">
-          <type native="Desc *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="Desc *() __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeHandle" access="public">
-          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="Result (InteropHandle *) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDeviceAddress" access="public">
-          <type native="DeviceAddress () __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="DeviceAddress () __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

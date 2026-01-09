@@ -1,14 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct
-      name="ICommandBuffer"
-      access="public"
-      native="struct ICommandBuffer : ISlangUnknown"
-      parent="ISlangUnknown"
-      vtbl="true"
-      unsafe="true"
-    >
+    <struct name="ICommandBuffer" access="public" native="struct ICommandBuffer : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -102,37 +95,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >queryInterface</vtbl
-            >)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param
-              name="uuid"
-              >uuid</param
-            >, <param name="outObject">outObject</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >addRef</vtbl
-            >)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >release</vtbl
-            >)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="encodeRenderCommands" access="public" unsafe="true">
@@ -147,17 +122,7 @@
           <type>IRenderCommandEncoder**</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_encodeRenderCommands</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >encodeRenderCommands</vtbl
-            >)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param
-              name="renderPass"
-              >renderPass</param
-            >, <param name="framebuffer">framebuffer</param>, <param name="outEncoder"
-              >outEncoder</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_encodeRenderCommands</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">encodeRenderCommands</vtbl>)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param name="renderPass">renderPass</param>, <param name="framebuffer">framebuffer</param>, <param name="outEncoder">outEncoder</param>);</code>
         </body>
       </function>
       <function name="encodeComputeCommands" access="public" unsafe="true">
@@ -166,15 +131,7 @@
           <type>IComputeCommandEncoder**</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_encodeComputeCommands</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >encodeComputeCommands</vtbl
-            >)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param
-              name="outEncoder"
-              >outEncoder</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_encodeComputeCommands</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">encodeComputeCommands</vtbl>)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param name="outEncoder">outEncoder</param>);</code>
         </body>
       </function>
       <function name="encodeResourceCommands" access="public" unsafe="true">
@@ -183,15 +140,7 @@
           <type>IResourceCommandEncoder**</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_encodeResourceCommands</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >encodeResourceCommands</vtbl
-            >)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param
-              name="outEncoder"
-              >outEncoder</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_encodeResourceCommands</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">encodeResourceCommands</vtbl>)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param name="outEncoder">outEncoder</param>);</code>
         </body>
       </function>
       <function name="encodeRayTracingCommands" access="public" unsafe="true">
@@ -200,26 +149,13 @@
           <type>IRayTracingCommandEncoder**</type>
         </param>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_encodeRayTracingCommands</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >encodeRayTracingCommands</vtbl
-            >)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param
-              name="outEncoder"
-              >outEncoder</param
-            >);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_encodeRayTracingCommands</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">encodeRayTracingCommands</vtbl>)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param name="outEncoder">outEncoder</param>);</code>
         </body>
       </function>
       <function name="close" access="public" unsafe="true">
         <type>void</type>
         <body>
-          <code
-            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_close</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >close</vtbl
-            >)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>);</code
-          >
+          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_close</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">close</vtbl>)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getNativeHandle" access="public" unsafe="true">
@@ -228,61 +164,36 @@
           <type>InteropHandle*</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getNativeHandle</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >getNativeHandle</vtbl
-            >)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param
-              name="outHandle"
-              >outHandle</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getNativeHandle</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getNativeHandle</vtbl>)(<param special="thisPtr">(ICommandBuffer*)Unsafe.AsPointer(ref this)</param>, <param name="outHandle">outHandle</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type
-            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="encodeRenderCommands" access="public">
-          <type
-            native="void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="encodeComputeCommands" access="public">
-          <type
-            native="void (IComputeCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IComputeCommandEncoder **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="encodeResourceCommands" access="public">
-          <type
-            native="void (IResourceCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IResourceCommandEncoder **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="encodeRayTracingCommands" access="public">
-          <type
-            native="void (IRayTracingCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void (IRayTracingCommandEncoder **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="close" access="public">
-          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="void () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeHandle" access="public">
-          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="Result (InteropHandle *) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

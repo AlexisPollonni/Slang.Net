@@ -11,10 +11,7 @@ public static unsafe partial class D3D12ExperimentalFeaturesDescTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(
-            sizeof(D3D12ExperimentalFeaturesDesc),
-            Marshal.SizeOf<D3D12ExperimentalFeaturesDesc>()
-        );
+        Assert.Equal(sizeof(D3D12ExperimentalFeaturesDesc), Marshal.SizeOf<D3D12ExperimentalFeaturesDesc>());
     }
 
     /// <summary>Validates that the <see cref="D3D12ExperimentalFeaturesDesc" /> struct has the right <see cref="LayoutKind" />.</summary>

@@ -1,15 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct
-      name="ICompileResult"
-      access="public"
-      native="struct ICompileResult : ISlangCastable"
-      parent="ISlangCastable"
-      uuid="5fa9380e-b62f-41e5-9f12-4bad4d9eaae4"
-      vtbl="true"
-      unsafe="true"
-    >
+    <struct name="ICompileResult" access="public" native="struct ICompileResult : ISlangCastable" parent="ISlangCastable" uuid="5fa9380e-b62f-41e5-9f12-4bad4d9eaae4" vtbl="true" unsafe="true">
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -82,37 +74,19 @@
           <type>void**</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >queryInterface</vtbl
-            >)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>, <param
-              name="uuid"
-              >uuid</param
-            >, <param name="outObject">outObject</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >addRef</vtbl
-            >)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >release</vtbl
-            >)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="castAs" access="public" unsafe="true">
@@ -121,26 +95,13 @@
           <type>SlangUUID*</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >castAs</vtbl
-            >)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>, <param
-              name="guid"
-              >guid</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_castAs</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">castAs</vtbl>)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>, <param name="guid">guid</param>);</code>
         </body>
       </function>
       <function name="getItemCount" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getItemCount</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >getItemCount</vtbl
-            >)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getItemCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getItemCount</vtbl>)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>);</code>
         </body>
       </function>
       <function name="getItemData" access="public" unsafe="true">
@@ -152,15 +113,7 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getItemData</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >getItemData</vtbl
-            >)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>, <param
-              name="index"
-              >index</param
-            >, <param name="outblob">outblob</param>);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getItemData</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getItemData</vtbl>)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>, <param name="outblob">outblob</param>);</code>
         </body>
       </function>
       <function name="getMetadata" access="public" unsafe="true">
@@ -169,35 +122,21 @@
           <type>IMetadata**</type>
         </param>
         <body>
-          <code
-            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getMetadata</delegate>&gt;(lpVtbl-&gt;<vtbl
-              explicit="True"
-              >getMetadata</vtbl
-            >)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>, <param
-              name="outMetadata"
-              >outMetadata</param
-            >);</code
-          >
+          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getMetadata</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getMetadata</vtbl>)(<param special="thisPtr">(ICompileResult*)Unsafe.AsPointer(ref this)</param>, <param name="outMetadata">outMetadata</param>);</code>
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type
-            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="castAs" access="public">
-          <type
-            native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))"
-            >IntPtr</type
-          >
+          <type native="void *(const SlangUUID &amp;) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getItemCount" access="public">
           <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>

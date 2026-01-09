@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
     <struct name="FaceMask" access="public">
       <enumeration name="Enum" access="public">
-        <type>int</type>
+        <type>uint</type>
         <enumerator name="Front" access="public">
-          <type primitive="False">int</type>
+          <type primitive="False">uint</type>
           <value>
             <code>1</code>
           </value>
         </enumerator>
         <enumerator name="Back" access="public">
-          <type primitive="False">int</type>
+          <type primitive="False">uint</type>
           <value>
             <code>2</code>
           </value>

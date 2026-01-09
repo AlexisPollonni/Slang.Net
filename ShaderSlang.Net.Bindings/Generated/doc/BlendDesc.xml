@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
     <struct name="BlendDesc" access="public">
       <field name="targets" access="public">
-        <type native="TargetBlendDesc[8]" count="8" fixed="_targets_e__FixedBuffer"
-          >TargetBlendDesc</type
-        >
+        <type native="TargetBlendDesc[8]" count="8" fixed="_targets_e__FixedBuffer">TargetBlendDesc</type>
       </field>
       <field name="targetCount" access="public">
         <type native="gfx::GfxCount">int</type>

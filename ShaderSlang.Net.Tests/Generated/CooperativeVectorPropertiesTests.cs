@@ -10,10 +10,7 @@ public static unsafe partial class CooperativeVectorPropertiesTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(
-            sizeof(CooperativeVectorProperties),
-            Marshal.SizeOf<CooperativeVectorProperties>()
-        );
+        Assert.Equal(sizeof(CooperativeVectorProperties), Marshal.SizeOf<CooperativeVectorProperties>());
     }
 
     /// <summary>Validates that the <see cref="CooperativeVectorProperties" /> struct has the right <see cref="LayoutKind" />.</summary>

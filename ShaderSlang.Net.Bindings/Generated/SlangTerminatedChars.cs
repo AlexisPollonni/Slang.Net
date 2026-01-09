@@ -22,7 +22,10 @@ public partial struct SlangTerminatedChars
         public ref sbyte this[int index]
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get { return ref Unsafe.Add(ref e0, index); }
+            get
+            {
+                return ref Unsafe.Add(ref e0, index);
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

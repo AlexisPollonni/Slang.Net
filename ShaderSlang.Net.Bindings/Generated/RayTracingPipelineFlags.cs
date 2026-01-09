@@ -3,6 +3,7 @@ namespace ShaderSlang.Net.Bindings.Generated;
 /// <include file='RayTracingPipelineFlags.xml' path='doc/member[@name="RayTracingPipelineFlags"]/*' />
 public partial struct RayTracingPipelineFlags
 {
+
     /// <include file='RayTracingPipelineFlagsEnum.xml' path='doc/member[@name="RayTracingPipelineFlagsEnum"]/*' />
     [NativeTypeName("uint32_t")]
     public enum RayTracingPipelineFlagsEnum : uint

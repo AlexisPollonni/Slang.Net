@@ -3,7 +3,7 @@ using ShaderSlang.Net.Bindings.Generated;
 namespace ShaderSlang.Net.Bindings.Enums;
 
 [Flags]
-public enum RenderTargetWriteMaskT : byte
+public enum RenderTargetWriteMaskT : uint
 {
     EnableNone = GfxApi.EnableNone,
     EnableRed = GfxApi.EnableRed,
