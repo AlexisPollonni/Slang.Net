@@ -538,20 +538,72 @@ internal record BuildConfig(
 
     public IReadOnlyList<string> GetClangCmdLineArgsForConfig()
     {
-        string[] linuxIncludeDirectories =
-        [
-            "/usr/lib/gcc/x86_64-linux-gnu/12/include/",
-            "/usr/lib/gcc/x86_64-linux-gnu/11/include/",
-            "/usr/lib/gcc/x86_64-linux-gnu/10/include/",
-            "/usr/lib/gcc/x86_64-linux-gnu/9/include/",
-            "/usr/include/x86_64-linux-gnu/c++/11",
-            "/usr/include/x86_64-linux-gnu",
-            "/usr/include/c++/11",
-            "/usr/include",
-        ];
+        var linuxIncludeDirectories = new List<DirectoryPath>();
+
+        var cppIncludes = GetDirectories("/usr/include/c++/*/").ToArray();
+        var clangIncludes = GetDirectories("/usr/include/clang/*/include").ToArray();
+        var gccIncludes = GetDirectories("/usr/lib/gcc/*/*/include").ToArray();
+
+        if (cppIncludes.Length is not 0)
+        {
+            Array.Sort(cppIncludes, PathComparer.Default);
+
+            Information("Found C++ includes:");
+            foreach (var inc in cppIncludes)
+                Information("  {0}", inc);
+
+            var chosenDir = cppIncludes[^1];
+
+            Information("Choosing C++ include directory: {0}", chosenDir);
+            linuxIncludeDirectories.Add(chosenDir);
+
+            foreach (var bitsDir in GetDirectories($"{chosenDir}/**/bits/"))
+            {
+                if (bitsDir is not null && bitsDir.GetParent() != chosenDir)
+                {
+                    Information("Also adding bits include directory: {0}", bitsDir.GetParent());
+                    linuxIncludeDirectories.Add(bitsDir.GetParent());
+                }
+            }
+        }
+        if (clangIncludes.Length is not 0)
+        {
+            Array.Sort(clangIncludes, PathComparer.Default);
+
+            Information("Found Clang includes:");
+            foreach (var inc in clangIncludes)
+                Information("  {0}", inc);
+
+            Information("Choosing Clang include directory: {0}", clangIncludes[^1]);
+            linuxIncludeDirectories.Add(clangIncludes[^1]);
+        }
+        if (gccIncludes.Length is not 0)
+        {
+            Array.Sort(gccIncludes, PathComparer.Default);
+
+            Information("Found GCC includes:");
+            foreach (var inc in gccIncludes)
+                Information("  {0}", inc);
+
+            Information("Choosing GCC include directory: {0}", gccIncludes[^1]);
+            linuxIncludeDirectories.Add(gccIncludes[^1]);
+        }
+        if (linuxIncludeDirectories.Count is 0)
+        {
+            Warning(
+                "No standard include directories found for linux system, generation might fail!"
+            );
+        }
+
+        linuxIncludeDirectories.AddRange(
+            ["/usr/include/x86_64-linux-gnu", "/usr/include/linux", "/usr/include"]
+        );
+
         //Add additional include directories for linux systems to resolve stddef.h
 
         var includeDirectories = IsRunningOnLinux() ? linuxIncludeDirectories : [];
+
+        Information("Include directories for Clang: {0}", string.Join(", ", includeDirectories));
 
         return
         [
