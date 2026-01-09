@@ -11,7 +11,10 @@ public static unsafe partial class IPipelineCreationAPIDispatcherTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(sizeof(IPipelineCreationAPIDispatcher), Marshal.SizeOf<IPipelineCreationAPIDispatcher>());
+        Assert.Equal(
+            sizeof(IPipelineCreationAPIDispatcher),
+            Marshal.SizeOf<IPipelineCreationAPIDispatcher>()
+        );
     }
 
     /// <summary>Validates that the <see cref="IPipelineCreationAPIDispatcher" /> struct has the right <see cref="LayoutKind" />.</summary>

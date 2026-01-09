@@ -11,7 +11,10 @@ public static unsafe partial class RayTracingPipelineStateDescTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(sizeof(RayTracingPipelineStateDesc), Marshal.SizeOf<RayTracingPipelineStateDesc>());
+        Assert.Equal(
+            sizeof(RayTracingPipelineStateDesc),
+            Marshal.SizeOf<RayTracingPipelineStateDesc>()
+        );
     }
 
     /// <summary>Validates that the <see cref="RayTracingPipelineStateDesc" /> struct has the right <see cref="LayoutKind" />.</summary>

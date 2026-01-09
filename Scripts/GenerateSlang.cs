@@ -595,9 +595,11 @@ internal record BuildConfig(
             );
         }
 
-        linuxIncludeDirectories.AddRange(
-            ["/usr/include/x86_64-linux-gnu", "/usr/include/linux", "/usr/include"]
-        );
+        linuxIncludeDirectories.AddRange([
+            "/usr/include/x86_64-linux-gnu",
+            "/usr/include/linux",
+            "/usr/include",
+        ]);
 
         //Add additional include directories for linux systems to resolve stddef.h
 
@@ -712,7 +714,7 @@ internal record BuildConfig(
                 "__clang__",
                 "SLANG_CLANG",
                 "SLANG_STDCALL=__stdcall", // we force stdcall conv for now
-                                           // TODO: change later when implemented conditionnal call conv
+                // TODO: change later when implemented conditionnal call conv
             ],
             [
                 // Remove the rest of the platform-specific macros

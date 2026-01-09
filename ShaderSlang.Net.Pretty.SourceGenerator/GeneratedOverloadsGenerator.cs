@@ -53,9 +53,10 @@ public class GeneratedOverloadsGenerator()
             );
             var spanCollapsedData = diagBlobToStringData.TransformMethodImplicitSpanCount(method);
 
-            var extensionList = new List<InterfaceExtensionData>(
-                [diagBlobToStringData, spanCollapsedData]
-            );
+            var extensionList = new List<InterfaceExtensionData>([
+                diagBlobToStringData,
+                spanCollapsedData,
+            ]);
 
             if (
                 originalMethodData.Signature.ReturnSig.Type.Equals(

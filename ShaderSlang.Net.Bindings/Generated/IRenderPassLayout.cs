@@ -13,7 +13,11 @@ public unsafe partial struct IRenderPassLayout
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(IRenderPassLayout* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        IRenderPassLayout* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -97,9 +101,16 @@ public unsafe partial struct IRenderPassLayout
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IRenderPassLayout*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (IRenderPassLayout*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -107,7 +118,9 @@ public unsafe partial struct IRenderPassLayout
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IRenderPassLayout*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (IRenderPassLayout*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -115,7 +128,9 @@ public unsafe partial struct IRenderPassLayout
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IRenderPassLayout*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (IRenderPassLayout*)Unsafe.AsPointer(ref this)
+        );
     }
 
     public partial struct Vtbl

@@ -13,7 +13,11 @@ public unsafe partial struct IAccelerationStructure
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(IAccelerationStructure* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        IAccelerationStructure* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -29,7 +33,10 @@ public unsafe partial struct IAccelerationStructure
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getNativeHandle(IAccelerationStructure* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle);
+    public delegate int _getNativeHandle(
+        IAccelerationStructure* pThis,
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::DeviceAddress")]
@@ -48,7 +55,6 @@ public unsafe partial struct IAccelerationStructure
     /// <include file='BuildFlags.xml' path='doc/member[@name="BuildFlags"]/*' />
     public partial struct BuildFlags
     {
-
         /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags"]/*' />
         [NativeTypeName("unsigned int")]
         public enum AccelerationStructBuildFlags : uint
@@ -89,7 +95,6 @@ public unsafe partial struct IAccelerationStructure
     /// <include file='GeometryFlags.xml' path='doc/member[@name="GeometryFlags"]/*' />
     public partial struct GeometryFlags
     {
-
         /// <include file='AccelerationStructGeometryFlags.xml' path='doc/member[@name="AccelerationStructGeometryFlags"]/*' />
         [NativeTypeName("unsigned int")]
         public enum AccelerationStructGeometryFlags : uint
@@ -213,7 +218,6 @@ public unsafe partial struct IAccelerationStructure
     /// <include file='GeometryInstanceFlags.xml' path='doc/member[@name="GeometryInstanceFlags"]/*' />
     public partial struct GeometryInstanceFlags
     {
-
         /// <include file='AccelerationStructGeometryInstanceFlags.xml' path='doc/member[@name="AccelerationStructGeometryInstanceFlags"]/*' />
         [NativeTypeName("uint32_t")]
         public enum AccelerationStructGeometryInstanceFlags : uint
@@ -249,16 +253,9 @@ public unsafe partial struct IAccelerationStructure
         public uint instanceID
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            readonly get
-            {
-                return _bitfield1 & 0xFFFFFFu;
-            }
-
+            readonly get { return _bitfield1 & 0xFFFFFFu; }
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            set
-            {
-                _bitfield1 = (_bitfield1 & ~0xFFFFFFu) | (value & 0xFFFFFFu);
-            }
+            set { _bitfield1 = (_bitfield1 & ~0xFFFFFFu) | (value & 0xFFFFFFu); }
         }
 
         /// <include file='InstanceDesc.xml' path='doc/member[@name="InstanceDesc.instanceMask"]/*' />
@@ -266,16 +263,9 @@ public unsafe partial struct IAccelerationStructure
         public uint instanceMask
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            readonly get
-            {
-                return (_bitfield1 >> 24) & 0xFFu;
-            }
-
+            readonly get { return (_bitfield1 >> 24) & 0xFFu; }
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            set
-            {
-                _bitfield1 = (_bitfield1 & ~(0xFFu << 24)) | ((value & 0xFFu) << 24);
-            }
+            set { _bitfield1 = (_bitfield1 & ~(0xFFu << 24)) | ((value & 0xFFu) << 24); }
         }
 
         public uint _bitfield2;
@@ -285,16 +275,9 @@ public unsafe partial struct IAccelerationStructure
         public uint instanceContributionToHitGroupIndex
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            readonly get
-            {
-                return _bitfield2 & 0xFFFFFFu;
-            }
-
+            readonly get { return _bitfield2 & 0xFFFFFFu; }
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            set
-            {
-                _bitfield2 = (_bitfield2 & ~0xFFFFFFu) | (value & 0xFFFFFFu);
-            }
+            set { _bitfield2 = (_bitfield2 & ~0xFFFFFFu) | (value & 0xFFFFFFu); }
         }
 
         /// <include file='InstanceDesc.xml' path='doc/member[@name="InstanceDesc.flags"]/*' />
@@ -302,16 +285,9 @@ public unsafe partial struct IAccelerationStructure
         public uint flags
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            readonly get
-            {
-                return (_bitfield2 >> 24) & 0xFFu;
-            }
-
+            readonly get { return (_bitfield2 >> 24) & 0xFFu; }
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            set
-            {
-                _bitfield2 = (_bitfield2 & ~(0xFFu << 24)) | ((value & 0xFFu) << 24);
-            }
+            set { _bitfield2 = (_bitfield2 & ~(0xFFu << 24)) | ((value & 0xFFu) << 24); }
         }
 
         /// <include file='InstanceDesc.xml' path='doc/member[@name="InstanceDesc.accelerationStructure"]/*' />
@@ -409,9 +385,16 @@ public unsafe partial struct IAccelerationStructure
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IAccelerationStructure*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (IAccelerationStructure*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -419,7 +402,9 @@ public unsafe partial struct IAccelerationStructure
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IAccelerationStructure*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (IAccelerationStructure*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -427,7 +412,9 @@ public unsafe partial struct IAccelerationStructure
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IAccelerationStructure*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (IAccelerationStructure*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="IResourceView.getViewDesc" />
@@ -435,15 +422,22 @@ public unsafe partial struct IAccelerationStructure
     [return: NativeTypeName("gfx::IResourceView::Desc *")]
     public ResourceViewDesc* getViewDesc()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getViewDesc>(lpVtbl->getViewDesc)((IAccelerationStructure*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getViewDesc>(lpVtbl->getViewDesc)(
+            (IAccelerationStructure*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="IResourceView.getNativeHandle" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getNativeHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle)
+    public int getNativeHandle(
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_getNativeHandle>(lpVtbl->getNativeHandle)((IAccelerationStructure*)Unsafe.AsPointer(ref this), outNativeHandle);
+        return Marshal.GetDelegateForFunctionPointer<_getNativeHandle>(lpVtbl->getNativeHandle)(
+            (IAccelerationStructure*)Unsafe.AsPointer(ref this),
+            outNativeHandle
+        );
     }
 
     /// <include file='IAccelerationStructure.xml' path='doc/member[@name="IAccelerationStructure.getDeviceAddress"]/*' />
@@ -451,7 +445,9 @@ public unsafe partial struct IAccelerationStructure
     [return: NativeTypeName("gfx::DeviceAddress")]
     public ulong getDeviceAddress()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDeviceAddress>(lpVtbl->getDeviceAddress)((IAccelerationStructure*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getDeviceAddress>(lpVtbl->getDeviceAddress)(
+            (IAccelerationStructure*)Unsafe.AsPointer(ref this)
+        );
     }
 
     public partial struct Vtbl

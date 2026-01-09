@@ -14,7 +14,11 @@ public unsafe partial struct ISlangFileSystem
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(ISlangFileSystem* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        ISlangFileSystem* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -25,18 +29,32 @@ public unsafe partial struct ISlangFileSystem
     public delegate uint _release(ISlangFileSystem* pThis);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void* _castAs(ISlangFileSystem* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* guid);
+    public delegate void* _castAs(
+        ISlangFileSystem* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* guid
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _loadFile(ISlangFileSystem* pThis, [NativeTypeName("const char *")] sbyte* path, ISlangBlob** outBlob);
+    public delegate int _loadFile(
+        ISlangFileSystem* pThis,
+        [NativeTypeName("const char *")] sbyte* path,
+        ISlangBlob** outBlob
+    );
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ISlangFileSystem*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (ISlangFileSystem*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -44,7 +62,9 @@ public unsafe partial struct ISlangFileSystem
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ISlangFileSystem*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (ISlangFileSystem*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -52,14 +72,19 @@ public unsafe partial struct ISlangFileSystem
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ISlangFileSystem*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (ISlangFileSystem*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangCastable.castAs" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void* castAs([NativeTypeName("const SlangUUID &")] SlangUUID* guid)
     {
-        return Marshal.GetDelegateForFunctionPointer<_castAs>(lpVtbl->castAs)((ISlangFileSystem*)Unsafe.AsPointer(ref this), guid);
+        return Marshal.GetDelegateForFunctionPointer<_castAs>(lpVtbl->castAs)(
+            (ISlangFileSystem*)Unsafe.AsPointer(ref this),
+            guid
+        );
     }
 
     /// <include file='ISlangFileSystem.xml' path='doc/member[@name="ISlangFileSystem.loadFile"]/*' />
@@ -67,7 +92,11 @@ public unsafe partial struct ISlangFileSystem
     [return: NativeTypeName("SlangResult")]
     public int loadFile([NativeTypeName("const char *")] sbyte* path, ISlangBlob** outBlob)
     {
-        return Marshal.GetDelegateForFunctionPointer<_loadFile>(lpVtbl->loadFile)((ISlangFileSystem*)Unsafe.AsPointer(ref this), path, outBlob);
+        return Marshal.GetDelegateForFunctionPointer<_loadFile>(lpVtbl->loadFile)(
+            (ISlangFileSystem*)Unsafe.AsPointer(ref this),
+            path,
+            outBlob
+        );
     }
 
     public partial struct Vtbl

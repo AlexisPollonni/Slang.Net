@@ -15,7 +15,9 @@
         <type native="gfx::ProjectionStyle">ProjectionStyle</type>
       </field>
       <field name="identityProjectionMatrix" access="public">
-        <type native="float[16]" count="16" fixed="_identityProjectionMatrix_e__FixedBuffer">float</type>
+        <type native="float[16]" count="16" fixed="_identityProjectionMatrix_e__FixedBuffer"
+          >float</type
+        >
       </field>
       <field name="apiName" access="public">
         <type native="const char *">sbyte*</type>

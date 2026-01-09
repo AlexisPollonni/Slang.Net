@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="IPipelineCreationAPIDispatcher" access="public" native="struct IPipelineCreationAPIDispatcher : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+    <struct
+      name="IPipelineCreationAPIDispatcher"
+      access="public"
+      native="struct IPipelineCreationAPIDispatcher : ISlangUnknown"
+      parent="ISlangUnknown"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -29,7 +36,12 @@
           <type>IPipelineCreationAPIDispatcher*</type>
         </param>
       </delegate>
-      <delegate name="_createComputePipelineState" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_createComputePipelineState"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -47,7 +59,12 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_createGraphicsPipelineState" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_createGraphicsPipelineState"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -83,7 +100,12 @@
           <type>void**</type>
         </param>
       </delegate>
-      <delegate name="_beforeCreateRayTracingState" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_beforeCreateRayTracingState"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -95,7 +117,12 @@
           <type>IComponentType*</type>
         </param>
       </delegate>
-      <delegate name="_afterCreateRayTracingState" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_afterCreateRayTracingState"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IPipelineCreationAPIDispatcher*</type>
@@ -116,19 +143,40 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr"
+              >(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param
+            >, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr"
+              >(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param
+            >);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr"
+              >(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param
+            >);</code
+          >
         </body>
       </function>
       <function name="createComputePipelineState" access="public" unsafe="true">
@@ -146,7 +194,17 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createComputePipelineState</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">createComputePipelineState</vtbl>)(<param special="thisPtr">(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param>, <param name="device">device</param>, <param name="program">program</param>, <param name="pipelineDesc">pipelineDesc</param>, <param name="outPipelineState">outPipelineState</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createComputePipelineState</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >createComputePipelineState</vtbl
+            >)(<param special="thisPtr"
+              >(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param
+            >, <param name="device">device</param>, <param name="program">program</param>, <param
+              name="pipelineDesc"
+              >pipelineDesc</param
+            >, <param name="outPipelineState">outPipelineState</param>);</code
+          >
         </body>
       </function>
       <function name="createGraphicsPipelineState" access="public" unsafe="true">
@@ -164,7 +222,17 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createGraphicsPipelineState</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">createGraphicsPipelineState</vtbl>)(<param special="thisPtr">(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param>, <param name="device">device</param>, <param name="program">program</param>, <param name="pipelineDesc">pipelineDesc</param>, <param name="outPipelineState">outPipelineState</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createGraphicsPipelineState</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >createGraphicsPipelineState</vtbl
+            >)(<param special="thisPtr"
+              >(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param
+            >, <param name="device">device</param>, <param name="program">program</param>, <param
+              name="pipelineDesc"
+              >pipelineDesc</param
+            >, <param name="outPipelineState">outPipelineState</param>);</code
+          >
         </body>
       </function>
       <function name="createMeshPipelineState" access="public" unsafe="true">
@@ -182,7 +250,17 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createMeshPipelineState</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">createMeshPipelineState</vtbl>)(<param special="thisPtr">(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param>, <param name="device">device</param>, <param name="program">program</param>, <param name="pipelineDesc">pipelineDesc</param>, <param name="outPipelineState">outPipelineState</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createMeshPipelineState</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >createMeshPipelineState</vtbl
+            >)(<param special="thisPtr"
+              >(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param
+            >, <param name="device">device</param>, <param name="program">program</param>, <param
+              name="pipelineDesc"
+              >pipelineDesc</param
+            >, <param name="outPipelineState">outPipelineState</param>);</code
+          >
         </body>
       </function>
       <function name="beforeCreateRayTracingState" access="public" unsafe="true">
@@ -194,7 +272,14 @@
           <type>IComponentType*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_beforeCreateRayTracingState</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">beforeCreateRayTracingState</vtbl>)(<param special="thisPtr">(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param>, <param name="device">device</param>, <param name="program">program</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_beforeCreateRayTracingState</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >beforeCreateRayTracingState</vtbl
+            >)(<param special="thisPtr"
+              >(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param
+            >, <param name="device">device</param>, <param name="program">program</param>);</code
+          >
         </body>
       </function>
       <function name="afterCreateRayTracingState" access="public" unsafe="true">
@@ -206,12 +291,20 @@
           <type>IComponentType*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_afterCreateRayTracingState</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">afterCreateRayTracingState</vtbl>)(<param special="thisPtr">(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param>, <param name="device">device</param>, <param name="program">program</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_afterCreateRayTracingState</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >afterCreateRayTracingState</vtbl
+            >)(<param special="thisPtr"
+              >(IPipelineCreationAPIDispatcher*)Unsafe.AsPointer(ref this)</param
+            >, <param name="device">device</param>, <param name="program">program</param>);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addRef" access="public">
           <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
@@ -220,19 +313,27 @@
           <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createComputePipelineState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="createGraphicsPipelineState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="createMeshPipelineState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="beforeCreateRayTracingState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (IDevice *, slang::IComponentType *) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="afterCreateRayTracingState" access="public">
-          <type native="Result (IDevice *, slang::IComponentType *) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (IDevice *, slang::IComponentType *) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="ISession" access="public" native="struct ISession : ISlangUnknown" parent="ISlangUnknown" uuid="67618701-d116-468f-ab3b-474bedce0e3d" vtbl="true" unsafe="true">
+    <struct
+      name="ISession"
+      access="public"
+      native="struct ISession : ISlangUnknown"
+      parent="ISlangUnknown"
+      uuid="67618701-d116-468f-ab3b-474bedce0e3d"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -71,7 +79,12 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_createCompositeComponentType" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_createCompositeComponentType"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -176,7 +189,12 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getTypeConformanceWitnessMangledName" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_getTypeConformanceWitnessMangledName"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -191,7 +209,12 @@
           <type>ISlangBlob**</type>
         </param>
       </delegate>
-      <delegate name="_getTypeConformanceWitnessSequentialID" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_getTypeConformanceWitnessSequentialID"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -206,7 +229,12 @@
           <type>uint*</type>
         </param>
       </delegate>
-      <delegate name="_createTypeConformanceComponentType" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_createTypeConformanceComponentType"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -275,7 +303,12 @@
           <type>ISlangBlob*</type>
         </param>
       </delegate>
-      <delegate name="_loadModuleFromSourceString" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_loadModuleFromSourceString"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="slang::IModule *">IModule*</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -296,7 +329,12 @@
           </init>
         </param>
       </delegate>
-      <delegate name="_getDynamicObjectRTTIBytes" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_getDynamicObjectRTTIBytes"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="SlangResult">int</type>
         <param name="pThis">
           <type>ISession*</type>
@@ -341,25 +379,48 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getGlobalSession" access="public" unsafe="true">
         <type native="slang::IGlobalSession *">IGlobalSession*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getGlobalSession</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getGlobalSession</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getGlobalSession</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getGlobalSession</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="loadModule" access="public" unsafe="true">
@@ -374,7 +435,15 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadModule</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="moduleName">moduleName</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModule</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >loadModule</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="moduleName"
+              >moduleName</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="loadModuleFromSource" access="public" unsafe="true">
@@ -395,7 +464,18 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModuleFromSource</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadModuleFromSource</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="moduleName">moduleName</param>, <param name="path">path</param>, <param name="source">source</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModuleFromSource</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >loadModuleFromSource</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="moduleName"
+              >moduleName</param
+            >, <param name="path">path</param>, <param name="source">source</param>, <param
+              name="outDiagnostics"
+              >outDiagnostics</param
+            >);</code
+          >
         </body>
       </function>
       <function name="createCompositeComponentType" access="public" unsafe="true">
@@ -416,7 +496,18 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createCompositeComponentType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">createCompositeComponentType</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="componentTypes">componentTypes</param>, <param name="componentTypeCount">componentTypeCount</param>, <param name="outCompositeComponentType">outCompositeComponentType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createCompositeComponentType</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >createCompositeComponentType</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="componentTypes"
+              >componentTypes</param
+            >, <param name="componentTypeCount">componentTypeCount</param>, <param
+              name="outCompositeComponentType"
+              >outCompositeComponentType</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="specializeType" access="public" unsafe="true">
@@ -437,7 +528,18 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_specializeType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">specializeType</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="type">type</param>, <param name="specializationArgs">specializationArgs</param>, <param name="specializationArgCount">specializationArgCount</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_specializeType</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >specializeType</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="type"
+              >type</param
+            >, <param name="specializationArgs">specializationArgs</param>, <param
+              name="specializationArgCount"
+              >specializationArgCount</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="getTypeLayout" access="public" unsafe="true">
@@ -464,7 +566,17 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTypeLayout</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTypeLayout</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="type">type</param>, <param name="targetIndex">targetIndex</param>, <param name="rules">rules</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTypeLayout</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getTypeLayout</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="type"
+              >type</param
+            >, <param name="targetIndex">targetIndex</param>, <param name="rules"
+              >rules</param
+            >, <param name="outDiagnostics">outDiagnostics</param>);</code
+          >
         </body>
       </function>
       <function name="getContainerType" access="public" unsafe="true">
@@ -482,13 +594,28 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getContainerType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getContainerType</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="elementType">elementType</param>, <param name="containerType">containerType</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getContainerType</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getContainerType</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="elementType"
+              >elementType</param
+            >, <param name="containerType">containerType</param>, <param name="outDiagnostics"
+              >outDiagnostics</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getDynamicType" access="public" unsafe="true">
         <type native="slang::TypeReflection *">TypeReflection*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDynamicType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDynamicType</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDynamicType</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDynamicType</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getTypeRTTIMangledName" access="public" unsafe="true">
@@ -500,7 +627,15 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTypeRTTIMangledName</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTypeRTTIMangledName</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="type">type</param>, <param name="outNameBlob">outNameBlob</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTypeRTTIMangledName</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getTypeRTTIMangledName</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="type"
+              >type</param
+            >, <param name="outNameBlob">outNameBlob</param>);</code
+          >
         </body>
       </function>
       <function name="getTypeConformanceWitnessMangledName" access="public" unsafe="true">
@@ -515,7 +650,17 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTypeConformanceWitnessMangledName</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTypeConformanceWitnessMangledName</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="type">type</param>, <param name="interfaceType">interfaceType</param>, <param name="outNameBlob">outNameBlob</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTypeConformanceWitnessMangledName</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getTypeConformanceWitnessMangledName</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="type"
+              >type</param
+            >, <param name="interfaceType">interfaceType</param>, <param name="outNameBlob"
+              >outNameBlob</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getTypeConformanceWitnessSequentialID" access="public" unsafe="true">
@@ -530,7 +675,17 @@
           <type>uint*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTypeConformanceWitnessSequentialID</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getTypeConformanceWitnessSequentialID</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="type">type</param>, <param name="interfaceType">interfaceType</param>, <param name="outId">outId</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getTypeConformanceWitnessSequentialID</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getTypeConformanceWitnessSequentialID</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="type"
+              >type</param
+            >, <param name="interfaceType">interfaceType</param>, <param name="outId"
+              >outId</param
+            >);</code
+          >
         </body>
       </function>
       <function name="createTypeConformanceComponentType" access="public" unsafe="true">
@@ -551,7 +706,20 @@
           <type>ISlangBlob**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createTypeConformanceComponentType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">createTypeConformanceComponentType</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="type">type</param>, <param name="interfaceType">interfaceType</param>, <param name="outConformance">outConformance</param>, <param name="conformanceIdOverride">conformanceIdOverride</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_createTypeConformanceComponentType</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >createTypeConformanceComponentType</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="type"
+              >type</param
+            >, <param name="interfaceType">interfaceType</param>, <param name="outConformance"
+              >outConformance</param
+            >, <param name="conformanceIdOverride">conformanceIdOverride</param>, <param
+              name="outDiagnostics"
+              >outDiagnostics</param
+            >);</code
+          >
         </body>
       </function>
       <function name="loadModuleFromIRBlob" access="public" unsafe="true">
@@ -572,13 +740,29 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModuleFromIRBlob</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadModuleFromIRBlob</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="moduleName">moduleName</param>, <param name="path">path</param>, <param name="source">source</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModuleFromIRBlob</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >loadModuleFromIRBlob</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="moduleName"
+              >moduleName</param
+            >, <param name="path">path</param>, <param name="source">source</param>, <param
+              name="outDiagnostics"
+              >outDiagnostics</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getLoadedModuleCount" access="public" unsafe="true">
         <type native="SlangInt">nint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLoadedModuleCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getLoadedModuleCount</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLoadedModuleCount</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getLoadedModuleCount</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getLoadedModule" access="public" unsafe="true">
@@ -587,7 +771,15 @@
           <type>nint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLoadedModule</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getLoadedModule</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getLoadedModule</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getLoadedModule</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="index"
+              >index</param
+            >);</code
+          >
         </body>
       </function>
       <function name="isBinaryModuleUpToDate" access="public" unsafe="true">
@@ -599,7 +791,15 @@
           <type>ISlangBlob*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isBinaryModuleUpToDate</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">isBinaryModuleUpToDate</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="modulePath">modulePath</param>, <param name="binaryModuleBlob">binaryModuleBlob</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_isBinaryModuleUpToDate</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >isBinaryModuleUpToDate</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="modulePath"
+              >modulePath</param
+            >, <param name="binaryModuleBlob">binaryModuleBlob</param>);</code
+          >
         </body>
       </function>
       <function name="loadModuleFromSourceString" access="public" unsafe="true">
@@ -620,7 +820,18 @@
           </init>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModuleFromSourceString</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadModuleFromSourceString</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="moduleName">moduleName</param>, <param name="path">path</param>, <param name="@string">@string</param>, <param name="outDiagnostics">outDiagnostics</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModuleFromSourceString</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >loadModuleFromSourceString</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="moduleName"
+              >moduleName</param
+            >, <param name="path">path</param>, <param name="@string">@string</param>, <param
+              name="outDiagnostics"
+              >outDiagnostics</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getDynamicObjectRTTIBytes" access="public" unsafe="true">
@@ -638,7 +849,18 @@
           <type>uint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDynamicObjectRTTIBytes</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getDynamicObjectRTTIBytes</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="type">type</param>, <param name="interfaceType">interfaceType</param>, <param name="outRTTIDataBuffer">outRTTIDataBuffer</param>, <param name="bufferSizeInBytes">bufferSizeInBytes</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getDynamicObjectRTTIBytes</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getDynamicObjectRTTIBytes</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="type"
+              >type</param
+            >, <param name="interfaceType">interfaceType</param>, <param name="outRTTIDataBuffer"
+              >outRTTIDataBuffer</param>, <param name="bufferSizeInBytes"
+              >bufferSizeInBytes</param
+            >);</code
+          >
         </body>
       </function>
       <function name="loadModuleInfoFromIRBlob" access="public" unsafe="true">
@@ -656,12 +878,24 @@
           <type>sbyte**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModuleInfoFromIRBlob</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">loadModuleInfoFromIRBlob</vtbl>)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param name="source">source</param>, <param name="outModuleVersion">outModuleVersion</param>, <param name="outModuleCompilerVersion">outModuleCompilerVersion</param>, <param name="outModuleName">outModuleName</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_loadModuleInfoFromIRBlob</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >loadModuleInfoFromIRBlob</vtbl
+            >)(<param special="thisPtr">(ISession*)Unsafe.AsPointer(ref this)</param>, <param
+              name="source"
+              >source</param
+            >, <param name="outModuleVersion">outModuleVersion</param>, <param
+              name="outModuleCompilerVersion"
+              >outModuleCompilerVersion</param
+            >, <param name="outModuleName">outModuleName</param>);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addRef" access="public">
           <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
@@ -676,37 +910,56 @@
           <type native="IModule *(const char *, IBlob **) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="loadModuleFromSource" access="public">
-          <type native="IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="createCompositeComponentType" access="public">
-          <type native="SlangResult (IComponentType *const *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (IComponentType *const *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="specializeType" access="public">
-          <type native="TypeReflection *(TypeReflection *, const SpecializationArg *, SlangInt, ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="TypeReflection *(TypeReflection *, const SpecializationArg *, SlangInt, ISlangBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getTypeLayout" access="public">
-          <type native="TypeLayoutReflection *(TypeReflection *, SlangInt, LayoutRules, ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="TypeLayoutReflection *(TypeReflection *, SlangInt, LayoutRules, ISlangBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getContainerType" access="public">
-          <type native="TypeReflection *(TypeReflection *, ContainerType, ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="TypeReflection *(TypeReflection *, ContainerType, ISlangBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDynamicType" access="public">
           <type native="TypeReflection *() __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getTypeRTTIMangledName" access="public">
-          <type native="SlangResult (TypeReflection *, ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (TypeReflection *, ISlangBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getTypeConformanceWitnessMangledName" access="public">
-          <type native="SlangResult (TypeReflection *, TypeReflection *, ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (TypeReflection *, TypeReflection *, ISlangBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getTypeConformanceWitnessSequentialID" access="public">
-          <type native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="createTypeConformanceComponentType" access="public">
-          <type native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, ITypeConformance **, SlangInt, ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, ITypeConformance **, SlangInt, ISlangBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="loadModuleFromIRBlob" access="public">
-          <type native="IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getLoadedModuleCount" access="public">
           <type native="SlangInt () __attribute__((stdcall))">IntPtr</type>
@@ -718,13 +971,19 @@
           <type native="bool (const char *, slang::IBlob *) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="loadModuleFromSourceString" access="public">
-          <type native="IModule *(const char *, const char *, const char *, slang::IBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="IModule *(const char *, const char *, const char *, slang::IBlob **) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDynamicObjectRTTIBytes" access="public">
-          <type native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *, uint32_t) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *, uint32_t) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="loadModuleInfoFromIRBlob" access="public">
-          <type native="SlangResult (slang::IBlob *, SlangInt &amp;, const char *&amp;, const char *&amp;) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (slang::IBlob *, SlangInt &amp;, const char *&amp;, const char *&amp;) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

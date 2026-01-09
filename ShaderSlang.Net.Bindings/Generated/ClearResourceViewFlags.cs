@@ -3,7 +3,6 @@ namespace ShaderSlang.Net.Bindings.Generated;
 /// <include file='ClearResourceViewFlags.xml' path='doc/member[@name="ClearResourceViewFlags"]/*' />
 public partial struct ClearResourceViewFlags
 {
-
     /// <include file='Enum.xml' path='doc/member[@name="Enum"]/*' />
     [NativeTypeName("uint32_t")]
     public enum Enum : uint

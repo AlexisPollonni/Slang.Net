@@ -14,7 +14,11 @@ public unsafe partial struct ICommandEncoder
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(ICommandEncoder* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        ICommandEncoder* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -28,14 +32,25 @@ public unsafe partial struct ICommandEncoder
     public delegate void _endEncoding(ICommandEncoder* pThis);
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate void _writeTimestamp(ICommandEncoder* pThis, [NativeTypeName("gfx::IQueryPool *")] IQueryPool* queryPool, [NativeTypeName("gfx::GfxIndex")] int queryIndex);
+    public delegate void _writeTimestamp(
+        ICommandEncoder* pThis,
+        [NativeTypeName("gfx::IQueryPool *")] IQueryPool* queryPool,
+        [NativeTypeName("gfx::GfxIndex")] int queryIndex
+    );
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((ICommandEncoder*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (ICommandEncoder*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -43,7 +58,9 @@ public unsafe partial struct ICommandEncoder
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((ICommandEncoder*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (ICommandEncoder*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -51,21 +68,32 @@ public unsafe partial struct ICommandEncoder
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((ICommandEncoder*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (ICommandEncoder*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='ICommandEncoder.xml' path='doc/member[@name="ICommandEncoder.endEncoding"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void endEncoding()
     {
-        Marshal.GetDelegateForFunctionPointer<_endEncoding>(lpVtbl->endEncoding)((ICommandEncoder*)Unsafe.AsPointer(ref this));
+        Marshal.GetDelegateForFunctionPointer<_endEncoding>(lpVtbl->endEncoding)(
+            (ICommandEncoder*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='ICommandEncoder.xml' path='doc/member[@name="ICommandEncoder.writeTimestamp"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void writeTimestamp([NativeTypeName("gfx::IQueryPool *")] IQueryPool* queryPool, [NativeTypeName("gfx::GfxIndex")] int queryIndex)
+    public void writeTimestamp(
+        [NativeTypeName("gfx::IQueryPool *")] IQueryPool* queryPool,
+        [NativeTypeName("gfx::GfxIndex")] int queryIndex
+    )
     {
-        Marshal.GetDelegateForFunctionPointer<_writeTimestamp>(lpVtbl->writeTimestamp)((ICommandEncoder*)Unsafe.AsPointer(ref this), queryPool, queryIndex);
+        Marshal.GetDelegateForFunctionPointer<_writeTimestamp>(lpVtbl->writeTimestamp)(
+            (ICommandEncoder*)Unsafe.AsPointer(ref this),
+            queryPool,
+            queryIndex
+        );
     }
 
     public partial struct Vtbl

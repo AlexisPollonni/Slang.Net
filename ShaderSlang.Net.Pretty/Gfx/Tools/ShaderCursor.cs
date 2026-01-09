@@ -53,7 +53,8 @@ public struct ShaderCursor
                 Offset,
                 MemoryMarshal.CreateSpan(ref spanRef, data.Length),
                 (nuint)data.Length
-            ) ?? SlangResult.InvalidArg;
+            )
+            ?? SlangResult.InvalidArg;
     }
 
     public readonly SlangResult SetData<T>(ReadOnlySpan<T> data)
@@ -81,7 +82,8 @@ public struct ShaderCursor
                 Offset,
                 MemoryMarshal.CreateSpan(ref spanRef, args.Length),
                 args.Length
-            ) ?? SlangResult.InvalidArg;
+            )
+            ?? SlangResult.InvalidArg;
     }
 
     public readonly SlangResult SetResource(IResourceView resourceView)

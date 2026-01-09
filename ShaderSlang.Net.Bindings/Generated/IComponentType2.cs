@@ -14,7 +14,11 @@ public unsafe partial struct IComponentType2
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(IComponentType2* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        IComponentType2* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -26,18 +30,36 @@ public unsafe partial struct IComponentType2
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _getTargetCompileResult(IComponentType2* pThis, [NativeTypeName("SlangInt")] nint targetIndex, ICompileResult** outCompileResult, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
+    public delegate int _getTargetCompileResult(
+        IComponentType2* pThis,
+        [NativeTypeName("SlangInt")] nint targetIndex,
+        ICompileResult** outCompileResult,
+        [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _getEntryPointCompileResult(IComponentType2* pThis, [NativeTypeName("SlangInt")] nint entryPointIndex, [NativeTypeName("SlangInt")] nint targetIndex, ICompileResult** outCompileResult, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null);
+    public delegate int _getEntryPointCompileResult(
+        IComponentType2* pThis,
+        [NativeTypeName("SlangInt")] nint entryPointIndex,
+        [NativeTypeName("SlangInt")] nint targetIndex,
+        ICompileResult** outCompileResult,
+        [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null
+    );
 
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IComponentType2*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (IComponentType2*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -45,7 +67,9 @@ public unsafe partial struct IComponentType2
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IComponentType2*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (IComponentType2*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -53,23 +77,49 @@ public unsafe partial struct IComponentType2
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IComponentType2*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (IComponentType2*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='IComponentType2.xml' path='doc/member[@name="IComponentType2.getTargetCompileResult"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int getTargetCompileResult([NativeTypeName("SlangInt")] nint targetIndex, ICompileResult** outCompileResult, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
+    public int getTargetCompileResult(
+        [NativeTypeName("SlangInt")] nint targetIndex,
+        ICompileResult** outCompileResult,
+        [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_getTargetCompileResult>(lpVtbl->getTargetCompileResult)((IComponentType2*)Unsafe.AsPointer(ref this), targetIndex, outCompileResult, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_getTargetCompileResult>(
+            lpVtbl->getTargetCompileResult
+        )(
+            (IComponentType2*)Unsafe.AsPointer(ref this),
+            targetIndex,
+            outCompileResult,
+            outDiagnostics
+        );
     }
 
     /// <include file='IComponentType2.xml' path='doc/member[@name="IComponentType2.getEntryPointCompileResult"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int getEntryPointCompileResult([NativeTypeName("SlangInt")] nint entryPointIndex, [NativeTypeName("SlangInt")] nint targetIndex, ICompileResult** outCompileResult, [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null)
+    public int getEntryPointCompileResult(
+        [NativeTypeName("SlangInt")] nint entryPointIndex,
+        [NativeTypeName("SlangInt")] nint targetIndex,
+        ICompileResult** outCompileResult,
+        [NativeTypeName("IBlob **")] ISlangBlob** outDiagnostics = null
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_getEntryPointCompileResult>(lpVtbl->getEntryPointCompileResult)((IComponentType2*)Unsafe.AsPointer(ref this), entryPointIndex, targetIndex, outCompileResult, outDiagnostics);
+        return Marshal.GetDelegateForFunctionPointer<_getEntryPointCompileResult>(
+            lpVtbl->getEntryPointCompileResult
+        )(
+            (IComponentType2*)Unsafe.AsPointer(ref this),
+            entryPointIndex,
+            targetIndex,
+            outCompileResult,
+            outDiagnostics
+        );
     }
 
     public partial struct Vtbl
@@ -83,10 +133,14 @@ public unsafe partial struct IComponentType2
         [NativeTypeName("uint32_t () __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("SlangResult (SlangInt, ICompileResult **, IBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangInt, ICompileResult **, IBlob **) __attribute__((stdcall))"
+        )]
         public IntPtr getTargetCompileResult;
 
-        [NativeTypeName("SlangResult (SlangInt, SlangInt, ICompileResult **, IBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangInt, SlangInt, ICompileResult **, IBlob **) __attribute__((stdcall))"
+        )]
         public IntPtr getEntryPointCompileResult;
     }
 }

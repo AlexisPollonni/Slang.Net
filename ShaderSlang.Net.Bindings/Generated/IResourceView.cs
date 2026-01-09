@@ -13,7 +13,11 @@ public unsafe partial struct IResourceView
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(IResourceView* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        IResourceView* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -29,7 +33,10 @@ public unsafe partial struct IResourceView
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getNativeHandle(IResourceView* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle);
+    public delegate int _getNativeHandle(
+        IResourceView* pThis,
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle
+    );
 
     /// <include file='ResourceViewType.xml' path='doc/member[@name="ResourceViewType"]/*' />
     public enum ResourceViewType
@@ -91,9 +98,16 @@ public unsafe partial struct IResourceView
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IResourceView*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (IResourceView*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -101,7 +115,9 @@ public unsafe partial struct IResourceView
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IResourceView*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (IResourceView*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -109,7 +125,9 @@ public unsafe partial struct IResourceView
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IResourceView*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (IResourceView*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='IResourceView.xml' path='doc/member[@name="IResourceView.getViewDesc"]/*' />
@@ -117,15 +135,22 @@ public unsafe partial struct IResourceView
     [return: NativeTypeName("gfx::IResourceView::Desc *")]
     public ResourceViewDesc* getViewDesc()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getViewDesc>(lpVtbl->getViewDesc)((IResourceView*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getViewDesc>(lpVtbl->getViewDesc)(
+            (IResourceView*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='IResourceView.xml' path='doc/member[@name="IResourceView.getNativeHandle"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getNativeHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle)
+    public int getNativeHandle(
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outNativeHandle
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_getNativeHandle>(lpVtbl->getNativeHandle)((IResourceView*)Unsafe.AsPointer(ref this), outNativeHandle);
+        return Marshal.GetDelegateForFunctionPointer<_getNativeHandle>(lpVtbl->getNativeHandle)(
+            (IResourceView*)Unsafe.AsPointer(ref this),
+            outNativeHandle
+        );
     }
 
     public partial struct Vtbl

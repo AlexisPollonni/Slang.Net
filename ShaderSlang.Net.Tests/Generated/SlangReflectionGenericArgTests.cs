@@ -11,7 +11,10 @@ public static unsafe partial class SlangReflectionGenericArgTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(sizeof(SlangReflectionGenericArg), Marshal.SizeOf<SlangReflectionGenericArg>());
+        Assert.Equal(
+            sizeof(SlangReflectionGenericArg),
+            Marshal.SizeOf<SlangReflectionGenericArg>()
+        );
     }
 
     /// <summary>Validates that the <see cref="SlangReflectionGenericArg" /> struct has the right <see cref="LayoutKind" />.</summary>
