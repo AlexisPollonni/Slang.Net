@@ -602,7 +602,6 @@ internal record BuildConfig(
         ]);
 
         //Add additional include directories for linux systems to resolve stddef.h
-
         var includeDirectories = IsRunningOnLinux() ? linuxIncludeDirectories : [];
 
         Information("Include directories for Clang: {0}", string.Join(", ", includeDirectories));
@@ -612,12 +611,11 @@ internal record BuildConfig(
             $"--language={Language}", // Treat subsequent input files as having type <language>
             "-stdlib=libc++",
             "-Wno-pragma-once-outside-header", // We are processing files which may be header files
-            "-D __clang_major__=19", //Header yvals_core expects clang19, we fake it for binding gen before clangsharp updates
             "-Wno-deprecated-declarations",
             .. DefineMacros
                 .Concat(["SLANG_PLATFORM", GetSlangPlatformDefine()])
                 .Select(s => $"-D {s}"),
-            .. includeDirectories.Select(s => $"--include-directory={s}"),
+            .. includeDirectories.Select(s => $"-I{s}"),
         ];
     }
 
