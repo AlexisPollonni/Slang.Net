@@ -189,9 +189,9 @@ Task("Test")
 
         if (GitHubActions.IsRunningOnGitHubActions)
         {
-            var testResultsDir = resultsDir;
+            EnsureDirectoryExists(resultsDir);
             var resFiles = Context
-                .FileSystem.GetDirectory(testResultsDir)
+                .FileSystem.GetDirectory(resultsDir)
                 .GetFiles("*", SearchScope.Current);
 
             foreach (var resultFile in resFiles)
