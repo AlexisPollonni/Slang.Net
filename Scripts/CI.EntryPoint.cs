@@ -208,6 +208,7 @@ Task("Pack")
     });
 
 Task("PublishToGithub")
+    .IsDependentOn("Test")
     .IsDependentOn("Pack")
     .ContinueOnError()
     .WithCriteria(() =>
