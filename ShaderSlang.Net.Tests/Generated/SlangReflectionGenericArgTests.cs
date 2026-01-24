@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 using Xunit;
 
@@ -28,13 +27,6 @@ public static unsafe partial class SlangReflectionGenericArgTests
     [Fact]
     public static void SizeOfTest()
     {
-        if (Environment.Is64BitProcess)
-        {
-            Assert.Equal(8, sizeof(SlangReflectionGenericArg));
-        }
-        else
-        {
-            Assert.Equal(4, sizeof(SlangReflectionGenericArg));
-        }
+        Assert.Equal(8, sizeof(SlangReflectionGenericArg));
     }
 }

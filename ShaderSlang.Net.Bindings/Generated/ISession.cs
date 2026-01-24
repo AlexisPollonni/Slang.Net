@@ -522,93 +522,101 @@ public unsafe partial struct ISession
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("IGlobalSession *() __attribute__((stdcall))")]
+        [NativeTypeName("IGlobalSession *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getGlobalSession;
 
-        [NativeTypeName("IModule *(const char *, IBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "IModule *(const char *, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr loadModule;
 
         [NativeTypeName(
-            "IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((stdcall))"
+            "IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr loadModuleFromSource;
 
         [NativeTypeName(
-            "SlangResult (IComponentType *const *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((stdcall))"
+            "SlangResult (IComponentType *const *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createCompositeComponentType;
 
         [NativeTypeName(
-            "TypeReflection *(TypeReflection *, const SpecializationArg *, SlangInt, ISlangBlob **) __attribute__((stdcall))"
+            "TypeReflection *(TypeReflection *, const SpecializationArg *, SlangInt, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr specializeType;
 
         [NativeTypeName(
-            "TypeLayoutReflection *(TypeReflection *, SlangInt, LayoutRules, ISlangBlob **) __attribute__((stdcall))"
+            "TypeLayoutReflection *(TypeReflection *, SlangInt, LayoutRules, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getTypeLayout;
 
         [NativeTypeName(
-            "TypeReflection *(TypeReflection *, ContainerType, ISlangBlob **) __attribute__((stdcall))"
+            "TypeReflection *(TypeReflection *, ContainerType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getContainerType;
 
-        [NativeTypeName("TypeReflection *() __attribute__((stdcall))")]
+        [NativeTypeName("TypeReflection *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDynamicType;
 
-        [NativeTypeName("SlangResult (TypeReflection *, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (TypeReflection *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getTypeRTTIMangledName;
 
         [NativeTypeName(
-            "SlangResult (TypeReflection *, TypeReflection *, ISlangBlob **) __attribute__((stdcall))"
+            "SlangResult (TypeReflection *, TypeReflection *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getTypeConformanceWitnessMangledName;
 
         [NativeTypeName(
-            "SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *) __attribute__((stdcall))"
+            "SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getTypeConformanceWitnessSequentialID;
 
         [NativeTypeName(
-            "SlangResult (slang::TypeReflection *, slang::TypeReflection *, ITypeConformance **, SlangInt, ISlangBlob **) __attribute__((stdcall))"
+            "SlangResult (slang::TypeReflection *, slang::TypeReflection *, ITypeConformance **, SlangInt, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createTypeConformanceComponentType;
 
         [NativeTypeName(
-            "IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((stdcall))"
+            "IModule *(const char *, const char *, slang::IBlob *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr loadModuleFromIRBlob;
 
-        [NativeTypeName("SlangInt () __attribute__((stdcall))")]
+        [NativeTypeName("SlangInt () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getLoadedModuleCount;
 
-        [NativeTypeName("IModule *(SlangInt) __attribute__((stdcall))")]
+        [NativeTypeName("IModule *(SlangInt) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getLoadedModule;
 
-        [NativeTypeName("bool (const char *, slang::IBlob *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "bool (const char *, slang::IBlob *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr isBinaryModuleUpToDate;
 
         [NativeTypeName(
-            "IModule *(const char *, const char *, const char *, slang::IBlob **) __attribute__((stdcall))"
+            "IModule *(const char *, const char *, const char *, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr loadModuleFromSourceString;
 
         [NativeTypeName(
-            "SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *, uint32_t) __attribute__((stdcall))"
+            "SlangResult (slang::TypeReflection *, slang::TypeReflection *, uint32_t *, uint32_t) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getDynamicObjectRTTIBytes;
 
         [NativeTypeName(
-            "SlangResult (slang::IBlob *, SlangInt &, const char *&, const char *&) __attribute__((stdcall))"
+            "SlangResult (slang::IBlob *, SlangInt &, const char *&, const char *&) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr loadModuleInfoFromIRBlob;
     }

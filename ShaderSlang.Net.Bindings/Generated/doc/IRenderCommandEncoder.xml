@@ -1466,143 +1466,163 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="endEncoding" access="public">
-          <type native="void () __attribute__((stdcall))">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="writeTimestamp" access="public">
-          <type native="void (IQueryPool *, GfxIndex) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="copyBuffer" access="public">
           <type
-            native="void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((stdcall))"
+            native="void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="copyTexture" access="public">
           <type
-            native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((stdcall))"
+            native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="copyTextureToBuffer" access="public">
           <type
-            native="void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((stdcall))"
+            native="void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="uploadTextureData" access="public">
           <type
-            native="void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((stdcall))"
+            native="void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="uploadBufferData" access="public">
-          <type native="void (IBufferResource *, Offset, Size, void *) __attribute__((stdcall))"
+          <type
+            native="void (IBufferResource *, Offset, Size, void *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="textureBarrier" access="public">
           <type
-            native="void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((stdcall))"
+            native="void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="textureSubresourceBarrier" access="public">
           <type
-            native="void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((stdcall))"
+            native="void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="bufferBarrier" access="public">
           <type
-            native="void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((stdcall))"
+            native="void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="clearResourceView" access="public">
           <type
-            native="void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((stdcall))"
+            native="void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="resolveResource" access="public">
           <type
-            native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((stdcall))"
+            native="void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="resolveQuery" access="public">
           <type
-            native="void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((stdcall))"
+            native="void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="beginDebugEvent" access="public">
-          <type native="void (const char *, float *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (const char *, float *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="endDebugEvent" access="public">
-          <type native="void () __attribute__((stdcall))">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="bindPipeline" access="public">
-          <type native="Result (IPipelineState *, IShaderObject **) __attribute__((stdcall))"
+          <type
+            native="Result (IPipelineState *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="bindPipelineWithRootObject" access="public">
-          <type native="Result (IPipelineState *, IShaderObject *) __attribute__((stdcall))"
+          <type
+            native="Result (IPipelineState *, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setViewports" access="public">
-          <type native="void (GfxCount, const Viewport *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (GfxCount, const Viewport *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setScissorRects" access="public">
-          <type native="void (GfxCount, const ScissorRect *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (GfxCount, const ScissorRect *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setPrimitiveTopology" access="public">
-          <type native="void (PrimitiveTopology) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (PrimitiveTopology) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setVertexBuffers" access="public">
           <type
-            native="void (GfxIndex, GfxCount, IBufferResource *const *, const Offset *) __attribute__((stdcall))"
+            native="void (GfxIndex, GfxCount, IBufferResource *const *, const Offset *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setIndexBuffer" access="public">
-          <type native="void (IBufferResource *, Format, Offset) __attribute__((stdcall))"
+          <type
+            native="void (IBufferResource *, Format, Offset) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="draw" access="public">
-          <type native="Result (GfxCount, GfxIndex) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (GfxCount, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="drawIndexed" access="public">
-          <type native="Result (GfxCount, GfxIndex, GfxIndex) __attribute__((stdcall))"
+          <type
+            native="Result (GfxCount, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="drawIndirect" access="public">
           <type
-            native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((stdcall))"
+            native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="drawIndexedIndirect" access="public">
           <type
-            native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((stdcall))"
+            native="Result (GfxCount, IBufferResource *, Offset, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setStencilReference" access="public">
-          <type native="void (uint32_t) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setSamplePositions" access="public">
           <type
-            native="Result (GfxCount, GfxCount, const SamplePosition *) __attribute__((stdcall))"
+            native="Result (GfxCount, GfxCount, const SamplePosition *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="drawInstanced" access="public">
-          <type native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex) __attribute__((stdcall))"
+          <type
+            native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="drawIndexedInstanced" access="public">
           <type
-            native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex, GfxIndex) __attribute__((stdcall))"
+            native="Result (GfxCount, GfxCount, GfxIndex, GfxIndex, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="drawMeshTasks" access="public">
-          <type native="Result (int, int, int) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (int, int, int) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

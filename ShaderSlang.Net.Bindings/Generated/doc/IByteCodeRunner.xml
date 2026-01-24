@@ -387,49 +387,62 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="loadModule" access="public">
-          <type native="SlangResult (IBlob *) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (IBlob *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="selectFunctionByIndex" access="public">
-          <type native="SlangResult (uint32_t) __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="findFunctionByName" access="public">
-          <type native="int (const char *) __attribute__((stdcall))">IntPtr</type>
+          <type native="int (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getFunctionInfo" access="public">
-          <type native="SlangResult (uint32_t, ByteCodeFuncInfo *) __attribute__((stdcall))"
+          <type
+            native="SlangResult (uint32_t, ByteCodeFuncInfo *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getCurrentWorkingSet" access="public">
-          <type native="void *() __attribute__((stdcall))">IntPtr</type>
+          <type native="void *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="execute" access="public">
-          <type native="SlangResult (void *, size_t) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getErrorString" access="public">
-          <type native="void (IBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getReturnValue" access="public">
-          <type native="void *(size_t *) __attribute__((stdcall))">IntPtr</type>
+          <type native="void *(size_t *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setExtInstHandlerUserData" access="public">
-          <type native="void (void *) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (void *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="registerExtCall" access="public">
-          <type native="SlangResult (const char *, VMExtFunction) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const char *, VMExtFunction) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setPrintCallback" access="public">
-          <type native="SlangResult (VMPrintFunc, void *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (VMPrintFunc, void *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

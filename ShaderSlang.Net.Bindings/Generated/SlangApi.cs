@@ -5,19 +5,19 @@ namespace ShaderSlang.Net.Bindings.Generated;
 
 public static unsafe partial class SlangApi
 {
-    public const uint SLANG_DIAGNOSTIC_FLAG_VERBOSE_PATHS = 0x01;
-    public const uint SLANG_DIAGNOSTIC_FLAG_TREAT_WARNINGS_AS_ERRORS = 0x02;
+    public const int SLANG_DIAGNOSTIC_FLAG_VERBOSE_PATHS = 0x01;
+    public const int SLANG_DIAGNOSTIC_FLAG_TREAT_WARNINGS_AS_ERRORS = 0x02;
 
-    public const uint SLANG_COMPILE_FLAG_NO_MANGLING = 1 << 3;
-    public const uint SLANG_COMPILE_FLAG_NO_CODEGEN = 1 << 4;
-    public const uint SLANG_COMPILE_FLAG_OBFUSCATE = 1 << 5;
-    public const uint SLANG_COMPILE_FLAG_NO_CHECKING = 0;
-    public const uint SLANG_COMPILE_FLAG_SPLIT_MIXED_TYPES = 0;
+    public const int SLANG_COMPILE_FLAG_NO_MANGLING = 1 << 3;
+    public const int SLANG_COMPILE_FLAG_NO_CODEGEN = 1 << 4;
+    public const int SLANG_COMPILE_FLAG_OBFUSCATE = 1 << 5;
+    public const int SLANG_COMPILE_FLAG_NO_CHECKING = 0;
+    public const int SLANG_COMPILE_FLAG_SPLIT_MIXED_TYPES = 0;
 
-    public const uint SLANG_TARGET_FLAG_PARAMETER_BLOCKS_USE_REGISTER_SPACES = 1 << 4;
-    public const uint SLANG_TARGET_FLAG_GENERATE_WHOLE_PROGRAM = 1 << 8;
-    public const uint SLANG_TARGET_FLAG_DUMP_IR = 1 << 9;
-    public const uint SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY = 1 << 10;
+    public const int SLANG_TARGET_FLAG_PARAMETER_BLOCKS_USE_REGISTER_SPACES = 1 << 4;
+    public const int SLANG_TARGET_FLAG_GENERATE_WHOLE_PROGRAM = 1 << 8;
+    public const int SLANG_TARGET_FLAG_DUMP_IR = 1 << 9;
+    public const int SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY = 1 << 10;
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.GetBuildTagString"]/*' />
     [DllImport(
@@ -29,8 +29,11 @@ public static unsafe partial class SlangApi
     [return: NativeTypeName("const char *")]
     public static extern sbyte* GetBuildTagString();
 
-    [NativeTypeName("#define SLANG_HAS_BACKTRACE 1")]
-    public const int SLANG_HAS_BACKTRACE = 1;
+    [NativeTypeName("#define SLANG_PROCESSOR_WASM 0")]
+    public const int SLANG_PROCESSOR_WASM = 0;
+
+    [NativeTypeName("#define SLANG_HAS_BACKTRACE 0")]
+    public const int SLANG_HAS_BACKTRACE = 0;
 
     [NativeTypeName("#define SLANG_FACILITY_WIN_GENERAL 0")]
     public const int SLANG_FACILITY_WIN_GENERAL = 0;
@@ -130,6 +133,9 @@ public static unsafe partial class SlangApi
     public const int SLANG_E_TIME_OUT = unchecked(
         (((int)(0x200)) << 16) | ((int)(8)) | (int)(0x80000000)
     );
+
+    [NativeTypeName("#define SLANG_UNKNOWN_SIZE (SLANG_UNBOUNDED_SIZE - 1)")]
+    public const nint SLANG_UNKNOWN_SIZE = -1;
 
     [NativeTypeName("#define SLANG_API_VERSION 0")]
     public const int SLANG_API_VERSION = 0;
@@ -2067,7 +2073,7 @@ public static unsafe partial class SlangApi
     [return: NativeTypeName("SlangResult")]
     public static extern int ReflectionVariable_GetDefaultValueInt(
         SlangReflectionVariable* inVar,
-        [NativeTypeName("int64_t *")] nint* rs
+        [NativeTypeName("int64_t *")] long* rs
     );
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.ReflectionVariable_GetGenericContainer"]/*' />
@@ -2600,7 +2606,7 @@ public static unsafe partial class SlangApi
         ExactSpelling = true
     )]
     [return: NativeTypeName("int64_t")]
-    public static extern nint ReflectionGeneric_GetConcreteIntVal(
+    public static extern long ReflectionGeneric_GetConcreteIntVal(
         SlangReflectionGeneric* generic,
         SlangReflectionVariable* valueParam
     );
@@ -3207,7 +3213,7 @@ public static unsafe partial class SlangApi
     [DllImport(
         "slang",
         CallingConvention = CallingConvention.Cdecl,
-        EntryPoint = "_Z23spReflection_GetSessionP18SlangProgramLayout",
+        EntryPoint = "?spReflection_GetSession@@YAPEAUISession@slang@@PEAUSlangProgramLayout@@@Z",
         ExactSpelling = true
     )]
     [return: NativeTypeName("slang::ISession *")]
@@ -3282,7 +3288,7 @@ public static unsafe partial class SlangApi
         [NativeTypeName("slang::ISession **")] ISession** outSession
     );
 
-    public const uint kSessionFlags_None = 0;
+    public const int kSessionFlags_None = 0;
 
     /// <include file='SlangApi.xml' path='doc/member[@name="SlangApi.slang_createBlob"]/*' />
     [DllImport("slang", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
@@ -3355,7 +3361,7 @@ public static unsafe partial class SlangApi
     [DllImport(
         "slang",
         CallingConvention = CallingConvention.Cdecl,
-        EntryPoint = "_Z27slang_getEmbeddedCoreModulev",
+        EntryPoint = "?slang_getEmbeddedCoreModule@@YAPEAUISlangBlob@@XZ",
         ExactSpelling = true
     )]
     public static extern ISlangBlob* slang_getEmbeddedCoreModule();

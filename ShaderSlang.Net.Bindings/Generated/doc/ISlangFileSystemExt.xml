@@ -369,50 +369,57 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="castAs" access="public">
-          <type native="void *(const SlangUUID &amp;) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="loadFile" access="public">
-          <type native="SlangResult (const char *, ISlangBlob **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getFileUniqueIdentity" access="public">
-          <type native="SlangResult (const char *, ISlangBlob **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="calcCombinedPath" access="public">
           <type
-            native="SlangResult (SlangPathType, const char *, const char *, ISlangBlob **) __attribute__((stdcall))"
+            native="SlangResult (SlangPathType, const char *, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getPathType" access="public">
-          <type native="SlangResult (const char *, SlangPathType *) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const char *, SlangPathType *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getPath" access="public">
           <type
-            native="SlangResult (PathKind, const char *, ISlangBlob **) __attribute__((stdcall))"
+            native="SlangResult (PathKind, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="clearCache" access="public">
-          <type native="void () __attribute__((stdcall))">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="enumeratePathContents" access="public">
           <type
-            native="SlangResult (const char *, FileSystemContentsCallBack, void *) __attribute__((stdcall))"
+            native="SlangResult (const char *, FileSystemContentsCallBack, void *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getOSPathKind" access="public">
-          <type native="OSPathKind () __attribute__((stdcall))">IntPtr</type>
+          <type native="OSPathKind () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

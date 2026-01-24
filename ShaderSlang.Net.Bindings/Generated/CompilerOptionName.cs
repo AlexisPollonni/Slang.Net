@@ -387,6 +387,45 @@ public enum CompilerOptionName
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.ForceCLayout"]/*' />
     ForceCLayout,
 
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.ExperimentalFeature"]/*' />
+    ExperimentalFeature,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.ReportDetailedPerfBenchmark"]/*' />
+    ReportDetailedPerfBenchmark,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.ValidateIRDetailed"]/*' />
+    ValidateIRDetailed,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.DumpIRBefore"]/*' />
+    DumpIRBefore,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.DumpIRAfter"]/*' />
+    DumpIRAfter,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EmitCPUMethod"]/*' />
+    EmitCPUMethod,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EmitCPUViaCPP"]/*' />
+    EmitCPUViaCPP,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EmitCPUViaLLVM"]/*' />
+    EmitCPUViaLLVM,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.LLVMTargetTriple"]/*' />
+    LLVMTargetTriple,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.LLVMCPU"]/*' />
+    LLVMCPU,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.LLVMFeatures"]/*' />
+    LLVMFeatures,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.EnableRichDiagnostics"]/*' />
+    EnableRichDiagnostics,
+
+    /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.ReportDynamicDispatchSites"]/*' />
+    ReportDynamicDispatchSites,
+
     /// <include file='CompilerOptionName.xml' path='doc/member[@name="CompilerOptionName.CountOf"]/*' />
     CountOf,
 }

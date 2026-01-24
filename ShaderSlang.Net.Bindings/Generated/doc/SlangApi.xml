@@ -3,67 +3,67 @@
   <namespace name="ShaderSlang.Net.Bindings.Generated">
     <class name="SlangApi" access="public" static="true">
       <constant name="SLANG_DIAGNOSTIC_FLAG_VERBOSE_PATHS" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x01</code>
         </value>
       </constant>
       <constant name="SLANG_DIAGNOSTIC_FLAG_TREAT_WARNINGS_AS_ERRORS" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x02</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_NO_MANGLING" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 3</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_NO_CODEGEN" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 4</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_OBFUSCATE" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 5</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_NO_CHECKING" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0</code>
         </value>
       </constant>
       <constant name="SLANG_COMPILE_FLAG_SPLIT_MIXED_TYPES" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0</code>
         </value>
       </constant>
       <constant name="SLANG_TARGET_FLAG_PARAMETER_BLOCKS_USE_REGISTER_SPACES" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 4</code>
         </value>
       </constant>
       <constant name="SLANG_TARGET_FLAG_GENERATE_WHOLE_PROGRAM" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 8</code>
         </value>
       </constant>
       <constant name="SLANG_TARGET_FLAG_DUMP_IR" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 9</code>
         </value>
       </constant>
       <constant name="SLANG_TARGET_FLAG_GENERATE_SPIRV_DIRECTLY" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>1 &lt;&lt; 10</code>
         </value>
@@ -79,10 +79,16 @@
       >
         <type native="const char *">sbyte*</type>
       </function>
+      <constant name="SLANG_PROCESSOR_WASM" access="public">
+        <type primitive="True">int</type>
+        <value>
+          <code>0</code>
+        </value>
+      </constant>
       <constant name="SLANG_HAS_BACKTRACE" access="public">
         <type primitive="True">int</type>
         <value>
-          <code>1</code>
+          <code>0</code>
         </value>
       </constant>
       <constant name="SLANG_FACILITY_WIN_GENERAL" access="public">
@@ -279,6 +285,12 @@
               >((((int)(0x200)) &lt;&lt; 16) | ((int)(8)) | (int)(<value>0x80000000</value>))</code
             >
           </unchecked>
+        </value>
+      </constant>
+      <constant name="SLANG_UNKNOWN_SIZE" access="public">
+        <type primitive="True">nuint</type>
+        <value>
+          <code>((~(nuint)(<value>0</value>)) - 1)</code>
         </value>
       </constant>
       <constant name="SLANG_API_VERSION" access="public">
@@ -2975,7 +2987,7 @@
           <type>SlangReflectionVariable*</type>
         </param>
         <param name="rs">
-          <type>nint*</type>
+          <type>long*</type>
         </param>
       </function>
       <function
@@ -3691,7 +3703,7 @@
         static="true"
         unsafe="true"
       >
-        <type native="int64_t">nint</type>
+        <type native="int64_t">long</type>
         <param name="generic">
           <type>SlangReflectionGeneric*</type>
         </param>
@@ -4508,7 +4520,7 @@
         access="public"
         lib="slang"
         convention="Cdecl"
-        entrypoint="_Z23spReflection_GetSessionP18SlangProgramLayout"
+        entrypoint="?spReflection_GetSession@@YAPEAUISession@slang@@PEAUSlangProgramLayout@@@Z"
         static="true"
         unsafe="true"
       >
@@ -4609,7 +4621,7 @@
         </param>
       </function>
       <constant name="kSessionFlags_None" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0</code>
         </value>
@@ -4773,7 +4785,7 @@
         access="public"
         lib="slang"
         convention="Cdecl"
-        entrypoint="_Z27slang_getEmbeddedCoreModulev"
+        entrypoint="?slang_getEmbeddedCoreModule@@YAPEAUISlangBlob@@XZ"
         static="true"
         unsafe="true"
       >

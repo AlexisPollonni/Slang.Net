@@ -41,7 +41,7 @@ public unsafe partial struct ISlangProfiler
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("long")]
-    public delegate nint _getEntryTimeMS(
+    public delegate int _getEntryTimeMS(
         ISlangProfiler* pThis,
         [NativeTypeName("uint32_t")] uint index
     );
@@ -112,7 +112,7 @@ public unsafe partial struct ISlangProfiler
     /// <include file='ISlangProfiler.xml' path='doc/member[@name="ISlangProfiler.getEntryTimeMS"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("long")]
-    public nint getEntryTimeMS([NativeTypeName("uint32_t")] uint index)
+    public int getEntryTimeMS([NativeTypeName("uint32_t")] uint index)
     {
         return Marshal.GetDelegateForFunctionPointer<_getEntryTimeMS>(lpVtbl->getEntryTimeMS)(
             (ISlangProfiler*)Unsafe.AsPointer(ref this),
@@ -132,25 +132,27 @@ public unsafe partial struct ISlangProfiler
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("size_t () __attribute__((stdcall))")]
+        [NativeTypeName("size_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getEntryCount;
 
-        [NativeTypeName("const char *(uint32_t) __attribute__((stdcall))")]
+        [NativeTypeName("const char *(uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getEntryName;
 
-        [NativeTypeName("long (uint32_t) __attribute__((stdcall))")]
+        [NativeTypeName("long (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getEntryTimeMS;
 
-        [NativeTypeName("uint32_t (uint32_t) __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getEntryInvocationTimes;
     }
 }

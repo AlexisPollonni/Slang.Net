@@ -227,29 +227,32 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="precompileForTarget" access="public">
-          <type native="SlangResult (SlangCompileTarget, ISlangBlob **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (SlangCompileTarget, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getPrecompiledTargetCode" access="public">
           <type
-            native="SlangResult (SlangCompileTarget, IBlob **, IBlob **) __attribute__((stdcall))"
+            native="SlangResult (SlangCompileTarget, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getModuleDependencyCount" access="public">
-          <type native="SlangInt () __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getModuleDependency" access="public">
-          <type native="SlangResult (SlangInt, IModule **, IBlob **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (SlangInt, IModule **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
       </vtbl>

@@ -236,40 +236,48 @@ public unsafe partial struct IBufferResource
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Type () __attribute__((stdcall))")]
+        [NativeTypeName("Type () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getType;
 
-        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getNativeResourceHandle;
 
-        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getSharedHandle;
 
-        [NativeTypeName("Result (const char *) __attribute__((stdcall))")]
+        [NativeTypeName("Result (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDebugName;
 
-        [NativeTypeName("const char *() __attribute__((stdcall))")]
+        [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDebugName;
 
-        [NativeTypeName("Desc *() __attribute__((stdcall))")]
+        [NativeTypeName("Desc *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDesc;
 
-        [NativeTypeName("DeviceAddress () __attribute__((stdcall))")]
+        [NativeTypeName("DeviceAddress () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDeviceAddress;
 
-        [NativeTypeName("Result (MemoryRange *, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (MemoryRange *, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr map;
 
-        [NativeTypeName("Result (MemoryRange *) __attribute__((stdcall))")]
+        [NativeTypeName("Result (MemoryRange *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr unmap;
     }
 }

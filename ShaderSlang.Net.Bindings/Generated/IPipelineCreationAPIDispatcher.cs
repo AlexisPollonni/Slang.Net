@@ -199,34 +199,40 @@ public unsafe partial struct IPipelineCreationAPIDispatcher
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
         [NativeTypeName(
-            "Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((stdcall))"
+            "Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createComputePipelineState;
 
         [NativeTypeName(
-            "Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((stdcall))"
+            "Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createGraphicsPipelineState;
 
         [NativeTypeName(
-            "Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((stdcall))"
+            "Result (IDevice *, slang::IComponentType *, void *, void **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createMeshPipelineState;
 
-        [NativeTypeName("Result (IDevice *, slang::IComponentType *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (IDevice *, slang::IComponentType *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr beforeCreateRayTracingState;
 
-        [NativeTypeName("Result (IDevice *, slang::IComponentType *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (IDevice *, slang::IComponentType *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr afterCreateRayTracingState;
     }
 }

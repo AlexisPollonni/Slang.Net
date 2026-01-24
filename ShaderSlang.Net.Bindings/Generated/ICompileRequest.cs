@@ -1534,268 +1534,366 @@ public unsafe partial struct ICompileRequest
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void (ISlangFileSystem *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (ISlangFileSystem *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setFileSystem;
 
-        [NativeTypeName("void (SlangCompileFlags) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangCompileFlags) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setCompileFlags;
 
-        [NativeTypeName("SlangCompileFlags () __attribute__((stdcall))")]
+        [NativeTypeName("SlangCompileFlags () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getCompileFlags;
 
-        [NativeTypeName("void (int) __attribute__((stdcall))")]
+        [NativeTypeName("void (int) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDumpIntermediates;
 
-        [NativeTypeName("void (const char *) __attribute__((stdcall))")]
+        [NativeTypeName("void (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDumpIntermediatePrefix;
 
-        [NativeTypeName("void (SlangLineDirectiveMode) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangLineDirectiveMode) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setLineDirectiveMode;
 
-        [NativeTypeName("void (SlangCompileTarget) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setCodeGenTarget;
 
-        [NativeTypeName("int (SlangCompileTarget) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "int (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addCodeGenTarget;
 
-        [NativeTypeName("void (int, SlangProfileID) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (int, SlangProfileID) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setTargetProfile;
 
-        [NativeTypeName("void (int, SlangTargetFlags) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (int, SlangTargetFlags) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setTargetFlags;
 
-        [NativeTypeName("void (int, SlangFloatingPointMode) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (int, SlangFloatingPointMode) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setTargetFloatingPointMode;
 
-        [NativeTypeName("void (int, SlangMatrixLayoutMode) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (int, SlangMatrixLayoutMode) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setTargetMatrixLayoutMode;
 
-        [NativeTypeName("void (SlangMatrixLayoutMode) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangMatrixLayoutMode) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setMatrixLayoutMode;
 
-        [NativeTypeName("void (SlangDebugInfoLevel) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangDebugInfoLevel) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setDebugInfoLevel;
 
-        [NativeTypeName("void (SlangOptimizationLevel) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangOptimizationLevel) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setOptimizationLevel;
 
-        [NativeTypeName("void (SlangContainerFormat) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangContainerFormat) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setOutputContainerFormat;
 
-        [NativeTypeName("void (SlangPassThrough) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setPassThrough;
 
-        [NativeTypeName("void (SlangDiagnosticCallback, const void *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangDiagnosticCallback, const void *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setDiagnosticCallback;
 
-        [NativeTypeName("void (SlangWriterChannel, ISlangWriter *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangWriterChannel, ISlangWriter *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setWriter;
 
-        [NativeTypeName("ISlangWriter *(SlangWriterChannel) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "ISlangWriter *(SlangWriterChannel) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getWriter;
 
-        [NativeTypeName("void (const char *) __attribute__((stdcall))")]
+        [NativeTypeName("void (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addSearchPath;
 
-        [NativeTypeName("void (const char *, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addPreprocessorDefine;
 
-        [NativeTypeName("SlangResult (const char *const *, int) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const char *const *, int) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr processCommandLineArguments;
 
-        [NativeTypeName("int (SlangSourceLanguage, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "int (SlangSourceLanguage, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addTranslationUnit;
 
-        [NativeTypeName("void (const char *) __attribute__((stdcall))")]
+        [NativeTypeName("void (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDefaultModuleName;
 
-        [NativeTypeName("void (int, const char *, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (int, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addTranslationUnitPreprocessorDefine;
 
-        [NativeTypeName("void (int, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (int, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addTranslationUnitSourceFile;
 
-        [NativeTypeName("void (int, const char *, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (int, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addTranslationUnitSourceString;
 
         [NativeTypeName(
-            "SlangResult (const char *, const void *, size_t) __attribute__((stdcall))"
+            "SlangResult (const char *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr addLibraryReference;
 
         [NativeTypeName(
-            "void (int, const char *, const char *, const char *) __attribute__((stdcall))"
+            "void (int, const char *, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr addTranslationUnitSourceStringSpan;
 
-        [NativeTypeName("void (int, const char *, ISlangBlob *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (int, const char *, ISlangBlob *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addTranslationUnitSourceBlob;
 
-        [NativeTypeName("int (int, const char *, SlangStage) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "int (int, const char *, SlangStage) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addEntryPoint;
 
         [NativeTypeName(
-            "int (int, const char *, SlangStage, int, const char **) __attribute__((stdcall))"
+            "int (int, const char *, SlangStage, int, const char **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr addEntryPointEx;
 
-        [NativeTypeName("SlangResult (int, const char **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (int, const char **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setGlobalGenericArgs;
 
-        [NativeTypeName("SlangResult (int, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (int, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setTypeNameForGlobalExistentialTypeParam;
 
-        [NativeTypeName("SlangResult (int, int, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (int, int, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setTypeNameForEntryPointExistentialTypeParam;
 
-        [NativeTypeName("void (bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setAllowGLSLInput;
 
-        [NativeTypeName("SlangResult () __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr compile;
 
-        [NativeTypeName("const char *() __attribute__((stdcall))")]
+        [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDiagnosticOutput;
 
-        [NativeTypeName("SlangResult (ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getDiagnosticOutputBlob;
 
-        [NativeTypeName("int () __attribute__((stdcall))")]
+        [NativeTypeName("int () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDependencyFileCount;
 
-        [NativeTypeName("const char *(int) __attribute__((stdcall))")]
+        [NativeTypeName("const char *(int) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDependencyFilePath;
 
-        [NativeTypeName("int () __attribute__((stdcall))")]
+        [NativeTypeName("int () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getTranslationUnitCount;
 
-        [NativeTypeName("const char *(int) __attribute__((stdcall))")]
+        [NativeTypeName("const char *(int) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getEntryPointSource;
 
-        [NativeTypeName("const void *(int, size_t *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "const void *(int, size_t *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getEntryPointCode;
 
-        [NativeTypeName("SlangResult (int, int, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (int, int, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getEntryPointCodeBlob;
 
-        [NativeTypeName("SlangResult (int, int, ISlangSharedLibrary **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (int, int, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getEntryPointHostCallable;
 
-        [NativeTypeName("SlangResult (int, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (int, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getTargetCodeBlob;
 
-        [NativeTypeName("SlangResult (int, ISlangSharedLibrary **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (int, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getTargetHostCallable;
 
-        [NativeTypeName("const void *(size_t *) __attribute__((stdcall))")]
+        [NativeTypeName("const void *(size_t *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getCompileRequestCode;
 
-        [NativeTypeName("ISlangMutableFileSystem *() __attribute__((stdcall))")]
+        [NativeTypeName(
+            "ISlangMutableFileSystem *() __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getCompileRequestResultAsFileSystem;
 
-        [NativeTypeName("SlangResult (ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getContainerCode;
 
         [NativeTypeName(
-            "SlangResult (ISlangFileSystem *, const void *, size_t) __attribute__((stdcall))"
+            "SlangResult (ISlangFileSystem *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr loadRepro;
 
-        [NativeTypeName("SlangResult (ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr saveRepro;
 
-        [NativeTypeName("SlangResult () __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr enableReproCapture;
 
-        [NativeTypeName("SlangResult (slang::IComponentType **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getProgram;
 
         [NativeTypeName(
-            "SlangResult (SlangInt, slang::IComponentType **) __attribute__((stdcall))"
+            "SlangResult (SlangInt, slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getEntryPoint;
 
-        [NativeTypeName("SlangResult (SlangInt, slang::IModule **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangInt, slang::IModule **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getModule;
 
-        [NativeTypeName("SlangResult (slang::ISession **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (slang::ISession **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getSession;
 
-        [NativeTypeName("SlangReflection *() __attribute__((stdcall))")]
+        [NativeTypeName("SlangReflection *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getReflection;
 
-        [NativeTypeName("void () __attribute__((stdcall))")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setCommandLineCompilerMode;
 
-        [NativeTypeName("SlangResult (SlangInt, SlangCapabilityID) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangInt, SlangCapabilityID) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addTargetCapability;
 
-        [NativeTypeName("SlangResult (slang::IComponentType **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getProgramWithEntryPoints;
 
         [NativeTypeName(
-            "SlangResult (SlangInt, SlangInt, SlangParameterCategory, SlangUInt, SlangUInt, bool &) __attribute__((stdcall))"
+            "SlangResult (SlangInt, SlangInt, SlangParameterCategory, SlangUInt, SlangUInt, bool &) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr isParameterLocationUsed;
 
-        [NativeTypeName("void (SlangInt, SlangLineDirectiveMode) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangInt, SlangLineDirectiveMode) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setTargetLineDirectiveMode;
 
-        [NativeTypeName("void (int, bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setTargetForceGLSLScalarBufferLayout;
 
-        [NativeTypeName("void (SlangInt, SlangSeverity) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangInt, SlangSeverity) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr overrideDiagnosticSeverity;
 
-        [NativeTypeName("SlangDiagnosticFlags () __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangDiagnosticFlags () __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getDiagnosticFlags;
 
-        [NativeTypeName("void (SlangDiagnosticFlags) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangDiagnosticFlags) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setDiagnosticFlags;
 
-        [NativeTypeName("void (SlangDebugInfoFormat) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangDebugInfoFormat) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setDebugInfoFormat;
 
-        [NativeTypeName("void (bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setEnableEffectAnnotations;
 
-        [NativeTypeName("void (bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setReportDownstreamTime;
 
-        [NativeTypeName("void (bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setReportPerfBenchmark;
 
-        [NativeTypeName("void (bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setSkipSPIRVValidation;
 
-        [NativeTypeName("void (int, bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setTargetUseMinimumSlangOptimization;
 
-        [NativeTypeName("void (bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setIgnoreCapabilityCheck;
 
-        [NativeTypeName("SlangResult (ISlangProfiler **, bool) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (ISlangProfiler **, bool) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getCompileTimeProfile;
 
-        [NativeTypeName("void (int, bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setTargetGenerateWholeProgram;
 
-        [NativeTypeName("void (int, bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setTargetForceDXLayout;
 
-        [NativeTypeName("void (int, bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setTargetEmbedDownstreamIR;
 
-        [NativeTypeName("void (int, bool) __attribute__((stdcall))")]
+        [NativeTypeName("void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setTargetForceCLayout;
     }
 }

@@ -258,36 +258,42 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDesc" access="public">
-          <type native="const Desc &amp;() __attribute__((stdcall))">IntPtr</type>
+          <type native="const Desc &amp;() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getImage" access="public">
-          <type native="Result (GfxIndex, ITextureResource **) __attribute__((stdcall))"
+          <type
+            native="Result (GfxIndex, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="present" access="public">
-          <type native="Result () __attribute__((stdcall))">IntPtr</type>
+          <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="acquireNextImage" access="public">
-          <type native="int () __attribute__((stdcall))">IntPtr</type>
+          <type native="int () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="resize" access="public">
-          <type native="Result (GfxCount, GfxCount) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (GfxCount, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="isOccluded" access="public">
-          <type native="bool () __attribute__((stdcall))">IntPtr</type>
+          <type native="bool () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setFullScreenMode" access="public">
-          <type native="Result (bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (bool) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

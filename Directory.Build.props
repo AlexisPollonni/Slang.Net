@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <SlangVersion>2025.24.3</SlangVersion>
+    <SlangVersion>2026.1</SlangVersion>
     <Authors>Helco;AlexisPollonni</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>slang;shader;C#;csharp</PackageTags>

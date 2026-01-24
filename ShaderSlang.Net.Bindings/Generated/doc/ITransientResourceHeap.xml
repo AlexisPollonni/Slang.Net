@@ -59,15 +59,15 @@
       </delegate>
       <struct name="Flags" access="public">
         <enumeration name="TransientResourceHeapFlagsEnum" access="public">
-          <type>uint</type>
+          <type>int</type>
           <enumerator name="None" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>0</code>
             </value>
           </enumerator>
           <enumerator name="AllowResizing" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>0x1</code>
             </value>
@@ -187,23 +187,26 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="synchronizeAndReset" access="public">
-          <type native="Result () __attribute__((stdcall))">IntPtr</type>
+          <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="finish" access="public">
-          <type native="Result () __attribute__((stdcall))">IntPtr</type>
+          <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="createCommandBuffer" access="public">
-          <type native="Result (ICommandBuffer **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (ICommandBuffer **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

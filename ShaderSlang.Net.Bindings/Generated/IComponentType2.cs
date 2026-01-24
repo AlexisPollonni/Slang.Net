@@ -124,22 +124,24 @@ public unsafe partial struct IComponentType2
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
         [NativeTypeName(
-            "SlangResult (SlangInt, ICompileResult **, IBlob **) __attribute__((stdcall))"
+            "SlangResult (SlangInt, ICompileResult **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getTargetCompileResult;
 
         [NativeTypeName(
-            "SlangResult (SlangInt, SlangInt, ICompileResult **, IBlob **) __attribute__((stdcall))"
+            "SlangResult (SlangInt, SlangInt, ICompileResult **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getEntryPointCompileResult;
     }

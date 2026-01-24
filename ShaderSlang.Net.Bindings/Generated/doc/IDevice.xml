@@ -1889,222 +1889,236 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeDeviceHandles" access="public">
-          <type native="Result (InteropHandles *) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (InteropHandles *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="hasFeature" access="public">
-          <type native="bool (const char *) __attribute__((stdcall))">IntPtr</type>
+          <type native="bool (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getFeatures" access="public">
-          <type native="Result (const char **, Size, GfxCount *) __attribute__((stdcall))"
+          <type
+            native="Result (const char **, Size, GfxCount *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getFormatSupportedResourceStates" access="public">
-          <type native="Result (Format, ResourceStateSet *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (Format, ResourceStateSet *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getSlangSession" access="public">
-          <type native="Result (slang::ISession **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (slang::ISession **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="createTransientResourceHeap" access="public">
           <type
-            native="Result (const ITransientResourceHeap::Desc &amp;, ITransientResourceHeap **) __attribute__((stdcall))"
+            native="Result (const ITransientResourceHeap::Desc &amp;, ITransientResourceHeap **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createTextureResource" access="public">
           <type
-            native="Result (const ITextureResource::Desc &amp;, const ITextureResource::SubresourceData *, ITextureResource **) __attribute__((stdcall))"
+            native="Result (const ITextureResource::Desc &amp;, const ITextureResource::SubresourceData *, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createTextureFromNativeHandle" access="public">
           <type
-            native="Result (InteropHandle, const ITextureResource::Desc &amp;, ITextureResource **) __attribute__((stdcall))"
+            native="Result (InteropHandle, const ITextureResource::Desc &amp;, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createTextureFromSharedHandle" access="public">
           <type
-            native="Result (InteropHandle, const ITextureResource::Desc &amp;, const Size, ITextureResource **) __attribute__((stdcall))"
+            native="Result (InteropHandle, const ITextureResource::Desc &amp;, const Size, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createBufferResource" access="public">
           <type
-            native="Result (const IBufferResource::Desc &amp;, const void *, IBufferResource **) __attribute__((stdcall))"
+            native="Result (const IBufferResource::Desc &amp;, const void *, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createBufferFromNativeHandle" access="public">
           <type
-            native="Result (InteropHandle, const IBufferResource::Desc &amp;, IBufferResource **) __attribute__((stdcall))"
+            native="Result (InteropHandle, const IBufferResource::Desc &amp;, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createBufferFromSharedHandle" access="public">
           <type
-            native="Result (InteropHandle, const IBufferResource::Desc &amp;, IBufferResource **) __attribute__((stdcall))"
+            native="Result (InteropHandle, const IBufferResource::Desc &amp;, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createSamplerState" access="public">
           <type
-            native="Result (const ISamplerState::Desc &amp;, ISamplerState **) __attribute__((stdcall))"
+            native="Result (const ISamplerState::Desc &amp;, ISamplerState **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createTextureView" access="public">
           <type
-            native="Result (ITextureResource *, const IResourceView::Desc &amp;, IResourceView **) __attribute__((stdcall))"
+            native="Result (ITextureResource *, const IResourceView::Desc &amp;, IResourceView **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createBufferView" access="public">
           <type
-            native="Result (IBufferResource *, IBufferResource *, const IResourceView::Desc &amp;, IResourceView **) __attribute__((stdcall))"
+            native="Result (IBufferResource *, IBufferResource *, const IResourceView::Desc &amp;, IResourceView **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createFramebufferLayout" access="public">
           <type
-            native="Result (const IFramebufferLayout::Desc &amp;, IFramebufferLayout **) __attribute__((stdcall))"
+            native="Result (const IFramebufferLayout::Desc &amp;, IFramebufferLayout **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createFramebuffer" access="public">
           <type
-            native="Result (const IFramebuffer::Desc &amp;, IFramebuffer **) __attribute__((stdcall))"
+            native="Result (const IFramebuffer::Desc &amp;, IFramebuffer **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createRenderPassLayout" access="public">
           <type
-            native="Result (const IRenderPassLayout::Desc &amp;, IRenderPassLayout **) __attribute__((stdcall))"
+            native="Result (const IRenderPassLayout::Desc &amp;, IRenderPassLayout **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createSwapchain" access="public">
           <type
-            native="Result (const ISwapchain::Desc &amp;, WindowHandle, ISwapchain **) __attribute__((stdcall))"
+            native="Result (const ISwapchain::Desc &amp;, WindowHandle, ISwapchain **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createInputLayout" access="public">
           <type
-            native="Result (const IInputLayout::Desc &amp;, IInputLayout **) __attribute__((stdcall))"
+            native="Result (const IInputLayout::Desc &amp;, IInputLayout **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createCommandQueue" access="public">
           <type
-            native="Result (const ICommandQueue::Desc &amp;, ICommandQueue **) __attribute__((stdcall))"
+            native="Result (const ICommandQueue::Desc &amp;, ICommandQueue **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createShaderObject" access="public">
           <type
-            native="Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((stdcall))"
+            native="Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createMutableShaderObject" access="public">
           <type
-            native="Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((stdcall))"
+            native="Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createShaderObjectFromTypeLayout" access="public">
           <type
-            native="Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((stdcall))"
+            native="Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createMutableShaderObjectFromTypeLayout" access="public">
           <type
-            native="Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((stdcall))"
+            native="Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createMutableRootShaderObject" access="public">
-          <type native="Result (IShaderProgram *, IShaderObject **) __attribute__((stdcall))"
+          <type
+            native="Result (IShaderProgram *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createShaderTable" access="public">
           <type
-            native="Result (const IShaderTable::Desc &amp;, IShaderTable **) __attribute__((stdcall))"
+            native="Result (const IShaderTable::Desc &amp;, IShaderTable **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createProgram" access="public">
           <type
-            native="Result (const IShaderProgram::Desc &amp;, IShaderProgram **, ISlangBlob **) __attribute__((stdcall))"
+            native="Result (const IShaderProgram::Desc &amp;, IShaderProgram **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createProgram2" access="public">
           <type
-            native="Result (const IShaderProgram::CreateDesc2 &amp;, IShaderProgram **, ISlangBlob **) __attribute__((stdcall))"
+            native="Result (const IShaderProgram::CreateDesc2 &amp;, IShaderProgram **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createGraphicsPipelineState" access="public">
           <type
-            native="Result (const GraphicsPipelineStateDesc &amp;, IPipelineState **) __attribute__((stdcall))"
+            native="Result (const GraphicsPipelineStateDesc &amp;, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createComputePipelineState" access="public">
           <type
-            native="Result (const ComputePipelineStateDesc &amp;, IPipelineState **) __attribute__((stdcall))"
+            native="Result (const ComputePipelineStateDesc &amp;, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createRayTracingPipelineState" access="public">
           <type
-            native="Result (const RayTracingPipelineStateDesc &amp;, IPipelineState **) __attribute__((stdcall))"
+            native="Result (const RayTracingPipelineStateDesc &amp;, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="readTextureResource" access="public">
           <type
-            native="SlangResult (ITextureResource *, ResourceState, ISlangBlob **, Size *, Size *) __attribute__((stdcall))"
+            native="SlangResult (ITextureResource *, ResourceState, ISlangBlob **, Size *, Size *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="readBufferResource" access="public">
           <type
-            native="SlangResult (IBufferResource *, Offset, Size, ISlangBlob **) __attribute__((stdcall))"
+            native="SlangResult (IBufferResource *, Offset, Size, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getDeviceInfo" access="public">
-          <type native="const DeviceInfo &amp;() const __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="const DeviceInfo &amp;() const __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="createQueryPool" access="public">
           <type
-            native="Result (const IQueryPool::Desc &amp;, IQueryPool **) __attribute__((stdcall))"
+            native="Result (const IQueryPool::Desc &amp;, IQueryPool **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getAccelerationStructurePrebuildInfo" access="public">
           <type
-            native="Result (const IAccelerationStructure::BuildInputs &amp;, IAccelerationStructure::PrebuildInfo *) __attribute__((stdcall))"
+            native="Result (const IAccelerationStructure::BuildInputs &amp;, IAccelerationStructure::PrebuildInfo *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createAccelerationStructure" access="public">
           <type
-            native="Result (const IAccelerationStructure::CreateDesc &amp;, IAccelerationStructure **) __attribute__((stdcall))"
+            native="Result (const IAccelerationStructure::CreateDesc &amp;, IAccelerationStructure **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createFence" access="public">
-          <type native="Result (const IFence::Desc &amp;, IFence **) __attribute__((stdcall))"
+          <type
+            native="Result (const IFence::Desc &amp;, IFence **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="waitForFences" access="public">
           <type
-            native="Result (GfxCount, IFence **, uint64_t *, bool, uint64_t) __attribute__((stdcall))"
+            native="Result (GfxCount, IFence **, uint64_t *, bool, uint64_t) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getTextureAllocationInfo" access="public">
           <type
-            native="Result (const ITextureResource::Desc &amp;, Size *, Size *) __attribute__((stdcall))"
+            native="Result (const ITextureResource::Desc &amp;, Size *, Size *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getTextureRowAlignment" access="public">
-          <type native="Result (Size *) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (Size *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getCooperativeVectorProperties" access="public">
-          <type native="Result (CooperativeVectorProperties *, uint32_t *) __attribute__((stdcall))"
+          <type
+            native="Result (CooperativeVectorProperties *, uint32_t *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createShaderObject2" access="public">
           <type
-            native="Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((stdcall))"
+            native="Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="createMutableShaderObject2" access="public">
           <type
-            native="Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((stdcall))"
+            native="Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
       </vtbl>

@@ -227,32 +227,41 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="beginAppendBuffer" access="public">
-          <type native="char *(size_t) __attribute__((stdcall))">IntPtr</type>
+          <type native="char *(size_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="endAppendBuffer" access="public">
-          <type native="SlangResult (char *, size_t) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="write" access="public">
-          <type native="SlangResult (const char *, size_t) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="flush" access="public">
-          <type native="void () __attribute__((stdcall))">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="isConsole" access="public">
-          <type native="SlangBool () __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangBool () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setMode" access="public">
-          <type native="SlangResult (SlangWriterMode) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (SlangWriterMode) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

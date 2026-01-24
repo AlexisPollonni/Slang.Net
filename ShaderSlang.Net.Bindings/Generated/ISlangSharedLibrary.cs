@@ -96,19 +96,23 @@ public unsafe partial struct ISlangSharedLibrary
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void *(const SlangUUID &) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void *(const SlangUUID &) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr castAs;
 
-        [NativeTypeName("void *(const char *) __attribute__((stdcall))")]
+        [NativeTypeName("void *(const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr findSymbolAddressByName;
     }
 }

@@ -553,90 +553,104 @@ public unsafe partial struct IComputeCommandEncoder
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void () __attribute__((stdcall))")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr endEncoding;
 
-        [NativeTypeName("void (IQueryPool *, GfxIndex) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr writeTimestamp;
 
         [NativeTypeName(
-            "void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((stdcall))"
+            "void (IBufferResource *, Offset, IBufferResource *, Offset, Size) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr copyBuffer;
 
         [NativeTypeName(
-            "void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((stdcall))"
+            "void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr copyTexture;
 
         [NativeTypeName(
-            "void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((stdcall))"
+            "void (IBufferResource *, Offset, Size, Size, ITextureResource *, ResourceState, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr copyTextureToBuffer;
 
         [NativeTypeName(
-            "void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((stdcall))"
+            "void (ITextureResource *, SubresourceRange, ITextureResource::Offset3D, ITextureResource::Extents, ITextureResource::SubresourceData *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr uploadTextureData;
 
-        [NativeTypeName("void (IBufferResource *, Offset, Size, void *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (IBufferResource *, Offset, Size, void *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr uploadBufferData;
 
         [NativeTypeName(
-            "void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((stdcall))"
+            "void (GfxCount, ITextureResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr textureBarrier;
 
         [NativeTypeName(
-            "void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((stdcall))"
+            "void (ITextureResource *, SubresourceRange, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr textureSubresourceBarrier;
 
         [NativeTypeName(
-            "void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((stdcall))"
+            "void (GfxCount, IBufferResource *const *, ResourceState, ResourceState) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr bufferBarrier;
 
         [NativeTypeName(
-            "void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((stdcall))"
+            "void (IResourceView *, ClearValue *, ClearResourceViewFlags::Enum) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr clearResourceView;
 
         [NativeTypeName(
-            "void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((stdcall))"
+            "void (ITextureResource *, ResourceState, SubresourceRange, ITextureResource *, ResourceState, SubresourceRange) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr resolveResource;
 
         [NativeTypeName(
-            "void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((stdcall))"
+            "void (IQueryPool *, GfxIndex, GfxCount, IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr resolveQuery;
 
-        [NativeTypeName("void (const char *, float *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (const char *, float *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr beginDebugEvent;
 
-        [NativeTypeName("void () __attribute__((stdcall))")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr endDebugEvent;
 
-        [NativeTypeName("Result (IPipelineState *, IShaderObject **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (IPipelineState *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr bindPipeline;
 
-        [NativeTypeName("Result (IPipelineState *, IShaderObject *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (IPipelineState *, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr bindPipelineWithRootObject;
 
-        [NativeTypeName("Result (int, int, int) __attribute__((stdcall))")]
+        [NativeTypeName("Result (int, int, int) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr dispatchCompute;
 
-        [NativeTypeName("Result (IBufferResource *, Offset) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (IBufferResource *, Offset) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr dispatchComputeIndirect;
     }
 }

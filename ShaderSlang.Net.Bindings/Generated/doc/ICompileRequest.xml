@@ -2511,283 +2511,376 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setFileSystem" access="public">
-          <type native="void (ISlangFileSystem *) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (ISlangFileSystem *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setCompileFlags" access="public">
-          <type native="void (SlangCompileFlags) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangCompileFlags) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getCompileFlags" access="public">
-          <type native="SlangCompileFlags () __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangCompileFlags () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setDumpIntermediates" access="public">
-          <type native="void (int) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (int) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setDumpIntermediatePrefix" access="public">
-          <type native="void (const char *) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setLineDirectiveMode" access="public">
-          <type native="void (SlangLineDirectiveMode) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangLineDirectiveMode) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setCodeGenTarget" access="public">
-          <type native="void (SlangCompileTarget) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addCodeGenTarget" access="public">
-          <type native="int (SlangCompileTarget) __attribute__((stdcall))">IntPtr</type>
+          <type native="int (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setTargetProfile" access="public">
-          <type native="void (int, SlangProfileID) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (int, SlangProfileID) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setTargetFlags" access="public">
-          <type native="void (int, SlangTargetFlags) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (int, SlangTargetFlags) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setTargetFloatingPointMode" access="public">
-          <type native="void (int, SlangFloatingPointMode) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (int, SlangFloatingPointMode) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setTargetMatrixLayoutMode" access="public">
-          <type native="void (int, SlangMatrixLayoutMode) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (int, SlangMatrixLayoutMode) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setMatrixLayoutMode" access="public">
-          <type native="void (SlangMatrixLayoutMode) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangMatrixLayoutMode) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setDebugInfoLevel" access="public">
-          <type native="void (SlangDebugInfoLevel) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangDebugInfoLevel) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setOptimizationLevel" access="public">
-          <type native="void (SlangOptimizationLevel) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangOptimizationLevel) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setOutputContainerFormat" access="public">
-          <type native="void (SlangContainerFormat) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangContainerFormat) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setPassThrough" access="public">
-          <type native="void (SlangPassThrough) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setDiagnosticCallback" access="public">
-          <type native="void (SlangDiagnosticCallback, const void *) __attribute__((stdcall))"
+          <type
+            native="void (SlangDiagnosticCallback, const void *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setWriter" access="public">
-          <type native="void (SlangWriterChannel, ISlangWriter *) __attribute__((stdcall))"
+          <type
+            native="void (SlangWriterChannel, ISlangWriter *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getWriter" access="public">
-          <type native="ISlangWriter *(SlangWriterChannel) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="ISlangWriter *(SlangWriterChannel) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addSearchPath" access="public">
-          <type native="void (const char *) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addPreprocessorDefine" access="public">
-          <type native="void (const char *, const char *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="processCommandLineArguments" access="public">
-          <type native="SlangResult (const char *const *, int) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const char *const *, int) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addTranslationUnit" access="public">
-          <type native="int (SlangSourceLanguage, const char *) __attribute__((stdcall))"
+          <type
+            native="int (SlangSourceLanguage, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setDefaultModuleName" access="public">
-          <type native="void (const char *) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addTranslationUnitPreprocessorDefine" access="public">
-          <type native="void (int, const char *, const char *) __attribute__((stdcall))"
+          <type
+            native="void (int, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addTranslationUnitSourceFile" access="public">
-          <type native="void (int, const char *) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (int, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addTranslationUnitSourceString" access="public">
-          <type native="void (int, const char *, const char *) __attribute__((stdcall))"
+          <type
+            native="void (int, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addLibraryReference" access="public">
-          <type native="SlangResult (const char *, const void *, size_t) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const char *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addTranslationUnitSourceStringSpan" access="public">
           <type
-            native="void (int, const char *, const char *, const char *) __attribute__((stdcall))"
+            native="void (int, const char *, const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addTranslationUnitSourceBlob" access="public">
-          <type native="void (int, const char *, ISlangBlob *) __attribute__((stdcall))"
+          <type
+            native="void (int, const char *, ISlangBlob *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addEntryPoint" access="public">
-          <type native="int (int, const char *, SlangStage) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="int (int, const char *, SlangStage) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addEntryPointEx" access="public">
           <type
-            native="int (int, const char *, SlangStage, int, const char **) __attribute__((stdcall))"
+            native="int (int, const char *, SlangStage, int, const char **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setGlobalGenericArgs" access="public">
-          <type native="SlangResult (int, const char **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (int, const char **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setTypeNameForGlobalExistentialTypeParam" access="public">
-          <type native="SlangResult (int, const char *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (int, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setTypeNameForEntryPointExistentialTypeParam" access="public">
-          <type native="SlangResult (int, int, const char *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (int, int, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setAllowGLSLInput" access="public">
-          <type native="void (bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="compile" access="public">
-          <type native="SlangResult () __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDiagnosticOutput" access="public">
-          <type native="const char *() __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDiagnosticOutputBlob" access="public">
-          <type native="SlangResult (ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDependencyFileCount" access="public">
-          <type native="int () __attribute__((stdcall))">IntPtr</type>
+          <type native="int () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getDependencyFilePath" access="public">
-          <type native="const char *(int) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *(int) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getTranslationUnitCount" access="public">
-          <type native="int () __attribute__((stdcall))">IntPtr</type>
+          <type native="int () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointSource" access="public">
-          <type native="const char *(int) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *(int) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getEntryPointCode" access="public">
-          <type native="const void *(int, size_t *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="const void *(int, size_t *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getEntryPointCodeBlob" access="public">
-          <type native="SlangResult (int, int, ISlangBlob **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (int, int, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getEntryPointHostCallable" access="public">
-          <type native="SlangResult (int, int, ISlangSharedLibrary **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (int, int, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getTargetCodeBlob" access="public">
-          <type native="SlangResult (int, ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (int, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getTargetHostCallable" access="public">
-          <type native="SlangResult (int, ISlangSharedLibrary **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (int, ISlangSharedLibrary **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getCompileRequestCode" access="public">
-          <type native="const void *(size_t *) __attribute__((stdcall))">IntPtr</type>
+          <type native="const void *(size_t *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getCompileRequestResultAsFileSystem" access="public">
-          <type native="ISlangMutableFileSystem *() __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="ISlangMutableFileSystem *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getContainerCode" access="public">
-          <type native="SlangResult (ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="loadRepro" access="public">
           <type
-            native="SlangResult (ISlangFileSystem *, const void *, size_t) __attribute__((stdcall))"
+            native="SlangResult (ISlangFileSystem *, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="saveRepro" access="public">
-          <type native="SlangResult (ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="enableReproCapture" access="public">
-          <type native="SlangResult () __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangResult () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getProgram" access="public">
-          <type native="SlangResult (slang::IComponentType **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getEntryPoint" access="public">
-          <type native="SlangResult (SlangInt, slang::IComponentType **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (SlangInt, slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getModule" access="public">
-          <type native="SlangResult (SlangInt, slang::IModule **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (SlangInt, slang::IModule **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getSession" access="public">
-          <type native="SlangResult (slang::ISession **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (slang::ISession **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getReflection" access="public">
-          <type native="SlangReflection *() __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangReflection *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setCommandLineCompilerMode" access="public">
-          <type native="void () __attribute__((stdcall))">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="addTargetCapability" access="public">
-          <type native="SlangResult (SlangInt, SlangCapabilityID) __attribute__((stdcall))"
+          <type
+            native="SlangResult (SlangInt, SlangCapabilityID) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getProgramWithEntryPoints" access="public">
-          <type native="SlangResult (slang::IComponentType **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (slang::IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="isParameterLocationUsed" access="public">
           <type
-            native="SlangResult (SlangInt, SlangInt, SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;) __attribute__((stdcall))"
+            native="SlangResult (SlangInt, SlangInt, SlangParameterCategory, SlangUInt, SlangUInt, bool &amp;) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setTargetLineDirectiveMode" access="public">
-          <type native="void (SlangInt, SlangLineDirectiveMode) __attribute__((stdcall))"
+          <type
+            native="void (SlangInt, SlangLineDirectiveMode) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setTargetForceGLSLScalarBufferLayout" access="public">
-          <type native="void (int, bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="overrideDiagnosticSeverity" access="public">
-          <type native="void (SlangInt, SlangSeverity) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangInt, SlangSeverity) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDiagnosticFlags" access="public">
-          <type native="SlangDiagnosticFlags () __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangDiagnosticFlags () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setDiagnosticFlags" access="public">
-          <type native="void (SlangDiagnosticFlags) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangDiagnosticFlags) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setDebugInfoFormat" access="public">
-          <type native="void (SlangDebugInfoFormat) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangDebugInfoFormat) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setEnableEffectAnnotations" access="public">
-          <type native="void (bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setReportDownstreamTime" access="public">
-          <type native="void (bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setReportPerfBenchmark" access="public">
-          <type native="void (bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setSkipSPIRVValidation" access="public">
-          <type native="void (bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setTargetUseMinimumSlangOptimization" access="public">
-          <type native="void (int, bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setIgnoreCapabilityCheck" access="public">
-          <type native="void (bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (bool) __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getCompileTimeProfile" access="public">
-          <type native="SlangResult (ISlangProfiler **, bool) __attribute__((stdcall))"
+          <type
+            native="SlangResult (ISlangProfiler **, bool) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setTargetGenerateWholeProgram" access="public">
-          <type native="void (int, bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setTargetForceDXLayout" access="public">
-          <type native="void (int, bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setTargetEmbedDownstreamIR" access="public">
-          <type native="void (int, bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setTargetForceCLayout" access="public">
-          <type native="void (int, bool) __attribute__((stdcall))">IntPtr</type>
+          <type native="void (int, bool) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

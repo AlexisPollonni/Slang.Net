@@ -363,66 +363,84 @@ public unsafe partial struct IShaderObject
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("slang::TypeLayoutReflection *() __attribute__((stdcall))")]
+        [NativeTypeName(
+            "slang::TypeLayoutReflection *() __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getElementTypeLayout;
 
-        [NativeTypeName("ShaderObjectContainerType () __attribute__((stdcall))")]
+        [NativeTypeName(
+            "ShaderObjectContainerType () __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getContainerType;
 
-        [NativeTypeName("GfxCount () __attribute__((stdcall))")]
+        [NativeTypeName("GfxCount () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getEntryPointCount;
 
-        [NativeTypeName("Result (GfxIndex, IShaderObject **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (GfxIndex, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getEntryPoint;
 
         [NativeTypeName(
-            "Result (const ShaderOffset &, const void *, Size) __attribute__((stdcall))"
+            "Result (const ShaderOffset &, const void *, Size) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr setData;
 
-        [NativeTypeName("Result (const ShaderOffset &, IShaderObject **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (const ShaderOffset &, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getObject;
 
-        [NativeTypeName("Result (const ShaderOffset &, IShaderObject *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (const ShaderOffset &, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setObject;
 
-        [NativeTypeName("Result (const ShaderOffset &, IResourceView *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (const ShaderOffset &, IResourceView *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setResource;
 
-        [NativeTypeName("Result (const ShaderOffset &, ISamplerState *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (const ShaderOffset &, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setSampler;
 
         [NativeTypeName(
-            "Result (const ShaderOffset &, IResourceView *, ISamplerState *) __attribute__((stdcall))"
+            "Result (const ShaderOffset &, IResourceView *, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr setCombinedTextureSampler;
 
         [NativeTypeName(
-            "Result (const ShaderOffset &, const slang::SpecializationArg *, GfxCount) __attribute__((stdcall))"
+            "Result (const ShaderOffset &, const slang::SpecializationArg *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr setSpecializationArgs;
 
         [NativeTypeName(
-            "Result (ITransientResourceHeap *, IShaderObject **) __attribute__((stdcall))"
+            "Result (ITransientResourceHeap *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getCurrentVersion;
 
-        [NativeTypeName("const void *() __attribute__((stdcall))")]
+        [NativeTypeName("const void *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getRawData;
 
-        [NativeTypeName("Size () __attribute__((stdcall))")]
+        [NativeTypeName("Size () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSize;
 
-        [NativeTypeName("Result (IBufferResource *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (IBufferResource *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setConstantBufferOverride;
     }
 }

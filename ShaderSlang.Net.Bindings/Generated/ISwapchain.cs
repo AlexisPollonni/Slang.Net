@@ -207,34 +207,40 @@ public unsafe partial struct ISwapchain
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("const Desc &() __attribute__((stdcall))")]
+        [NativeTypeName("const Desc &() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDesc;
 
-        [NativeTypeName("Result (GfxIndex, ITextureResource **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (GfxIndex, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getImage;
 
-        [NativeTypeName("Result () __attribute__((stdcall))")]
+        [NativeTypeName("Result () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr present;
 
-        [NativeTypeName("int () __attribute__((stdcall))")]
+        [NativeTypeName("int () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr acquireNextImage;
 
-        [NativeTypeName("Result (GfxCount, GfxCount) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (GfxCount, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr resize;
 
-        [NativeTypeName("bool () __attribute__((stdcall))")]
+        [NativeTypeName("bool () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr isOccluded;
 
-        [NativeTypeName("Result (bool) __attribute__((stdcall))")]
+        [NativeTypeName("Result (bool) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setFullScreenMode;
     }
 }

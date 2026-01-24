@@ -407,66 +407,80 @@ public unsafe partial struct IComponentType
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("ISession *() __attribute__((stdcall))")]
+        [NativeTypeName("ISession *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSession;
 
-        [NativeTypeName("ProgramLayout *(SlangInt, IBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "ProgramLayout *(SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getLayout;
 
-        [NativeTypeName("SlangInt () __attribute__((stdcall))")]
+        [NativeTypeName("SlangInt () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getSpecializationParamCount;
 
         [NativeTypeName(
-            "SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((stdcall))"
+            "SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getEntryPointCode;
 
         [NativeTypeName(
-            "SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((stdcall))"
+            "SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getResultAsFileSystem;
 
-        [NativeTypeName("void (SlangInt, SlangInt, IBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangInt, SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getEntryPointHash;
 
         [NativeTypeName(
-            "SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((stdcall))"
+            "SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr specialize;
 
-        [NativeTypeName("SlangResult (IComponentType **, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr link;
 
         [NativeTypeName(
-            "SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((stdcall))"
+            "SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getEntryPointHostCallable;
 
-        [NativeTypeName("SlangResult (const char *, IComponentType **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const char *, IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr renameEntryPoint;
 
         [NativeTypeName(
-            "SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((stdcall))"
+            "SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr linkWithOptions;
 
-        [NativeTypeName("SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getTargetCode;
 
-        [NativeTypeName("SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getTargetMetadata;
 
         [NativeTypeName(
-            "SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((stdcall))"
+            "SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getEntryPointMetadata;
     }

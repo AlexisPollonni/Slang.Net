@@ -175,30 +175,36 @@ public unsafe partial struct ICommandQueue
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("const Desc &() __attribute__((stdcall))")]
+        [NativeTypeName("const Desc &() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDesc;
 
         [NativeTypeName(
-            "void (GfxCount, ICommandBuffer *const *, IFence *, uint64_t) __attribute__((stdcall))"
+            "void (GfxCount, ICommandBuffer *const *, IFence *, uint64_t) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr executeCommandBuffers;
 
-        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getNativeHandle;
 
-        [NativeTypeName("void () __attribute__((stdcall))")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr waitOnHost;
 
-        [NativeTypeName("Result (GfxCount, IFence **, uint64_t *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (GfxCount, IFence **, uint64_t *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr waitForFenceValuesOnDevice;
     }
 }

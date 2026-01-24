@@ -237,34 +237,42 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="encodeRenderCommands" access="public">
           <type
-            native="void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **) __attribute__((stdcall))"
+            native="void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="encodeComputeCommands" access="public">
-          <type native="void (IComputeCommandEncoder **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (IComputeCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="encodeResourceCommands" access="public">
-          <type native="void (IResourceCommandEncoder **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (IResourceCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="encodeRayTracingCommands" access="public">
-          <type native="void (IRayTracingCommandEncoder **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (IRayTracingCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="close" access="public">
-          <type native="void () __attribute__((stdcall))">IntPtr</type>
+          <type native="void () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeHandle" access="public">
-          <type native="Result (InteropHandle *) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

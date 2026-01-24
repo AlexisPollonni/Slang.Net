@@ -56,8 +56,7 @@ public unsafe partial struct IAccelerationStructure
     public partial struct BuildFlags
     {
         /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags"]/*' />
-        [NativeTypeName("unsigned int")]
-        public enum AccelerationStructBuildFlags : uint
+        public enum AccelerationStructBuildFlags
         {
             /// <include file='AccelerationStructBuildFlags.xml' path='doc/member[@name="AccelerationStructBuildFlags.None"]/*' />
             None,
@@ -96,8 +95,7 @@ public unsafe partial struct IAccelerationStructure
     public partial struct GeometryFlags
     {
         /// <include file='AccelerationStructGeometryFlags.xml' path='doc/member[@name="AccelerationStructGeometryFlags"]/*' />
-        [NativeTypeName("unsigned int")]
-        public enum AccelerationStructGeometryFlags : uint
+        public enum AccelerationStructGeometryFlags
         {
             /// <include file='AccelerationStructGeometryFlags.xml' path='doc/member[@name="AccelerationStructGeometryFlags.None"]/*' />
             None,
@@ -452,22 +450,26 @@ public unsafe partial struct IAccelerationStructure
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Desc *() __attribute__((stdcall))")]
+        [NativeTypeName("Desc *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getViewDesc;
 
-        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getNativeHandle;
 
-        [NativeTypeName("DeviceAddress () __attribute__((stdcall))")]
+        [NativeTypeName("DeviceAddress () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDeviceAddress;
     }
 }

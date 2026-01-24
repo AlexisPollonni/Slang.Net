@@ -36,7 +36,7 @@ public unsafe partial struct IDebugCallback
     public partial struct Vtbl
     {
         [NativeTypeName(
-            "void (DebugMessageType, DebugMessageSource, const char *) __attribute__((stdcall))"
+            "void (DebugMessageType, DebugMessageSource, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr handleMessage;
     }

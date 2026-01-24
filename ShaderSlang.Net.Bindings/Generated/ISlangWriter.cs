@@ -173,31 +173,39 @@ public unsafe partial struct ISlangWriter
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("char *(size_t) __attribute__((stdcall))")]
+        [NativeTypeName("char *(size_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr beginAppendBuffer;
 
-        [NativeTypeName("SlangResult (char *, size_t) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr endAppendBuffer;
 
-        [NativeTypeName("SlangResult (const char *, size_t) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const char *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr write;
 
-        [NativeTypeName("void () __attribute__((stdcall))")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr flush;
 
-        [NativeTypeName("SlangBool () __attribute__((stdcall))")]
+        [NativeTypeName("SlangBool () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr isConsole;
 
-        [NativeTypeName("SlangResult (SlangWriterMode) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangWriterMode) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setMode;
     }
 }

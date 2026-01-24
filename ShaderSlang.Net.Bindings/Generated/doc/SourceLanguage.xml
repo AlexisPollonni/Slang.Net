@@ -33,6 +33,9 @@
       <enumerator name="Wgsl" access="public">
         <type primitive="False">int</type>
       </enumerator>
+      <enumerator name="Llvm" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
       <enumerator name="CountOf" access="public">
         <type primitive="False">int</type>
       </enumerator>

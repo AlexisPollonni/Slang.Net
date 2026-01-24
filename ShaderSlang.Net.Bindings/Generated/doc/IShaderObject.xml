@@ -504,72 +504,85 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getElementTypeLayout" access="public">
-          <type native="slang::TypeLayoutReflection *() __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="slang::TypeLayoutReflection *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getContainerType" access="public">
-          <type native="ShaderObjectContainerType () __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="ShaderObjectContainerType () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getEntryPointCount" access="public">
-          <type native="GfxCount () __attribute__((stdcall))">IntPtr</type>
+          <type native="GfxCount () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPoint" access="public">
-          <type native="Result (GfxIndex, IShaderObject **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (GfxIndex, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setData" access="public">
           <type
-            native="Result (const ShaderOffset &amp;, const void *, Size) __attribute__((stdcall))"
+            native="Result (const ShaderOffset &amp;, const void *, Size) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getObject" access="public">
           <type
-            native="Result (const ShaderOffset &amp;, IShaderObject **) __attribute__((stdcall))"
+            native="Result (const ShaderOffset &amp;, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setObject" access="public">
-          <type native="Result (const ShaderOffset &amp;, IShaderObject *) __attribute__((stdcall))"
+          <type
+            native="Result (const ShaderOffset &amp;, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setResource" access="public">
-          <type native="Result (const ShaderOffset &amp;, IResourceView *) __attribute__((stdcall))"
+          <type
+            native="Result (const ShaderOffset &amp;, IResourceView *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setSampler" access="public">
-          <type native="Result (const ShaderOffset &amp;, ISamplerState *) __attribute__((stdcall))"
+          <type
+            native="Result (const ShaderOffset &amp;, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setCombinedTextureSampler" access="public">
           <type
-            native="Result (const ShaderOffset &amp;, IResourceView *, ISamplerState *) __attribute__((stdcall))"
+            native="Result (const ShaderOffset &amp;, IResourceView *, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="setSpecializationArgs" access="public">
           <type
-            native="Result (const ShaderOffset &amp;, const slang::SpecializationArg *, GfxCount) __attribute__((stdcall))"
+            native="Result (const ShaderOffset &amp;, const slang::SpecializationArg *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getCurrentVersion" access="public">
           <type
-            native="Result (ITransientResourceHeap *, IShaderObject **) __attribute__((stdcall))"
+            native="Result (ITransientResourceHeap *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getRawData" access="public">
-          <type native="const void *() __attribute__((stdcall))">IntPtr</type>
+          <type native="const void *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getSize" access="public">
-          <type native="Size () __attribute__((stdcall))">IntPtr</type>
+          <type native="Size () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setConstantBufferOverride" access="public">
-          <type native="Result (IBufferResource *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (IBufferResource *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

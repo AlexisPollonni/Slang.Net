@@ -160,27 +160,33 @@ public unsafe partial struct IModulePrecompileService_Experimental
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("SlangResult (SlangCompileTarget, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangCompileTarget, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr precompileForTarget;
 
         [NativeTypeName(
-            "SlangResult (SlangCompileTarget, IBlob **, IBlob **) __attribute__((stdcall))"
+            "SlangResult (SlangCompileTarget, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getPrecompiledTargetCode;
 
-        [NativeTypeName("SlangInt () __attribute__((stdcall))")]
+        [NativeTypeName("SlangInt () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getModuleDependencyCount;
 
-        [NativeTypeName("SlangResult (SlangInt, IModule **, IBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangInt, IModule **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getModuleDependency;
     }
 }

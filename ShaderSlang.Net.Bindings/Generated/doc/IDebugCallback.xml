@@ -46,7 +46,7 @@
       <vtbl>
         <field name="handleMessage" access="public">
           <type
-            native="void (DebugMessageType, DebugMessageSource, const char *) __attribute__((stdcall))"
+            native="void (DebugMessageType, DebugMessageSource, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
       </vtbl>

@@ -8,12 +8,12 @@ public static unsafe partial class GfxApi
     [NativeTypeName("const GfxCount")]
     public const int kMaxRenderTargetCount = 8;
 
-    public const uint EnableNone = 0;
-    public const uint EnableRed = 0x01;
-    public const uint EnableGreen = 0x02;
-    public const uint EnableBlue = 0x04;
-    public const uint EnableAlpha = 0x08;
-    public const uint EnableAll = 0x0F;
+    public const int EnableNone = 0;
+    public const int EnableRed = 0x01;
+    public const int EnableGreen = 0x02;
+    public const int EnableBlue = 0x04;
+    public const int EnableAlpha = 0x08;
+    public const int EnableAll = 0x0F;
 
     /// <include file='GfxApi.xml' path='doc/member[@name="GfxApi.gfxIsCompressedFormat"]/*' />
     [DllImport("gfx", CallingConvention = CallingConvention.StdCall, ExactSpelling = true)]

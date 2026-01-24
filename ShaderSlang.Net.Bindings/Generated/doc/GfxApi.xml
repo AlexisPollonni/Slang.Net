@@ -9,37 +9,37 @@
         </value>
       </constant>
       <constant name="EnableNone" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0</code>
         </value>
       </constant>
       <constant name="EnableRed" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x01</code>
         </value>
       </constant>
       <constant name="EnableGreen" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x02</code>
         </value>
       </constant>
       <constant name="EnableBlue" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x04</code>
         </value>
       </constant>
       <constant name="EnableAlpha" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x08</code>
         </value>
       </constant>
       <constant name="EnableAll" access="public">
-        <type primitive="True">uint</type>
+        <type primitive="True">int</type>
         <value>
           <code>0x0F</code>
         </value>

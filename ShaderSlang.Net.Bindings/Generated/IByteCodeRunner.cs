@@ -260,46 +260,56 @@ public unsafe partial struct IByteCodeRunner
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("SlangResult (IBlob *) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (IBlob *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr loadModule;
 
-        [NativeTypeName("SlangResult (uint32_t) __attribute__((stdcall))")]
+        [NativeTypeName("SlangResult (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr selectFunctionByIndex;
 
-        [NativeTypeName("int (const char *) __attribute__((stdcall))")]
+        [NativeTypeName("int (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr findFunctionByName;
 
-        [NativeTypeName("SlangResult (uint32_t, ByteCodeFuncInfo *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (uint32_t, ByteCodeFuncInfo *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getFunctionInfo;
 
-        [NativeTypeName("void *() __attribute__((stdcall))")]
+        [NativeTypeName("void *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getCurrentWorkingSet;
 
-        [NativeTypeName("SlangResult (void *, size_t) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr execute;
 
-        [NativeTypeName("void (IBlob **) __attribute__((stdcall))")]
+        [NativeTypeName("void (IBlob **) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getErrorString;
 
-        [NativeTypeName("void *(size_t *) __attribute__((stdcall))")]
+        [NativeTypeName("void *(size_t *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getReturnValue;
 
-        [NativeTypeName("void (void *) __attribute__((stdcall))")]
+        [NativeTypeName("void (void *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setExtInstHandlerUserData;
 
-        [NativeTypeName("SlangResult (const char *, VMExtFunction) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const char *, VMExtFunction) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr registerExtCall;
 
-        [NativeTypeName("SlangResult (VMPrintFunc, void *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (VMPrintFunc, void *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setPrintCallback;
     }
 }

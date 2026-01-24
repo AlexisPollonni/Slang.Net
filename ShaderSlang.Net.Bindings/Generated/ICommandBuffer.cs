@@ -163,33 +163,43 @@ public unsafe partial struct ICommandBuffer
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
         [NativeTypeName(
-            "void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **) __attribute__((stdcall))"
+            "void (IRenderPassLayout *, IFramebuffer *, IRenderCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr encodeRenderCommands;
 
-        [NativeTypeName("void (IComputeCommandEncoder **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (IComputeCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr encodeComputeCommands;
 
-        [NativeTypeName("void (IResourceCommandEncoder **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (IResourceCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr encodeResourceCommands;
 
-        [NativeTypeName("void (IRayTracingCommandEncoder **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (IRayTracingCommandEncoder **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr encodeRayTracingCommands;
 
-        [NativeTypeName("void () __attribute__((stdcall))")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr close;
 
-        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getNativeHandle;
     }
 }

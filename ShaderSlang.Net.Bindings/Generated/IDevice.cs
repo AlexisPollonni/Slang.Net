@@ -1214,219 +1214,235 @@ public unsafe partial struct IDevice
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Result (InteropHandles *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandles *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getNativeDeviceHandles;
 
-        [NativeTypeName("bool (const char *) __attribute__((stdcall))")]
+        [NativeTypeName("bool (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr hasFeature;
 
-        [NativeTypeName("Result (const char **, Size, GfxCount *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (const char **, Size, GfxCount *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getFeatures;
 
-        [NativeTypeName("Result (Format, ResourceStateSet *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (Format, ResourceStateSet *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getFormatSupportedResourceStates;
 
-        [NativeTypeName("Result (slang::ISession **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (slang::ISession **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getSlangSession;
 
         [NativeTypeName(
-            "Result (const ITransientResourceHeap::Desc &, ITransientResourceHeap **) __attribute__((stdcall))"
+            "Result (const ITransientResourceHeap::Desc &, ITransientResourceHeap **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createTransientResourceHeap;
 
         [NativeTypeName(
-            "Result (const ITextureResource::Desc &, const ITextureResource::SubresourceData *, ITextureResource **) __attribute__((stdcall))"
+            "Result (const ITextureResource::Desc &, const ITextureResource::SubresourceData *, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createTextureResource;
 
         [NativeTypeName(
-            "Result (InteropHandle, const ITextureResource::Desc &, ITextureResource **) __attribute__((stdcall))"
+            "Result (InteropHandle, const ITextureResource::Desc &, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createTextureFromNativeHandle;
 
         [NativeTypeName(
-            "Result (InteropHandle, const ITextureResource::Desc &, const Size, ITextureResource **) __attribute__((stdcall))"
+            "Result (InteropHandle, const ITextureResource::Desc &, const Size, ITextureResource **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createTextureFromSharedHandle;
 
         [NativeTypeName(
-            "Result (const IBufferResource::Desc &, const void *, IBufferResource **) __attribute__((stdcall))"
+            "Result (const IBufferResource::Desc &, const void *, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createBufferResource;
 
         [NativeTypeName(
-            "Result (InteropHandle, const IBufferResource::Desc &, IBufferResource **) __attribute__((stdcall))"
+            "Result (InteropHandle, const IBufferResource::Desc &, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createBufferFromNativeHandle;
 
         [NativeTypeName(
-            "Result (InteropHandle, const IBufferResource::Desc &, IBufferResource **) __attribute__((stdcall))"
+            "Result (InteropHandle, const IBufferResource::Desc &, IBufferResource **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createBufferFromSharedHandle;
 
         [NativeTypeName(
-            "Result (const ISamplerState::Desc &, ISamplerState **) __attribute__((stdcall))"
+            "Result (const ISamplerState::Desc &, ISamplerState **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createSamplerState;
 
         [NativeTypeName(
-            "Result (ITextureResource *, const IResourceView::Desc &, IResourceView **) __attribute__((stdcall))"
+            "Result (ITextureResource *, const IResourceView::Desc &, IResourceView **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createTextureView;
 
         [NativeTypeName(
-            "Result (IBufferResource *, IBufferResource *, const IResourceView::Desc &, IResourceView **) __attribute__((stdcall))"
+            "Result (IBufferResource *, IBufferResource *, const IResourceView::Desc &, IResourceView **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createBufferView;
 
         [NativeTypeName(
-            "Result (const IFramebufferLayout::Desc &, IFramebufferLayout **) __attribute__((stdcall))"
+            "Result (const IFramebufferLayout::Desc &, IFramebufferLayout **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createFramebufferLayout;
 
         [NativeTypeName(
-            "Result (const IFramebuffer::Desc &, IFramebuffer **) __attribute__((stdcall))"
+            "Result (const IFramebuffer::Desc &, IFramebuffer **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createFramebuffer;
 
         [NativeTypeName(
-            "Result (const IRenderPassLayout::Desc &, IRenderPassLayout **) __attribute__((stdcall))"
+            "Result (const IRenderPassLayout::Desc &, IRenderPassLayout **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createRenderPassLayout;
 
         [NativeTypeName(
-            "Result (const ISwapchain::Desc &, WindowHandle, ISwapchain **) __attribute__((stdcall))"
+            "Result (const ISwapchain::Desc &, WindowHandle, ISwapchain **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createSwapchain;
 
         [NativeTypeName(
-            "Result (const IInputLayout::Desc &, IInputLayout **) __attribute__((stdcall))"
+            "Result (const IInputLayout::Desc &, IInputLayout **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createInputLayout;
 
         [NativeTypeName(
-            "Result (const ICommandQueue::Desc &, ICommandQueue **) __attribute__((stdcall))"
+            "Result (const ICommandQueue::Desc &, ICommandQueue **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createCommandQueue;
 
         [NativeTypeName(
-            "Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((stdcall))"
+            "Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createShaderObject;
 
         [NativeTypeName(
-            "Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((stdcall))"
+            "Result (slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createMutableShaderObject;
 
         [NativeTypeName(
-            "Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((stdcall))"
+            "Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createShaderObjectFromTypeLayout;
 
         [NativeTypeName(
-            "Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((stdcall))"
+            "Result (slang::TypeLayoutReflection *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createMutableShaderObjectFromTypeLayout;
 
-        [NativeTypeName("Result (IShaderProgram *, IShaderObject **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (IShaderProgram *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr createMutableRootShaderObject;
 
         [NativeTypeName(
-            "Result (const IShaderTable::Desc &, IShaderTable **) __attribute__((stdcall))"
+            "Result (const IShaderTable::Desc &, IShaderTable **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createShaderTable;
 
         [NativeTypeName(
-            "Result (const IShaderProgram::Desc &, IShaderProgram **, ISlangBlob **) __attribute__((stdcall))"
+            "Result (const IShaderProgram::Desc &, IShaderProgram **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createProgram;
 
         [NativeTypeName(
-            "Result (const IShaderProgram::CreateDesc2 &, IShaderProgram **, ISlangBlob **) __attribute__((stdcall))"
+            "Result (const IShaderProgram::CreateDesc2 &, IShaderProgram **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createProgram2;
 
         [NativeTypeName(
-            "Result (const GraphicsPipelineStateDesc &, IPipelineState **) __attribute__((stdcall))"
+            "Result (const GraphicsPipelineStateDesc &, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createGraphicsPipelineState;
 
         [NativeTypeName(
-            "Result (const ComputePipelineStateDesc &, IPipelineState **) __attribute__((stdcall))"
+            "Result (const ComputePipelineStateDesc &, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createComputePipelineState;
 
         [NativeTypeName(
-            "Result (const RayTracingPipelineStateDesc &, IPipelineState **) __attribute__((stdcall))"
+            "Result (const RayTracingPipelineStateDesc &, IPipelineState **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createRayTracingPipelineState;
 
         [NativeTypeName(
-            "SlangResult (ITextureResource *, ResourceState, ISlangBlob **, Size *, Size *) __attribute__((stdcall))"
+            "SlangResult (ITextureResource *, ResourceState, ISlangBlob **, Size *, Size *) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr readTextureResource;
 
         [NativeTypeName(
-            "SlangResult (IBufferResource *, Offset, Size, ISlangBlob **) __attribute__((stdcall))"
+            "SlangResult (IBufferResource *, Offset, Size, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr readBufferResource;
 
-        [NativeTypeName("const DeviceInfo &() const __attribute__((stdcall))")]
+        [NativeTypeName(
+            "const DeviceInfo &() const __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getDeviceInfo;
 
         [NativeTypeName(
-            "Result (const IQueryPool::Desc &, IQueryPool **) __attribute__((stdcall))"
+            "Result (const IQueryPool::Desc &, IQueryPool **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createQueryPool;
 
         [NativeTypeName(
-            "Result (const IAccelerationStructure::BuildInputs &, IAccelerationStructure::PrebuildInfo *) __attribute__((stdcall))"
+            "Result (const IAccelerationStructure::BuildInputs &, IAccelerationStructure::PrebuildInfo *) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getAccelerationStructurePrebuildInfo;
 
         [NativeTypeName(
-            "Result (const IAccelerationStructure::CreateDesc &, IAccelerationStructure **) __attribute__((stdcall))"
+            "Result (const IAccelerationStructure::CreateDesc &, IAccelerationStructure **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createAccelerationStructure;
 
-        [NativeTypeName("Result (const IFence::Desc &, IFence **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (const IFence::Desc &, IFence **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr createFence;
 
         [NativeTypeName(
-            "Result (GfxCount, IFence **, uint64_t *, bool, uint64_t) __attribute__((stdcall))"
+            "Result (GfxCount, IFence **, uint64_t *, bool, uint64_t) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr waitForFences;
 
         [NativeTypeName(
-            "Result (const ITextureResource::Desc &, Size *, Size *) __attribute__((stdcall))"
+            "Result (const ITextureResource::Desc &, Size *, Size *) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getTextureAllocationInfo;
 
-        [NativeTypeName("Result (Size *) __attribute__((stdcall))")]
+        [NativeTypeName("Result (Size *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getTextureRowAlignment;
 
         [NativeTypeName(
-            "Result (CooperativeVectorProperties *, uint32_t *) __attribute__((stdcall))"
+            "Result (CooperativeVectorProperties *, uint32_t *) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getCooperativeVectorProperties;
 
         [NativeTypeName(
-            "Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((stdcall))"
+            "Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createShaderObject2;
 
         [NativeTypeName(
-            "Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((stdcall))"
+            "Result (slang::ISession *, slang::TypeReflection *, ShaderObjectContainerType, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr createMutableShaderObject2;
     }

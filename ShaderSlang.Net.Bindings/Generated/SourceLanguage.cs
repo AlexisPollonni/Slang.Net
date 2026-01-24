@@ -34,6 +34,9 @@ public enum SourceLanguage
     /// <include file='SourceLanguage.xml' path='doc/member[@name="SourceLanguage.Wgsl"]/*' />
     Wgsl,
 
+    /// <include file='SourceLanguage.xml' path='doc/member[@name="SourceLanguage.Llvm"]/*' />
+    Llvm,
+
     /// <include file='SourceLanguage.xml' path='doc/member[@name="SourceLanguage.CountOf"]/*' />
     CountOf,
 }

@@ -247,46 +247,56 @@ public unsafe partial struct ISlangFileSystemExt
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void *(const SlangUUID &) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void *(const SlangUUID &) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr castAs;
 
-        [NativeTypeName("SlangResult (const char *, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr loadFile;
 
-        [NativeTypeName("SlangResult (const char *, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getFileUniqueIdentity;
 
         [NativeTypeName(
-            "SlangResult (SlangPathType, const char *, const char *, ISlangBlob **) __attribute__((stdcall))"
+            "SlangResult (SlangPathType, const char *, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr calcCombinedPath;
 
-        [NativeTypeName("SlangResult (const char *, SlangPathType *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const char *, SlangPathType *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getPathType;
 
         [NativeTypeName(
-            "SlangResult (PathKind, const char *, ISlangBlob **) __attribute__((stdcall))"
+            "SlangResult (PathKind, const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getPath;
 
-        [NativeTypeName("void () __attribute__((stdcall))")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr clearCache;
 
         [NativeTypeName(
-            "SlangResult (const char *, FileSystemContentsCallBack, void *) __attribute__((stdcall))"
+            "SlangResult (const char *, FileSystemContentsCallBack, void *) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr enumeratePathContents;
 
-        [NativeTypeName("OSPathKind () __attribute__((stdcall))")]
+        [NativeTypeName("OSPathKind () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getOSPathKind;
     }
 }

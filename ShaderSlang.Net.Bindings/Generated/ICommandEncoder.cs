@@ -98,19 +98,23 @@ public unsafe partial struct ICommandEncoder
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("void () __attribute__((stdcall))")]
+        [NativeTypeName("void () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr endEncoding;
 
-        [NativeTypeName("void (IQueryPool *, GfxIndex) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (IQueryPool *, GfxIndex) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr writeTimestamp;
     }
 }

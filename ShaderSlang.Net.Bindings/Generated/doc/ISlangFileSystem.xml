@@ -140,20 +140,24 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="castAs" access="public">
-          <type native="void *(const SlangUUID &amp;) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void *(const SlangUUID &amp;) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="loadFile" access="public">
-          <type native="SlangResult (const char *, ISlangBlob **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const char *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
       </vtbl>

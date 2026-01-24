@@ -984,115 +984,140 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getSession" access="public">
-          <type native="ISession *() __attribute__((stdcall))">IntPtr</type>
+          <type native="ISession *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getLayout" access="public">
-          <type native="ProgramLayout *(SlangInt, IBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="ProgramLayout *(SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getSpecializationParamCount" access="public">
-          <type native="SlangInt () __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPointCode" access="public">
           <type
-            native="SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((stdcall))"
+            native="SlangResult (SlangInt, SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getResultAsFileSystem" access="public">
           <type
-            native="SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((stdcall))"
+            native="SlangResult (SlangInt, SlangInt, ISlangMutableFileSystem **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getEntryPointHash" access="public">
-          <type native="void (SlangInt, SlangInt, IBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (SlangInt, SlangInt, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="specialize" access="public">
           <type
-            native="SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((stdcall))"
+            native="SlangResult (const SpecializationArg *, SlangInt, IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="link" access="public">
-          <type native="SlangResult (IComponentType **, ISlangBlob **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (IComponentType **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getEntryPointHostCallable" access="public">
           <type
-            native="SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((stdcall))"
+            native="SlangResult (int, int, ISlangSharedLibrary **, slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="renameEntryPoint" access="public">
-          <type native="SlangResult (const char *, IComponentType **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const char *, IComponentType **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="linkWithOptions" access="public">
           <type
-            native="SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((stdcall))"
+            native="SlangResult (IComponentType **, uint32_t, CompilerOptionEntry *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getTargetCode" access="public">
-          <type native="SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (SlangInt, IBlob **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getTargetMetadata" access="public">
-          <type native="SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getEntryPointMetadata" access="public">
           <type
-            native="SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((stdcall))"
+            native="SlangResult (SlangInt, SlangInt, IMetadata **, IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="findEntryPointByName" access="public">
-          <type native="SlangResult (const char *, IEntryPoint **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const char *, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getDefinedEntryPointCount" access="public">
-          <type native="SlangInt32 () __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDefinedEntryPoint" access="public">
-          <type native="SlangResult (SlangInt32, IEntryPoint **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (SlangInt32, IEntryPoint **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="serialize" access="public">
-          <type native="SlangResult (ISlangBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="writeToFile" access="public">
-          <type native="SlangResult (const char *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getName" access="public">
-          <type native="const char *() __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getFilePath" access="public">
-          <type native="const char *() __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getUniqueIdentity" access="public">
-          <type native="const char *() __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="findAndCheckEntryPoint" access="public">
           <type
-            native="SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **) __attribute__((stdcall))"
+            native="SlangResult (const char *, SlangStage, IEntryPoint **, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="getDependencyFileCount" access="public">
-          <type native="SlangInt32 () __attribute__((stdcall))">IntPtr</type>
+          <type native="SlangInt32 () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDependencyFilePath" access="public">
-          <type native="const char *(SlangInt32) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *(SlangInt32) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getModuleReflection" access="public">
-          <type native="DeclReflection *() __attribute__((stdcall))">IntPtr</type>
+          <type native="DeclReflection *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="disassemble" access="public">
-          <type native="SlangResult (slang::IBlob **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (slang::IBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

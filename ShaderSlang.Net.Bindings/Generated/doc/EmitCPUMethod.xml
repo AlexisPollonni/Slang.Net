@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <enumeration name="ReflectionGenericArgType" access="public">
+    <enumeration name="EmitCPUMethod" access="public">
       <type>int</type>
-      <enumerator name="GenericArgType" access="public">
+      <enumerator name="Default" access="public">
         <type primitive="False">int</type>
         <value>
           <code>0</code>
         </value>
       </enumerator>
-      <enumerator name="GenericArgInt" access="public">
+      <enumerator name="ViaCpp" access="public">
         <type primitive="False">int</type>
-        <value>
-          <code>1</code>
-        </value>
       </enumerator>
-      <enumerator name="GenericArgBool" access="public">
+      <enumerator name="ViaLlvm" access="public">
         <type primitive="False">int</type>
-        <value>
-          <code>2</code>
-        </value>
       </enumerator>
     </enumeration>
   </namespace>

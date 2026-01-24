@@ -24,7 +24,7 @@
         <type native="bool">Boolean</type>
       </field>
       <field name="compilerOptionEntries" access="public">
-        <type native="slang::CompilerOptionEntry *">CompilerOptionEntry*</type>
+        <type native="const CompilerOptionEntry *">CompilerOptionEntry*</type>
       </field>
       <field name="compilerOptionEntryCount" access="public">
         <type native="uint32_t">uint</type>

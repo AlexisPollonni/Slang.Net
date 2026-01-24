@@ -93,19 +93,21 @@ public unsafe partial struct ISlangBlob
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("const void *() __attribute__((stdcall))")]
+        [NativeTypeName("const void *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getBufferPointer;
 
-        [NativeTypeName("size_t () __attribute__((stdcall))")]
+        [NativeTypeName("size_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getBufferSize;
     }
 }

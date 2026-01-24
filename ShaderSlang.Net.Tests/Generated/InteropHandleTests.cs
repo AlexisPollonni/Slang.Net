@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 using Xunit;
 
@@ -25,13 +24,6 @@ public static unsafe partial class InteropHandleTests
     [Fact]
     public static void SizeOfTest()
     {
-        if (Environment.Is64BitProcess)
-        {
-            Assert.Equal(16, sizeof(InteropHandle));
-        }
-        else
-        {
-            Assert.Equal(8, sizeof(InteropHandle));
-        }
+        Assert.Equal(16, sizeof(InteropHandle));
     }
 }

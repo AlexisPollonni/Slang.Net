@@ -236,29 +236,34 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getType" access="public">
-          <type native="Type () __attribute__((stdcall))">IntPtr</type>
+          <type native="Type () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeResourceHandle" access="public">
-          <type native="Result (InteropHandle *) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getSharedHandle" access="public">
-          <type native="Result (InteropHandle *) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setDebugName" access="public">
-          <type native="Result (const char *) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDebugName" access="public">
-          <type native="const char *() __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

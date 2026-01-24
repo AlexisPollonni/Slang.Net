@@ -68,42 +68,42 @@
       </enumeration>
       <struct name="BuildFlags" access="public">
         <enumeration name="AccelerationStructBuildFlags" access="public">
-          <type>uint</type>
+          <type>int</type>
           <enumerator name="None" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
           </enumerator>
           <enumerator name="AllowUpdate" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>1</code>
             </value>
           </enumerator>
           <enumerator name="AllowCompaction" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>2</code>
             </value>
           </enumerator>
           <enumerator name="PreferFastTrace" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>4</code>
             </value>
           </enumerator>
           <enumerator name="PreferFastBuild" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>8</code>
             </value>
           </enumerator>
           <enumerator name="MinimizeMemory" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>16</code>
             </value>
           </enumerator>
           <enumerator name="PerformUpdate" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>32</code>
             </value>
@@ -121,18 +121,18 @@
       </enumeration>
       <struct name="GeometryFlags" access="public">
         <enumeration name="AccelerationStructGeometryFlags" access="public">
-          <type>uint</type>
+          <type>int</type>
           <enumerator name="None" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
           </enumerator>
           <enumerator name="Opaque" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>1</code>
             </value>
           </enumerator>
           <enumerator name="NoDuplicateAnyHitInvocation" access="public">
-            <type primitive="False">uint</type>
+            <type primitive="False">int</type>
             <value>
               <code>2</code>
             </value>
@@ -471,23 +471,26 @@
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))"
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
             >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getViewDesc" access="public">
-          <type native="Desc *() __attribute__((stdcall))">IntPtr</type>
+          <type native="Desc *() __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getNativeHandle" access="public">
-          <type native="Result (InteropHandle *) __attribute__((stdcall))">IntPtr</type>
+          <type native="Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getDeviceAddress" access="public">
-          <type native="DeviceAddress () __attribute__((stdcall))">IntPtr</type>
+          <type native="DeviceAddress () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

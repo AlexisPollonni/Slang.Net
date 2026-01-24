@@ -625,110 +625,150 @@ public unsafe partial struct IGlobalSession
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("SlangResult (const SessionDesc &, ISession **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SessionDesc &, ISession **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr createSession;
 
-        [NativeTypeName("SlangProfileID (const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangProfileID (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr findProfile;
 
-        [NativeTypeName("void (SlangPassThrough, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setDownstreamCompilerPath;
 
-        [NativeTypeName("void (SlangPassThrough, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangPassThrough, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setDownstreamCompilerPrelude;
 
-        [NativeTypeName("void (SlangPassThrough, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangPassThrough, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getDownstreamCompilerPrelude;
 
-        [NativeTypeName("const char *() __attribute__((stdcall))")]
+        [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getBuildTagString;
 
         [NativeTypeName(
-            "SlangResult (SlangSourceLanguage, SlangPassThrough) __attribute__((stdcall))"
+            "SlangResult (SlangSourceLanguage, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr setDefaultDownstreamCompiler;
 
         [NativeTypeName("SlangPassThrough (SlangSourceLanguage) __attribute__((stdcall))")]
         public IntPtr getDefaultDownstreamCompiler;
 
-        [NativeTypeName("void (SlangSourceLanguage, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangSourceLanguage, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setLanguagePrelude;
 
-        [NativeTypeName("void (SlangSourceLanguage, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (SlangSourceLanguage, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getLanguagePrelude;
 
-        [NativeTypeName("void (const char *, const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (const char *, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr addBuiltins;
 
-        [NativeTypeName("void (ISlangSharedLibraryLoader *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (ISlangSharedLibraryLoader *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setSharedLibraryLoader;
 
-        [NativeTypeName("ISlangSharedLibraryLoader *() __attribute__((stdcall))")]
+        [NativeTypeName(
+            "ISlangSharedLibraryLoader *() __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getSharedLibraryLoader;
 
-        [NativeTypeName("SlangResult (SlangCompileTarget) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr checkCompileTargetSupport;
 
-        [NativeTypeName("SlangResult (SlangPassThrough) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr checkPassThroughSupport;
 
-        [NativeTypeName("SlangResult (CompileCoreModuleFlags) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (CompileCoreModuleFlags) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr compileCoreModule;
 
-        [NativeTypeName("SlangResult (const void *, size_t) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr loadCoreModule;
 
-        [NativeTypeName("SlangResult (SlangArchiveType, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SlangArchiveType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr saveCoreModule;
 
-        [NativeTypeName("SlangCapabilityID (const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangCapabilityID (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr findCapability;
 
         [NativeTypeName(
-            "void (SlangCompileTarget, SlangCompileTarget, SlangPassThrough) __attribute__((stdcall))"
+            "void (SlangCompileTarget, SlangCompileTarget, SlangPassThrough) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr setDownstreamCompilerForTransition;
 
         [NativeTypeName(
-            "SlangPassThrough (SlangCompileTarget, SlangCompileTarget) __attribute__((stdcall))"
+            "SlangPassThrough (SlangCompileTarget, SlangCompileTarget) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr getDownstreamCompilerForTransition;
 
-        [NativeTypeName("void (double *, double *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "void (double *, double *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getCompilerElapsedTime;
 
-        [NativeTypeName("SlangResult (const char *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr setSPIRVCoreGrammar;
 
         [NativeTypeName(
-            "SlangResult (int, const char *const *, SessionDesc *, ISlangUnknown **) __attribute__((stdcall))"
+            "SlangResult (int, const char *const *, SessionDesc *, ISlangUnknown **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr parseCommandLineArguments;
 
-        [NativeTypeName("SlangResult (SessionDesc *, ISlangBlob **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (SessionDesc *, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getSessionDescDigest;
 
         [NativeTypeName(
-            "SlangResult (BuiltinModuleName, CompileCoreModuleFlags) __attribute__((stdcall))"
+            "SlangResult (BuiltinModuleName, CompileCoreModuleFlags) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr compileBuiltinModule;
 
         [NativeTypeName(
-            "SlangResult (BuiltinModuleName, const void *, size_t) __attribute__((stdcall))"
+            "SlangResult (BuiltinModuleName, const void *, size_t) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr loadBuiltinModule;
 
         [NativeTypeName(
-            "SlangResult (BuiltinModuleName, SlangArchiveType, ISlangBlob **) __attribute__((stdcall))"
+            "SlangResult (BuiltinModuleName, SlangArchiveType, ISlangBlob **) __attribute__((nothrow)) __attribute__((stdcall))"
         )]
         public IntPtr saveBuiltinModule;
     }
