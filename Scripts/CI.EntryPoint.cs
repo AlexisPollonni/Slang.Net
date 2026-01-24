@@ -168,39 +168,46 @@ Task("Test")
     .Does(async () =>
     {
         var resultsDir = Context.Environment.WorkingDirectory.Combine("TestResults");
-        await RunAndUploadBinlogOnException(
-            () =>
-            {
-                DotNetTest(
-                    slnFile.Path.FullPath,
-                    new()
-                    {
-                        ResultsDirectory = resultsDir,
-                        Loggers = ["trx"],
-                        Configuration = configuration,
-                        NoRestore = true,
-                        NoBuild = true,
-                        MSBuildSettings = CreateMSBuildSettings("test"),
-                    }
-                );
-            },
-            "test"
-        );
 
-        if (GitHubActions.IsRunningOnGitHubActions)
+        try
         {
-            EnsureDirectoryExists(resultsDir);
-            var resFiles = Context
-                .FileSystem.GetDirectory(resultsDir)
-                .GetFiles("*", SearchScope.Current);
-
-            foreach (var resultFile in resFiles)
+            await RunAndUploadBinlogOnException(
+                () =>
+                {
+                    DotNetTest(
+                        slnFile.Path.FullPath,
+                        new()
+                        {
+                            ResultsDirectory = resultsDir,
+                            Loggers = ["trx"],
+                            Configuration = configuration,
+                            NoRestore = true,
+                            NoBuild = true,
+                            MSBuildSettings = CreateMSBuildSettings("test"),
+                        }
+                    );
+                },
+                "test"
+            );
+        }
+        catch (Exception)
+        {
+            if (GitHubActions.IsRunningOnGitHubActions)
             {
-                await GitHubActions.Commands.UploadArtifact(
-                    resultFile.Path,
-                    $"{RuntimeInformation.RuntimeIdentifier}-test-results-{resultFile.Path.GetFilenameWithoutExtension()}"
-                );
+                EnsureDirectoryExists(resultsDir);
+                var resFiles = Context
+                    .FileSystem.GetDirectory(resultsDir)
+                    .GetFiles("*", SearchScope.Current);
+
+                foreach (var resultFile in resFiles)
+                {
+                    await GitHubActions.Commands.UploadArtifact(
+                        resultFile.Path,
+                        $"{RuntimeInformation.RuntimeIdentifier}-test-results-{resultFile.Path.GetFilenameWithoutExtension()}"
+                    );
+                }
             }
+            throw;
         }
     });
 
