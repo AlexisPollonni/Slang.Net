@@ -167,6 +167,7 @@ Task("Test")
     .IsDependentOn("Build")
     .Does(async () =>
     {
+        var resultsDir = Context.Environment.WorkingDirectory.Combine("TestResults");
         await RunAndUploadBinlogOnException(
             () =>
             {
@@ -174,6 +175,8 @@ Task("Test")
                     slnFile.Path.FullPath,
                     new()
                     {
+                        ResultsDirectory = resultsDir,
+                        Loggers = ["trx"],
                         Configuration = configuration,
                         NoRestore = true,
                         NoBuild = true,
@@ -183,6 +186,22 @@ Task("Test")
             },
             "test"
         );
+
+        if (GitHubActions.IsRunningOnGitHubActions)
+        {
+            var testResultsDir = resultsDir;
+            var resFiles = Context
+                .FileSystem.GetDirectory(testResultsDir)
+                .GetFiles("*", SearchScope.Current);
+
+            foreach (var resultFile in resFiles)
+            {
+                await GitHubActions.Commands.UploadArtifact(
+                    resultFile.Path,
+                    $"{RuntimeInformation.RuntimeIdentifier}-test-results-{resultFile.Path.GetFilenameWithoutExtension()}"
+                );
+            }
+        }
     });
 
 Task("Pack")
