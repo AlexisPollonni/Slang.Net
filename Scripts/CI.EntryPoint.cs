@@ -168,6 +168,11 @@ Task("Test")
     .Does(async () =>
     {
         var resultsDir = Context.Environment.WorkingDirectory.Combine("TestResults");
+        var testLogPath = resultsDir.CombineWithFilePath(
+            $"{RuntimeInformation.RuntimeIdentifier}-test-results.log"
+        );
+
+        Information("Starting tests, results will be saved to {0}", resultsDir);
 
         try
         {
@@ -178,12 +183,15 @@ Task("Test")
                         slnFile.Path.FullPath,
                         new()
                         {
-                            ResultsDirectory = resultsDir,
-                            Loggers = ["trx"],
+                            EnvironmentVariables = new Dictionary<string, string>
+                            {
+                                { "DOTNET_CLI_TEST_TRACEFILE", testLogPath.FullPath },
+                            },
                             Configuration = configuration,
                             NoRestore = true,
                             NoBuild = true,
                             MSBuildSettings = CreateMSBuildSettings("test"),
+                            Verbosity = DotNetVerbosity.Detailed,
                         }
                     );
                 },
@@ -195,17 +203,11 @@ Task("Test")
             if (GitHubActions.IsRunningOnGitHubActions)
             {
                 EnsureDirectoryExists(resultsDir);
-                var resFiles = Context
-                    .FileSystem.GetDirectory(resultsDir)
-                    .GetFiles("*", SearchScope.Current);
 
-                foreach (var resultFile in resFiles)
-                {
-                    await GitHubActions.Commands.UploadArtifact(
-                        resultFile.Path,
-                        $"{RuntimeInformation.RuntimeIdentifier}-test-results-{resultFile.Path.GetFilenameWithoutExtension()}"
-                    );
-                }
+                await GitHubActions.Commands.UploadArtifact(
+                    testLogPath,
+                    testLogPath.GetFilenameWithoutExtension().FullPath
+                );
             }
             throw;
         }
