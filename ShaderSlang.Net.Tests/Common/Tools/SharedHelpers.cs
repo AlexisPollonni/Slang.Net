@@ -44,7 +44,9 @@ internal static class SharedHelpers
         var llvmRes = globalSession.CheckPassThroughSupport(PassThrough.Llvm);
         if (!llvmRes.Succeeded)
         {
-            TestContext.Current.AddWarning($"slang-llvm not available, CheckPassThroughSupport returned: {llvmRes}");
+            TestContext.Current.AddWarning(
+                $"slang-llvm not available, CheckPassThroughSupport returned: {llvmRes}"
+            );
         }
 
         if (OperatingSystem.IsWindows())
@@ -84,10 +86,14 @@ internal static class SharedHelpers
             Assert.Skip("Skipping test because non-CPU device types are not available in CI.");
         }
 
-        if (deviceType is DeviceType.CPU && !globalSession.CheckPassThroughSupport(PassThrough.Llvm).Succeeded)
+        if (
+            deviceType is DeviceType.CPU
+            && !globalSession.CheckPassThroughSupport(PassThrough.Llvm).Succeeded
+        )
         {
             TestContext.Current.AddWarning(
-                "CPU device is not available, cannot run example test. Ensure slang-llvm binary is in working directory.");
+                "CPU device is not available, cannot run example test. Ensure slang-llvm binary is in working directory."
+            );
             Assert.Skip("Skipping test because CPU device is not available.");
         }
 
