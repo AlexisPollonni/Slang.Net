@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="IShaderCache" access="public" native="struct IShaderCache : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+    <struct
+      name="IShaderCache"
+      access="public"
+      native="struct IShaderCache : ISlangUnknown"
+      parent="ISlangUnknown"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -59,25 +66,48 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="clearShaderCache" access="public" unsafe="true">
         <type native="gfx::Result">int</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_clearShaderCache</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">clearShaderCache</vtbl>)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_clearShaderCache</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >clearShaderCache</vtbl
+            >)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getShaderCacheStats" access="public" unsafe="true">
@@ -86,33 +116,50 @@
           <type>ShaderCacheStats*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getShaderCacheStats</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getShaderCacheStats</vtbl>)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>, <param name="outStats">outStats</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getShaderCacheStats</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getShaderCacheStats</vtbl
+            >)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>, <param
+              name="outStats"
+              >outStats</param
+            >);</code
+          >
         </body>
       </function>
       <function name="resetShaderCacheStats" access="public" unsafe="true">
         <type native="gfx::Result">int</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resetShaderCacheStats</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">resetShaderCacheStats</vtbl>)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_resetShaderCacheStats</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >resetShaderCacheStats</vtbl
+            >)(<param special="thisPtr">(IShaderCache*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="clearShaderCache" access="public">
-          <type native="Result () __attribute__((stdcall))">IntPtr</type>
+          <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getShaderCacheStats" access="public">
-          <type native="Result (ShaderCacheStats *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (ShaderCacheStats *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="resetShaderCacheStats" access="public">
-          <type native="Result () __attribute__((stdcall))">IntPtr</type>
+          <type native="Result () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

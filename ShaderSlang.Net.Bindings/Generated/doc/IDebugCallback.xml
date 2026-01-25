@@ -32,12 +32,22 @@
           <type>sbyte*</type>
         </param>
         <body>
-          <code>Marshal.GetDelegateForFunctionPointer&lt;<delegate>_handleMessage</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">handleMessage</vtbl>)(<param special="thisPtr">(IDebugCallback*)Unsafe.AsPointer(ref this)</param>, <param name="type">type</param>, <param name="source">source</param>, <param name="message">message</param>);</code>
+          <code
+            >Marshal.GetDelegateForFunctionPointer&lt;<delegate>_handleMessage</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >handleMessage</vtbl
+            >)(<param special="thisPtr">(IDebugCallback*)Unsafe.AsPointer(ref this)</param>, <param
+              name="type"
+              >type</param
+            >, <param name="source">source</param>, <param name="message">message</param>);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="handleMessage" access="public">
-          <type native="void (DebugMessageType, DebugMessageSource, const char *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="void (DebugMessageType, DebugMessageSource, const char *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

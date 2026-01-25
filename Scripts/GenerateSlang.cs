@@ -14,6 +14,8 @@
 
 #:property UseCurrentRuntimeIdentifier=true
 
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using ClangSharp;
 using ClangSharp.Interop;
 using Humanizer;
@@ -536,7 +538,8 @@ internal record BuildConfig(
 {
     public FilePathCollection TraversalNames { get; set; } = TraversalNames ?? [];
 
-    public IReadOnlyList<string> GetClangCmdLineArgsForConfig()
+    [SupportedOSPlatform("linux")]
+    private static IEnumerable<DirectoryPath> GetStandardLinuxIncludeDirectories()
     {
         var linuxIncludeDirectories = new List<DirectoryPath>();
 
@@ -595,13 +598,95 @@ internal record BuildConfig(
             );
         }
 
-        linuxIncludeDirectories.AddRange(
-            ["/usr/include/x86_64-linux-gnu", "/usr/include/linux", "/usr/include"]
-        );
+        linuxIncludeDirectories.AddRange([
+            "/usr/include/x86_64-linux-gnu",
+            "/usr/include/linux",
+            "/usr/include",
+        ]);
 
-        //Add additional include directories for linux systems to resolve stddef.h
+        return linuxIncludeDirectories;
+    }
 
-        var includeDirectories = IsRunningOnLinux() ? linuxIncludeDirectories : [];
+    [SupportedOSPlatform("windows")]
+    private static IEnumerable<DirectoryPath> GetStandardWindowsIncludeDirectories()
+    {
+        var windowsIncludeDirectories = new List<DirectoryPath>();
+
+        var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+        var windowsSdkDir = DirectoryPath
+            .FromString(programFiles)
+            .Combine("Windows Kits")
+            .Combine("10")
+            .Combine("Include");
+
+        if (!DirectoryExists(windowsSdkDir))
+        {
+            Warning(
+                "Windows SDK include directory not found at '{0}', generation might fail!",
+                windowsSdkDir
+            );
+            return [];
+        }
+
+        var versionDirs = GetDirectories(windowsSdkDir + "/*/")
+            .Order(PathComparer.Default)
+            .Cast<DirectoryPath>()
+            .ToArray();
+
+        if (versionDirs.Length is 0)
+        {
+            Warning(
+                "No versioned Windows SDK include directories found in '{0}', generation might fail!",
+                windowsSdkDir
+            );
+            return [];
+        }
+
+        var chosenVersionDir = versionDirs[^1];
+
+        Information("Choosing Windows SDK include directory: {0}", chosenVersionDir);
+        windowsIncludeDirectories.Add(chosenVersionDir);
+
+        var umDir = chosenVersionDir.Combine("um");
+        if (DirectoryExists(umDir))
+        {
+            Information("Also adding um include directory: {0}", umDir);
+            windowsIncludeDirectories.Add(umDir);
+        }
+
+        var sharedDir = chosenVersionDir.Combine("shared");
+        if (DirectoryExists(sharedDir))
+        {
+            Information("Also adding shared include directory: {0}", sharedDir);
+            windowsIncludeDirectories.Add(sharedDir);
+        }
+
+        var ucrtDir = chosenVersionDir.Combine("ucrt");
+        if (DirectoryExists(ucrtDir))
+        {
+            Information("Also adding ucrt include directory: {0}", ucrtDir);
+            windowsIncludeDirectories.Add(ucrtDir);
+        }
+        else
+        {
+            Warning(
+                "ucrt include directory not found in '{0}', generation might fail!",
+                chosenVersionDir
+            );
+        }
+
+        return windowsIncludeDirectories;
+    }
+
+    public IReadOnlyList<string> GetClangCmdLineArgsForConfig()
+    {
+        //Add additional include directories to resolve standard library headers
+#pragma warning disable CA1416 // Validate platform compatibility
+        var includeDirectories =
+            IsRunningOnLinux() ? GetStandardLinuxIncludeDirectories()
+            : IsRunningOnWindows() ? GetStandardWindowsIncludeDirectories()
+            : Enumerable.Empty<DirectoryPath>();
+#pragma warning restore CA1416 // Validate platform compatibility
 
         Information("Include directories for Clang: {0}", string.Join(", ", includeDirectories));
 
@@ -610,12 +695,11 @@ internal record BuildConfig(
             $"--language={Language}", // Treat subsequent input files as having type <language>
             "-stdlib=libc++",
             "-Wno-pragma-once-outside-header", // We are processing files which may be header files
-            "-D __clang_major__=19", //Header yvals_core expects clang19, we fake it for binding gen before clangsharp updates
             "-Wno-deprecated-declarations",
             .. DefineMacros
                 .Concat(["SLANG_PLATFORM", GetSlangPlatformDefine()])
                 .Select(s => $"-D {s}"),
-            .. includeDirectories.Select(s => $"--include-directory={s}"),
+            .. includeDirectories.Select(s => $"-I{s}"),
         ];
     }
 
@@ -712,7 +796,7 @@ internal record BuildConfig(
                 "__clang__",
                 "SLANG_CLANG",
                 "SLANG_STDCALL=__stdcall", // we force stdcall conv for now
-                                           // TODO: change later when implemented conditionnal call conv
+                // TODO: change later when implemented conditionnal call conv
             ],
             [
                 // Remove the rest of the platform-specific macros

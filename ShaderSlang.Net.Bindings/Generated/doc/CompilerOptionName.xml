@@ -387,6 +387,45 @@
       <enumerator name="ForceCLayout" access="public">
         <type primitive="False">int</type>
       </enumerator>
+      <enumerator name="ExperimentalFeature" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ReportDetailedPerfBenchmark" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ValidateIRDetailed" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="DumpIRBefore" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="DumpIRAfter" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="EmitCPUMethod" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="EmitCPUViaCPP" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="EmitCPUViaLLVM" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="LLVMTargetTriple" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="LLVMCPU" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="LLVMFeatures" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="EnableRichDiagnostics" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ReportDynamicDispatchSites" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
       <enumerator name="CountOf" access="public">
         <type primitive="False">int</type>
       </enumerator>

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="IShaderTable" access="public" native="struct IShaderTable : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+    <struct
+      name="IShaderTable"
+      access="public"
+      native="struct IShaderTable : ISlangUnknown"
+      parent="ISlangUnknown"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -96,30 +103,50 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IShaderTable*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(IShaderTable*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IShaderTable*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(IShaderTable*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IShaderTable*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(IShaderTable*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
       </vtbl>
     </struct>

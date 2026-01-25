@@ -32,7 +32,7 @@ public unsafe partial struct TargetDesc
     public Boolean forceGLSLScalarBufferLayout;
 
     /// <include file='TargetDesc.xml' path='doc/member[@name="TargetDesc.compilerOptionEntries"]/*' />
-    [NativeTypeName("slang::CompilerOptionEntry *")]
+    [NativeTypeName("const CompilerOptionEntry *")]
     public CompilerOptionEntry* compilerOptionEntries;
 
     /// <include file='TargetDesc.xml' path='doc/member[@name="TargetDesc.compilerOptionEntryCount"]/*' />

@@ -10,7 +10,10 @@ public static unsafe partial class SlangReflectionUserAttributeTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(sizeof(SlangReflectionUserAttribute), Marshal.SizeOf<SlangReflectionUserAttribute>());
+        Assert.Equal(
+            sizeof(SlangReflectionUserAttribute),
+            Marshal.SizeOf<SlangReflectionUserAttribute>()
+        );
     }
 
     /// <summary>Validates that the <see cref="SlangReflectionUserAttribute" /> struct has the right <see cref="LayoutKind" />.</summary>

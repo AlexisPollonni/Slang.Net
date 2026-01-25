@@ -11,7 +11,10 @@ public static unsafe partial class AccelerationStructureQueryDescTests
     [Fact]
     public static void IsBlittableTest()
     {
-        Assert.Equal(sizeof(AccelerationStructureQueryDesc), Marshal.SizeOf<AccelerationStructureQueryDesc>());
+        Assert.Equal(
+            sizeof(AccelerationStructureQueryDesc),
+            Marshal.SizeOf<AccelerationStructureQueryDesc>()
+        );
     }
 
     /// <summary>Validates that the <see cref="AccelerationStructureQueryDesc" /> struct has the right <see cref="LayoutKind" />.</summary>

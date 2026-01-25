@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using ShaderSlang.Net.Bindings.Enums;
 using ShaderSlang.Net.Bindings.Generated;
+using ShaderSlang.Net.ComWrappers.Gfx;
 using ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 using ShaderSlang.Net.ComWrappers.Gfx.Interfaces;
 using ShaderSlang.Net.ComWrappers.Interfaces;
@@ -39,7 +40,14 @@ internal static class SharedHelpers
         var globalSession = CreateGlobalSession();
 
         globalSession.SetDownstreamCompilerPath(PassThrough.Llvm, RunningExePath);
-        globalSession.CheckPassThroughSupportOrThrow(PassThrough.Llvm);
+
+        var llvmRes = globalSession.CheckPassThroughSupport(PassThrough.Llvm);
+        if (!llvmRes.Succeeded)
+        {
+            TestContext.Current.AddWarning(
+                $"slang-llvm not available, CheckPassThroughSupport returned: {llvmRes}"
+            );
+        }
 
         if (OperatingSystem.IsWindows())
         {
@@ -76,6 +84,17 @@ internal static class SharedHelpers
         if (IsCi && deviceType is not DeviceType.CPU)
         {
             Assert.Skip("Skipping test because non-CPU device types are not available in CI.");
+        }
+
+        if (
+            deviceType is DeviceType.CPU
+            && !globalSession.CheckPassThroughSupport(PassThrough.Llvm).Succeeded
+        )
+        {
+            TestContext.Current.AddWarning(
+                "CPU device is not available, cannot run example test. Ensure slang-llvm binary is in working directory."
+            );
+            Assert.Skip("Skipping test because CPU device is not available.");
         }
 
         var runningBinPath = RunningExePath;

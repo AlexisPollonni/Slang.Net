@@ -99,6 +99,21 @@
       <enumerator name="HostVm" access="public">
         <type primitive="False">int</type>
       </enumerator>
+      <enumerator name="CppHeader" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="CudaHeader" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="HostObjectCode" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="HostLlvmIr" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
+      <enumerator name="ShaderLlvmIr" access="public">
+        <type primitive="False">int</type>
+      </enumerator>
       <enumerator name="TargetCountOf" access="public">
         <type primitive="False">int</type>
       </enumerator>

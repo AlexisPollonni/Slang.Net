@@ -12,7 +12,7 @@ public unsafe partial struct SpecializationArg
     public TypeKind kind;
 
     /// <include file='SpecializationArg.xml' path='doc/member[@name="SpecializationArg.Anonymous"]/*' />
-    [NativeTypeName("__AnonymousRecord_slang_L4650_C5")]
+    [NativeTypeName("__AnonymousRecord_slang_L4816_C5")]
     public _Anonymous_e__Union Anonymous;
 
     /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.type"]/*' />
@@ -20,10 +20,7 @@ public unsafe partial struct SpecializationArg
     public ref TypeReflection* type
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        get
-        {
-            return ref Anonymous.type;
-        }
+        get { return ref Anonymous.type; }
     }
 
     /// <include file='_Anonymous_e__Union.xml' path='doc/member[@name="_Anonymous_e__Union.expr"]/*' />
@@ -31,10 +28,7 @@ public unsafe partial struct SpecializationArg
     public ref sbyte* expr
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        get
-        {
-            return ref Anonymous.expr;
-        }
+        get { return ref Anonymous.expr; }
     }
 
     /// <include file='TypeKind.xml' path='doc/member[@name="TypeKind"]/*' />

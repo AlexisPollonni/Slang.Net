@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="IShaderObject" access="public" native="struct IShaderObject : ISlangUnknown" parent="ISlangUnknown" vtbl="true" unsafe="true">
+    <struct
+      name="IShaderObject"
+      access="public"
+      native="struct IShaderObject : ISlangUnknown"
+      parent="ISlangUnknown"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -122,7 +129,12 @@
           <type>ISamplerState*</type>
         </param>
       </delegate>
-      <delegate name="_setCombinedTextureSampler" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_setCombinedTextureSampler"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -176,7 +188,12 @@
           <type>IShaderObject*</type>
         </param>
       </delegate>
-      <delegate name="_setConstantBufferOverride" access="public" convention="StdCall" unsafe="true">
+      <delegate
+        name="_setConstantBufferOverride"
+        access="public"
+        convention="StdCall"
+        unsafe="true"
+      >
         <type native="gfx::Result">int</type>
         <param name="pThis">
           <type>IShaderObject*</type>
@@ -194,37 +211,70 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getElementTypeLayout" access="public" unsafe="true">
         <type native="slang::TypeLayoutReflection *">TypeLayoutReflection*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getElementTypeLayout</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getElementTypeLayout</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getElementTypeLayout</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getElementTypeLayout</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getContainerType" access="public" unsafe="true">
         <type native="gfx::ShaderObjectContainerType">ShaderObjectContainerType</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getContainerType</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getContainerType</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getContainerType</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getContainerType</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getEntryPointCount" access="public" unsafe="true">
         <type native="gfx::GfxCount">int</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPointCount</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPointCount</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryPointCount</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getEntryPoint" access="public" unsafe="true">
@@ -236,7 +286,15 @@
           <type>IShaderObject**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryPoint</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>, <param name="entryPoint">entryPoint</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryPoint</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryPoint</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param
+              name="index"
+              >index</param
+            >, <param name="entryPoint">entryPoint</param>);</code
+          >
         </body>
       </function>
       <function name="setData" access="public" unsafe="true">
@@ -251,7 +309,15 @@
           <type>nuint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setData</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setData</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="offset">offset</param>, <param name="data">data</param>, <param name="size">size</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setData</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setData</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param
+              name="offset"
+              >offset</param
+            >, <param name="data">data</param>, <param name="size">size</param>);</code
+          >
         </body>
       </function>
       <function name="getObject" access="public" unsafe="true">
@@ -263,7 +329,15 @@
           <type>IShaderObject**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getObject</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getObject</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="offset">offset</param>, <param name="@object">@object</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getObject</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getObject</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param
+              name="offset"
+              >offset</param
+            >, <param name="@object">@object</param>);</code
+          >
         </body>
       </function>
       <function name="setObject" access="public" unsafe="true">
@@ -275,7 +349,15 @@
           <type>IShaderObject*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setObject</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setObject</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="offset">offset</param>, <param name="@object">@object</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setObject</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setObject</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param
+              name="offset"
+              >offset</param
+            >, <param name="@object">@object</param>);</code
+          >
         </body>
       </function>
       <function name="setResource" access="public" unsafe="true">
@@ -287,7 +369,15 @@
           <type>IResourceView*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setResource</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setResource</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="offset">offset</param>, <param name="resourceView">resourceView</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setResource</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setResource</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param
+              name="offset"
+              >offset</param
+            >, <param name="resourceView">resourceView</param>);</code
+          >
         </body>
       </function>
       <function name="setSampler" access="public" unsafe="true">
@@ -299,7 +389,13 @@
           <type>ISamplerState*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSampler</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setSampler</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="offset">offset</param>, <param name="sampler">sampler</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSampler</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setSampler</vtbl>)(<param special="thisPtr"
+              >(IShaderObject*)Unsafe.AsPointer(ref this)</param
+            >, <param name="offset">offset</param>, <param name="sampler">sampler</param>);</code
+          >
         </body>
       </function>
       <function name="setCombinedTextureSampler" access="public" unsafe="true">
@@ -314,7 +410,15 @@
           <type>ISamplerState*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setCombinedTextureSampler</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setCombinedTextureSampler</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="offset">offset</param>, <param name="textureView">textureView</param>, <param name="sampler">sampler</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setCombinedTextureSampler</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setCombinedTextureSampler</vtbl>)(<param special="thisPtr"
+              >(IShaderObject*)Unsafe.AsPointer(ref this)</param
+            >, <param name="offset">offset</param>, <param name="textureView"
+              >textureView</param
+            >, <param name="sampler">sampler</param>);</code
+          >
         </body>
       </function>
       <function name="setSpecializationArgs" access="public" unsafe="true">
@@ -329,7 +433,15 @@
           <type>int</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSpecializationArgs</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setSpecializationArgs</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="offset">offset</param>, <param name="args">args</param>, <param name="count">count</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setSpecializationArgs</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setSpecializationArgs</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param
+              name="offset"
+              >offset</param
+            >, <param name="args">args</param>, <param name="count">count</param>);</code
+          >
         </body>
       </function>
       <function name="getCurrentVersion" access="public" unsafe="true">
@@ -341,19 +453,37 @@
           <type>IShaderObject**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCurrentVersion</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getCurrentVersion</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="transientHeap">transientHeap</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getCurrentVersion</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getCurrentVersion</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param
+              name="transientHeap"
+              >transientHeap</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="getRawData" access="public" unsafe="true">
         <type native="const void *">void*</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getRawData</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getRawData</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getRawData</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getRawData</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getSize" access="public" unsafe="true">
         <type native="gfx::Size">nuint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSize</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getSize</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getSize</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getSize</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="setConstantBufferOverride" access="public" unsafe="true">
@@ -362,63 +492,97 @@
           <type>IBufferResource*</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setConstantBufferOverride</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">setConstantBufferOverride</vtbl>)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param name="constantBuffer">constantBuffer</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_setConstantBufferOverride</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >setConstantBufferOverride</vtbl
+            >)(<param special="thisPtr">(IShaderObject*)Unsafe.AsPointer(ref this)</param>, <param
+              name="constantBuffer"
+              >constantBuffer</param>);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getElementTypeLayout" access="public">
-          <type native="slang::TypeLayoutReflection *() __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="slang::TypeLayoutReflection *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getContainerType" access="public">
-          <type native="ShaderObjectContainerType () __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="ShaderObjectContainerType () __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getEntryPointCount" access="public">
-          <type native="GfxCount () __attribute__((stdcall))">IntPtr</type>
+          <type native="GfxCount () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryPoint" access="public">
-          <type native="Result (GfxIndex, IShaderObject **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (GfxIndex, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setData" access="public">
-          <type native="Result (const ShaderOffset &amp;, const void *, Size) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (const ShaderOffset &amp;, const void *, Size) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getObject" access="public">
-          <type native="Result (const ShaderOffset &amp;, IShaderObject **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (const ShaderOffset &amp;, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setObject" access="public">
-          <type native="Result (const ShaderOffset &amp;, IShaderObject *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (const ShaderOffset &amp;, IShaderObject *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setResource" access="public">
-          <type native="Result (const ShaderOffset &amp;, IResourceView *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (const ShaderOffset &amp;, IResourceView *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setSampler" access="public">
-          <type native="Result (const ShaderOffset &amp;, ISamplerState *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (const ShaderOffset &amp;, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setCombinedTextureSampler" access="public">
-          <type native="Result (const ShaderOffset &amp;, IResourceView *, ISamplerState *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (const ShaderOffset &amp;, IResourceView *, ISamplerState *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="setSpecializationArgs" access="public">
-          <type native="Result (const ShaderOffset &amp;, const slang::SpecializationArg *, GfxCount) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (const ShaderOffset &amp;, const slang::SpecializationArg *, GfxCount) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getCurrentVersion" access="public">
-          <type native="Result (ITransientResourceHeap *, IShaderObject **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (ITransientResourceHeap *, IShaderObject **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getRawData" access="public">
-          <type native="const void *() __attribute__((stdcall))">IntPtr</type>
+          <type native="const void *() __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getSize" access="public">
-          <type native="Size () __attribute__((stdcall))">IntPtr</type>
+          <type native="Size () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="setConstantBufferOverride" access="public">
-          <type native="Result (IBufferResource *) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="Result (IBufferResource *) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

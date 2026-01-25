@@ -11,21 +11,27 @@
       <field name="type" access="public">
         <type native="uint32_t : 8">uint</type>
         <get inlining="aggressive">
-          <code>return <bitfieldName>_bitfield</bitfieldName> &amp; 0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking>;</code>
+          <code
+            >return <bitfieldName>_bitfield</bitfieldName> &amp; 0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking>;</code
+          >
         </get>
         <set inlining="aggressive">
           <code>
-            <bitfieldName>_bitfield</bitfieldName> = (_bitfield &amp; ~0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking>) | (value &amp; 0x<bitwidthHexString>FFu</bitwidthHexString>);</code>
+            <bitfieldName>_bitfield</bitfieldName> = (_bitfield &amp; ~0x<bitwidthHexStringBacking>FFu</bitwidthHexStringBacking>) | (value &amp; 0x<bitwidthHexString>FFu</bitwidthHexString>);</code
+          >
         </set>
       </field>
       <field name="size" access="public">
         <type native="uint32_t : 24">uint</type>
         <get inlining="aggressive">
-          <code>return (<bitfieldName>_bitfield</bitfieldName> &gt;&gt; <bitfieldOffset>8</bitfieldOffset>) &amp; 0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>;</code>
+          <code
+            >return (<bitfieldName>_bitfield</bitfieldName> &gt;&gt; <bitfieldOffset>8</bitfieldOffset>) &amp; 0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking>;</code
+          >
         </get>
         <set inlining="aggressive">
           <code>
-            <bitfieldName>_bitfield</bitfieldName> = (_bitfield &amp; ~(0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking> &lt;&lt; <bitfieldOffset>8</bitfieldOffset>)) | ((value &amp; 0x<bitwidthHexString>FFFFFFu</bitwidthHexString>) &lt;&lt; 8);</code>
+            <bitfieldName>_bitfield</bitfieldName> = (_bitfield &amp; ~(0x<bitwidthHexStringBacking>FFFFFFu</bitwidthHexStringBacking> &lt;&lt; <bitfieldOffset>8</bitfieldOffset>)) | ((value &amp; 0x<bitwidthHexString>FFFFFFu</bitwidthHexString>) &lt;&lt; 8);</code
+          >
         </set>
       </field>
       <field name="offset" access="public">

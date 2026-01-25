@@ -183,6 +183,7 @@ static class TypeSymbolExtensions
             data.AttributeClass?.ToFullyQualified()
                 .StartsWith(
                     "global::System.Runtime.InteropServices.Marshalling.MarshalUsingAttribute"
-                ) ?? false;
+                )
+            ?? false;
     }
 }

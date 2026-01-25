@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <bindings>
   <namespace name="ShaderSlang.Net.Bindings.Generated">
-    <struct name="ISlangProfiler" access="public" native="struct ISlangProfiler : ISlangUnknown" parent="ISlangUnknown" uuid="197772c7-0155-4b91-84e8-6668baff0619" vtbl="true" unsafe="true">
+    <struct
+      name="ISlangProfiler"
+      access="public"
+      native="struct ISlangProfiler : ISlangUnknown"
+      parent="ISlangUnknown"
+      uuid="197772c7-0155-4b91-84e8-6668baff0619"
+      vtbl="true"
+      unsafe="true"
+    >
       <field name="lpVtbl" access="public">
         <type>Vtbl*</type>
       </field>
@@ -45,7 +53,7 @@
         </param>
       </delegate>
       <delegate name="_getEntryTimeMS" access="public" convention="StdCall">
-        <type native="long">nint</type>
+        <type native="long">int</type>
         <param name="pThis">
           <type>ISlangProfiler*</type>
         </param>
@@ -71,25 +79,48 @@
           <type>void**</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">queryInterface</vtbl>)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param name="uuid">uuid</param>, <param name="outObject">outObject</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_queryInterface</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >queryInterface</vtbl
+            >)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param
+              name="uuid"
+              >uuid</param
+            >, <param name="outObject">outObject</param>);</code
+          >
         </body>
       </function>
       <function name="addRef" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">addRef</vtbl>)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_addRef</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >addRef</vtbl
+            >)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="release" access="public" unsafe="true">
         <type native="uint32_t">uint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">release</vtbl>)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_release</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >release</vtbl
+            >)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getEntryCount" access="public" unsafe="true">
         <type native="size_t">nuint</type>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryCount</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryCount</vtbl>)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryCount</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryCount</vtbl
+            >)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>);</code
+          >
         </body>
       </function>
       <function name="getEntryName" access="public" unsafe="true">
@@ -98,16 +129,32 @@
           <type>uint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryName</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryName</vtbl>)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryName</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryName</vtbl
+            >)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param
+              name="index"
+              >index</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getEntryTimeMS" access="public" unsafe="true">
-        <type native="long">nint</type>
+        <type native="long">int</type>
         <param name="index">
           <type>uint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryTimeMS</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryTimeMS</vtbl>)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryTimeMS</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryTimeMS</vtbl
+            >)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param
+              name="index"
+              >index</param
+            >);</code
+          >
         </body>
       </function>
       <function name="getEntryInvocationTimes" access="public" unsafe="true">
@@ -116,30 +163,43 @@
           <type>uint</type>
         </param>
         <body>
-          <code>return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryInvocationTimes</delegate>&gt;(lpVtbl-&gt;<vtbl explicit="True">getEntryInvocationTimes</vtbl>)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param name="index">index</param>);</code>
+          <code
+            >return Marshal.GetDelegateForFunctionPointer&lt;<delegate>_getEntryInvocationTimes</delegate>&gt;(lpVtbl-&gt;<vtbl
+              explicit="True"
+              >getEntryInvocationTimes</vtbl
+            >)(<param special="thisPtr">(ISlangProfiler*)Unsafe.AsPointer(ref this)</param>, <param
+              name="index"
+              >index</param
+            >);</code
+          >
         </body>
       </function>
       <vtbl>
         <field name="queryInterface" access="public">
-          <type native="SlangResult (const SlangUUID &amp;, void **) __attribute__((stdcall))">IntPtr</type>
+          <type
+            native="SlangResult (const SlangUUID &amp;, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="addRef" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="release" access="public">
-          <type native="uint32_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryCount" access="public">
-          <type native="size_t () __attribute__((stdcall))">IntPtr</type>
+          <type native="size_t () __attribute__((nothrow)) __attribute__((stdcall))">IntPtr</type>
         </field>
         <field name="getEntryName" access="public">
-          <type native="const char *(uint32_t) __attribute__((stdcall))">IntPtr</type>
+          <type native="const char *(uint32_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getEntryTimeMS" access="public">
-          <type native="long (uint32_t) __attribute__((stdcall))">IntPtr</type>
+          <type native="long (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
         <field name="getEntryInvocationTimes" access="public">
-          <type native="uint32_t (uint32_t) __attribute__((stdcall))">IntPtr</type>
+          <type native="uint32_t (uint32_t) __attribute__((nothrow)) __attribute__((stdcall))"
+            >IntPtr</type>
         </field>
       </vtbl>
     </struct>

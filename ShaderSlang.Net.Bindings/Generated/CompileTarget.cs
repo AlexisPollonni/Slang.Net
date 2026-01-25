@@ -100,6 +100,21 @@ public enum CompileTarget
     /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.HostVm"]/*' />
     HostVm,
 
+    /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.CppHeader"]/*' />
+    CppHeader,
+
+    /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.CudaHeader"]/*' />
+    CudaHeader,
+
+    /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.HostObjectCode"]/*' />
+    HostObjectCode,
+
+    /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.HostLlvmIr"]/*' />
+    HostLlvmIr,
+
+    /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.ShaderLlvmIr"]/*' />
+    ShaderLlvmIr,
+
     /// <include file='CompileTarget.xml' path='doc/member[@name="CompileTarget.TargetCountOf"]/*' />
     TargetCountOf,
 }

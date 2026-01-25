@@ -167,22 +167,50 @@ Task("Test")
     .IsDependentOn("Build")
     .Does(async () =>
     {
-        await RunAndUploadBinlogOnException(
-            () =>
-            {
-                DotNetTest(
-                    slnFile.Path.FullPath,
-                    new()
-                    {
-                        Configuration = configuration,
-                        NoRestore = true,
-                        NoBuild = true,
-                        MSBuildSettings = CreateMSBuildSettings("test"),
-                    }
-                );
-            },
-            "test"
+        var resultsDir = Context.Environment.WorkingDirectory.Combine("TestResults");
+        var testLogPath = resultsDir.CombineWithFilePath(
+            $"{RuntimeInformation.RuntimeIdentifier}-test-results.log"
         );
+
+        Information("Starting tests, results will be saved to {0}", resultsDir);
+
+        try
+        {
+            await RunAndUploadBinlogOnException(
+                () =>
+                {
+                    DotNetTest(
+                        slnFile.Path.FullPath,
+                        new()
+                        {
+                            EnvironmentVariables = new Dictionary<string, string>
+                            {
+                                { "DOTNET_CLI_TEST_TRACEFILE", testLogPath.FullPath },
+                            },
+                            Configuration = configuration,
+                            NoRestore = true,
+                            NoBuild = true,
+                            MSBuildSettings = CreateMSBuildSettings("test"),
+                            Verbosity = DotNetVerbosity.Detailed,
+                        }
+                    );
+                },
+                "test"
+            );
+        }
+        catch (Exception)
+        {
+            if (GitHubActions.IsRunningOnGitHubActions)
+            {
+                EnsureDirectoryExists(resultsDir);
+
+                await GitHubActions.Commands.UploadArtifact(
+                    testLogPath,
+                    testLogPath.GetFilenameWithoutExtension().FullPath
+                );
+            }
+            throw;
+        }
     });
 
 Task("Pack")
@@ -208,6 +236,7 @@ Task("Pack")
     });
 
 Task("PublishToGithub")
+    .IsDependentOn("Test")
     .IsDependentOn("Pack")
     .ContinueOnError()
     .WithCriteria(() =>

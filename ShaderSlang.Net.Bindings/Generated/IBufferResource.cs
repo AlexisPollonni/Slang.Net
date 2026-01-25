@@ -13,7 +13,11 @@ public unsafe partial struct IBufferResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("SlangResult")]
-    public delegate int _queryInterface(IBufferResource* pThis, [NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject);
+    public delegate int _queryInterface(
+        IBufferResource* pThis,
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("uint32_t")]
@@ -29,15 +33,24 @@ public unsafe partial struct IBufferResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getNativeResourceHandle(IBufferResource* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
+    public delegate int _getNativeResourceHandle(
+        IBufferResource* pThis,
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _getSharedHandle(IBufferResource* pThis, [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle);
+    public delegate int _getSharedHandle(
+        IBufferResource* pThis,
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _setDebugName(IBufferResource* pThis, [NativeTypeName("const char *")] sbyte* name);
+    public delegate int _setDebugName(
+        IBufferResource* pThis,
+        [NativeTypeName("const char *")] sbyte* name
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("const char *")]
@@ -53,11 +66,18 @@ public unsafe partial struct IBufferResource
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _map(IBufferResource* pThis, [NativeTypeName("gfx::MemoryRange *")] MemoryRange* rangeToRead, void** outPointer);
+    public delegate int _map(
+        IBufferResource* pThis,
+        [NativeTypeName("gfx::MemoryRange *")] MemoryRange* rangeToRead,
+        void** outPointer
+    );
 
     [UnmanagedFunctionPointer(CallingConvention.StdCall)]
     [return: NativeTypeName("gfx::Result")]
-    public delegate int _unmap(IBufferResource* pThis, [NativeTypeName("gfx::MemoryRange *")] MemoryRange* writtenRange);
+    public delegate int _unmap(
+        IBufferResource* pThis,
+        [NativeTypeName("gfx::MemoryRange *")] MemoryRange* writtenRange
+    );
 
     /// <include file='BufferResourceDesc.xml' path='doc/member[@name="BufferResourceDesc"]/*' />
     [NativeTypeName("struct Desc : gfx::IResource::DescBase")]
@@ -82,9 +102,16 @@ public unsafe partial struct IBufferResource
     /// <inheritdoc cref="ISlangUnknown.queryInterface" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("SlangResult")]
-    public int queryInterface([NativeTypeName("const SlangUUID &")] SlangUUID* uuid, void** outObject)
+    public int queryInterface(
+        [NativeTypeName("const SlangUUID &")] SlangUUID* uuid,
+        void** outObject
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)((IBufferResource*)Unsafe.AsPointer(ref this), uuid, outObject);
+        return Marshal.GetDelegateForFunctionPointer<_queryInterface>(lpVtbl->queryInterface)(
+            (IBufferResource*)Unsafe.AsPointer(ref this),
+            uuid,
+            outObject
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.addRef" />
@@ -92,7 +119,9 @@ public unsafe partial struct IBufferResource
     [return: NativeTypeName("uint32_t")]
     public uint addRef()
     {
-        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)((IBufferResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_addRef>(lpVtbl->addRef)(
+            (IBufferResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="ISlangUnknown.release" />
@@ -100,7 +129,9 @@ public unsafe partial struct IBufferResource
     [return: NativeTypeName("uint32_t")]
     public uint release()
     {
-        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)((IBufferResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_release>(lpVtbl->release)(
+            (IBufferResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="IResource.getType" />
@@ -108,15 +139,21 @@ public unsafe partial struct IBufferResource
     [return: NativeTypeName("gfx::IResource::Type")]
     public ResourceType getType()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getType>(lpVtbl->getType)((IBufferResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getType>(lpVtbl->getType)(
+            (IBufferResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <inheritdoc cref="IResource.getNativeResourceHandle" />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int getNativeResourceHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle)
+    public int getNativeResourceHandle(
+        [NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_getNativeResourceHandle>(lpVtbl->getNativeResourceHandle)((IBufferResource*)Unsafe.AsPointer(ref this), outHandle);
+        return Marshal.GetDelegateForFunctionPointer<_getNativeResourceHandle>(
+            lpVtbl->getNativeResourceHandle
+        )((IBufferResource*)Unsafe.AsPointer(ref this), outHandle);
     }
 
     /// <inheritdoc cref="IResource.getSharedHandle" />
@@ -124,7 +161,10 @@ public unsafe partial struct IBufferResource
     [return: NativeTypeName("gfx::Result")]
     public int getSharedHandle([NativeTypeName("gfx::InteropHandle *")] InteropHandle* outHandle)
     {
-        return Marshal.GetDelegateForFunctionPointer<_getSharedHandle>(lpVtbl->getSharedHandle)((IBufferResource*)Unsafe.AsPointer(ref this), outHandle);
+        return Marshal.GetDelegateForFunctionPointer<_getSharedHandle>(lpVtbl->getSharedHandle)(
+            (IBufferResource*)Unsafe.AsPointer(ref this),
+            outHandle
+        );
     }
 
     /// <inheritdoc cref="IResource.setDebugName" />
@@ -132,7 +172,10 @@ public unsafe partial struct IBufferResource
     [return: NativeTypeName("gfx::Result")]
     public int setDebugName([NativeTypeName("const char *")] sbyte* name)
     {
-        return Marshal.GetDelegateForFunctionPointer<_setDebugName>(lpVtbl->setDebugName)((IBufferResource*)Unsafe.AsPointer(ref this), name);
+        return Marshal.GetDelegateForFunctionPointer<_setDebugName>(lpVtbl->setDebugName)(
+            (IBufferResource*)Unsafe.AsPointer(ref this),
+            name
+        );
     }
 
     /// <inheritdoc cref="IResource.getDebugName" />
@@ -140,7 +183,9 @@ public unsafe partial struct IBufferResource
     [return: NativeTypeName("const char *")]
     public sbyte* getDebugName()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDebugName>(lpVtbl->getDebugName)((IBufferResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getDebugName>(lpVtbl->getDebugName)(
+            (IBufferResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='IBufferResource.xml' path='doc/member[@name="IBufferResource.getDesc"]/*' />
@@ -148,7 +193,9 @@ public unsafe partial struct IBufferResource
     [return: NativeTypeName("gfx::IBufferResource::Desc *")]
     public BufferResourceDesc* getDesc()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDesc>(lpVtbl->getDesc)((IBufferResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getDesc>(lpVtbl->getDesc)(
+            (IBufferResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='IBufferResource.xml' path='doc/member[@name="IBufferResource.getDeviceAddress"]/*' />
@@ -156,15 +203,24 @@ public unsafe partial struct IBufferResource
     [return: NativeTypeName("gfx::DeviceAddress")]
     public ulong getDeviceAddress()
     {
-        return Marshal.GetDelegateForFunctionPointer<_getDeviceAddress>(lpVtbl->getDeviceAddress)((IBufferResource*)Unsafe.AsPointer(ref this));
+        return Marshal.GetDelegateForFunctionPointer<_getDeviceAddress>(lpVtbl->getDeviceAddress)(
+            (IBufferResource*)Unsafe.AsPointer(ref this)
+        );
     }
 
     /// <include file='IBufferResource.xml' path='doc/member[@name="IBufferResource.map"]/*' />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [return: NativeTypeName("gfx::Result")]
-    public int map([NativeTypeName("gfx::MemoryRange *")] MemoryRange* rangeToRead, void** outPointer)
+    public int map(
+        [NativeTypeName("gfx::MemoryRange *")] MemoryRange* rangeToRead,
+        void** outPointer
+    )
     {
-        return Marshal.GetDelegateForFunctionPointer<_map>(lpVtbl->map)((IBufferResource*)Unsafe.AsPointer(ref this), rangeToRead, outPointer);
+        return Marshal.GetDelegateForFunctionPointer<_map>(lpVtbl->map)(
+            (IBufferResource*)Unsafe.AsPointer(ref this),
+            rangeToRead,
+            outPointer
+        );
     }
 
     /// <include file='IBufferResource.xml' path='doc/member[@name="IBufferResource.unmap"]/*' />
@@ -172,45 +228,56 @@ public unsafe partial struct IBufferResource
     [return: NativeTypeName("gfx::Result")]
     public int unmap([NativeTypeName("gfx::MemoryRange *")] MemoryRange* writtenRange)
     {
-        return Marshal.GetDelegateForFunctionPointer<_unmap>(lpVtbl->unmap)((IBufferResource*)Unsafe.AsPointer(ref this), writtenRange);
+        return Marshal.GetDelegateForFunctionPointer<_unmap>(lpVtbl->unmap)(
+            (IBufferResource*)Unsafe.AsPointer(ref this),
+            writtenRange
+        );
     }
 
     public partial struct Vtbl
     {
-        [NativeTypeName("SlangResult (const SlangUUID &, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "SlangResult (const SlangUUID &, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr queryInterface;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr addRef;
 
-        [NativeTypeName("uint32_t () __attribute__((stdcall))")]
+        [NativeTypeName("uint32_t () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr release;
 
-        [NativeTypeName("Type () __attribute__((stdcall))")]
+        [NativeTypeName("Type () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getType;
 
-        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getNativeResourceHandle;
 
-        [NativeTypeName("Result (InteropHandle *) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (InteropHandle *) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr getSharedHandle;
 
-        [NativeTypeName("Result (const char *) __attribute__((stdcall))")]
+        [NativeTypeName("Result (const char *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr setDebugName;
 
-        [NativeTypeName("const char *() __attribute__((stdcall))")]
+        [NativeTypeName("const char *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDebugName;
 
-        [NativeTypeName("Desc *() __attribute__((stdcall))")]
+        [NativeTypeName("Desc *() __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDesc;
 
-        [NativeTypeName("DeviceAddress () __attribute__((stdcall))")]
+        [NativeTypeName("DeviceAddress () __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr getDeviceAddress;
 
-        [NativeTypeName("Result (MemoryRange *, void **) __attribute__((stdcall))")]
+        [NativeTypeName(
+            "Result (MemoryRange *, void **) __attribute__((nothrow)) __attribute__((stdcall))"
+        )]
         public IntPtr map;
 
-        [NativeTypeName("Result (MemoryRange *) __attribute__((stdcall))")]
+        [NativeTypeName("Result (MemoryRange *) __attribute__((nothrow)) __attribute__((stdcall))")]
         public IntPtr unmap;
     }
 }

@@ -31,7 +31,7 @@ public static unsafe partial class DeviceInfoTests
         }
         else
         {
-            Assert.Equal(180, sizeof(DeviceInfo));
+            Assert.Equal(184, sizeof(DeviceInfo));
         }
     }
 }

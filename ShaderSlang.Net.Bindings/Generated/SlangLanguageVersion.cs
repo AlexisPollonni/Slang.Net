@@ -1,8 +1,7 @@
 namespace ShaderSlang.Net.Bindings.Generated;
 
 /// <include file='SlangLanguageVersion.xml' path='doc/member[@name="SlangLanguageVersion"]/*' />
-[NativeTypeName("unsigned int")]
-public enum SlangLanguageVersion : uint
+public enum SlangLanguageVersion
 {
     /// <include file='SlangLanguageVersion.xml' path='doc/member[@name="SlangLanguageVersion.SLANG_LANGUAGE_VERSION_UNKNOWN"]/*' />
     SLANG_LANGUAGE_VERSION_UNKNOWN = 0,
