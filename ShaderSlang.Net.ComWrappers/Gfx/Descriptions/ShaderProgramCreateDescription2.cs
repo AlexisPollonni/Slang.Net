@@ -1,12 +1,15 @@
 using System.Buffers;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using CommunityToolkit.HighPerformance;
 using ShaderSlang.Net.ComWrappers.Tools;
 using ShaderSlang.Net.ComWrappers.Tools.Internal;
 
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<
+    typeof(BidirectionalMarshaller<
         ShaderProgramCreateDescription2,
         Unmanaged.IShaderProgram.CreateDesc2
     >)
@@ -20,8 +23,6 @@ public record struct ShaderProgramCreateDescription2(
         IMarshalsFromNative<ShaderProgramCreateDescription2, Unmanaged.IShaderProgram.CreateDesc2>,
         IFreeAfterMarshal<Unmanaged.IShaderProgram.CreateDesc2>
 {
-    private MemoryHandle? _marshalHandle;
-
     public Unmanaged.ShaderModuleSourceType SourceType { get; init; } = SourceType;
     public Memory<byte> SourceData { get; init; } = SourceData;
     public IReadOnlyCollection<string> EntryPointNames { get; init; } = EntryPointNames;
@@ -30,8 +31,6 @@ public record struct ShaderProgramCreateDescription2(
         ref GrowingStackBuffer buffer
     )
     {
-        _marshalHandle ??= SourceData.Pin();
-
         return new()
         {
             sourceType = SourceType,
@@ -40,6 +39,8 @@ public record struct ShaderProgramCreateDescription2(
                 out var entryPointNamesCount
             ),
             entryPointCount = (int)entryPointNamesCount,
+            sourceData = SourceData.AllocAndCopyToNativeMemory(),
+            sourceDataSize = (UIntPtr)SourceData.Length
         };
     }
 
@@ -58,8 +59,8 @@ public record struct ShaderProgramCreateDescription2(
         );
     }
 
-    public unsafe void Free(Unmanaged.IShaderProgram.CreateDesc2* unmanaged)
+    public static unsafe void Free(scoped ref readonly Unmanaged.IShaderProgram.CreateDesc2 unmanaged)
     {
-        _marshalHandle?.Dispose();
+        NativeMemory.Free(unmanaged.sourceData);
     }
 }

@@ -4,7 +4,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<InputElementDescription, Unmanaged.InputElementDesc>)
+    typeof(BidirectionalMarshaller<InputElementDescription, Unmanaged.InputElementDesc>)
 )]
 public readonly record struct InputElementDescription(
     string SemanticName,

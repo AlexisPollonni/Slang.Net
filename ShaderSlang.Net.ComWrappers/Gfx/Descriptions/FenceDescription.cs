@@ -4,7 +4,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<FenceDescription, Unmanaged.IFence.FenceDesc>)
+    typeof(BidirectionalMarshaller<FenceDescription, Unmanaged.IFence.FenceDesc>)
 )]
 public readonly record struct FenceDescription(ulong InitialValue = 0, bool IsShared = false)
     : IMarshalsToNative<Unmanaged.IFence.FenceDesc>,

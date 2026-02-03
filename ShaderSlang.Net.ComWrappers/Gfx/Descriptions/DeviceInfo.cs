@@ -5,7 +5,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
-[NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<DeviceInfo, Unmanaged.DeviceInfo>))]
+[NativeMarshalling(typeof(BidirectionalMarshaller<DeviceInfo, Unmanaged.DeviceInfo>))]
 public readonly record struct DeviceInfo(
     Unmanaged.DeviceType DeviceType,
     DeviceLimits Limits,

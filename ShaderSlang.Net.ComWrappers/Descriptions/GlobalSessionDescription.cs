@@ -4,7 +4,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.ManagedToUnmanaged<
+    typeof(ManagedToUnmanagedMarshaller<
         GlobalSessionDescription,
         Unmanaged.SlangGlobalSessionDesc
     >)

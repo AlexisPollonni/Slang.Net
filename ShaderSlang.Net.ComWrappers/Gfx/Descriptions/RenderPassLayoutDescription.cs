@@ -5,7 +5,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<
+    typeof(BidirectionalMarshaller<
         RenderPassLayoutDescription,
         Unmanaged.IRenderPassLayout.RenderPassLayoutDesc
     >)
@@ -55,8 +55,8 @@ public readonly record struct RenderPassLayoutDescription(
             unmanaged.depthStencilAccess is null ? null : *unmanaged.depthStencilAccess
         );
 
-    public unsafe void Free(Unmanaged.IRenderPassLayout.RenderPassLayoutDesc* unmanaged)
+    public static unsafe void Free(scoped ref readonly Unmanaged.IRenderPassLayout.RenderPassLayoutDesc unmanaged)
     {
-        ComInterfaceMarshaller<IFramebufferLayout>.Free(unmanaged->framebufferLayout);
+        ComInterfaceMarshaller<IFramebufferLayout>.Free(unmanaged.framebufferLayout);
     }
 }

@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using ShaderSlang.Net.ComWrappers.Tools;
 using ShaderSlang.Net.ComWrappers.Tools.Internal;
@@ -6,7 +7,7 @@ using ShaderSlang.Net.ComWrappers.Tools.Internal;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<
+    typeof(BidirectionalMarshaller<
         SubresourceData,
         Unmanaged.ITextureResource.SubresourceData
     >)
@@ -16,8 +17,6 @@ public record struct SubresourceData(Memory<byte> Data, nuint StrideY, nuint Str
         IMarshalsFromNative<SubresourceData, Unmanaged.ITextureResource.SubresourceData>,
         IFreeAfterMarshal<Unmanaged.ITextureResource.SubresourceData>
 {
-    private MemoryHandle? _memoryHandle;
-
     public Memory<byte> Data { get; init; } = Data;
     public nuint StrideY { get; init; } = StrideY;
     public nuint StrideZ { get; init; } = StrideZ;
@@ -26,11 +25,9 @@ public record struct SubresourceData(Memory<byte> Data, nuint StrideY, nuint Str
         ref GrowingStackBuffer buffer
     )
     {
-        _memoryHandle ??= Data.Pin();
-
         return new()
         {
-            data = _memoryHandle.Value.Pointer,
+            data = Data.AllocAndCopyToNativeMemory(),
             strideY = StrideY,
             strideZ = StrideZ,
         };
@@ -47,8 +44,8 @@ public record struct SubresourceData(Memory<byte> Data, nuint StrideY, nuint Str
         return new(ownedMemory.Memory, unmanaged.strideY, unmanaged.strideZ);
     }
 
-    public unsafe void Free(Unmanaged.ITextureResource.SubresourceData* unmanaged)
+    public static unsafe void Free(ref readonly Unmanaged.ITextureResource.SubresourceData unmanaged)
     {
-        _memoryHandle?.Dispose();
+        NativeMemory.Free(unmanaged.data);
     }
 }

@@ -4,7 +4,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 
 namespace ShaderSlang.Net.ComWrappers.Gfx;
 
-[NativeMarshalling(typeof(MarshalableMarshaller.Bidirectional<ClearValue, Unmanaged.ClearValue>))]
+[NativeMarshalling(typeof(BidirectionalMarshaller<ClearValue, Unmanaged.ClearValue>))]
 public readonly record struct ClearValue(Color Color, float Depth = 1f, uint Stencil = 0)
     : IMarshalsToNative<Unmanaged.ClearValue>,
         IMarshalsFromNative<ClearValue, Unmanaged.ClearValue>

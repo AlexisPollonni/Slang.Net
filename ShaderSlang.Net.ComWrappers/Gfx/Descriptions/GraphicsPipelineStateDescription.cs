@@ -5,7 +5,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<
+    typeof(BidirectionalMarshaller<
         GraphicsPipelineStateDescription,
         Unmanaged.GraphicsPipelineStateDesc
     >)
@@ -55,10 +55,10 @@ public readonly record struct GraphicsPipelineStateDescription(
             BlendDescription.CreateFromNative(unmanaged.blend)
         );
 
-    public unsafe void Free(Unmanaged.GraphicsPipelineStateDesc* unmanaged)
+    public static unsafe void Free(scoped ref readonly Unmanaged.GraphicsPipelineStateDesc unmanaged)
     {
-        ComInterfaceMarshaller<IShaderProgram>.Free(unmanaged->program);
-        ComInterfaceMarshaller<IInputLayout>.Free(unmanaged->inputLayout);
-        ComInterfaceMarshaller<IFramebufferLayout>.Free(unmanaged->framebufferLayout);
+        ComInterfaceMarshaller<IShaderProgram>.Free(unmanaged.program);
+        ComInterfaceMarshaller<IInputLayout>.Free(unmanaged.inputLayout);
+        ComInterfaceMarshaller<IFramebufferLayout>.Free(unmanaged.framebufferLayout);
     }
 }

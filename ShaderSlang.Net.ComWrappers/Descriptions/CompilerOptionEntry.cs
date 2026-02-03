@@ -4,7 +4,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<CompilerOptionEntry, Unmanaged.CompilerOptionEntry>)
+    typeof(BidirectionalMarshaller<CompilerOptionEntry, Unmanaged.CompilerOptionEntry>)
 )]
 public readonly record struct CompilerOptionEntry(
     Unmanaged.CompilerOptionName Name,

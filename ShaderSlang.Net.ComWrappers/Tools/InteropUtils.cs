@@ -87,4 +87,15 @@ internal static unsafe class InteropUtils
     {
         return (TUnmanaged*)ComInterfaceMarshaller<TManagedInterface>.ConvertToUnmanaged(comObject);
     }
+
+
+    public static TUnmanaged* AllocAndCopyToNativeMemory<TUnmanaged>(this Memory<TUnmanaged> memory) where TUnmanaged : unmanaged
+    {
+        var pointer = NativeMemory.Alloc((UIntPtr)memory.Length);
+        var nativeData = new Span<TUnmanaged>(pointer, memory.Length);
+        
+        memory.Span.CopyTo(nativeData);
+        
+        return (TUnmanaged*)pointer;
+    }
 }

@@ -5,7 +5,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<
+    typeof(BidirectionalMarshaller<
         ComputePipelineStateDescription,
         Unmanaged.ComputePipelineStateDesc
     >)
@@ -36,6 +36,6 @@ public readonly record struct ComputePipelineStateDescription(
             (nint)unmanaged.d3d12RootSignatureOverride
         );
 
-    public unsafe void Free(Unmanaged.ComputePipelineStateDesc* unmanaged) =>
-        ComInterfaceMarshaller<IShaderProgram>.Free(unmanaged->program);
+    public static unsafe void Free(scoped ref readonly Unmanaged.ComputePipelineStateDesc unmanaged) =>
+        ComInterfaceMarshaller<IShaderProgram>.Free(unmanaged.program);
 }

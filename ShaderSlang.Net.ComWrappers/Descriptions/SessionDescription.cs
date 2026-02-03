@@ -6,7 +6,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<SessionDescription, Unmanaged.SessionDesc>)
+    typeof(BidirectionalMarshaller<SessionDescription, Unmanaged.SessionDesc>)
 )]
 public readonly record struct SessionDescription(
     TargetDescription[]? Targets = null,
@@ -79,6 +79,6 @@ public readonly record struct SessionDescription(
             unmanaged.skipSPIRVValidation
         );
 
-    public unsafe void Free(Unmanaged.SessionDesc* unmanaged) =>
-        ComInterfaceMarshaller<IFileSystem>.Free(unmanaged->fileSystem);
+    public static unsafe void Free(scoped ref readonly Unmanaged.SessionDesc unmanaged) =>
+        ComInterfaceMarshaller<IFileSystem>.Free(unmanaged.fileSystem);
 }

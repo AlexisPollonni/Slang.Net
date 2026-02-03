@@ -6,7 +6,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<DeviceDescription, Unmanaged.IDevice.DeviceDesc>)
+    typeof(BidirectionalMarshaller<DeviceDescription, Unmanaged.IDevice.DeviceDesc>)
 )]
 public readonly record struct DeviceDescription(
     Unmanaged.DeviceType DeviceType,
@@ -86,9 +86,9 @@ public readonly record struct DeviceDescription(
             unmanaged.nvapiExtnSlot
         );
 
-    public unsafe void Free(Unmanaged.IDevice.DeviceDesc* unmanaged)
+    public static unsafe void Free(scoped ref readonly Unmanaged.IDevice.DeviceDesc unmanaged)
     {
-        ComInterfaceMarshaller<IUnknown>.Free(unmanaged->apiCommandDispatcher);
-        Slang.Free(&unmanaged->slang);
+        ComInterfaceMarshaller<IUnknown>.Free(unmanaged.apiCommandDispatcher);
+        SlangDescription.Free(in unmanaged.slang);
     }
 }

@@ -5,7 +5,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<
+    typeof(BidirectionalMarshaller<
         ShaderProgramDescription,
         Unmanaged.IShaderProgram.ShaderProgramDesc
     >)
@@ -53,12 +53,12 @@ public readonly record struct ShaderProgramDescription(
         );
     }
 
-    public unsafe void Free(Unmanaged.IShaderProgram.ShaderProgramDesc* unmanaged)
+    public static unsafe void Free(scoped ref readonly Unmanaged.IShaderProgram.ShaderProgramDesc unmanaged)
     {
-        ComInterfaceMarshaller<IComponentType>.Free(unmanaged->slangGlobalScope);
-        for (var i = 0; i < unmanaged->entryPointCount; i++)
+        ComInterfaceMarshaller<IComponentType>.Free(unmanaged.slangGlobalScope);
+        for (var i = 0; i < unmanaged.entryPointCount; i++)
         {
-            ComInterfaceMarshaller<IComponentType>.Free(unmanaged->slangEntryPoints[i]);
+            ComInterfaceMarshaller<IComponentType>.Free(unmanaged.slangEntryPoints[i]);
         }
     }
 }

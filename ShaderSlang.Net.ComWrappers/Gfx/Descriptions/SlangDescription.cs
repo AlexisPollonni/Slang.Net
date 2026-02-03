@@ -7,7 +7,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<SlangDescription, Unmanaged.IDevice.SlangDesc>)
+    typeof(BidirectionalMarshaller<SlangDescription, Unmanaged.IDevice.SlangDesc>)
 )]
 public readonly record struct SlangDescription(
     IGlobalSession? GlobalSession = null,
@@ -64,8 +64,8 @@ public readonly record struct SlangDescription(
             unmanaged.lineDirectiveMode
         );
 
-    public unsafe void Free(Unmanaged.IDevice.SlangDesc* unmanaged)
+    public static unsafe void Free(scoped ref readonly Unmanaged.IDevice.SlangDesc unmanaged)
     {
-        ComInterfaceMarshaller<IGlobalSession>.Free(unmanaged->slangGlobalSession);
+        ComInterfaceMarshaller<IGlobalSession>.Free(unmanaged.slangGlobalSession);
     }
 }

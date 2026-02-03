@@ -5,7 +5,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<
+    typeof(BidirectionalMarshaller<
         FramebufferDescription,
         Unmanaged.IFramebuffer.FramebufferDesc
     >)
@@ -49,14 +49,14 @@ public readonly record struct FramebufferDescription(
             ComInterfaceMarshaller<IFramebufferLayout>.ConvertToManaged(unmanaged.layout)
         );
 
-    public unsafe void Free(Unmanaged.IFramebuffer.FramebufferDesc* unmanaged)
+    public static unsafe void Free(scoped ref readonly Unmanaged.IFramebuffer.FramebufferDesc unmanaged)
     {
-        for (var i = 0; i < unmanaged->renderTargetCount; i++)
+        for (var i = 0; i < unmanaged.renderTargetCount; i++)
         {
-            ComInterfaceMarshaller<IResourceView>.Free(unmanaged->renderTargetViews[i]);
+            ComInterfaceMarshaller<IResourceView>.Free(unmanaged.renderTargetViews[i]);
         }
 
-        ComInterfaceMarshaller<IResourceView>.Free(unmanaged->depthStencilView);
-        ComInterfaceMarshaller<IFramebufferLayout>.Free(unmanaged->layout);
+        ComInterfaceMarshaller<IResourceView>.Free(unmanaged.depthStencilView);
+        ComInterfaceMarshaller<IFramebufferLayout>.Free(unmanaged.layout);
     }
 }

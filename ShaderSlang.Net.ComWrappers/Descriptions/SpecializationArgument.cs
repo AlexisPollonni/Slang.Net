@@ -5,7 +5,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<SpecializationArgument, Unmanaged.SpecializationArg>)
+    typeof(BidirectionalMarshaller<SpecializationArgument, Unmanaged.SpecializationArg>)
 )]
 public readonly record struct SpecializationArgument(
     Unmanaged.SpecializationArg.TypeKind Kind,

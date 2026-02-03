@@ -6,7 +6,7 @@ using ShaderSlang.Net.ComWrappers.Tools;
 namespace ShaderSlang.Net.ComWrappers.Gfx.Descriptions;
 
 [NativeMarshalling(
-    typeof(MarshalableMarshaller.Bidirectional<
+    typeof(BidirectionalMarshaller<
         SwapchainDescription,
         Unmanaged.ISwapchain.SwapchainDesc
     >)
@@ -51,8 +51,8 @@ public readonly record struct SwapchainDescription(
             unmanaged.enableVSync != 0
         );
 
-    public unsafe void Free(Unmanaged.ISwapchain.SwapchainDesc* unmanaged)
+    public static unsafe void Free(scoped ref readonly Unmanaged.ISwapchain.SwapchainDesc unmanaged)
     {
-        ComInterfaceMarshaller<ICommandQueue>.Free(unmanaged->queue);
+        ComInterfaceMarshaller<ICommandQueue>.Free(unmanaged.queue);
     }
 }

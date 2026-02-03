@@ -50,7 +50,7 @@ public partial interface IDevice : IUnknown
     [PreserveSig, UnmanagedCallConv(CallConvs = [typeof(CallConvStdcall)])]
     SlangResult CreateTextureResource(
         TextureResourceDescription desc,
-        SubresourceData initData,
+        scoped ref readonly SubresourceData initData,
         out ITextureResource resource
     );
 
