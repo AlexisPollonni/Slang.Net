@@ -11,6 +11,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Solution Items/Scripts/">
+    <Project Path="Scripts/ShaderSlang.Net.Scripts.CppSharp/ShaderSlang.Net.Scripts.CppSharp.csproj" />
     <Project Path="Scripts\Shared\ShaderSlang.Net.Scripts.Shared.csproj" />
     <File Path="Scripts/DownloadSlangBinaries.cs" />
     <File Path="Scripts/GenerateRuntimeJson.cs" />

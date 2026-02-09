@@ -14,4 +14,10 @@
   <ItemGroup>
     <Content Include="BindingsPackageReadme.md" Pack="true" PackagePath="readme.md" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CppSharp.Runtime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Generated\" />
+  </ItemGroup>
 </Project>
