@@ -1,8 +1,10 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 
 // ReSharper disable once CheckNamespace
 namespace ShaderSlang.Net.Bindings.Generated;
 
+[SuppressMessage("ReSharper", "InconsistentNaming")]
 partial struct SlangUUID
 {
     public static implicit operator Guid(SlangUUID uuid) => uuid.ToGuid();
