@@ -2668,7 +2668,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         public partial struct __Internal
         {
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetBuildTagString", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpGetBuildTagString();
+            internal static extern __IntPtr GetBuildTagString();
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "slang_createBlob", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern __IntPtr SlangCreateBlob(__IntPtr data, ulong size);
@@ -2722,9 +2722,9 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>not require the creation of a session, which can be a fairly costly</para>
         /// <para>operation.</para>
         /// </remarks>
-        public static string SpGetBuildTagString()
+        public static string GetBuildTagString()
         {
-            var ___ret = __Internal.SpGetBuildTagString();
+            var ___ret = __Internal.GetBuildTagString();
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
@@ -5733,7 +5733,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 internal static extern __IntPtr ApplySpecializations(__IntPtr __instance, __IntPtr generic);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang18FunctionReflection22specializeWithArgTypesEjPKPNS_14TypeReflectionE", CallingConvention = __CallingConvention.Cdecl)]
-                internal static extern __IntPtr SpecializeWithArgTypes(__IntPtr __instance, uint argCount, __IntPtr types);
+                internal static extern __IntPtr EcializeWithArgTypes(__IntPtr __instance, uint argCount, __IntPtr types);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang18FunctionReflection11getOverloadEj", CallingConvention = __CallingConvention.Cdecl)]
                 internal static extern __IntPtr GetOverload(__IntPtr __instance, uint index);
@@ -5902,11 +5902,11 @@ namespace ShaderSlang.Net.Bindings.Generated
                 return __result0;
             }
 
-            public global::ShaderSlang.Net.Bindings.Generated.Slang.FunctionReflection SpecializeWithArgTypes(uint argCount, global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection types)
+            public global::ShaderSlang.Net.Bindings.Generated.Slang.FunctionReflection EcializeWithArgTypes(uint argCount, global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection types)
             {
                 var ____arg1 = types is null ? __IntPtr.Zero : types.__Instance;
                 var __arg1 = new __IntPtr(&____arg1);
-                var ___ret = __Internal.SpecializeWithArgTypes(__Instance, argCount, __arg1);
+                var ___ret = __Internal.EcializeWithArgTypes(__Instance, argCount, __arg1);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.FunctionReflection.__GetOrCreateInstance(___ret, false);
                 return __result0;
             }
@@ -6713,10 +6713,10 @@ namespace ShaderSlang.Net.Bindings.Generated
                 internal static extern __IntPtr FindEntryPointByName(__IntPtr __instance, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang16ShaderReflection14specializeTypeEPNS_14TypeReflectionElPKS2_PP10ISlangBlob", CallingConvention = __CallingConvention.Cdecl)]
-                internal static extern __IntPtr SpecializeType(__IntPtr __instance, __IntPtr type, long specializationArgCount, __IntPtr specializationArgs, __IntPtr outDiagnostics);
+                internal static extern __IntPtr EcializeType(__IntPtr __instance, __IntPtr type, long specializationArgCount, __IntPtr specializationArgs, __IntPtr outDiagnostics);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang16ShaderReflection17specializeGenericEPNS_17GenericReflectionElPK29SlangReflectionGenericArgTypePKNS_20GenericArgReflectionEPP10ISlangBlob", CallingConvention = __CallingConvention.Cdecl)]
-                internal static extern __IntPtr SpecializeGeneric(__IntPtr __instance, __IntPtr generic, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* specializationArgTypes, __IntPtr specializationArgVals, __IntPtr outDiagnostics);
+                internal static extern __IntPtr EcializeGeneric(__IntPtr __instance, __IntPtr generic, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* specializationArgTypes, __IntPtr specializationArgVals, __IntPtr outDiagnostics);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang16ShaderReflection9isSubTypeEPNS_14TypeReflectionES2_", CallingConvention = __CallingConvention.Cdecl)]
                 [return: MarshalAs(UnmanagedType.I1)]
@@ -6934,19 +6934,19 @@ namespace ShaderSlang.Net.Bindings.Generated
                 return __result0;
             }
 
-            public global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection SpecializeType(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection type, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection specializationArgs, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+            public global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection EcializeType(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection type, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection specializationArgs, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
             {
                 var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
                 var ____arg2 = specializationArgs is null ? __IntPtr.Zero : specializationArgs.__Instance;
                 var __arg2 = new __IntPtr(&____arg2);
                 var ____arg3 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
                 var __arg3 = new __IntPtr(&____arg3);
-                var ___ret = __Internal.SpecializeType(__Instance, __arg0, specializationArgCount, __arg2, __arg3);
+                var ___ret = __Internal.EcializeType(__Instance, __arg0, specializationArgCount, __arg2, __arg3);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection.__GetOrCreateInstance(___ret, false);
                 return __result0;
             }
 
-            public global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection SpecializeGeneric(global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection generic, long specializationArgCount, ref global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType specializationArgTypes, global::ShaderSlang.Net.Bindings.Generated.Slang.GenericArgReflection specializationArgVals, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+            public global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection EcializeGeneric(global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection generic, long specializationArgCount, ref global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType specializationArgTypes, global::ShaderSlang.Net.Bindings.Generated.Slang.GenericArgReflection specializationArgVals, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
             {
                 var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
                 fixed (global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* __specializationArgTypes2 = &specializationArgTypes)
@@ -6956,7 +6956,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     var __arg3 = new __IntPtr(&____arg3);
                     var ____arg4 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
                     var __arg4 = new __IntPtr(&____arg4);
-                    var ___ret = __Internal.SpecializeGeneric(__Instance, __arg0, specializationArgCount, __arg2, __arg3, __arg4);
+                    var ___ret = __Internal.EcializeGeneric(__Instance, __arg0, specializationArgCount, __arg2, __arg3, __arg4);
                     var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection.__GetOrCreateInstance(___ret, false);
                     return __result0;
                 }
@@ -8858,7 +8858,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             /// <summary>Specialize a type based on type arguments.</summary>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
             [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-            global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection SpecializeType(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection type, global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg specializationArgs, long specializationArgCount, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics);
+            global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection EcializeType(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection type, global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg specializationArgs, long specializationArgCount, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics);
 
             /// <summary>Get the layout `type` on the chosen `target`.</summary>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
@@ -9146,7 +9146,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             /// </remarks>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
             [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-            global::ShaderSlang.Net.Bindings.SlangResult Specialize(global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg specializationArgs, long specializationArgCount, out global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outSpecializedComponentType, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics);
+            global::ShaderSlang.Net.Bindings.SlangResult Ecialize(global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg specializationArgs, long specializationArgCount, out global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outSpecializedComponentType, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics);
 
             /// <summary>Link this component type against all of its unsatisfied dependencies.</summary>
             /// <remarks>
@@ -10306,836 +10306,836 @@ namespace ShaderSlang.Net.Bindings.Generated
         public partial struct __Internal
         {
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spCreateSession", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpCreateSession([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string deprecated);
+            internal static extern __IntPtr CreateSession([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string deprecated);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spDestroySession", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpDestroySession(__IntPtr session);
+            internal static extern void DestroySession(__IntPtr session);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSessionSetSharedLibraryLoader", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSessionSetSharedLibraryLoader(__IntPtr session, __IntPtr loader);
+            internal static extern void SessionSetSharedLibraryLoader(__IntPtr session, __IntPtr loader);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSessionGetSharedLibraryLoader", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpSessionGetSharedLibraryLoader(__IntPtr session);
+            internal static extern __IntPtr SessionGetSharedLibraryLoader(__IntPtr session);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSessionCheckCompileTargetSupport", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpSessionCheckCompileTargetSupport(__IntPtr session, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SessionCheckCompileTargetSupport(__IntPtr session, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSessionCheckPassThroughSupport", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpSessionCheckPassThroughSupport(__IntPtr session, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SessionCheckPassThroughSupport(__IntPtr session, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddBuiltins", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpAddBuiltins(__IntPtr session, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string sourcePath, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string sourceString);
+            internal static extern void AddBuiltins(__IntPtr session, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string sourcePath, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string sourceString);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spCreateCompileRequest", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpCreateCompileRequest(__IntPtr session);
+            internal static extern __IntPtr CreateCompileRequest(__IntPtr session);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spDestroyCompileRequest", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpDestroyCompileRequest(__IntPtr request);
+            internal static extern void DestroyCompileRequest(__IntPtr request);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetFileSystem", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetFileSystem(__IntPtr request, __IntPtr fileSystem);
+            internal static extern void SetFileSystem(__IntPtr request, __IntPtr fileSystem);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetCompileFlags", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetCompileFlags(__IntPtr request, uint flags);
+            internal static extern void SetCompileFlags(__IntPtr request, uint flags);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetCompileFlags", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpGetCompileFlags(__IntPtr request);
+            internal static extern uint GetCompileFlags(__IntPtr request);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetDumpIntermediates", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetDumpIntermediates(__IntPtr request, int enable);
+            internal static extern void SetDumpIntermediates(__IntPtr request, int enable);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetDumpIntermediatePrefix", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetDumpIntermediatePrefix(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string prefix);
+            internal static extern void SetDumpIntermediatePrefix(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string prefix);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetLineDirectiveMode", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetLineDirectiveMode(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode);
+            internal static extern void SetLineDirectiveMode(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetTargetLineDirectiveMode", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetTargetLineDirectiveMode(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode);
+            internal static extern void SetTargetLineDirectiveMode(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetTargetForceGLSLScalarBufferLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetTargetForceGLSLScalarBufferLayout(__IntPtr request, int targetIndex, bool forceScalarLayout);
+            internal static extern void SetTargetForceGLSLScalarBufferLayout(__IntPtr request, int targetIndex, bool forceScalarLayout);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetTargetUseMinimumSlangOptimization", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetTargetUseMinimumSlangOptimization(__IntPtr request, int targetIndex, bool val);
+            internal static extern void SetTargetUseMinimumSlangOptimization(__IntPtr request, int targetIndex, bool val);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetIgnoreCapabilityCheck", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetIgnoreCapabilityCheck(__IntPtr request, bool val);
+            internal static extern void SetIgnoreCapabilityCheck(__IntPtr request, bool val);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetCodeGenTarget", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetCodeGenTarget(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target);
+            internal static extern void SetCodeGenTarget(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddCodeGenTarget", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpAddCodeGenTarget(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target);
+            internal static extern int AddCodeGenTarget(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetTargetProfile", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetTargetProfile(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangProfileID profile);
+            internal static extern void SetTargetProfile(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangProfileID profile);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetTargetFlags", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetTargetFlags(__IntPtr request, int targetIndex, uint flags);
+            internal static extern void SetTargetFlags(__IntPtr request, int targetIndex, uint flags);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetTargetFloatingPointMode", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetTargetFloatingPointMode(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangFloatingPointMode mode);
+            internal static extern void SetTargetFloatingPointMode(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangFloatingPointMode mode);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddTargetCapability", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpAddTargetCapability(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID capability);
+            internal static extern void AddTargetCapability(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID capability);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetTargetMatrixLayoutMode", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetTargetMatrixLayoutMode(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode);
+            internal static extern void SetTargetMatrixLayoutMode(__IntPtr request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetMatrixLayoutMode", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetMatrixLayoutMode(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode);
+            internal static extern void SetMatrixLayoutMode(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetDebugInfoLevel", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetDebugInfoLevel(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoLevel level);
+            internal static extern void SetDebugInfoLevel(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoLevel level);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetDebugInfoFormat", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetDebugInfoFormat(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoFormat format);
+            internal static extern void SetDebugInfoFormat(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoFormat format);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetOptimizationLevel", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetOptimizationLevel(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangOptimizationLevel level);
+            internal static extern void SetOptimizationLevel(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangOptimizationLevel level);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetOutputContainerFormat", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetOutputContainerFormat(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangContainerFormat format);
+            internal static extern void SetOutputContainerFormat(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangContainerFormat format);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetPassThrough", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetPassThrough(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough);
+            internal static extern void SetPassThrough(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetDiagnosticCallback", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetDiagnosticCallback(__IntPtr request, __IntPtr callback, __IntPtr userData);
+            internal static extern void SetDiagnosticCallback(__IntPtr request, __IntPtr callback, __IntPtr userData);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetWriter", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetWriter(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel, __IntPtr writer);
+            internal static extern void SetWriter(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel, __IntPtr writer);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetWriter", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpGetWriter(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel);
+            internal static extern __IntPtr GetWriter(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddSearchPath", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpAddSearchPath(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string searchDir);
+            internal static extern void AddSearchPath(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string searchDir);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddPreprocessorDefine", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpAddPreprocessorDefine(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string value);
+            internal static extern void AddPreprocessorDefine(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string value);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spProcessCommandLineArguments", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpProcessCommandLineArguments(__IntPtr request, sbyte** args, int argCount);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult ProcessCommandLineArguments(__IntPtr request, sbyte** args, int argCount);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddTranslationUnit", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpAddTranslationUnit(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangSourceLanguage language, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern int AddTranslationUnit(__IntPtr request, global::ShaderSlang.Net.Bindings.Generated.SlangSourceLanguage language, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetDefaultModuleName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetDefaultModuleName(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string defaultModuleName);
+            internal static extern void SetDefaultModuleName(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string defaultModuleName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spTranslationUnit_addPreprocessorDefine", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpTranslationUnitAddPreprocessorDefine(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string value);
+            internal static extern void TranslationUnit_addPreprocessorDefine(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string value);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddTranslationUnitSourceFile", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpAddTranslationUnitSourceFile(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string path);
+            internal static extern void AddTranslationUnitSourceFile(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string path);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddTranslationUnitSourceString", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpAddTranslationUnitSourceString(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string path, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string source);
+            internal static extern void AddTranslationUnitSourceString(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string path, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string source);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddLibraryReference", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpAddLibraryReference(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string basePath, __IntPtr libData, ulong libDataSize);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult AddLibraryReference(__IntPtr request, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string basePath, __IntPtr libData, ulong libDataSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddTranslationUnitSourceStringSpan", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpAddTranslationUnitSourceStringSpan(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string path, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string sourceBegin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string sourceEnd);
+            internal static extern void AddTranslationUnitSourceStringSpan(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string path, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string sourceBegin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string sourceEnd);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddTranslationUnitSourceBlob", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpAddTranslationUnitSourceBlob(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string path, __IntPtr sourceBlob);
+            internal static extern void AddTranslationUnitSourceBlob(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string path, __IntPtr sourceBlob);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spFindProfile", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangProfileID SpFindProfile(__IntPtr session, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangProfileID FindProfile(__IntPtr session, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spFindCapability", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID SpFindCapability(__IntPtr session, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID FindCapability(__IntPtr session, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddEntryPoint", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpAddEntryPoint(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage);
+            internal static extern int AddEntryPoint(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spAddEntryPointEx", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpAddEntryPointEx(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage, int genericArgCount, sbyte** genericArgs);
+            internal static extern int AddEntryPointEx(__IntPtr request, int translationUnitIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage, int genericArgCount, sbyte** genericArgs);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetGlobalGenericArgs", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpSetGlobalGenericArgs(__IntPtr request, int genericArgCount, sbyte** genericArgs);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SetGlobalGenericArgs(__IntPtr request, int genericArgCount, sbyte** genericArgs);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetTypeNameForGlobalExistentialTypeParam", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpSetTypeNameForGlobalExistentialTypeParam(__IntPtr request, int slotIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string typeName);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SetTypeNameForGlobalExistentialTypeParam(__IntPtr request, int slotIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string typeName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetTypeNameForEntryPointExistentialTypeParam", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpSetTypeNameForEntryPointExistentialTypeParam(__IntPtr request, int entryPointIndex, int slotIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string typeName);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SetTypeNameForEntryPointExistentialTypeParam(__IntPtr request, int entryPointIndex, int slotIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string typeName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spCompile", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpCompile(__IntPtr request);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult Compile(__IntPtr request);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetDiagnosticOutput", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpGetDiagnosticOutput(__IntPtr request);
+            internal static extern __IntPtr GetDiagnosticOutput(__IntPtr request);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetDiagnosticOutputBlob", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpGetDiagnosticOutputBlob(__IntPtr request, __IntPtr outBlob);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult GetDiagnosticOutputBlob(__IntPtr request, __IntPtr outBlob);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetDependencyFileCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpGetDependencyFileCount(__IntPtr request);
+            internal static extern int GetDependencyFileCount(__IntPtr request);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetDependencyFilePath", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpGetDependencyFilePath(__IntPtr request, int index);
+            internal static extern __IntPtr GetDependencyFilePath(__IntPtr request, int index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetTranslationUnitCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpGetTranslationUnitCount(__IntPtr request);
+            internal static extern int GetTranslationUnitCount(__IntPtr request);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetEntryPointSource", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpGetEntryPointSource(__IntPtr request, int entryPointIndex);
+            internal static extern __IntPtr GetEntryPointSource(__IntPtr request, int entryPointIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetEntryPointCode", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpGetEntryPointCode(__IntPtr request, int entryPointIndex, ulong* outSize);
+            internal static extern __IntPtr GetEntryPointCode(__IntPtr request, int entryPointIndex, ulong* outSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetEntryPointCodeBlob", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpGetEntryPointCodeBlob(__IntPtr request, int entryPointIndex, int targetIndex, __IntPtr outBlob);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult GetEntryPointCodeBlob(__IntPtr request, int entryPointIndex, int targetIndex, __IntPtr outBlob);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetEntryPointHostCallable", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpGetEntryPointHostCallable(__IntPtr request, int entryPointIndex, int targetIndex, __IntPtr outSharedLibrary);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult GetEntryPointHostCallable(__IntPtr request, int entryPointIndex, int targetIndex, __IntPtr outSharedLibrary);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetTargetCodeBlob", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpGetTargetCodeBlob(__IntPtr request, int targetIndex, __IntPtr outBlob);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult GetTargetCodeBlob(__IntPtr request, int targetIndex, __IntPtr outBlob);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetTargetHostCallable", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpGetTargetHostCallable(__IntPtr request, int targetIndex, __IntPtr outSharedLibrary);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult GetTargetHostCallable(__IntPtr request, int targetIndex, __IntPtr outSharedLibrary);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetCompileRequestCode", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpGetCompileRequestCode(__IntPtr request, ulong* outSize);
+            internal static extern __IntPtr GetCompileRequestCode(__IntPtr request, ulong* outSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetContainerCode", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpGetContainerCode(__IntPtr request, __IntPtr outBlob);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult GetContainerCode(__IntPtr request, __IntPtr outBlob);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spLoadRepro", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpLoadRepro(__IntPtr request, __IntPtr fileSystem, __IntPtr data, ulong size);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult LoadRepro(__IntPtr request, __IntPtr fileSystem, __IntPtr data, ulong size);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSaveRepro", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpSaveRepro(__IntPtr request, __IntPtr outBlob);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SaveRepro(__IntPtr request, __IntPtr outBlob);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spEnableReproCapture", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpEnableReproCapture(__IntPtr request);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult EnableReproCapture(__IntPtr request);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetCompileTimeProfile", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpGetCompileTimeProfile(__IntPtr request, __IntPtr compileTimeProfile, bool shouldClear);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult GetCompileTimeProfile(__IntPtr request, __IntPtr compileTimeProfile, bool shouldClear);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spExtractRepro", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpExtractRepro(__IntPtr session, __IntPtr reproData, ulong reproDataSize, __IntPtr fileSystem);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult ExtractRepro(__IntPtr session, __IntPtr reproData, ulong reproDataSize, __IntPtr fileSystem);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spLoadReproAsFileSystem", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpLoadReproAsFileSystem(__IntPtr session, __IntPtr reproData, ulong reproDataSize, __IntPtr replaceFileSystem, __IntPtr outFileSystem);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult LoadReproAsFileSystem(__IntPtr session, __IntPtr reproData, ulong reproDataSize, __IntPtr replaceFileSystem, __IntPtr outFileSystem);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spOverrideDiagnosticSeverity", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpOverrideDiagnosticSeverity(__IntPtr request, long messageID, global::ShaderSlang.Net.Bindings.Generated.SlangSeverity overrideSeverity);
+            internal static extern void OverrideDiagnosticSeverity(__IntPtr request, long messageID, global::ShaderSlang.Net.Bindings.Generated.SlangSeverity overrideSeverity);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetDiagnosticFlags", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpGetDiagnosticFlags(__IntPtr request);
+            internal static extern int GetDiagnosticFlags(__IntPtr request);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spSetDiagnosticFlags", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpSetDiagnosticFlags(__IntPtr request, int flags);
+            internal static extern void SetDiagnosticFlags(__IntPtr request, int flags);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetReflection", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpGetReflection(__IntPtr request);
+            internal static extern __IntPtr GetReflection(__IntPtr request);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionUserAttribute_GetName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionUserAttributeGetName(__IntPtr attrib);
+            internal static extern __IntPtr ReflectionUserAttributeGetName(__IntPtr attrib);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionUserAttribute_GetArgumentCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionUserAttributeGetArgumentCount(__IntPtr attrib);
+            internal static extern uint ReflectionUserAttributeGetArgumentCount(__IntPtr attrib);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionUserAttribute_GetArgumentType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionUserAttributeGetArgumentType(__IntPtr attrib, uint index);
+            internal static extern __IntPtr ReflectionUserAttributeGetArgumentType(__IntPtr attrib, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionUserAttribute_GetArgumentValueInt", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpReflectionUserAttributeGetArgumentValueInt(__IntPtr attrib, uint index, int* rs);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult ReflectionUserAttributeGetArgumentValueInt(__IntPtr attrib, uint index, int* rs);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionUserAttribute_GetArgumentValueFloat", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpReflectionUserAttributeGetArgumentValueFloat(__IntPtr attrib, uint index, float* rs);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult ReflectionUserAttributeGetArgumentValueFloat(__IntPtr attrib, uint index, float* rs);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionUserAttribute_GetArgumentValueString", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionUserAttributeGetArgumentValueString(__IntPtr attrib, uint index, ulong* outSize);
+            internal static extern __IntPtr ReflectionUserAttributeGetArgumentValueString(__IntPtr attrib, uint index, ulong* outSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetKind", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind SpReflectionTypeGetKind(__IntPtr type);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind ReflectionTypeGetKind(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetUserAttributeCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionTypeGetUserAttributeCount(__IntPtr type);
+            internal static extern uint ReflectionTypeGetUserAttributeCount(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetUserAttribute", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeGetUserAttribute(__IntPtr type, uint index);
+            internal static extern __IntPtr ReflectionTypeGetUserAttribute(__IntPtr type, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_FindUserAttributeByName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeFindUserAttributeByName(__IntPtr type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern __IntPtr ReflectionTypeFindUserAttributeByName(__IntPtr type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_applySpecializations", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeApplySpecializations(__IntPtr type, __IntPtr generic);
+            internal static extern __IntPtr ReflectionType_applySpecializations(__IntPtr type, __IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetFieldCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionTypeGetFieldCount(__IntPtr type);
+            internal static extern uint ReflectionTypeGetFieldCount(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetFieldByIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeGetFieldByIndex(__IntPtr type, uint index);
+            internal static extern __IntPtr ReflectionTypeGetFieldByIndex(__IntPtr type, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetElementCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionTypeGetElementCount(__IntPtr type);
+            internal static extern ulong ReflectionTypeGetElementCount(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetSpecializedElementCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionTypeGetSpecializedElementCount(__IntPtr type, __IntPtr reflection);
+            internal static extern ulong ReflectionTypeGetSpecializedElementCount(__IntPtr type, __IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetElementType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeGetElementType(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeGetElementType(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetRowCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionTypeGetRowCount(__IntPtr type);
+            internal static extern uint ReflectionTypeGetRowCount(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetColumnCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionTypeGetColumnCount(__IntPtr type);
+            internal static extern uint ReflectionTypeGetColumnCount(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetScalarType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangScalarType SpReflectionTypeGetScalarType(__IntPtr type);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangScalarType ReflectionTypeGetScalarType(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetResourceShape", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangResourceShape SpReflectionTypeGetResourceShape(__IntPtr type);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangResourceShape ReflectionTypeGetResourceShape(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetResourceAccess", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangResourceAccess SpReflectionTypeGetResourceAccess(__IntPtr type);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangResourceAccess ReflectionTypeGetResourceAccess(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetResourceResultType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeGetResourceResultType(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeGetResourceResultType(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeGetName(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeGetName(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetFullName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpReflectionTypeGetFullName(__IntPtr type, __IntPtr outNameBlob);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult ReflectionTypeGetFullName(__IntPtr type, __IntPtr outNameBlob);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_GetGenericContainer", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeGetGenericContainer(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeGetGenericContainer(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetType(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeLayoutGetType(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getKind", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind SpReflectionTypeLayoutGetKind(__IntPtr type);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind ReflectionTypeLayout_getKind(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetSize", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionTypeLayoutGetSize(__IntPtr type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
+            internal static extern ulong ReflectionTypeLayoutGetSize(__IntPtr type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetStride", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionTypeLayoutGetStride(__IntPtr type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
+            internal static extern ulong ReflectionTypeLayoutGetStride(__IntPtr type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getAlignment", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpReflectionTypeLayoutGetAlignment(__IntPtr type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
+            internal static extern int ReflectionTypeLayout_getAlignment(__IntPtr type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetFieldCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionTypeLayoutGetFieldCount(__IntPtr type);
+            internal static extern uint ReflectionTypeLayoutGetFieldCount(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetFieldByIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetFieldByIndex(__IntPtr type, uint index);
+            internal static extern __IntPtr ReflectionTypeLayoutGetFieldByIndex(__IntPtr type, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_findFieldIndexByName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutFindFieldIndexByName(__IntPtr typeLayout, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string nameBegin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string nameEnd);
+            internal static extern long ReflectionTypeLayout_findFieldIndexByName(__IntPtr typeLayout, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string nameBegin, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string nameEnd);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetExplicitCounter", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetExplicitCounter(__IntPtr typeLayout);
+            internal static extern __IntPtr ReflectionTypeLayoutGetExplicitCounter(__IntPtr typeLayout);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetElementStride", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionTypeLayoutGetElementStride(__IntPtr type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
+            internal static extern ulong ReflectionTypeLayoutGetElementStride(__IntPtr type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetElementTypeLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetElementTypeLayout(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeLayoutGetElementTypeLayout(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetElementVarLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetElementVarLayout(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeLayoutGetElementVarLayout(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getContainerVarLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetContainerVarLayout(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeLayout_getContainerVarLayout(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetParameterCategory", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory SpReflectionTypeLayoutGetParameterCategory(__IntPtr type);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory ReflectionTypeLayoutGetParameterCategory(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetCategoryCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionTypeLayoutGetCategoryCount(__IntPtr type);
+            internal static extern uint ReflectionTypeLayoutGetCategoryCount(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetCategoryByIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory SpReflectionTypeLayoutGetCategoryByIndex(__IntPtr type, uint index);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory ReflectionTypeLayoutGetCategoryByIndex(__IntPtr type, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_GetMatrixLayoutMode", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode SpReflectionTypeLayoutGetMatrixLayoutMode(__IntPtr type);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode ReflectionTypeLayoutGetMatrixLayoutMode(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getGenericParamIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpReflectionTypeLayoutGetGenericParamIndex(__IntPtr type);
+            internal static extern int ReflectionTypeLayout_getGenericParamIndex(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getPendingDataTypeLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetPendingDataTypeLayout(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeLayout_getPendingDataTypeLayout(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getSpecializedTypePendingDataVarLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetSpecializedTypePendingDataVarLayout(__IntPtr type);
+            internal static extern __IntPtr ReflectionTypeLayout_getSpecializedTypePendingDataVarLayout(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_getSpecializedTypeArgCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeGetSpecializedTypeArgCount(__IntPtr type);
+            internal static extern long ReflectionType_getSpecializedTypeArgCount(__IntPtr type);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionType_getSpecializedTypeArgType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeGetSpecializedTypeArgType(__IntPtr type, long index);
+            internal static extern __IntPtr ReflectionType_getSpecializedTypeArgType(__IntPtr type, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getBindingRangeCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetBindingRangeCount(__IntPtr typeLayout);
+            internal static extern long ReflectionTypeLayout_getBindingRangeCount(__IntPtr typeLayout);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getBindingRangeType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangBindingType SpReflectionTypeLayoutGetBindingRangeType(__IntPtr typeLayout, long index);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangBindingType ReflectionTypeLayout_getBindingRangeType(__IntPtr typeLayout, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_isBindingRangeSpecializable", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutIsBindingRangeSpecializable(__IntPtr typeLayout, long index);
+            internal static extern long ReflectionTypeLayout_isBindingRangeSpecializable(__IntPtr typeLayout, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getBindingRangeBindingCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetBindingRangeBindingCount(__IntPtr typeLayout, long index);
+            internal static extern long ReflectionTypeLayout_getBindingRangeBindingCount(__IntPtr typeLayout, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getBindingRangeLeafTypeLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetBindingRangeLeafTypeLayout(__IntPtr typeLayout, long index);
+            internal static extern __IntPtr ReflectionTypeLayout_getBindingRangeLeafTypeLayout(__IntPtr typeLayout, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getBindingRangeLeafVariable", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetBindingRangeLeafVariable(__IntPtr typeLayout, long index);
+            internal static extern __IntPtr ReflectionTypeLayout_getBindingRangeLeafVariable(__IntPtr typeLayout, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getBindingRangeImageFormat", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat SpReflectionTypeLayoutGetBindingRangeImageFormat(__IntPtr typeLayout, long index);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat ReflectionTypeLayout_getBindingRangeImageFormat(__IntPtr typeLayout, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getFieldBindingRangeOffset", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetFieldBindingRangeOffset(__IntPtr typeLayout, long fieldIndex);
+            internal static extern long ReflectionTypeLayout_getFieldBindingRangeOffset(__IntPtr typeLayout, long fieldIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getExplicitCounterBindingRangeOffset", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetExplicitCounterBindingRangeOffset(__IntPtr inTypeLayout);
+            internal static extern long ReflectionTypeLayout_getExplicitCounterBindingRangeOffset(__IntPtr inTypeLayout);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getBindingRangeDescriptorSetIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetBindingRangeDescriptorSetIndex(__IntPtr typeLayout, long index);
+            internal static extern long ReflectionTypeLayout_getBindingRangeDescriptorSetIndex(__IntPtr typeLayout, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetBindingRangeFirstDescriptorRangeIndex(__IntPtr typeLayout, long index);
+            internal static extern long ReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex(__IntPtr typeLayout, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getBindingRangeDescriptorRangeCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetBindingRangeDescriptorRangeCount(__IntPtr typeLayout, long index);
+            internal static extern long ReflectionTypeLayout_getBindingRangeDescriptorRangeCount(__IntPtr typeLayout, long index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getDescriptorSetCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetDescriptorSetCount(__IntPtr typeLayout);
+            internal static extern long ReflectionTypeLayout_getDescriptorSetCount(__IntPtr typeLayout);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getDescriptorSetSpaceOffset", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetDescriptorSetSpaceOffset(__IntPtr typeLayout, long setIndex);
+            internal static extern long ReflectionTypeLayout_getDescriptorSetSpaceOffset(__IntPtr typeLayout, long setIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeCount(__IntPtr typeLayout, long setIndex);
+            internal static extern long ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount(__IntPtr typeLayout, long setIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeIndexOffset(__IntPtr typeLayout, long setIndex, long rangeIndex);
+            internal static extern long ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset(__IntPtr typeLayout, long setIndex, long rangeIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeDescriptorCount(__IntPtr typeLayout, long setIndex, long rangeIndex);
+            internal static extern long ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount(__IntPtr typeLayout, long setIndex, long rangeIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangBindingType SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeType(__IntPtr typeLayout, long setIndex, long rangeIndex);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangBindingType ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(__IntPtr typeLayout, long setIndex, long rangeIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeCategory(__IntPtr typeLayout, long setIndex, long rangeIndex);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(__IntPtr typeLayout, long setIndex, long rangeIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getSubObjectRangeCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetSubObjectRangeCount(__IntPtr typeLayout);
+            internal static extern long ReflectionTypeLayout_getSubObjectRangeCount(__IntPtr typeLayout);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getSubObjectRangeBindingRangeIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetSubObjectRangeBindingRangeIndex(__IntPtr typeLayout, long subObjectRangeIndex);
+            internal static extern long ReflectionTypeLayout_getSubObjectRangeBindingRangeIndex(__IntPtr typeLayout, long subObjectRangeIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getSubObjectRangeSpaceOffset", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionTypeLayoutGetSubObjectRangeSpaceOffset(__IntPtr typeLayout, long subObjectRangeIndex);
+            internal static extern long ReflectionTypeLayout_getSubObjectRangeSpaceOffset(__IntPtr typeLayout, long subObjectRangeIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeLayout_getSubObjectRangeOffset", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeLayoutGetSubObjectRangeOffset(__IntPtr typeLayout, long subObjectRangeIndex);
+            internal static extern __IntPtr ReflectionTypeLayout_getSubObjectRangeOffset(__IntPtr typeLayout, long subObjectRangeIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_GetName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableGetName(__IntPtr var);
+            internal static extern __IntPtr ReflectionVariableGetName(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_GetType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableGetType(__IntPtr var);
+            internal static extern __IntPtr ReflectionVariableGetType(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_FindModifier", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableFindModifier(__IntPtr var, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID);
+            internal static extern __IntPtr ReflectionVariableFindModifier(__IntPtr var, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_GetUserAttributeCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionVariableGetUserAttributeCount(__IntPtr var);
+            internal static extern uint ReflectionVariableGetUserAttributeCount(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_GetUserAttribute", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableGetUserAttribute(__IntPtr var, uint index);
+            internal static extern __IntPtr ReflectionVariableGetUserAttribute(__IntPtr var, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_FindUserAttributeByName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableFindUserAttributeByName(__IntPtr var, __IntPtr globalSession, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern __IntPtr ReflectionVariableFindUserAttributeByName(__IntPtr var, __IntPtr globalSession, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_HasDefaultValue", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SpReflectionVariableHasDefaultValue(__IntPtr inVar);
+            internal static extern bool ReflectionVariableHasDefaultValue(__IntPtr inVar);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_GetDefaultValueInt", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpReflectionVariableGetDefaultValueInt(__IntPtr inVar, long* rs);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult ReflectionVariableGetDefaultValueInt(__IntPtr inVar, long* rs);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_GetGenericContainer", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableGetGenericContainer(__IntPtr var);
+            internal static extern __IntPtr ReflectionVariableGetGenericContainer(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariable_applySpecializations", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableApplySpecializations(__IntPtr var, __IntPtr generic);
+            internal static extern __IntPtr ReflectionVariable_applySpecializations(__IntPtr var, __IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariableLayout_GetVariable", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableLayoutGetVariable(__IntPtr var);
+            internal static extern __IntPtr ReflectionVariableLayoutGetVariable(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariableLayout_GetTypeLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableLayoutGetTypeLayout(__IntPtr var);
+            internal static extern __IntPtr ReflectionVariableLayoutGetTypeLayout(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariableLayout_GetOffset", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionVariableLayoutGetOffset(__IntPtr var, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
+            internal static extern ulong ReflectionVariableLayoutGetOffset(__IntPtr var, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariableLayout_GetSpace", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionVariableLayoutGetSpace(__IntPtr var, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
+            internal static extern ulong ReflectionVariableLayoutGetSpace(__IntPtr var, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariableLayout_GetImageFormat", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat SpReflectionVariableLayoutGetImageFormat(__IntPtr var);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat ReflectionVariableLayoutGetImageFormat(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariableLayout_GetSemanticName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableLayoutGetSemanticName(__IntPtr var);
+            internal static extern __IntPtr ReflectionVariableLayoutGetSemanticName(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariableLayout_GetSemanticIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionVariableLayoutGetSemanticIndex(__IntPtr var);
+            internal static extern ulong ReflectionVariableLayoutGetSemanticIndex(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_asDecl", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionAsDecl(__IntPtr func);
+            internal static extern __IntPtr ReflectionFunction_asDecl(__IntPtr func);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_GetName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionGetName(__IntPtr func);
+            internal static extern __IntPtr ReflectionFunctionGetName(__IntPtr func);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_FindModifier", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionFindModifier(__IntPtr var, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID);
+            internal static extern __IntPtr ReflectionFunctionFindModifier(__IntPtr var, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_GetUserAttributeCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionFunctionGetUserAttributeCount(__IntPtr func);
+            internal static extern uint ReflectionFunctionGetUserAttributeCount(__IntPtr func);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_GetUserAttribute", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionGetUserAttribute(__IntPtr func, uint index);
+            internal static extern __IntPtr ReflectionFunctionGetUserAttribute(__IntPtr func, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_FindUserAttributeByName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionFindUserAttributeByName(__IntPtr func, __IntPtr globalSession, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern __IntPtr ReflectionFunctionFindUserAttributeByName(__IntPtr func, __IntPtr globalSession, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_GetParameterCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionFunctionGetParameterCount(__IntPtr func);
+            internal static extern uint ReflectionFunctionGetParameterCount(__IntPtr func);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_GetParameter", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionGetParameter(__IntPtr func, uint index);
+            internal static extern __IntPtr ReflectionFunctionGetParameter(__IntPtr func, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_GetResultType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionGetResultType(__IntPtr func);
+            internal static extern __IntPtr ReflectionFunctionGetResultType(__IntPtr func);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_GetGenericContainer", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionGetGenericContainer(__IntPtr func);
+            internal static extern __IntPtr ReflectionFunctionGetGenericContainer(__IntPtr func);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_applySpecializations", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionApplySpecializations(__IntPtr func, __IntPtr generic);
+            internal static extern __IntPtr ReflectionFunction_applySpecializations(__IntPtr func, __IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_specializeWithArgTypes", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionSpecializeWithArgTypes(__IntPtr func, long argTypeCount, __IntPtr argTypes);
+            internal static extern __IntPtr ReflectionFunction_specializeWithArgTypes(__IntPtr func, long argTypeCount, __IntPtr argTypes);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_isOverloaded", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SpReflectionFunctionIsOverloaded(__IntPtr func);
+            internal static extern bool ReflectionFunction_isOverloaded(__IntPtr func);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_getOverloadCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionFunctionGetOverloadCount(__IntPtr func);
+            internal static extern uint ReflectionFunction_getOverloadCount(__IntPtr func);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionFunction_getOverload", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFunctionGetOverload(__IntPtr func, uint index);
+            internal static extern __IntPtr ReflectionFunction_getOverload(__IntPtr func, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionDecl_getChildrenCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionDeclGetChildrenCount(__IntPtr parentDecl);
+            internal static extern uint ReflectionDecl_getChildrenCount(__IntPtr parentDecl);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionDecl_getChild", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionDeclGetChild(__IntPtr parentDecl, uint index);
+            internal static extern __IntPtr ReflectionDecl_getChild(__IntPtr parentDecl, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionDecl_getName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionDeclGetName(__IntPtr decl);
+            internal static extern __IntPtr ReflectionDecl_getName(__IntPtr decl);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionDecl_getKind", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind SpReflectionDeclGetKind(__IntPtr decl);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind ReflectionDecl_getKind(__IntPtr decl);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionDecl_castToFunction", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionDeclCastToFunction(__IntPtr decl);
+            internal static extern __IntPtr ReflectionDecl_castToFunction(__IntPtr decl);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionDecl_castToVariable", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionDeclCastToVariable(__IntPtr decl);
+            internal static extern __IntPtr ReflectionDecl_castToVariable(__IntPtr decl);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionDecl_castToGeneric", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionDeclCastToGeneric(__IntPtr decl);
+            internal static extern __IntPtr ReflectionDecl_castToGeneric(__IntPtr decl);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_getTypeFromDecl", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGetTypeFromDecl(__IntPtr decl);
+            internal static extern __IntPtr Reflection_getTypeFromDecl(__IntPtr decl);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionDecl_getParent", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionDeclGetParent(__IntPtr decl);
+            internal static extern __IntPtr ReflectionDecl_getParent(__IntPtr decl);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionDecl_findModifier", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionDeclFindModifier(__IntPtr decl, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID);
+            internal static extern __IntPtr ReflectionDecl_findModifier(__IntPtr decl, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_asDecl", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGenericAsDecl(__IntPtr generic);
+            internal static extern __IntPtr ReflectionGeneric_asDecl(__IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGenericGetName(__IntPtr generic);
+            internal static extern __IntPtr ReflectionGenericGetName(__IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetTypeParameterCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionGenericGetTypeParameterCount(__IntPtr generic);
+            internal static extern uint ReflectionGenericGetTypeParameterCount(__IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetTypeParameter", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGenericGetTypeParameter(__IntPtr generic, uint index);
+            internal static extern __IntPtr ReflectionGenericGetTypeParameter(__IntPtr generic, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetValueParameterCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionGenericGetValueParameterCount(__IntPtr generic);
+            internal static extern uint ReflectionGenericGetValueParameterCount(__IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetValueParameter", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGenericGetValueParameter(__IntPtr generic, uint index);
+            internal static extern __IntPtr ReflectionGenericGetValueParameter(__IntPtr generic, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetTypeParameterConstraintCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionGenericGetTypeParameterConstraintCount(__IntPtr generic, __IntPtr typeParam);
+            internal static extern uint ReflectionGenericGetTypeParameterConstraintCount(__IntPtr generic, __IntPtr typeParam);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetTypeParameterConstraintType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGenericGetTypeParameterConstraintType(__IntPtr generic, __IntPtr typeParam, uint index);
+            internal static extern __IntPtr ReflectionGenericGetTypeParameterConstraintType(__IntPtr generic, __IntPtr typeParam, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetInnerKind", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind SpReflectionGenericGetInnerKind(__IntPtr generic);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind ReflectionGenericGetInnerKind(__IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetInnerDecl", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGenericGetInnerDecl(__IntPtr generic);
+            internal static extern __IntPtr ReflectionGenericGetInnerDecl(__IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetOuterGenericContainer", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGenericGetOuterGenericContainer(__IntPtr generic);
+            internal static extern __IntPtr ReflectionGenericGetOuterGenericContainer(__IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetConcreteType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGenericGetConcreteType(__IntPtr generic, __IntPtr typeParam);
+            internal static extern __IntPtr ReflectionGenericGetConcreteType(__IntPtr generic, __IntPtr typeParam);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_GetConcreteIntVal", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern long SpReflectionGenericGetConcreteIntVal(__IntPtr generic, __IntPtr valueParam);
+            internal static extern long ReflectionGenericGetConcreteIntVal(__IntPtr generic, __IntPtr valueParam);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionGeneric_applySpecializations", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGenericApplySpecializations(__IntPtr currGeneric, __IntPtr generic);
+            internal static extern __IntPtr ReflectionGeneric_applySpecializations(__IntPtr currGeneric, __IntPtr generic);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariableLayout_getStage", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangStage SpReflectionVariableLayoutGetStage(__IntPtr var);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangStage ReflectionVariableLayout_getStage(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionVariableLayout_getPendingDataLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionVariableLayoutGetPendingDataLayout(__IntPtr var);
+            internal static extern __IntPtr ReflectionVariableLayout_getPendingDataLayout(__IntPtr var);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionParameter_GetBindingIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionParameterGetBindingIndex(__IntPtr parameter);
+            internal static extern uint ReflectionParameterGetBindingIndex(__IntPtr parameter);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionParameter_GetBindingSpace", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionParameterGetBindingSpace(__IntPtr parameter);
+            internal static extern uint ReflectionParameterGetBindingSpace(__IntPtr parameter);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spIsParameterLocationUsed", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpIsParameterLocationUsed(__IntPtr request, long entryPointIndex, long targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category, ulong spaceIndex, ulong registerIndex, bool* outUsed);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult IsParameterLocationUsed(__IntPtr request, long entryPointIndex, long targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category, ulong spaceIndex, ulong registerIndex, bool* outUsed);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionEntryPointGetName(__IntPtr entryPoint);
+            internal static extern __IntPtr ReflectionEntryPoint_getName(__IntPtr entryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getNameOverride", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionEntryPointGetNameOverride(__IntPtr entryPoint);
+            internal static extern __IntPtr ReflectionEntryPoint_getNameOverride(__IntPtr entryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getFunction", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionEntryPointGetFunction(__IntPtr entryPoint);
+            internal static extern __IntPtr ReflectionEntryPoint_getFunction(__IntPtr entryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getParameterCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionEntryPointGetParameterCount(__IntPtr entryPoint);
+            internal static extern uint ReflectionEntryPoint_getParameterCount(__IntPtr entryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getParameterByIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionEntryPointGetParameterByIndex(__IntPtr entryPoint, uint index);
+            internal static extern __IntPtr ReflectionEntryPoint_getParameterByIndex(__IntPtr entryPoint, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getStage", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangStage SpReflectionEntryPointGetStage(__IntPtr entryPoint);
+            internal static extern global::ShaderSlang.Net.Bindings.Generated.SlangStage ReflectionEntryPoint_getStage(__IntPtr entryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getComputeThreadGroupSize", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpReflectionEntryPointGetComputeThreadGroupSize(__IntPtr entryPoint, ulong axisCount, ulong* outSizeAlongAxis);
+            internal static extern void ReflectionEntryPoint_getComputeThreadGroupSize(__IntPtr entryPoint, ulong axisCount, ulong* outSizeAlongAxis);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getComputeWaveSize", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern void SpReflectionEntryPointGetComputeWaveSize(__IntPtr entryPoint, ulong* outWaveSize);
+            internal static extern void ReflectionEntryPoint_getComputeWaveSize(__IntPtr entryPoint, ulong* outWaveSize);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_usesAnySampleRateInput", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpReflectionEntryPointUsesAnySampleRateInput(__IntPtr entryPoint);
+            internal static extern int ReflectionEntryPoint_usesAnySampleRateInput(__IntPtr entryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getVarLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionEntryPointGetVarLayout(__IntPtr entryPoint);
+            internal static extern __IntPtr ReflectionEntryPoint_getVarLayout(__IntPtr entryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_getResultVarLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionEntryPointGetResultVarLayout(__IntPtr entryPoint);
+            internal static extern __IntPtr ReflectionEntryPoint_getResultVarLayout(__IntPtr entryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionEntryPoint_hasDefaultConstantBuffer", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern int SpReflectionEntryPointHasDefaultConstantBuffer(__IntPtr entryPoint);
+            internal static extern int ReflectionEntryPoint_hasDefaultConstantBuffer(__IntPtr entryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeParameter_GetName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeParameterGetName(__IntPtr typeParam);
+            internal static extern __IntPtr ReflectionTypeParameterGetName(__IntPtr typeParam);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeParameter_GetIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionTypeParameterGetIndex(__IntPtr typeParam);
+            internal static extern uint ReflectionTypeParameterGetIndex(__IntPtr typeParam);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeParameter_GetConstraintCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionTypeParameterGetConstraintCount(__IntPtr typeParam);
+            internal static extern uint ReflectionTypeParameterGetConstraintCount(__IntPtr typeParam);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflectionTypeParameter_GetConstraintByIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTypeParameterGetConstraintByIndex(__IntPtr typeParam, uint index);
+            internal static extern __IntPtr ReflectionTypeParameterGetConstraintByIndex(__IntPtr typeParam, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_ToJson", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpReflectionToJson(__IntPtr reflection, __IntPtr request, __IntPtr outBlob);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult ReflectionToJson(__IntPtr reflection, __IntPtr request, __IntPtr outBlob);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_GetParameterCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionGetParameterCount(__IntPtr reflection);
+            internal static extern uint ReflectionGetParameterCount(__IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_GetParameterByIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGetParameterByIndex(__IntPtr reflection, uint index);
+            internal static extern __IntPtr ReflectionGetParameterByIndex(__IntPtr reflection, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_GetTypeParameterCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpReflectionGetTypeParameterCount(__IntPtr reflection);
+            internal static extern uint ReflectionGetTypeParameterCount(__IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_GetTypeParameterByIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGetTypeParameterByIndex(__IntPtr reflection, uint index);
+            internal static extern __IntPtr ReflectionGetTypeParameterByIndex(__IntPtr reflection, uint index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_FindTypeParameter", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFindTypeParameter(__IntPtr reflection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern __IntPtr ReflectionFindTypeParameter(__IntPtr reflection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_FindTypeByName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFindTypeByName(__IntPtr reflection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern __IntPtr ReflectionFindTypeByName(__IntPtr reflection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_GetTypeLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGetTypeLayout(__IntPtr reflection, __IntPtr reflectionType, global::ShaderSlang.Net.Bindings.Generated.SlangLayoutRules rules);
+            internal static extern __IntPtr ReflectionGetTypeLayout(__IntPtr reflection, __IntPtr reflectionType, global::ShaderSlang.Net.Bindings.Generated.SlangLayoutRules rules);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_FindFunctionByName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFindFunctionByName(__IntPtr reflection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern __IntPtr ReflectionFindFunctionByName(__IntPtr reflection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_FindFunctionByNameInType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFindFunctionByNameInType(__IntPtr reflection, __IntPtr reflType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern __IntPtr ReflectionFindFunctionByNameInType(__IntPtr reflection, __IntPtr reflType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_FindVarByNameInType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFindVarByNameInType(__IntPtr reflection, __IntPtr reflType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern __IntPtr ReflectionFindVarByNameInType(__IntPtr reflection, __IntPtr reflType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_TryResolveOverloadedFunction", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionTryResolveOverloadedFunction(__IntPtr reflection, uint candidateCount, __IntPtr candidates);
+            internal static extern __IntPtr ReflectionTryResolveOverloadedFunction(__IntPtr reflection, uint candidateCount, __IntPtr candidates);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_getEntryPointCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionGetEntryPointCount(__IntPtr reflection);
+            internal static extern ulong Reflection_getEntryPointCount(__IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_getEntryPointByIndex", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGetEntryPointByIndex(__IntPtr reflection, ulong index);
+            internal static extern __IntPtr Reflection_getEntryPointByIndex(__IntPtr reflection, ulong index);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_findEntryPointByName", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionFindEntryPointByName(__IntPtr reflection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
+            internal static extern __IntPtr Reflection_findEntryPointByName(__IntPtr reflection, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_getGlobalConstantBufferBinding", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionGetGlobalConstantBufferBinding(__IntPtr reflection);
+            internal static extern ulong Reflection_getGlobalConstantBufferBinding(__IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_getGlobalConstantBufferSize", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionGetGlobalConstantBufferSize(__IntPtr reflection);
+            internal static extern ulong Reflection_getGlobalConstantBufferSize(__IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_specializeType", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionSpecializeType(__IntPtr reflection, __IntPtr type, long specializationArgCount, __IntPtr specializationArgs, __IntPtr outDiagnostics);
+            internal static extern __IntPtr Reflection_specializeType(__IntPtr reflection, __IntPtr type, long specializationArgCount, __IntPtr specializationArgs, __IntPtr outDiagnostics);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_specializeGeneric", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionSpecializeGeneric(__IntPtr inProgramLayout, __IntPtr generic, long argCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* argTypes, __IntPtr args, __IntPtr outDiagnostics);
+            internal static extern __IntPtr Reflection_specializeGeneric(__IntPtr inProgramLayout, __IntPtr generic, long argCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* argTypes, __IntPtr args, __IntPtr outDiagnostics);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_isSubType", CallingConvention = __CallingConvention.Cdecl)]
             [return: MarshalAs(UnmanagedType.I1)]
-            internal static extern bool SpReflectionIsSubType(__IntPtr reflection, __IntPtr subType, __IntPtr superType);
+            internal static extern bool Reflection_isSubType(__IntPtr reflection, __IntPtr subType, __IntPtr superType);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_getHashedStringCount", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern ulong SpReflectionGetHashedStringCount(__IntPtr reflection);
+            internal static extern ulong Reflection_getHashedStringCount(__IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_getHashedString", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGetHashedString(__IntPtr reflection, ulong index, ulong* outCount);
+            internal static extern __IntPtr Reflection_getHashedString(__IntPtr reflection, ulong index, ulong* outCount);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spComputeStringHash", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern uint SpComputeStringHash([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string chars, ulong count);
+            internal static extern uint ComputeStringHash([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string chars, ulong count);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_getGlobalParamsTypeLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGetGlobalParamsTypeLayout(__IntPtr reflection);
+            internal static extern __IntPtr Reflection_getGlobalParamsTypeLayout(__IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spReflection_getGlobalParamsVarLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGetGlobalParamsVarLayout(__IntPtr reflection);
+            internal static extern __IntPtr Reflection_getGlobalParamsVarLayout(__IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spGetTranslationUnitSource", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpGetTranslationUnitSource(__IntPtr request, int translationUnitIndex);
+            internal static extern __IntPtr GetTranslationUnitSource(__IntPtr request, int translationUnitIndex);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_Z23spReflection_GetSessionP18SlangProgramLayout", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern __IntPtr SpReflectionGetSession(__IntPtr reflection);
+            internal static extern __IntPtr ReflectionGetSession(__IntPtr reflection);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spCompileRequest_getProgram", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetProgram(__IntPtr request, __IntPtr outProgram);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getProgram(__IntPtr request, __IntPtr outProgram);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spCompileRequest_getProgramWithEntryPoints", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetProgramWithEntryPoints(__IntPtr request, __IntPtr outProgram);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getProgramWithEntryPoints(__IntPtr request, __IntPtr outProgram);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spCompileRequest_getEntryPoint", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetEntryPoint(__IntPtr request, long entryPointIndex, __IntPtr outEntryPoint);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getEntryPoint(__IntPtr request, long entryPointIndex, __IntPtr outEntryPoint);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spCompileRequest_getModule", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetModule(__IntPtr request, long translationUnitIndex, __IntPtr outModule);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getModule(__IntPtr request, long translationUnitIndex, __IntPtr outModule);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "spCompileRequest_getSession", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetSession(__IntPtr request, __IntPtr outSession);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getSession(__IntPtr request, __IntPtr outSession);
         }
 
         /// <summary>Initialize an instance of the Slang library.</summary>
-        public static global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession SpCreateSession(string deprecated)
+        public static global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession CreateSession(string deprecated)
         {
-            var ___ret = __Internal.SpCreateSession(deprecated);
+            var ___ret = __Internal.CreateSession(deprecated);
             var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession.__CreateInstance(___ret) : default;
             return __result0;
         }
 
         /// <summary>Clean up after an instance of the Slang library.</summary>
-        public static void SpDestroySession(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session)
+        public static void DestroySession(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            __Internal.SpDestroySession(__arg0);
+            __Internal.DestroySession(__arg0);
         }
 
         /// <remarks>slang::IGlobalSession::setSharedLibraryLoader</remarks>
-        public static void SpSessionSetSharedLibraryLoader(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader loader)
+        public static void SessionSetSharedLibraryLoader(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader loader)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
             var __arg1 = loader is null ? __IntPtr.Zero : loader.__PointerToISlangSharedLibraryLoader;
-            __Internal.SpSessionSetSharedLibraryLoader(__arg0, __arg1);
+            __Internal.SessionSetSharedLibraryLoader(__arg0, __arg1);
         }
 
         /// <remarks>slang::IGlobalSession::getSharedLibraryLoader</remarks>
-        public static global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader SpSessionGetSharedLibraryLoader(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session)
+        public static global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader SessionGetSharedLibraryLoader(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            var ___ret = __Internal.SpSessionGetSharedLibraryLoader(__arg0);
+            var ___ret = __Internal.SessionGetSharedLibraryLoader(__arg0);
             var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader.__CreateInstance(___ret) : default;
             return __result0;
         }
 
         /// <remarks>slang::IGlobalSession::checkCompileTargetSupport</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpSessionCheckCompileTargetSupport(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SessionCheckCompileTargetSupport(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            var ___ret = __Internal.SpSessionCheckCompileTargetSupport(__arg0, target);
+            var ___ret = __Internal.SessionCheckCompileTargetSupport(__arg0, target);
             return ___ret;
         }
 
         /// <remarks>slang::IGlobalSession::checkPassThroughSupport</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpSessionCheckPassThroughSupport(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SessionCheckPassThroughSupport(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            var ___ret = __Internal.SpSessionCheckPassThroughSupport(__arg0, passThrough);
+            var ___ret = __Internal.SessionCheckPassThroughSupport(__arg0, passThrough);
             return ___ret;
         }
 
         /// <remarks>slang::IGlobalSession::addBuiltins</remarks>
-        public static void SpAddBuiltins(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, string sourcePath, string sourceString)
+        public static void AddBuiltins(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, string sourcePath, string sourceString)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            __Internal.SpAddBuiltins(__arg0, sourcePath, sourceString);
+            __Internal.AddBuiltins(__arg0, sourcePath, sourceString);
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest SpCreateCompileRequest(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session)
+        public static global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest CreateCompileRequest(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            var ___ret = __Internal.SpCreateCompileRequest(__arg0);
+            var ___ret = __Internal.CreateCompileRequest(__arg0);
             var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest.__CreateInstance(___ret) : default;
             return __result0;
         }
@@ -11144,507 +11144,507 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Destroy a compile request.</para>
         /// <para>Note a request is a COM object and can be destroyed via 'Release'.</para>
         /// </summary>
-        public static void SpDestroyCompileRequest(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
+        public static void DestroyCompileRequest(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpDestroyCompileRequest(__arg0);
+            __Internal.DestroyCompileRequest(__arg0);
         }
 
         /// <remarks>slang::ICompileRequest::setFileSystem </remarks>
-        public static void SpSetFileSystem(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem)
+        public static void SetFileSystem(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var __arg1 = fileSystem is null ? __IntPtr.Zero : fileSystem.__PointerToISlangFileSystem;
-            __Internal.SpSetFileSystem(__arg0, __arg1);
+            __Internal.SetFileSystem(__arg0, __arg1);
         }
 
         /// <remarks>slang::ICompileRequest::setCompileFlags </remarks>
-        public static void SpSetCompileFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, uint flags)
+        public static void SetCompileFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, uint flags)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetCompileFlags(__arg0, flags);
+            __Internal.SetCompileFlags(__arg0, flags);
         }
 
         /// <remarks>slang::ICompileRequest::getCompileFlags </remarks>
-        public static uint SpGetCompileFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
+        public static uint GetCompileFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetCompileFlags(__arg0);
+            var ___ret = __Internal.GetCompileFlags(__arg0);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::setDumpIntermediates </remarks>
-        public static void SpSetDumpIntermediates(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int enable)
+        public static void SetDumpIntermediates(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int enable)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetDumpIntermediates(__arg0, enable);
+            __Internal.SetDumpIntermediates(__arg0, enable);
         }
 
         /// <remarks>slang::ICompileRequest::setDumpIntermediatePrefix </remarks>
-        public static void SpSetDumpIntermediatePrefix(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string prefix)
+        public static void SetDumpIntermediatePrefix(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string prefix)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetDumpIntermediatePrefix(__arg0, prefix);
+            __Internal.SetDumpIntermediatePrefix(__arg0, prefix);
         }
 
         /// <summary>DEPRECATED: use `spSetTargetLineDirectiveMode` instead.</summary>
         /// <remarks>slang::ICompileRequest::setLineDirectiveMode </remarks>
-        public static void SpSetLineDirectiveMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode)
+        public static void SetLineDirectiveMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetLineDirectiveMode(__arg0, mode);
+            __Internal.SetLineDirectiveMode(__arg0, mode);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetLineDirectiveMode </remarks>
-        public static void SpSetTargetLineDirectiveMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode)
+        public static void SetTargetLineDirectiveMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetTargetLineDirectiveMode(__arg0, targetIndex, mode);
+            __Internal.SetTargetLineDirectiveMode(__arg0, targetIndex, mode);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetLineDirectiveMode </remarks>
-        public static void SpSetTargetForceGLSLScalarBufferLayout(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, bool forceScalarLayout)
+        public static void SetTargetForceGLSLScalarBufferLayout(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, bool forceScalarLayout)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetTargetForceGLSLScalarBufferLayout(__arg0, targetIndex, forceScalarLayout);
+            __Internal.SetTargetForceGLSLScalarBufferLayout(__arg0, targetIndex, forceScalarLayout);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetUseMinimumSlangOptimization </remarks>
-        public static void SpSetTargetUseMinimumSlangOptimization(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, bool val)
+        public static void SetTargetUseMinimumSlangOptimization(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, bool val)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetTargetUseMinimumSlangOptimization(__arg0, targetIndex, val);
+            __Internal.SetTargetUseMinimumSlangOptimization(__arg0, targetIndex, val);
         }
 
         /// <remarks>slang::ICompileRequest::setIgnoreCapabilityCheck </remarks>
-        public static void SpSetIgnoreCapabilityCheck(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, bool val)
+        public static void SetIgnoreCapabilityCheck(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, bool val)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetIgnoreCapabilityCheck(__arg0, val);
+            __Internal.SetIgnoreCapabilityCheck(__arg0, val);
         }
 
         /// <remarks>slang::ICompileRequest::setCodeGenTarget </remarks>
-        public static void SpSetCodeGenTarget(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target)
+        public static void SetCodeGenTarget(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetCodeGenTarget(__arg0, target);
+            __Internal.SetCodeGenTarget(__arg0, target);
         }
 
         /// <remarks>slang::ICompileRequest::addCodeGenTarget </remarks>
-        public static int SpAddCodeGenTarget(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target)
+        public static int AddCodeGenTarget(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpAddCodeGenTarget(__arg0, target);
+            var ___ret = __Internal.AddCodeGenTarget(__arg0, target);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::setTargetProfile </remarks>
-        public static void SpSetTargetProfile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangProfileID profile)
+        public static void SetTargetProfile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangProfileID profile)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetTargetProfile(__arg0, targetIndex, profile);
+            __Internal.SetTargetProfile(__arg0, targetIndex, profile);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetFlags </remarks>
-        public static void SpSetTargetFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, uint flags)
+        public static void SetTargetFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, uint flags)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetTargetFlags(__arg0, targetIndex, flags);
+            __Internal.SetTargetFlags(__arg0, targetIndex, flags);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetFloatingPointMode </remarks>
-        public static void SpSetTargetFloatingPointMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangFloatingPointMode mode)
+        public static void SetTargetFloatingPointMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangFloatingPointMode mode)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetTargetFloatingPointMode(__arg0, targetIndex, mode);
+            __Internal.SetTargetFloatingPointMode(__arg0, targetIndex, mode);
         }
 
         /// <remarks>slang::ICompileRequest::addTargetCapability </remarks>
-        public static void SpAddTargetCapability(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID capability)
+        public static void AddTargetCapability(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID capability)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpAddTargetCapability(__arg0, targetIndex, capability);
+            __Internal.AddTargetCapability(__arg0, targetIndex, capability);
         }
 
-        public static void SpSetTargetMatrixLayoutMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode)
+        public static void SetTargetMatrixLayoutMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetTargetMatrixLayoutMode(__arg0, targetIndex, mode);
+            __Internal.SetTargetMatrixLayoutMode(__arg0, targetIndex, mode);
         }
 
         /// <remarks>slang::ICompileRequest::setMatrixLayoutMode </remarks>
-        public static void SpSetMatrixLayoutMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode)
+        public static void SetMatrixLayoutMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetMatrixLayoutMode(__arg0, mode);
+            __Internal.SetMatrixLayoutMode(__arg0, mode);
         }
 
         /// <remarks>slang::ICompileRequest::setDebugInfoLevel </remarks>
-        public static void SpSetDebugInfoLevel(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoLevel level)
+        public static void SetDebugInfoLevel(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoLevel level)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetDebugInfoLevel(__arg0, level);
+            __Internal.SetDebugInfoLevel(__arg0, level);
         }
 
         /// <remarks>slang::ICompileRequest::setDebugInfoFormat </remarks>
-        public static void SpSetDebugInfoFormat(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoFormat format)
+        public static void SetDebugInfoFormat(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoFormat format)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetDebugInfoFormat(__arg0, format);
+            __Internal.SetDebugInfoFormat(__arg0, format);
         }
 
         /// <remarks>slang::ICompileRequest::setOptimizationLevel </remarks>
-        public static void SpSetOptimizationLevel(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangOptimizationLevel level)
+        public static void SetOptimizationLevel(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangOptimizationLevel level)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetOptimizationLevel(__arg0, level);
+            __Internal.SetOptimizationLevel(__arg0, level);
         }
 
         /// <remarks>slang::ICompileRequest::setOutputContainerFormat </remarks>
-        public static void SpSetOutputContainerFormat(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangContainerFormat format)
+        public static void SetOutputContainerFormat(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangContainerFormat format)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetOutputContainerFormat(__arg0, format);
+            __Internal.SetOutputContainerFormat(__arg0, format);
         }
 
         /// <remarks>slang::ICompileRequest::setPassThrough </remarks>
-        public static void SpSetPassThrough(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough)
+        public static void SetPassThrough(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetPassThrough(__arg0, passThrough);
+            __Internal.SetPassThrough(__arg0, passThrough);
         }
 
         /// <remarks>slang::ICompileRequest::setDiagnosticCallback </remarks>
-        public static void SpSetDiagnosticCallback(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangDiagnosticCallback callback, __IntPtr userData)
+        public static void SetDiagnosticCallback(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangDiagnosticCallback callback, __IntPtr userData)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var __arg1 = callback == null ? global::System.IntPtr.Zero : Marshal.GetFunctionPointerForDelegate(callback);
-            __Internal.SpSetDiagnosticCallback(__arg0, __arg1, userData);
+            __Internal.SetDiagnosticCallback(__arg0, __arg1, userData);
         }
 
         /// <remarks>slang::ICompileRequest::setWriter </remarks>
-        public static void SpSetWriter(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel, global::ShaderSlang.Net.Bindings.Generated.ISlangWriter writer)
+        public static void SetWriter(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel, global::ShaderSlang.Net.Bindings.Generated.ISlangWriter writer)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var __arg2 = writer is null ? __IntPtr.Zero : writer.__PointerToISlangWriter;
-            __Internal.SpSetWriter(__arg0, channel, __arg2);
+            __Internal.SetWriter(__arg0, channel, __arg2);
         }
 
         /// <remarks>slang::ICompileRequest::getWriter </remarks>
-        public static global::ShaderSlang.Net.Bindings.Generated.ISlangWriter SpGetWriter(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel)
+        public static global::ShaderSlang.Net.Bindings.Generated.ISlangWriter GetWriter(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetWriter(__arg0, channel);
+            var ___ret = __Internal.GetWriter(__arg0, channel);
             var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.ISlangWriter.__CreateInstance(___ret) : default;
             return __result0;
         }
 
         /// <remarks>slang::ICompileRequest::addSearchPath </remarks>
-        public static void SpAddSearchPath(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string searchDir)
+        public static void AddSearchPath(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string searchDir)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpAddSearchPath(__arg0, searchDir);
+            __Internal.AddSearchPath(__arg0, searchDir);
         }
 
         /// <remarks>slang::ICompileRequest::addPreprocessorDefine </remarks>
-        public static void SpAddPreprocessorDefine(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string key, string value)
+        public static void AddPreprocessorDefine(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string key, string value)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpAddPreprocessorDefine(__arg0, key, value);
+            __Internal.AddPreprocessorDefine(__arg0, key, value);
         }
 
         /// <remarks>slang::ICompileRequest::processCommandLineArguments </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpProcessCommandLineArguments(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, char** args, int argCount)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ProcessCommandLineArguments(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, char** args, int argCount)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var __arg1 = (sbyte**) &args;
-            var ___ret = __Internal.SpProcessCommandLineArguments(__arg0, __arg1, argCount);
+            var ___ret = __Internal.ProcessCommandLineArguments(__arg0, __arg1, argCount);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::addTranslationUnit </remarks>
-        public static int SpAddTranslationUnit(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangSourceLanguage language, string name)
+        public static int AddTranslationUnit(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangSourceLanguage language, string name)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpAddTranslationUnit(__arg0, language, name);
+            var ___ret = __Internal.AddTranslationUnit(__arg0, language, name);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::setDefaultModuleName </remarks>
-        public static void SpSetDefaultModuleName(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string defaultModuleName)
+        public static void SetDefaultModuleName(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string defaultModuleName)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetDefaultModuleName(__arg0, defaultModuleName);
+            __Internal.SetDefaultModuleName(__arg0, defaultModuleName);
         }
 
         /// <remarks>slang::ICompileRequest::addPreprocessorDefine </remarks>
-        public static void SpTranslationUnitAddPreprocessorDefine(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string key, string value)
+        public static void TranslationUnit_addPreprocessorDefine(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string key, string value)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpTranslationUnitAddPreprocessorDefine(__arg0, translationUnitIndex, key, value);
+            __Internal.TranslationUnit_addPreprocessorDefine(__arg0, translationUnitIndex, key, value);
         }
 
         /// <remarks>slang::ICompileRequest::addTranslationUnitSourceFile </remarks>
-        public static void SpAddTranslationUnitSourceFile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path)
+        public static void AddTranslationUnitSourceFile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpAddTranslationUnitSourceFile(__arg0, translationUnitIndex, path);
+            __Internal.AddTranslationUnitSourceFile(__arg0, translationUnitIndex, path);
         }
 
         /// <remarks>slang::ICompileRequest::addTranslationUnitSourceString </remarks>
-        public static void SpAddTranslationUnitSourceString(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path, string source)
+        public static void AddTranslationUnitSourceString(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path, string source)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpAddTranslationUnitSourceString(__arg0, translationUnitIndex, path, source);
+            __Internal.AddTranslationUnitSourceString(__arg0, translationUnitIndex, path, source);
         }
 
         /// <remarks>slang::ICompileRequest::addLibraryReference </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpAddLibraryReference(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string basePath, __IntPtr libData, ulong libDataSize)
+        public static global::ShaderSlang.Net.Bindings.SlangResult AddLibraryReference(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string basePath, __IntPtr libData, ulong libDataSize)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpAddLibraryReference(__arg0, basePath, libData, libDataSize);
+            var ___ret = __Internal.AddLibraryReference(__arg0, basePath, libData, libDataSize);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::addTranslationUnitSourceStringSpan </remarks>
-        public static void SpAddTranslationUnitSourceStringSpan(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path, string sourceBegin, string sourceEnd)
+        public static void AddTranslationUnitSourceStringSpan(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path, string sourceBegin, string sourceEnd)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpAddTranslationUnitSourceStringSpan(__arg0, translationUnitIndex, path, sourceBegin, sourceEnd);
+            __Internal.AddTranslationUnitSourceStringSpan(__arg0, translationUnitIndex, path, sourceBegin, sourceEnd);
         }
 
         /// <remarks>slang::ICompileRequest::addTranslationUnitSourceBlob </remarks>
-        public static void SpAddTranslationUnitSourceBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob sourceBlob)
+        public static void AddTranslationUnitSourceBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob sourceBlob)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var __arg3 = sourceBlob is null ? __IntPtr.Zero : sourceBlob.__PointerToISlangBlob;
-            __Internal.SpAddTranslationUnitSourceBlob(__arg0, translationUnitIndex, path, __arg3);
+            __Internal.AddTranslationUnitSourceBlob(__arg0, translationUnitIndex, path, __arg3);
         }
 
         /// <remarks>slang::IGlobalSession::findProfile </remarks>
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangProfileID SpFindProfile(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangProfileID FindProfile(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, string name)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            var ___ret = __Internal.SpFindProfile(__arg0, name);
+            var ___ret = __Internal.FindProfile(__arg0, name);
             return ___ret;
         }
 
         /// <remarks>slang::IGlobalSession::findCapability </remarks>
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID SpFindCapability(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID FindCapability(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, string name)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            var ___ret = __Internal.SpFindCapability(__arg0, name);
+            var ___ret = __Internal.FindCapability(__arg0, name);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::addEntryPoint </remarks>
-        public static int SpAddEntryPoint(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage)
+        public static int AddEntryPoint(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpAddEntryPoint(__arg0, translationUnitIndex, name, stage);
+            var ___ret = __Internal.AddEntryPoint(__arg0, translationUnitIndex, name, stage);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::addEntryPointEx </remarks>
-        public static int SpAddEntryPointEx(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage, int genericArgCount, char** genericArgs)
+        public static int AddEntryPointEx(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage, int genericArgCount, char** genericArgs)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var __arg5 = (sbyte**) &genericArgs;
-            var ___ret = __Internal.SpAddEntryPointEx(__arg0, translationUnitIndex, name, stage, genericArgCount, __arg5);
+            var ___ret = __Internal.AddEntryPointEx(__arg0, translationUnitIndex, name, stage, genericArgCount, __arg5);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::setGlobalGenericArgs </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpSetGlobalGenericArgs(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int genericArgCount, char** genericArgs)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SetGlobalGenericArgs(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int genericArgCount, char** genericArgs)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var __arg2 = (sbyte**) &genericArgs;
-            var ___ret = __Internal.SpSetGlobalGenericArgs(__arg0, genericArgCount, __arg2);
+            var ___ret = __Internal.SetGlobalGenericArgs(__arg0, genericArgCount, __arg2);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::setTypeNameForGlobalExistentialTypeParam </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpSetTypeNameForGlobalExistentialTypeParam(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int slotIndex, string typeName)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SetTypeNameForGlobalExistentialTypeParam(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int slotIndex, string typeName)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpSetTypeNameForGlobalExistentialTypeParam(__arg0, slotIndex, typeName);
+            var ___ret = __Internal.SetTypeNameForGlobalExistentialTypeParam(__arg0, slotIndex, typeName);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::setTypeNameForEntryPointExistentialTypeParam </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpSetTypeNameForEntryPointExistentialTypeParam(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int slotIndex, string typeName)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SetTypeNameForEntryPointExistentialTypeParam(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int slotIndex, string typeName)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpSetTypeNameForEntryPointExistentialTypeParam(__arg0, entryPointIndex, slotIndex, typeName);
+            var ___ret = __Internal.SetTypeNameForEntryPointExistentialTypeParam(__arg0, entryPointIndex, slotIndex, typeName);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::compile </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpCompile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
+        public static global::ShaderSlang.Net.Bindings.SlangResult Compile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpCompile(__arg0);
+            var ___ret = __Internal.Compile(__arg0);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getDiagnosticOutput </remarks>
-        public static string SpGetDiagnosticOutput(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
+        public static string GetDiagnosticOutput(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetDiagnosticOutput(__arg0);
+            var ___ret = __Internal.GetDiagnosticOutput(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
         /// <remarks>slang::ICompileRequest::getDiagnosticOutputBlob </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpGetDiagnosticOutputBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetDiagnosticOutputBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg1 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
             var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SpGetDiagnosticOutputBlob(__arg0, __arg1);
+            var ___ret = __Internal.GetDiagnosticOutputBlob(__arg0, __arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getDependencyFileCount </remarks>
-        public static int SpGetDependencyFileCount(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
+        public static int GetDependencyFileCount(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetDependencyFileCount(__arg0);
+            var ___ret = __Internal.GetDependencyFileCount(__arg0);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getDependencyFilePath </remarks>
-        public static string SpGetDependencyFilePath(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int index)
+        public static string GetDependencyFilePath(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int index)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetDependencyFilePath(__arg0, index);
+            var ___ret = __Internal.GetDependencyFilePath(__arg0, index);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
         /// <remarks>slang::ICompileRequest::getTranslationUnitCount </remarks>
-        public static int SpGetTranslationUnitCount(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
+        public static int GetTranslationUnitCount(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetTranslationUnitCount(__arg0);
+            var ___ret = __Internal.GetTranslationUnitCount(__arg0);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getEntryPointSource </remarks>
-        public static string SpGetEntryPointSource(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex)
+        public static string GetEntryPointSource(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetEntryPointSource(__arg0, entryPointIndex);
+            var ___ret = __Internal.GetEntryPointSource(__arg0, entryPointIndex);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
         /// <remarks>slang::ICompileRequest::getEntryPointCode </remarks>
-        public static __IntPtr SpGetEntryPointCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, ref ulong outSize)
+        public static __IntPtr GetEntryPointCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, ref ulong outSize)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             fixed (ulong* __outSize2 = &outSize)
             {
                 var __arg2 = __outSize2;
-                var ___ret = __Internal.SpGetEntryPointCode(__arg0, entryPointIndex, __arg2);
+                var ___ret = __Internal.GetEntryPointCode(__arg0, entryPointIndex, __arg2);
                 return ___ret;
             }
         }
 
         /// <remarks>slang::ICompileRequest::getEntryPointCodeBlob </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpGetEntryPointCodeBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetEntryPointCodeBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg3 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
             var __arg3 = new __IntPtr(&____arg3);
-            var ___ret = __Internal.SpGetEntryPointCodeBlob(__arg0, entryPointIndex, targetIndex, __arg3);
+            var ___ret = __Internal.GetEntryPointCodeBlob(__arg0, entryPointIndex, targetIndex, __arg3);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getEntryPointHostCallable </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpGetEntryPointHostCallable(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary outSharedLibrary)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetEntryPointHostCallable(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary outSharedLibrary)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg3 = outSharedLibrary is null ? __IntPtr.Zero : outSharedLibrary.__PointerToISlangSharedLibrary;
             var __arg3 = new __IntPtr(&____arg3);
-            var ___ret = __Internal.SpGetEntryPointHostCallable(__arg0, entryPointIndex, targetIndex, __arg3);
+            var ___ret = __Internal.GetEntryPointHostCallable(__arg0, entryPointIndex, targetIndex, __arg3);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getTargetCodeBlob </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpGetTargetCodeBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetTargetCodeBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg2 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
             var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.SpGetTargetCodeBlob(__arg0, targetIndex, __arg2);
+            var ___ret = __Internal.GetTargetCodeBlob(__arg0, targetIndex, __arg2);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getTargetHostCallable </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpGetTargetHostCallable(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary outSharedLibrary)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetTargetHostCallable(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary outSharedLibrary)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg2 = outSharedLibrary is null ? __IntPtr.Zero : outSharedLibrary.__PointerToISlangSharedLibrary;
             var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.SpGetTargetHostCallable(__arg0, targetIndex, __arg2);
+            var ___ret = __Internal.GetTargetHostCallable(__arg0, targetIndex, __arg2);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getCompileRequestCode </remarks>
-        public static __IntPtr SpGetCompileRequestCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, ref ulong outSize)
+        public static __IntPtr GetCompileRequestCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, ref ulong outSize)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             fixed (ulong* __outSize1 = &outSize)
             {
                 var __arg1 = __outSize1;
-                var ___ret = __Internal.SpGetCompileRequestCode(__arg0, __arg1);
+                var ___ret = __Internal.GetCompileRequestCode(__arg0, __arg1);
                 return ___ret;
             }
         }
 
         /// <remarks>slang::ICompileRequest::getContainerCode </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpGetContainerCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetContainerCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg1 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
             var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SpGetContainerCode(__arg0, __arg1);
+            var ___ret = __Internal.GetContainerCode(__arg0, __arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::loadRepro </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpLoadRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem, __IntPtr data, ulong size)
+        public static global::ShaderSlang.Net.Bindings.SlangResult LoadRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem, __IntPtr data, ulong size)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var __arg1 = fileSystem is null ? __IntPtr.Zero : fileSystem.__PointerToISlangFileSystem;
-            var ___ret = __Internal.SpLoadRepro(__arg0, __arg1, data, size);
+            var ___ret = __Internal.LoadRepro(__arg0, __arg1, data, size);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::saveRepro </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpSaveRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SaveRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg1 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
             var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SpSaveRepro(__arg0, __arg1);
+            var ___ret = __Internal.SaveRepro(__arg0, __arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::enableReproCapture </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpEnableReproCapture(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
+        public static global::ShaderSlang.Net.Bindings.SlangResult EnableReproCapture(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpEnableReproCapture(__arg0);
+            var ___ret = __Internal.EnableReproCapture(__arg0);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getCompileTimeProfile </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpGetCompileTimeProfile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangProfiler compileTimeProfile, bool shouldClear)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetCompileTimeProfile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangProfiler compileTimeProfile, bool shouldClear)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg1 = compileTimeProfile is null ? __IntPtr.Zero : compileTimeProfile.__PointerToISlangProfiler;
             var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SpGetCompileTimeProfile(__arg0, __arg1, shouldClear);
+            var ___ret = __Internal.GetCompileTimeProfile(__arg0, __arg1, shouldClear);
             return ___ret;
         }
 
@@ -11658,94 +11658,94 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>details read the docs/repro.md documentation.</para>
         /// <para>A `SlangResult` to indicate success or failure.</para>
         /// </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpExtractRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, __IntPtr reproData, ulong reproDataSize, global::ShaderSlang.Net.Bindings.Generated.ISlangMutableFileSystem fileSystem)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ExtractRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, __IntPtr reproData, ulong reproDataSize, global::ShaderSlang.Net.Bindings.Generated.ISlangMutableFileSystem fileSystem)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
             var __arg3 = fileSystem is null ? __IntPtr.Zero : fileSystem.__PointerToISlangMutableFileSystem;
-            var ___ret = __Internal.SpExtractRepro(__arg0, reproData, reproDataSize, __arg3);
+            var ___ret = __Internal.ExtractRepro(__arg0, reproData, reproDataSize, __arg3);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpLoadReproAsFileSystem(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, __IntPtr reproData, ulong reproDataSize, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem replaceFileSystem, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystemExt outFileSystem)
+        public static global::ShaderSlang.Net.Bindings.SlangResult LoadReproAsFileSystem(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, __IntPtr reproData, ulong reproDataSize, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem replaceFileSystem, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystemExt outFileSystem)
         {
             var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
             var __arg3 = replaceFileSystem is null ? __IntPtr.Zero : replaceFileSystem.__PointerToISlangFileSystem;
             var ____arg4 = outFileSystem is null ? __IntPtr.Zero : outFileSystem.__PointerToISlangFileSystemExt;
             var __arg4 = new __IntPtr(&____arg4);
-            var ___ret = __Internal.SpLoadReproAsFileSystem(__arg0, reproData, reproDataSize, __arg3, __arg4);
+            var ___ret = __Internal.LoadReproAsFileSystem(__arg0, reproData, reproDataSize, __arg3, __arg4);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::overrideDiagnosticSeverity </remarks>
-        public static void SpOverrideDiagnosticSeverity(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long messageID, global::ShaderSlang.Net.Bindings.Generated.SlangSeverity overrideSeverity)
+        public static void OverrideDiagnosticSeverity(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long messageID, global::ShaderSlang.Net.Bindings.Generated.SlangSeverity overrideSeverity)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpOverrideDiagnosticSeverity(__arg0, messageID, overrideSeverity);
+            __Internal.OverrideDiagnosticSeverity(__arg0, messageID, overrideSeverity);
         }
 
         /// <remarks>slang::ICompileRequest::getDiagnosticFlags </remarks>
-        public static int SpGetDiagnosticFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
+        public static int GetDiagnosticFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetDiagnosticFlags(__arg0);
+            var ___ret = __Internal.GetDiagnosticFlags(__arg0);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::setDiagnosticFlags </remarks>
-        public static void SpSetDiagnosticFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int flags)
+        public static void SetDiagnosticFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int flags)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            __Internal.SpSetDiagnosticFlags(__arg0, flags);
+            __Internal.SetDiagnosticFlags(__arg0, flags);
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout SpGetReflection(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout GetReflection(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetReflection(__arg0);
+            var ___ret = __Internal.GetReflection(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static string SpReflectionUserAttributeGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib)
+        public static string ReflectionUserAttributeGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib)
         {
             var __arg0 = attrib is null ? __IntPtr.Zero : attrib.__Instance;
-            var ___ret = __Internal.SpReflectionUserAttributeGetName(__arg0);
+            var ___ret = __Internal.ReflectionUserAttributeGetName(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static uint SpReflectionUserAttributeGetArgumentCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib)
+        public static uint ReflectionUserAttributeGetArgumentCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib)
         {
             var __arg0 = attrib is null ? __IntPtr.Zero : attrib.__Instance;
-            var ___ret = __Internal.SpReflectionUserAttributeGetArgumentCount(__arg0);
+            var ___ret = __Internal.ReflectionUserAttributeGetArgumentCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionUserAttributeGetArgumentType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionUserAttributeGetArgumentType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index)
         {
             var __arg0 = attrib is null ? __IntPtr.Zero : attrib.__Instance;
-            var ___ret = __Internal.SpReflectionUserAttributeGetArgumentType(__arg0, index);
+            var ___ret = __Internal.ReflectionUserAttributeGetArgumentType(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpReflectionUserAttributeGetArgumentValueInt(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index, ref int rs)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ReflectionUserAttributeGetArgumentValueInt(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index, ref int rs)
         {
             var __arg0 = attrib is null ? __IntPtr.Zero : attrib.__Instance;
             fixed (int* __rs2 = &rs)
             {
                 var __arg2 = __rs2;
-                var ___ret = __Internal.SpReflectionUserAttributeGetArgumentValueInt(__arg0, index, __arg2);
+                var ___ret = __Internal.ReflectionUserAttributeGetArgumentValueInt(__arg0, index, __arg2);
                 return ___ret;
             }
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpReflectionUserAttributeGetArgumentValueFloat(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index, ref float rs)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ReflectionUserAttributeGetArgumentValueFloat(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index, ref float rs)
         {
             var __arg0 = attrib is null ? __IntPtr.Zero : attrib.__Instance;
             fixed (float* __rs2 = &rs)
             {
                 var __arg2 = __rs2;
-                var ___ret = __Internal.SpReflectionUserAttributeGetArgumentValueFloat(__arg0, index, __arg2);
+                var ___ret = __Internal.ReflectionUserAttributeGetArgumentValueFloat(__arg0, index, __arg2);
                 return ___ret;
             }
         }
@@ -11756,67 +11756,67 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>`outSize`. If index of out of range, or if the specified argument is not a string, the</para>
         /// <para>function will return nullptr.</para>
         /// </summary>
-        public static string SpReflectionUserAttributeGetArgumentValueString(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index, ref ulong outSize)
+        public static string ReflectionUserAttributeGetArgumentValueString(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index, ref ulong outSize)
         {
             var __arg0 = attrib is null ? __IntPtr.Zero : attrib.__Instance;
             fixed (ulong* __outSize2 = &outSize)
             {
                 var __arg2 = __outSize2;
-                var ___ret = __Internal.SpReflectionUserAttributeGetArgumentValueString(__arg0, index, __arg2);
+                var ___ret = __Internal.ReflectionUserAttributeGetArgumentValueString(__arg0, index, __arg2);
                 return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
             }
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind SpReflectionTypeGetKind(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind ReflectionTypeGetKind(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetKind(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetKind(__arg0);
             return ___ret;
         }
 
-        public static uint SpReflectionTypeGetUserAttributeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static uint ReflectionTypeGetUserAttributeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetUserAttributeCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetUserAttributeCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute SpReflectionTypeGetUserAttribute(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute ReflectionTypeGetUserAttribute(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, uint index)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetUserAttribute(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeGetUserAttribute(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute SpReflectionTypeFindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute ReflectionTypeFindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, string name)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeFindUserAttributeByName(__arg0, name);
+            var ___ret = __Internal.ReflectionTypeFindUserAttributeByName(__arg0, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionTypeApplySpecializations(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionType_applySpecializations(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
             var __arg1 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionTypeApplySpecializations(__arg0, __arg1);
+            var ___ret = __Internal.ReflectionType_applySpecializations(__arg0, __arg1);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionTypeGetFieldCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static uint ReflectionTypeGetFieldCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetFieldCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetFieldCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable SpReflectionTypeGetFieldByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ReflectionTypeGetFieldByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, uint index)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetFieldByIndex(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeGetFieldByIndex(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
@@ -11831,10 +11831,10 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Use spReflectionType_GetSpecializedElementCount if the size is dependent on</para>
         /// <para>a link time constant</para>
         /// </remarks>
-        public static ulong SpReflectionTypeGetElementCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static ulong ReflectionTypeGetElementCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetElementCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetElementCount(__arg0);
             return ___ret;
         }
 
@@ -11842,101 +11842,101 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>The same as spReflectionType_GetElementCount except it takes into account specialization</para>
         /// <para>information from the given reflection info</para>
         /// </summary>
-        public static ulong SpReflectionTypeGetSpecializedElementCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static ulong ReflectionTypeGetSpecializedElementCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
             var __arg1 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetSpecializedElementCount(__arg0, __arg1);
+            var ___ret = __Internal.ReflectionTypeGetSpecializedElementCount(__arg0, __arg1);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionTypeGetElementType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionTypeGetElementType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetElementType(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetElementType(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionTypeGetRowCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static uint ReflectionTypeGetRowCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetRowCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetRowCount(__arg0);
             return ___ret;
         }
 
-        public static uint SpReflectionTypeGetColumnCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static uint ReflectionTypeGetColumnCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetColumnCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetColumnCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangScalarType SpReflectionTypeGetScalarType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangScalarType ReflectionTypeGetScalarType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetScalarType(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetScalarType(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangResourceShape SpReflectionTypeGetResourceShape(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangResourceShape ReflectionTypeGetResourceShape(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetResourceShape(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetResourceShape(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangResourceAccess SpReflectionTypeGetResourceAccess(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangResourceAccess ReflectionTypeGetResourceAccess(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetResourceAccess(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetResourceAccess(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionTypeGetResourceResultType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionTypeGetResourceResultType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetResourceResultType(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetResourceResultType(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static string SpReflectionTypeGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static string ReflectionTypeGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetName(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetName(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpReflectionTypeGetFullName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outNameBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ReflectionTypeGetFullName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outNameBlob)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
             var ____arg1 = outNameBlob is null ? __IntPtr.Zero : outNameBlob.__PointerToISlangBlob;
             var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SpReflectionTypeGetFullName(__arg0, __arg1);
+            var ___ret = __Internal.ReflectionTypeGetFullName(__arg0, __arg1);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric SpReflectionTypeGetGenericContainer(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric ReflectionTypeGetGenericContainer(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetGenericContainer(__arg0);
+            var ___ret = __Internal.ReflectionTypeGetGenericContainer(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionTypeLayoutGetType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionTypeLayoutGetType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetType(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayoutGetType(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind SpReflectionTypeLayoutGetKind(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind ReflectionTypeLayout_getKind(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetKind(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayout_getKind(__arg0);
             return ___ret;
         }
 
@@ -11946,10 +11946,10 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the size depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static ulong SpReflectionTypeLayoutGetSize(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
+        public static ulong ReflectionTypeLayoutGetSize(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetSize(__arg0, category);
+            var ___ret = __Internal.ReflectionTypeLayoutGetSize(__arg0, category);
             return ___ret;
         }
 
@@ -11959,46 +11959,46 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when stride depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static ulong SpReflectionTypeLayoutGetStride(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
+        public static ulong ReflectionTypeLayoutGetStride(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetStride(__arg0, category);
+            var ___ret = __Internal.ReflectionTypeLayoutGetStride(__arg0, category);
             return ___ret;
         }
 
-        public static int SpReflectionTypeLayoutGetAlignment(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
+        public static int ReflectionTypeLayout_getAlignment(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetAlignment(__arg0, category);
+            var ___ret = __Internal.ReflectionTypeLayout_getAlignment(__arg0, category);
             return ___ret;
         }
 
-        public static uint SpReflectionTypeLayoutGetFieldCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static uint ReflectionTypeLayoutGetFieldCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetFieldCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayoutGetFieldCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionTypeLayoutGetFieldByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionTypeLayoutGetFieldByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, uint index)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetFieldByIndex(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayoutGetFieldByIndex(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static long SpReflectionTypeLayoutFindFieldIndexByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, string nameBegin, string nameEnd)
+        public static long ReflectionTypeLayout_findFieldIndexByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, string nameBegin, string nameEnd)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutFindFieldIndexByName(__arg0, nameBegin, nameEnd);
+            var ___ret = __Internal.ReflectionTypeLayout_findFieldIndexByName(__arg0, nameBegin, nameEnd);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionTypeLayoutGetExplicitCounter(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionTypeLayoutGetExplicitCounter(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetExplicitCounter(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayoutGetExplicitCounter(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
@@ -12009,121 +12009,121 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when element stride depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static ulong SpReflectionTypeLayoutGetElementStride(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
+        public static ulong ReflectionTypeLayoutGetElementStride(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetElementStride(__arg0, category);
+            var ___ret = __Internal.ReflectionTypeLayoutGetElementStride(__arg0, category);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout SpReflectionTypeLayoutGetElementTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout ReflectionTypeLayoutGetElementTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetElementTypeLayout(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayoutGetElementTypeLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionTypeLayoutGetElementVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionTypeLayoutGetElementVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetElementVarLayout(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayoutGetElementVarLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionTypeLayoutGetContainerVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionTypeLayout_getContainerVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetContainerVarLayout(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayout_getContainerVarLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory SpReflectionTypeLayoutGetParameterCategory(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory ReflectionTypeLayoutGetParameterCategory(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetParameterCategory(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayoutGetParameterCategory(__arg0);
             return ___ret;
         }
 
-        public static uint SpReflectionTypeLayoutGetCategoryCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static uint ReflectionTypeLayoutGetCategoryCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetCategoryCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayoutGetCategoryCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory SpReflectionTypeLayoutGetCategoryByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory ReflectionTypeLayoutGetCategoryByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type, uint index)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetCategoryByIndex(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayoutGetCategoryByIndex(__arg0, index);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode SpReflectionTypeLayoutGetMatrixLayoutMode(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode ReflectionTypeLayoutGetMatrixLayoutMode(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetMatrixLayoutMode(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayoutGetMatrixLayoutMode(__arg0);
             return ___ret;
         }
 
-        public static int SpReflectionTypeLayoutGetGenericParamIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static int ReflectionTypeLayout_getGenericParamIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetGenericParamIndex(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayout_getGenericParamIndex(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout SpReflectionTypeLayoutGetPendingDataTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout ReflectionTypeLayout_getPendingDataTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetPendingDataTypeLayout(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayout_getPendingDataTypeLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionTypeLayoutGetSpecializedTypePendingDataVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionTypeLayout_getSpecializedTypePendingDataVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetSpecializedTypePendingDataVarLayout(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayout_getSpecializedTypePendingDataVarLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static long SpReflectionTypeGetSpecializedTypeArgCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
+        public static long ReflectionType_getSpecializedTypeArgCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetSpecializedTypeArgCount(__arg0);
+            var ___ret = __Internal.ReflectionType_getSpecializedTypeArgCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionTypeGetSpecializedTypeArgType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, long index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionType_getSpecializedTypeArgType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, long index)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ___ret = __Internal.SpReflectionTypeGetSpecializedTypeArgType(__arg0, index);
+            var ___ret = __Internal.ReflectionType_getSpecializedTypeArgType(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static long SpReflectionTypeLayoutGetBindingRangeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout)
+        public static long ReflectionTypeLayout_getBindingRangeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetBindingRangeCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayout_getBindingRangeCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangBindingType SpReflectionTypeLayoutGetBindingRangeType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangBindingType ReflectionTypeLayout_getBindingRangeType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetBindingRangeType(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayout_getBindingRangeType(__arg0, index);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutIsBindingRangeSpecializable(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
+        public static long ReflectionTypeLayout_isBindingRangeSpecializable(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutIsBindingRangeSpecializable(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayout_isBindingRangeSpecializable(__arg0, index);
             return ___ret;
         }
 
@@ -12133,89 +12133,89 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the count depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static long SpReflectionTypeLayoutGetBindingRangeBindingCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
+        public static long ReflectionTypeLayout_getBindingRangeBindingCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetBindingRangeBindingCount(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayout_getBindingRangeBindingCount(__arg0, index);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout SpReflectionTypeLayoutGetBindingRangeLeafTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout ReflectionTypeLayout_getBindingRangeLeafTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetBindingRangeLeafTypeLayout(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayout_getBindingRangeLeafTypeLayout(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable SpReflectionTypeLayoutGetBindingRangeLeafVariable(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ReflectionTypeLayout_getBindingRangeLeafVariable(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetBindingRangeLeafVariable(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayout_getBindingRangeLeafVariable(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat SpReflectionTypeLayoutGetBindingRangeImageFormat(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat ReflectionTypeLayout_getBindingRangeImageFormat(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetBindingRangeImageFormat(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayout_getBindingRangeImageFormat(__arg0, index);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetFieldBindingRangeOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long fieldIndex)
+        public static long ReflectionTypeLayout_getFieldBindingRangeOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long fieldIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetFieldBindingRangeOffset(__arg0, fieldIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getFieldBindingRangeOffset(__arg0, fieldIndex);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetExplicitCounterBindingRangeOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout inTypeLayout)
+        public static long ReflectionTypeLayout_getExplicitCounterBindingRangeOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout inTypeLayout)
         {
             var __arg0 = inTypeLayout is null ? __IntPtr.Zero : inTypeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetExplicitCounterBindingRangeOffset(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayout_getExplicitCounterBindingRangeOffset(__arg0);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetBindingRangeDescriptorSetIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
+        public static long ReflectionTypeLayout_getBindingRangeDescriptorSetIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetBindingRangeDescriptorSetIndex(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayout_getBindingRangeDescriptorSetIndex(__arg0, index);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetBindingRangeFirstDescriptorRangeIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
+        public static long ReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetBindingRangeFirstDescriptorRangeIndex(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex(__arg0, index);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetBindingRangeDescriptorRangeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
+        public static long ReflectionTypeLayout_getBindingRangeDescriptorRangeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long index)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetBindingRangeDescriptorRangeCount(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeLayout_getBindingRangeDescriptorRangeCount(__arg0, index);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetDescriptorSetCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout)
+        public static long ReflectionTypeLayout_getDescriptorSetCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetDescriptorSetCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayout_getDescriptorSetCount(__arg0);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetDescriptorSetSpaceOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex)
+        public static long ReflectionTypeLayout_getDescriptorSetSpaceOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetDescriptorSetSpaceOffset(__arg0, setIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getDescriptorSetSpaceOffset(__arg0, setIndex);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex)
+        public static long ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeCount(__arg0, setIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount(__arg0, setIndex);
             return ___ret;
         }
 
@@ -12224,10 +12224,10 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the offset depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static long SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeIndexOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex, long rangeIndex)
+        public static long ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex, long rangeIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeIndexOffset(__arg0, setIndex, rangeIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset(__arg0, setIndex, rangeIndex);
             return ___ret;
         }
 
@@ -12237,38 +12237,38 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the count depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static long SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeDescriptorCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex, long rangeIndex)
+        public static long ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex, long rangeIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeDescriptorCount(__arg0, setIndex, rangeIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount(__arg0, setIndex, rangeIndex);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangBindingType SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex, long rangeIndex)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangBindingType ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex, long rangeIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeType(__arg0, setIndex, rangeIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(__arg0, setIndex, rangeIndex);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeCategory(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex, long rangeIndex)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long setIndex, long rangeIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetDescriptorSetDescriptorRangeCategory(__arg0, setIndex, rangeIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(__arg0, setIndex, rangeIndex);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetSubObjectRangeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout)
+        public static long ReflectionTypeLayout_getSubObjectRangeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetSubObjectRangeCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeLayout_getSubObjectRangeCount(__arg0);
             return ___ret;
         }
 
-        public static long SpReflectionTypeLayoutGetSubObjectRangeBindingRangeIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long subObjectRangeIndex)
+        public static long ReflectionTypeLayout_getSubObjectRangeBindingRangeIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long subObjectRangeIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetSubObjectRangeBindingRangeIndex(__arg0, subObjectRangeIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getSubObjectRangeBindingRangeIndex(__arg0, subObjectRangeIndex);
             return ___ret;
         }
 
@@ -12277,115 +12277,115 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the offset depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static long SpReflectionTypeLayoutGetSubObjectRangeSpaceOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long subObjectRangeIndex)
+        public static long ReflectionTypeLayout_getSubObjectRangeSpaceOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long subObjectRangeIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetSubObjectRangeSpaceOffset(__arg0, subObjectRangeIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getSubObjectRangeSpaceOffset(__arg0, subObjectRangeIndex);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionTypeLayoutGetSubObjectRangeOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long subObjectRangeIndex)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionTypeLayout_getSubObjectRangeOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout typeLayout, long subObjectRangeIndex)
         {
             var __arg0 = typeLayout is null ? __IntPtr.Zero : typeLayout.__Instance;
-            var ___ret = __Internal.SpReflectionTypeLayoutGetSubObjectRangeOffset(__arg0, subObjectRangeIndex);
+            var ___ret = __Internal.ReflectionTypeLayout_getSubObjectRangeOffset(__arg0, subObjectRangeIndex);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static string SpReflectionVariableGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var)
+        public static string ReflectionVariableGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableGetName(__arg0);
+            var ___ret = __Internal.ReflectionVariableGetName(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionVariableGetType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionVariableGetType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableGetType(__arg0);
+            var ___ret = __Internal.ReflectionVariableGetType(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier SpReflectionVariableFindModifier(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier ReflectionVariableFindModifier(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableFindModifier(__arg0, modifierID);
+            var ___ret = __Internal.ReflectionVariableFindModifier(__arg0, modifierID);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionVariableGetUserAttributeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var)
+        public static uint ReflectionVariableGetUserAttributeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableGetUserAttributeCount(__arg0);
+            var ___ret = __Internal.ReflectionVariableGetUserAttributeCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute SpReflectionVariableGetUserAttribute(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute ReflectionVariableGetUserAttribute(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var, uint index)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableGetUserAttribute(__arg0, index);
+            var ___ret = __Internal.ReflectionVariableGetUserAttribute(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute SpReflectionVariableFindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute ReflectionVariableFindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
             var __arg1 = globalSession is null ? __IntPtr.Zero : globalSession.__PointerToIGlobalSession;
-            var ___ret = __Internal.SpReflectionVariableFindUserAttributeByName(__arg0, __arg1, name);
+            var ___ret = __Internal.ReflectionVariableFindUserAttributeByName(__arg0, __arg1, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static bool SpReflectionVariableHasDefaultValue(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable inVar)
+        public static bool ReflectionVariableHasDefaultValue(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable inVar)
         {
             var __arg0 = inVar is null ? __IntPtr.Zero : inVar.__Instance;
-            var ___ret = __Internal.SpReflectionVariableHasDefaultValue(__arg0);
+            var ___ret = __Internal.ReflectionVariableHasDefaultValue(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpReflectionVariableGetDefaultValueInt(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable inVar, ref long rs)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ReflectionVariableGetDefaultValueInt(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable inVar, ref long rs)
         {
             var __arg0 = inVar is null ? __IntPtr.Zero : inVar.__Instance;
             fixed (long* __rs1 = &rs)
             {
                 var __arg1 = __rs1;
-                var ___ret = __Internal.SpReflectionVariableGetDefaultValueInt(__arg0, __arg1);
+                var ___ret = __Internal.ReflectionVariableGetDefaultValueInt(__arg0, __arg1);
                 return ___ret;
             }
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric SpReflectionVariableGetGenericContainer(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric ReflectionVariableGetGenericContainer(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableGetGenericContainer(__arg0);
+            var ___ret = __Internal.ReflectionVariableGetGenericContainer(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable SpReflectionVariableApplySpecializations(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ReflectionVariable_applySpecializations(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
             var __arg1 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionVariableApplySpecializations(__arg0, __arg1);
+            var ___ret = __Internal.ReflectionVariable_applySpecializations(__arg0, __arg1);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable SpReflectionVariableLayoutGetVariable(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ReflectionVariableLayoutGetVariable(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableLayoutGetVariable(__arg0);
+            var ___ret = __Internal.ReflectionVariableLayoutGetVariable(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout SpReflectionVariableLayoutGetTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout ReflectionVariableLayoutGetTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableLayoutGetTypeLayout(__arg0);
+            var ___ret = __Internal.ReflectionVariableLayoutGetTypeLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
@@ -12395,10 +12395,10 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the offset depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static ulong SpReflectionVariableLayoutGetOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
+        public static ulong ReflectionVariableLayoutGetOffset(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableLayoutGetOffset(__arg0, category);
+            var ___ret = __Internal.ReflectionVariableLayoutGetOffset(__arg0, category);
             return ___ret;
         }
 
@@ -12407,337 +12407,337 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the space depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static ulong SpReflectionVariableLayoutGetSpace(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
+        public static ulong ReflectionVariableLayoutGetSpace(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableLayoutGetSpace(__arg0, category);
+            var ___ret = __Internal.ReflectionVariableLayoutGetSpace(__arg0, category);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat SpReflectionVariableLayoutGetImageFormat(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat ReflectionVariableLayoutGetImageFormat(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableLayoutGetImageFormat(__arg0);
+            var ___ret = __Internal.ReflectionVariableLayoutGetImageFormat(__arg0);
             return ___ret;
         }
 
-        public static string SpReflectionVariableLayoutGetSemanticName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
+        public static string ReflectionVariableLayoutGetSemanticName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableLayoutGetSemanticName(__arg0);
+            var ___ret = __Internal.ReflectionVariableLayoutGetSemanticName(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static ulong SpReflectionVariableLayoutGetSemanticIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
+        public static ulong ReflectionVariableLayoutGetSemanticIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableLayoutGetSemanticIndex(__arg0);
+            var ___ret = __Internal.ReflectionVariableLayoutGetSemanticIndex(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl SpReflectionFunctionAsDecl(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl ReflectionFunction_asDecl(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionAsDecl(__arg0);
+            var ___ret = __Internal.ReflectionFunction_asDecl(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static string SpReflectionFunctionGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
+        public static string ReflectionFunctionGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionGetName(__arg0);
+            var ___ret = __Internal.ReflectionFunctionGetName(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier SpReflectionFunctionFindModifier(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction var, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier ReflectionFunctionFindModifier(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction var, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionFindModifier(__arg0, modifierID);
+            var ___ret = __Internal.ReflectionFunctionFindModifier(__arg0, modifierID);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionFunctionGetUserAttributeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
+        public static uint ReflectionFunctionGetUserAttributeCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionGetUserAttributeCount(__arg0);
+            var ___ret = __Internal.ReflectionFunctionGetUserAttributeCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute SpReflectionFunctionGetUserAttribute(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute ReflectionFunctionGetUserAttribute(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, uint index)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionGetUserAttribute(__arg0, index);
+            var ___ret = __Internal.ReflectionFunctionGetUserAttribute(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute SpReflectionFunctionFindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute ReflectionFunctionFindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
             var __arg1 = globalSession is null ? __IntPtr.Zero : globalSession.__PointerToIGlobalSession;
-            var ___ret = __Internal.SpReflectionFunctionFindUserAttributeByName(__arg0, __arg1, name);
+            var ___ret = __Internal.ReflectionFunctionFindUserAttributeByName(__arg0, __arg1, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionFunctionGetParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
+        public static uint ReflectionFunctionGetParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionGetParameterCount(__arg0);
+            var ___ret = __Internal.ReflectionFunctionGetParameterCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable SpReflectionFunctionGetParameter(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ReflectionFunctionGetParameter(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, uint index)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionGetParameter(__arg0, index);
+            var ___ret = __Internal.ReflectionFunctionGetParameter(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionFunctionGetResultType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionFunctionGetResultType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionGetResultType(__arg0);
+            var ___ret = __Internal.ReflectionFunctionGetResultType(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric SpReflectionFunctionGetGenericContainer(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric ReflectionFunctionGetGenericContainer(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionGetGenericContainer(__arg0);
+            var ___ret = __Internal.ReflectionFunctionGetGenericContainer(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction SpReflectionFunctionApplySpecializations(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction ReflectionFunction_applySpecializations(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
             var __arg1 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionApplySpecializations(__arg0, __arg1);
+            var ___ret = __Internal.ReflectionFunction_applySpecializations(__arg0, __arg1);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction SpReflectionFunctionSpecializeWithArgTypes(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, long argTypeCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType argTypes)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction ReflectionFunction_specializeWithArgTypes(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, long argTypeCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType argTypes)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
             var ____arg2 = argTypes is null ? __IntPtr.Zero : argTypes.__Instance;
             var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.SpReflectionFunctionSpecializeWithArgTypes(__arg0, argTypeCount, __arg2);
+            var ___ret = __Internal.ReflectionFunction_specializeWithArgTypes(__arg0, argTypeCount, __arg2);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static bool SpReflectionFunctionIsOverloaded(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
+        public static bool ReflectionFunction_isOverloaded(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionIsOverloaded(__arg0);
+            var ___ret = __Internal.ReflectionFunction_isOverloaded(__arg0);
             return ___ret;
         }
 
-        public static uint SpReflectionFunctionGetOverloadCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
+        public static uint ReflectionFunction_getOverloadCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionGetOverloadCount(__arg0);
+            var ___ret = __Internal.ReflectionFunction_getOverloadCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction SpReflectionFunctionGetOverload(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction ReflectionFunction_getOverload(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, uint index)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var ___ret = __Internal.SpReflectionFunctionGetOverload(__arg0, index);
+            var ___ret = __Internal.ReflectionFunction_getOverload(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionDeclGetChildrenCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl parentDecl)
+        public static uint ReflectionDecl_getChildrenCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl parentDecl)
         {
             var __arg0 = parentDecl is null ? __IntPtr.Zero : parentDecl.__Instance;
-            var ___ret = __Internal.SpReflectionDeclGetChildrenCount(__arg0);
+            var ___ret = __Internal.ReflectionDecl_getChildrenCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl SpReflectionDeclGetChild(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl parentDecl, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl ReflectionDecl_getChild(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl parentDecl, uint index)
         {
             var __arg0 = parentDecl is null ? __IntPtr.Zero : parentDecl.__Instance;
-            var ___ret = __Internal.SpReflectionDeclGetChild(__arg0, index);
+            var ___ret = __Internal.ReflectionDecl_getChild(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static string SpReflectionDeclGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
+        public static string ReflectionDecl_getName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
         {
             var __arg0 = decl is null ? __IntPtr.Zero : decl.__Instance;
-            var ___ret = __Internal.SpReflectionDeclGetName(__arg0);
+            var ___ret = __Internal.ReflectionDecl_getName(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind SpReflectionDeclGetKind(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind ReflectionDecl_getKind(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
         {
             var __arg0 = decl is null ? __IntPtr.Zero : decl.__Instance;
-            var ___ret = __Internal.SpReflectionDeclGetKind(__arg0);
+            var ___ret = __Internal.ReflectionDecl_getKind(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction SpReflectionDeclCastToFunction(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction ReflectionDecl_castToFunction(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
         {
             var __arg0 = decl is null ? __IntPtr.Zero : decl.__Instance;
-            var ___ret = __Internal.SpReflectionDeclCastToFunction(__arg0);
+            var ___ret = __Internal.ReflectionDecl_castToFunction(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable SpReflectionDeclCastToVariable(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ReflectionDecl_castToVariable(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
         {
             var __arg0 = decl is null ? __IntPtr.Zero : decl.__Instance;
-            var ___ret = __Internal.SpReflectionDeclCastToVariable(__arg0);
+            var ___ret = __Internal.ReflectionDecl_castToVariable(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric SpReflectionDeclCastToGeneric(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric ReflectionDecl_castToGeneric(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
         {
             var __arg0 = decl is null ? __IntPtr.Zero : decl.__Instance;
-            var ___ret = __Internal.SpReflectionDeclCastToGeneric(__arg0);
+            var ___ret = __Internal.ReflectionDecl_castToGeneric(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionGetTypeFromDecl(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType Reflection_getTypeFromDecl(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
         {
             var __arg0 = decl is null ? __IntPtr.Zero : decl.__Instance;
-            var ___ret = __Internal.SpReflectionGetTypeFromDecl(__arg0);
+            var ___ret = __Internal.Reflection_getTypeFromDecl(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl SpReflectionDeclGetParent(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl ReflectionDecl_getParent(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl)
         {
             var __arg0 = decl is null ? __IntPtr.Zero : decl.__Instance;
-            var ___ret = __Internal.SpReflectionDeclGetParent(__arg0);
+            var ___ret = __Internal.ReflectionDecl_getParent(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier SpReflectionDeclFindModifier(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier ReflectionDecl_findModifier(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl decl, global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID)
         {
             var __arg0 = decl is null ? __IntPtr.Zero : decl.__Instance;
-            var ___ret = __Internal.SpReflectionDeclFindModifier(__arg0, modifierID);
+            var ___ret = __Internal.ReflectionDecl_findModifier(__arg0, modifierID);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl SpReflectionGenericAsDecl(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl ReflectionGeneric_asDecl(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericAsDecl(__arg0);
+            var ___ret = __Internal.ReflectionGeneric_asDecl(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static string SpReflectionGenericGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static string ReflectionGenericGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetName(__arg0);
+            var ___ret = __Internal.ReflectionGenericGetName(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static uint SpReflectionGenericGetTypeParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static uint ReflectionGenericGetTypeParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetTypeParameterCount(__arg0);
+            var ___ret = __Internal.ReflectionGenericGetTypeParameterCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable SpReflectionGenericGetTypeParameter(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ReflectionGenericGetTypeParameter(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, uint index)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetTypeParameter(__arg0, index);
+            var ___ret = __Internal.ReflectionGenericGetTypeParameter(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionGenericGetValueParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static uint ReflectionGenericGetValueParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetValueParameterCount(__arg0);
+            var ___ret = __Internal.ReflectionGenericGetValueParameterCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable SpReflectionGenericGetValueParameter(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ReflectionGenericGetValueParameter(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, uint index)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetValueParameter(__arg0, index);
+            var ___ret = __Internal.ReflectionGenericGetValueParameter(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionGenericGetTypeParameterConstraintCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable typeParam)
+        public static uint ReflectionGenericGetTypeParameterConstraintCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable typeParam)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
             var __arg1 = typeParam is null ? __IntPtr.Zero : typeParam.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetTypeParameterConstraintCount(__arg0, __arg1);
+            var ___ret = __Internal.ReflectionGenericGetTypeParameterConstraintCount(__arg0, __arg1);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionGenericGetTypeParameterConstraintType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable typeParam, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionGenericGetTypeParameterConstraintType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable typeParam, uint index)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
             var __arg1 = typeParam is null ? __IntPtr.Zero : typeParam.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetTypeParameterConstraintType(__arg0, __arg1, index);
+            var ___ret = __Internal.ReflectionGenericGetTypeParameterConstraintType(__arg0, __arg1, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind SpReflectionGenericGetInnerKind(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind ReflectionGenericGetInnerKind(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetInnerKind(__arg0);
+            var ___ret = __Internal.ReflectionGenericGetInnerKind(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl SpReflectionGenericGetInnerDecl(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl ReflectionGenericGetInnerDecl(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetInnerDecl(__arg0);
+            var ___ret = __Internal.ReflectionGenericGetInnerDecl(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric SpReflectionGenericGetOuterGenericContainer(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric ReflectionGenericGetOuterGenericContainer(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetOuterGenericContainer(__arg0);
+            var ___ret = __Internal.ReflectionGenericGetOuterGenericContainer(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionGenericGetConcreteType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable typeParam)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionGenericGetConcreteType(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable typeParam)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
             var __arg1 = typeParam is null ? __IntPtr.Zero : typeParam.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetConcreteType(__arg0, __arg1);
+            var ___ret = __Internal.ReflectionGenericGetConcreteType(__arg0, __arg1);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static long SpReflectionGenericGetConcreteIntVal(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable valueParam)
+        public static long ReflectionGenericGetConcreteIntVal(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable valueParam)
         {
             var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
             var __arg1 = valueParam is null ? __IntPtr.Zero : valueParam.__Instance;
-            var ___ret = __Internal.SpReflectionGenericGetConcreteIntVal(__arg0, __arg1);
+            var ___ret = __Internal.ReflectionGenericGetConcreteIntVal(__arg0, __arg1);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric SpReflectionGenericApplySpecializations(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric currGeneric, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric ReflectionGeneric_applySpecializations(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric currGeneric, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic)
         {
             var __arg0 = currGeneric is null ? __IntPtr.Zero : currGeneric.__Instance;
             var __arg1 = generic is null ? __IntPtr.Zero : generic.__Instance;
-            var ___ret = __Internal.SpReflectionGenericApplySpecializations(__arg0, __arg1);
+            var ___ret = __Internal.ReflectionGeneric_applySpecializations(__arg0, __arg1);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
@@ -12749,17 +12749,17 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>point *or* at the global scope of a stage-specific GLSL code file (e.g.,</para>
         /// <para>an `in` parameter in a GLSL `.vs` file belongs to the vertex stage).</para>
         /// </remarks>
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangStage SpReflectionVariableLayoutGetStage(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangStage ReflectionVariableLayout_getStage(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableLayoutGetStage(__arg0);
+            var ___ret = __Internal.ReflectionVariableLayout_getStage(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionVariableLayoutGetPendingDataLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionVariableLayout_getPendingDataLayout(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout var)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var ___ret = __Internal.SpReflectionVariableLayoutGetPendingDataLayout(__arg0);
+            var ___ret = __Internal.ReflectionVariableLayout_getPendingDataLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
@@ -12769,10 +12769,10 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the index depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static uint SpReflectionParameterGetBindingIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout parameter)
+        public static uint ReflectionParameterGetBindingIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout parameter)
         {
             var __arg0 = parameter is null ? __IntPtr.Zero : parameter.__Instance;
-            var ___ret = __Internal.SpReflectionParameterGetBindingIndex(__arg0);
+            var ___ret = __Internal.ReflectionParameterGetBindingIndex(__arg0);
             return ___ret;
         }
 
@@ -12781,267 +12781,267 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the space depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static uint SpReflectionParameterGetBindingSpace(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout parameter)
+        public static uint ReflectionParameterGetBindingSpace(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout parameter)
         {
             var __arg0 = parameter is null ? __IntPtr.Zero : parameter.__Instance;
-            var ___ret = __Internal.SpReflectionParameterGetBindingSpace(__arg0);
+            var ___ret = __Internal.ReflectionParameterGetBindingSpace(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpIsParameterLocationUsed(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long entryPointIndex, long targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category, ulong spaceIndex, ulong registerIndex, ref bool outUsed)
+        public static global::ShaderSlang.Net.Bindings.SlangResult IsParameterLocationUsed(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long entryPointIndex, long targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category, ulong spaceIndex, ulong registerIndex, ref bool outUsed)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             fixed (bool* __outUsed6 = &outUsed)
             {
                 var __arg6 = __outUsed6;
-                var ___ret = __Internal.SpIsParameterLocationUsed(__arg0, entryPointIndex, targetIndex, category, spaceIndex, registerIndex, __arg6);
+                var ___ret = __Internal.IsParameterLocationUsed(__arg0, entryPointIndex, targetIndex, category, spaceIndex, registerIndex, __arg6);
                 return ___ret;
             }
         }
 
-        public static string SpReflectionEntryPointGetName(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
+        public static string ReflectionEntryPoint_getName(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointGetName(__arg0);
+            var ___ret = __Internal.ReflectionEntryPoint_getName(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static string SpReflectionEntryPointGetNameOverride(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
+        public static string ReflectionEntryPoint_getNameOverride(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointGetNameOverride(__arg0);
+            var ___ret = __Internal.ReflectionEntryPoint_getNameOverride(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction SpReflectionEntryPointGetFunction(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction ReflectionEntryPoint_getFunction(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointGetFunction(__arg0);
+            var ___ret = __Internal.ReflectionEntryPoint_getFunction(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionEntryPointGetParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
+        public static uint ReflectionEntryPoint_getParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointGetParameterCount(__arg0);
+            var ___ret = __Internal.ReflectionEntryPoint_getParameterCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionEntryPointGetParameterByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionEntryPoint_getParameterByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, uint index)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointGetParameterByIndex(__arg0, index);
+            var ___ret = __Internal.ReflectionEntryPoint_getParameterByIndex(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangStage SpReflectionEntryPointGetStage(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangStage ReflectionEntryPoint_getStage(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointGetStage(__arg0);
+            var ___ret = __Internal.ReflectionEntryPoint_getStage(__arg0);
             return ___ret;
         }
 
-        public static void SpReflectionEntryPointGetComputeThreadGroupSize(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, ulong axisCount, ref ulong outSizeAlongAxis)
+        public static void ReflectionEntryPoint_getComputeThreadGroupSize(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, ulong axisCount, ref ulong outSizeAlongAxis)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
             fixed (ulong* __outSizeAlongAxis2 = &outSizeAlongAxis)
             {
                 var __arg2 = __outSizeAlongAxis2;
-                __Internal.SpReflectionEntryPointGetComputeThreadGroupSize(__arg0, axisCount, __arg2);
+                __Internal.ReflectionEntryPoint_getComputeThreadGroupSize(__arg0, axisCount, __arg2);
             }
         }
 
-        public static void SpReflectionEntryPointGetComputeWaveSize(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, ref ulong outWaveSize)
+        public static void ReflectionEntryPoint_getComputeWaveSize(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, ref ulong outWaveSize)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
             fixed (ulong* __outWaveSize1 = &outWaveSize)
             {
                 var __arg1 = __outWaveSize1;
-                __Internal.SpReflectionEntryPointGetComputeWaveSize(__arg0, __arg1);
+                __Internal.ReflectionEntryPoint_getComputeWaveSize(__arg0, __arg1);
             }
         }
 
-        public static int SpReflectionEntryPointUsesAnySampleRateInput(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
+        public static int ReflectionEntryPoint_usesAnySampleRateInput(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointUsesAnySampleRateInput(__arg0);
+            var ___ret = __Internal.ReflectionEntryPoint_usesAnySampleRateInput(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionEntryPointGetVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionEntryPoint_getVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointGetVarLayout(__arg0);
+            var ___ret = __Internal.ReflectionEntryPoint_getVarLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionEntryPointGetResultVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionEntryPoint_getResultVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointGetResultVarLayout(__arg0);
+            var ___ret = __Internal.ReflectionEntryPoint_getResultVarLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static int SpReflectionEntryPointHasDefaultConstantBuffer(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
+        public static int ReflectionEntryPoint_hasDefaultConstantBuffer(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
-            var ___ret = __Internal.SpReflectionEntryPointHasDefaultConstantBuffer(__arg0);
+            var ___ret = __Internal.ReflectionEntryPoint_hasDefaultConstantBuffer(__arg0);
             return ___ret;
         }
 
-        public static string SpReflectionTypeParameterGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter typeParam)
+        public static string ReflectionTypeParameterGetName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter typeParam)
         {
             var __arg0 = typeParam is null ? __IntPtr.Zero : typeParam.__Instance;
-            var ___ret = __Internal.SpReflectionTypeParameterGetName(__arg0);
+            var ___ret = __Internal.ReflectionTypeParameterGetName(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static uint SpReflectionTypeParameterGetIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter typeParam)
+        public static uint ReflectionTypeParameterGetIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter typeParam)
         {
             var __arg0 = typeParam is null ? __IntPtr.Zero : typeParam.__Instance;
-            var ___ret = __Internal.SpReflectionTypeParameterGetIndex(__arg0);
+            var ___ret = __Internal.ReflectionTypeParameterGetIndex(__arg0);
             return ___ret;
         }
 
-        public static uint SpReflectionTypeParameterGetConstraintCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter typeParam)
+        public static uint ReflectionTypeParameterGetConstraintCount(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter typeParam)
         {
             var __arg0 = typeParam is null ? __IntPtr.Zero : typeParam.__Instance;
-            var ___ret = __Internal.SpReflectionTypeParameterGetConstraintCount(__arg0);
+            var ___ret = __Internal.ReflectionTypeParameterGetConstraintCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionTypeParameterGetConstraintByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter typeParam, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionTypeParameterGetConstraintByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter typeParam, uint index)
         {
             var __arg0 = typeParam is null ? __IntPtr.Zero : typeParam.__Instance;
-            var ___ret = __Internal.SpReflectionTypeParameterGetConstraintByIndex(__arg0, index);
+            var ___ret = __Internal.ReflectionTypeParameterGetConstraintByIndex(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpReflectionToJson(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ReflectionToJson(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             var __arg1 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg2 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
             var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.SpReflectionToJson(__arg0, __arg1, __arg2);
+            var ___ret = __Internal.ReflectionToJson(__arg0, __arg1, __arg2);
             return ___ret;
         }
 
-        public static uint SpReflectionGetParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static uint ReflectionGetParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetParameterCount(__arg0);
+            var ___ret = __Internal.ReflectionGetParameterCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionGetParameterByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ReflectionGetParameterByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, uint index)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetParameterByIndex(__arg0, index);
+            var ___ret = __Internal.ReflectionGetParameterByIndex(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static uint SpReflectionGetTypeParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static uint ReflectionGetTypeParameterCount(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetTypeParameterCount(__arg0);
+            var ___ret = __Internal.ReflectionGetTypeParameterCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter SpReflectionGetTypeParameterByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, uint index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter ReflectionGetTypeParameterByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, uint index)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetTypeParameterByIndex(__arg0, index);
+            var ___ret = __Internal.ReflectionGetTypeParameterByIndex(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter SpReflectionFindTypeParameter(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter ReflectionFindTypeParameter(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, string name)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionFindTypeParameter(__arg0, name);
+            var ___ret = __Internal.ReflectionFindTypeParameter(__arg0, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionFindTypeByName(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ReflectionFindTypeByName(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, string name)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionFindTypeByName(__arg0, name);
+            var ___ret = __Internal.ReflectionFindTypeByName(__arg0, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout SpReflectionGetTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType reflectionType, global::ShaderSlang.Net.Bindings.Generated.SlangLayoutRules rules)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout ReflectionGetTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType reflectionType, global::ShaderSlang.Net.Bindings.Generated.SlangLayoutRules rules)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             var __arg1 = reflectionType is null ? __IntPtr.Zero : reflectionType.__Instance;
-            var ___ret = __Internal.SpReflectionGetTypeLayout(__arg0, __arg1, rules);
+            var ___ret = __Internal.ReflectionGetTypeLayout(__arg0, __arg1, rules);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction SpReflectionFindFunctionByName(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction ReflectionFindFunctionByName(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, string name)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionFindFunctionByName(__arg0, name);
+            var ___ret = __Internal.ReflectionFindFunctionByName(__arg0, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction SpReflectionFindFunctionByNameInType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType reflType, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction ReflectionFindFunctionByNameInType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType reflType, string name)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             var __arg1 = reflType is null ? __IntPtr.Zero : reflType.__Instance;
-            var ___ret = __Internal.SpReflectionFindFunctionByNameInType(__arg0, __arg1, name);
+            var ___ret = __Internal.ReflectionFindFunctionByNameInType(__arg0, __arg1, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable SpReflectionFindVarByNameInType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType reflType, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ReflectionFindVarByNameInType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType reflType, string name)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             var __arg1 = reflType is null ? __IntPtr.Zero : reflType.__Instance;
-            var ___ret = __Internal.SpReflectionFindVarByNameInType(__arg0, __arg1, name);
+            var ___ret = __Internal.ReflectionFindVarByNameInType(__arg0, __arg1, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction SpReflectionTryResolveOverloadedFunction(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, uint candidateCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction candidates)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction ReflectionTryResolveOverloadedFunction(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, uint candidateCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction candidates)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             var ____arg2 = candidates is null ? __IntPtr.Zero : candidates.__Instance;
             var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.SpReflectionTryResolveOverloadedFunction(__arg0, candidateCount, __arg2);
+            var ___ret = __Internal.ReflectionTryResolveOverloadedFunction(__arg0, candidateCount, __arg2);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static ulong SpReflectionGetEntryPointCount(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static ulong Reflection_getEntryPointCount(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetEntryPointCount(__arg0);
+            var ___ret = __Internal.Reflection_getEntryPointCount(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout SpReflectionGetEntryPointByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, ulong index)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout Reflection_getEntryPointByIndex(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, ulong index)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetEntryPointByIndex(__arg0, index);
+            var ___ret = __Internal.Reflection_getEntryPointByIndex(__arg0, index);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout SpReflectionFindEntryPointByName(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, string name)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout Reflection_findEntryPointByName(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, string name)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionFindEntryPointByName(__arg0, name);
+            var ___ret = __Internal.Reflection_findEntryPointByName(__arg0, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
@@ -13051,10 +13051,10 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the binding depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static ulong SpReflectionGetGlobalConstantBufferBinding(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static ulong Reflection_getGlobalConstantBufferBinding(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetGlobalConstantBufferBinding(__arg0);
+            var ___ret = __Internal.Reflection_getGlobalConstantBufferBinding(__arg0);
             return ___ret;
         }
 
@@ -13064,14 +13064,14 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Returns `SLANG_UNKNOWN_SIZE` when the size depends on unresolved generic parameters or</para>
         /// <para>link-time constants.</para>
         /// </remarks>
-        public static ulong SpReflectionGetGlobalConstantBufferSize(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static ulong Reflection_getGlobalConstantBufferSize(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetGlobalConstantBufferSize(__arg0);
+            var ___ret = __Internal.Reflection_getGlobalConstantBufferSize(__arg0);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType SpReflectionSpecializeType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType specializationArgs, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType Reflection_specializeType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType specializationArgs, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             var __arg1 = type is null ? __IntPtr.Zero : type.__Instance;
@@ -13079,12 +13079,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             var __arg3 = new __IntPtr(&____arg3);
             var ____arg4 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
             var __arg4 = new __IntPtr(&____arg4);
-            var ___ret = __Internal.SpReflectionSpecializeType(__arg0, __arg1, specializationArgCount, __arg3, __arg4);
+            var ___ret = __Internal.Reflection_specializeType(__arg0, __arg1, specializationArgCount, __arg3, __arg4);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric SpReflectionSpecializeGeneric(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout inProgramLayout, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, long argCount, ref global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType argTypes, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg args, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric Reflection_specializeGeneric(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout inProgramLayout, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, long argCount, ref global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType argTypes, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg args, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
         {
             var __arg0 = inProgramLayout is null ? __IntPtr.Zero : inProgramLayout.__Instance;
             var __arg1 = generic is null ? __IntPtr.Zero : generic.__Instance;
@@ -13095,26 +13095,26 @@ namespace ShaderSlang.Net.Bindings.Generated
                 var __arg4 = new __IntPtr(&____arg4);
                 var ____arg5 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
                 var __arg5 = new __IntPtr(&____arg5);
-                var ___ret = __Internal.SpReflectionSpecializeGeneric(__arg0, __arg1, argCount, __arg3, __arg4, __arg5);
+                var ___ret = __Internal.Reflection_specializeGeneric(__arg0, __arg1, argCount, __arg3, __arg4, __arg5);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric.__GetOrCreateInstance(___ret, false);
                 return __result0;
             }
         }
 
-        public static bool SpReflectionIsSubType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType subType, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType superType)
+        public static bool Reflection_isSubType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType subType, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType superType)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             var __arg1 = subType is null ? __IntPtr.Zero : subType.__Instance;
             var __arg2 = superType is null ? __IntPtr.Zero : superType.__Instance;
-            var ___ret = __Internal.SpReflectionIsSubType(__arg0, __arg1, __arg2);
+            var ___ret = __Internal.Reflection_isSubType(__arg0, __arg1, __arg2);
             return ___ret;
         }
 
         /// <summary>Get the number of hashed strings</summary>
-        public static ulong SpReflectionGetHashedStringCount(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static ulong Reflection_getHashedStringCount(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetHashedStringCount(__arg0);
+            var ___ret = __Internal.Reflection_getHashedStringCount(__arg0);
             return ___ret;
         }
 
@@ -13122,13 +13122,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Get a hashed string. The number of chars is written in outCount.</para>
         /// <para>The count does *NOT* including terminating 0. The returned string will be 0 terminated.</para>
         /// </summary>
-        public static string SpReflectionGetHashedString(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, ulong index, ref ulong outCount)
+        public static string Reflection_getHashedString(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, ulong index, ref ulong outCount)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             fixed (ulong* __outCount2 = &outCount)
             {
                 var __arg2 = __outCount2;
-                var ___ret = __Internal.SpReflectionGetHashedString(__arg0, index, __arg2);
+                var ___ret = __Internal.Reflection_getHashedString(__arg0, index, __arg2);
                 return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
             }
         }
@@ -13137,92 +13137,92 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Compute a string hash.</para>
         /// <para>Count should *NOT* include terminating zero.</para>
         /// </summary>
-        public static uint SpComputeStringHash(string chars, ulong count)
+        public static uint ComputeStringHash(string chars, ulong count)
         {
-            var ___ret = __Internal.SpComputeStringHash(chars, count);
+            var ___ret = __Internal.ComputeStringHash(chars, count);
             return ___ret;
         }
 
         /// <summary>Get a type layout representing reflection information for the global-scope parameters.</summary>
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout SpReflectionGetGlobalParamsTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout Reflection_getGlobalParamsTypeLayout(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetGlobalParamsTypeLayout(__arg0);
+            var ___ret = __Internal.Reflection_getGlobalParamsTypeLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
         /// <summary>Get a variable layout representing reflection information for the global-scope parameters.</summary>
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout SpReflectionGetGlobalParamsVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout Reflection_getGlobalParamsVarLayout(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetGlobalParamsVarLayout(__arg0);
+            var ___ret = __Internal.Reflection_getGlobalParamsVarLayout(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static string SpGetTranslationUnitSource(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex)
+        public static string GetTranslationUnitSource(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ___ret = __Internal.SpGetTranslationUnitSource(__arg0, translationUnitIndex);
+            var ___ret = __Internal.GetTranslationUnitSource(__arg0, translationUnitIndex);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.Slang.ISession SpReflectionGetSession(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
+        public static global::ShaderSlang.Net.Bindings.Generated.Slang.ISession ReflectionGetSession(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var ___ret = __Internal.SpReflectionGetSession(__arg0);
+            var ___ret = __Internal.ReflectionGetSession(__arg0);
             var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.Slang.ISession.__CreateInstance(___ret) : default;
             return __result0;
         }
 
         /// <remarks>slang::ICompileRequest::getProgram</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetProgram(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outProgram)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getProgram(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outProgram)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg1 = outProgram is null ? __IntPtr.Zero : outProgram.__PointerToIComponentType;
             var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SpCompileRequestGetProgram(__arg0, __arg1);
+            var ___ret = __Internal.CompileRequest_getProgram(__arg0, __arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getProgramWithEntryPoints</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetProgramWithEntryPoints(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outProgram)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getProgramWithEntryPoints(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outProgram)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg1 = outProgram is null ? __IntPtr.Zero : outProgram.__PointerToIComponentType;
             var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SpCompileRequestGetProgramWithEntryPoints(__arg0, __arg1);
+            var ___ret = __Internal.CompileRequest_getProgramWithEntryPoints(__arg0, __arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getEntryPoint</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetEntryPoint(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long entryPointIndex, global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outEntryPoint)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getEntryPoint(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long entryPointIndex, global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outEntryPoint)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg2 = outEntryPoint is null ? __IntPtr.Zero : outEntryPoint.__PointerToIComponentType;
             var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.SpCompileRequestGetEntryPoint(__arg0, entryPointIndex, __arg2);
+            var ___ret = __Internal.CompileRequest_getEntryPoint(__arg0, entryPointIndex, __arg2);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getModule</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetModule(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long translationUnitIndex, global::ShaderSlang.Net.Bindings.Generated.Slang.IModule outModule)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getModule(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long translationUnitIndex, global::ShaderSlang.Net.Bindings.Generated.Slang.IModule outModule)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg2 = outModule is null ? __IntPtr.Zero : outModule.__PointerToIModule;
             var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.SpCompileRequestGetModule(__arg0, translationUnitIndex, __arg2);
+            var ___ret = __Internal.CompileRequest_getModule(__arg0, translationUnitIndex, __arg2);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getSession</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SpCompileRequestGetSession(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.Slang.ISession outSession)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getSession(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.Slang.ISession outSession)
         {
             var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
             var ____arg1 = outSession is null ? __IntPtr.Zero : outSession.__PointerToISession;
             var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SpCompileRequestGetSession(__arg0, __arg1);
+            var ___ret = __Internal.CompileRequest_getSession(__arg0, __arg1);
             return ___ret;
         }
     }

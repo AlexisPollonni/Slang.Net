@@ -63,6 +63,7 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         
         passes.RemovePrefix("SLANG_");
         passes.RemovePrefix("Sp", RenameTargets.Function | RenameTargets.Method);
+        passes.RemovePrefix("sp", RenameTargets.Function | RenameTargets.Method);
         passes.RenameDeclsUpperCase(RenameTargets.Any);
         
         // Removes enum member prefixes to match csharp conventions
