@@ -2036,11 +2036,11 @@ namespace ShaderSlang.Net.Bindings.Generated
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public Span<char> Chars
+        public Span<sbyte> Chars
         {
             get
             {
-                return CppSharp.Runtime.MarshalUtil.GetCharArray(((__Internal*)__Instance)->chars, 1);
+                return new Span<sbyte>(((__Internal*)__Instance)->chars, 1);
             }
 
             set
@@ -2048,7 +2048,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 if (value != null)
                 {
                     for (int i = 0; i < 1; i++)
-                        ((__Internal*)__Instance)->chars[i] = global::System.Convert.ToSByte(value[i]);
+                        ((__Internal*)__Instance)->chars[i] = value[i];
                 }
             }
         }
@@ -2311,7 +2311,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>The start of the buffer for appending to. </remarks>
         [global::System.Runtime.InteropServices.PreserveSigAttribute()]
         [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-        char* BeginAppendBuffer(ulong maxNumChars);
+        sbyte* BeginAppendBuffer(ulong maxNumChars);
 
         /// <summary>
         /// <para>Ends the append buffer, and is equivalent to a write of the append buffer.</para>
@@ -2328,7 +2328,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>Result, will be SLANG_OK on success </remarks>
         [global::System.Runtime.InteropServices.PreserveSigAttribute()]
         [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-        global::ShaderSlang.Net.Bindings.SlangResult EndAppendBuffer(char* buffer, ulong numChars);
+        global::ShaderSlang.Net.Bindings.SlangResult EndAppendBuffer(sbyte* buffer, ulong numChars);
 
         /// <summary>Write text to the writer</summary>
         /// <param name="chars">The characters to write out</param>
@@ -2680,7 +2680,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             internal static extern __IntPtr SlangLoadModuleFromIRBlob(__IntPtr session, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string moduleName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string path, __IntPtr source, ulong sourceSize, __IntPtr outDiagnostics);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "slang_loadModuleInfoFromIRBlob", CallingConvention = __CallingConvention.Cdecl)]
-            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SlangLoadModuleInfoFromIRBlob(__IntPtr session, __IntPtr source, ulong sourceSize, long* outModuleVersion, sbyte** outModuleCompilerVersion, sbyte** outModuleName);
+            internal static extern global::ShaderSlang.Net.Bindings.SlangResult SlangLoadModuleInfoFromIRBlob(__IntPtr session, __IntPtr source, ulong sourceSize, long* outModuleVersion, __IntPtr* outModuleCompilerVersion, __IntPtr* outModuleName);
 
             [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "slang_createGlobalSession", CallingConvention = __CallingConvention.Cdecl)]
             internal static extern global::ShaderSlang.Net.Bindings.SlangResult SlangCreateGlobalSession(long apiVersion, __IntPtr outGlobalSession);
@@ -2731,18 +2731,17 @@ namespace ShaderSlang.Net.Bindings.Generated
         public static global::ShaderSlang.Net.Bindings.Generated.ISlangBlob SlangCreateBlob(__IntPtr data, ulong size)
         {
             var ___ret = __Internal.SlangCreateBlob(data, size);
-            var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.ISlangBlob.__CreateInstance(___ret) : default;
-            return __result0;
+            return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged((void*)___ret);
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.Slang.IModule SlangLoadModuleFromSource(global::ShaderSlang.Net.Bindings.Generated.Slang.ISession session, string moduleName, string path, string source, ulong sourceSize, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+        public static global::ShaderSlang.Net.Bindings.Generated.Slang.IModule SlangLoadModuleFromSource(global::ShaderSlang.Net.Bindings.Generated.Slang.ISession session, string moduleName, string path, string source, ulong sourceSize, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToISession;
-            var ____arg5 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
-            var __arg5 = new __IntPtr(&____arg5);
-            var ___ret = __Internal.SlangLoadModuleFromSource(__arg0, moduleName, path, source, sourceSize, __arg5);
-            var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.Slang.IModule.__CreateInstance(___ret) : default;
-            return __result0;
+            var __arg0 = (nint)0;
+
+            var __arg5 = stackalloc void* [1];
+            var ___ret = __Internal.SlangLoadModuleFromSource(__arg0, moduleName, path, source, sourceSize, (nint)__arg5);
+            outDiagnostics = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg5);
+            return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IModule>.ConvertToManaged((void*)___ret);
         }
 
         /// <summary>Load a module from IR data.</summary>
@@ -2753,14 +2752,14 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <param name="sourceSize">Size of the IR data in bytes.</param>
         /// <param name="outDiagnostics">(out, optional) Diagnostics output.</param>
         /// <returns>The loaded module on success, or nullptr on failure.</returns>
-        public static global::ShaderSlang.Net.Bindings.Generated.Slang.IModule SlangLoadModuleFromIRBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ISession session, string moduleName, string path, __IntPtr source, ulong sourceSize, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+        public static global::ShaderSlang.Net.Bindings.Generated.Slang.IModule SlangLoadModuleFromIRBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ISession session, string moduleName, string path, __IntPtr source, ulong sourceSize, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToISession;
-            var ____arg5 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
-            var __arg5 = new __IntPtr(&____arg5);
-            var ___ret = __Internal.SlangLoadModuleFromIRBlob(__arg0, moduleName, path, source, sourceSize, __arg5);
-            var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.Slang.IModule.__CreateInstance(___ret) : default;
-            return __result0;
+            var __arg0 = (nint)0;
+
+            var __arg5 = stackalloc void* [1];
+            var ___ret = __Internal.SlangLoadModuleFromIRBlob(__arg0, moduleName, path, source, sourceSize, (nint)__arg5);
+            outDiagnostics = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg5);
+            return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IModule>.ConvertToManaged((void*)___ret);
         }
 
         /// <summary>Read module info (name and version) from IR data.</summary>
@@ -2771,57 +2770,53 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <param name="outModuleCompilerVersion">(out) Compiler version that created the module.</param>
         /// <param name="outModuleName">(out) Name of the module.</param>
         /// <returns>SLANG_OK on success, or an error code on failure.</returns>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SlangLoadModuleInfoFromIRBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ISession session, __IntPtr source, ulong sourceSize, ref long outModuleVersion, string outModuleCompilerVersion, string outModuleName)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SlangLoadModuleInfoFromIRBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ISession session, __IntPtr source, ulong sourceSize, out long outModuleVersion, out string outModuleCompilerVersion, out string outModuleName)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToISession;
+            var __arg0 = (nint)0;
             fixed (long* __outModuleVersion3 = &outModuleVersion)
             {
                 var __arg3 = __outModuleVersion3;
-                var __bytes4 = global::System.Text.Encoding.UTF8.GetBytes(outModuleCompilerVersion);
-                var __bytePtr4 = Marshal.AllocHGlobal(__bytes4.Length + 1);
-                Marshal.Copy(__bytes4, 0, __bytePtr4, __bytes4.Length);
-                Marshal.WriteByte(__bytePtr4 + __bytes4.Length, 0);
-                var __arg4 = (sbyte*) __bytePtr4;
-                var __bytes5 = global::System.Text.Encoding.UTF8.GetBytes(outModuleName);
-                var __bytePtr5 = Marshal.AllocHGlobal(__bytes5.Length + 1);
-                Marshal.Copy(__bytes5, 0, __bytePtr5, __bytes5.Length);
-                Marshal.WriteByte(__bytePtr5 + __bytes5.Length, 0);
-                var __arg5 = (sbyte*) __bytePtr5;
+                var __arg4 = __IntPtr.Zero;
+                var __arg5 = __IntPtr.Zero;
                 var ___ret = __Internal.SlangLoadModuleInfoFromIRBlob(__arg0, source, sourceSize, __arg3, &__arg4, &__arg5);
+                outModuleCompilerVersion = CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, __arg4);
+                outModuleName = CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, __arg5);
                 return ___ret;
             }
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateGlobalSession(long apiVersion, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateGlobalSession(long apiVersion, out global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
         {
-            var ____arg1 = outGlobalSession is null ? __IntPtr.Zero : outGlobalSession.__PointerToIGlobalSession;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SlangCreateGlobalSession(apiVersion, __arg1);
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.SlangCreateGlobalSession(apiVersion, (nint)__arg1);
+            outGlobalSession = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateGlobalSession2(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc desc, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateGlobalSession2(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc desc, out global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
         {
             var __arg0 = desc is null ? __IntPtr.Zero : desc.__Instance;
-            var ____arg1 = outGlobalSession is null ? __IntPtr.Zero : outGlobalSession.__PointerToIGlobalSession;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SlangCreateGlobalSession2(__arg0, __arg1);
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.SlangCreateGlobalSession2(__arg0, (nint)__arg1);
+            outGlobalSession = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateGlobalSessionWithoutCoreModule(long apiVersion, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateGlobalSessionWithoutCoreModule(long apiVersion, out global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
         {
-            var ____arg1 = outGlobalSession is null ? __IntPtr.Zero : outGlobalSession.__PointerToIGlobalSession;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SlangCreateGlobalSessionWithoutCoreModule(apiVersion, __arg1);
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.SlangCreateGlobalSessionWithoutCoreModule(apiVersion, (nint)__arg1);
+            outGlobalSession = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
         public static global::ShaderSlang.Net.Bindings.Generated.ISlangBlob SlangGetEmbeddedCoreModule()
         {
             var ___ret = __Internal.SlangGetEmbeddedCoreModule();
-            var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.ISlangBlob.__CreateInstance(___ret) : default;
-            return __result0;
+            return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged((void*)___ret);
         }
 
         public static void SlangShutdown()
@@ -2836,22 +2831,24 @@ namespace ShaderSlang.Net.Bindings.Generated
         }
 
         /// <summary>Create a byte code runner that can execute Slang byte code.</summary>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateByteCodeRunner(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc desc, global::ShaderSlang.Net.Bindings.Generated.Slang.IByteCodeRunner outByteCodeRunner)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateByteCodeRunner(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc desc, out global::ShaderSlang.Net.Bindings.Generated.Slang.IByteCodeRunner outByteCodeRunner)
         {
             var __arg0 = desc is null ? __IntPtr.Zero : desc.__Instance;
-            var ____arg1 = outByteCodeRunner is null ? __IntPtr.Zero : outByteCodeRunner.__PointerToIByteCodeRunner;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SlangCreateByteCodeRunner(__arg0, __arg1);
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.SlangCreateByteCodeRunner(__arg0, (nint)__arg1);
+            outByteCodeRunner = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IByteCodeRunner>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
         /// <summary>Disassemble a Slang byte code blob into human-readable text.</summary>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SlangDisassembleByteCode(global::ShaderSlang.Net.Bindings.Generated.ISlangBlob moduleBlob, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDisassemblyBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SlangDisassembleByteCode(global::ShaderSlang.Net.Bindings.Generated.ISlangBlob moduleBlob, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDisassemblyBlob)
         {
-            var __arg0 = moduleBlob is null ? __IntPtr.Zero : moduleBlob.__PointerToISlangBlob;
-            var ____arg1 = outDisassemblyBlob is null ? __IntPtr.Zero : outDisassemblyBlob.__PointerToISlangBlob;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SlangDisassembleByteCode(__arg0, __arg1);
+            var __arg0 = (nint)0;
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.SlangDisassembleByteCode(__arg0, (nint)__arg1);
+            outDisassemblyBlob = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
@@ -4053,8 +4050,7 @@ namespace ShaderSlang.Net.Bindings.Generated
 
             public global::ShaderSlang.Net.Bindings.SlangResult GetFullName(global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outNameBlob)
             {
-                var ____arg0 = outNameBlob is null ? __IntPtr.Zero : outNameBlob.__PointerToISlangBlob;
-                var __arg0 = new __IntPtr(&____arg0);
+                var __arg0 = (nint)0;
                 var ___ret = __Internal.GetFullName(__Instance, __arg0);
                 return ___ret;
             }
@@ -5278,7 +5274,7 @@ namespace ShaderSlang.Net.Bindings.Generated
 
             public global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute FindAttributeByName(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
             {
-                var __arg0 = globalSession is null ? __IntPtr.Zero : globalSession.__PointerToIGlobalSession;
+                var __arg0 = (nint)0;
                 var ___ret = __Internal.FindAttributeByName(__Instance, __arg0, name);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute.__GetOrCreateInstance(___ret, false);
                 return __result0;
@@ -5286,7 +5282,7 @@ namespace ShaderSlang.Net.Bindings.Generated
 
             public global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute FindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
             {
-                var __arg0 = globalSession is null ? __IntPtr.Zero : globalSession.__PointerToIGlobalSession;
+                var __arg0 = (nint)0;
                 var ___ret = __Internal.FindUserAttributeByName(__Instance, __arg0, name);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute.__GetOrCreateInstance(___ret, false);
                 return __result0;
@@ -5873,7 +5869,7 @@ namespace ShaderSlang.Net.Bindings.Generated
 
             public global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute FindAttributeByName(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
             {
-                var __arg0 = globalSession is null ? __IntPtr.Zero : globalSession.__PointerToIGlobalSession;
+                var __arg0 = (nint)0;
                 var ___ret = __Internal.FindAttributeByName(__Instance, __arg0, name);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute.__GetOrCreateInstance(___ret, false);
                 return __result0;
@@ -5881,7 +5877,7 @@ namespace ShaderSlang.Net.Bindings.Generated
 
             public global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute FindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
             {
-                var __arg0 = globalSession is null ? __IntPtr.Zero : globalSession.__PointerToIGlobalSession;
+                var __arg0 = (nint)0;
                 var ___ret = __Internal.FindUserAttributeByName(__Instance, __arg0, name);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute.__GetOrCreateInstance(___ret, false);
                 return __result0;
@@ -6939,8 +6935,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
                 var ____arg2 = specializationArgs is null ? __IntPtr.Zero : specializationArgs.__Instance;
                 var __arg2 = new __IntPtr(&____arg2);
-                var ____arg3 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
-                var __arg3 = new __IntPtr(&____arg3);
+                var __arg3 = (nint)0;
                 var ___ret = __Internal.EcializeType(__Instance, __arg0, specializationArgCount, __arg2, __arg3);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection.__GetOrCreateInstance(___ret, false);
                 return __result0;
@@ -6954,8 +6949,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     var __arg2 = __specializationArgTypes2;
                     var ____arg3 = specializationArgVals.__Instance;
                     var __arg3 = new __IntPtr(&____arg3);
-                    var ____arg4 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
-                    var __arg4 = new __IntPtr(&____arg4);
+                    var __arg4 = (nint)0;
                     var ___ret = __Internal.EcializeGeneric(__Instance, __arg0, specializationArgCount, __arg2, __arg3, __arg4);
                     var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection.__GetOrCreateInstance(___ret, false);
                     return __result0;
@@ -6982,15 +6976,14 @@ namespace ShaderSlang.Net.Bindings.Generated
 
             public global::ShaderSlang.Net.Bindings.SlangResult ToJson(global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
             {
-                var ____arg0 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
-                var __arg0 = new __IntPtr(&____arg0);
+                var __arg0 = (nint)0;
                 var ___ret = __Internal.ToJson(__Instance, __arg0);
                 return ___ret;
             }
 
             public static global::ShaderSlang.Net.Bindings.Generated.Slang.ShaderReflection Get(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
             {
-                var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+                var __arg0 = (nint)0;
                 var ___ret = __Internal.Get(__arg0);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.ShaderReflection.__GetOrCreateInstance(___ret, false);
                 return __result0;
@@ -7019,8 +7012,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 get
                 {
                     var ___ret = __Internal.GetSession(__Instance);
-                    var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.Slang.ISession.__CreateInstance(___ret) : default;
-                    return __result0;
+                    return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.ISession>.ConvertToManaged((void*)___ret);
                 }
             }
 
@@ -8020,7 +8012,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             /// <param name="outAuxAllocation">Auxiliary memory allocated to hold data used in the session desc.</param>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
             [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-            global::ShaderSlang.Net.Bindings.SlangResult ParseCommandLineArguments(int argc, char** argv, out global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc outSessionDesc, out global::ShaderSlang.Net.Bindings.Generated.ISlangUnknown outAuxAllocation);
+            global::ShaderSlang.Net.Bindings.SlangResult ParseCommandLineArguments(int argc, sbyte** argv, out global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc outSessionDesc, out global::ShaderSlang.Net.Bindings.Generated.ISlangUnknown outAuxAllocation);
 
             /// <summary>Computes a digest that uniquely identifies the session description.</summary>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
@@ -8660,11 +8652,11 @@ namespace ShaderSlang.Net.Bindings.Generated
             }
 
             /// <summary>Paths to use when searching for `#include`d or `import`ed files.</summary>
-            public char** SearchPaths
+            public sbyte** SearchPaths
             {
                 get
                 {
-                    return (char**) ((__Internal*)__Instance)->searchPaths;
+                    return ((__Internal*)__Instance)->searchPaths;
                 }
             }
 
@@ -8707,13 +8699,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    var __result0 = ((__Internal*)__Instance)->fileSystem != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem.__CreateInstance(((__Internal*)__Instance)->fileSystem) : default;
-                    return __result0;
+                    return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem>.ConvertToManaged((void*)((__Internal*)__Instance)->fileSystem);
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->fileSystem = value is null ? __IntPtr.Zero : value.__PointerToISlangFileSystem;
+                    ((__Internal*)__Instance)->fileSystem = (nint)0;
                 }
             }
 
@@ -10271,20 +10262,22 @@ namespace ShaderSlang.Net.Bindings.Generated
                 internal static extern __IntPtr GetLastInternalErrorMessage();
             }
 
-            public static global::ShaderSlang.Net.Bindings.SlangResult CreateGlobalSession(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
+            public static global::ShaderSlang.Net.Bindings.SlangResult CreateGlobalSession(out global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
             {
-                var ____arg0 = outGlobalSession is null ? __IntPtr.Zero : outGlobalSession.__PointerToIGlobalSession;
-                var __arg0 = new __IntPtr(&____arg0);
-                var ___ret = __Internal.CreateGlobalSession(__arg0);
+
+                var __arg0 = stackalloc void* [1];
+                var ___ret = __Internal.CreateGlobalSession((nint)__arg0);
+                outGlobalSession = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession>.ConvertToManaged(*__arg0);
                 return ___ret;
             }
 
-            public static global::ShaderSlang.Net.Bindings.SlangResult CreateGlobalSession(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc desc, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
+            public static global::ShaderSlang.Net.Bindings.SlangResult CreateGlobalSession(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc desc, out global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
             {
                 var __arg0 = desc is null ? __IntPtr.Zero : desc.__Instance;
-                var ____arg1 = outGlobalSession is null ? __IntPtr.Zero : outGlobalSession.__PointerToIGlobalSession;
-                var __arg1 = new __IntPtr(&____arg1);
-                var ___ret = __Internal.CreateGlobalSession(__arg0, __arg1);
+
+                var __arg1 = stackalloc void* [1];
+                var ___ret = __Internal.CreateGlobalSession(__arg0, (nint)__arg1);
+                outGlobalSession = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession>.ConvertToManaged(*__arg1);
                 return ___ret;
             }
 
@@ -11081,38 +11074,36 @@ namespace ShaderSlang.Net.Bindings.Generated
         public static global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession CreateSession(string deprecated)
         {
             var ___ret = __Internal.CreateSession(deprecated);
-            var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession.__CreateInstance(___ret) : default;
-            return __result0;
+            return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession>.ConvertToManaged((void*)___ret);
         }
 
         /// <summary>Clean up after an instance of the Slang library.</summary>
         public static void DestroySession(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
+            var __arg0 = (nint)0;
             __Internal.DestroySession(__arg0);
         }
 
         /// <remarks>slang::IGlobalSession::setSharedLibraryLoader</remarks>
         public static void SessionSetSharedLibraryLoader(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader loader)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            var __arg1 = loader is null ? __IntPtr.Zero : loader.__PointerToISlangSharedLibraryLoader;
+            var __arg0 = (nint)0;
+            var __arg1 = (nint)0;
             __Internal.SessionSetSharedLibraryLoader(__arg0, __arg1);
         }
 
         /// <remarks>slang::IGlobalSession::getSharedLibraryLoader</remarks>
         public static global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader SessionGetSharedLibraryLoader(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.SessionGetSharedLibraryLoader(__arg0);
-            var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader.__CreateInstance(___ret) : default;
-            return __result0;
+            return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader>.ConvertToManaged((void*)___ret);
         }
 
         /// <remarks>slang::IGlobalSession::checkCompileTargetSupport</remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult SessionCheckCompileTargetSupport(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.SessionCheckCompileTargetSupport(__arg0, target);
             return ___ret;
         }
@@ -11120,7 +11111,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::IGlobalSession::checkPassThroughSupport</remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult SessionCheckPassThroughSupport(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.SessionCheckPassThroughSupport(__arg0, passThrough);
             return ___ret;
         }
@@ -11128,16 +11119,15 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::IGlobalSession::addBuiltins</remarks>
         public static void AddBuiltins(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, string sourcePath, string sourceString)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
+            var __arg0 = (nint)0;
             __Internal.AddBuiltins(__arg0, sourcePath, sourceString);
         }
 
         public static global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest CreateCompileRequest(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.CreateCompileRequest(__arg0);
-            var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest.__CreateInstance(___ret) : default;
-            return __result0;
+            return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest>.ConvertToManaged((void*)___ret);
         }
 
         /// <summary>
@@ -11146,29 +11136,29 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// </summary>
         public static void DestroyCompileRequest(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.DestroyCompileRequest(__arg0);
         }
 
         /// <remarks>slang::ICompileRequest::setFileSystem </remarks>
         public static void SetFileSystem(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var __arg1 = fileSystem is null ? __IntPtr.Zero : fileSystem.__PointerToISlangFileSystem;
+            var __arg0 = (nint)0;
+            var __arg1 = (nint)0;
             __Internal.SetFileSystem(__arg0, __arg1);
         }
 
         /// <remarks>slang::ICompileRequest::setCompileFlags </remarks>
         public static void SetCompileFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, uint flags)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetCompileFlags(__arg0, flags);
         }
 
         /// <remarks>slang::ICompileRequest::getCompileFlags </remarks>
         public static uint GetCompileFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetCompileFlags(__arg0);
             return ___ret;
         }
@@ -11176,14 +11166,14 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::setDumpIntermediates </remarks>
         public static void SetDumpIntermediates(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int enable)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetDumpIntermediates(__arg0, enable);
         }
 
         /// <remarks>slang::ICompileRequest::setDumpIntermediatePrefix </remarks>
         public static void SetDumpIntermediatePrefix(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string prefix)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetDumpIntermediatePrefix(__arg0, prefix);
         }
 
@@ -11191,49 +11181,49 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::setLineDirectiveMode </remarks>
         public static void SetLineDirectiveMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetLineDirectiveMode(__arg0, mode);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetLineDirectiveMode </remarks>
         public static void SetTargetLineDirectiveMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetTargetLineDirectiveMode(__arg0, targetIndex, mode);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetLineDirectiveMode </remarks>
         public static void SetTargetForceGLSLScalarBufferLayout(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, bool forceScalarLayout)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetTargetForceGLSLScalarBufferLayout(__arg0, targetIndex, forceScalarLayout);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetUseMinimumSlangOptimization </remarks>
         public static void SetTargetUseMinimumSlangOptimization(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, bool val)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetTargetUseMinimumSlangOptimization(__arg0, targetIndex, val);
         }
 
         /// <remarks>slang::ICompileRequest::setIgnoreCapabilityCheck </remarks>
         public static void SetIgnoreCapabilityCheck(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, bool val)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetIgnoreCapabilityCheck(__arg0, val);
         }
 
         /// <remarks>slang::ICompileRequest::setCodeGenTarget </remarks>
         public static void SetCodeGenTarget(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetCodeGenTarget(__arg0, target);
         }
 
         /// <remarks>slang::ICompileRequest::addCodeGenTarget </remarks>
         public static int AddCodeGenTarget(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.AddCodeGenTarget(__arg0, target);
             return ___ret;
         }
@@ -11241,83 +11231,83 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::setTargetProfile </remarks>
         public static void SetTargetProfile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangProfileID profile)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetTargetProfile(__arg0, targetIndex, profile);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetFlags </remarks>
         public static void SetTargetFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, uint flags)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetTargetFlags(__arg0, targetIndex, flags);
         }
 
         /// <remarks>slang::ICompileRequest::setTargetFloatingPointMode </remarks>
         public static void SetTargetFloatingPointMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangFloatingPointMode mode)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetTargetFloatingPointMode(__arg0, targetIndex, mode);
         }
 
         /// <remarks>slang::ICompileRequest::addTargetCapability </remarks>
         public static void AddTargetCapability(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID capability)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.AddTargetCapability(__arg0, targetIndex, capability);
         }
 
         public static void SetTargetMatrixLayoutMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetTargetMatrixLayoutMode(__arg0, targetIndex, mode);
         }
 
         /// <remarks>slang::ICompileRequest::setMatrixLayoutMode </remarks>
         public static void SetMatrixLayoutMode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetMatrixLayoutMode(__arg0, mode);
         }
 
         /// <remarks>slang::ICompileRequest::setDebugInfoLevel </remarks>
         public static void SetDebugInfoLevel(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoLevel level)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetDebugInfoLevel(__arg0, level);
         }
 
         /// <remarks>slang::ICompileRequest::setDebugInfoFormat </remarks>
         public static void SetDebugInfoFormat(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoFormat format)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetDebugInfoFormat(__arg0, format);
         }
 
         /// <remarks>slang::ICompileRequest::setOptimizationLevel </remarks>
         public static void SetOptimizationLevel(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangOptimizationLevel level)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetOptimizationLevel(__arg0, level);
         }
 
         /// <remarks>slang::ICompileRequest::setOutputContainerFormat </remarks>
         public static void SetOutputContainerFormat(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangContainerFormat format)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetOutputContainerFormat(__arg0, format);
         }
 
         /// <remarks>slang::ICompileRequest::setPassThrough </remarks>
         public static void SetPassThrough(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetPassThrough(__arg0, passThrough);
         }
 
         /// <remarks>slang::ICompileRequest::setDiagnosticCallback </remarks>
         public static void SetDiagnosticCallback(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangDiagnosticCallback callback, __IntPtr userData)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var __arg1 = callback == null ? global::System.IntPtr.Zero : Marshal.GetFunctionPointerForDelegate(callback);
             __Internal.SetDiagnosticCallback(__arg0, __arg1, userData);
         }
@@ -11325,47 +11315,45 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::setWriter </remarks>
         public static void SetWriter(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel, global::ShaderSlang.Net.Bindings.Generated.ISlangWriter writer)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var __arg2 = writer is null ? __IntPtr.Zero : writer.__PointerToISlangWriter;
+            var __arg0 = (nint)0;
+            var __arg2 = (nint)0;
             __Internal.SetWriter(__arg0, channel, __arg2);
         }
 
         /// <remarks>slang::ICompileRequest::getWriter </remarks>
         public static global::ShaderSlang.Net.Bindings.Generated.ISlangWriter GetWriter(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetWriter(__arg0, channel);
-            var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.ISlangWriter.__CreateInstance(___ret) : default;
-            return __result0;
+            return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangWriter>.ConvertToManaged((void*)___ret);
         }
 
         /// <remarks>slang::ICompileRequest::addSearchPath </remarks>
         public static void AddSearchPath(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string searchDir)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.AddSearchPath(__arg0, searchDir);
         }
 
         /// <remarks>slang::ICompileRequest::addPreprocessorDefine </remarks>
         public static void AddPreprocessorDefine(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string key, string value)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.AddPreprocessorDefine(__arg0, key, value);
         }
 
         /// <remarks>slang::ICompileRequest::processCommandLineArguments </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult ProcessCommandLineArguments(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, char** args, int argCount)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ProcessCommandLineArguments(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, sbyte** args, int argCount)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var __arg1 = (sbyte**) &args;
-            var ___ret = __Internal.ProcessCommandLineArguments(__arg0, __arg1, argCount);
+            var __arg0 = (nint)0;
+            var ___ret = __Internal.ProcessCommandLineArguments(__arg0, args, argCount);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::addTranslationUnit </remarks>
         public static int AddTranslationUnit(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.SlangSourceLanguage language, string name)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.AddTranslationUnit(__arg0, language, name);
             return ___ret;
         }
@@ -11373,35 +11361,35 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::setDefaultModuleName </remarks>
         public static void SetDefaultModuleName(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string defaultModuleName)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetDefaultModuleName(__arg0, defaultModuleName);
         }
 
         /// <remarks>slang::ICompileRequest::addPreprocessorDefine </remarks>
         public static void TranslationUnit_addPreprocessorDefine(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string key, string value)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.TranslationUnit_addPreprocessorDefine(__arg0, translationUnitIndex, key, value);
         }
 
         /// <remarks>slang::ICompileRequest::addTranslationUnitSourceFile </remarks>
         public static void AddTranslationUnitSourceFile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.AddTranslationUnitSourceFile(__arg0, translationUnitIndex, path);
         }
 
         /// <remarks>slang::ICompileRequest::addTranslationUnitSourceString </remarks>
         public static void AddTranslationUnitSourceString(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path, string source)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.AddTranslationUnitSourceString(__arg0, translationUnitIndex, path, source);
         }
 
         /// <remarks>slang::ICompileRequest::addLibraryReference </remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult AddLibraryReference(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, string basePath, __IntPtr libData, ulong libDataSize)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.AddLibraryReference(__arg0, basePath, libData, libDataSize);
             return ___ret;
         }
@@ -11409,22 +11397,22 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::addTranslationUnitSourceStringSpan </remarks>
         public static void AddTranslationUnitSourceStringSpan(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path, string sourceBegin, string sourceEnd)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.AddTranslationUnitSourceStringSpan(__arg0, translationUnitIndex, path, sourceBegin, sourceEnd);
         }
 
         /// <remarks>slang::ICompileRequest::addTranslationUnitSourceBlob </remarks>
         public static void AddTranslationUnitSourceBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string path, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob sourceBlob)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var __arg3 = sourceBlob is null ? __IntPtr.Zero : sourceBlob.__PointerToISlangBlob;
+            var __arg0 = (nint)0;
+            var __arg3 = (nint)0;
             __Internal.AddTranslationUnitSourceBlob(__arg0, translationUnitIndex, path, __arg3);
         }
 
         /// <remarks>slang::IGlobalSession::findProfile </remarks>
         public static global::ShaderSlang.Net.Bindings.Generated.SlangProfileID FindProfile(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, string name)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.FindProfile(__arg0, name);
             return ___ret;
         }
@@ -11432,7 +11420,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::IGlobalSession::findCapability </remarks>
         public static global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID FindCapability(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, string name)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.FindCapability(__arg0, name);
             return ___ret;
         }
@@ -11440,33 +11428,31 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::addEntryPoint </remarks>
         public static int AddEntryPoint(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.AddEntryPoint(__arg0, translationUnitIndex, name, stage);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::addEntryPointEx </remarks>
-        public static int AddEntryPointEx(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage, int genericArgCount, char** genericArgs)
+        public static int AddEntryPointEx(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex, string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage, int genericArgCount, sbyte** genericArgs)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var __arg5 = (sbyte**) &genericArgs;
-            var ___ret = __Internal.AddEntryPointEx(__arg0, translationUnitIndex, name, stage, genericArgCount, __arg5);
+            var __arg0 = (nint)0;
+            var ___ret = __Internal.AddEntryPointEx(__arg0, translationUnitIndex, name, stage, genericArgCount, genericArgs);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::setGlobalGenericArgs </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SetGlobalGenericArgs(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int genericArgCount, char** genericArgs)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SetGlobalGenericArgs(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int genericArgCount, sbyte** genericArgs)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var __arg2 = (sbyte**) &genericArgs;
-            var ___ret = __Internal.SetGlobalGenericArgs(__arg0, genericArgCount, __arg2);
+            var __arg0 = (nint)0;
+            var ___ret = __Internal.SetGlobalGenericArgs(__arg0, genericArgCount, genericArgs);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::setTypeNameForGlobalExistentialTypeParam </remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult SetTypeNameForGlobalExistentialTypeParam(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int slotIndex, string typeName)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.SetTypeNameForGlobalExistentialTypeParam(__arg0, slotIndex, typeName);
             return ___ret;
         }
@@ -11474,7 +11460,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::setTypeNameForEntryPointExistentialTypeParam </remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult SetTypeNameForEntryPointExistentialTypeParam(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int slotIndex, string typeName)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.SetTypeNameForEntryPointExistentialTypeParam(__arg0, entryPointIndex, slotIndex, typeName);
             return ___ret;
         }
@@ -11482,7 +11468,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::compile </remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult Compile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.Compile(__arg0);
             return ___ret;
         }
@@ -11490,25 +11476,26 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::getDiagnosticOutput </remarks>
         public static string GetDiagnosticOutput(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetDiagnosticOutput(__arg0);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
         /// <remarks>slang::ICompileRequest::getDiagnosticOutputBlob </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult GetDiagnosticOutputBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetDiagnosticOutputBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg1 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.GetDiagnosticOutputBlob(__arg0, __arg1);
+            var __arg0 = (nint)0;
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.GetDiagnosticOutputBlob(__arg0, (nint)__arg1);
+            outBlob = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getDependencyFileCount </remarks>
         public static int GetDependencyFileCount(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetDependencyFileCount(__arg0);
             return ___ret;
         }
@@ -11516,7 +11503,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::getDependencyFilePath </remarks>
         public static string GetDependencyFilePath(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int index)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetDependencyFilePath(__arg0, index);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
@@ -11524,7 +11511,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::getTranslationUnitCount </remarks>
         public static int GetTranslationUnitCount(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetTranslationUnitCount(__arg0);
             return ___ret;
         }
@@ -11532,15 +11519,15 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::getEntryPointSource </remarks>
         public static string GetEntryPointSource(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetEntryPointSource(__arg0, entryPointIndex);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
         /// <remarks>slang::ICompileRequest::getEntryPointCode </remarks>
-        public static __IntPtr GetEntryPointCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, ref ulong outSize)
+        public static __IntPtr GetEntryPointCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, out ulong outSize)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             fixed (ulong* __outSize2 = &outSize)
             {
                 var __arg2 = __outSize2;
@@ -11550,49 +11537,53 @@ namespace ShaderSlang.Net.Bindings.Generated
         }
 
         /// <remarks>slang::ICompileRequest::getEntryPointCodeBlob </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult GetEntryPointCodeBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetEntryPointCodeBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int targetIndex, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg3 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
-            var __arg3 = new __IntPtr(&____arg3);
-            var ___ret = __Internal.GetEntryPointCodeBlob(__arg0, entryPointIndex, targetIndex, __arg3);
+            var __arg0 = (nint)0;
+
+            var __arg3 = stackalloc void* [1];
+            var ___ret = __Internal.GetEntryPointCodeBlob(__arg0, entryPointIndex, targetIndex, (nint)__arg3);
+            outBlob = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg3);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getEntryPointHostCallable </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult GetEntryPointHostCallable(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary outSharedLibrary)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetEntryPointHostCallable(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int entryPointIndex, int targetIndex, out global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary outSharedLibrary)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg3 = outSharedLibrary is null ? __IntPtr.Zero : outSharedLibrary.__PointerToISlangSharedLibrary;
-            var __arg3 = new __IntPtr(&____arg3);
-            var ___ret = __Internal.GetEntryPointHostCallable(__arg0, entryPointIndex, targetIndex, __arg3);
+            var __arg0 = (nint)0;
+
+            var __arg3 = stackalloc void* [1];
+            var ___ret = __Internal.GetEntryPointHostCallable(__arg0, entryPointIndex, targetIndex, (nint)__arg3);
+            outSharedLibrary = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary>.ConvertToManaged(*__arg3);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getTargetCodeBlob </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult GetTargetCodeBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetTargetCodeBlob(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg2 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
-            var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.GetTargetCodeBlob(__arg0, targetIndex, __arg2);
+            var __arg0 = (nint)0;
+
+            var __arg2 = stackalloc void* [1];
+            var ___ret = __Internal.GetTargetCodeBlob(__arg0, targetIndex, (nint)__arg2);
+            outBlob = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg2);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getTargetHostCallable </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult GetTargetHostCallable(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary outSharedLibrary)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetTargetHostCallable(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int targetIndex, out global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary outSharedLibrary)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg2 = outSharedLibrary is null ? __IntPtr.Zero : outSharedLibrary.__PointerToISlangSharedLibrary;
-            var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.GetTargetHostCallable(__arg0, targetIndex, __arg2);
+            var __arg0 = (nint)0;
+
+            var __arg2 = stackalloc void* [1];
+            var ___ret = __Internal.GetTargetHostCallable(__arg0, targetIndex, (nint)__arg2);
+            outSharedLibrary = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary>.ConvertToManaged(*__arg2);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getCompileRequestCode </remarks>
-        public static __IntPtr GetCompileRequestCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, ref ulong outSize)
+        public static __IntPtr GetCompileRequestCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, out ulong outSize)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             fixed (ulong* __outSize1 = &outSize)
             {
                 var __arg1 = __outSize1;
@@ -11602,38 +11593,40 @@ namespace ShaderSlang.Net.Bindings.Generated
         }
 
         /// <remarks>slang::ICompileRequest::getContainerCode </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult GetContainerCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult GetContainerCode(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg1 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.GetContainerCode(__arg0, __arg1);
+            var __arg0 = (nint)0;
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.GetContainerCode(__arg0, (nint)__arg1);
+            outBlob = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::loadRepro </remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult LoadRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem, __IntPtr data, ulong size)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var __arg1 = fileSystem is null ? __IntPtr.Zero : fileSystem.__PointerToISlangFileSystem;
+            var __arg0 = (nint)0;
+            var __arg1 = (nint)0;
             var ___ret = __Internal.LoadRepro(__arg0, __arg1, data, size);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::saveRepro </remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult SaveRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult SaveRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg1 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.SaveRepro(__arg0, __arg1);
+            var __arg0 = (nint)0;
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.SaveRepro(__arg0, (nint)__arg1);
+            outBlob = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::enableReproCapture </remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult EnableReproCapture(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.EnableReproCapture(__arg0);
             return ___ret;
         }
@@ -11641,9 +11634,8 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::getCompileTimeProfile </remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult GetCompileTimeProfile(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangProfiler compileTimeProfile, bool shouldClear)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg1 = compileTimeProfile is null ? __IntPtr.Zero : compileTimeProfile.__PointerToISlangProfiler;
-            var __arg1 = new __IntPtr(&____arg1);
+            var __arg0 = (nint)0;
+            var __arg1 = (nint)0;
             var ___ret = __Internal.GetCompileTimeProfile(__arg0, __arg1, shouldClear);
             return ___ret;
         }
@@ -11660,33 +11652,34 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// </remarks>
         public static global::ShaderSlang.Net.Bindings.SlangResult ExtractRepro(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, __IntPtr reproData, ulong reproDataSize, global::ShaderSlang.Net.Bindings.Generated.ISlangMutableFileSystem fileSystem)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            var __arg3 = fileSystem is null ? __IntPtr.Zero : fileSystem.__PointerToISlangMutableFileSystem;
+            var __arg0 = (nint)0;
+            var __arg3 = (nint)0;
             var ___ret = __Internal.ExtractRepro(__arg0, reproData, reproDataSize, __arg3);
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult LoadReproAsFileSystem(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, __IntPtr reproData, ulong reproDataSize, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem replaceFileSystem, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystemExt outFileSystem)
+        public static global::ShaderSlang.Net.Bindings.SlangResult LoadReproAsFileSystem(global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession session, __IntPtr reproData, ulong reproDataSize, global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem replaceFileSystem, out global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystemExt outFileSystem)
         {
-            var __arg0 = session is null ? __IntPtr.Zero : session.__PointerToIGlobalSession;
-            var __arg3 = replaceFileSystem is null ? __IntPtr.Zero : replaceFileSystem.__PointerToISlangFileSystem;
-            var ____arg4 = outFileSystem is null ? __IntPtr.Zero : outFileSystem.__PointerToISlangFileSystemExt;
-            var __arg4 = new __IntPtr(&____arg4);
-            var ___ret = __Internal.LoadReproAsFileSystem(__arg0, reproData, reproDataSize, __arg3, __arg4);
+            var __arg0 = (nint)0;
+            var __arg3 = (nint)0;
+
+            var __arg4 = stackalloc void* [1];
+            var ___ret = __Internal.LoadReproAsFileSystem(__arg0, reproData, reproDataSize, __arg3, (nint)__arg4);
+            outFileSystem = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystemExt>.ConvertToManaged(*__arg4);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::overrideDiagnosticSeverity </remarks>
         public static void OverrideDiagnosticSeverity(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long messageID, global::ShaderSlang.Net.Bindings.Generated.SlangSeverity overrideSeverity)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.OverrideDiagnosticSeverity(__arg0, messageID, overrideSeverity);
         }
 
         /// <remarks>slang::ICompileRequest::getDiagnosticFlags </remarks>
         public static int GetDiagnosticFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetDiagnosticFlags(__arg0);
             return ___ret;
         }
@@ -11694,13 +11687,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <remarks>slang::ICompileRequest::setDiagnosticFlags </remarks>
         public static void SetDiagnosticFlags(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int flags)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             __Internal.SetDiagnosticFlags(__arg0, flags);
         }
 
         public static global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout GetReflection(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetReflection(__arg0);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout.__GetOrCreateInstance(___ret, false);
             return __result0;
@@ -11756,7 +11749,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>`outSize`. If index of out of range, or if the specified argument is not a string, the</para>
         /// <para>function will return nullptr.</para>
         /// </summary>
-        public static string ReflectionUserAttributeGetArgumentValueString(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index, ref ulong outSize)
+        public static string ReflectionUserAttributeGetArgumentValueString(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute attrib, uint index, out ulong outSize)
         {
             var __arg0 = attrib is null ? __IntPtr.Zero : attrib.__Instance;
             fixed (ulong* __outSize2 = &outSize)
@@ -11908,12 +11901,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult ReflectionTypeGetFullName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outNameBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ReflectionTypeGetFullName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outNameBlob)
         {
             var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
-            var ____arg1 = outNameBlob is null ? __IntPtr.Zero : outNameBlob.__PointerToISlangBlob;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.ReflectionTypeGetFullName(__arg0, __arg1);
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.ReflectionTypeGetFullName(__arg0, (nint)__arg1);
+            outNameBlob = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
@@ -12333,7 +12327,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute ReflectionVariableFindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable var, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
         {
             var __arg0 = var is null ? __IntPtr.Zero : var.__Instance;
-            var __arg1 = globalSession is null ? __IntPtr.Zero : globalSession.__PointerToIGlobalSession;
+            var __arg1 = (nint)0;
             var ___ret = __Internal.ReflectionVariableFindUserAttributeByName(__arg0, __arg1, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute.__GetOrCreateInstance(___ret, false);
             return __result0;
@@ -12476,7 +12470,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute ReflectionFunctionFindUserAttributeByName(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction func, global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession globalSession, string name)
         {
             var __arg0 = func is null ? __IntPtr.Zero : func.__Instance;
-            var __arg1 = globalSession is null ? __IntPtr.Zero : globalSession.__PointerToIGlobalSession;
+            var __arg1 = (nint)0;
             var ___ret = __Internal.ReflectionFunctionFindUserAttributeByName(__arg0, __arg1, name);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute.__GetOrCreateInstance(___ret, false);
             return __result0;
@@ -12788,9 +12782,9 @@ namespace ShaderSlang.Net.Bindings.Generated
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult IsParameterLocationUsed(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long entryPointIndex, long targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category, ulong spaceIndex, ulong registerIndex, ref bool outUsed)
+        public static global::ShaderSlang.Net.Bindings.SlangResult IsParameterLocationUsed(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long entryPointIndex, long targetIndex, global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category, ulong spaceIndex, ulong registerIndex, out bool outUsed)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             fixed (bool* __outUsed6 = &outUsed)
             {
                 var __arg6 = __outUsed6;
@@ -12843,7 +12837,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             return ___ret;
         }
 
-        public static void ReflectionEntryPoint_getComputeThreadGroupSize(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, ulong axisCount, ref ulong outSizeAlongAxis)
+        public static void ReflectionEntryPoint_getComputeThreadGroupSize(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, ulong axisCount, out ulong outSizeAlongAxis)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
             fixed (ulong* __outSizeAlongAxis2 = &outSizeAlongAxis)
@@ -12853,7 +12847,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             }
         }
 
-        public static void ReflectionEntryPoint_getComputeWaveSize(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, ref ulong outWaveSize)
+        public static void ReflectionEntryPoint_getComputeWaveSize(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout entryPoint, out ulong outWaveSize)
         {
             var __arg0 = entryPoint is null ? __IntPtr.Zero : entryPoint.__Instance;
             fixed (ulong* __outWaveSize1 = &outWaveSize)
@@ -12922,13 +12916,14 @@ namespace ShaderSlang.Net.Bindings.Generated
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.SlangResult ReflectionToJson(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
+        public static global::ShaderSlang.Net.Bindings.SlangResult ReflectionToJson(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outBlob)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
-            var __arg1 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg2 = outBlob is null ? __IntPtr.Zero : outBlob.__PointerToISlangBlob;
-            var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.ReflectionToJson(__arg0, __arg1, __arg2);
+            var __arg1 = (nint)0;
+
+            var __arg2 = stackalloc void* [1];
+            var ___ret = __Internal.ReflectionToJson(__arg0, __arg1, (nint)__arg2);
+            outBlob = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg2);
             return ___ret;
         }
 
@@ -13071,20 +13066,21 @@ namespace ShaderSlang.Net.Bindings.Generated
             return ___ret;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType Reflection_specializeType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType specializationArgs, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType Reflection_specializeType(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType type, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType specializationArgs, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             var __arg1 = type is null ? __IntPtr.Zero : type.__Instance;
             var ____arg3 = specializationArgs is null ? __IntPtr.Zero : specializationArgs.__Instance;
             var __arg3 = new __IntPtr(&____arg3);
-            var ____arg4 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
-            var __arg4 = new __IntPtr(&____arg4);
-            var ___ret = __Internal.Reflection_specializeType(__arg0, __arg1, specializationArgCount, __arg3, __arg4);
+
+            var __arg4 = stackalloc void* [1];
+            var ___ret = __Internal.Reflection_specializeType(__arg0, __arg1, specializationArgCount, __arg3, (nint)__arg4);
+            outDiagnostics = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg4);
             var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(___ret, false);
             return __result0;
         }
 
-        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric Reflection_specializeGeneric(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout inProgramLayout, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, long argCount, ref global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType argTypes, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg args, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+        public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric Reflection_specializeGeneric(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout inProgramLayout, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric generic, long argCount, ref global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType argTypes, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg args, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
         {
             var __arg0 = inProgramLayout is null ? __IntPtr.Zero : inProgramLayout.__Instance;
             var __arg1 = generic is null ? __IntPtr.Zero : generic.__Instance;
@@ -13093,9 +13089,10 @@ namespace ShaderSlang.Net.Bindings.Generated
                 var __arg3 = __argTypes3;
                 var ____arg4 = args.__Instance;
                 var __arg4 = new __IntPtr(&____arg4);
-                var ____arg5 = outDiagnostics is null ? __IntPtr.Zero : outDiagnostics.__PointerToISlangBlob;
-                var __arg5 = new __IntPtr(&____arg5);
-                var ___ret = __Internal.Reflection_specializeGeneric(__arg0, __arg1, argCount, __arg3, __arg4, __arg5);
+
+                var __arg5 = stackalloc void* [1];
+                var ___ret = __Internal.Reflection_specializeGeneric(__arg0, __arg1, argCount, __arg3, __arg4, (nint)__arg5);
+                outDiagnostics = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangBlob>.ConvertToManaged(*__arg5);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric.__GetOrCreateInstance(___ret, false);
                 return __result0;
             }
@@ -13122,7 +13119,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>Get a hashed string. The number of chars is written in outCount.</para>
         /// <para>The count does *NOT* including terminating 0. The returned string will be 0 terminated.</para>
         /// </summary>
-        public static string Reflection_getHashedString(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, ulong index, ref ulong outCount)
+        public static string Reflection_getHashedString(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout reflection, ulong index, out ulong outCount)
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             fixed (ulong* __outCount2 = &outCount)
@@ -13163,7 +13160,7 @@ namespace ShaderSlang.Net.Bindings.Generated
 
         public static string GetTranslationUnitSource(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, int translationUnitIndex)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
+            var __arg0 = (nint)0;
             var ___ret = __Internal.GetTranslationUnitSource(__arg0, translationUnitIndex);
             return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ___ret);
         }
@@ -13172,57 +13169,61 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             var __arg0 = reflection is null ? __IntPtr.Zero : reflection.__Instance;
             var ___ret = __Internal.ReflectionGetSession(__arg0);
-            var __result0 = ___ret != IntPtr.Zero ? global::ShaderSlang.Net.Bindings.Generated.Slang.ISession.__CreateInstance(___ret) : default;
-            return __result0;
+            return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.ISession>.ConvertToManaged((void*)___ret);
         }
 
         /// <remarks>slang::ICompileRequest::getProgram</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getProgram(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outProgram)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getProgram(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, out global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outProgram)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg1 = outProgram is null ? __IntPtr.Zero : outProgram.__PointerToIComponentType;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.CompileRequest_getProgram(__arg0, __arg1);
+            var __arg0 = (nint)0;
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.CompileRequest_getProgram(__arg0, (nint)__arg1);
+            outProgram = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getProgramWithEntryPoints</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getProgramWithEntryPoints(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outProgram)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getProgramWithEntryPoints(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, out global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outProgram)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg1 = outProgram is null ? __IntPtr.Zero : outProgram.__PointerToIComponentType;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.CompileRequest_getProgramWithEntryPoints(__arg0, __arg1);
+            var __arg0 = (nint)0;
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.CompileRequest_getProgramWithEntryPoints(__arg0, (nint)__arg1);
+            outProgram = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType>.ConvertToManaged(*__arg1);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getEntryPoint</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getEntryPoint(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long entryPointIndex, global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outEntryPoint)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getEntryPoint(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long entryPointIndex, out global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outEntryPoint)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg2 = outEntryPoint is null ? __IntPtr.Zero : outEntryPoint.__PointerToIComponentType;
-            var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.CompileRequest_getEntryPoint(__arg0, entryPointIndex, __arg2);
+            var __arg0 = (nint)0;
+
+            var __arg2 = stackalloc void* [1];
+            var ___ret = __Internal.CompileRequest_getEntryPoint(__arg0, entryPointIndex, (nint)__arg2);
+            outEntryPoint = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType>.ConvertToManaged(*__arg2);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getModule</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getModule(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long translationUnitIndex, global::ShaderSlang.Net.Bindings.Generated.Slang.IModule outModule)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getModule(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, long translationUnitIndex, out global::ShaderSlang.Net.Bindings.Generated.Slang.IModule outModule)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg2 = outModule is null ? __IntPtr.Zero : outModule.__PointerToIModule;
-            var __arg2 = new __IntPtr(&____arg2);
-            var ___ret = __Internal.CompileRequest_getModule(__arg0, translationUnitIndex, __arg2);
+            var __arg0 = (nint)0;
+
+            var __arg2 = stackalloc void* [1];
+            var ___ret = __Internal.CompileRequest_getModule(__arg0, translationUnitIndex, (nint)__arg2);
+            outModule = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.IModule>.ConvertToManaged(*__arg2);
             return ___ret;
         }
 
         /// <remarks>slang::ICompileRequest::getSession</remarks>
-        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getSession(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, global::ShaderSlang.Net.Bindings.Generated.Slang.ISession outSession)
+        public static global::ShaderSlang.Net.Bindings.SlangResult CompileRequest_getSession(global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request, out global::ShaderSlang.Net.Bindings.Generated.Slang.ISession outSession)
         {
-            var __arg0 = request is null ? __IntPtr.Zero : request.__PointerToICompileRequest;
-            var ____arg1 = outSession is null ? __IntPtr.Zero : outSession.__PointerToISession;
-            var __arg1 = new __IntPtr(&____arg1);
-            var ___ret = __Internal.CompileRequest_getSession(__arg0, __arg1);
+            var __arg0 = (nint)0;
+
+            var __arg1 = stackalloc void* [1];
+            var ___ret = __Internal.CompileRequest_getSession(__arg0, (nint)__arg1);
+            outSession = global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.Slang.ISession>.ConvertToManaged(*__arg1);
             return ___ret;
         }
     }
@@ -13360,7 +13361,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             /// <returns>Returns SlangResult. On success SLANG_SUCCEEDED(result) is true.</returns>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
             [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-            global::ShaderSlang.Net.Bindings.SlangResult ProcessCommandLineArguments(char** args, int argCount);
+            global::ShaderSlang.Net.Bindings.SlangResult ProcessCommandLineArguments(sbyte** args, int argCount);
 
             /// <summary>Add a distinct translation unit to the compilation request</summary>
             /// <remarks>
@@ -13470,12 +13471,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             /// </summary>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
             [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-            int AddEntryPointEx(int translationUnitIndex, string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage, int genericArgCount, char** genericArgs);
+            int AddEntryPointEx(int translationUnitIndex, string name, global::ShaderSlang.Net.Bindings.Generated.SlangStage stage, int genericArgCount, sbyte** genericArgs);
 
             /// <summary>Specify the arguments to use for global generic parameters.</summary>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
             [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-            global::ShaderSlang.Net.Bindings.SlangResult SetGlobalGenericArgs(int genericArgCount, char** genericArgs);
+            global::ShaderSlang.Net.Bindings.SlangResult SetGlobalGenericArgs(int genericArgCount, sbyte** genericArgs);
 
             /// <summary>Specify the concrete type to be used for a global &quot;existential slot.&quot;</summary>
             /// <remarks>

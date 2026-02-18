@@ -1,26 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using System.Text;
+using System.Text.RegularExpressions;
 using CppSharp;
 using CppSharp.AST;
 using CppSharp.AST.Extensions;
+using CppSharp.Generators;
 using CppSharp.Generators.C;
 using CppSharp.Generators.CSharp;
 using CppSharp.Passes;
+using CppSharp.Types;
 using Attribute = CppSharp.AST.Attribute;
+using Type = CppSharp.AST.Type;
 
 namespace ShaderSlang.Net.Scripts.CppSharp;
 
 internal class GenerateSlangComInterfacesPass : TranslationUnitPass
 {
-    private readonly Dictionary<Class, Class> _originalToComInterfaceMap = [];
+    private readonly List<Class> _processedInterfaces = [];
+
+    public GenerateSlangComInterfacesPass(BindingContext context)
+    {
+        context.GeneratorOutputPasses.AddPass(new OutPutPass(_processedInterfaces));
+    }
 
     public override bool VisitClassDecl(Class visClass)
     {
-        if (_originalToComInterfaceMap.ContainsKey(visClass)) return true;
+        if (_processedInterfaces.Contains(visClass)) return true;
 
         if (!visClass.Name.StartsWith('I'))
             return true;
@@ -74,9 +85,27 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
 
         AddComInterfaceAttributes(visClass, guid.Value);
 
-        _originalToComInterfaceMap[visClass] = visClass;
+        // Add a type map to modify the generated marshalling code for this interface
+        Context.TypeMaps.AddTypeMapForClass(visClass, new SlangUnknownTypeMap(visClass, Context));
+
+
+        _processedInterfaces.Add(visClass);
 
         return base.VisitClassDecl(visClass);
+    }
+
+    public override bool VisitParameterDecl(Parameter param)
+    {
+        // Safety check: ensure parameter has a valid type
+        if (param.Type == null || param.QualifiedType.Type == null)
+        {
+            Diagnostics.Warning($"Parameter {param.Name} has null type, skipping transformation");
+            return false;
+        }
+
+        TransformParameterCommon(param);
+
+        return base.VisitParameterDecl(param);
     }
 
     private static Guid? FindInterfaceGuid(Class @class)
@@ -113,14 +142,9 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
         );
     }
 
-    private static Class FindISlangUnknown(ASTContext ctx)
-    {
-        return ctx.FindClass("ISlangUnknown").Single();
-    }
-
     private bool IsISlangUnknown(Class potential)
     {
-        var slangUnknown = FindISlangUnknown(Context.ASTContext);
+        var slangUnknown = Context.ASTContext.FindClass("ISlangUnknown").Single();
 
         return potential == slangUnknown || potential.Bases.Any(b => IsISlangUnknown(b.Class));
     }
@@ -180,11 +204,6 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
 
             method.ExcludeFromPasses.Add(typeof(ParamTypeToInterfacePass));
 
-            foreach (var methodParameter in method.Parameters)
-            {
-                TransformParameter(methodParameter);
-            }
-
             if (method.ReturnType.Type.IsPrimitiveType(PrimitiveType.Bool))
             {
                 method.Attributes.Add(new ReturnAttribute(CreateMarshalAsAttribute(UnmanagedType.I1)));
@@ -194,21 +213,25 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
         return methodsToTransform;
     }
 
-    private void TransformParameter(Parameter param)
-    {
-        // Safety check: ensure parameter has a valid type
-        if (param.Type == null || param.QualifiedType.Type == null)
-        {
-            Diagnostics.Warning($"Parameter {param.Name} has null type, skipping transformation");
-            return;
-        }
 
+    private void TransformParameterCommon(Parameter param)
+    {
         var isOutParam = param.OriginalName.StartsWith("out", StringComparison.OrdinalIgnoreCase);
         var type = param.Type.Desugar();
 
-        if (isOutParam)
+        if (param.Namespace is not Function function)
+        {
+            return;
+        }
+
+        if (isOutParam && function is { IsInternal: false, Access: AccessSpecifier.Public })
         {
             param.Usage = ParameterUsage.Out;
+        }
+
+        if (function is not Method { IsVirtual: true })
+        {
+            return;
         }
 
         if (type.IsPrimitiveType(PrimitiveType.Bool))
@@ -216,7 +239,7 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
             param.Attributes.Add(CreateMarshalAsAttribute(UnmanagedType.I1));
         }
     }
-    
+
     private static Attribute CreateMarshalAsAttribute(UnmanagedType unmanagedType)
     {
         return new()
@@ -224,5 +247,110 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
             Type = typeof(MarshalAsAttribute),
             Value = $"{typeof(UnmanagedType).ToGlobalFullName()}.{unmanagedType}"
         };
+    }
+
+
+    private sealed class OutPutPass(IEnumerable<Class> slangUnknownClasses) : GeneratorOutputPass
+    {
+        private Regex? _stripPattern;
+
+        public override void VisitGeneratorOutput(GeneratorOutput output)
+        {
+            // We populate the regex pattern here and not the constructor so this runs after all the passes
+            //strips lines like "outDiagnostics = new global::ShaderSlang.Net.Bindings.Generated.ISlangBlob();" since they are illegal.
+            var contentToStripFromLines = slangUnknownClasses.Select(@class =>
+                $" = new {@class.ToGlobalFullName()}();");
+
+            _stripPattern = new(
+                $"^.*({string.Join("|", contentToStripFromLines.Select(Regex.Escape))}).*$",
+                RegexOptions.Multiline);
+
+            base.VisitGeneratorOutput(output);
+        }
+
+        public override void HandleBlock(Block block)
+        {
+            var strBuilder = block.Text.StringBuilder;
+            var realizedStr = strBuilder.ToString();
+
+
+            realizedStr = _stripPattern?.Replace(realizedStr, string.Empty);
+
+            if (realizedStr == null) return;
+
+            strBuilder.Clear();
+            strBuilder.Append(realizedStr);
+
+            base.HandleBlock(block);
+        }
+    }
+}
+
+internal sealed class SlangUnknownTypeMap : TypeMap
+{
+    public override bool DoesMarshalling => true;
+    public override bool IsIgnored => false;
+
+    private readonly Class _unknownClass;
+    private readonly string _managedTypeName;
+    private readonly string _managedMarshallerName;
+
+    public SlangUnknownTypeMap(Class unknownClass, BindingContext context)
+    {
+        _unknownClass = unknownClass;
+        _managedTypeName = unknownClass.ToGlobalFullName();
+        _managedMarshallerName =
+            typeof(ComInterfaceMarshaller<>).ToGlobalFullName().Replace("`1", $"<{_managedTypeName}>");
+
+        Type = new TagType(unknownClass);
+        Context = context;
+    }
+
+
+    public override Type SignatureType(TypePrinterContext ctx)
+    {
+        return new CustomType(_managedTypeName);
+    }
+
+
+    public override void MarshalToManaged(MarshalContext ctx)
+    {
+        ctx.Return.Write($"{_managedMarshallerName}.ConvertToManaged((void*){ctx.ReturnVarName})");
+    }
+
+    public override void MarshalToNative(MarshalContext ctx)
+    {
+        if (ctx.MarshalKind is MarshalKind.Unknown)
+        {
+            var parameter = ctx.Function?.Parameters[ctx.ParameterIndex];
+
+            if (parameter is null || ctx.ParameterIndex < 0)
+            {
+                Diagnostics.Warning(
+                    $"Unable to determine parameter for marshalling of type {_managedTypeName}, defaulting to null pointer");
+                ctx.Return.Write("nint.Zero");
+                return;
+            }
+
+            if (parameter.Usage == ParameterUsage.Out)
+            {
+                ctx.Return.Write("stackalloc void* [1]");
+
+                ctx.ArgumentPrefix.Write("(nint)");
+                ctx.Cleanup.WriteLine($"{parameter.Name} = {_managedMarshallerName}.ConvertToManaged(*{ctx.ArgName});");
+
+                return;
+            }
+
+            if (parameter.Usage == ParameterUsage.In)
+            {
+                ctx.Return.Write($"(nint){_managedMarshallerName}.ConvertToUnmanaged({parameter.Name})");
+                return;
+            }
+        }
+
+        ctx.Return.Write("(nint)0");
+        Diagnostics.Warning(
+            $"Marshalling of type {_managedTypeName} is not fully implemented, defaulting to null pointer");
     }
 }

@@ -46,9 +46,7 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         opts.GenerateDeprecatedDeclarations = true;
         opts.GenerateFinalizers = false;
         opts.UseSpan = true;
-        opts.MarshalCharAsManagedChar = true;
         opts.MarshalConstCharArrayAsString = true;
-        
         
         var module = opts.AddModule("slang-compiler");
         
@@ -113,7 +111,7 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
             passes.RemovePrefix(prefix, RenameTargets.EnumItem);
         }
 
-        driver.AddTranslationUnitPass(new GenerateSlangComInterfacesPass());
+        driver.AddTranslationUnitPass(new GenerateSlangComInterfacesPass(driver.Context));
         driver.AddTranslationUnitPass(new FixParametersMissingAttributesPass(driver.Context));
     }
 
