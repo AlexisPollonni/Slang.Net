@@ -125,6 +125,11 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         ctx.IgnoreConversionToProperty("ISlangUnknown::Release");
 
         ctx.GenerateEnumFromMacros("SlangFacility", "SLANG_FACILITY_(.*)");
+        
+        //Fixes small errors in the slang api where enum typedefs are missing from bases
+        ctx.GetEnumWithMatchingItem("SLANG_DIAGNOSTIC_FLAG_TREAT_WARNINGS_AS_ERRORS").Name = "SlangDiagnosticFlags";
+        ctx.GetEnumWithMatchingItem("SLANG_COMPILE_FLAG_NO_MANGLING").Name = "SlangCompileFlags";
+        ctx.GetEnumWithMatchingItem("SLANG_TARGET_FLAG_GENERATE_WHOLE_PROGRAM").Name = "SlangTargetFlags";
     }
 
     public void Postprocess(Driver driver, ASTContext ctx)

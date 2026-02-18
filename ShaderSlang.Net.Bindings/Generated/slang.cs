@@ -31,7 +31,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         INTERNAL = 5
     }
 
-    public enum __0 : uint
+    public enum SlangDiagnosticFlags : uint
     {
         VERBOSE_PATHS = 0x1,
         TREAT_WARNINGS_AS_ERRORS = 0x2
@@ -170,7 +170,7 @@ namespace ShaderSlang.Net.Bindings.Generated
     }
 
     [Flags]
-    public enum __1 : uint
+    public enum SlangCompileFlags : uint
     {
         NO_MANGLING = 8,
         NO_CODEGEN = 16,
@@ -180,7 +180,7 @@ namespace ShaderSlang.Net.Bindings.Generated
     }
 
     [Flags]
-    public enum FLAG : uint
+    public enum SlangTargetFlags : uint
     {
         FLAG_PARAMETER_BLOCKS_USE_REGISTER_SPACES = 16,
         FLAG_GENERATE_WHOLE_PROGRAM = 256,
