@@ -30,26 +30,27 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
     {
         var slangIncludePath = slangRepoPath / "include";
         var slangHeaderPath = slangIncludePath / "slang.h";
+        var slangDeprecatedHeaderPath = slangIncludePath / "slang-deprecated.h";
 
         slangIncludePath.ExistsDirectory().ShouldBeTrue();
         slangHeaderPath.ExistsFile().ShouldBeTrue();
+        slangDeprecatedHeaderPath.ExistsFile().ShouldBeTrue();
 
         outputDirPath.ExistsDirectory().ShouldBeTrue();
 
         var opts = driver.Options;
         opts.OutputDir = outputDirPath.ToString();
-        opts.GenerationOutputMode = GenerationOutputMode.FilePerModule;
+        opts.GenerationOutputMode = GenerationOutputMode.FilePerUnit;
         opts.CommentKind = CommentKind.BCPLSlash;
         opts.GenerateDeprecatedDeclarations = true;
         opts.GenerateFinalizers = false;
         opts.UseSpan = true;
         opts.MarshalConstCharArrayAsString = true;
         
-        var module = opts.AddModule("slang-compiler");
-        
-        module.OutputNamespace = "ShaderSlang.Net.Bindings.Generated";
-        module.IncludeDirs.Add(slangIncludePath.ToString());
-        module.Headers.Add(slangHeaderPath.ToString());
+        var compilerModule = opts.AddModule("slang-compiler");
+        compilerModule.OutputNamespace = "ShaderSlang.Net.Bindings.Generated";
+        compilerModule.IncludeDirs.Add(slangIncludePath.ToString());
+        compilerModule.Headers.AddRange(slangHeaderPath.ToString(), slangDeprecatedHeaderPath.ToString());
     }
 
     public void SetupPasses(Driver driver)
