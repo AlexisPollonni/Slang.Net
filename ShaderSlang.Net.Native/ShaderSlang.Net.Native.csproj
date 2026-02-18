@@ -36,7 +36,7 @@
     </PropertyGroup>
     <Exec Command="dotnet run --file $([MSBuild]::Escape('$(DownloadSlangScript)')) -- -o $([MSBuild]::Escape('$(_OutBinariesDir)')) --slang-version $(SlangVersion) --target-rids $(SlangRuntimeIdentifier)" />
     <ItemGroup>
-      <_NativeBinaries Include="$(_OutBinariesDir)\*.dll;$(_OutBinariesDir)\*.so;$(_OutBinariesDir)\*.dylib" />
+      <_NativeBinaries Include="$(_OutBinariesDir)\*.dll;$(_OutBinariesDir)\lib*.so*;$(_OutBinariesDir)\*.dylib" />
     </ItemGroup>
     <Message Text="Found native binaries: @(_NativeBinaries)" Importance="high" />
     <Error

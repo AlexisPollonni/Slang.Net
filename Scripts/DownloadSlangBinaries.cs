@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Octokit;
 using ShaderSlang.Net.Scripts.Shared;
 using Shouldly;
+using ProductHeaderValue = Octokit.ProductHeaderValue;
 
 var builder = ConsoleHost.Create(args);
 
@@ -28,7 +29,7 @@ await app.RunAsync(args);
 class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
 {
     /// <summary>
-    /// Generates a runtime.json file for the specified version and output path.
+    /// Downloads the slang binaries from GitHub the specified version and output path.
     /// </summary>
     /// <param name="targetRids">-r, The target RIDs to include in the runtime.json file.</param>
     /// <param name="slangVersion">-v, The version of slang to download.</param>
@@ -173,7 +174,13 @@ class RootCommand(ILogger<RootCommand> logger, GitHubClient client)
                 .ShouldBeTrue($"Expected bin directory {binDir} to exist for RID {rid}");
 
             return GetFiles($"{binDir}/*")
-                .Where(f => f.GetExtension() is ".dll" or ".so" or ".dylib");
+                .Where(f =>
+                {
+                    var ext = f.GetExtension();
+                    return ext.EndsWith(".dll")
+                        || ext.EndsWith(".dylib")
+                        || f.GetFilename().ToString().Contains(".so"); // Recently linux releases were renamed to add the version in the extension, e.g. .so.2.34, so we check if the extension contains .so instead of checking for an exact match
+                });
         }
 
         DirectoryPath GetReleaseFolderForRid(DotnetRuntimeId rid) =>
