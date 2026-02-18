@@ -5729,7 +5729,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 internal static extern __IntPtr ApplySpecializations(__IntPtr __instance, __IntPtr generic);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang18FunctionReflection22specializeWithArgTypesEjPKPNS_14TypeReflectionE", CallingConvention = __CallingConvention.Cdecl)]
-                internal static extern __IntPtr EcializeWithArgTypes(__IntPtr __instance, uint argCount, __IntPtr types);
+                internal static extern __IntPtr SpecializeWithArgTypes(__IntPtr __instance, uint argCount, __IntPtr types);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang18FunctionReflection11getOverloadEj", CallingConvention = __CallingConvention.Cdecl)]
                 internal static extern __IntPtr GetOverload(__IntPtr __instance, uint index);
@@ -5898,11 +5898,11 @@ namespace ShaderSlang.Net.Bindings.Generated
                 return __result0;
             }
 
-            public global::ShaderSlang.Net.Bindings.Generated.Slang.FunctionReflection EcializeWithArgTypes(uint argCount, global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection types)
+            public global::ShaderSlang.Net.Bindings.Generated.Slang.FunctionReflection SpecializeWithArgTypes(uint argCount, global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection types)
             {
                 var ____arg1 = types is null ? __IntPtr.Zero : types.__Instance;
                 var __arg1 = new __IntPtr(&____arg1);
-                var ___ret = __Internal.EcializeWithArgTypes(__Instance, argCount, __arg1);
+                var ___ret = __Internal.SpecializeWithArgTypes(__Instance, argCount, __arg1);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.FunctionReflection.__GetOrCreateInstance(___ret, false);
                 return __result0;
             }
@@ -6709,10 +6709,10 @@ namespace ShaderSlang.Net.Bindings.Generated
                 internal static extern __IntPtr FindEntryPointByName(__IntPtr __instance, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(CppSharp.Runtime.UTF8Marshaller))] string name);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang16ShaderReflection14specializeTypeEPNS_14TypeReflectionElPKS2_PP10ISlangBlob", CallingConvention = __CallingConvention.Cdecl)]
-                internal static extern __IntPtr EcializeType(__IntPtr __instance, __IntPtr type, long specializationArgCount, __IntPtr specializationArgs, __IntPtr outDiagnostics);
+                internal static extern __IntPtr SpecializeType(__IntPtr __instance, __IntPtr type, long specializationArgCount, __IntPtr specializationArgs, __IntPtr outDiagnostics);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang16ShaderReflection17specializeGenericEPNS_17GenericReflectionElPK29SlangReflectionGenericArgTypePKNS_20GenericArgReflectionEPP10ISlangBlob", CallingConvention = __CallingConvention.Cdecl)]
-                internal static extern __IntPtr EcializeGeneric(__IntPtr __instance, __IntPtr generic, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* specializationArgTypes, __IntPtr specializationArgVals, __IntPtr outDiagnostics);
+                internal static extern __IntPtr SpecializeGeneric(__IntPtr __instance, __IntPtr generic, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* specializationArgTypes, __IntPtr specializationArgVals, __IntPtr outDiagnostics);
 
                 [SuppressUnmanagedCodeSecurity, DllImport("slang-compiler", EntryPoint = "_ZN5slang16ShaderReflection9isSubTypeEPNS_14TypeReflectionES2_", CallingConvention = __CallingConvention.Cdecl)]
                 [return: MarshalAs(UnmanagedType.I1)]
@@ -6930,18 +6930,18 @@ namespace ShaderSlang.Net.Bindings.Generated
                 return __result0;
             }
 
-            public global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection EcializeType(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection type, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection specializationArgs, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+            public global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection SpecializeType(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection type, long specializationArgCount, global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection specializationArgs, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
             {
                 var __arg0 = type is null ? __IntPtr.Zero : type.__Instance;
                 var ____arg2 = specializationArgs is null ? __IntPtr.Zero : specializationArgs.__Instance;
                 var __arg2 = new __IntPtr(&____arg2);
                 var __arg3 = (nint)0;
-                var ___ret = __Internal.EcializeType(__Instance, __arg0, specializationArgCount, __arg2, __arg3);
+                var ___ret = __Internal.SpecializeType(__Instance, __arg0, specializationArgCount, __arg2, __arg3);
                 var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection.__GetOrCreateInstance(___ret, false);
                 return __result0;
             }
 
-            public global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection EcializeGeneric(global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection generic, long specializationArgCount, ref global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType specializationArgTypes, global::ShaderSlang.Net.Bindings.Generated.Slang.GenericArgReflection specializationArgVals, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
+            public global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection SpecializeGeneric(global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection generic, long specializationArgCount, ref global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType specializationArgTypes, global::ShaderSlang.Net.Bindings.Generated.Slang.GenericArgReflection specializationArgVals, global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics)
             {
                 var __arg0 = generic is null ? __IntPtr.Zero : generic.__Instance;
                 fixed (global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* __specializationArgTypes2 = &specializationArgTypes)
@@ -6950,7 +6950,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     var ____arg3 = specializationArgVals.__Instance;
                     var __arg3 = new __IntPtr(&____arg3);
                     var __arg4 = (nint)0;
-                    var ___ret = __Internal.EcializeGeneric(__Instance, __arg0, specializationArgCount, __arg2, __arg3, __arg4);
+                    var ___ret = __Internal.SpecializeGeneric(__Instance, __arg0, specializationArgCount, __arg2, __arg3, __arg4);
                     var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection.__GetOrCreateInstance(___ret, false);
                     return __result0;
                 }
@@ -8849,7 +8849,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             /// <summary>Specialize a type based on type arguments.</summary>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
             [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-            global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection EcializeType(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection type, global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg specializationArgs, long specializationArgCount, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics);
+            global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection SpecializeType(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection type, global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg specializationArgs, long specializationArgCount, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics);
 
             /// <summary>Get the layout `type` on the chosen `target`.</summary>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
@@ -9137,7 +9137,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             /// </remarks>
             [global::System.Runtime.InteropServices.PreserveSigAttribute()]
             [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-            global::ShaderSlang.Net.Bindings.SlangResult Ecialize(global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg specializationArgs, long specializationArgCount, out global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outSpecializedComponentType, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics);
+            global::ShaderSlang.Net.Bindings.SlangResult Specialize(global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg specializationArgs, long specializationArgCount, out global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType outSpecializedComponentType, out global::ShaderSlang.Net.Bindings.Generated.ISlangBlob outDiagnostics);
 
             /// <summary>Link this component type against all of its unsatisfied dependencies.</summary>
             /// <remarks>

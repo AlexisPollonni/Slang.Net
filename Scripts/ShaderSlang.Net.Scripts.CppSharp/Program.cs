@@ -60,10 +60,10 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         var passes = driver.Context.TranslationUnitPasses;
         
         passes.RemovePrefix("SLANG_");
-        passes.RemovePrefix("Sp", RenameTargets.Function | RenameTargets.Method);
-        passes.RemovePrefix("sp", RenameTargets.Function | RenameTargets.Method);
-        passes.RenameDeclsUpperCase(RenameTargets.Any);
         
+        passes.AddPass(new RemoveAmbiguousNamingPrefixPass());
+        passes.RenameDeclsUpperCase(RenameTargets.Any);
+
         // Removes enum member prefixes to match csharp conventions
         //TODO: check if can detect automatically similarly to how was done with ClangSharp script
         string[] enumMemberPrefixesToRemove = [
@@ -128,5 +128,25 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
     public void Postprocess(Driver driver, ASTContext ctx)
     {
         
+    }
+}
+
+internal sealed class RemoveAmbiguousNamingPrefixPass : TranslationUnitPass
+{
+    public override bool VisitFunctionDecl(Function function)
+    {
+        if (!function.Name.StartsWith("sp", StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+        
+        if (function.Name.StartsWith("specialize", StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+        
+        function.Name = function.Name.Remove(0, 2);
+        
+        return base.VisitFunctionDecl(function);
     }
 }
