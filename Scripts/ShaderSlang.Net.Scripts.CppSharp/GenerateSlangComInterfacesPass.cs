@@ -33,15 +33,18 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
     {
         if (_processedInterfaces.Contains(visClass)) return true;
 
-        if (!visClass.Name.StartsWith('I'))
-            return true;
+        if (visClass.Name.StartsWith('I') && ASTContext.IsISlangUnknown(visClass))
+        {
+            TransformNativeToComInterface(visClass);
+        }
 
-        if (!IsISlangUnknown(visClass))
-            return true;
+        return base.VisitClassDecl(visClass);
+    }
 
-
+    private void TransformNativeToComInterface(Class visClass)
+    {
         // Remove non-ISlangUnknown bases
-        var basesToRemove = visClass.Bases.Where(specifier => !IsISlangUnknown(specifier.Class)).ToArray();
+        var basesToRemove = visClass.Bases.Where(specifier => !ASTContext.IsISlangUnknown(specifier.Class)).ToArray();
         foreach (var baseToRemove in basesToRemove)
         {
             Diagnostics.Debug(
@@ -90,10 +93,10 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
 
 
         _processedInterfaces.Add(visClass);
-
-        return base.VisitClassDecl(visClass);
     }
 
+
+    
     public override bool VisitParameterDecl(Parameter param)
     {
         // Safety check: ensure parameter has a valid type
@@ -142,12 +145,7 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
         );
     }
 
-    private bool IsISlangUnknown(Class potential)
-    {
-        var slangUnknown = Context.ASTContext.FindClass("ISlangUnknown").Single();
 
-        return potential == slangUnknown || potential.Bases.Any(b => IsISlangUnknown(b.Class));
-    }
 
     private static void AddMethodComAttributes(Method method)
     {
@@ -214,7 +212,7 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
     }
 
 
-    private void TransformParameterCommon(Parameter param)
+    private static void TransformParameterCommon(Parameter param)
     {
         var isOutParam = param.OriginalName.StartsWith("out", StringComparison.OrdinalIgnoreCase);
         var type = param.Type.Desugar();

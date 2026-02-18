@@ -37,6 +37,14 @@ public static class CommonHelpers
         
         database.TypeMaps.Add(key, typeMap);
     }
+    
+    
+    public static bool IsISlangUnknown(this ASTContext ctx, Class potential)
+    {
+        var slangUnknown = ctx.FindClass("ISlangUnknown").Single();
+
+        return potential == slangUnknown || potential.Bases.Any(b => ctx.IsISlangUnknown(b.Class));
+    }
 }
 
 /// <summary>

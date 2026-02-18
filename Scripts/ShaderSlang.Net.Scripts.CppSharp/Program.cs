@@ -1,11 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System;
 using ConsoleAppFramework;
 using CppSharp;
 using CppSharp.AST;
-using CppSharp.Generators;
-using CppSharp.Generators.Cpp;
 using CppSharp.Passes;
 using ShaderSlang.Net.Scripts.CppSharp;
 using Shouldly;
@@ -111,13 +108,17 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
             passes.RemovePrefix(prefix, RenameTargets.EnumItem);
         }
 
+        driver.AddTranslationUnitPass(new ResolveIncompleteDeclsPass());
         driver.AddTranslationUnitPass(new GenerateSlangComInterfacesPass(driver.Context));
+        driver.AddTranslationUnitPass(new GenerateComInterfaceMarshallers());
         driver.AddTranslationUnitPass(new FixParametersMissingAttributesPass(driver.Context));
     }
 
     public void Preprocess(Driver driver, ASTContext ctx)
     {
         ctx.SetClassAsValueType("SlangUUID");
+        
+        ctx.IgnoreClassWithName("_GUID");
         
         ctx.IgnoreConversionToProperty("ISlangUnknown::release");
         ctx.IgnoreConversionToProperty("ISlangUnknown::Release");
