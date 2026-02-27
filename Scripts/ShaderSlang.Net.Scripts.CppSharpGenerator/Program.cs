@@ -2,8 +2,6 @@
 
 using ConsoleAppFramework;
 using CppSharp;
-using CppSharp.AST;
-using CppSharp.Passes;
 using ShaderSlang.Net.Scripts.CppSharpGenerator;
 using Shouldly;
 using TruePath;
@@ -21,24 +19,4 @@ void GenerateBindings([Argument] string slangRepoPath, [Argument] string outputD
     outputDir.ExistsDirectory().ShouldBeTrue($"Output directory path does not exist: {outputDir}");
 
     ConsoleDriver.Run(new SlangLibrary(slangRepo, outputDir));
-}
-
-internal sealed class RemoveAmbiguousNamingPrefixPass : TranslationUnitPass
-{
-    public override bool VisitFunctionDecl(Function function)
-    {
-        if (!function.Name.StartsWith("sp", StringComparison.OrdinalIgnoreCase))
-        {
-            return false;
-        }
-
-        if (function.Name.StartsWith("specialize", StringComparison.OrdinalIgnoreCase))
-        {
-            return false;
-        }
-
-        function.Name = function.Name.Remove(0, 2);
-
-        return base.VisitFunctionDecl(function);
-    }
 }

@@ -2,9 +2,9 @@ using CppSharp;
 using CppSharp.AST;
 using CppSharp.Passes;
 
-namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
+namespace ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 
-internal sealed class GenerateStaticClassForFunction(string functionPrefix) : TranslationUnitPass
+internal sealed class GenerateStaticClassForFunctionPass(string functionPrefix) : TranslationUnitPass
 {
     public override bool VisitMethodDecl(Method method) =>
         true;

@@ -11,7 +11,7 @@ using CppSharp.Types;
 using Attribute = CppSharp.AST.Attribute;
 using Type = CppSharp.AST.Type;
 
-namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
+namespace ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 
 internal class GenerateSlangComInterfacesPass : TranslationUnitPass
 {

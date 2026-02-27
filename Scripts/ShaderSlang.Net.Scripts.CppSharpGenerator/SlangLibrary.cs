@@ -1,6 +1,7 @@
 using CppSharp;
 using CppSharp.AST;
 using CppSharp.Passes;
+using ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 using Shouldly;
 using TruePath;
 using TruePath.SystemIo;
@@ -89,7 +90,7 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
 
         IEnumerable<TranslationUnitPass> passes = [
                 
-            new GenerateStaticClassForFunction("slang_"),
+            new GenerateStaticClassForFunctionPass("slang_"),
                 
             new FunctionToStaticMethodPass(),
             ..enumMemberPrefixesToRemove.Select(prefix => new RegexRenamePass($"^{prefix}", string.Empty, RenameTargets.EnumItem)),
@@ -102,7 +103,7 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
             new ResolveIncompleteDeclsPass(),
                 
             new GenerateSlangComInterfacesPass(driver.Context),
-            new GenerateComInterfaceMarshallers(),
+            new GenerateComInterfaceMarshallersPass(),
             new FixParametersMissingAttributesPass(driver.Context),
         ];
 

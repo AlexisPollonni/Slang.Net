@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Attribute = CppSharp.AST.Attribute;
 
-namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
+namespace ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 
 [SuppressMessage("Performance", "CA1860:Avoid using \'Enumerable.Any()\' extension method")]
 internal sealed class FixParametersMissingAttributesPass : TranslationUnitPass

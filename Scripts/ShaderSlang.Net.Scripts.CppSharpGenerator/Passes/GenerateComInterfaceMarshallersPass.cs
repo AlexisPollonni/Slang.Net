@@ -8,9 +8,9 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Attribute = CppSharp.AST.Attribute;
 
-namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
+namespace ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 
-internal sealed class GenerateComInterfaceMarshallers : TranslationUnitPass
+internal sealed class GenerateComInterfaceMarshallersPass : TranslationUnitPass
 {
     private OutputPass? _outputPass;
 
