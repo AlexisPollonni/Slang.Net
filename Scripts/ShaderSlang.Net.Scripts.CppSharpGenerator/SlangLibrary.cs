@@ -1,33 +1,18 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using ConsoleAppFramework;
 using CppSharp;
 using CppSharp.AST;
 using CppSharp.Passes;
-using ShaderSlang.Net.Scripts.CppSharp;
 using Shouldly;
 using TruePath;
 using TruePath.SystemIo;
 
-ConsoleApp.Run(args, GenerateBindings);
-return;
-
-void GenerateBindings([Argument] string slangRepoPath, [Argument] string outputDirPath)
-{
-    var slangRepo = new LocalPath(slangRepoPath).ResolveToCurrentDirectory();
-    var outputDir = new LocalPath(outputDirPath).ResolveToCurrentDirectory();
-
-    slangRepo.ExistsDirectory().ShouldBeTrue($"Slang repository path does not exist: {slangRepo}"); 
-    outputDir.ExistsDirectory().ShouldBeTrue($"Output directory path does not exist: {outputDir}");
-    
-    ConsoleDriver.Run(new SlangLibrary(slangRepo, outputDir));
-}
-
+namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
 
 internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outputDirPath) : ILibrary
 {
     public void Setup(Driver driver)
     {
+        Diagnostics.Level = DiagnosticKind.Debug;
+            
         var slangIncludePath = slangRepoPath / "include";
         var slangHeaderPath = slangIncludePath / "slang.h";
         var slangDeprecatedHeaderPath = slangIncludePath / "slang-deprecated.h";
@@ -46,6 +31,9 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         opts.GenerateFinalizers = false;
         opts.UseSpan = true;
         opts.MarshalConstCharArrayAsString = true;
+
+        // Since we rewrote the entire code generator we can enable dry run to skip cppsharp's generator since we do so in the postprocess
+        opts.DryRun = true;
         
         var compilerModule = opts.AddModule("slang-compiler");
         compilerModule.OutputNamespace = "ShaderSlang.Net.Bindings.Generated";
@@ -55,16 +43,10 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
 
     public void SetupPasses(Driver driver)
     {
-        var passes = driver.Context.TranslationUnitPasses;
-        
-        passes.RemovePrefix("SLANG_");
-        
-        passes.AddPass(new RemoveAmbiguousNamingPrefixPass());
-        passes.RenameDeclsUpperCase(RenameTargets.Any);
-
         // Removes enum member prefixes to match csharp conventions
         //TODO: check if can detect automatically similarly to how was done with ClangSharp script
         string[] enumMemberPrefixesToRemove = [
+            "SLANG_",
             "SEVERITY_",
             "DIAGNOSTIC_FLAG_",
             "TARGET_",
@@ -103,20 +85,37 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
             "LANGUAGE_VERSION_",
             "DIAGNOSTIC_FLAG_",
         ];
-        
-        foreach (var prefix in enumMemberPrefixesToRemove)
-        {
-            passes.RemovePrefix(prefix, RenameTargets.EnumItem);
-        }
 
-        driver.AddTranslationUnitPass(new ResolveIncompleteDeclsPass());
-        driver.AddTranslationUnitPass(new GenerateSlangComInterfacesPass(driver.Context));
-        driver.AddTranslationUnitPass(new GenerateComInterfaceMarshallers());
-        driver.AddTranslationUnitPass(new FixParametersMissingAttributesPass(driver.Context));
+
+        IEnumerable<TranslationUnitPass> passes = [
+                
+            new GenerateStaticClassForFunction("slang_"),
+                
+            new FunctionToStaticMethodPass(),
+            ..enumMemberPrefixesToRemove.Select(prefix => new RegexRenamePass($"^{prefix}", string.Empty, RenameTargets.EnumItem)),
+                
+            
+                
+            new CaseRenamePass(RenameTargets.Function, RenameCasePattern.UpperCamelCase),
+                
+            new RemoveAmbiguousNamingPrefixPass(),
+            new ResolveIncompleteDeclsPass(),
+                
+            new GenerateSlangComInterfacesPass(driver.Context),
+            new GenerateComInterfaceMarshallers(),
+            new FixParametersMissingAttributesPass(driver.Context),
+        ];
+
+        foreach (var pass in passes) driver.AddTranslationUnitPass(pass);
     }
 
     public void Preprocess(Driver driver, ASTContext ctx)
     {
+        ctx.IgnoreFunctionWithName("slang::createGlobalSession");
+        ctx.IgnoreFunctionWithName("slang::shutdown");
+        ctx.IgnoreFunctionWithName("slang::getLastInternalErrorMessage");
+        
+        
         ctx.SetClassAsValueType("SlangUUID");
         
         ctx.IgnoreClassWithName("_GUID");
@@ -130,30 +129,23 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         ctx.GetEnumWithMatchingItem("SLANG_DIAGNOSTIC_FLAG_TREAT_WARNINGS_AS_ERRORS").Name = "SlangDiagnosticFlags";
         ctx.GetEnumWithMatchingItem("SLANG_COMPILE_FLAG_NO_MANGLING").Name = "SlangCompileFlags";
         ctx.GetEnumWithMatchingItem("SLANG_TARGET_FLAG_GENERATE_WHOLE_PROGRAM").Name = "SlangTargetFlags";
+
+        var uuid = ctx.FindClass("SlangUUID").First();
+
+        uuid.HasNonTrivialDefaultConstructor = false;
+        uuid.HasNonTrivialCopyConstructor = false;
+        uuid.HasNonTrivialDestructor = false;
+
+        // Creates a static class for global functions with a given prefix and class name
+
     }
 
     public void Postprocess(Driver driver, ASTContext ctx)
     {
-        
-    }
-}
-
-internal sealed class RemoveAmbiguousNamingPrefixPass : TranslationUnitPass
-{
-    public override bool VisitFunctionDecl(Function function)
-    {
-        if (!function.Name.StartsWith("sp", StringComparison.OrdinalIgnoreCase))
+        var pass = new SyntaxCodeGeneratorPass(driver.Context);
+        foreach (var unit in ctx.TranslationUnits)
         {
-            return false;
+            var syntax = pass.Visit(unit); 
         }
-        
-        if (function.Name.StartsWith("specialize", StringComparison.OrdinalIgnoreCase))
-        {
-            return false;
-        }
-        
-        function.Name = function.Name.Remove(0, 2);
-        
-        return base.VisitFunctionDecl(function);
     }
 }

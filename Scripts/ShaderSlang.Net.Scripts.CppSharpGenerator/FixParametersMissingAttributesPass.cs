@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Attribute = CppSharp.AST.Attribute;
 
-namespace ShaderSlang.Net.Scripts.CppSharp;
+namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
 
 [SuppressMessage("Performance", "CA1860:Avoid using \'Enumerable.Any()\' extension method")]
 internal sealed class FixParametersMissingAttributesPass : TranslationUnitPass
@@ -137,7 +137,6 @@ internal sealed class FixParametersMissingAttributesPass : TranslationUnitPass
 
             return expectedArgs.Select(a => a.ToString())
                 .SequenceEqual(actualArgs.Select(a => a.ToString()));
-            ;
         }
 
         private static ParameterSyntax TransformParameterSyntax(ParameterSyntax syntaxParameter, Parameter parameter)

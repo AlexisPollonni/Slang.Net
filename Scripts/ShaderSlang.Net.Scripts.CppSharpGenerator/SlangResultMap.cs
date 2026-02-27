@@ -3,7 +3,7 @@ using CppSharp.Generators;
 using CppSharp.Types;
 using Type = CppSharp.AST.Type;
 
-namespace ShaderSlang.Net.Scripts.CppSharp;
+namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
 
 [TypeMap("SlangResult", GeneratorKind.CSharp_ID)]
 internal class SlangResultMap : TypeMap

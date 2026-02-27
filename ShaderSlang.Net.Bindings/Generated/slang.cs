@@ -822,13 +822,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -910,13 +910,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangEntryPoint ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangEntryPoint.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPoint managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -998,13 +998,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1086,13 +1086,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1174,13 +1174,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1262,13 +1262,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1350,13 +1350,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1438,13 +1438,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1526,13 +1526,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1614,13 +1614,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1702,13 +1702,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1790,13 +1790,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1878,13 +1878,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -1899,6 +1899,7 @@ namespace ShaderSlang.Net.Bindings.Generated
     /// <para>by the Component Object Model (COM), but Slang is</para>
     /// <para>not dependent on COM.</para>
     /// </remarks>
+    [global::System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.SlangUUID.SlangUUIDMarshaller))]
     public unsafe partial struct SlangUUID
     {
         [StructLayout(LayoutKind.Sequential, Size = 16)]
@@ -2009,6 +2010,18 @@ namespace ShaderSlang.Net.Bindings.Generated
                 }
             }
         }
+
+        [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.SlangUUID?), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(SlangUUIDMarshaller))]
+        internal unsafe static partial class SlangUUIDMarshaller
+        {
+            public static global::ShaderSlang.Net.Bindings.Generated.SlangUUID? ConvertToManaged(void* native)
+            {
+                if (native is null)
+                    return null;
+                return global::ShaderSlang.Net.Bindings.Generated.SlangUUID.__CreateInstance(new __IntPtr(native));
+            }
+            public static ref __Internal GetPinnableReference(global::ShaderSlang.Net.Bindings.Generated.SlangUUID? managed) => ref managed.Value.__Instance;
+        }
     }
 
     /// <summary>Base interface for components exchanged through the API.</summary>
@@ -2021,17 +2034,6 @@ namespace ShaderSlang.Net.Bindings.Generated
     [global::System.Runtime.InteropServices.Marshalling.GeneratedComInterfaceAttribute(StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
     public unsafe partial interface ISlangUnknown : IDisposable
     {
-        [global::System.Runtime.InteropServices.PreserveSigAttribute()]
-        [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-        global::ShaderSlang.Net.Bindings.SlangResult QueryInterface();
-
-        [global::System.Runtime.InteropServices.PreserveSigAttribute()]
-        [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-        uint AddRef();
-
-        [global::System.Runtime.InteropServices.PreserveSigAttribute()]
-        [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-        uint Release();
     }
 
     [global::System.Runtime.InteropServices.GuidAttribute("87ede0e1-4852-44b0-8bf2-cb31874de239")]
@@ -2232,13 +2234,13 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             public static global::ShaderSlang.Net.Bindings.Generated.SlangTerminatedChars ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
                 return global::ShaderSlang.Net.Bindings.Generated.SlangTerminatedChars.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
             }
             public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangTerminatedChars managed)
             {
-                if (managed == null)
+                if (managed is null)
                     return null;
                 return managed.__Instance.ToPointer();
             }
@@ -2293,13 +2295,6 @@ namespace ShaderSlang.Net.Bindings.Generated
     [global::System.Runtime.InteropServices.Marshalling.GeneratedComInterfaceAttribute(StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8)]
     public unsafe partial interface ISlangSharedLibrary : global::ShaderSlang.Net.Bindings.Generated.ISlangCastable
     {
-        /// <summary>Get a function by name. If the library is unloaded will only return nullptr.</summary>
-        /// <param name="name">The name of the function</param>
-        /// <returns>The function pointer related to the name or nullptr if not found</returns>
-        [global::System.Runtime.InteropServices.PreserveSigAttribute()]
-        [global::System.Runtime.InteropServices.UnmanagedCallConvAttribute(CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)])]
-        global::ShaderSlang.Net.Bindings.Generated.SlangFuncPtr FindFuncByName(string name);
-
         /// <summary>Get a symbol by name. If the library is unloaded will only return nullptr.</summary>
         /// <param name="name">The name of the symbol</param>
         /// <returns>The pointer related to the name or nullptr if not found</returns>
@@ -2561,6 +2556,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         uint GetEntryInvocationTimes(uint index);
     }
 
+    [global::System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg.SlangReflectionGenericArgMarshaller))]
     public unsafe partial struct SlangReflectionGenericArg
     {
         [StructLayout(LayoutKind.Explicit, Size = 8)]
@@ -2653,10 +2649,22 @@ namespace ShaderSlang.Net.Bindings.Generated
                 __instance.boolVal = (byte) (value ? 1 : 0);
             }
         }
+
+        [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg?), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(SlangReflectionGenericArgMarshaller))]
+        internal unsafe static partial class SlangReflectionGenericArgMarshaller
+        {
+            public static global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg? ConvertToManaged(void* native)
+            {
+                if (native is null)
+                    return null;
+                return global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg.__CreateInstance(new __IntPtr(native));
+            }
+            public static ref __Internal GetPinnableReference(global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg? managed) => ref managed.Value.__Instance;
+        }
     }
 
     [global::System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc.SlangGlobalSessionDescMarshaller))]
-    public unsafe partial class SlangGlobalSessionDesc : IDisposable
+    public unsafe partial struct SlangGlobalSessionDesc
     {
         [StructLayout(LayoutKind.Sequential, Size = 80)]
         public partial struct __Internal
@@ -2674,41 +2682,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             internal static extern void cctor(__IntPtr __instance, __IntPtr _0);
         }
 
-        public __IntPtr __Instance { get; protected set; }
-
-        internal static readonly new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc> NativeToManagedMap =
-            new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc>();
-
-        internal static void __RecordNativeToManagedMapping(IntPtr native, global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc managed)
-        {
-            NativeToManagedMap[native] = managed;
-        }
-
-        internal static bool __TryGetNativeToManagedMapping(IntPtr native, out global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc managed)
-        {
-    
-            return NativeToManagedMap.TryGetValue(native, out managed);
-        }
-
-        protected bool __ownsNativeInstance;
+        private SlangGlobalSessionDesc.__Internal __instance;
+        internal ref SlangGlobalSessionDesc.__Internal __Instance => ref __instance;
 
         internal static SlangGlobalSessionDesc __CreateInstance(__IntPtr native, bool skipVTables = false)
         {
-            if (native == __IntPtr.Zero)
-                return null;
             return new SlangGlobalSessionDesc(native.ToPointer(), skipVTables);
-        }
-
-        internal static SlangGlobalSessionDesc __GetOrCreateInstance(__IntPtr native, bool saveInstance = false, bool skipVTables = false)
-        {
-            if (native == __IntPtr.Zero)
-                return null;
-            if (__TryGetNativeToManagedMapping(native, out var managed))
-                return (SlangGlobalSessionDesc)managed;
-            var result = __CreateInstance(native, skipVTables);
-            if (saveInstance)
-                __RecordNativeToManagedMapping(native, result);
-            return result;
         }
 
         internal static SlangGlobalSessionDesc __CreateInstance(__Internal native, bool skipVTables = false)
@@ -2716,59 +2695,34 @@ namespace ShaderSlang.Net.Bindings.Generated
             return new SlangGlobalSessionDesc(native, skipVTables);
         }
 
-        private static void* __CopyValue(__Internal native)
-        {
-            var ret = Marshal.AllocHGlobal(sizeof(__Internal));
-            *(__Internal*) ret = native;
-            return ret.ToPointer();
-        }
-
         private SlangGlobalSessionDesc(__Internal native, bool skipVTables = false)
-            : this(__CopyValue(native), skipVTables)
+            : this()
         {
-            __ownsNativeInstance = true;
-            __RecordNativeToManagedMapping(__Instance, this);
+            __instance = native;
         }
 
-        protected SlangGlobalSessionDesc(void* native, bool skipVTables = false)
+        private SlangGlobalSessionDesc(void* native, bool skipVTables = false) : this()
         {
-            if (native == null)
-                return;
-            __Instance = new __IntPtr(native);
+            __instance = *(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc.__Internal*) native;
         }
 
         public SlangGlobalSessionDesc()
         {
-            __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc.__Internal));
-            __ownsNativeInstance = true;
-            __RecordNativeToManagedMapping(__Instance, this);
-            __Internal.ctor(__Instance);
+            fixed (__Internal* __instancePtr = &__instance)
+            {
+                __Internal.ctor(new __IntPtr(__instancePtr));
+            }
         }
 
         public SlangGlobalSessionDesc(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc _0)
+            : this()
         {
-            __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc.__Internal));
-            __ownsNativeInstance = true;
-            __RecordNativeToManagedMapping(__Instance, this);
-            *((global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc.__Internal*) __Instance) = *((global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc.__Internal*) _0.__Instance);
-        }
-
-        public void Dispose()
-        {
-            Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
-        }
-
-        partial void DisposePartial(bool disposing);
-
-        internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
-        {
-            if (__Instance == IntPtr.Zero)
-                return;
-            NativeToManagedMap.TryRemove(__Instance, out _);
-            DisposePartial(disposing);
-            if (__ownsNativeInstance)
-                Marshal.FreeHGlobal(__Instance);
-            __Instance = IntPtr.Zero;
+            var ____arg0 = _0.__Instance;
+            var __arg0 = new __IntPtr(&____arg0);
+            fixed (__Internal* __instancePtr = &__instance)
+            {
+                __Internal.cctor(new __IntPtr(__instancePtr), __arg0);
+            }
         }
 
         /// <summary>Size of this struct.</summary>
@@ -2776,12 +2730,12 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             get
             {
-                return ((__Internal*)__Instance)->structureSize;
+                return __instance.structureSize;
             }
 
             set
             {
-                ((__Internal*)__Instance)->structureSize = value;
+                __instance.structureSize = value;
             }
         }
 
@@ -2790,12 +2744,12 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             get
             {
-                return ((__Internal*)__Instance)->apiVersion;
+                return __instance.apiVersion;
             }
 
             set
             {
-                ((__Internal*)__Instance)->apiVersion = value;
+                __instance.apiVersion = value;
             }
         }
 
@@ -2804,12 +2758,12 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             get
             {
-                return ((__Internal*)__Instance)->minLanguageVersion;
+                return __instance.minLanguageVersion;
             }
 
             set
             {
-                ((__Internal*)__Instance)->minLanguageVersion = value;
+                __instance.minLanguageVersion = value;
             }
         }
 
@@ -2818,12 +2772,12 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             get
             {
-                return ((__Internal*)__Instance)->enableGLSL != 0;
+                return __instance.enableGLSL != 0;
             }
 
             set
             {
-                ((__Internal*)__Instance)->enableGLSL = (byte) (value ? 1 : 0);
+                __instance.enableGLSL = (byte) (value ? 1 : 0);
             }
         }
 
@@ -2832,34 +2786,35 @@ namespace ShaderSlang.Net.Bindings.Generated
         {
             get
             {
-                return new Span<uint>(((__Internal*)__Instance)->reserved, 16);
+                fixed (uint* __arrPtr = __instance.reserved)
+                {
+                    return new Span<uint>(__arrPtr, 16);
+                }
             }
 
             set
             {
-                if (value != null)
+                fixed (uint* __arrPtr = __instance.reserved)
                 {
-                    for (int i = 0; i < 16; i++)
-                        ((__Internal*)__Instance)->reserved[i] = value[i];
+                    if (value != null)
+                    {
+                        for (int i = 0; i < 16; i++)
+                            __arrPtr[i] = value[i];
+                    }
                 }
             }
         }
 
-        [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(SlangGlobalSessionDescMarshaller))]
+        [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc?), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(SlangGlobalSessionDescMarshaller))]
         internal unsafe static partial class SlangGlobalSessionDescMarshaller
         {
-            public static global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc ConvertToManaged(void* native)
+            public static global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc? ConvertToManaged(void* native)
             {
-                if (native == null)
+                if (native is null)
                     return null;
-                return global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
+                return global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc.__CreateInstance(new __IntPtr(native));
             }
-            public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc managed)
-            {
-                if (managed == null)
-                    return null;
-                return managed.__Instance.ToPointer();
-            }
+            public static ref __Internal GetPinnableReference(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc? managed) => ref managed.Value.__Instance;
         }
     }
 
@@ -2996,7 +2951,8 @@ namespace ShaderSlang.Net.Bindings.Generated
 
         public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateGlobalSession2(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc desc, out global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
         {
-            var __arg0 = desc is null ? __IntPtr.Zero : desc.__Instance;
+            var ____arg0 = desc.__Instance;
+            var __arg0 = new __IntPtr(&____arg0);
 
             var __arg1 = stackalloc void* [1];
             var ___ret = __Internal.SlangCreateGlobalSession2(__arg0, (nint)__arg1);
@@ -3033,7 +2989,8 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <summary>Create a byte code runner that can execute Slang byte code.</summary>
         public static global::ShaderSlang.Net.Bindings.SlangResult SlangCreateByteCodeRunner(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc desc, out global::ShaderSlang.Net.Bindings.Generated.Slang.IByteCodeRunner outByteCodeRunner)
         {
-            var __arg0 = desc is null ? __IntPtr.Zero : desc.__Instance;
+            var ____arg0 = desc.__Instance;
+            var __arg0 = new __IntPtr(&____arg0);
 
             var __arg1 = stackalloc void* [1];
             var ___ret = __Internal.SlangCreateByteCodeRunner(__arg0, (nint)__arg1);
@@ -3527,13 +3484,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionValue ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionValue.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionValue managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -3615,13 +3572,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.BufferReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.BufferReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.BufferReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -3774,19 +3731,20 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionEntry ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionEntry.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionEntry managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
             }
         }
 
+        [global::System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.GenericArgReflection.GenericArgReflectionMarshaller))]
         public unsafe partial struct GenericArgReflection
         {
             [StructLayout(LayoutKind.Explicit, Size = 8)]
@@ -3878,6 +3836,18 @@ namespace ShaderSlang.Net.Bindings.Generated
                 {
                     __instance.boolVal = (byte) (value ? 1 : 0);
                 }
+            }
+
+            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.GenericArgReflection?), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(GenericArgReflectionMarshaller))]
+            internal unsafe static partial class GenericArgReflectionMarshaller
+            {
+                public static global::ShaderSlang.Net.Bindings.Generated.Slang.GenericArgReflection? ConvertToManaged(void* native)
+                {
+                    if (native is null)
+                        return null;
+                    return global::ShaderSlang.Net.Bindings.Generated.Slang.GenericArgReflection.__CreateInstance(new __IntPtr(native));
+                }
+                public static ref __Internal GetPinnableReference(global::ShaderSlang.Net.Bindings.Generated.Slang.GenericArgReflection? managed) => ref managed.Value.__Instance;
             }
         }
 
@@ -4065,13 +4035,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.Attribute managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -4499,13 +4469,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -5295,13 +5265,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.TypeLayoutReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.TypeLayoutReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeLayoutReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -5434,13 +5404,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.Modifier ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.Modifier.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.Modifier managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -5687,13 +5657,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.VariableReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.VariableReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.VariableReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -6053,13 +6023,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.VariableLayoutReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.VariableLayoutReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.VariableLayoutReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -6349,13 +6319,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.FunctionReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.FunctionReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.FunctionReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -6633,13 +6603,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.GenericReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -6917,13 +6887,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.EntryPointReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.EntryPointReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.EntryPointReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -7087,13 +7057,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.TypeParameterReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.TypeParameterReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.TypeParameterReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -7531,13 +7501,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.ShaderReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.ShaderReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.ShaderReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -7805,13 +7775,13 @@ namespace ShaderSlang.Net.Bindings.Generated
                     {
                         public static global::ShaderSlang.Net.Bindings.Generated.Slang.DeclReflection.IteratedList.Iterator ConvertToManaged(void* native)
                         {
-                            if (native == null)
+                            if (native is null)
                                 return null;
                             return global::ShaderSlang.Net.Bindings.Generated.Slang.DeclReflection.IteratedList.Iterator.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                         }
                         public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.DeclReflection.IteratedList.Iterator managed)
                         {
-                            if (managed == null)
+                            if (managed is null)
                                 return null;
                             return managed.__Instance.ToPointer();
                         }
@@ -7958,13 +7928,13 @@ namespace ShaderSlang.Net.Bindings.Generated
                 {
                     public static global::ShaderSlang.Net.Bindings.Generated.Slang.DeclReflection.IteratedList ConvertToManaged(void* native)
                     {
-                        if (native == null)
+                        if (native is null)
                             return null;
                         return global::ShaderSlang.Net.Bindings.Generated.Slang.DeclReflection.IteratedList.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                     }
                     public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.DeclReflection.IteratedList managed)
                     {
-                        if (managed == null)
+                        if (managed is null)
                             return null;
                         return managed.__Instance.ToPointer();
                     }
@@ -8172,13 +8142,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.DeclReflection ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.DeclReflection.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.DeclReflection managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -8186,7 +8156,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         }
 
         [global::System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag.CompileCoreModuleFlagMarshaller))]
-        public unsafe partial class CompileCoreModuleFlag : IDisposable
+        public unsafe partial struct CompileCoreModuleFlag
         {
             [StructLayout(LayoutKind.Sequential, Size = 1)]
             public partial struct __Internal
@@ -8200,41 +8170,12 @@ namespace ShaderSlang.Net.Bindings.Generated
                 WriteDocumentation = 0x1
             }
 
-            public __IntPtr __Instance { get; protected set; }
-
-            internal static readonly new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag> NativeToManagedMap =
-                new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag>();
-
-            internal static void __RecordNativeToManagedMapping(IntPtr native, global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag managed)
-            {
-                NativeToManagedMap[native] = managed;
-            }
-
-            internal static bool __TryGetNativeToManagedMapping(IntPtr native, out global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag managed)
-            {
-    
-                return NativeToManagedMap.TryGetValue(native, out managed);
-            }
-
-            protected bool __ownsNativeInstance;
+            private CompileCoreModuleFlag.__Internal __instance;
+            internal ref CompileCoreModuleFlag.__Internal __Instance => ref __instance;
 
             internal static CompileCoreModuleFlag __CreateInstance(__IntPtr native, bool skipVTables = false)
             {
-                if (native == __IntPtr.Zero)
-                    return null;
                 return new CompileCoreModuleFlag(native.ToPointer(), skipVTables);
-            }
-
-            internal static CompileCoreModuleFlag __GetOrCreateInstance(__IntPtr native, bool saveInstance = false, bool skipVTables = false)
-            {
-                if (native == __IntPtr.Zero)
-                    return null;
-                if (__TryGetNativeToManagedMapping(native, out var managed))
-                    return (CompileCoreModuleFlag)managed;
-                var result = __CreateInstance(native, skipVTables);
-                if (saveInstance)
-                    __RecordNativeToManagedMapping(native, result);
-                return result;
             }
 
             internal static CompileCoreModuleFlag __CreateInstance(__Internal native, bool skipVTables = false)
@@ -8242,75 +8183,38 @@ namespace ShaderSlang.Net.Bindings.Generated
                 return new CompileCoreModuleFlag(native, skipVTables);
             }
 
-            private static void* __CopyValue(__Internal native)
-            {
-                var ret = Marshal.AllocHGlobal(sizeof(__Internal));
-                *(__Internal*) ret = native;
-                return ret.ToPointer();
-            }
-
             private CompileCoreModuleFlag(__Internal native, bool skipVTables = false)
-                : this(__CopyValue(native), skipVTables)
+                : this()
             {
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
+                __instance = native;
             }
 
-            protected CompileCoreModuleFlag(void* native, bool skipVTables = false)
+            private CompileCoreModuleFlag(void* native, bool skipVTables = false) : this()
             {
-                if (native == null)
-                    return;
-                __Instance = new __IntPtr(native);
-            }
-
-            public CompileCoreModuleFlag()
-            {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
+                __instance = *(global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag.__Internal*) native;
             }
 
             public CompileCoreModuleFlag(global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag _0)
+                : this()
             {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
-                *((global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag.__Internal*) __Instance) = *((global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag.__Internal*) _0.__Instance);
+                var ____arg0 = _0.__Instance;
+                var __arg0 = new __IntPtr(&____arg0);
+                fixed (__Internal* __instancePtr = &__instance)
+                {
+                    __Internal.cctor(new __IntPtr(__instancePtr), __arg0);
+                }
             }
 
-            public void Dispose()
-            {
-                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
-            }
-
-            partial void DisposePartial(bool disposing);
-
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
-            {
-                if (__Instance == IntPtr.Zero)
-                    return;
-                NativeToManagedMap.TryRemove(__Instance, out _);
-                DisposePartial(disposing);
-                if (__ownsNativeInstance)
-                    Marshal.FreeHGlobal(__Instance);
-                __Instance = IntPtr.Zero;
-            }
-
-            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(CompileCoreModuleFlagMarshaller))]
+            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag?), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(CompileCoreModuleFlagMarshaller))]
             internal unsafe static partial class CompileCoreModuleFlagMarshaller
             {
-                public static global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag ConvertToManaged(void* native)
+                public static global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag? ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
-                    return global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
+                    return global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag.__CreateInstance(new __IntPtr(native));
                 }
-                public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag managed)
-                {
-                    if (managed == null)
-                        return null;
-                    return managed.__Instance.ToPointer();
-                }
+                public static ref __Internal GetPinnableReference(global::ShaderSlang.Net.Bindings.Generated.Slang.CompileCoreModuleFlag? managed) => ref managed.Value.__Instance;
             }
         }
 
@@ -8583,7 +8487,7 @@ namespace ShaderSlang.Net.Bindings.Generated
 
         /// <summary>Description of a code generation target.</summary>
         [global::System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc.TargetDescMarshaller))]
-        public unsafe partial class TargetDesc : IDisposable
+        public unsafe partial struct TargetDesc
         {
             [StructLayout(LayoutKind.Sequential, Size = 48)]
             public partial struct __Internal
@@ -8605,41 +8509,12 @@ namespace ShaderSlang.Net.Bindings.Generated
                 internal static extern void cctor(__IntPtr __instance, __IntPtr _0);
             }
 
-            public __IntPtr __Instance { get; protected set; }
-
-            internal static readonly new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc> NativeToManagedMap =
-                new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc>();
-
-            internal static void __RecordNativeToManagedMapping(IntPtr native, global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc managed)
-            {
-                NativeToManagedMap[native] = managed;
-            }
-
-            internal static bool __TryGetNativeToManagedMapping(IntPtr native, out global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc managed)
-            {
-    
-                return NativeToManagedMap.TryGetValue(native, out managed);
-            }
-
-            protected bool __ownsNativeInstance;
+            private TargetDesc.__Internal __instance;
+            internal ref TargetDesc.__Internal __Instance => ref __instance;
 
             internal static TargetDesc __CreateInstance(__IntPtr native, bool skipVTables = false)
             {
-                if (native == __IntPtr.Zero)
-                    return null;
                 return new TargetDesc(native.ToPointer(), skipVTables);
-            }
-
-            internal static TargetDesc __GetOrCreateInstance(__IntPtr native, bool saveInstance = false, bool skipVTables = false)
-            {
-                if (native == __IntPtr.Zero)
-                    return null;
-                if (__TryGetNativeToManagedMapping(native, out var managed))
-                    return (TargetDesc)managed;
-                var result = __CreateInstance(native, skipVTables);
-                if (saveInstance)
-                    __RecordNativeToManagedMapping(native, result);
-                return result;
             }
 
             internal static TargetDesc __CreateInstance(__Internal native, bool skipVTables = false)
@@ -8647,59 +8522,34 @@ namespace ShaderSlang.Net.Bindings.Generated
                 return new TargetDesc(native, skipVTables);
             }
 
-            private static void* __CopyValue(__Internal native)
-            {
-                var ret = Marshal.AllocHGlobal(sizeof(__Internal));
-                *(__Internal*) ret = native;
-                return ret.ToPointer();
-            }
-
             private TargetDesc(__Internal native, bool skipVTables = false)
-                : this(__CopyValue(native), skipVTables)
+                : this()
             {
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
+                __instance = native;
             }
 
-            protected TargetDesc(void* native, bool skipVTables = false)
+            private TargetDesc(void* native, bool skipVTables = false) : this()
             {
-                if (native == null)
-                    return;
-                __Instance = new __IntPtr(native);
+                __instance = *(global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc.__Internal*) native;
             }
 
             public TargetDesc()
             {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
-                __Internal.ctor(__Instance);
+                fixed (__Internal* __instancePtr = &__instance)
+                {
+                    __Internal.ctor(new __IntPtr(__instancePtr));
+                }
             }
 
             public TargetDesc(global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc _0)
+                : this()
             {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
-                *((global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc.__Internal*) __Instance) = *((global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc.__Internal*) _0.__Instance);
-            }
-
-            public void Dispose()
-            {
-                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
-            }
-
-            partial void DisposePartial(bool disposing);
-
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
-            {
-                if (__Instance == IntPtr.Zero)
-                    return;
-                NativeToManagedMap.TryRemove(__Instance, out _);
-                DisposePartial(disposing);
-                if (__ownsNativeInstance)
-                    Marshal.FreeHGlobal(__Instance);
-                __Instance = IntPtr.Zero;
+                var ____arg0 = _0.__Instance;
+                var __arg0 = new __IntPtr(&____arg0);
+                fixed (__Internal* __instancePtr = &__instance)
+                {
+                    __Internal.cctor(new __IntPtr(__instancePtr), __arg0);
+                }
             }
 
             /// <summary>The size of this structure, in bytes.</summary>
@@ -8707,12 +8557,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->structureSize;
+                    return __instance.structureSize;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->structureSize = value;
+                    __instance.structureSize = value;
                 }
             }
 
@@ -8721,12 +8571,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->format;
+                    return __instance.format;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->format = value;
+                    __instance.format = value;
                 }
             }
 
@@ -8735,12 +8585,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->profile;
+                    return __instance.profile;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->profile = value;
+                    __instance.profile = value;
                 }
             }
 
@@ -8749,12 +8599,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->flags;
+                    return __instance.flags;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->flags = value;
+                    __instance.flags = value;
                 }
             }
 
@@ -8763,12 +8613,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->floatingPointMode;
+                    return __instance.floatingPointMode;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->floatingPointMode = value;
+                    __instance.floatingPointMode = value;
                 }
             }
 
@@ -8777,12 +8627,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->lineDirectiveMode;
+                    return __instance.lineDirectiveMode;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->lineDirectiveMode = value;
+                    __instance.lineDirectiveMode = value;
                 }
             }
 
@@ -8791,12 +8641,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->forceGLSLScalarBufferLayout != 0;
+                    return __instance.forceGLSLScalarBufferLayout != 0;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->forceGLSLScalarBufferLayout = (byte) (value ? 1 : 0);
+                    __instance.forceGLSLScalarBufferLayout = (byte) (value ? 1 : 0);
                 }
             }
 
@@ -8805,7 +8655,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionEntry.__GetOrCreateInstance(((__Internal*)__Instance)->compilerOptionEntries, false);
+                    var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionEntry.__GetOrCreateInstance(__instance.compilerOptionEntries, false);
                     return __result0;
                 }
             }
@@ -8815,35 +8665,30 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->compilerOptionEntryCount;
+                    return __instance.compilerOptionEntryCount;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->compilerOptionEntryCount = value;
+                    __instance.compilerOptionEntryCount = value;
                 }
             }
 
-            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(TargetDescMarshaller))]
+            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc?), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(TargetDescMarshaller))]
             internal unsafe static partial class TargetDescMarshaller
             {
-                public static global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc ConvertToManaged(void* native)
+                public static global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc? ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
-                    return global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
+                    return global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc.__CreateInstance(new __IntPtr(native));
                 }
-                public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc managed)
-                {
-                    if (managed == null)
-                        return null;
-                    return managed.__Instance.ToPointer();
-                }
+                public static ref __Internal GetPinnableReference(global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc? managed) => ref managed.Value.__Instance;
             }
         }
 
         [global::System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc.PreprocessorMacroDescMarshaller))]
-        public unsafe partial class PreprocessorMacroDesc : IDisposable
+        public unsafe partial struct PreprocessorMacroDesc : IDisposable
         {
             [StructLayout(LayoutKind.Sequential, Size = 16)]
             public partial struct __Internal
@@ -8855,43 +8700,14 @@ namespace ShaderSlang.Net.Bindings.Generated
                 internal static extern void cctor(__IntPtr __instance, __IntPtr _0);
             }
 
-            public __IntPtr __Instance { get; protected set; }
-
-            internal static readonly new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc> NativeToManagedMap =
-                new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc>();
-
-            internal static void __RecordNativeToManagedMapping(IntPtr native, global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc managed)
-            {
-                NativeToManagedMap[native] = managed;
-            }
-
-            internal static bool __TryGetNativeToManagedMapping(IntPtr native, out global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc managed)
-            {
-    
-                return NativeToManagedMap.TryGetValue(native, out managed);
-            }
+            private PreprocessorMacroDesc.__Internal __instance;
+            internal ref PreprocessorMacroDesc.__Internal __Instance => ref __instance;
 
             private bool __name_OwnsNativeMemory = false;
             private bool __value_OwnsNativeMemory = false;
-            protected bool __ownsNativeInstance;
-
             internal static PreprocessorMacroDesc __CreateInstance(__IntPtr native, bool skipVTables = false)
             {
-                if (native == __IntPtr.Zero)
-                    return null;
                 return new PreprocessorMacroDesc(native.ToPointer(), skipVTables);
-            }
-
-            internal static PreprocessorMacroDesc __GetOrCreateInstance(__IntPtr native, bool saveInstance = false, bool skipVTables = false)
-            {
-                if (native == __IntPtr.Zero)
-                    return null;
-                if (__TryGetNativeToManagedMapping(native, out var managed))
-                    return (PreprocessorMacroDesc)managed;
-                var result = __CreateInstance(native, skipVTables);
-                if (saveInstance)
-                    __RecordNativeToManagedMapping(native, result);
-                return result;
             }
 
             internal static PreprocessorMacroDesc __CreateInstance(__Internal native, bool skipVTables = false)
@@ -8899,90 +8715,69 @@ namespace ShaderSlang.Net.Bindings.Generated
                 return new PreprocessorMacroDesc(native, skipVTables);
             }
 
-            private static void* __CopyValue(__Internal native)
-            {
-                var ret = Marshal.AllocHGlobal(sizeof(__Internal));
-                *(__Internal*) ret = native;
-                return ret.ToPointer();
-            }
-
             private PreprocessorMacroDesc(__Internal native, bool skipVTables = false)
-                : this(__CopyValue(native), skipVTables)
+                : this()
             {
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
+                __instance = native;
             }
 
-            protected PreprocessorMacroDesc(void* native, bool skipVTables = false)
+            private PreprocessorMacroDesc(void* native, bool skipVTables = false) : this()
             {
-                if (native == null)
-                    return;
-                __Instance = new __IntPtr(native);
-            }
-
-            public PreprocessorMacroDesc()
-            {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
+                __instance = *(global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc.__Internal*) native;
             }
 
             public PreprocessorMacroDesc(global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc _0)
+                : this()
             {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
-                *((global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc.__Internal*) __Instance) = *((global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc.__Internal*) _0.__Instance);
-                if (_0.__name_OwnsNativeMemory)
-                    this.Name = _0.Name;
-                if (_0.__value_OwnsNativeMemory)
-                    this.Value = _0.Value;
+                var ____arg0 = _0.__Instance;
+                var __arg0 = new __IntPtr(&____arg0);
+                fixed (__Internal* __instancePtr = &__instance)
+                {
+                    __Internal.cctor(new __IntPtr(__instancePtr), __arg0);
+                }
             }
 
             public void Dispose()
             {
-                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
+                Dispose(disposing: true);
             }
 
             partial void DisposePartial(bool disposing);
 
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
+            private void Dispose(bool disposing)
             {
-                if (__Instance == IntPtr.Zero)
-                    return;
-                NativeToManagedMap.TryRemove(__Instance, out _);
                 DisposePartial(disposing);
-                if (__name_OwnsNativeMemory)
-                    Marshal.FreeHGlobal(((__Internal*)__Instance)->name);
-                if (__value_OwnsNativeMemory)
-                    Marshal.FreeHGlobal(((__Internal*)__Instance)->value);
-                if (__ownsNativeInstance)
-                    Marshal.FreeHGlobal(__Instance);
-                __Instance = IntPtr.Zero;
+                fixed (__Internal* __InstancePtr = &__Instance)
+                {
+                    if (__name_OwnsNativeMemory)
+                        Marshal.FreeHGlobal(__InstancePtr->name);
+                    if (__value_OwnsNativeMemory)
+                        Marshal.FreeHGlobal(__InstancePtr->value);
+                }
             }
 
             public string Name
             {
                 get
                 {
-                    return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ((__Internal*)__Instance)->name);
+                    return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, __instance.name);
                 }
 
                 set
                 {
                     if (__name_OwnsNativeMemory)
-                        Marshal.FreeHGlobal(((__Internal*)__Instance)->name);
+                        Marshal.FreeHGlobal(__instance.name);
                     __name_OwnsNativeMemory = true;
                     if (value == null)
                     {
-                        ((__Internal*)__Instance)->name = global::System.IntPtr.Zero;
+                        __instance.name = global::System.IntPtr.Zero;
                         return;
                     }
                     var __bytes0 = global::System.Text.Encoding.UTF8.GetBytes(value);
                     var __bytePtr0 = Marshal.AllocHGlobal(__bytes0.Length + 1);
                     Marshal.Copy(__bytes0, 0, __bytePtr0, __bytes0.Length);
                     Marshal.WriteByte(__bytePtr0 + __bytes0.Length, 0);
-                    ((__Internal*)__Instance)->name = (__IntPtr) __bytePtr0;
+                    __instance.name = (__IntPtr) __bytePtr0;
                 }
             }
 
@@ -8990,47 +8785,42 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, ((__Internal*)__Instance)->value);
+                    return CppSharp.Runtime.MarshalUtil.GetString(global::System.Text.Encoding.UTF8, __instance.value);
                 }
 
                 set
                 {
                     if (__value_OwnsNativeMemory)
-                        Marshal.FreeHGlobal(((__Internal*)__Instance)->value);
+                        Marshal.FreeHGlobal(__instance.value);
                     __value_OwnsNativeMemory = true;
                     if (value == null)
                     {
-                        ((__Internal*)__Instance)->value = global::System.IntPtr.Zero;
+                        __instance.value = global::System.IntPtr.Zero;
                         return;
                     }
                     var __bytes0 = global::System.Text.Encoding.UTF8.GetBytes(value);
                     var __bytePtr0 = Marshal.AllocHGlobal(__bytes0.Length + 1);
                     Marshal.Copy(__bytes0, 0, __bytePtr0, __bytes0.Length);
                     Marshal.WriteByte(__bytePtr0 + __bytes0.Length, 0);
-                    ((__Internal*)__Instance)->value = (__IntPtr) __bytePtr0;
+                    __instance.value = (__IntPtr) __bytePtr0;
                 }
             }
 
-            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(PreprocessorMacroDescMarshaller))]
+            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc?), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(PreprocessorMacroDescMarshaller))]
             internal unsafe static partial class PreprocessorMacroDescMarshaller
             {
-                public static global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc ConvertToManaged(void* native)
+                public static global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc? ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
-                    return global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
+                    return global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc.__CreateInstance(new __IntPtr(native));
                 }
-                public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc managed)
-                {
-                    if (managed == null)
-                        return null;
-                    return managed.__Instance.ToPointer();
-                }
+                public static ref __Internal GetPinnableReference(global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc? managed) => ref managed.Value.__Instance;
             }
         }
 
         [global::System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc.SessionDescMarshaller))]
-        public unsafe partial class SessionDesc : IDisposable
+        public unsafe partial struct SessionDesc
         {
             [StructLayout(LayoutKind.Sequential, Size = 96)]
             public partial struct __Internal
@@ -9058,41 +8848,12 @@ namespace ShaderSlang.Net.Bindings.Generated
                 internal static extern void cctor(__IntPtr __instance, __IntPtr _0);
             }
 
-            public __IntPtr __Instance { get; protected set; }
-
-            internal static readonly new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc> NativeToManagedMap =
-                new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc>();
-
-            internal static void __RecordNativeToManagedMapping(IntPtr native, global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc managed)
-            {
-                NativeToManagedMap[native] = managed;
-            }
-
-            internal static bool __TryGetNativeToManagedMapping(IntPtr native, out global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc managed)
-            {
-    
-                return NativeToManagedMap.TryGetValue(native, out managed);
-            }
-
-            protected bool __ownsNativeInstance;
+            private SessionDesc.__Internal __instance;
+            internal ref SessionDesc.__Internal __Instance => ref __instance;
 
             internal static SessionDesc __CreateInstance(__IntPtr native, bool skipVTables = false)
             {
-                if (native == __IntPtr.Zero)
-                    return null;
                 return new SessionDesc(native.ToPointer(), skipVTables);
-            }
-
-            internal static SessionDesc __GetOrCreateInstance(__IntPtr native, bool saveInstance = false, bool skipVTables = false)
-            {
-                if (native == __IntPtr.Zero)
-                    return null;
-                if (__TryGetNativeToManagedMapping(native, out var managed))
-                    return (SessionDesc)managed;
-                var result = __CreateInstance(native, skipVTables);
-                if (saveInstance)
-                    __RecordNativeToManagedMapping(native, result);
-                return result;
             }
 
             internal static SessionDesc __CreateInstance(__Internal native, bool skipVTables = false)
@@ -9100,59 +8861,34 @@ namespace ShaderSlang.Net.Bindings.Generated
                 return new SessionDesc(native, skipVTables);
             }
 
-            private static void* __CopyValue(__Internal native)
-            {
-                var ret = Marshal.AllocHGlobal(sizeof(__Internal));
-                *(__Internal*) ret = native;
-                return ret.ToPointer();
-            }
-
             private SessionDesc(__Internal native, bool skipVTables = false)
-                : this(__CopyValue(native), skipVTables)
+                : this()
             {
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
+                __instance = native;
             }
 
-            protected SessionDesc(void* native, bool skipVTables = false)
+            private SessionDesc(void* native, bool skipVTables = false) : this()
             {
-                if (native == null)
-                    return;
-                __Instance = new __IntPtr(native);
+                __instance = *(global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc.__Internal*) native;
             }
 
             public SessionDesc()
             {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
-                __Internal.ctor(__Instance);
+                fixed (__Internal* __instancePtr = &__instance)
+                {
+                    __Internal.ctor(new __IntPtr(__instancePtr));
+                }
             }
 
             public SessionDesc(global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc _0)
+                : this()
             {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
-                *((global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc.__Internal*) __Instance) = *((global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc.__Internal*) _0.__Instance);
-            }
-
-            public void Dispose()
-            {
-                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
-            }
-
-            partial void DisposePartial(bool disposing);
-
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
-            {
-                if (__Instance == IntPtr.Zero)
-                    return;
-                NativeToManagedMap.TryRemove(__Instance, out _);
-                DisposePartial(disposing);
-                if (__ownsNativeInstance)
-                    Marshal.FreeHGlobal(__Instance);
-                __Instance = IntPtr.Zero;
+                var ____arg0 = _0.__Instance;
+                var __arg0 = new __IntPtr(&____arg0);
+                fixed (__Internal* __instancePtr = &__instance)
+                {
+                    __Internal.cctor(new __IntPtr(__instancePtr), __arg0);
+                }
             }
 
             /// <summary>The size of this structure, in bytes.</summary>
@@ -9160,35 +8896,28 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->structureSize;
+                    return __instance.structureSize;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->structureSize = value;
+                    __instance.structureSize = value;
                 }
             }
 
             /// <summary>Code generation targets to include in the session.</summary>
-            public global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc Targets
-            {
-                get
-                {
-                    var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc.__GetOrCreateInstance(((__Internal*)__Instance)->targets, false);
-                    return __result0;
-                }
-            }
+            public global::ShaderSlang.Net.Bindings.Generated.Slang.TargetDesc Targets;
 
             public long TargetCount
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->targetCount;
+                    return __instance.targetCount;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->targetCount = value;
+                    __instance.targetCount = value;
                 }
             }
 
@@ -9197,12 +8926,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->flags;
+                    return __instance.flags;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->flags = value;
+                    __instance.flags = value;
                 }
             }
 
@@ -9211,12 +8940,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->defaultMatrixLayoutMode;
+                    return __instance.defaultMatrixLayoutMode;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->defaultMatrixLayoutMode = value;
+                    __instance.defaultMatrixLayoutMode = value;
                 }
             }
 
@@ -9225,7 +8954,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->searchPaths;
+                    return __instance.searchPaths;
                 }
             }
 
@@ -9233,34 +8962,27 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->searchPathCount;
+                    return __instance.searchPathCount;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->searchPathCount = value;
+                    __instance.searchPathCount = value;
                 }
             }
 
-            public global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc PreprocessorMacros
-            {
-                get
-                {
-                    var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc.__GetOrCreateInstance(((__Internal*)__Instance)->preprocessorMacros, false);
-                    return __result0;
-                }
-            }
+            public global::ShaderSlang.Net.Bindings.Generated.Slang.PreprocessorMacroDesc PreprocessorMacros;
 
             public long PreprocessorMacroCount
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->preprocessorMacroCount;
+                    return __instance.preprocessorMacroCount;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->preprocessorMacroCount = value;
+                    __instance.preprocessorMacroCount = value;
                 }
             }
 
@@ -9268,12 +8990,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem>.ConvertToManaged((void*)((__Internal*)__Instance)->fileSystem);
+                    return global::System.Runtime.InteropServices.Marshalling.ComInterfaceMarshaller<global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem>.ConvertToManaged((void*)__instance.fileSystem);
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->fileSystem = (nint)0;
+                    __instance.fileSystem = (nint)0;
                 }
             }
 
@@ -9281,12 +9003,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->enableEffectAnnotations != 0;
+                    return __instance.enableEffectAnnotations != 0;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->enableEffectAnnotations = (byte) (value ? 1 : 0);
+                    __instance.enableEffectAnnotations = (byte) (value ? 1 : 0);
                 }
             }
 
@@ -9294,12 +9016,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->allowGLSLSyntax != 0;
+                    return __instance.allowGLSLSyntax != 0;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->allowGLSLSyntax = (byte) (value ? 1 : 0);
+                    __instance.allowGLSLSyntax = (byte) (value ? 1 : 0);
                 }
             }
 
@@ -9308,13 +9030,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionEntry.__GetOrCreateInstance(((__Internal*)__Instance)->compilerOptionEntries, false);
+                    var __result0 = global::ShaderSlang.Net.Bindings.Generated.Slang.CompilerOptionEntry.__GetOrCreateInstance(__instance.compilerOptionEntries, false);
                     return __result0;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->compilerOptionEntries = value is null ? __IntPtr.Zero : value.__Instance;
+                    __instance.compilerOptionEntries = value is null ? __IntPtr.Zero : value.__Instance;
                 }
             }
 
@@ -9323,12 +9045,12 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->compilerOptionEntryCount;
+                    return __instance.compilerOptionEntryCount;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->compilerOptionEntryCount = value;
+                    __instance.compilerOptionEntryCount = value;
                 }
             }
 
@@ -9337,30 +9059,25 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->skipSPIRVValidation != 0;
+                    return __instance.skipSPIRVValidation != 0;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->skipSPIRVValidation = (byte) (value ? 1 : 0);
+                    __instance.skipSPIRVValidation = (byte) (value ? 1 : 0);
                 }
             }
 
-            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(SessionDescMarshaller))]
+            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc?), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(SessionDescMarshaller))]
             internal unsafe static partial class SessionDescMarshaller
             {
-                public static global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc ConvertToManaged(void* native)
+                public static global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc? ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
-                    return global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
+                    return global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc.__CreateInstance(new __IntPtr(native));
                 }
-                public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc managed)
-                {
-                    if (managed == null)
-                        return null;
-                    return managed.__Instance.ToPointer();
-                }
+                public static ref __Internal GetPinnableReference(global::ShaderSlang.Net.Bindings.Generated.Slang.SessionDesc? managed) => ref managed.Value.__Instance;
             }
         }
 
@@ -10156,13 +9873,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.SpecializationArg managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -10361,13 +10078,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.VMExecOperand ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.VMExecOperand.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.VMExecOperand managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -10552,13 +10269,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.VMExecInstHeader ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.VMExecInstHeader.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.VMExecInstHeader managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -10705,13 +10422,13 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 public static global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeFuncInfo ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
                     return global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeFuncInfo.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
                 }
                 public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeFuncInfo managed)
                 {
-                    if (managed == null)
+                    if (managed is null)
                         return null;
                     return managed.__Instance.ToPointer();
                 }
@@ -10719,7 +10436,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         }
 
         [global::System.Runtime.InteropServices.Marshalling.NativeMarshallingAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc.ByteCodeRunnerDescMarshaller))]
-        public unsafe partial class ByteCodeRunnerDesc : IDisposable
+        public unsafe partial struct ByteCodeRunnerDesc
         {
             [StructLayout(LayoutKind.Sequential, Size = 8)]
             public partial struct __Internal
@@ -10733,41 +10450,12 @@ namespace ShaderSlang.Net.Bindings.Generated
                 internal static extern void cctor(__IntPtr __instance, __IntPtr _0);
             }
 
-            public __IntPtr __Instance { get; protected set; }
-
-            internal static readonly new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc> NativeToManagedMap =
-                new global::System.Collections.Concurrent.ConcurrentDictionary<IntPtr, global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc>();
-
-            internal static void __RecordNativeToManagedMapping(IntPtr native, global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc managed)
-            {
-                NativeToManagedMap[native] = managed;
-            }
-
-            internal static bool __TryGetNativeToManagedMapping(IntPtr native, out global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc managed)
-            {
-    
-                return NativeToManagedMap.TryGetValue(native, out managed);
-            }
-
-            protected bool __ownsNativeInstance;
+            private ByteCodeRunnerDesc.__Internal __instance;
+            internal ref ByteCodeRunnerDesc.__Internal __Instance => ref __instance;
 
             internal static ByteCodeRunnerDesc __CreateInstance(__IntPtr native, bool skipVTables = false)
             {
-                if (native == __IntPtr.Zero)
-                    return null;
                 return new ByteCodeRunnerDesc(native.ToPointer(), skipVTables);
-            }
-
-            internal static ByteCodeRunnerDesc __GetOrCreateInstance(__IntPtr native, bool saveInstance = false, bool skipVTables = false)
-            {
-                if (native == __IntPtr.Zero)
-                    return null;
-                if (__TryGetNativeToManagedMapping(native, out var managed))
-                    return (ByteCodeRunnerDesc)managed;
-                var result = __CreateInstance(native, skipVTables);
-                if (saveInstance)
-                    __RecordNativeToManagedMapping(native, result);
-                return result;
             }
 
             internal static ByteCodeRunnerDesc __CreateInstance(__Internal native, bool skipVTables = false)
@@ -10775,59 +10463,34 @@ namespace ShaderSlang.Net.Bindings.Generated
                 return new ByteCodeRunnerDesc(native, skipVTables);
             }
 
-            private static void* __CopyValue(__Internal native)
-            {
-                var ret = Marshal.AllocHGlobal(sizeof(__Internal));
-                *(__Internal*) ret = native;
-                return ret.ToPointer();
-            }
-
             private ByteCodeRunnerDesc(__Internal native, bool skipVTables = false)
-                : this(__CopyValue(native), skipVTables)
+                : this()
             {
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
+                __instance = native;
             }
 
-            protected ByteCodeRunnerDesc(void* native, bool skipVTables = false)
+            private ByteCodeRunnerDesc(void* native, bool skipVTables = false) : this()
             {
-                if (native == null)
-                    return;
-                __Instance = new __IntPtr(native);
+                __instance = *(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc.__Internal*) native;
             }
 
             public ByteCodeRunnerDesc()
             {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
-                __Internal.ctor(__Instance);
+                fixed (__Internal* __instancePtr = &__instance)
+                {
+                    __Internal.ctor(new __IntPtr(__instancePtr));
+                }
             }
 
             public ByteCodeRunnerDesc(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc _0)
+                : this()
             {
-                __Instance = Marshal.AllocHGlobal(sizeof(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc.__Internal));
-                __ownsNativeInstance = true;
-                __RecordNativeToManagedMapping(__Instance, this);
-                *((global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc.__Internal*) __Instance) = *((global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc.__Internal*) _0.__Instance);
-            }
-
-            public void Dispose()
-            {
-                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
-            }
-
-            partial void DisposePartial(bool disposing);
-
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
-            {
-                if (__Instance == IntPtr.Zero)
-                    return;
-                NativeToManagedMap.TryRemove(__Instance, out _);
-                DisposePartial(disposing);
-                if (__ownsNativeInstance)
-                    Marshal.FreeHGlobal(__Instance);
-                __Instance = IntPtr.Zero;
+                var ____arg0 = _0.__Instance;
+                var __arg0 = new __IntPtr(&____arg0);
+                fixed (__Internal* __instancePtr = &__instance)
+                {
+                    __Internal.cctor(new __IntPtr(__instancePtr), __arg0);
+                }
             }
 
             /// <summary>The size of this structure, in bytes.</summary>
@@ -10835,30 +10498,25 @@ namespace ShaderSlang.Net.Bindings.Generated
             {
                 get
                 {
-                    return ((__Internal*)__Instance)->structSize;
+                    return __instance.structSize;
                 }
 
                 set
                 {
-                    ((__Internal*)__Instance)->structSize = value;
+                    __instance.structSize = value;
                 }
             }
 
-            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(ByteCodeRunnerDescMarshaller))]
+            [global::System.Runtime.InteropServices.Marshalling.CustomMarshallerAttribute(typeof(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc?), global::System.Runtime.InteropServices.Marshalling.MarshalMode.Default, typeof(ByteCodeRunnerDescMarshaller))]
             internal unsafe static partial class ByteCodeRunnerDescMarshaller
             {
-                public static global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc ConvertToManaged(void* native)
+                public static global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc? ConvertToManaged(void* native)
                 {
-                    if (native == null)
+                    if (native is null)
                         return null;
-                    return global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
+                    return global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc.__CreateInstance(new __IntPtr(native));
                 }
-                public static void* ConvertToUnmanaged(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc managed)
-                {
-                    if (managed == null)
-                        return null;
-                    return managed.__Instance.ToPointer();
-                }
+                public static ref __Internal GetPinnableReference(global::ShaderSlang.Net.Bindings.Generated.Slang.ByteCodeRunnerDesc? managed) => ref managed.Value.__Instance;
             }
         }
 
@@ -10949,7 +10607,8 @@ namespace ShaderSlang.Net.Bindings.Generated
 
             public static global::ShaderSlang.Net.Bindings.SlangResult CreateGlobalSession(global::ShaderSlang.Net.Bindings.Generated.SlangGlobalSessionDesc desc, out global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession outGlobalSession)
             {
-                var __arg0 = desc is null ? __IntPtr.Zero : desc.__Instance;
+                var ____arg0 = desc.__Instance;
+                var __arg0 = new __IntPtr(&____arg0);
 
                 var __arg1 = stackalloc void* [1];
                 var ___ret = __Internal.CreateGlobalSession(__arg0, (nint)__arg1);

@@ -1,12 +1,10 @@
 using CppSharp;
 using CppSharp.AST;
-using CppSharp.Generators;
-using CppSharp.Generators.CSharp;
 using CppSharp.Types;
 using Attribute = CppSharp.AST.Attribute;
 using Type = System.Type;
 
-namespace ShaderSlang.Net.Scripts.CppSharp;
+namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
 
 public static class CommonHelpers
 {
@@ -39,11 +37,21 @@ public static class CommonHelpers
     }
     
     
-    public static bool IsISlangUnknown(this ASTContext ctx, Class potential)
+    public static bool IsISlangUnknown(this Class potential)
     {
-        var slangUnknown = ctx.FindClass("ISlangUnknown").Single();
-
-        return potential == slangUnknown || potential.Bases.Any(b => ctx.IsISlangUnknown(b.Class));
+        return potential.OriginalName == "ISlangUnknown" || potential.HasClassInHierarchy("ISlangUnknown");
+    }
+    
+    
+    
+    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> source) where T : class
+    {
+        return source.Where(item => item is not null)!;
+    }
+    
+    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> source) where T : struct
+    {
+        return source.Where(item => item is not null).Select(arg => arg!.Value);
     }
 }
 
