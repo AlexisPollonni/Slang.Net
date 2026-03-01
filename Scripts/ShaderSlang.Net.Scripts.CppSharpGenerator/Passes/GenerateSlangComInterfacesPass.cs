@@ -17,11 +17,6 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
 {
     private readonly HashSet<Class> _processedComInterfaces = [];
 
-    public GenerateSlangComInterfacesPass(BindingContext context)
-    {
-        context.GeneratorOutputPasses.AddPass(new OutPutPass(_processedComInterfaces));
-    }
-
     public override bool VisitClassDecl(Class visClass)
     {
         if (_processedComInterfaces.Contains(visClass)) return true;
@@ -94,8 +89,6 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
             visClass.Bases.Remove(baseToRemove);
         }
 
-        // Remove IDisposable base if present
-        visClass.Bases.RemoveAll(specifier => Equals(specifier.Type, new CILType(typeof(IDisposable))));
         visClass.Properties.Clear();
         visClass.Fields.Clear();
         visClass.OriginalClass = visClass;
@@ -224,39 +217,6 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
             Type = typeof(MarshalAsAttribute),
             Value = $"{typeof(UnmanagedType).ToGlobalFullName()}.{unmanagedType}"
         };
-    }
-
-    private sealed class OutPutPass(IEnumerable<Class> slangUnknownClasses) : GeneratorOutputPass
-    {
-        private Regex? _stripPattern;
-
-        public override void VisitGeneratorOutput(GeneratorOutput output)
-        {
-            // We populate the regex pattern here and not the constructor so this runs after all the passes
-            //strips lines like "outDiagnostics = new global::ShaderSlang.Net.Bindings.Generated.ISlangBlob();" since they are illegal.
-            var contentToStripFromLines = slangUnknownClasses.Select(@class => $" = new {@class.ToGlobalFullName()}();");
-
-            _stripPattern = new($"^.*({string.Join("|", contentToStripFromLines.Select(Regex.Escape))}).*$",
-                                RegexOptions.Multiline);
-
-            base.VisitGeneratorOutput(output);
-        }
-
-        public override void HandleBlock(Block block)
-        {
-            var strBuilder = block.Text.StringBuilder;
-            var realizedStr = strBuilder.ToString();
-
-
-            realizedStr = _stripPattern?.Replace(realizedStr, string.Empty);
-
-            if (realizedStr == null) return;
-
-            strBuilder.Clear();
-            strBuilder.Append(realizedStr);
-
-            base.HandleBlock(block);
-        }
     }
 }
 

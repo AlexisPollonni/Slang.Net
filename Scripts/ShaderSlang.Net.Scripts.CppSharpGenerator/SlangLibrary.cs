@@ -1,6 +1,8 @@
 using CppSharp;
 using CppSharp.AST;
 using CppSharp.Passes;
+using CSharpier.Core.CSharp;
+using Microsoft.CodeAnalysis.CSharp;
 using ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 using Shouldly;
 using TruePath;
@@ -91,10 +93,11 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         IEnumerable<TranslationUnitPass> passes = [
                 
             new GenerateStaticClassForFunctionPass("slang_"),
+            new GenerateStaticClassForFunctionPass("sp"),
                 
             new FunctionToStaticMethodPass(),
             ..enumMemberPrefixesToRemove.Select(prefix => new RegexRenamePass($"^{prefix}", string.Empty, RenameTargets.EnumItem)),
-                
+            
             
                 
             new CaseRenamePass(RenameTargets.Function, RenameCasePattern.UpperCamelCase),
@@ -102,9 +105,8 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
             new RemoveAmbiguousNamingPrefixPass(),
             new ResolveIncompleteDeclsPass(),
                 
-            new GenerateSlangComInterfacesPass(driver.Context),
+            new GenerateSlangComInterfacesPass(),
             new GenerateComInterfaceMarshallersPass(),
-            new FixParametersMissingAttributesPass(driver.Context),
         ];
 
         foreach (var pass in passes) driver.AddTranslationUnitPass(pass);
@@ -136,9 +138,6 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         uuid.HasNonTrivialDefaultConstructor = false;
         uuid.HasNonTrivialCopyConstructor = false;
         uuid.HasNonTrivialDestructor = false;
-
-        // Creates a static class for global functions with a given prefix and class name
-
     }
 
     public void Postprocess(Driver driver, ASTContext ctx)
@@ -146,7 +145,9 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         var pass = new SyntaxCodeGeneratorPass(driver.Context);
         foreach (var unit in ctx.TranslationUnits)
         {
-            var syntax = pass.Visit(unit); 
+            var tree = pass.Visit(unit); 
+            
+            var formattedSyntax = CSharpFormatter.Format(tree);
         }
     }
 }
