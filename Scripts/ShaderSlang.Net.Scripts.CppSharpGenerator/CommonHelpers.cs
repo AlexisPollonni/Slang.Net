@@ -13,43 +13,53 @@ public static class CommonHelpers
     public static string ToGlobalFullName(this Class @class)
     {
         var outputNamespace = @class.TranslationUnit.Module.OutputNamespace;
-        
-        var qualifiedNamespaces = @class.GatherParentNamespaces()
+
+        var qualifiedNamespaces = @class
+            .GatherParentNamespaces()
             .Select(decl => decl.Name)
-            .Prepend(outputNamespace)
             .Where(ns => !string.IsNullOrEmpty(ns));
-        
-        return $"global::{string.Join('.', qualifiedNamespaces)}";
+
+        var combined = string.Join('.', qualifiedNamespaces);
+        if (!combined.StartsWith(outputNamespace, StringComparison.Ordinal))
+        {
+            combined = $"{outputNamespace}.{combined}";
+        }
+
+        return $"global::{combined}";
     }
 
-    public static void AddTypeMapForClass(this TypeMapDatabase database, Class @class, TypeMap typeMap)
+    public static void AddTypeMapForClass(
+        this TypeMapDatabase database,
+        Class @class,
+        TypeMap typeMap
+    )
     {
         var key = @class.QualifiedOriginalName;
         var type = new TagType(@class);
-        
+
         if (database.FindTypeMap(type, out _))
         {
             Diagnostics.Warning($"A type map for class {@class.Name} already exists, skipping");
             return;
         }
-        
+
         database.TypeMaps.Add(key, typeMap);
     }
-    
-    
+
     public static bool IsISlangUnknown(this Class potential)
     {
-        return potential.OriginalName == "ISlangUnknown" || potential.HasClassInHierarchy("ISlangUnknown");
+        return potential.OriginalName == "ISlangUnknown"
+            || potential.HasClassInHierarchy("ISlangUnknown");
     }
-    
-    
-    
-    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> source) where T : class
+
+    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> source)
+        where T : class
     {
         return source.Where(item => item is not null)!;
     }
-    
-    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> source) where T : struct
+
+    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> source)
+        where T : struct
     {
         return source.Where(item => item is not null).Select(arg => arg!.Value);
     }
@@ -67,8 +77,5 @@ internal class ReturnAttribute : Attribute
         Value = attribute.Value;
     }
 
-    public ReturnAttribute()
-    {
-        
-    }
+    public ReturnAttribute() { }
 }

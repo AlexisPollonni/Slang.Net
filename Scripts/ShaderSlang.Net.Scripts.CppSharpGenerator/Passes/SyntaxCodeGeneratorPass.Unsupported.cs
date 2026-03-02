@@ -28,7 +28,7 @@ internal sealed partial class SyntaxCodeGeneratorPass
 
     private static SyntaxNode? UnsupportedDeclType<T>(T decl) where T : Declaration
     {
-        Diagnostics.Error($"Declaration of type '{nameof(T)}' is not supported in C# or by the code generator, aborted for declaration '{decl.Name}'");
+        Diagnostics.Error($"Declaration of type '{typeof(T)}' is not supported in C# or by the code generator, aborted for declaration '{decl.Name}'");
         return null;
     }
 

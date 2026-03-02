@@ -20,4 +20,8 @@
   <ItemGroup>
     <Folder Include="Generated\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Generated\slang.back.cs" />
+    <None Include="Generated\slang.back.cs" />
+  </ItemGroup>
 </Project>

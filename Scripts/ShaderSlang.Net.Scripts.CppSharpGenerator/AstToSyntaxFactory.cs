@@ -259,19 +259,22 @@ internal static class AstToSyntaxFactory
 
     public static TypeDeclarationSyntax CreateTypeDeclarationFrom(Class decl)
     {
-        var baseTypesSyntax = decl.Bases
-                                  .Where(b => b.IsGenerated)
-                                  .Select(b => SimpleBaseType(b.Type.ToSyntax()));
-        
-        
         TypeDeclarationSyntax typeSyntax = decl.IsValueType ? StructDeclaration(decl.Name) 
             : decl.IsInterface ? InterfaceDeclaration(decl.Name) : ClassDeclaration(decl.Name);
 
         typeSyntax = typeSyntax.WithDocumentationFrom(decl)
                                .AddAttributeLists(CreateAttributeListsFrom(decl))
-                               .AddModifiers(decl.Access.ToToken(), Token(PartialKeyword))
-                               .WithBaseList(BaseList([..baseTypesSyntax]));
+                               .AddModifiers(decl.Access.ToToken());
 
+        if (decl.HasBase)
+        {
+            var baseTypesSyntax = decl.Bases
+                                      .Where(b => b.IsGenerated)
+                                      .Select(b => SimpleBaseType(b.Type.ToSyntax()));
+            
+            typeSyntax = typeSyntax.WithBaseList(BaseList([..baseTypesSyntax]));
+        }
+        
         if (decl.IsStatic)
         {
             typeSyntax = typeSyntax.AddModifiers(Token(StaticKeyword));
@@ -282,7 +285,7 @@ internal static class AstToSyntaxFactory
             typeSyntax = typeSyntax.AddModifiers(Token(AbstractKeyword));
         }
 
-        return typeSyntax;
+        return typeSyntax.AddModifiers(Token(PartialKeyword));
     }
 
     internal static NameSyntax CreateNameFromParts(params ReadOnlySpan<string> parts)

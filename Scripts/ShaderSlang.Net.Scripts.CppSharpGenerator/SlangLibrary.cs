@@ -1,8 +1,11 @@
 using CppSharp;
 using CppSharp.AST;
 using CppSharp.Passes;
+using CSharpier.Core;
 using CSharpier.Core.CSharp;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 using Shouldly;
 using TruePath;
@@ -10,12 +13,13 @@ using TruePath.SystemIo;
 
 namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
 
-internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outputDirPath) : ILibrary
+internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outputDirPath)
+    : ILibrary
 {
     public void Setup(Driver driver)
     {
         Diagnostics.Level = DiagnosticKind.Debug;
-            
+
         var slangIncludePath = slangRepoPath / "include";
         var slangHeaderPath = slangIncludePath / "slang.h";
         var slangDeprecatedHeaderPath = slangIncludePath / "slang-deprecated.h";
@@ -37,18 +41,22 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
 
         // Since we rewrote the entire code generator we can enable dry run to skip cppsharp's generator since we do so in the postprocess
         opts.DryRun = true;
-        
+
         var compilerModule = opts.AddModule("slang-compiler");
         compilerModule.OutputNamespace = "ShaderSlang.Net.Bindings.Generated";
         compilerModule.IncludeDirs.Add(slangIncludePath.ToString());
-        compilerModule.Headers.AddRange(slangHeaderPath.ToString(), slangDeprecatedHeaderPath.ToString());
+        compilerModule.Headers.AddRange(
+            slangHeaderPath.ToString(),
+            slangDeprecatedHeaderPath.ToString()
+        );
     }
 
     public void SetupPasses(Driver driver)
     {
         // Removes enum member prefixes to match csharp conventions
         //TODO: check if can detect automatically similarly to how was done with ClangSharp script
-        string[] enumMemberPrefixesToRemove = [
+        string[] enumMemberPrefixesToRemove =
+        [
             "SLANG_",
             "SEVERITY_",
             "DIAGNOSTIC_FLAG_",
@@ -89,27 +97,27 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
             "DIAGNOSTIC_FLAG_",
         ];
 
-
-        IEnumerable<TranslationUnitPass> passes = [
-                
+        IEnumerable<TranslationUnitPass> passes =
+        [
             new GenerateStaticClassForFunctionPass("slang_"),
             new GenerateStaticClassForFunctionPass("sp"),
-                
             new FunctionToStaticMethodPass(),
-            ..enumMemberPrefixesToRemove.Select(prefix => new RegexRenamePass($"^{prefix}", string.Empty, RenameTargets.EnumItem)),
-            
-            
-                
+            .. enumMemberPrefixesToRemove.Select(prefix => new RegexRenamePass(
+                $"^{prefix}",
+                string.Empty,
+                RenameTargets.EnumItem
+            )),
+            new RenameEnumItemsCasePass(),
             new CaseRenamePass(RenameTargets.Function, RenameCasePattern.UpperCamelCase),
-                
             new RemoveAmbiguousNamingPrefixPass(),
             new ResolveIncompleteDeclsPass(),
-                
             new GenerateSlangComInterfacesPass(),
-            new GenerateComInterfaceMarshallersPass(),
+            new GenerateMarshallersForClassesPass(),
+            new GenerateTranslationUnitNamespacePass(),
         ];
 
-        foreach (var pass in passes) driver.AddTranslationUnitPass(pass);
+        foreach (var pass in passes)
+            driver.AddTranslationUnitPass(pass);
     }
 
     public void Preprocess(Driver driver, ASTContext ctx)
@@ -117,21 +125,22 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         ctx.IgnoreFunctionWithName("slang::createGlobalSession");
         ctx.IgnoreFunctionWithName("slang::shutdown");
         ctx.IgnoreFunctionWithName("slang::getLastInternalErrorMessage");
-        
-        
+
         ctx.SetClassAsValueType("SlangUUID");
-        
+
         ctx.IgnoreClassWithName("_GUID");
-        
+
         ctx.IgnoreConversionToProperty("ISlangUnknown::release");
         ctx.IgnoreConversionToProperty("ISlangUnknown::Release");
 
         ctx.GenerateEnumFromMacros("SlangFacility", "SLANG_FACILITY_(.*)");
-        
+
         //Fixes small errors in the slang api where enum typedefs are missing from bases
-        ctx.GetEnumWithMatchingItem("SLANG_DIAGNOSTIC_FLAG_TREAT_WARNINGS_AS_ERRORS").Name = "SlangDiagnosticFlags";
+        ctx.GetEnumWithMatchingItem("SLANG_DIAGNOSTIC_FLAG_TREAT_WARNINGS_AS_ERRORS").Name =
+            "SlangDiagnosticFlags";
         ctx.GetEnumWithMatchingItem("SLANG_COMPILE_FLAG_NO_MANGLING").Name = "SlangCompileFlags";
-        ctx.GetEnumWithMatchingItem("SLANG_TARGET_FLAG_GENERATE_WHOLE_PROGRAM").Name = "SlangTargetFlags";
+        ctx.GetEnumWithMatchingItem("SLANG_TARGET_FLAG_GENERATE_WHOLE_PROGRAM").Name =
+            "SlangTargetFlags";
 
         var uuid = ctx.FindClass("SlangUUID").First();
 
@@ -143,11 +152,28 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
     public void Postprocess(Driver driver, ASTContext ctx)
     {
         var pass = new SyntaxCodeGeneratorPass(driver.Context);
-        foreach (var unit in ctx.TranslationUnits)
+
+        foreach (
+            var unit in driver
+                .Context.Options.Modules.SelectMany(module => module.Units.GetGenerated())
+                .Where(u => !u.IsSystemHeader)
+        )
         {
-            var tree = pass.Visit(unit); 
-            
-            var formattedSyntax = CSharpFormatter.Format(tree);
+            var tree = pass.Visit(unit);
+
+            var formatterResult = CSharpFormatter.Format(tree, new() { IncludeGenerated = true });
+            var resultText = formatterResult.CompilationErrors.Any()
+                ? tree.GetRoot().NormalizeWhitespace().ToFullString()
+                : formatterResult.Code;
+
+            foreach (var error in formatterResult.CompilationErrors)
+            {
+                Diagnostics.Error($"Syntax Error : {error} at location {error.Location}");
+            }
+
+            var outputFile =
+                new LocalPath(driver.Options.OutputDir) / $"{unit.FileNameWithoutExtension}.cs";
+            File.WriteAllText(outputFile.ToString(), resultText);
         }
     }
 }

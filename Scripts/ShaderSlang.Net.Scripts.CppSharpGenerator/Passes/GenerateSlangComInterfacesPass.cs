@@ -24,16 +24,15 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
         if (visClass.Name.StartsWith('I') && visClass.IsISlangUnknown())
         {
             TransformNativeToComInterface(visClass);
+            
+            return base.VisitClassDecl(visClass);
         }
 
-        return base.VisitClassDecl(visClass);
+        return false;
     }
 
     public override bool VisitMethodDecl(Method method)
     {
-        if(method.Namespace is not Class containingClass) return base.VisitMethodDecl(method);
-        if (!_processedComInterfaces.Contains(method.Namespace)) return base.VisitMethodDecl(method);
-
         if (method.Access is not AccessSpecifier.Public || method is not
             {
                 IsConstructor: false, IsDestructor: false, IsOperator: false, IsCopyConstructor: false,
@@ -43,8 +42,7 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
             method.OriginalName.Equals("addRef", StringComparison.OrdinalIgnoreCase) ||
             method.OriginalName.Equals("release", StringComparison.OrdinalIgnoreCase))
         {
-            containingClass.Methods.Remove(method);
-            containingClass.Declarations.Remove(method);
+            method.ExplicitlyIgnore();
             
             return false;
         }
@@ -119,7 +117,7 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
 
     private static Guid? FindInterfaceGuid(Class @class)
     {
-        var guidMethod = @class.FindMethod("GetTypeGuid");
+        var guidMethod = @class.FindMethod("getTypeGuid");
         if (guidMethod == null)
         {
             return null;
