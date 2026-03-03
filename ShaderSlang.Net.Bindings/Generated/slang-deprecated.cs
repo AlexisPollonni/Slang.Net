@@ -23,7 +23,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         interface ICompileRequest : global::ShaderSlang.Net.Bindings.Generated.ISlangUnknown { }
     }
 
-    public static partial class Sp { }
+    public static partial class SlangApi { }
 }
 
 namespace Delegates { }

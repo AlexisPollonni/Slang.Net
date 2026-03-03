@@ -99,9 +99,8 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
 
         IEnumerable<TranslationUnitPass> passes =
         [
-            new GenerateStaticClassForFunctionPass("slang_"),
-            new GenerateStaticClassForFunctionPass("sp"),
-            new FunctionToStaticMethodPass(),
+            new GenerateStaticClassForFunctionPass("slang_", "SlangApi"),
+            new GenerateStaticClassForFunctionPass("sp", "SlangApi"),
             .. enumMemberPrefixesToRemove.Select(prefix => new RegexRenamePass(
                 $"^{prefix}",
                 string.Empty,

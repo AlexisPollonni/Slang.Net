@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 namespace ShaderSlang.Net.Bindings.Generated
 {
-    namespace slang
+    namespace Slang
     {
         public enum CompilerOptionName : int
         {
@@ -800,7 +800,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             )
         ]
         public partial interface IEntryPoint
-            : global::ShaderSlang.Net.Bindings.Generated.slang.IComponentType { }
+            : global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType { }
 
         [
             global::System.Runtime.InteropServices.Guid("73eb3147-e544-41b5-b8f0-a244df21940b"),
@@ -809,7 +809,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             )
         ]
         public partial interface ITypeConformance
-            : global::ShaderSlang.Net.Bindings.Generated.slang.IComponentType { }
+            : global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType { }
 
         [
             global::System.Runtime.InteropServices.Guid("9c2a4b3d-7f68-4e91-a52c-8b193e457a9f"),
@@ -834,7 +834,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>In most cases a module corresponds to a single compile "translation unit."This will often be a single `.slang` or `.hlsl` file and everything it`#include`s.</para>
         /// <para>Notably, a module `M` does *not* include the things it `import`s, as theseas distinct modules that `M` depends on. There is a directed graph ofmodule dependencies, and all modules in the graph must belong to thesame session (`ISession`).</para>
         /// A module establishes a namespace for looking up types, functions, etc.
-        interface IModule : global::ShaderSlang.Net.Bindings.Generated.slang.IComponentType { }
+        interface IModule : global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType { }
 
         [
             global::System.Runtime.InteropServices.Guid("8e12e8e3-5fcd-433e-afcb-13a088bc5ee5"),
@@ -2079,7 +2079,5 @@ namespace ShaderSlang.Net.Bindings.Generated
         internal partial class SlangGlobalSessionDescMarshaller { }
     }
 
-    public static partial class Slang { }
-
-    public static partial class Sp { }
+    public static partial class SlangApi { }
 }
