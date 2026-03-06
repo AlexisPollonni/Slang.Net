@@ -78,7 +78,7 @@ internal sealed class GenerateStaticClassForFunctionPass(string functionPrefix, 
             Conversion = MethodConversionKind.FunctionToStaticMethod,
         };
 
-        var libImportAttribute = CreateLibraryImportAttribute(
+        var libImportAttribute = AstAttributeFactory.CreateLibraryImportAttribute(
             function.TranslationUnit.Module.SharedLibraryName,
             function.Mangled,
             StringMarshalling.Utf8
@@ -100,19 +100,5 @@ internal sealed class GenerateStaticClassForFunctionPass(string functionPrefix, 
             staticClass.Name,
             methodName
         );
-    }
-
-    private static Attribute CreateLibraryImportAttribute(
-        string libraryName,
-        string entryPoint,
-        StringMarshalling stringMarshalling
-    )
-    {
-        return new()
-        {
-            Type = typeof(LibraryImportAttribute),
-            Value =
-                $"\"{libraryName}\", EntryPoint = \"{entryPoint}\", StringMarshalling = {typeof(StringMarshalling).ToGlobalFullName()}.{stringMarshalling}",
-        };
     }
 }

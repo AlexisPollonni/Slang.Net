@@ -2480,7 +2480,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public int SetPrintCallback("__IntPtr* callback, void* userData);"
+            public int SetPrintCallback(__IntPtr* callback, void* userData);
         }
     }
 

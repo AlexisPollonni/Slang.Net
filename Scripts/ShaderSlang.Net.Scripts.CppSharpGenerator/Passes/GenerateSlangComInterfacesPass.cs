@@ -7,6 +7,7 @@ using CppSharp.AST;
 using CppSharp.Generators;
 using CppSharp.Passes;
 using CppSharp.Types;
+using static ShaderSlang.Net.Scripts.CppSharpGenerator.AstAttributeFactory;
 using Attribute = CppSharp.AST.Attribute;
 using Type = CppSharp.AST.Type;
 
@@ -162,18 +163,9 @@ internal class GenerateSlangComInterfacesPass : TranslationUnitPass
 
     private static void AddComInterfaceAttributes(Class comInterface, Guid guid)
     {
-        var stringMarshalling =
-            $"global::{typeof(StringMarshalling).FullName}.{nameof(StringMarshalling.Utf8)}";
-
-        var generatedComInterfaceAttr = new Attribute
-        {
-            //TODO: custom string marshalling
-            Type = typeof(GeneratedComInterfaceAttribute),
-            Value = $"StringMarshalling = {stringMarshalling}",
-        };
-
-        var guidAttr = new Attribute { Type = typeof(GuidAttribute), Value = $"\"{guid:D}\"" };
-
-        comInterface.Attributes.AddRange(guidAttr, generatedComInterfaceAttr);
+        comInterface.Attributes.AddRange(
+            CreateGuidAttribute(guid),
+            CreateComInterfaceAttribute(StringMarshalling.Utf8)
+        );
     }
 }

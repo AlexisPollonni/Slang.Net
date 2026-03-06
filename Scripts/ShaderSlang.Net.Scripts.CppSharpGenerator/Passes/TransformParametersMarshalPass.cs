@@ -3,6 +3,7 @@ using CppSharp;
 using CppSharp.AST;
 using CppSharp.AST.Extensions;
 using CppSharp.Passes;
+using static ShaderSlang.Net.Scripts.CppSharpGenerator.AstAttributeFactory;
 using Attribute = CppSharp.AST.Attribute;
 
 namespace ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
@@ -51,14 +52,5 @@ internal sealed class TransformParametersMarshalPass : TranslationUnitPass
         }
 
         return base.VisitParameterDecl(param);
-    }
-
-    private static Attribute CreateMarshalAsAttribute(UnmanagedType unmanagedType)
-    {
-        return new()
-        {
-            Type = typeof(MarshalAsAttribute),
-            Value = $"{typeof(UnmanagedType).ToGlobalFullName()}.{unmanagedType}",
-        };
     }
 }

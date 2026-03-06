@@ -1,15 +1,9 @@
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
-using CppSharp;
 using CppSharp.AST;
 using CppSharp.AST.Extensions;
-using CppSharp.Generators;
 using CppSharp.Passes;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Attribute = CppSharp.AST.Attribute;
-using Type = CppSharp.AST.Type;
+using static ShaderSlang.Net.Scripts.CppSharpGenerator.AstAttributeFactory;
 
 namespace ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 
@@ -192,40 +186,5 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
         }
 
         return base.VisitParameterDecl(parameter);
-    }
-
-    private static Attribute CreateStructLayoutAttribute(LayoutKind kind, int size)
-    {
-        return new()
-        {
-            Type = typeof(StructLayoutAttribute),
-            Value = $"{typeof(LayoutKind).ToGlobalFullName()}.{kind}, Size = {size}",
-        };
-    }
-
-    private static Attribute CreateFieldOffsetAttribute(uint offset)
-    {
-        return new() { Type = typeof(FieldOffsetAttribute), Value = offset.ToString() };
-    }
-
-    private static Attribute CreateNativeMarshallingAttribute(Class marshallerType)
-    {
-        var value = $"typeof({marshallerType.ToGlobalFullName()})";
-
-        return new() { Type = typeof(NativeMarshallingAttribute), Value = value };
-    }
-
-    private static Attribute CreateCustomMarshallerAttribute(
-        Class managedType,
-        MarshalMode marshalMode,
-        Class marshallerType
-    )
-    {
-        return new()
-        {
-            Type = typeof(CustomMarshallerAttribute),
-            Value =
-                $"typeof({managedType.ToGlobalFullName()}), {typeof(MarshalMode).ToGlobalFullName()}.{marshalMode}, typeof({marshallerType.ToGlobalFullName()})",
-        };
     }
 }
