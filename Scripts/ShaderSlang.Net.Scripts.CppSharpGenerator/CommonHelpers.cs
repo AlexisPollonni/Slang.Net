@@ -28,24 +28,6 @@ public static class CommonHelpers
         return $"global::{combined}";
     }
 
-    public static void AddTypeMapForClass(
-        this TypeMapDatabase database,
-        Class @class,
-        TypeMap typeMap
-    )
-    {
-        var key = @class.QualifiedOriginalName;
-        var type = new TagType(@class);
-
-        if (database.FindTypeMap(type, out _))
-        {
-            Diagnostics.Warning($"A type map for class {@class.Name} already exists, skipping");
-            return;
-        }
-
-        database.TypeMaps.Add(key, typeMap);
-    }
-
     public static bool IsISlangUnknown(this Class potential)
     {
         return potential.OriginalName == "ISlangUnknown"
