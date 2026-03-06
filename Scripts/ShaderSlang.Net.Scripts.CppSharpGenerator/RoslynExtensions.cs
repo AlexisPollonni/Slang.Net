@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using CppSharp;
 using CppSharp.AST;
 using CppSharp.AST.Extensions;
@@ -38,15 +39,17 @@ public static class RoslynExtensions
             PrimitiveType.Float128 => PredefinedType(Token(SyntaxKind.DecimalKeyword)),
             PrimitiveType.Decimal => PredefinedType(Token(SyntaxKind.DecimalKeyword)),
             PrimitiveType.String => PredefinedType(Token(SyntaxKind.StringKeyword)),
-            _ => null
+            _ => null,
         };
 
     public static TypeSyntax ToSyntax(this CILType cilType)
     {
         var globalFullName = cilType.Type.ToGlobalFullName();
 
-        return ParseTypeName(globalFullName) as IdentifierNameSyntax ??
-               throw new InvalidOperationException($"Failed to parse type name '{globalFullName}' into a valid syntax node");
+        return ParseTypeName(globalFullName) as IdentifierNameSyntax
+            ?? throw new InvalidOperationException(
+                $"Failed to parse type name '{globalFullName}' into a valid syntax node"
+            );
     }
 
     [SuppressMessage("ReSharper", "TailRecursiveCall")]
@@ -119,37 +122,43 @@ public static class RoslynExtensions
 
     public static TypeSyntax ToSyntax(this QualifiedType qualifiedType)
     {
-        var baseTypeSyntax = ToSyntax(qualifiedType.Type);
+        var baseTypeSyntax = qualifiedType.Type.ToSyntax();
 
         // TODO: Handle qualifiers (const, volatile, pointers, references) if needed. C# has no direct equivalents for some of these
 
         return baseTypeSyntax;
     }
 
-    extension<T>(T node) where T : SyntaxNode
+    public static T WithDocumentationFrom<T>(this T node, Declaration decl)
+        where T : SyntaxNode
     {
-        public T WithDocumentationFrom(Declaration decl)
+        var rawComment = decl.Comment;
+        if (rawComment is null)
         {
-            var rawComment = decl.Comment;
-            if (rawComment is null)
-            {
-                return node;
-            }
-
-            if (rawComment.IsInvalid)
-            {
-                Diagnostics.Warning($"Comment for declaration {decl} is invalid, it will not be generated");
-                return node;
-            }
-
-            var documentationTrivia = AstToSyntaxFactory.CreateDocumentationTriviaFrom(rawComment.FullComment);
-
-            var newNode = node.HasLeadingTrivia
-                ? node.InsertTriviaAfter(node.GetLeadingTrivia().Last(), [documentationTrivia])
-                : node.WithLeadingTrivia(documentationTrivia);
-
-            return newNode;
+            return node;
         }
+
+        if (rawComment.IsInvalid)
+        {
+            Diagnostics.Warning(
+                $"Comment for declaration {decl} is invalid, it will not be generated"
+            );
+            return node;
+        }
+
+        var documentationTrivia = AstToSyntaxFactory.CreateDocumentationTriviaFrom(
+            rawComment.FullComment
+        );
+
+        var syntaxToAttachTo = node.DescendantNodesAndTokens().FirstOrDefault(node);
+
+        var newTriviaList = syntaxToAttachTo.GetLeadingTrivia().Insert(0, documentationTrivia);
+
+        var syntaxWithDoc = syntaxToAttachTo.WithLeadingTrivia(newTriviaList);
+
+        return syntaxWithDoc.IsNode
+            ? node.ReplaceNode(syntaxToAttachTo.AsNode()!, syntaxWithDoc.AsNode()!)
+            : node.ReplaceToken(syntaxToAttachTo.AsToken(), syntaxWithDoc.AsToken());
     }
 
     public static SyntaxToken ToToken(this AccessSpecifier access) =>
@@ -159,6 +168,6 @@ public static class RoslynExtensions
             AccessSpecifier.Protected => Token(SyntaxKind.ProtectedKeyword),
             AccessSpecifier.Internal => Token(SyntaxKind.InternalKeyword),
             AccessSpecifier.Public => Token(SyntaxKind.PublicKeyword),
-            _ => throw new ArgumentOutOfRangeException(nameof(access), access, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(access), access, null),
         };
 }
