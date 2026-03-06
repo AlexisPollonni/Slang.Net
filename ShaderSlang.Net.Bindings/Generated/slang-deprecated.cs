@@ -12,18 +12,3820 @@ namespace ShaderSlang.Net.Bindings.Generated
 {
     namespace Slang
     {
+        /// <summary> A request for one or more compilation actions to be performed.</summary>
         [
             global::System.Runtime.InteropServices.Guid("96d33993-317c-4db5-afd8-666ee77248e2"),
             global::System.Runtime.InteropServices.Marshalling.GeneratedComInterface(
                 StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
             )
         ]
-        public partial
-        /// <summary> A request for one or more compilation actions to be performed.</summary>
-        interface ICompileRequest : global::ShaderSlang.Net.Bindings.Generated.ISlangUnknown { }
+        public unsafe partial interface ICompileRequest
+            : global::ShaderSlang.Net.Bindings.Generated.ISlangUnknown
+        {
+            /// <summary> Set the filesystem hook to use for a compile request</summary>
+            /// <para>    The provided `fileSystem` will be used to load any files that    need to be loaded during processing of the compile `request`.    This includes:</para>
+            /// <para>      - Source files loaded via `spAddTranslationUnitSourceFile`      - Files referenced via `#include`      - Files loaded to resolve `#import` operations</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetFileSystem(
+                global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* fileSystem
+            );
+
+            /// <summary>    </summary>
+            /// <summary> Set flags to be used for compilation.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetCompileFlags(uint flags);
+
+            /// <summary>    </summary>
+            /// <summary> Returns the compilation flags previously set with `setCompileFlags`</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public uint GetCompileFlags();
+
+            /// <summary>    </summary>
+            /// <summary> Set whether to dump intermediate results (for debugging) or not.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetDumpIntermediates(int enable);
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetDumpIntermediatePrefix(char* prefix);
+
+            /// <summary>    </summary>
+            /// <summary> Set whether (and how) `#line` directives should be output.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetLineDirectiveMode(
+                global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode
+            );
+
+            /// <summary>    </summary>
+            /// <summary> Sets the target for code generation.    </summary>
+            /// <param name="target"> The code generation target. Possible values are:    - SLANG_GLSL. Generates GLSL code.    - SLANG_HLSL. Generates HLSL code.    - SLANG_SPIRV. Generates SPIR-V code.</param>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetCodeGenTarget(
+                global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target
+            );
+
+            /// <summary>    </summary>
+            /// <summary> Add a code-generation target to be used.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int AddCodeGenTarget(
+                global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetProfile(
+                int targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.SlangProfileID profile
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetFlags(int targetIndex, uint flags);
+
+            /// <summary>    </summary>
+            /// <summary> Set the floating point mode (e.g., precise or fast) to use a target.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetFloatingPointMode(
+                int targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.SlangFloatingPointMode mode
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetMatrixLayoutMode(
+                int targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetMatrixLayoutMode(
+                global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode
+            );
+
+            /// <summary>    </summary>
+            /// <summary> Set the level of debug information to produce.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetDebugInfoLevel(
+                global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoLevel level
+            );
+
+            /// <summary>    </summary>
+            /// <summary> Set the level of optimization to perform.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetOptimizationLevel(
+                global::ShaderSlang.Net.Bindings.Generated.SlangOptimizationLevel level
+            );
+
+            /// <summary>    </summary>
+            /// <summary> Set the container format to be used for binary output.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetOutputContainerFormat(
+                global::ShaderSlang.Net.Bindings.Generated.SlangContainerFormat format
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetPassThrough(
+                global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetDiagnosticCallback(__IntPtr* callback, void* userData);
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetWriter(
+                global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel,
+                global::ShaderSlang.Net.Bindings.Generated.ISlangWriter* writer
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public global::ShaderSlang.Net.Bindings.Generated.ISlangWriter* GetWriter(
+                global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel
+            );
+
+            /// <summary>    </summary>
+            /// <summary> Add a path to use when searching for referenced files.    This will be used for both `#include` directives and also for explicit `__import` declarations.    </summary>
+            /// <param name="ctx"> The compilation context.    </param>
+            /// <param name="searchDir"> The additional search directory.</param>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void AddSearchPath(char* searchDir);
+
+            /// <summary>    </summary>
+            /// <summary> Add a macro definition to be used during preprocessing.    </summary>
+            /// <param name="key"> The name of the macro to define.    </param>
+            /// <param name="value"> The value of the macro to define.</param>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void AddPreprocessorDefine(char* key, char* value);
+
+            /// <summary>    </summary>
+            /// <summary> Set options using arguments as if specified via command line.    </summary>
+            /// <returns> Returns SlangResult. On success SLANG_SUCCEEDED(result) is true.</returns>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int ProcessCommandLineArguments(char** args, int argCount);
+
+            /// <summary> Add a distinct translation unit to the compilation request</summary>
+            /// <para>    `name` is optional.    Returns the zero-based index of the translation unit created.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int AddTranslationUnit(
+                global::ShaderSlang.Net.Bindings.Generated.SlangSourceLanguage language,
+                char* name
+            );
+
+            /// <summary><para> Set a default module name. Translation units will default to this module name if one is not    passed. If not set each translation unit will get a unique name.</para></summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetDefaultModuleName(char* defaultModuleName);
+
+            /// <summary> Add a preprocessor definition that is scoped to a single translation unit.</summary>
+            ///
+            /// <param name="translationUnitIndex"> The index of the translation unit to get the definition.    </param>
+            /// <param name="key"> The name of the macro to define.    </param>
+            /// <param name="value"> The value of the macro to define.</param>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void AddTranslationUnitPreprocessorDefine(
+                int translationUnitIndex,
+                char* key,
+                char* value
+            );
+
+            /// <summary> Add a source file to the given translation unit.</summary>
+            /// <para>    If a user-defined file system has been specified via    `spSetFileSystem`, then it will be used to load the    file at `path`. Otherwise, Slang will use the OS    file system.</para>
+            /// <para>    This function does *not* search for a file using    the registered search paths (`spAddSearchPath`),    and instead using the given `path` as-is.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void AddTranslationUnitSourceFile(int translationUnitIndex, char* path);
+
+            /// <summary> Add a source string to the given translation unit.</summary>
+            ///
+            /// <param name="translationUnitIndex"> The index of the translation unit to add source to.    </param>
+            /// <param name="path"> The file-system path that should be assumed for the source code.    </param>
+            /// <param name="source"> A null-terminated UTF-8 encoded string of source code.</param>
+            /// <para>    The implementation will make a copy of the source code data.    An application may free the buffer immediately after this call returns.</para>
+            /// <para>    The `path` will be used in any diagnostic output, as well    as to determine the base path when resolving relative    `#include`s.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void AddTranslationUnitSourceString(
+                int translationUnitIndex,
+                char* path,
+                char* source
+            );
+
+            /// <summary><para> Add a slang library - such that its contents can be referenced during linking.    This is equivalent to the -r command line option.</para></summary>
+            ///
+            /// <param name="basePath"> The base path used to lookup referenced modules.    </param>
+            /// <param name="libData"> The library data    </param>
+            /// <param name="libDataSize"> The size of the library data</param>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int AddLibraryReference(char* basePath, void* libData, ulong libDataSize);
+
+            /// <summary> Add a source string to the given translation unit.</summary>
+            ///
+            /// <param name="translationUnitIndex"> The index of the translation unit to add source to.    </param>
+            /// <param name="path"> The file-system path that should be assumed for the source code.    </param>
+            /// <param name="sourceBegin"> A pointer to a buffer of UTF-8 encoded source code.    </param>
+            /// <param name="sourceEnd"> A pointer to to the end of the buffer specified in `sourceBegin`</param>
+            /// <para>    The implementation will make a copy of the source code data.    An application may free the buffer immediately after this call returns.</para>
+            /// <para>    The `path` will be used in any diagnostic output, as well    as to determine the base path when resolving relative    `#include`s.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void AddTranslationUnitSourceStringSpan(
+                int translationUnitIndex,
+                char* path,
+                char* sourceBegin,
+                char* sourceEnd
+            );
+
+            /// <summary> Add a blob of source code to the given translation unit.</summary>
+            ///
+            /// <param name="translationUnitIndex"> The index of the translation unit to add source to.    </param>
+            /// <param name="path"> The file-system path that should be assumed for the source code.    </param>
+            /// <param name="sourceBlob"> A blob containing UTF-8 encoded source code.    </param>
+            /// <param name="sourceEnd"> A pointer to to the end of the buffer specified in `sourceBegin`</param>
+            ///     The compile request will retain a reference to the blob.
+            /// <para>    The `path` will be used in any diagnostic output, as well    as to determine the base path when resolving relative    `#include`s.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void AddTranslationUnitSourceBlob(
+                int translationUnitIndex,
+                char* path,
+                global::ShaderSlang.Net.Bindings.Generated.ISlangBlob* sourceBlob
+            );
+
+            /// <summary> Add an entry point in a particular translation unit</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int AddEntryPoint(
+                int translationUnitIndex,
+                char* name,
+                global::ShaderSlang.Net.Bindings.Generated.SlangStage stage
+            );
+
+            /// <summary><para> Add an entry point in a particular translation unit,        with additional arguments that specify the concrete        type names for entry-point generic type parameters.</para></summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int AddEntryPointEx(
+                int translationUnitIndex,
+                char* name,
+                global::ShaderSlang.Net.Bindings.Generated.SlangStage stage,
+                int genericArgCount,
+                char** genericArgs
+            );
+
+            /// <summary> Specify the arguments to use for global generic parameters.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int SetGlobalGenericArgs(int genericArgCount, char** genericArgs);
+
+            /// <summary> Specify the concrete type to be used for a global "existential slot."</summary>
+            /// <para>    Every shader parameter (or leaf field of a `struct`-type shader parameter)    that has an interface or array-of-interface type introduces an existential    slot. The number of slots consumed by a shader parameter, and the starting    slot of each parameter can be queried via the reflection API using    `SLANG_PARAMETER_CATEGORY_EXISTENTIAL_TYPE_PARAM`.</para>
+            /// <para>    In order to generate specialized code, a concrete type needs to be specified    for each existential slot. This function specifies the name of the type    (or in general a type *expression*) to use for a specific slot at the    global scope.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int SetTypeNameForGlobalExistentialTypeParam(int slotIndex, char* typeName);
+
+            /// <summary> Specify the concrete type to be used for an entry-point "existential slot."</summary>
+            /// <para>    Every shader parameter (or leaf field of a `struct`-type shader parameter)    that has an interface or array-of-interface type introduces an existential    slot. The number of slots consumed by a shader parameter, and the starting    slot of each parameter can be queried via the reflection API using    `SLANG_PARAMETER_CATEGORY_EXISTENTIAL_TYPE_PARAM`.</para>
+            /// <para>    In order to generate specialized code, a concrete type needs to be specified    for each existential slot. This function specifies the name of the type    (or in general a type *expression*) to use for a specific slot at the    entry-point scope.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int SetTypeNameForEntryPointExistentialTypeParam(
+                int entryPointIndex,
+                int slotIndex,
+                char* typeName
+            );
+
+            /// <summary> Enable or disable an experimental, best-effort GLSL frontend</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetAllowGLSLInput(
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            /// <summary> Execute the compilation request.</summary>
+            ///
+            /// <remarks>  SlangResult, SLANG_OK on success. Use SLANG_SUCCEEDED() and SLANG_FAILED() to test    SlangResult.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int Compile();
+
+            /// <summary> Get any diagnostic messages reported by the compiler.</summary>
+            ///
+            /// <remarks> A null-terminated UTF-8 encoded string of diagnostic messages.</remarks>
+            /// <para>    The returned pointer is only guaranteed to be valid    until `request` is destroyed. Applications that wish to    hold on to the diagnostic output for longer should use    `getDiagnosticOutputBlob`.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public char* GetDiagnosticOutput();
+
+            /// <summary> Get diagnostic messages reported by the compiler.</summary>
+            ///
+            /// <param name="outBlob"> A pointer to receive a blob holding a nul-terminated UTF-8 encoded string of    diagnostic messages.    </param>
+            /// <remarks> A `SlangResult` indicating success or failure.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetDiagnosticOutputBlob(
+                global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+            );
+
+            /// <summary> Get the number of files that this compilation depended on.</summary>
+            /// <para>    This includes both the explicit source files, as well as any    additional files that were transitively referenced (e.g., via    a `#include` directive).</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetDependencyFileCount();
+
+            /// <summary> Get the path to a file this compilation depended on.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public char* GetDependencyFilePath(int index);
+
+            /// <summary> Get the number of translation units associated with the compilation request</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetTranslationUnitCount();
+
+            /// <summary> Get the output source code associated with a specific entry point.</summary>
+            ///     The lifetime of the output pointer is the same as `request`.
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public char* GetEntryPointSource(int entryPointIndex);
+
+            /// <summary> Get the output bytecode associated with a specific entry point.</summary>
+            ///     The lifetime of the output pointer is the same as `request`.
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void* GetEntryPointCode(int entryPointIndex, ulong* outSize);
+
+            /// <summary> Get the output code associated with a specific entry point.</summary>
+            ///
+            /// <param name="entryPointIndex"> The index of the entry point to get code for.    </param>
+            /// <param name="targetIndex"> The index of the target to get code for (default: zero).    </param>
+            /// <param name="outBlob"> A pointer that will receive the blob of code    </param>
+            /// <remarks> A `SlangResult` to indicate success or failure.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetEntryPointCodeBlob(
+                int entryPointIndex,
+                int targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+            );
+
+            /// <summary> Get entry point 'callable' functions accessible through the ISlangSharedLibrary interface.</summary>
+            ///     That the functions remain in scope as long as the ISlangSharedLibrary interface is in scope.
+            ///     NOTE! Requires a compilation target of SLANG_HOST_CALLABLE.
+            ///
+            /// <param name="entryPointIndex">  The index of the entry point to get code for.    </param>
+            /// <param name="targetIndex">      The index of the target to get code for (default: zero).    </param>
+            /// <param name="outSharedLibrary"> A pointer to a ISharedLibrary interface which functions can be queried    on.    </param>
+            /// <remarks>                A `SlangResult` to indicate success or failure.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetEntryPointHostCallable(
+                int entryPointIndex,
+                int targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary** outSharedLibrary
+            );
+
+            /// <summary> Get the output code associated with a specific target.</summary>
+            ///
+            /// <param name="targetIndex"> The index of the target to get code for (default: zero).    </param>
+            /// <param name="outBlob"> A pointer that will receive the blob of code    </param>
+            /// <remarks> A `SlangResult` to indicate success or failure.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetTargetCodeBlob(
+                int targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+            );
+
+            /// <summary> Get 'callable' functions for a target accessible through the ISlangSharedLibrary interface.</summary>
+            ///     That the functions remain in scope as long as the ISlangSharedLibrary interface is in scope.
+            ///     NOTE! Requires a compilation target of SLANG_HOST_CALLABLE.
+            ///
+            /// <param name="targetIndex">      The index of the target to get code for (default: zero).    </param>
+            /// <param name="outSharedLibrary"> A pointer to a ISharedLibrary interface which functions can be queried    on.    </param>
+            /// <remarks>                A `SlangResult` to indicate success or failure.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetTargetHostCallable(
+                int targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary** outSharedLibrary
+            );
+
+            /// <summary> Get the output bytecode associated with an entire compile request.</summary>
+            ///     The lifetime of the output pointer is the same as `request` and the last spCompile.
+            ///
+            /// <param name="outSize">          The size of the containers contents in bytes. Will be zero if there is    no code available.    </param>
+            /// <remarks>                Pointer to start of the contained data, or nullptr if there is no code    available.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void* GetCompileRequestCode(ulong* outSize);
+
+            /// <summary><para> Get the compilation result as a file system.    The result is not written to the actual OS file system, but is made available as an    in memory representation.</para></summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public global::ShaderSlang.Net.Bindings.Generated.ISlangMutableFileSystem* GetCompileRequestResultAsFileSystem();
+
+            /// <summary><para> Return the container code as a blob. The container blob is created as part of a compilation    (with spCompile), and a container is produced with a suitable ContainerFormat.</para></summary>
+            ///
+            /// <param name="outSize">          The blob containing the container data.    </param>
+            /// <remarks>                A `SlangResult` to indicate success or failure.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetContainerCode(
+                global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+            );
+
+            /// <summary> Load repro from memory specified.</summary>
+            ///     Should only be performed on a newly created request.
+            /// <para>    NOTE! When using the fileSystem, files will be loaded via their `unique names` as if they are    part of the flat file system. This mechanism is described more fully in docs/repro.md.</para>
+            ///
+            /// <param name="fileSystem">       An (optional) filesystem. Pass nullptr to just use contents of repro    held in data.    </param>
+            /// <param name="data">             The data to load from.    </param>
+            /// <param name="size">             The size of the data to load from.    </param>
+            /// <remarks>                A `SlangResult` to indicate success or failure.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int LoadRepro(
+                global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* fileSystem,
+                void* data,
+                ulong size
+            );
+
+            /// <summary><para> Save repro state. Should *typically* be performed after spCompile, so that everything    that is needed for a compilation is available.</para></summary>
+            ///
+            /// <param name="outBlob">          Blob that will hold the serialized state    </param>
+            /// <remarks>                A `SlangResult` to indicate success or failure.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int SaveRepro(global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob);
+
+            /// <summary> Enable repro capture.</summary>
+            /// <para>    Should be set after any ISlangFileSystem has been set, but before any compilation. It ensures    that everything that the ISlangFileSystem accesses will be correctly recorded. Note that if a    ISlangFileSystem/ISlangFileSystemExt isn't explicitly set (ie the default is used), then the    request will automatically be set up to record everything appropriate.</para>
+            ///
+            /// <remarks>                A `SlangResult` to indicate success or failure.</remarks>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int EnableReproCapture();
+
+            /// <summary> Get the (linked) program for a compile request.</summary>
+            /// <para>    The linked program will include all of the global-scope modules for the    translation units in the program, plus any modules that they `import`    (transitively), specialized to any global specialization arguments that    were provided via the API.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetProgram(
+                global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType** outProgram
+            );
+
+            /// <summary> Get the (partially linked) component type for an entry point.</summary>
+            /// <para>    The returned component type will include the entry point at the    given index, and will be specialized using any specialization arguments    that were provided for it via the API.</para>
+            /// <para>    The returned component will *not* include the modules representing    the global scope and its dependencies/specialization, so a client    program will typically want to compose this component type with    the one returned by `spCompileRequest_getProgram` to get a complete    and usable component type from which kernel code can be requested.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetEntryPoint(
+                long entryPointIndex,
+                global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType** outEntryPoint
+            );
+
+            /// <summary> Get the (un-linked) module for a translation unit.</summary>
+            /// <para>    The returned module will not be linked against any dependencies,    nor against any entry points (even entry points declared inside    the module). Similarly, the module will not be specialized    to the arguments that might have been provided via the API.</para>
+            /// <para>    This function provides an atomic unit of loaded code that    is suitable for looking up types and entry points in the    given module, and for linking together to produce a composite    program that matches the needs of an application.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetModule(
+                long translationUnitIndex,
+                global::ShaderSlang.Net.Bindings.Generated.Slang.IModule** outModule
+            );
+
+            /// <summary><para> Get the `ISession` handle behind the `SlangCompileRequest`.    TODO(JS): Arguably this should just return the session pointer.</para></summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetSession(
+                global::ShaderSlang.Net.Bindings.Generated.Slang.ISession** outSession
+            );
+
+            /// <summary> get reflection data from a compilation request </summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* GetReflection();
+
+            /// <summary> Make output specially handled for command line output </summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetCommandLineCompilerMode();
+
+            /// <summary> Add a defined capability that should be assumed available on the target </summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int AddTargetCapability(
+                long targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID capability
+            );
+
+            /// <summary> Get the (linked) program for a compile request, including all entry points.</summary>
+            /// <para>    The resulting program will include all of the global-scope modules for the    translation units in the program, plus any modules that they `import`    (transitively), specialized to any global specialization arguments that    were provided via the API, as well as all entry points specified for compilation,    specialized to their entry-point specialization arguments.</para>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetProgramWithEntryPoints(
+                global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType** outProgram
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int IsParameterLocationUsed(
+                long entryPointIndex,
+                long targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category,
+                ulong spaceIndex,
+                ulong registerIndex,
+                ref bool outUsed
+            );
+
+            /// <summary> Set the line directive mode for a target.</summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetLineDirectiveMode(
+                long targetIndex,
+                global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode
+            );
+
+            /// <summary><para> Set whether to use scalar buffer layouts for GLSL/Vulkan targets.        If true, the generated GLSL/Vulkan code will use `scalar` layout for storage buffers.        If false, the resulting code will std430 for storage buffers.</para></summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetForceGLSLScalarBufferLayout(
+                int targetIndex,
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool forceScalarLayout
+            );
+
+            /// <summary> Overrides the severity of a specific diagnostic message.</summary>
+            ///
+            /// <param name="messageID">            Numeric identifier of the message to override,                                as defined in the 1st parameter of the DIAGNOSTIC macro.    </param>
+            /// <param name="overrideSeverity">     New severity of the message. If the message is originally Error or    Fatal, the new severity cannot be lower than that.</param>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void OverrideDiagnosticSeverity(
+                long messageID,
+                global::ShaderSlang.Net.Bindings.Generated.SlangSeverity overrideSeverity
+            );
+
+            /// <summary> Returns the currently active flags of the request's diagnostic sink. </summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetDiagnosticFlags();
+
+            /// <summary><para> Sets the flags of the request's diagnostic sink.        The previously specified flags are discarded. </para></summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetDiagnosticFlags(int flags);
+
+            /// <summary> Set the debug format to be used for debugging information </summary>
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetDebugInfoFormat(
+                global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoFormat debugFormat
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetEnableEffectAnnotations(
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetReportDownstreamTime(
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetReportPerfBenchmark(
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetSkipSPIRVValidation(
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetUseMinimumSlangOptimization(
+                int targetIndex,
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetIgnoreCapabilityCheck(
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public int GetCompileTimeProfile(
+                global::ShaderSlang.Net.Bindings.Generated.ISlangProfiler** compileTimeProfile,
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool shouldClear
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetGenerateWholeProgram(
+                int targetIndex,
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetForceDXLayout(
+                int targetIndex,
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetEmbedDownstreamIR(
+                int targetIndex,
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+
+            [
+                global::System.Runtime.InteropServices.PreserveSig(),
+                global::System.Runtime.InteropServices.UnmanagedCallConv(
+                    CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
+                )
+            ]
+            public void SetTargetForceCLayout(
+                int targetIndex,
+                [global::System.Runtime.InteropServices.MarshalAs(
+                    global::System.Runtime.InteropServices.UnmanagedType.I1
+                )]
+                    bool value
+            );
+        }
     }
 
-    public static partial class SlangApi { }
-}
+    public static unsafe partial class SlangApi
+    {
+        /// <summary>    </summary>
+        /// <summary> Initialize an instance of the Slang library.</summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spCreateSession",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* CreateSession(
+            char* deprecated
+        );
 
-namespace Delegates { }
+        /// <summary>    </summary>
+        /// <summary> Clean up after an instance of the Slang library.</summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spDestroySession",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void DestroySession(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::IGlobalSession::setSharedLibraryLoader</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSessionSetSharedLibraryLoader",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SessionSetSharedLibraryLoader(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader* loader
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::IGlobalSession::getSharedLibraryLoader</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSessionGetSharedLibraryLoader",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader* SessionGetSharedLibraryLoader(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::IGlobalSession::checkCompileTargetSupport</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSessionCheckCompileTargetSupport",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int SessionCheckCompileTargetSupport(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
+            global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::IGlobalSession::checkPassThroughSupport</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSessionCheckPassThroughSupport",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int SessionCheckPassThroughSupport(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
+            global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::IGlobalSession::addBuiltins</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddBuiltins",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void AddBuiltins(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
+            char* sourcePath,
+            char* sourceString
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spCreateCompileRequest",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* CreateCompileRequest(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session
+        );
+
+        /// <summary>    </summary>
+        /// <summary> Destroy a compile request.    Note a request is a COM object and can be destroyed via 'Release'.</summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spDestroyCompileRequest",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void DestroyCompileRequest(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setFileSystem </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetFileSystem",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetFileSystem(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* fileSystem
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setCompileFlags </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetCompileFlags",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetCompileFlags(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            uint flags
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getCompileFlags </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetCompileFlags",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint GetCompileFlags(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setDumpIntermediates </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetDumpIntermediates",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetDumpIntermediates(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int enable
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setDumpIntermediatePrefix </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetDumpIntermediatePrefix",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetDumpIntermediatePrefix(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            char* prefix
+        );
+
+        /// <summary><para> DEPRECATED: use `spSetTargetLineDirectiveMode` instead.        </para></summary>
+        /// <remarks> slang::ICompileRequest::setLineDirectiveMode </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetLineDirectiveMode",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetLineDirectiveMode(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setTargetLineDirectiveMode </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetTargetLineDirectiveMode",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetTargetLineDirectiveMode(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.SlangLineDirectiveMode mode
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setTargetLineDirectiveMode </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetTargetForceGLSLScalarBufferLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetTargetForceGLSLScalarBufferLayout(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            [global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            )]
+                bool forceScalarLayout
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setTargetUseMinimumSlangOptimization </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetTargetUseMinimumSlangOptimization",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetTargetUseMinimumSlangOptimization(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            [global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            )]
+                bool val
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setIgnoreCapabilityCheck </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetIgnoreCapabilityCheck",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetIgnoreCapabilityCheck(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            [global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            )]
+                bool val
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setCodeGenTarget </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetCodeGenTarget",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetCodeGenTarget(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addCodeGenTarget </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddCodeGenTarget",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int AddCodeGenTarget(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangCompileTarget target
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setTargetProfile </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetTargetProfile",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetTargetProfile(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.SlangProfileID profile
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setTargetFlags </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetTargetFlags",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetTargetFlags(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            uint flags
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setTargetFloatingPointMode </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetTargetFloatingPointMode",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetTargetFloatingPointMode(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.SlangFloatingPointMode mode
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addTargetCapability </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddTargetCapability",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void AddTargetCapability(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID capability
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetTargetMatrixLayoutMode",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetTargetMatrixLayoutMode(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setMatrixLayoutMode </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetMatrixLayoutMode",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetMatrixLayoutMode(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode mode
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setDebugInfoLevel </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetDebugInfoLevel",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetDebugInfoLevel(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoLevel level
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setDebugInfoFormat </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetDebugInfoFormat",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetDebugInfoFormat(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangDebugInfoFormat format
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setOptimizationLevel </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetOptimizationLevel",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetOptimizationLevel(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangOptimizationLevel level
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setOutputContainerFormat </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetOutputContainerFormat",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetOutputContainerFormat(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangContainerFormat format
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setPassThrough </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetPassThrough",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetPassThrough(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setDiagnosticCallback </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetDiagnosticCallback",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetDiagnosticCallback(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            __IntPtr* callback,
+            void* userData
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setWriter </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetWriter",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetWriter(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangWriter* writer
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getWriter </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetWriter",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.ISlangWriter* GetWriter(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addSearchPath </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddSearchPath",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void AddSearchPath(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            char* searchDir
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addPreprocessorDefine </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddPreprocessorDefine",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void AddPreprocessorDefine(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            char* key,
+            char* value
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::processCommandLineArguments </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spProcessCommandLineArguments",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ProcessCommandLineArguments(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            char** args,
+            int argCount
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addTranslationUnit </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddTranslationUnit",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int AddTranslationUnit(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.SlangSourceLanguage language,
+            char* name
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setDefaultModuleName </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetDefaultModuleName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetDefaultModuleName(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            char* defaultModuleName
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addPreprocessorDefine </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spTranslationUnit_addPreprocessorDefine",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void TranslationUnit_addPreprocessorDefine(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int translationUnitIndex,
+            char* key,
+            char* value
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addTranslationUnitSourceFile </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddTranslationUnitSourceFile",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void AddTranslationUnitSourceFile(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int translationUnitIndex,
+            char* path
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addTranslationUnitSourceString </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddTranslationUnitSourceString",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void AddTranslationUnitSourceString(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int translationUnitIndex,
+            char* path,
+            char* source
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addLibraryReference </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddLibraryReference",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int AddLibraryReference(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            char* basePath,
+            void* libData,
+            ulong libDataSize
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addTranslationUnitSourceStringSpan </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddTranslationUnitSourceStringSpan",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void AddTranslationUnitSourceStringSpan(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int translationUnitIndex,
+            char* path,
+            char* sourceBegin,
+            char* sourceEnd
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addTranslationUnitSourceBlob </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddTranslationUnitSourceBlob",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void AddTranslationUnitSourceBlob(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int translationUnitIndex,
+            char* path,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob* sourceBlob
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::IGlobalSession::findProfile </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spFindProfile",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangProfileID FindProfile(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
+            char* name
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::IGlobalSession::findCapability </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spFindCapability",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID FindCapability(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
+            char* name
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addEntryPoint </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddEntryPoint",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int AddEntryPoint(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int translationUnitIndex,
+            char* name,
+            global::ShaderSlang.Net.Bindings.Generated.SlangStage stage
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::addEntryPointEx </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spAddEntryPointEx",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int AddEntryPointEx(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int translationUnitIndex,
+            char* name,
+            global::ShaderSlang.Net.Bindings.Generated.SlangStage stage,
+            int genericArgCount,
+            char** genericArgs
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setGlobalGenericArgs </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetGlobalGenericArgs",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int SetGlobalGenericArgs(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int genericArgCount,
+            char** genericArgs
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setTypeNameForGlobalExistentialTypeParam </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetTypeNameForGlobalExistentialTypeParam",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int SetTypeNameForGlobalExistentialTypeParam(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int slotIndex,
+            char* typeName
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setTypeNameForEntryPointExistentialTypeParam </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetTypeNameForEntryPointExistentialTypeParam",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int SetTypeNameForEntryPointExistentialTypeParam(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int entryPointIndex,
+            int slotIndex,
+            char* typeName
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::compile </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spCompile",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int Compile(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getDiagnosticOutput </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetDiagnosticOutput",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* GetDiagnosticOutput(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getDiagnosticOutputBlob </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetDiagnosticOutputBlob",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetDiagnosticOutputBlob(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getDependencyFileCount </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetDependencyFileCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetDependencyFileCount(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getDependencyFilePath </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetDependencyFilePath",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* GetDependencyFilePath(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int index
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getTranslationUnitCount </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetTranslationUnitCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetTranslationUnitCount(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getEntryPointSource </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetEntryPointSource",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* GetEntryPointSource(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int entryPointIndex
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getEntryPointCode </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetEntryPointCode",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void* GetEntryPointCode(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int entryPointIndex,
+            ulong* outSize
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getEntryPointCodeBlob </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetEntryPointCodeBlob",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetEntryPointCodeBlob(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int entryPointIndex,
+            int targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getEntryPointHostCallable </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetEntryPointHostCallable",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetEntryPointHostCallable(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int entryPointIndex,
+            int targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary** outSharedLibrary
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getTargetCodeBlob </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetTargetCodeBlob",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetTargetCodeBlob(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getTargetHostCallable </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetTargetHostCallable",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetTargetHostCallable(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary** outSharedLibrary
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getCompileRequestCode </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetCompileRequestCode",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void* GetCompileRequestCode(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            ulong* outSize
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getContainerCode </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetContainerCode",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetContainerCode(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::loadRepro </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spLoadRepro",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int LoadRepro(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* fileSystem,
+            void* data,
+            ulong size
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::saveRepro </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSaveRepro",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int SaveRepro(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::enableReproCapture </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spEnableReproCapture",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int EnableReproCapture(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getCompileTimeProfile </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetCompileTimeProfile",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetCompileTimeProfile(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangProfiler** compileTimeProfile,
+            [global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            )]
+                bool shouldClear
+        );
+
+        /// <summary> Extract contents of a repro.</summary>
+        /// <para>    Writes the contained files and manifest with their 'unique' names into fileSystem. For more    details read the docs/repro.md documentation.</para>
+        ///
+        /// <param name="session">          The slang session    </param>
+        /// <param name="reproData">        Holds the repro data    </param>
+        /// <param name="reproDataSize">    The size of the repro data    </param>
+        /// <param name="fileSystem">       File system that the contents of the repro will be written to    </param>
+        /// <remarks>                A `SlangResult` to indicate success or failure.</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spExtractRepro",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ExtractRepro(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
+            void* reproData,
+            ulong reproDataSize,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangMutableFileSystem* fileSystem
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spLoadReproAsFileSystem",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int LoadReproAsFileSystem(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
+            void* reproData,
+            ulong reproDataSize,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* replaceFileSystem,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystemExt** outFileSystem
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::overrideDiagnosticSeverity </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spOverrideDiagnosticSeverity",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void OverrideDiagnosticSeverity(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            long messageID,
+            global::ShaderSlang.Net.Bindings.Generated.SlangSeverity overrideSeverity
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getDiagnosticFlags </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetDiagnosticFlags",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int GetDiagnosticFlags(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::setDiagnosticFlags </remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spSetDiagnosticFlags",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void SetDiagnosticFlags(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int flags
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetReflection",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* GetReflection(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionUserAttribute_GetName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionUserAttributeGetName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* attrib
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionUserAttribute_GetArgumentCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionUserAttributeGetArgumentCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* attrib
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionUserAttribute_GetArgumentType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionUserAttributeGetArgumentType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* attrib,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionUserAttribute_GetArgumentValueInt",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ReflectionUserAttributeGetArgumentValueInt(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* attrib,
+            uint index,
+            int* rs
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionUserAttribute_GetArgumentValueFloat",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ReflectionUserAttributeGetArgumentValueFloat(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* attrib,
+            uint index,
+            float* rs
+        );
+
+        /// <summary><para> Returns the string-typed value of a user attribute argument        The string returned is not null-terminated. The length of the string is returned via       `outSize`. If index of out of range, or if the specified argument is not a string, the       function will return nullptr.</para></summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionUserAttribute_GetArgumentValueString",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionUserAttributeGetArgumentValueString(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* attrib,
+            uint index,
+            ulong* outSize
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetKind",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind ReflectionTypeGetKind(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetUserAttributeCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionTypeGetUserAttributeCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetUserAttribute",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* ReflectionTypeGetUserAttribute(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_FindUserAttributeByName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* ReflectionTypeFindUserAttributeByName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type,
+            char* name
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_applySpecializations",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionType_applySpecializations(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetFieldCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionTypeGetFieldCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetFieldByIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* ReflectionTypeGetFieldByIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type,
+            uint index
+        );
+
+        /// <summary> Returns the number of elements in the given type.</summary>
+        ///     This operation is valid for vector and array types. For other types it returns zero.
+        /// <para>    When invoked on an unbounded-size array it will return `SLANG_UNBOUNDED_SIZE`,    which is defined to be `~size_t(0)`.</para>
+        /// <para>    If the size of a type cannot be statically computed, perhaps because it depends on    a generic parameter that has not been bound to a specific value, this function returns zero.</para>
+        /// <para>    Use spReflectionType_GetSpecializedElementCount if the size is dependent on    a link time constant</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetElementCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong ReflectionTypeGetElementCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        /// <summary><para> The same as spReflectionType_GetElementCount except it takes into account specialization information from the given reflection info</para></summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetSpecializedElementCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong ReflectionTypeGetSpecializedElementCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type,
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetElementType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionTypeGetElementType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetRowCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionTypeGetRowCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetColumnCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionTypeGetColumnCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetScalarType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangScalarType ReflectionTypeGetScalarType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetResourceShape",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangResourceShape ReflectionTypeGetResourceShape(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetResourceAccess",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangResourceAccess ReflectionTypeGetResourceAccess(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetResourceResultType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionTypeGetResourceResultType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionTypeGetName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetFullName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ReflectionTypeGetFullName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outNameBlob
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_GetGenericContainer",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* ReflectionTypeGetGenericContainer(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionTypeLayoutGetType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getKind",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangTypeKind ReflectionTypeLayout_getKind(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        /// <summary> Get the size of a type layout in the specified parameter category.</summary>
+        /// <para> Returns `SLANG_UNBOUNDED_SIZE` for unbounded resources (e.g., unsized arrays). Returns `SLANG_UNKNOWN_SIZE` when the size depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetSize",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong ReflectionTypeLayoutGetSize(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type,
+            global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category
+        );
+
+        /// <summary> Get the stride of a type layout in the specified parameter category.</summary>
+        /// <para> Returns `SLANG_UNBOUNDED_SIZE` for unbounded resources. Returns `SLANG_UNKNOWN_SIZE` when stride depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetStride",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong ReflectionTypeLayoutGetStride(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type,
+            global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getAlignment",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ReflectionTypeLayout_getAlignment(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type,
+            global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetFieldCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionTypeLayoutGetFieldCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetFieldByIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionTypeLayoutGetFieldByIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_findFieldIndexByName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_findFieldIndexByName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            char* nameBegin,
+            char* nameEnd
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetExplicitCounter",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionTypeLayoutGetExplicitCounter(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout
+        );
+
+        /// <summary> Get the stride between elements of an array type layout.</summary>
+        /// <para> Returns `SLANG_UNBOUNDED_SIZE` for unbounded resources. Returns `SLANG_UNKNOWN_SIZE` when element stride depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetElementStride",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong ReflectionTypeLayoutGetElementStride(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type,
+            global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetElementTypeLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* ReflectionTypeLayoutGetElementTypeLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetElementVarLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionTypeLayoutGetElementVarLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getContainerVarLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionTypeLayout_getContainerVarLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetParameterCategory",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory ReflectionTypeLayoutGetParameterCategory(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetCategoryCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionTypeLayoutGetCategoryCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetCategoryByIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory ReflectionTypeLayoutGetCategoryByIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_GetMatrixLayoutMode",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangMatrixLayoutMode ReflectionTypeLayoutGetMatrixLayoutMode(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getGenericParamIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ReflectionTypeLayout_getGenericParamIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getPendingDataTypeLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* ReflectionTypeLayout_getPendingDataTypeLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getSpecializedTypePendingDataVarLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionTypeLayout_getSpecializedTypePendingDataVarLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_getSpecializedTypeArgCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionType_getSpecializedTypeArgCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionType_getSpecializedTypeArgType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionType_getSpecializedTypeArgType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type,
+            long index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getBindingRangeCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getBindingRangeCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getBindingRangeType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangBindingType ReflectionTypeLayout_getBindingRangeType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_isBindingRangeSpecializable",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_isBindingRangeSpecializable(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long index
+        );
+
+        /// <summary> Get the binding count for a binding range at the specified index.</summary>
+        /// <para> Returns `SLANG_UNBOUNDED_SIZE` for unbounded resources. Returns `SLANG_UNKNOWN_SIZE` when the count depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getBindingRangeBindingCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getBindingRangeBindingCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getBindingRangeLeafTypeLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* ReflectionTypeLayout_getBindingRangeLeafTypeLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getBindingRangeLeafVariable",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* ReflectionTypeLayout_getBindingRangeLeafVariable(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getBindingRangeImageFormat",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat ReflectionTypeLayout_getBindingRangeImageFormat(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getFieldBindingRangeOffset",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getFieldBindingRangeOffset(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long fieldIndex
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getExplicitCounterBindingRangeOffset",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getExplicitCounterBindingRangeOffset(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* inTypeLayout
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getBindingRangeDescriptorSetIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getBindingRangeDescriptorSetIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getBindingRangeFirstDescriptorRangeIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getBindingRangeDescriptorRangeCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getBindingRangeDescriptorRangeCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getDescriptorSetCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getDescriptorSetCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getDescriptorSetSpaceOffset",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getDescriptorSetSpaceOffset(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long setIndex
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getDescriptorSetDescriptorRangeCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long setIndex
+        );
+
+        /// <summary> Get the index offset for a descriptor range within a descriptor set.</summary>
+        /// <para> Returns `SLANG_UNKNOWN_SIZE` when the offset depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getDescriptorSetDescriptorRangeIndexOffset(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long setIndex,
+            long rangeIndex
+        );
+
+        /// <summary> Get the descriptor count for a descriptor range within a descriptor set.</summary>
+        /// <para> Returns `SLANG_UNBOUNDED_SIZE` for unbounded resources. Returns `SLANG_UNKNOWN_SIZE` when the count depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getDescriptorSetDescriptorRangeDescriptorCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long setIndex,
+            long rangeIndex
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangBindingType ReflectionTypeLayout_getDescriptorSetDescriptorRangeType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long setIndex,
+            long rangeIndex
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory ReflectionTypeLayout_getDescriptorSetDescriptorRangeCategory(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long setIndex,
+            long rangeIndex
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getSubObjectRangeCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getSubObjectRangeCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getSubObjectRangeBindingRangeIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getSubObjectRangeBindingRangeIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long subObjectRangeIndex
+        );
+
+        /// <summary> Get the space offset for a sub-object range.</summary>
+        /// <para> Returns `SLANG_UNKNOWN_SIZE` when the offset depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getSubObjectRangeSpaceOffset",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionTypeLayout_getSubObjectRangeSpaceOffset(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long subObjectRangeIndex
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeLayout_getSubObjectRangeOffset",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionTypeLayout_getSubObjectRangeOffset(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* typeLayout,
+            long subObjectRangeIndex
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_GetName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionVariableGetName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* var
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_GetType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionVariableGetType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* var
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_FindModifier",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier* ReflectionVariableFindModifier(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* var,
+            global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_GetUserAttributeCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionVariableGetUserAttributeCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* var
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_GetUserAttribute",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* ReflectionVariableGetUserAttribute(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* var,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_FindUserAttributeByName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* ReflectionVariableFindUserAttributeByName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* var,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* globalSession,
+            char* name
+        );
+
+        [return:
+            global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            ),
+            global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            ),
+            global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            )
+        ]
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_HasDefaultValue",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial bool ReflectionVariableHasDefaultValue(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* inVar
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_GetDefaultValueInt",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ReflectionVariableGetDefaultValueInt(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* inVar,
+            long* rs
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_GetGenericContainer",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* ReflectionVariableGetGenericContainer(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* var
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariable_applySpecializations",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* ReflectionVariable_applySpecializations(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* var,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariableLayout_GetVariable",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* ReflectionVariableLayoutGetVariable(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* var
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariableLayout_GetTypeLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* ReflectionVariableLayoutGetTypeLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* var
+        );
+
+        /// <summary> Get the offset of a variable in the specified parameter category.</summary>
+        /// <para> Returns `SLANG_UNKNOWN_SIZE` when the offset depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariableLayout_GetOffset",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong ReflectionVariableLayoutGetOffset(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* var,
+            global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category
+        );
+
+        /// <summary> Get the register space/set of a variable in the specified parameter category.</summary>
+        /// <para> Returns `SLANG_UNKNOWN_SIZE` when the space depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariableLayout_GetSpace",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong ReflectionVariableLayoutGetSpace(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* var,
+            global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariableLayout_GetImageFormat",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangImageFormat ReflectionVariableLayoutGetImageFormat(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* var
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariableLayout_GetSemanticName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionVariableLayoutGetSemanticName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* var
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariableLayout_GetSemanticIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong ReflectionVariableLayoutGetSemanticIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* var
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_asDecl",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* ReflectionFunction_asDecl(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_GetName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionFunctionGetName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_FindModifier",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier* ReflectionFunctionFindModifier(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* var,
+            global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_GetUserAttributeCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionFunctionGetUserAttributeCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_GetUserAttribute",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* ReflectionFunctionGetUserAttribute(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_FindUserAttributeByName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionUserAttribute* ReflectionFunctionFindUserAttributeByName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* globalSession,
+            char* name
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_GetParameterCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionFunctionGetParameterCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_GetParameter",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* ReflectionFunctionGetParameter(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_GetResultType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionFunctionGetResultType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_GetGenericContainer",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* ReflectionFunctionGetGenericContainer(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_applySpecializations",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* ReflectionFunction_applySpecializations(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_specializeWithArgTypes",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* ReflectionFunction_specializeWithArgTypes(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func,
+            long argTypeCount,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType** argTypes
+        );
+
+        [return:
+            global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            ),
+            global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            ),
+            global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            )
+        ]
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_isOverloaded",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial bool ReflectionFunction_isOverloaded(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_getOverloadCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionFunction_getOverloadCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionFunction_getOverload",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* ReflectionFunction_getOverload(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* func,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionDecl_getChildrenCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionDecl_getChildrenCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* parentDecl
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionDecl_getChild",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* ReflectionDecl_getChild(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* parentDecl,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionDecl_getName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionDecl_getName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* decl
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionDecl_getKind",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind ReflectionDecl_getKind(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* decl
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionDecl_castToFunction",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* ReflectionDecl_castToFunction(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* decl
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionDecl_castToVariable",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* ReflectionDecl_castToVariable(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* decl
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionDecl_castToGeneric",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* ReflectionDecl_castToGeneric(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* decl
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_getTypeFromDecl",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* Reflection_getTypeFromDecl(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* decl
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionDecl_getParent",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* ReflectionDecl_getParent(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* decl
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionDecl_findModifier",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionModifier* ReflectionDecl_findModifier(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* decl,
+            global::ShaderSlang.Net.Bindings.Generated.SlangModifierID modifierID
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_asDecl",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* ReflectionGeneric_asDecl(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionGenericGetName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetTypeParameterCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionGenericGetTypeParameterCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetTypeParameter",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* ReflectionGenericGetTypeParameter(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetValueParameterCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionGenericGetValueParameterCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetValueParameter",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* ReflectionGenericGetValueParameter(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetTypeParameterConstraintCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionGenericGetTypeParameterConstraintCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* typeParam
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetTypeParameterConstraintType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionGenericGetTypeParameterConstraintType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* typeParam,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetInnerKind",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangDeclKind ReflectionGenericGetInnerKind(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetInnerDecl",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionDecl* ReflectionGenericGetInnerDecl(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetOuterGenericContainer",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* ReflectionGenericGetOuterGenericContainer(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetConcreteType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionGenericGetConcreteType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* typeParam
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_GetConcreteIntVal",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial long ReflectionGenericGetConcreteIntVal(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* valueParam
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionGeneric_applySpecializations",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* ReflectionGeneric_applySpecializations(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* currGeneric,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic
+        );
+
+        /// <summary> Get the stage that a variable belongs to (if any).</summary>
+        /// <para>    A variable "belongs" to a specific stage when it is a varying input/output    parameter either defined as part of the parameter list for an entry    point *or* at the global scope of a stage-specific GLSL code file (e.g.,    an `in` parameter in a GLSL `.vs` file belongs to the vertex stage).</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariableLayout_getStage",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangStage ReflectionVariableLayout_getStage(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* var
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionVariableLayout_getPendingDataLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionVariableLayout_getPendingDataLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* var
+        );
+
+        /// <summary> Get the binding index for a shader parameter.</summary>
+        /// <para> Returns `SLANG_UNKNOWN_SIZE` when the index depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionParameter_GetBindingIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionParameterGetBindingIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* parameter
+        );
+
+        /// <summary> Get the binding space for a shader parameter.</summary>
+        /// <para> Returns `SLANG_UNKNOWN_SIZE` when the space depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionParameter_GetBindingSpace",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionParameterGetBindingSpace(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* parameter
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spIsParameterLocationUsed",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int IsParameterLocationUsed(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            long entryPointIndex,
+            long targetIndex,
+            global::ShaderSlang.Net.Bindings.Generated.SlangParameterCategory category,
+            ulong spaceIndex,
+            ulong registerIndex,
+            ref bool outUsed
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionEntryPoint_getName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getNameOverride",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionEntryPoint_getNameOverride(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getFunction",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* ReflectionEntryPoint_getFunction(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getParameterCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionEntryPoint_getParameterCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getParameterByIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionEntryPoint_getParameterByIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getStage",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangStage ReflectionEntryPoint_getStage(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getComputeThreadGroupSize",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void ReflectionEntryPoint_getComputeThreadGroupSize(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint,
+            ulong axisCount,
+            ulong* outSizeAlongAxis
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getComputeWaveSize",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial void ReflectionEntryPoint_getComputeWaveSize(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint,
+            ulong* outWaveSize
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_usesAnySampleRateInput",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ReflectionEntryPoint_usesAnySampleRateInput(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getVarLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionEntryPoint_getVarLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_getResultVarLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionEntryPoint_getResultVarLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionEntryPoint_hasDefaultConstantBuffer",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ReflectionEntryPoint_hasDefaultConstantBuffer(
+            global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* entryPoint
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeParameter_GetName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* ReflectionTypeParameterGetName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter* typeParam
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeParameter_GetIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionTypeParameterGetIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter* typeParam
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeParameter_GetConstraintCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionTypeParameterGetConstraintCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter* typeParam
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflectionTypeParameter_GetConstraintByIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionTypeParameterGetConstraintByIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter* typeParam,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_ToJson",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int ReflectionToJson(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_GetParameterCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionGetParameterCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_GetParameterByIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* ReflectionGetParameterByIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_GetTypeParameterCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ReflectionGetTypeParameterCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_GetTypeParameterByIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter* ReflectionGetTypeParameterByIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            uint index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_FindTypeParameter",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeParameter* ReflectionFindTypeParameter(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            char* name
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_FindTypeByName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* ReflectionFindTypeByName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            char* name
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_GetTypeLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* ReflectionGetTypeLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* reflectionType,
+            global::ShaderSlang.Net.Bindings.Generated.SlangLayoutRules rules
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_FindFunctionByName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* ReflectionFindFunctionByName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            char* name
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_FindFunctionByNameInType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* ReflectionFindFunctionByNameInType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* reflType,
+            char* name
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_FindVarByNameInType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariable* ReflectionFindVarByNameInType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* reflType,
+            char* name
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_TryResolveOverloadedFunction",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction* ReflectionTryResolveOverloadedFunction(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            uint candidateCount,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionFunction** candidates
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_getEntryPointCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong Reflection_getEntryPointCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_getEntryPointByIndex",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* Reflection_getEntryPointByIndex(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            ulong index
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_findEntryPointByName",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangEntryPointLayout* Reflection_findEntryPointByName(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            char* name
+        );
+
+        /// <summary> Get the binding index for the global constant buffer.</summary>
+        /// <para> Returns `SLANG_UNKNOWN_SIZE` when the binding depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_getGlobalConstantBufferBinding",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong Reflection_getGlobalConstantBufferBinding(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        /// <summary> Get the size of the global constant buffer.</summary>
+        /// <para> Returns `SLANG_UNBOUNDED_SIZE` for unbounded resources. Returns `SLANG_UNKNOWN_SIZE` when the size depends on unresolved generic parameters or link-time constants.</para>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_getGlobalConstantBufferSize",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong Reflection_getGlobalConstantBufferSize(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_specializeType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* Reflection_specializeType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* type,
+            long specializationArgCount,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType** specializationArgs,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_specializeGeneric",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* Reflection_specializeGeneric(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* inProgramLayout,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic,
+            long argCount,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* argTypes,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg* args,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
+        );
+
+        [return:
+            global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            ),
+            global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            ),
+            global::System.Runtime.InteropServices.MarshalAs(
+                global::System.Runtime.InteropServices.UnmanagedType.I1
+            )
+        ]
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_isSubType",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial bool Reflection_isSubType(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* subType,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionType* superType
+        );
+
+        /// <summary> Get the number of hashed strings</summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_getHashedStringCount",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial ulong Reflection_getHashedStringCount(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        /// <summary><para> Get a hashed string. The number of chars is written in outCount. The count does *NOT* including terminating 0. The returned string will be 0 terminated.</para></summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_getHashedString",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* Reflection_getHashedString(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection,
+            ulong index,
+            ulong* outCount
+        );
+
+        /// <summary><para> Compute a string hash. Count should *NOT* include terminating zero.</para></summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spComputeStringHash",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial uint ComputeStringHash(char* chars, ulong count);
+
+        /// <summary> Get a type layout representing reflection information for the global-scope parameters.</summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_getGlobalParamsTypeLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionTypeLayout* Reflection_getGlobalParamsTypeLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        /// <summary> Get a variable layout representing reflection information for the global-scope parameters.</summary>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spReflection_getGlobalParamsVarLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.SlangReflectionVariableLayout* Reflection_getGlobalParamsVarLayout(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spGetTranslationUnitSource",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial char* GetTranslationUnitSource(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            int translationUnitIndex
+        );
+
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "_Z23spReflection_GetSessionP18SlangProgramLayout",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial global::ShaderSlang.Net.Bindings.Generated.Slang.ISession* ReflectionGetSession(
+            global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getProgram</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spCompileRequest_getProgram",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int CompileRequest_getProgram(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType** outProgram
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getProgramWithEntryPoints</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spCompileRequest_getProgramWithEntryPoints",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int CompileRequest_getProgramWithEntryPoints(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType** outProgram
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getEntryPoint</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spCompileRequest_getEntryPoint",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int CompileRequest_getEntryPoint(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            long entryPointIndex,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType** outEntryPoint
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getModule</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spCompileRequest_getModule",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int CompileRequest_getModule(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            long translationUnitIndex,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.IModule** outModule
+        );
+
+        /// <summary> </summary>
+        /// <remarks> slang::ICompileRequest::getSession</remarks>
+        [global::System.Runtime.InteropServices.LibraryImport(
+            "slang-compiler",
+            EntryPoint = "spCompileRequest_getSession",
+            StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
+        )]
+        public static partial int CompileRequest_getSession(
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ISession** outSession
+        );
+    }
+}

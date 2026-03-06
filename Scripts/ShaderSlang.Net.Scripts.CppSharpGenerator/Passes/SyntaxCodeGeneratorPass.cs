@@ -151,7 +151,11 @@ internal sealed partial class SyntaxCodeGeneratorPass(BindingContext context)
     public SyntaxNode? VisitClassDecl(Class @class)
     {
         var members = @class
-            .Declarations.Select(VisitDeclaration)
+            .Declarations.Concat(@class.Methods) // For some reason members are not included in the declaration list, this fixes that
+            .Concat(@class.Properties)
+            .Concat(@class.Fields)
+            .Distinct()
+            .Select(VisitDeclaration)
             .WhereNotNull()
             .Cast<MemberDeclarationSyntax>();
 
@@ -175,7 +179,6 @@ internal sealed partial class SyntaxCodeGeneratorPass(BindingContext context)
     public SyntaxNode? VisitProperty(Property property)
     {
         var propertyDeclaration = PropertyDeclaration(property.Type.ToSyntax(), property.Name)
-            .WithDocumentationFrom(property)
             .AddAttributeLists(CreateAttributeListsFrom(property))
             .AddModifiers(property.Access.ToToken());
 
@@ -200,7 +203,7 @@ internal sealed partial class SyntaxCodeGeneratorPass(BindingContext context)
             );
         }
 
-        return propertyDeclaration;
+        return propertyDeclaration.WithDocumentationFrom(property);
     }
 
     public SyntaxNode? VisitMethodDecl(Method method)
@@ -217,7 +220,37 @@ internal sealed partial class SyntaxCodeGeneratorPass(BindingContext context)
             methodSyntax = methodSyntax.AddModifiers(Token(SyntaxKind.VirtualKeyword));
         }
 
+        if (string.IsNullOrWhiteSpace(method.Body))
+        {
+            methodSyntax = methodSyntax.WithSemicolonToken(Token(SyntaxKind.SemicolonToken));
+
+            if (method.Namespace is Class { IsInterface: false })
+            {
+                methodSyntax = methodSyntax.AddModifiers(Token(SyntaxKind.PartialKeyword));
+            }
+        }
+        else
+        {
+            var statements = ParseStatements(method.Body);
+
+            methodSyntax = methodSyntax.WithBody(Block(statements));
+        }
+
         return methodSyntax;
+    }
+
+    private static StatementSyntax[] ParseStatements(string body)
+    {
+        var statements = new List<StatementSyntax>();
+        while (body.Length > 0)
+        {
+            var statement = ParseStatement(body, consumeFullText: false);
+
+            statements.Add(statement);
+            body = body[statement.FullSpan.End..];
+        }
+
+        return statements.ToArray();
     }
 
     public bool AlreadyVisited(Declaration decl) => Visited.Contains(decl);

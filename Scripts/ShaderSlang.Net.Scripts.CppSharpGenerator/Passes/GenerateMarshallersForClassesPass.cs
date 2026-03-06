@@ -65,6 +65,7 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
             Name = managedClass.Name + "Marshaller",
             Namespace = managedClass,
             Access = AccessSpecifier.Internal,
+            IsStatic = true,
             IsPOD = true,
             Methods = { convertToManagedMethod, convertToUnmanagedMethod },
         };
@@ -95,6 +96,8 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
 
                 f.Attributes.Add(CreateFieldOffsetAttribute(nativeField.Offset));
 
+                f.ExcludeFromPasses.Add(typeof(FieldToPropertyPass));
+
                 return f;
             })
             .ToList();
@@ -124,8 +127,9 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
 
     public override bool VisitClassDecl(Class visClass)
     {
-        if (AlreadyVisited(visClass))
-            return true;
+        if (Visited.Contains(visClass))
+            return base.VisitClassDecl(visClass);
+
         if (visClass.IsISlangUnknown())
             return false;
 

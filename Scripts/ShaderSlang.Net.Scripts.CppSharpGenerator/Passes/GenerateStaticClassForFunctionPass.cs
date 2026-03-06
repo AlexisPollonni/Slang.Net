@@ -1,7 +1,9 @@
+using System.Runtime.InteropServices;
 using CppSharp;
 using CppSharp.AST;
 using CppSharp.Passes;
 using Shouldly;
+using Attribute = CppSharp.AST.Attribute;
 
 namespace ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 
@@ -65,31 +67,31 @@ internal sealed class GenerateStaticClassForFunctionPass(string functionPrefix, 
     {
         staticClass.IsStatic.ShouldBeTrue();
 
-        function.ExplicitlyIgnore();
-
         var newMethod = new Method(function)
         {
             Namespace = staticClass,
             OriginalNamespace = function.Namespace,
             Name = methodName,
-            OriginalName = function.OriginalName,
-            Mangled = function.Mangled,
             Access = AccessSpecifier.Public,
             Kind = CXXMethodKind.Normal,
-            ReturnType = function.ReturnType,
-            CallingConvention = function.CallingConvention,
-            IsVariadic = function.IsVariadic,
-            IsInline = function.IsInline,
             IsStatic = true,
             Conversion = MethodConversionKind.FunctionToStaticMethod,
         };
 
-        newMethod.Parameters.AddRange(
-            function.Parameters.Select(parameter => new Parameter(parameter)
-            {
-                Namespace = newMethod,
-            })
+        var libImportAttribute = CreateLibraryImportAttribute(
+            function.TranslationUnit.Module.SharedLibraryName,
+            function.Mangled,
+            StringMarshalling.Utf8
         );
+
+        newMethod.Attributes.Add(libImportAttribute);
+
+        foreach (var methodParameter in newMethod.Parameters)
+        {
+            methodParameter.Namespace = newMethod;
+        }
+
+        function.ExplicitlyIgnore();
 
         staticClass.Methods.Add(newMethod);
         staticClass.Declarations.Add(newMethod);
@@ -98,5 +100,19 @@ internal sealed class GenerateStaticClassForFunctionPass(string functionPrefix, 
             staticClass.Name,
             methodName
         );
+    }
+
+    private static Attribute CreateLibraryImportAttribute(
+        string libraryName,
+        string entryPoint,
+        StringMarshalling stringMarshalling
+    )
+    {
+        return new()
+        {
+            Type = typeof(LibraryImportAttribute),
+            Value =
+                $"\"{libraryName}\", EntryPoint = \"{entryPoint}\", StringMarshalling = {typeof(StringMarshalling).ToGlobalFullName()}.{stringMarshalling}",
+        };
     }
 }

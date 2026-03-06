@@ -1,11 +1,15 @@
 using CppSharp;
 using CppSharp.AST;
+using CppSharp.AST.Extensions;
 using CppSharp.Passes;
 using CSharpier.Core;
 using CSharpier.Core.CSharp;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Logging.Console;
 using ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 using Shouldly;
 using TruePath;
@@ -36,7 +40,7 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         opts.CommentKind = CommentKind.BCPLSlash;
         opts.GenerateDeprecatedDeclarations = true;
         opts.GenerateFinalizers = false;
-        opts.UseSpan = true;
+        opts.UseSpan = false;
         opts.MarshalConstCharArrayAsString = true;
 
         // Since we rewrote the entire code generator we can enable dry run to skip cppsharp's generator since we do so in the postprocess
@@ -53,6 +57,11 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
 
     public void SetupPasses(Driver driver)
     {
+        //workaround
+        driver.Context.TranslationUnitPasses.Passes.RemoveAll(pass =>
+            pass is CheckIgnoredDeclsPass
+        );
+
         // Removes enum member prefixes to match csharp conventions
         //TODO: check if can detect automatically similarly to how was done with ClangSharp script
         string[] enumMemberPrefixesToRemove =
@@ -97,21 +106,35 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
             "DIAGNOSTIC_FLAG_",
         ];
 
+        var stringNameConflictsPass = new RegexRenamePass(
+            "string",
+            "srcString",
+            RenameTargets.Parameter
+        ); //IDK why anyone would name a param "string" but here we are...
+        stringNameConflictsPass.VisitOptions.SetFlags(VisitFlags.FunctionParameters); // surprisingly by default visiting parameters is not set, even when adding the rename target for it
+
         IEnumerable<TranslationUnitPass> passes =
         [
+            stringNameConflictsPass,
+            new ResolveOpaqueClassesPass(),
             new GenerateStaticClassForFunctionPass("slang_", "SlangApi"),
             new GenerateStaticClassForFunctionPass("sp", "SlangApi"),
+            new CheckIgnoredDeclsPass(),
             .. enumMemberPrefixesToRemove.Select(prefix => new RegexRenamePass(
                 $"^{prefix}",
                 string.Empty,
                 RenameTargets.EnumItem
             )),
             new RenameEnumItemsCasePass(),
-            new CaseRenamePass(RenameTargets.Function, RenameCasePattern.UpperCamelCase),
+            new CaseRenamePass(
+                RenameTargets.Function | RenameTargets.Namespace,
+                RenameCasePattern.UpperCamelCase
+            ),
             new RemoveAmbiguousNamingPrefixPass(),
             new ResolveIncompleteDeclsPass(),
             new GenerateSlangComInterfacesPass(),
             new GenerateMarshallersForClassesPass(),
+            new TransformParametersMarshalPass(),
             new GenerateTranslationUnitNamespacePass(),
         ];
 

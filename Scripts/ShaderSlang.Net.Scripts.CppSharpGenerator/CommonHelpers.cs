@@ -10,7 +10,7 @@ public static class CommonHelpers
 {
     public static string ToGlobalFullName(this Type type) => $"global::{type.FullName}";
 
-    public static string ToGlobalFullName(this Class @class)
+    public static string ToGlobalFullName(this DeclarationContext @class)
     {
         var outputNamespace = @class.TranslationUnit.Module.OutputNamespace;
 
