@@ -49,31 +49,45 @@ public static class RoslynExtensions
                throw new InvalidOperationException($"Failed to parse type name '{globalFullName}' into a valid syntax node");
     }
 
+    [SuppressMessage("ReSharper", "TailRecursiveCall")]
     public static TypeSyntax ToSyntax(this Type type)
     {
-        if (type is BuiltinType builtin)
+        switch (type)
         {
-            var predefined = builtin.BuiltInToPredefinedSyntax();
-            if (predefined is not null) return predefined;
-
-            if (builtin.Type == PrimitiveType.IntPtr)
+            case BuiltinType builtin:
             {
-                return new CILType(typeof(nint)).ToSyntax();
+                var predefined = builtin.BuiltInToPredefinedSyntax();
+                if (predefined is not null)
+                    return predefined;
+
+                if (builtin.Type == PrimitiveType.IntPtr)
+                {
+                    return new CILType(typeof(nint)).ToSyntax();
+                }
+
+                if (builtin.Type == PrimitiveType.UIntPtr)
+                {
+                    return new CILType(typeof(nuint)).ToSyntax();
+                }
+
+                Diagnostics.Error(
+                    "Null type does not have a direct C# equivalent, using 'object?' as a fallback. This may lead to incorrect code generation."
+                );
+                return NullableType(PredefinedType(Token(SyntaxKind.ObjectKeyword)));
             }
+            case CILType cilType:
+                return cilType.ToSyntax();
 
-            if (builtin.Type == PrimitiveType.UIntPtr)
-            {
-                return new CILType(typeof(nuint)).ToSyntax();
-            }
+            case TypedefType typedef:
+                if (typedef.Declaration is TypedefDecl typedefDecl)
+                {
+                    return typedefDecl.Type.ToSyntax();
+                }
 
-            Diagnostics.Error(
-                "Null type does not have a direct C# equivalent, using 'object?' as a fallback. This may lead to incorrect code generation.");
-            return NullableType(PredefinedType(Token(SyntaxKind.ObjectKeyword)));
-        }
-
-        if (type is CILType cilType)
-        {
-            return cilType.ToSyntax();
+                Diagnostics.Error(
+                    $"Typedef {typedef} does not have a declaration, cannot generate syntax."
+                );
+                break;
         }
 
         if (type.IsReference())
@@ -93,14 +107,12 @@ public static class RoslynExtensions
 
         if (type.TryGetEnum(out var enumDef))
         {
-            var outputNamespace = enumDef.TranslationUnit.Module.OutputNamespace.Split('.');
-            string[] finalNamespace = [..outputNamespace, ..enumDef.GatherParentNamespaces().Select(n => n.Name)];
-            
-            return ParseTypeName(type.ToString());            
+            return ParseTypeName(enumDef.ToGlobalFullName());
         }
 
         Diagnostics.Warning(
-            $"Type '{type}' does not have a predefined managed mapping, using its name as identifier. This may lead to incorrect code generation.");
+            $"Type '{type}' does not have a predefined managed mapping, using its name as identifier. This may lead to incorrect code generation."
+        );
 
         return ParseTypeName(type.ToString());
     }
