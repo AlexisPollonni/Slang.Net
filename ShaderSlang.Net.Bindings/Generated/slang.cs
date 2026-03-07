@@ -794,7 +794,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public global::ShaderSlang.Net.Bindings.Generated.SlangProfileID FindProfile(
-                char* name
+                global::System.String name
             );
 
             /// <summary><para> Set the path that downstream compilers (aka back end compilers) will    be looked from.    </para></summary>
@@ -809,7 +809,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             ]
             public void SetDownstreamCompilerPath(
                 global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough,
-                char* path
+                global::System.String path
             );
 
             /// <summary> DEPRECATED: Use setLanguagePrelude</summary>
@@ -825,7 +825,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             ]
             public void SetDownstreamCompilerPrelude(
                 global::ShaderSlang.Net.Bindings.Generated.SlangPassThrough passThrough,
-                char* preludeText
+                global::System.String preludeText
             );
 
             /// <summary> DEPRECATED: Use getLanguagePrelude</summary>
@@ -853,7 +853,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public char* GetBuildTagString();
+            public global::System.String GetBuildTagString();
 
             [
                 global::System.Runtime.InteropServices.PreserveSig(),
@@ -884,7 +884,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             ]
             public void SetLanguagePrelude(
                 global::ShaderSlang.Net.Bindings.Generated.SlangSourceLanguage sourceLanguage,
-                char* preludeText
+                global::System.String preludeText
             );
 
             /// <summary><para> Get the 'prelude' associated with a specific source language.    </para></summary>
@@ -919,7 +919,10 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public void AddBuiltins(char* sourcePath, char* sourceString);
+            public void AddBuiltins(
+                global::System.String sourcePath,
+                global::System.String sourceString
+            );
 
             /// <summary><para> Set the session shared library loader. If this changes the loader, it may cause shared    libraries to be unloaded    </para></summary>
             /// <param name="loader"> The loader to set. Setting nullptr sets the default loader.</param>
@@ -1017,7 +1020,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID FindCapability(
-                char* name
+                global::System.String name
             );
 
             /// <summary><para> Set the downstream/pass through compiler to be used for a transition from the source type to    the target type    </para></summary>
@@ -1067,7 +1070,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public int SetSPIRVCoreGrammar(char* jsonPath);
+            public int SetSPIRVCoreGrammar(global::System.String jsonPath);
 
             /// <summary><para> Parse slangc command line options into a SessionDesc that can be used to create a session   with all the compiler options specified in the command line.   </para></summary>
             /// <param name="argc"> The number of command line arguments.   </param>
@@ -1380,7 +1383,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public global::ShaderSlang.Net.Bindings.Generated.Slang.IModule* LoadModule(
-                char* moduleName,
+                global::System.String moduleName,
                 global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
             );
 
@@ -1392,8 +1395,8 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public global::ShaderSlang.Net.Bindings.Generated.Slang.IModule* LoadModuleFromSource(
-                char* moduleName,
-                char* path,
+                global::System.String moduleName,
+                global::System.String path,
                 global::ShaderSlang.Net.Bindings.Generated.ISlangBlob* source,
                 global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
             );
@@ -1545,8 +1548,8 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public global::ShaderSlang.Net.Bindings.Generated.Slang.IModule* LoadModuleFromIRBlob(
-                char* moduleName,
-                char* path,
+                global::System.String moduleName,
+                global::System.String path,
                 global::ShaderSlang.Net.Bindings.Generated.ISlangBlob* source,
                 global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
             );
@@ -1580,7 +1583,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public bool IsBinaryModuleUpToDate(
-                char* modulePath,
+                global::System.String modulePath,
                 global::ShaderSlang.Net.Bindings.Generated.ISlangBlob* binaryModuleBlob
             );
 
@@ -1592,9 +1595,9 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public global::ShaderSlang.Net.Bindings.Generated.Slang.IModule* LoadModuleFromSourceString(
-                char* moduleName,
-                char* path,
-                char* srcString,
+                global::System.String moduleName,
+                global::System.String path,
+                global::System.String srcString,
                 global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
             );
 
@@ -1661,7 +1664,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public char* GetDebugBuildIdentifier();
+            public global::System.String GetDebugBuildIdentifier();
         }
 
         /// <summary><para> Compile result for storing and retrieving multiple output blobs.    This is needed for features such as separate debug compilation which    output both base and debug spirv.</para></summary>
@@ -1873,7 +1876,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public int RenameEntryPoint(
-                char* newName,
+                global::System.String newName,
                 global::ShaderSlang.Net.Bindings.Generated.Slang.IComponentType** outEntryPoint
             );
 
@@ -2015,7 +2018,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public int FindEntryPointByName(
-                char* name,
+                global::System.String name,
                 global::ShaderSlang.Net.Bindings.Generated.Slang.IEntryPoint** outEntryPoint
             );
 
@@ -2058,7 +2061,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public int WriteToFile(char* fileName);
+            public int WriteToFile(global::System.String fileName);
 
             /// <summary> Get the name of the module.</summary>
             [
@@ -2067,7 +2070,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public char* GetName();
+            public global::System.String GetName();
 
             /// <summary> Get the path of the module.</summary>
             [
@@ -2076,7 +2079,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public char* GetFilePath();
+            public global::System.String GetFilePath();
 
             /// <summary> Get the unique identity of the module.</summary>
             [
@@ -2085,7 +2088,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public char* GetUniqueIdentity();
+            public global::System.String GetUniqueIdentity();
 
             /// <summary><para> Find and validate an entry point by name, even if the function is not marked with the `[shader("...")]` attribute.</para></summary>
             [
@@ -2095,7 +2098,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public int FindAndCheckEntryPoint(
-                char* name,
+                global::System.String name,
                 global::ShaderSlang.Net.Bindings.Generated.SlangStage stage,
                 global::ShaderSlang.Net.Bindings.Generated.Slang.IEntryPoint** outEntryPoint,
                 global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
@@ -2117,7 +2120,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public char* GetDependencyFilePath(int index);
+            public global::System.String GetDependencyFilePath(int index);
 
             [
                 global::System.Runtime.InteropServices.PreserveSig(),
@@ -2404,7 +2407,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public int FindFunctionByName(char* name);
+            public int FindFunctionByName(global::System.String name);
 
             [
                 global::System.Runtime.InteropServices.PreserveSig(),
@@ -2471,7 +2474,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public int RegisterExtCall(char* name, __IntPtr* functionPtr);
+            public int RegisterExtCall(global::System.String name, __IntPtr* functionPtr);
 
             /// <summary> Set a callback function to print messages from the byte code runner.</summary>
             [
@@ -3563,7 +3566,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             )
         ]
         public int LoadFile(
-            char* path,
+            global::System.String path,
             global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outBlob
         );
     }
@@ -3584,7 +3587,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public void* FindSymbolAddressByName(char* name);
+        public void* FindSymbolAddressByName(global::System.String name);
     }
 
     /// <summary><para> An interface that can be used to encapsulate access to a shared library. An implementation    does not have to implement the library as a shared library</para></summary>
@@ -3606,7 +3609,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public void* FindSymbolAddressByName(char* name);
+        public void* FindSymbolAddressByName(global::System.String name);
     }
 
     [
@@ -3626,7 +3629,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             )
         ]
         public int LoadSharedLibrary(
-            char* path,
+            global::System.String path,
             global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibrary** sharedLibraryOut
         );
     }
@@ -3662,7 +3665,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             )
         ]
         public int GetFileUniqueIdentity(
-            char* path,
+            global::System.String path,
             global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outUniqueIdentity
         );
 
@@ -3682,8 +3685,8 @@ namespace ShaderSlang.Net.Bindings.Generated
         ]
         public int CalcCombinedPath(
             global::ShaderSlang.Net.Bindings.Generated.SlangPathType fromPathType,
-            char* fromPath,
-            char* path,
+            global::System.String fromPath,
+            global::System.String path,
             global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** pathOut
         );
 
@@ -3698,7 +3701,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             )
         ]
         public int GetPathType(
-            char* path,
+            global::System.String path,
             global::ShaderSlang.Net.Bindings.Generated.SlangPathType* pathTypeOut
         );
 
@@ -3716,7 +3719,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         ]
         public int GetPath(
             global::ShaderSlang.Net.Bindings.Generated.PathKind kind,
-            char* path,
+            global::System.String path,
             global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outPath
         );
 
@@ -3742,7 +3745,11 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public int EnumeratePathContents(char* path, __IntPtr* callback, void* userData);
+        public int EnumeratePathContents(
+            global::System.String path,
+            __IntPtr* callback,
+            void* userData
+        );
 
         /// <summary> Returns how paths map to the OS file system</summary>
         ///
@@ -3777,7 +3784,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public int SaveFile(char* path, void* data, ulong size);
+        public int SaveFile(global::System.String path, void* data, ulong size);
 
         /// <summary> Write data in the form of a blob to the specified path.</summary>
         /// <para>        Depending on the implementation writing a blob might be faster/use less memory. It is        assumed the blob is *immutable* and that an implementation can reference count it.</para>
@@ -3793,7 +3800,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             )
         ]
         public int SaveFileBlob(
-            char* path,
+            global::System.String path,
             global::ShaderSlang.Net.Bindings.Generated.ISlangBlob* dataBlob
         );
 
@@ -3807,7 +3814,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public int Remove(char* path);
+        public int Remove(global::System.String path);
 
         /// <summary> Create a directory.</summary>
         ///         The path to the directory must exist
@@ -3820,7 +3827,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public int CreateDirectory(char* path);
+        public int CreateDirectory(global::System.String path);
     }
 
     /// <summary> A stream typically of text, used for outputting diagnostic as well as other information.</summary>
@@ -3842,7 +3849,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public char* BeginAppendBuffer(ulong maxNumChars);
+        public global::System.String BeginAppendBuffer(ulong maxNumChars);
 
         /// <summary><para> Ends the append buffer, and is equivalent to a write of the append buffer.        NOTE! That an endAppendBuffer is not necessary if there are no characters to write.        </para></summary>
         /// <param name="buffer"> is the start of the data to append and must be identical to last value        returned from beginAppendBuffer        </param>
@@ -3854,7 +3861,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public int EndAppendBuffer(char* buffer, ulong numChars);
+        public int EndAppendBuffer(global::System.String buffer, ulong numChars);
 
         /// <summary><para> Write text to the writer        </para></summary>
         /// <param name="chars"> The characters to write out        </param>
@@ -3866,7 +3873,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public int Write(char* chars, ulong numChars);
+        public int Write(global::System.String chars, ulong numChars);
 
         /// <summary> Flushes any content to the output </summary>
         [
@@ -3925,7 +3932,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
             )
         ]
-        public char* GetEntryName(uint index);
+        public global::System.String GetEntryName(uint index);
 
         [
             global::System.Runtime.InteropServices.PreserveSig(),
@@ -4046,9 +4053,9 @@ namespace ShaderSlang.Net.Bindings.Generated
         )]
         public static partial global::ShaderSlang.Net.Bindings.Generated.Slang.IModule* LoadModuleFromSource(
             global::ShaderSlang.Net.Bindings.Generated.Slang.ISession* session,
-            char* moduleName,
-            char* path,
-            char* source,
+            global::System.String moduleName,
+            global::System.String path,
+            global::System.String source,
             ulong sourceSize,
             global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
         );
@@ -4068,8 +4075,8 @@ namespace ShaderSlang.Net.Bindings.Generated
         )]
         public static partial global::ShaderSlang.Net.Bindings.Generated.Slang.IModule* LoadModuleFromIRBlob(
             global::ShaderSlang.Net.Bindings.Generated.Slang.ISession* session,
-            char* moduleName,
-            char* path,
+            global::System.String moduleName,
+            global::System.String path,
             void* source,
             ulong sourceSize,
             global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
@@ -4157,7 +4164,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         );
 
         public static global::ShaderSlang.Net.Bindings.Generated.ISlangBlob* EmbeddedCoreModule { get; set; }
-        public static char* LastInternalErrorMessage { get; set; }
+        public static global::System.String LastInternalErrorMessage { get; set; }
 
         /// <summary>    </summary>
         /// <summary> Get the build version 'tag' string. The string is the same as    produced via `git describe --tags --match v*` for the project. If such a    version could not be determined at build time then the contents will be    0.0.0-unknown. Any string can be set by passing    -DSLANG_VERSION_FULL=whatever during the cmake invocation.</summary>
@@ -4165,6 +4172,6 @@ namespace ShaderSlang.Net.Bindings.Generated
         /// <para>    An advantage of using this function over the method is that doing so does    not require the creation of a session, which can be a fairly costly    operation.</para>
         ///
         /// <returns> The build tag string</returns>
-        public static char* BuildTagString { get; set; }
+        public static global::System.String BuildTagString { get; set; }
     }
 }
