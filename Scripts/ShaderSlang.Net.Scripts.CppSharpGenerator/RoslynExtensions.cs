@@ -46,10 +46,7 @@ public static class RoslynExtensions
     {
         var globalFullName = cilType.Type.ToGlobalFullName();
 
-        return ParseTypeName(globalFullName) as IdentifierNameSyntax
-            ?? throw new InvalidOperationException(
-                $"Failed to parse type name '{globalFullName}' into a valid syntax node"
-            );
+        return ParseTypeName(globalFullName);
     }
 
     [SuppressMessage("ReSharper", "TailRecursiveCall")]
