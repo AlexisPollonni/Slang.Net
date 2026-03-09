@@ -32,7 +32,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public void SetFileSystem(
-                global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* fileSystem
+                global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem
             );
 
             /// <summary>    </summary>
@@ -225,7 +225,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             ]
             public void SetWriter(
                 global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel,
-                global::ShaderSlang.Net.Bindings.Generated.ISlangWriter* writer
+                global::ShaderSlang.Net.Bindings.Generated.ISlangWriter writer
             );
 
             [
@@ -234,7 +234,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public global::ShaderSlang.Net.Bindings.Generated.ISlangWriter* GetWriter(
+            public global::ShaderSlang.Net.Bindings.Generated.ISlangWriter GetWriter(
                 global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel
             );
 
@@ -403,7 +403,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             public void AddTranslationUnitSourceBlob(
                 int translationUnitIndex,
                 global::System.String path,
-                global::ShaderSlang.Net.Bindings.Generated.ISlangBlob* sourceBlob
+                global::ShaderSlang.Net.Bindings.Generated.ISlangBlob sourceBlob
             );
 
             /// <summary> Add an entry point in a particular translation unit</summary>
@@ -663,7 +663,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                     CallConvs = [typeof(System.Runtime.CompilerServices.CallConvStdcall)]
                 )
             ]
-            public global::ShaderSlang.Net.Bindings.Generated.ISlangMutableFileSystem* GetCompileRequestResultAsFileSystem();
+            public global::ShaderSlang.Net.Bindings.Generated.ISlangMutableFileSystem GetCompileRequestResultAsFileSystem();
 
             /// <summary><para> Return the container code as a blob. The container blob is created as part of a compilation    (with spCompile), and a container is produced with a suitable ContainerFormat.</para></summary>
             ///
@@ -694,7 +694,7 @@ namespace ShaderSlang.Net.Bindings.Generated
                 )
             ]
             public int LoadRepro(
-                global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* fileSystem,
+                global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem,
                 void* data,
                 ulong size
             );
@@ -1086,7 +1086,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         )]
         public static partial void SessionSetSharedLibraryLoader(
             global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
-            global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader* loader
+            global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader loader
         );
 
         /// <summary> </summary>
@@ -1096,7 +1096,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             EntryPoint = "spSessionGetSharedLibraryLoader",
             StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
         )]
-        public static partial global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader* SessionGetSharedLibraryLoader(
+        public static partial global::ShaderSlang.Net.Bindings.Generated.ISlangSharedLibraryLoader SessionGetSharedLibraryLoader(
             global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session
         );
 
@@ -1166,7 +1166,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         )]
         public static partial void SetFileSystem(
             global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
-            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* fileSystem
+            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem
         );
 
         /// <summary> </summary>
@@ -1265,7 +1265,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
         )]
         public static partial void SetTargetUseMinimumSlangOptimization(
-            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request,
             int targetIndex,
             [global::System.Runtime.InteropServices.MarshalAs(
                 global::System.Runtime.InteropServices.UnmanagedType.I1
@@ -1281,7 +1281,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
         )]
         public static partial void SetIgnoreCapabilityCheck(
-            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request,
             [global::System.Runtime.InteropServices.MarshalAs(
                 global::System.Runtime.InteropServices.UnmanagedType.I1
             )]
@@ -1359,7 +1359,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
         )]
         public static partial void AddTargetCapability(
-            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
+            global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest request,
             int targetIndex,
             global::ShaderSlang.Net.Bindings.Generated.SlangCapabilityID capability
         );
@@ -1470,7 +1470,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         public static partial void SetWriter(
             global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
             global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel,
-            global::ShaderSlang.Net.Bindings.Generated.ISlangWriter* writer
+            global::ShaderSlang.Net.Bindings.Generated.ISlangWriter writer
         );
 
         /// <summary> </summary>
@@ -1480,7 +1480,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             EntryPoint = "spGetWriter",
             StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
         )]
-        public static partial global::ShaderSlang.Net.Bindings.Generated.ISlangWriter* GetWriter(
+        public static partial global::ShaderSlang.Net.Bindings.Generated.ISlangWriter GetWriter(
             global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
             global::ShaderSlang.Net.Bindings.Generated.SlangWriterChannel channel
         );
@@ -1629,7 +1629,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
             int translationUnitIndex,
             global::System.String path,
-            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob* sourceBlob
+            global::ShaderSlang.Net.Bindings.Generated.ISlangBlob sourceBlob
         );
 
         /// <summary> </summary>
@@ -1906,7 +1906,7 @@ namespace ShaderSlang.Net.Bindings.Generated
         )]
         public static partial int LoadRepro(
             global::ShaderSlang.Net.Bindings.Generated.Slang.ICompileRequest* request,
-            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* fileSystem,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem fileSystem,
             void* data,
             ulong size
         );
@@ -1967,7 +1967,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
             void* reproData,
             ulong reproDataSize,
-            global::ShaderSlang.Net.Bindings.Generated.ISlangMutableFileSystem* fileSystem
+            global::ShaderSlang.Net.Bindings.Generated.ISlangMutableFileSystem fileSystem
         );
 
         [global::System.Runtime.InteropServices.LibraryImport(
@@ -1979,7 +1979,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             global::ShaderSlang.Net.Bindings.Generated.Slang.IGlobalSession* session,
             void* reproData,
             ulong reproDataSize,
-            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem* replaceFileSystem,
+            global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystem replaceFileSystem,
             global::ShaderSlang.Net.Bindings.Generated.ISlangFileSystemExt** outFileSystem
         );
 
@@ -3684,7 +3684,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGeneric* generic,
             long argCount,
             global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArgType* argTypes,
-            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg* args,
+            global::ShaderSlang.Net.Bindings.Generated.SlangReflectionGenericArg args,
             global::ShaderSlang.Net.Bindings.Generated.ISlangBlob** outDiagnostics
         );
 
@@ -3775,7 +3775,7 @@ namespace ShaderSlang.Net.Bindings.Generated
             EntryPoint = "_Z23spReflection_GetSessionP18SlangProgramLayout",
             StringMarshalling = global::System.Runtime.InteropServices.StringMarshalling.Utf8
         )]
-        public static partial global::ShaderSlang.Net.Bindings.Generated.Slang.ISession* ReflectionGetSession(
+        public static partial global::ShaderSlang.Net.Bindings.Generated.Slang.ISession ReflectionGetSession(
             global::ShaderSlang.Net.Bindings.Generated.SlangProgramLayout* reflection
         );
 

@@ -1,7 +1,10 @@
+using System.Globalization;
+using System.Reflection;
 using CppSharp;
 using CppSharp.AST;
 using CppSharp.Types;
 using Attribute = CppSharp.AST.Attribute;
+using Module = System.Reflection.Module;
 using Type = System.Type;
 
 namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
@@ -61,3 +64,5 @@ internal class ReturnAttribute : Attribute
 
     public ReturnAttribute() { }
 }
+
+internal sealed class NullableType(Declaration declaration) : TagType(declaration);

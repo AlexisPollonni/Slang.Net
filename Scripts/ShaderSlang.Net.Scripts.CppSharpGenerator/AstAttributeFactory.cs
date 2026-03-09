@@ -3,6 +3,7 @@ using System.Runtime.InteropServices.Marshalling;
 using CppSharp.Parser.AST;
 using Attribute = CppSharp.AST.Attribute;
 using Class = CppSharp.AST.Class;
+using Type = CppSharp.AST.Type;
 
 namespace ShaderSlang.Net.Scripts.CppSharpGenerator;
 
@@ -71,7 +72,7 @@ internal sealed class AstAttributeFactory
     }
 
     public static Attribute CreateCustomMarshallerAttribute(
-        Class managedType,
+        Type managedType,
         MarshalMode marshalMode,
         Class marshallerType
     )
@@ -80,7 +81,7 @@ internal sealed class AstAttributeFactory
         {
             Type = typeof(CustomMarshallerAttribute),
             Value =
-                $"typeof({managedType.ToGlobalFullName()}), {typeof(MarshalMode).ToGlobalFullName()}.{marshalMode}, typeof({marshallerType.ToGlobalFullName()})",
+                $"typeof({managedType.ToSyntax()}), {typeof(MarshalMode).ToGlobalFullName()}.{marshalMode}, typeof({marshallerType.ToGlobalFullName()})",
         };
     }
 }

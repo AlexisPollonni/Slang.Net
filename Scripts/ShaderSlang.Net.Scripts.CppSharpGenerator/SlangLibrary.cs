@@ -40,8 +40,6 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
         opts.CommentKind = CommentKind.BCPLSlash;
         opts.GenerateDeprecatedDeclarations = true;
         opts.GenerateFinalizers = false;
-        opts.UseSpan = false;
-        opts.MarshalConstCharArrayAsString = true;
 
         // Since we rewrote the entire code generator we can enable dry run to skip cppsharp's generator since we do so in the postprocess
         opts.DryRun = true;
@@ -126,8 +124,9 @@ internal sealed class SlangLibrary(AbsolutePath slangRepoPath, AbsolutePath outp
                 RenameTargets.EnumItem
             )),
             new RenameEnumItemsCasePass(),
+            new FieldToPropertyPass(),
             new CaseRenamePass(
-                RenameTargets.Function | RenameTargets.Namespace,
+                RenameTargets.Function | RenameTargets.Namespace | RenameTargets.Property,
                 RenameCasePattern.UpperCamelCase
             ),
             new RemoveAmbiguousNamingPrefixPass(),

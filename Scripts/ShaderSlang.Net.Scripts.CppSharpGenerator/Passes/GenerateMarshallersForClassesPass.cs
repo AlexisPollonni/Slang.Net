@@ -1,17 +1,106 @@
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
+using System.Text;
 using CppSharp.AST;
 using CppSharp.AST.Extensions;
 using CppSharp.Passes;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 using static ShaderSlang.Net.Scripts.CppSharpGenerator.AstAttributeFactory;
+using PointerType = CppSharp.AST.PointerType;
+using TemplateParameterType = CppSharp.Parser.AST.TemplateParameterType;
+using Type = CppSharp.AST.Type;
 
 namespace ShaderSlang.Net.Scripts.CppSharpGenerator.Passes;
 
 internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
 {
+    private readonly Dictionary<Class, Class> _managedToNativeClass = [];
+
+    private static string GenerateConvertToManaged(
+        Parameter unmanagedParameter,
+        Class managedClass,
+        Class nativeClass
+    )
+    {
+        var marshallingStatements = new List<StatementSyntax>();
+
+        if (managedClass.Fields.Count == 0 && managedClass.Layout.Size == 0)
+        {
+            //is an opaque type, need to marshal with instance pointer
+            marshallingStatements.Add(
+                ParseStatement($"managed.Instance = {unmanagedParameter.Name};")
+            );
+        }
+
+        foreach (var (index, property) in managedClass.Properties.Index())
+        {
+            var nativeField = nativeClass.Fields[index];
+            var marshaller = TypeMarshallerPass.GetMarshallerFor(nativeField.Type, property.Type);
+
+            marshaller.WriteUnmanagedToManagedConversion(
+                marshallingStatements,
+                nativeField.Type,
+                property.Type,
+                $"{unmanagedParameter.Name}->{nativeField.Name}",
+                $"managed.{property.Name}"
+            );
+        }
+
+        return $"""
+            if ({unmanagedParameter.Name} is null)
+                return null;
+
+            var managed = new {managedClass.ToGlobalFullName()}();
+                
+            {string.Join(" ", marshallingStatements.Select(statement => statement.ToFullString()))}
+                
+            return managed;
+            """;
+    }
+
+    private static string GenerateConvertToUnmanaged(
+        Parameter managedParameter,
+        Class managedClass,
+        Class nativeClass
+    )
+    {
+        var marshallingStatements = new List<StatementSyntax>();
+
+        if (managedClass.Fields.Count == 0 && managedClass.Layout.Size == 0)
+        {
+            return $"return {managedParameter.Name}.Instance;";
+        }
+
+        foreach (var (index, property) in managedClass.Properties.Index())
+        {
+            var nativeField = nativeClass.Fields[index];
+            var marshaller = TypeMarshallerPass.GetMarshallerFor(nativeField.Type, property.Type);
+
+            marshaller.WriteManagedToUnmanagedConversion(
+                marshallingStatements,
+                nativeField.Type,
+                property.Type,
+                $"managed.{property.Name}",
+                $"{managedParameter.Name}->{nativeField.Name}"
+            );
+        }
+
+        return $"""
+            if ({managedParameter.Name} is null)
+                return null;
+
+            var native = ({nativeClass.Name}*)  {typeof(NativeMemory).ToGlobalFullName()}.AllocZeroed((UIntPtr)sizeof({nativeClass.Name}));
+
+            {string.Join(" ", marshallingStatements.Select(statement => statement.ToFullString()))}
+
+            return native;
+            """;
+    }
+
     private static Class GenerateMarshallerClassFrom(Class managedClass, Class nativeClass)
     {
-        var managedType = new QualifiedType(new CustomType(managedClass.ToGlobalFullName() + "?"));
+        var managedType = new QualifiedType(new NullableType(managedClass));
         var nativePointerType = new QualifiedType(
             new PointerType(new QualifiedType(new TagType(nativeClass)))
             {
@@ -30,11 +119,6 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
             },
             Access = AccessSpecifier.Public,
             IsStatic = true,
-            Body = $"""
-                if (native is null)
-                    return null;
-                return {managedClass.ToGlobalFullName()}.__GetOrCreateInstance(new __IntPtr(native), saveInstance: false);
-                """,
         };
 
         var convertToUnmanagedMethod = new Method
@@ -47,46 +131,89 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
             },
             Access = AccessSpecifier.Public,
             IsStatic = true,
-            Body = """
-                if (managed is null)
-                    return null;
-                return managed.__Instance.ToPointer();
-                """,
         };
 
-        var marshallerClass = new Class
-        {
-            Name = managedClass.Name + "Marshaller",
-            Namespace = managedClass,
-            Access = AccessSpecifier.Internal,
-            IsStatic = true,
-            IsPOD = true,
-            Methods = { convertToManagedMethod, convertToUnmanagedMethod },
-        };
+        var marshallerClass = GetMarshallerClassFor(managedClass);
 
         // wire up namespaces
         convertToManagedMethod.Namespace = marshallerClass;
-        convertToManagedMethod.Parameters.Single().Namespace = convertToManagedMethod;
         convertToUnmanagedMethod.Namespace = marshallerClass;
+        convertToManagedMethod.Parameters.Single().Namespace = convertToManagedMethod;
         convertToUnmanagedMethod.Parameters.Single().Namespace = convertToUnmanagedMethod;
 
         marshallerClass.Attributes.Add(
-            CreateCustomMarshallerAttribute(managedClass, MarshalMode.Default, marshallerClass)
+            CreateCustomMarshallerAttribute(
+                managedClass.IsValueType
+                    ? new NullableType(managedClass)
+                    : new TagType(managedClass),
+                MarshalMode.Default,
+                marshallerClass
+            )
+        );
+
+        marshallerClass.Methods.AddRange([convertToManagedMethod, convertToUnmanagedMethod]);
+
+        convertToManagedMethod.Body = GenerateConvertToManaged(
+            convertToManagedMethod.Parameters.Single(),
+            managedClass,
+            nativeClass
+        );
+        convertToUnmanagedMethod.Body = GenerateConvertToUnmanaged(
+            convertToUnmanagedMethod.Parameters.Single(),
+            managedClass,
+            nativeClass
         );
 
         return marshallerClass;
     }
 
-    private static Class GenerateNativeLayoutStructFrom(Class nativeClass)
+    private static Class GetMarshallerClassFor(Class managedClass)
     {
-        var fields = nativeClass
+        var nGlobal = managedClass.TranslationUnit;
+
+        const string marshallerClassName = "Marshallers";
+        var marshallerClass =
+            nGlobal.FindClass(marshallerClassName)
+            ?? new Class
+            {
+                Name = marshallerClassName,
+                Namespace = nGlobal,
+                Access = AccessSpecifier.Internal,
+                IsStatic = true,
+                IsPOD = true,
+            };
+
+        if (!nGlobal.Declarations.Contains(marshallerClass))
+        {
+            nGlobal.Declarations.Add(marshallerClass);
+        }
+
+        return marshallerClass;
+    }
+
+    private Class GenerateNativeLayoutStructFrom(Class managedClass)
+    {
+        var fields = managedClass
             .Layout.Fields.Select(nativeField =>
             {
-                var f = new Field(
-                    nativeField.Name,
-                    nativeField.QualifiedType,
-                    AccessSpecifier.Internal
-                );
+                var fieldType = nativeField.QualifiedType;
+
+                fieldType.Type.GetFinalPointee().TryGetClass(out var fieldClass);
+
+                if (fieldClass is null && fieldType.Type.IsPointerTo(out TypedefType typedef))
+                    typedef.Declaration.Type.TryGetClass(out fieldClass);
+
+                if (
+                    fieldClass is not null
+                    && _managedToNativeClass.TryGetValue(fieldClass, out var nativeClass)
+                )
+                {
+                    fieldType.Type.GetFinalPointer().QualifiedPointee.Type = new TagType(
+                        nativeClass
+                    );
+                }
+
+                var f = new Field(nativeField.Name, fieldType, AccessSpecifier.Internal);
 
                 f.Attributes.Add(CreateFieldOffsetAttribute(nativeField.Offset));
 
@@ -96,10 +223,9 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
             })
             .ToList();
 
-        var internalsClass = new Class
+        var nativeClass = new Class
         {
-            Name = "__Native",
-            Namespace = nativeClass,
+            Name = managedClass.Name + "Native",
             Access = AccessSpecifier.Internal,
             IsPOD = true,
             Fields = fields,
@@ -108,15 +234,17 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
 
         foreach (var field in fields)
         {
-            field.Namespace = internalsClass;
-            field.Class = internalsClass;
+            field.Namespace = nativeClass;
+            field.Class = nativeClass;
         }
 
-        internalsClass.Attributes.Add(
-            CreateStructLayoutAttribute(LayoutKind.Explicit, nativeClass.Layout.Size)
+        nativeClass.Attributes.Add(
+            CreateStructLayoutAttribute(LayoutKind.Explicit, managedClass.Layout.Size)
         );
 
-        return internalsClass;
+        _managedToNativeClass.Add(managedClass, nativeClass);
+
+        return nativeClass;
     }
 
     public override bool VisitClassDecl(Class visClass)
@@ -149,9 +277,26 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
         var nativeLayoutStruct = GenerateNativeLayoutStructFrom(visClass);
         var marshallerClass = GenerateMarshallerClassFrom(visClass, nativeLayoutStruct);
 
+        nativeLayoutStruct.Namespace = marshallerClass;
+        marshallerClass.Declarations.Add(nativeLayoutStruct);
+
         visClass.Attributes.Add(CreateNativeMarshallingAttribute(marshallerClass));
 
-        visClass.Declarations.AddRange([nativeLayoutStruct, marshallerClass]);
+        // if is an opaque type, add an instance pointer for marshalling purposes
+        if (visClass.Fields.Count == 0 && visClass.Layout.Size == 0)
+        {
+            visClass.Properties.Add(
+                new()
+                {
+                    Name = "Instance",
+                    QualifiedType = new(
+                        new PointerType(new QualifiedType(new TagType(nativeLayoutStruct)))
+                    ),
+                    Access = AccessSpecifier.Internal,
+                    Namespace = visClass,
+                }
+            );
+        }
 
         return res;
     }
@@ -163,28 +308,143 @@ internal sealed class GenerateMarshallersForClassesPass : TranslationUnitPass
 
         return base.VisitMethodDecl(method);
     }
+}
 
-    public override bool VisitParameterDecl(Parameter parameter)
+internal abstract class TypeMarshallerPass
+{
+    private static readonly TypeMarshallerPass[] AllPasses =
+    [
+        new StringMarshallerPass(),
+        new MissingCommentMarshallerPass(), // Fallback marshaller, should be last in the list
+    ];
+
+    public static TypeMarshallerPass GetMarshallerFor(Type nativeType, Type managedType)
     {
-        if (
-            parameter.Namespace is Method { Namespace: Class parentClass }
-            && parentClass.IsISlangUnknown()
-        )
-        {
-            var final = parameter.Type.SkipPointerRefs();
+        return AllPasses.First(pass => pass.IsApplicable(nativeType, managedType));
+    }
 
-            final.TryGetClass(out var paramPointeeClass);
-            if (paramPointeeClass is not null && paramPointeeClass.IsValueType)
-            {
-                parameter.QualifiedType = new(
-                    new PointerType(new QualifiedType(final))
-                    {
-                        Modifier = PointerType.TypeModifier.RVReference,
-                    }
-                );
-            }
-        }
+    /// <summary> Determines if this marshaller is applicable for the given native and managed types. </summary>
+    public abstract bool IsApplicable(Type nativeType, Type managedType);
 
-        return base.VisitParameterDecl(parameter);
+    public abstract void WriteUnmanagedToManagedConversion(
+        List<StatementSyntax> conversionStatements,
+        Type nativeType,
+        Type managedType,
+        string nativeVarName,
+        string managedVarName
+    );
+
+    public abstract void WriteManagedToUnmanagedConversion(
+        List<StatementSyntax> conversionStatements,
+        Type nativeType,
+        Type managedType,
+        string nativeVarName,
+        string managedVarName
+    );
+
+    public abstract void WriteCleanupStatements(
+        List<StatementSyntax> cleanupStatements,
+        Type nativeType,
+        string nativeVarName
+    );
+}
+
+file sealed class MissingCommentMarshallerPass : TypeMarshallerPass
+{
+    public override bool IsApplicable(Type nativeType, Type managedType)
+    {
+        return true; // Fallback marshaller, applicable to all types
+    }
+
+    public override void WriteUnmanagedToManagedConversion(
+        List<StatementSyntax> conversionStatements,
+        Type nativeType,
+        Type managedType,
+        string nativeVarName,
+        string managedVarName
+    )
+    {
+        // No conversion, just write comment to indicate missing marshaller
+        conversionStatements.Add(
+            ParseStatement(
+                $"// No marshaller found for native type '{nativeType}' and managed type '{managedType}'. Consider implementing a custom marshaller for this type pair."
+            )
+        );
+    }
+
+    public override void WriteManagedToUnmanagedConversion(
+        List<StatementSyntax> conversionStatements,
+        Type nativeType,
+        Type managedType,
+        string nativeVarName,
+        string managedVarName
+    )
+    {
+        // No conversion, just write comment to indicate missing marshaller
+        conversionStatements.Add(
+            ParseStatement(
+                $"// No marshaller found for managed type '{managedType}' and native type '{nativeType}'. Consider implementing a custom marshaller for this type pair."
+            )
+        );
+    }
+
+    public override void WriteCleanupStatements(
+        List<StatementSyntax> cleanupStatements,
+        Type nativeType,
+        string nativeVarName
+    )
+    {
+        // No cleanup needed
+    }
+}
+
+file sealed class StringMarshallerPass : TypeMarshallerPass
+{
+    private readonly string _marshallerName = typeof(Utf8StringMarshaller).ToGlobalFullName();
+
+    public override bool IsApplicable(Type nativeType, Type managedType)
+    {
+        return nativeType.IsPointerToPrimitiveType(PrimitiveType.Char)
+            && managedType is BuiltinType { Type: PrimitiveType.String };
+    }
+
+    public override void WriteUnmanagedToManagedConversion(
+        List<StatementSyntax> conversionStatements,
+        Type nativeType,
+        Type managedType,
+        string nativeVarName,
+        string managedVarName
+    )
+    {
+        conversionStatements.Add(
+            ParseStatement(
+                $"{managedVarName} = {_marshallerName}.ConvertToManaged((byte*){nativeVarName});"
+            )
+        );
+    }
+
+    public override void WriteManagedToUnmanagedConversion(
+        List<StatementSyntax> conversionStatements,
+        Type nativeType,
+        Type managedType,
+        string nativeVarName,
+        string managedVarName
+    )
+    {
+        conversionStatements.Add(
+            ParseStatement(
+                $"{nativeVarName} = ({nativeType.ToSyntax().ToFullString()}){_marshallerName}.ConvertToUnmanaged({managedVarName});"
+            )
+        );
+    }
+
+    public override void WriteCleanupStatements(
+        List<StatementSyntax> cleanupStatements,
+        Type nativeType,
+        string nativeVarName
+    )
+    {
+        // Free the unmanaged string after marshalling
+        cleanupStatements.Add(ParseStatement($"{_marshallerName}.FreeUnmanaged({nativeVarName});"));
     }
 }

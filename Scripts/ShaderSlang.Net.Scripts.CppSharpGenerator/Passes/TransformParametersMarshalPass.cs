@@ -90,6 +90,19 @@ internal sealed class TransformParametersMarshalPass : TranslationUnitPass
                 : stringType;
         }
 
+        if (desugared.IsPointerTo(out TagType tagType) && tagType.TryGetClass(out var classDef))
+        {
+            var isDoublePointer = desugared.GetPointee().IsPointer();
+            if (isDoublePointer && !isOutParam)
+            {
+                //is an array of pointers, need to set to span of managed types
+                return type; //TODO
+            }
+
+            //Is an out parameter just set to the managed type
+            return new(tagType);
+        }
+
         return type;
     }
 

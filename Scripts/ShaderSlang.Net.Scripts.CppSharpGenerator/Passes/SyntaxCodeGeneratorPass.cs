@@ -165,15 +165,37 @@ internal sealed partial class SyntaxCodeGeneratorPass(BindingContext context)
     public SyntaxNode? VisitFieldDecl(Field field)
     {
         var declarator = VariableDeclarator(field.Name);
-        if (field.IsBitField)
+        var typeSyntax = field.Type.ToSyntax();
+
+        if (field.Type is ArrayType arrayType)
         {
-            declarator = declarator.WithArgumentList(MakeDeclaratorFromBitField(field));
+            var constSize = arrayType.Size;
+
+            typeSyntax = arrayType.Type.ToSyntax();
+
+            declarator = declarator.WithArgumentList(
+                BracketedArgumentList([
+                    Argument(
+                        LiteralExpression(
+                            SyntaxKind.NumericLiteralExpression,
+                            Literal((int)constSize)
+                        )
+                    ),
+                ])
+            );
         }
 
-        return FieldDeclaration(VariableDeclaration(field.Type.ToSyntax(), [declarator]))
+        var fieldSyntax = FieldDeclaration(VariableDeclaration(typeSyntax, [declarator]))
             .WithDocumentationFrom(field)
             .AddAttributeLists(CreateAttributeListsFrom(field))
             .AddModifiers(field.Access.ToToken());
+
+        if (field.Type is ArrayType)
+        {
+            fieldSyntax = fieldSyntax.AddModifiers(Token(SyntaxKind.FixedKeyword));
+        }
+
+        return fieldSyntax;
     }
 
     public SyntaxNode? VisitProperty(Property property)
@@ -187,7 +209,9 @@ internal sealed partial class SyntaxCodeGeneratorPass(BindingContext context)
             propertyDeclaration = propertyDeclaration.AddModifiers(Token(SyntaxKind.StaticKeyword));
         }
 
-        if (property.HasGetter)
+        var isAutoProperty = !property.HasGetter && !property.HasSetter;
+
+        if (property.HasGetter || isAutoProperty)
         {
             propertyDeclaration = propertyDeclaration.AddAccessorListAccessors(
                 AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
@@ -195,7 +219,7 @@ internal sealed partial class SyntaxCodeGeneratorPass(BindingContext context)
             );
         }
 
-        if (property.HasGetter)
+        if (property.HasGetter || isAutoProperty)
         {
             propertyDeclaration = propertyDeclaration.AddAccessorListAccessors(
                 AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
@@ -257,17 +281,5 @@ internal sealed partial class SyntaxCodeGeneratorPass(BindingContext context)
 
     public bool AlreadyVisited(Type type) => throw new NotImplementedException();
 
-    private BracketedArgumentListSyntax MakeDeclaratorFromBitField(Field field)
-    {
-        var bitFieldSizeArgument = Argument(
-            LiteralExpression(SyntaxKind.NumericLiteralExpression, Literal(field.BitWidth))
-        );
-        return BracketedArgumentList([bitFieldSizeArgument]);
-    }
-
     public ISet<object> Visited { get; } = new HashSet<object>();
 }
-
-//Contains already handled declarations
-
-//contains unsupported declarations

@@ -88,6 +88,9 @@ public static class RoslynExtensions
                     $"Typedef {typedef} does not have a declaration, cannot generate syntax."
                 );
                 break;
+
+            case NullableType nullableType:
+                return NullableType(new TagType(nullableType.Declaration).ToSyntax());
         }
 
         if (type.IsReference())
